@@ -7,7 +7,6 @@
 //
 
 #import "TLogger.h"
-#import "TraceLog.h"
 
 static NSString * const LogScopeClass         = @"LOG_CLASS_";
 static NSString * const LogScopePrefix        = @"LOG_PREFIX_";
@@ -115,39 +114,41 @@ static NSDictionary * loggedClasses;
             // our own messages, we use our own macros to print the output.
             //
             //
-            LogInfo(@"DEBUG is enabled\nLog level settings: \n{%@\n}", ^() {
+            [self log: self selector: _cmd classInstance: self sourceFile:__FILE__ sourceLineNumber:__LINE__ logLevel: LogLevelInfo message:
+                    [NSString stringWithFormat:  @"DEBUG is enabled\nLog level settings: \n{%@\n}", ^() {
 
-                NSMutableString * loggedString = [[NSMutableString alloc] init];
+                        NSMutableString * loggedString = [[NSMutableString alloc] init];
 
-                if ([loggedClasses count] > 0) {
+                        if ([loggedClasses count] > 0) {
 
-                    [loggedString appendString: @"\n\tclass: {\n"];
+                            [loggedString appendString: @"\n\tclass: {\n"];
 
-                    for (NSString  * className in [loggedClasses allKeys]) {
-                        NSNumber  * logLevel = loggedClasses[className];
+                            for (NSString  * className in [loggedClasses allKeys]) {
+                                NSNumber  * logLevel = loggedClasses[className];
 
-                        [loggedString appendString: [[NSMutableString alloc] initWithFormat: @"\n%30s=%@", [className UTF8String], [self stringForLogLevel: [logLevel intValue]]]];
-                    }
-                    [loggedString appendString: @"\n\t}"];
-                }
+                                [loggedString appendString: [[NSMutableString alloc] initWithFormat: @"\n%30s=%@", [className UTF8String], [self stringForLogLevel: [logLevel intValue]]]];
+                            }
+                            [loggedString appendString: @"\n\t}"];
+                        }
 
-                if ([loggedPrefixes count] > 0) {
+                        if ([loggedPrefixes count] > 0) {
 
-                    [loggedString appendString: @"\n\tprefix: {\n"];
+                            [loggedString appendString: @"\n\tprefix: {\n"];
 
-                    for (NSString  * prefix in [loggedPrefixes allKeys]) {
-                        NSNumber  * logLevel = loggedPrefixes[prefix];
+                            for (NSString  * prefix in [loggedPrefixes allKeys]) {
+                                NSNumber  * logLevel = loggedPrefixes[prefix];
 
-                        [loggedString appendString: [[NSMutableString alloc] initWithFormat: @"\n%30s=%@", [prefix UTF8String], [self stringForLogLevel: [logLevel intValue]]]];
-                    }
-                    [loggedString appendString: @"\n\t}"];
-                }
+                                [loggedString appendString: [[NSMutableString alloc] initWithFormat: @"\n%30s=%@", [prefix UTF8String], [self stringForLogLevel: [logLevel intValue]]]];
+                            }
+                            [loggedString appendString: @"\n\t}"];
+                        }
 
 
-                [loggedString appendFormat: @"\n\tglobal: {\n\n%30s=%@\n\t}", "ALL", [self stringForLogLevel: globalLogLevel]];
+                        [loggedString appendFormat: @"\n\tglobal: {\n\n%30s=%@\n\t}", "ALL", [self stringForLogLevel: globalLogLevel]];
 
-                return loggedString;
-            }(/* execute the block */));
+                        return loggedString;
+                    }(/* execute the block */)]
+            ];
 #endif
         }
     }

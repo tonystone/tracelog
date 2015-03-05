@@ -50,7 +50,7 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "LOG_ALL"
-            value = "WARNING"
+            value = "INFO"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable

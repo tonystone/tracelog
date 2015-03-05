@@ -8,6 +8,12 @@
 
 #import <Foundation/Foundation.h>
 
+/*
+  WARNING:  This is a private file and nothing
+  in this file should be used on it's own.  Please
+  see TraceLog.h for the public interface to this.
+*/
+
 
 typedef enum {
     LogLevelNone    = 0,

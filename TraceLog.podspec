@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "TraceLog"
-  s.version          = "0.1.0"
+  s.version          = "0.1.1"
   s.summary          = "TraceLog a fully configurable logging service."
   s.description      = <<-DESC
                              TraceLog is a runtime configurable debug logging system.  It allows flexible
@@ -26,8 +26,8 @@ Pod::Spec.new do |s|
 
                              Please see the main header file TraceLog.h for more details and examples.
                        DESC
-  s.homepage         = "https://github.com/<GITHUB_USERNAME>/TraceLog"
   s.license          = 'MIT'
+  s.homepage         = "http://www.climate.com"
   s.author           = { "Tony Stone" => "tony@mobilegridinc.com" }
   s.source           = { :git => "ssh://git@stash.ci.climatedna.net:7999/fdi/tracelog-ios.git", :tag => s.version.to_s }
 
