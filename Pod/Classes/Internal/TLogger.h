@@ -16,7 +16,7 @@
 
 
 typedef enum {
-    LogLevelNone    = 0,
+    LogLevelOff     = 0,
     LogLevelError   = 1,
     LogLevelWarning = 2,
     LogLevelInfo    = 3,

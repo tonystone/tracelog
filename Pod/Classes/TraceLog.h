@@ -28,7 +28,7 @@
     Each environment variable set is set with a level as the value.  The following
     levels are available in order of display priority.  Each level encompasses the
     level below it with TRACE4 including the output from every level.  The lowest
-    level setting, aside from no output, is ERROR which only output errors when
+    level setting, aside from no output or OFF, is ERROR which only output errors when
     they occur.
 
     Levels:
@@ -40,6 +40,7 @@
             INFO
             WARNING
             ERROR
+            OFF
 
     Environment Variables and syntax:
 

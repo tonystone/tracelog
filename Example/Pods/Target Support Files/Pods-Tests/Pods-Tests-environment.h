@@ -21,12 +21,12 @@
 // TraceLog
 #define COCOAPODS_POD_AVAILABLE_TraceLog
 #define COCOAPODS_VERSION_MAJOR_TraceLog 0
-#define COCOAPODS_VERSION_MINOR_TraceLog 1
-#define COCOAPODS_VERSION_PATCH_TraceLog 1
+#define COCOAPODS_VERSION_MINOR_TraceLog 2
+#define COCOAPODS_VERSION_PATCH_TraceLog 0
 
 // TraceLog/Internal
 #define COCOAPODS_POD_AVAILABLE_TraceLog_Internal
 #define COCOAPODS_VERSION_MAJOR_TraceLog_Internal 0
-#define COCOAPODS_VERSION_MINOR_TraceLog_Internal 1
-#define COCOAPODS_VERSION_PATCH_TraceLog_Internal 1
+#define COCOAPODS_VERSION_MINOR_TraceLog_Internal 2
+#define COCOAPODS_VERSION_PATCH_TraceLog_Internal 0
 

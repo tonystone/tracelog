@@ -12,6 +12,7 @@ static NSString * const LogScopeClass         = @"LOG_CLASS_";
 static NSString * const LogScopePrefix        = @"LOG_PREFIX_";
 static NSString * const LogScopeAll           = @"LOG_ALL";
 
+static NSString * const LogLevelOffString     = @"OFF";
 static NSString * const LogLevelErrorString   = @"ERROR";
 static NSString * const LogLevelWarningString = @"WARNING";
 static NSString * const LogLevelInfoString    = @"INFO";
@@ -167,7 +168,8 @@ static NSDictionary * loggedClasses;
 
     + (LogLevel) logLevelForString: (NSString *) logLevelString {
 
-        if      ([[logLevelString uppercaseString] isEqualToString: LogLevelErrorString])   return LogLevelError;
+        if      ([[logLevelString uppercaseString] isEqualToString:LogLevelOffString])      return LogLevelOff;
+        else if ([[logLevelString uppercaseString] isEqualToString: LogLevelErrorString])   return LogLevelError;
         else if ([[logLevelString uppercaseString] isEqualToString: LogLevelWarningString]) return LogLevelWarning;
         else if ([[logLevelString uppercaseString] isEqualToString: LogLevelInfoString])    return LogLevelInfo;
         else if ([[logLevelString uppercaseString] isEqualToString: LogLevelTrace1String])  return LogLevelTrace1;
@@ -175,7 +177,7 @@ static NSDictionary * loggedClasses;
         else if ([[logLevelString uppercaseString] isEqualToString: LogLevelTrace3String])  return LogLevelTrace3;
         else if ([[logLevelString uppercaseString] isEqualToString: LogLevelTrace4String])  return LogLevelTrace4;
 
-        return LogLevelNone;
+        return LogLevelOff;
     }
 
     + (NSString *) stringForLogLevel: (LogLevel) logLevel {
@@ -188,7 +190,8 @@ static NSDictionary * loggedClasses;
             case LogLevelTrace2:  return LogLevelTrace2String;
             case LogLevelTrace3:  return LogLevelTrace3String;
             case LogLevelTrace4:  return LogLevelTrace4String;
-            default:              return @"OFF";
+            case LogLevelOff:
+            default:              return LogLevelOffString;
         }
     }
 
