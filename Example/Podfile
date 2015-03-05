@@ -1,0 +1,12 @@
+source 'https://github.com/CocoaPods/Specs.git'
+
+target 'TraceLog', :exclusive => true do
+  pod "TraceLog", :path => "../"
+end
+
+target 'Tests', :exclusive => true do
+  pod "TraceLog", :path => "../"
+
+  pod 'Specta'
+  pod 'Expecta'
+end
