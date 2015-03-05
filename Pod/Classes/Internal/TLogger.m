@@ -70,7 +70,7 @@ static NSDictionary * loggedClasses;
     + (void)initialize {
 
         if (self == [TLogger class]) {
-            globalLogLevel = LogLevelNone;
+            globalLogLevel = LogLevelInfo;
 
 #ifdef DEBUG
 
