@@ -1,0 +1,22 @@
+PODS:
+  - Expecta (1.0.3)
+  - Specta (1.0.3)
+  - TraceLog (0.2.0):
+    - TraceLog/Internal (= 0.2.0)
+  - TraceLog/Internal (0.2.0)
+
+DEPENDENCIES:
+  - Expecta
+  - Specta
+  - TraceLog (from `../`)
+
+EXTERNAL SOURCES:
+  TraceLog:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Expecta: 9d1bff6c8b0eeee73a166a2ee898892478927a15
+  Specta: cf3e4188cf35375c3ee2cd03f8db8f1f4ef98234
+  TraceLog: 81d5f9e531fd402a08794ad52718dea1a40240f1
+
+COCOAPODS: 0.38.2

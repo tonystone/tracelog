@@ -1,0 +1,6 @@
+framework module TraceLog {
+  umbrella header "TraceLog-umbrella.h"
+
+  export *
+  module * { export * }
+}

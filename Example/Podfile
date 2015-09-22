@@ -1,4 +1,7 @@
 source 'https://github.com/CocoaPods/Specs.git'
+source 'ssh://git@stash.ci.climatedna.net:7999/mob/climate-cocoapods-specs.git'
+
+use_frameworks!
 
 target 'TraceLog', :exclusive => true do
   pod "TraceLog", :path => "../"
