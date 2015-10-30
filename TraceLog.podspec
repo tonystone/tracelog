@@ -35,13 +35,6 @@ Pod::Spec.new do |s|
   s.requires_arc = true
 
   s.public_header_files = 'Pod/Classes/TraceLog.h'
-  s.source_files = 'Pod/Classes/TraceLog.h'
-  s.resource_bundles = {
-    'TraceLog' => ['Pod/Assets/*.png']
-  }
-   s.subspec 'Internal' do |sp|
-
-       sp.source_files = 'Pod/Classes/Internal/*'
-   end
+  s.source_files = 'Pod/Classes/TraceLog.h', 'Pod/Classes/Internal/*'
 
 end
