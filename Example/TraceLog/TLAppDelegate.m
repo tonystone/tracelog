@@ -1,43 +1,30 @@
-//
-//  TLAppDelegate.m
-//  TraceLog
-//
-//  Created by CocoaPods on 03/04/2015.
-//  Copyright (c) 2014 Tony Stone. All rights reserved.
-//
-
+/**
+ *   TLAppDelegate.m
+ *
+ *   Copyright 2015 The Climate Corporation
+ *   Copyright 2015 Tony Stone
+ *
+ *   Licensed under the Apache License, Version 2.0 (the "License");
+ *   you may not use this file except in compliance with the License.
+ *   You may obtain a copy of the License at
+ *
+ *   http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *   Unless required by applicable law or agreed to in writing, software
+ *   distributed under the License is distributed on an "AS IS" BASIS,
+ *   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *   See the License for the specific language governing permissions and
+ *   limitations under the License.
+ *
+ *   Created by Tony Stone on 3/4/15.
+ */
 #import "TLAppDelegate.h"
 #import <TraceLog/TraceLog.h>
-
-//
-// Static constructor
-//
-static __attribute__((constructor(101),used,visibility("internal"))) void staticConstructor (void) {
-
-    // Testing C level macros
-
-    CLogError([TLAppDelegate class], @selector(application:didFinishLaunchingWithOptions:), nil, @"C Level Test - ERROR output");
-    CLogWarning([TLAppDelegate class], @selector(application:didFinishLaunchingWithOptions:), nil,@"C Level Test - WARNING output");
-    CLogInfo([TLAppDelegate class], @selector(application:didFinishLaunchingWithOptions:), nil,@"C Level Test - INFO output");
-    CLogTrace([TLAppDelegate class], @selector(application:didFinishLaunchingWithOptions:), nil,1,@"C Level Test - TRACE%u output",1);
-    CLogTrace([TLAppDelegate class], @selector(application:didFinishLaunchingWithOptions:), nil,2,@"C Level Test - TRACE%u output",2);
-    CLogTrace([TLAppDelegate class], @selector(application:didFinishLaunchingWithOptions:), nil,3,@"C Level Test - TRACE%u output",3);
-    CLogTrace([TLAppDelegate class], @selector(application:didFinishLaunchingWithOptions:), nil,4,@"C Level Test - TRACE%u output",4);
-}
 
 @implementation TLAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-
-    LogError(@"Objective-C Level Test - ERROR output");
-    LogWarning(@"Objective-C Level Test - WARNING output");
-    LogInfo(@"Objective-C Level Test - INFO output");
-    LogTrace(1,@"Objective-C Level Test - TRACE%u output",1);
-    LogTrace(2,@"Objective-C Level Test - TRACE%u output",2);
-    LogTrace(3,@"Objective-C Level Test - TRACE%u output",3);
-    LogTrace(4,@"Objective-C Level Test - TRACE%u output",4);
-
     // Override point for customization after application launch.
     return YES;
 }
