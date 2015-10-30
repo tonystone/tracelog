@@ -1,5 +1,4 @@
 source 'https://github.com/CocoaPods/Specs.git'
-source 'ssh://git@stash.ci.climatedna.net:7999/mob/climate-cocoapods-specs.git'
 
 use_frameworks!
 
@@ -10,6 +9,4 @@ end
 target 'Tests', :exclusive => true do
   pod "TraceLog", :path => "../"
 
-  pod 'Specta'
-  pod 'Expecta'
 end
