@@ -17,16 +17,8 @@
   },
   "requires_arc": true,
   "public_header_files": "Pod/Classes/TraceLog.h",
-  "source_files": "Pod/Classes/TraceLog.h",
-  "resource_bundles": {
-    "TraceLog": [
-      "Pod/Assets/*.png"
-    ]
-  },
-  "subspecs": [
-    {
-      "name": "Internal",
-      "source_files": "Pod/Classes/Internal/*"
-    }
+  "source_files": [
+    "Pod/Classes/TraceLog.h",
+    "Pod/Classes/Internal/*"
   ]
 }
