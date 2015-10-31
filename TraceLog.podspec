@@ -34,7 +34,7 @@ Pod::Spec.new do |s|
   s.platform     = :ios, '8.0'
   s.requires_arc = true
 
-  s.public_header_files = 'Pod/Classes/TraceLog.h', 'Pod/Classes/Internal/TLogger.h'
-  s.source_files = 'Pod/Classes/TraceLog.h', 'Pod/Classes/Internal/*'
+  s.public_header_files = 'Pod/TraceLog.h', 'Pod/Internal/TLogger.h'
+  s.source_files = 'Pod/TraceLog.h', 'Pod/Internal/*'
 
 end

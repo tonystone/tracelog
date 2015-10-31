@@ -17,11 +17,11 @@
   },
   "requires_arc": true,
   "public_header_files": [
-    "Pod/Classes/TraceLog.h",
-    "Pod/Classes/Internal/TLogger.h"
+    "Pod/TraceLog.h",
+    "Pod/Internal/TLogger.h"
   ],
   "source_files": [
-    "Pod/Classes/TraceLog.h",
-    "Pod/Classes/Internal/*"
+    "Pod/TraceLog.h",
+    "Pod/Internal/*"
   ]
 }

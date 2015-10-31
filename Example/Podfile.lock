@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  TraceLog: cd8d8a1088cbad335261b6ad5d92f05705551cf1
+  TraceLog: 7ee1cfa12b7b26c23af4b148726c05c1e9a273ce
 
 COCOAPODS: 0.39.0
