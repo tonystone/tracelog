@@ -153,7 +153,7 @@ NSString * stringForLogLevel(LogLevel logLevel);
             for (NSString  * className in [_loggedClasses allKeys]) {
                 NSString * logLevel = stringForLogLevel((LogLevel)[_loggedClasses[className] intValue]);
                 
-                [loggedString appendString: [[NSMutableString alloc] initWithFormat: @"\n%30s=%@", [className UTF8String], logLevel]];
+                [loggedString appendString: [[NSMutableString alloc] initWithFormat: @"\n%30s = %@", [className UTF8String], logLevel]];
                 
                 Class clazz = NSClassFromString(className);
                 if (!clazz) {
@@ -170,11 +170,11 @@ NSString * stringForLogLevel(LogLevel logLevel);
             for (NSString  * prefix in [_loggedPrefixes allKeys]) {
                 NSNumber  * logLevel = _loggedPrefixes[prefix];
                 
-                [loggedString appendString: [[NSMutableString alloc] initWithFormat: @"\n%30s=%@", [prefix UTF8String], stringForLogLevel((LogLevel)[logLevel intValue])]];
+                [loggedString appendString: [[NSMutableString alloc] initWithFormat: @"\n%30s = %@", [prefix UTF8String], stringForLogLevel((LogLevel)[logLevel intValue])]];
             }
             [loggedString appendString: @"\n\t}"];
         }
-        [loggedString appendFormat: @"\n\tglobal: {\n\n%30s=%@\n\t}\n}", "ALL", stringForLogLevel(_globalLogLevel)];
+        [loggedString appendFormat: @"\n\tglobal: {\n\n%30s = %@\n\t}\n}", "ALL", stringForLogLevel(_globalLogLevel)];
         
         return loggedString;
     }
@@ -237,8 +237,8 @@ LogLevel logLevelForString(NSString * logLevelString) {
 
 NSString * stringForLogLevel(LogLevel logLevel) {
 
-    if (logLevel > [_logLevelStrings count]) {
-        logLevel = LogLevelInvalid;
+    if (logLevel > [_logLevelStrings count] || logLevel < 0) {
+        return @"INVALID";
     }
     return _logLevelStrings[logLevel];
 }
