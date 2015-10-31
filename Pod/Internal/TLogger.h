@@ -43,3 +43,9 @@ typedef enum {
     // NOTE: Do not call this directly, please use the macros for all calls.
     + (void)log:(Class)callingClass selector:(SEL)selector classInstance: (id) classInstanceOrNil sourceFile:(char *)sourceFile sourceLineNumber:(int)sourceLineNumber logLevel:(LogLevel)level message: (NSString *) message;
 @end
+
+#ifdef DEBUG
+#define LogIfEnabled(clazz,sel,clazzInstanceOrNil,level,...) [TLogger log: clazz selector: sel classInstance: clazzInstanceOrNil sourceFile: __FILE__ sourceLineNumber: __LINE__ logLevel: level message: [NSString stringWithFormat:__VA_ARGS__]]
+#else
+#define LogIfEnabled(clazz,sel,clazzInstanceOrNil,level,...) /* empty */
+#endif
