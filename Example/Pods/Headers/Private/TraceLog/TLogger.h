@@ -1,1 +1,1 @@
-../../../../../Pod/Classes/Internal/TLogger.h
+../../../../../Pod/Internal/TLogger.h
