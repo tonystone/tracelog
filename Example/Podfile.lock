@@ -1,5 +1,5 @@
 PODS:
-  - TraceLog (0.3.0)
+  - TraceLog (0.4.0)
 
 DEPENDENCIES:
   - TraceLog (from `../`)
@@ -9,6 +9,6 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  TraceLog: c9be1608f35604a7dbad32b257a11bf8081794ed
+  TraceLog: cd8d8a1088cbad335261b6ad5d92f05705551cf1
 
 COCOAPODS: 0.39.0
