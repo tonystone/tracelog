@@ -24,7 +24,6 @@
 #import "TLogger.h"
 
 /*
-
     TraceLog is a runtime configurable debug logging system.  It allows flexible
     configuration via environment variables at run time which allows each developer
     to configure log output per session based on the debugging needs of that session.
@@ -88,34 +87,137 @@
 
 */
 
-#ifdef DEBUG
-
 // Instance level macros
+
+/**
+ * LogError logs an message with LogLevel Error to the LogWriters
+ *
+ * @param ...   A variable argument list which is similar to NSLog.  Should start with either a format string or a string with no format specifiers.
+ *
+ * Examples:
+ * @code
+ * {
+ *      LogError(@"A string message");
+ * }
+ * @endcode
+ * @code
+ * {
+ *      NSNumber * arg1 = @(100);
+ *
+ *      LogError(@"A format string message with format specifier %@", arg1);
+ * }
+ * @endcode
+ */
 #define LogError(...)       CLogError([self class],_cmd,self,__VA_ARGS__)
+
+/**
+ * LogWarning logs an message with LogLevel Warning to the LogWriters
+ *
+ * @param ...   A variable argument list which is similar to NSLog.  Should start with either a format string or a string with no format specifiers.
+ *
+ * Examples:
+ * @code
+ * {
+ *      LogWarning(@"A string message");
+ * }
+ * @endcode
+ * @code
+ * {
+ *      NSNumber * arg1 = @(100);
+ *
+ *      LogWarning(@"A format string message with format specifier %@", arg1);
+ * }
+ * @endcode
+ */
 #define LogWarning(...)     CLogWarning([self class],_cmd,self,__VA_ARGS__)
+
+/**
+ * LogInfo logs an message with LogLevel Info to the LogWriters
+ *
+ * @param ...   A variable argument list which is similar to NSLog.  Should start with either a format string or a string with no format specifiers.
+ *
+ * Examples:
+ * @code
+ * {
+ *      LogInfo(@"A string message");
+ * }
+ * @endcode
+ * @code
+ * {
+ *      NSNumber * arg1 = @(100);
+ *
+ *      LogInfo(@"A format string message with format specifier %@", arg1);
+ * }
+ * @endcode
+ */
 #define LogInfo(...)        CLogInfo([self class],_cmd,self,__VA_ARGS__)
+
+/**
+ * LogTrace logs an message with LogLevel Trace to the LogWriters
+ *
+ * @param level An integer representing the trace LogLevel (i.e. TRACE1, TRACE2, TRACE3, and TRACE4.
+ * @param ...   A variable argument list which is similar to NSLog.  Should start with either a format string or a string with no format specifiers.
+ *
+ * Examples:
+ * @code
+ * {
+ *      LogTrace(1, @"A string message");
+ * }
+ * @endcode
+ * @code
+ * {
+ *      NSNumber * arg1 = @(100);
+ *
+ *      LogTrace(4, @"A format string message with format specifier %@", arg1);
+ * }
+ * @endcode
+ */
 #define LogTrace(level,...) CLogTrace([self class],_cmd,self,level,__VA_ARGS__)
 
 // Low level - for use in mixed low level C code.
-#define CLogError(clazz,sel,clazzInstanceOrNil,...)       [TLogger log: clazz selector: sel classInstance: clazzInstanceOrNil sourceFile: __FILE__ sourceLineNumber: __LINE__ logLevel: LogLevelError   message: [NSString stringWithFormat:__VA_ARGS__]]
-#define CLogWarning(clazz,sel,clazzInstanceOrNil,...)     [TLogger log: clazz selector: sel classInstance: clazzInstanceOrNil sourceFile: __FILE__ sourceLineNumber: __LINE__ logLevel: LogLevelWarning message: [NSString stringWithFormat:__VA_ARGS__]]
-#define CLogInfo(clazz,sel,clazzInstanceOrNil,...)        [TLogger log: clazz selector: sel classInstance: clazzInstanceOrNil sourceFile: __FILE__ sourceLineNumber: __LINE__ logLevel: LogLevelInfo    message: [NSString stringWithFormat:__VA_ARGS__]]
-#define CLogTrace(clazz,sel,clazzInstanceOrNil,level,...) [TLogger log: clazz selector: sel classInstance: clazzInstanceOrNil sourceFile: __FILE__ sourceLineNumber: __LINE__ logLevel: (LogLevel) LogLevelTrace1 + ((int)level) - 1   message: [NSString stringWithFormat:__VA_ARGS__]]
+/**
+ * CLogError logs an message with LogLevel Error to the LogWriters and accepts
+ * a class, selector and optionally an instance of a class to log.
+ *
+ * @param clazz The class that this call is related to.
+ * @param sel   The selector that this call is related to.
+ * @param clazzInstanceOrNil the class instance that this call is related to if available.  Optional.
+ * @param ...   A variable argument list which is similar to NSLog.  Should start with either a format string or a string with no format specifiers.
+ */
+#define CLogError(clazz,sel,clazzInstanceOrNil,...)       LogIfEnabled(clazz,sel,clazzInstanceOrNil,LogLevelError,__VA_ARGS__)
 
-#else
+/**
+ * CLogWarning logs an message with LogLevel Error to the LogWriters and accepts
+ * a class, selector and optionally an instance of a class to log.
+ *
+ * @param clazz The class that this call is related to.
+ * @param sel   The selector that this call is related to.
+ * @param clazzInstanceOrNil the class instance that this call is related to if available.  Optional.
+ * @param ...   A variable argument list which is similar to NSLog.  Should start with either a format string or a string with no format specifiers.
+ */
+#define CLogWarning(clazz,sel,clazzInstanceOrNil,...)     LogIfEnabled(clazz,sel,clazzInstanceOrNil,LogLevelWarning,__VA_ARGS__)
 
-// Instance level macros
-#define LogError(...)   /* empty */
-#define LogWarning(...) /* empty */
-#define LogInfo(...)    /* empty */
-#define LogTrace(...)   /* empty */
+/**
+ * CLogInfo logs an message with LogLevel Error to the LogWriters and accepts
+ * a class, selector and optionally an instance of a class to log.
+ *
+ * @param clazz The class that this call is related to.
+ * @param sel   The selector that this call is related to.
+ * @param clazzInstanceOrNil the class instance that this call is related to if available.  Optional.
+ * @param ...   A variable argument list which is similar to NSLog.  Should start with either a format string or a string with no format specifiers.
+ */
+#define CLogInfo(clazz,sel,clazzInstanceOrNil,...)        LogIfEnabled(clazz,sel,clazzInstanceOrNil,LogLevelInfo,__VA_ARGS__)
 
-// Low level - for use in mixed low level C code.
-#define CLogError(clazz,sel,clazzInstanceOrNil,...)       /* empty */
-#define CLogWarning(clazz,sel,clazzInstanceOrNil,...)     /* empty */
-#define CLogInfo(clazz,sel,clazzInstanceOrNil,...)        /* empty */
-#define CLogTrace(clazz,sel,clazzInstanceOrNil,level,...) /* empty */
-
-#endif
+/**
+ * CLogTrace logs an message with LogLevel Error to the LogWriters and accepts
+ * a class, selector and optionally an instance of a class to log.
+ *
+ * @param clazz The class that this call is related to.
+ * @param sel   The selector that this call is related to.
+ * @param clazzInstanceOrNil the class instance that this call is related to if available.  Optional.
+ * @param level An integer representing the trace LogLevel (i.e. TRACE1, TRACE2, TRACE3, and TRACE4.
+ * @param ...   A variable argument list which is similar to NSLog.  Should start with either a format string or a string with no format specifiers.
+ */
+#define CLogTrace(clazz,sel,clazzInstanceOrNil,level,...)  LogIfEnabled(clazz,sel,clazzInstanceOrNil,(LogLevel) LogLevelTrace1 + ((int)level) - 1,__VA_ARGS__)
 
 #endif
