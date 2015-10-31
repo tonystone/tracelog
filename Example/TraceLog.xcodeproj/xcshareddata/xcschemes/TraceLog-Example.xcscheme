@@ -88,7 +88,22 @@
       <EnvironmentVariables>
          <EnvironmentVariable
             key = "LOG_ALL"
+            value = "JUNK"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "LOG_PREFIX_CC"
+            value = "TRACE4"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "LOG_CLASS_TestClass"
             value = "INFO"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
+            key = "LOG_CLASS_TestClass2"
+            value = "WARNING"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
