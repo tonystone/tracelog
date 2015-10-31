@@ -8,7 +8,17 @@
 
 ## Introduction
     
-TraceLog is a runtime configurable Objective-C debug logging system.  It allows flexible configuration via environment variables at run time which allows each developer to configure log output per session based on the debugging needs of that session.
+TraceLog is a runtime configurable debug logging system.  It allows flexible
+configuration via environment variables at run time which allows each developer
+to configure log output per session based on the debugging needs of that session.
+
+When compiled in a RELEASE build, TraceLog is compiled out and has no overhead at
+all in the application.
+
+Log output can be configured globally using the `LOG_ALL` environment variable,
+by CLASS name using the `LOG_CLASS_<CLASSNAME>` environment variable pattern,
+and/or by a CLASS group by using the `CLASS_PREFIX_<CLASSPREFIX>` environment
+variable pattern.
 
 ## Installation
 
