@@ -1,0 +1,11 @@
+language: objective-c
+xcode_workspace: Example/TraceLogs.xcworkspace
+xcode_scheme: TraceLog-Example
+osx_image: xcode6.4
+
+before_install:
+    - brew install xctool
+script:
+  - xctool -workspace Example/TraceLogs.xcworkspace -scheme TraceLogs-Example -sdk iphonesimulator8.4 GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES build test 
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
