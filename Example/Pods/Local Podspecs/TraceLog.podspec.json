@@ -4,12 +4,12 @@
   "summary": "TraceLog a fully configurable logging service.",
   "description": "TraceLog is a runtime configurable debug logging system.  It allows flexible\nconfiguration via environment variables at run time which allows each developer\nto configure log output per session based on the debugging needs of that session.\n\nWhen compiled in a RELEASE build, TraceLog is compiled out and has no overhead at\nall in the application.\n\nLog output can be configured globally using the LOG_ALL environment variable,\nby CLASS name using the LOG_CLASS_<CLASSNAME> environment variable pattern,\nand/or by a CLASS group by using the CLASS_PREFIX_<CLASSPREFIX> environment\nvariable pattern.\n\nPlease see the main header file TraceLog.h for more details and examples.",
   "license": "Apache License, Version 2.0",
-  "homepage": "https://github.com/TheClimateCorporation/tracelog",
+  "homepage": "https://github.com/tonystone/tracelog",
   "authors": {
     "Tony Stone": "https://github.com/tonystone"
   },
   "source": {
-    "git": "https://github.com/TheClimateCorporation/tracelog.git",
+    "git": "https://github.com/tonystone/tracelog.git",
     "tag": "0.4.0"
   },
   "platforms": {

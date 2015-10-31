@@ -27,9 +27,9 @@ Pod::Spec.new do |s|
                              Please see the main header file TraceLog.h for more details and examples.
                        DESC
   s.license          = 'Apache License, Version 2.0'
-  s.homepage         = "https://github.com/TheClimateCorporation/tracelog"
+  s.homepage         = "https://github.com/tonystone/tracelog"
   s.author           = { "Tony Stone" => "https://github.com/tonystone" }
-  s.source           = { :git => "https://github.com/TheClimateCorporation/tracelog.git", :tag => s.version.to_s }
+  s.source           = { :git => "https://github.com/tonystone/tracelog.git", :tag => s.version.to_s }
 
   s.platform     = :ios, '8.0'
   s.requires_arc = true
