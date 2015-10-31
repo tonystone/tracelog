@@ -29,32 +29,60 @@
     //
     // Object level calls
     //
-    - (void) testLogError {
+    - (void) testLogError_WithString {
         LogError(@"Objective-C Level Test - ERROR");
     }
 
-    - (void) testLogWarning {
+    - (void) testLogError_WithFormatString {
+        LogError(@"Objective-C Level Test - %@", @"ERROR");
+    }
+
+    - (void) testLogWarning_WithString {
         LogWarning(@"Objective-C Level Test - WARNING");
     }
 
-    - (void) testLogInfo {
+    - (void) testLogInfo_WithString {
         LogInfo(@"Objective-C Level Test - INFO");
     }
 
-    - (void) testLogTrace1 {
+    - (void) testLogInfo_WithFormatString {
+        LogInfo(@"Objective-C Level Test - %@", @"INFO");
+    }
+
+    - (void) testLogTrace1_WithString {
+        LogTrace(1,@"Objective-C Level Test - TRACE1");
+    }
+
+    - (void) testLogTrace1_WithFormatString {
         LogTrace(1,@"Objective-C Level Test - TRACE%u",1);
     }
 
-    - (void) testLogTrace2 {
+    - (void) testLogTrace2_WithString {
+        LogTrace(2,@"Objective-C Level Test - TRACE2");
+    }
+
+    - (void) testLogTrace2_WithFormatString {
         LogTrace(2,@"Objective-C Level Test - TRACE%u",2);
     }
 
-    - (void) testLogTrace3 {
+    - (void) testLogTrace3_WithString {
+        LogTrace(3,@"Objective-C Level Test - TRACE3");
+    }
+
+    - (void) testLogTrace3_WithFormatString {
         LogTrace(3,@"Objective-C Level Test - TRACE%u",3);
     }
 
-    - (void) testLogTrace4 {
+    - (void) testLogTrace4_WithString {
+        LogTrace(4,@"Objective-C Level Test - TRACE4");
+    }
+
+    - (void) testLogTrace4_WithFormatString {
         LogTrace(4,@"Objective-C Level Test - TRACE%u",4);
+    }
+
+    - (void) testLogTrace_WithInvalidLevel {
+        LogTrace(5,@"Objective-C Level Test - TRACE%u",5);
     }
 
     //
