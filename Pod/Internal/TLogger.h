@@ -27,7 +27,7 @@
 */
 
 
-typedef enum {
+typedef NS_ENUM(NSInteger, LogLevel) {
     LogLevelInvalid = -1,
     LogLevelOff     = 0,
     LogLevelError   = 1,
@@ -37,7 +37,7 @@ typedef enum {
     LogLevelTrace2  = 5,
     LogLevelTrace3  = 6,
     LogLevelTrace4  = 7
-} LogLevel;
+};
 
 @interface TLogger : NSObject
     // NOTE: Do not call this directly, please use the macros for all calls.
