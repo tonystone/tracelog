@@ -29,22 +29,22 @@ level setting, aside from no output or OFF, is ERROR which only output errors wh
 they occur.
 
 Levels:
-
-        `TRACE4`
-        `TRACE3`
-        `TRACE2`
-        `TRACE1`
-        `INFO`
-        `WARNING`
-        `ERROR`
-        `OFF`
-
+```
+    TRACE4
+    TRACE3
+    TRACE2
+    TRACE1
+    INFO
+    WARNING
+    ERROR
+    OFF
+```
 Environment Variables and syntax:
-
-        `LOG_CLASS_<CLASSNAME>=<LEVEL>`
-        `LOG_PREFIX_<CLASSPREFIX>=<LEVEL>`
-        `LOG_ALL=<LEVEL>`
-
+```
+    LOG_CLASS_<CLASSNAME>=<LEVEL>
+    LOG_PREFIX_<CLASSPREFIX>=<LEVEL>
+    LOG_ALL=<LEVEL>
+```
 
 Multiple Environment variables can be set at one time to get the desired level
 of visibility into the workings of the app.  Here are some examples.
@@ -53,8 +53,10 @@ Suppose you wanted the first level of TRACE logging for the ClimateSecurity modu
 which has a class prefix of CS and you wanted to see only errors and warnings for
 the rest of the application.  You would set the following:
 
-        `LOG_ALL=WARNING`
-        `LOG_PREFIX_CS=TRACE1`
+```
+    LOG_ALL=WARNING
+    LOG_PREFIX_CS=TRACE1
+```
 
 More specific settings override less specific so in the above example the less specific
 setting is LOG_ALL which is set to WARNING.  The class prefix is specifying a particular
@@ -63,11 +65,11 @@ the LOG_ALL.  If you chose to name a specific class, that would override the pre
 
 For instance, in the example above, if we decided for one class in the ClimateSecurity module
 we needed more output, we could set the following
-
-        LOG_ALL=WARNING
-        LOG_PREFIX_CS=TRACE1
-        LOG_CLASS_CSManager=TRACE4
-
+```
+    LOG_ALL=WARNING
+    LOG_PREFIX_CS=TRACE1
+    LOG_CLASS_CSManager=TRACE4
+```
 This outputs the same as the previous example with the exception of the CSManager class
 which is set to TRACE4 instead of using the less specific TRACE1 setting in LOG_PREFIX.
 
