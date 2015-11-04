@@ -89,31 +89,31 @@
     // C-Level Call tests
     //
     - (void) testCLogError {
-        CLogError([self class], @selector(testCLogError), nil, @"C Level Test - ERROR");
+        CLogError(NSStringFromClass([self class]), @"C Level Test - ERROR");
     }
 
     - (void) testCLogWarning {
-        CLogWarning([self class], @selector(testCLogWarning), nil,@"C Level Test - WARNING");
+        CLogWarning(NSStringFromClass([self class]), @"C Level Test - WARNING");
     }
 
     - (void) testCLogInfo {
-        CLogInfo([self class], @selector(testCLogInfo), nil,@"C Level Test - INFO");
+        CLogInfo(NSStringFromClass([self class]), @"C Level Test - INFO");
     }
 
     - (void) testCLogTrace1 {
-        CLogTrace([self class], @selector(testCLogTrace1), nil,1,@"C Level Test - TRACE%u",1);
+        CLogTrace(1, NSStringFromClass([self class]), @"C Level Test - TRACE%u",1);
     }
 
     - (void) testCLogTrace2 {
-        CLogTrace([self class], @selector(testCLogTrace2), nil,2,@"C Level Test - TRACE%u",2);
+        CLogTrace(2, NSStringFromClass([self class]), @"C Level Test - TRACE%u",2);
     }
 
     - (void) testCLogTrace3 {
-        CLogTrace([self class], @selector(testCLogTrace3), nil,3,@"C Level Test - TRACE%u",3);
+        CLogTrace(3, NSStringFromClass([self class]), @"C Level Test - TRACE%u",3);
     }
 
     - (void) testCLogTrace4 {
-        CLogTrace([self class], @selector(testCLogTrace4), nil,4,@"C Level Test - TRACE%u",4);
+        CLogTrace(4, NSStringFromClass([self class]), @"C Level Test - TRACE%u",4);
     }
 
 @end

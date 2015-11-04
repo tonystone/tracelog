@@ -59,9 +59,7 @@ NSString * stringForLogLevel(LogLevel logLevel);
             //
             // If the system is enabled, we always print our initialization messages and errors.
             //
-            [TLogger log: self selector: _cmd classInstance: self sourceFile:__FILE__ sourceLineNumber:__LINE__
-                logLevel: LogLevelInfo
-                 message: [[NSMutableString alloc] initWithFormat: @"%@ is enabled, reading environment and configuring logging...", ModuleLogName]];
+            [TLogger log: LogLevelInfo tag: ModuleLogName message: [[NSMutableString alloc] initWithFormat: @"%@ is enabled, reading environment and configuring logging...", ModuleLogName] file: __FILE__ function: __FUNCTION__ lineNumber: __LINE__];
             
             NSDictionary * environment = [[NSProcessInfo processInfo] environment];
 
@@ -82,9 +80,7 @@ NSString * stringForLogLevel(LogLevel logLevel);
                     if (requestedLogLevel != LogLevelInvalid) {
                         _globalLogLevel = requestedLogLevel;
                     } else {
-                        [TLogger log: self selector: _cmd classInstance: self sourceFile:__FILE__ sourceLineNumber:__LINE__
-                            logLevel: LogLevelError
-                             message: [NSString stringWithFormat: @"Variable '%@' has an invalid logLevel of '%@'. '%@' will be set to %@.", upperCaseVariable, upperCaselogLevelString, LogScopeAll, stringForLogLevel(_globalLogLevel)]];
+                        [TLogger log: LogLevelError tag: ModuleLogName message: [NSString stringWithFormat: @"Variable '%@' has an invalid logLevel of '%@'. '%@' will be set to %@.", upperCaseVariable, upperCaselogLevelString, LogScopeAll, stringForLogLevel(_globalLogLevel)] file:  __FILE__ function: __FUNCTION__ lineNumber: __LINE__];
                     }
                     
                 } else if ([upperCaseVariable hasPrefix: LogScopePrefix]) {
@@ -99,9 +95,7 @@ NSString * stringForLogLevel(LogLevel logLevel);
                         
                         loggedPrefixes[logLevelScope] =  @(requestedLogLevel);
                     } else {
-                        [TLogger log: self selector: _cmd classInstance: self sourceFile:__FILE__ sourceLineNumber:__LINE__
-                            logLevel: LogLevelError
-                             message: [NSString stringWithFormat: @"Variable '%@' has an invalid logLevel of '%@'. '%@' will NOT be set.", upperCaseVariable, upperCaselogLevelString, upperCaseVariable]];
+                        [TLogger log: LogLevelError tag: ModuleLogName message: [NSString stringWithFormat: @"Variable '%@' has an invalid logLevel of '%@'. '%@' will NOT be set.", upperCaseVariable, upperCaselogLevelString, upperCaseVariable] file:  __FILE__ function: __FUNCTION__ lineNumber: __LINE__];
                     }
                     
                 } else if ([upperCaseVariable hasPrefix: LogScopeClass]) {
@@ -118,16 +112,12 @@ NSString * stringForLogLevel(LogLevel logLevel);
                         // Make sure the class is linked with the, give a warning if not
                         Class clazz = NSClassFromString(logLevelScope);
                         if (!clazz) {
-                            [TLogger log: self selector: _cmd classInstance: self sourceFile:__FILE__ sourceLineNumber:__LINE__
-                                logLevel: LogLevelWarning
-                                 message: [NSString stringWithFormat: @"You've requested logLevel '%@' for class '%@' but this class is not linked with the application.", upperCaselogLevelString, logLevelScope]];
+                            [TLogger log: LogLevelWarning tag: ModuleLogName message: [NSString stringWithFormat: @"You've requested logLevel '%@' for class '%@' but this class is not linked with the application.", upperCaselogLevelString, logLevelScope] file:  __FILE__ function: __FUNCTION__ lineNumber: __LINE__];
                         }
                         
                         loggedClasses[logLevelScope]  = @(requestedLogLevel);
                     } else {
-                        [TLogger log: self selector: _cmd classInstance: self sourceFile:__FILE__ sourceLineNumber:__LINE__
-                            logLevel: LogLevelError
-                             message: [NSString stringWithFormat: @"Variable '%@' has an invalid logLevel of '%@'. '%@' will NOT be set.", upperCaseVariable, upperCaselogLevelString, upperCaseVariable]];
+                        [TLogger log: LogLevelError tag: ModuleLogName message: [NSString stringWithFormat: @"Variable '%@' has an invalid logLevel of '%@'. '%@' will NOT be set.", upperCaseVariable, upperCaselogLevelString, upperCaseVariable] file:  __FILE__ function: __FUNCTION__ lineNumber: __LINE__];
                     }
                 }
             }
@@ -135,9 +125,7 @@ NSString * stringForLogLevel(LogLevel logLevel);
             _loggedClasses  = [[NSDictionary alloc] initWithDictionary: loggedClasses];
             
             // Print the current configuration
-            [TLogger log: self selector: _cmd classInstance: self sourceFile:__FILE__ sourceLineNumber:__LINE__
-                logLevel: LogLevelInfo
-                 message: [NSString stringWithFormat: @"%@ has been configured with the following settings: \n%@", ModuleLogName, [TLogger currentConfigurationString]]];
+            [TLogger log: LogLevelError tag: ModuleLogName message: [NSString stringWithFormat: @"%@ has been configured with the following settings: \n%@", ModuleLogName, [TLogger currentConfigurationString]] file:  __FILE__ function: __FUNCTION__ lineNumber: __LINE__];
         }
 #endif
     }
@@ -179,12 +167,12 @@ NSString * stringForLogLevel(LogLevel logLevel);
         return loggedString;
     }
 
-    + (void) log:(Class)callingClass selector:(SEL)selector classInstance: (id) classInstanceOrNil sourceFile:(char *)sourceFile sourceLineNumber:(int)sourceLineNumber logLevel:(LogLevel)level message:(NSString *)message {
+    + (void) log: (LogLevel) level tag: (NSString *) tag message: (NSString *) message file: (const char *) file function: (const char *) function lineNumber: (unsigned int) lineNumber {
 
         // Set to the default global level first
         LogLevel currentLevel = _globalLogLevel;
 
-        NSString * className = NSStringFromClass(callingClass);
+        NSString * className = tag;
 
         // Determine if there is a class log level first
         NSNumber * classLogLevel  = _loggedClasses[className];
@@ -202,11 +190,7 @@ NSString * stringForLogLevel(LogLevel logLevel);
         }
 
         if (currentLevel >= level) {
-            if (classInstanceOrNil) {
-                NSLog(@"%7s: <%@ : %p> %@", [stringForLogLevel(level) cStringUsingEncoding: NSUTF8StringEncoding], NSStringFromClass(callingClass), (__bridge void *) classInstanceOrNil, message);
-            } else {
-                NSLog(@"%7s: <%@> %@", [stringForLogLevel(level) cStringUsingEncoding:NSUTF8StringEncoding], NSStringFromClass(callingClass), message);
-            }
+            NSLog(@"%7s: <%@> %@", [stringForLogLevel(level) cStringUsingEncoding:NSUTF8StringEncoding], tag, message);
         }
     }
 

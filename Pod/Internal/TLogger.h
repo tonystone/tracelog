@@ -27,7 +27,7 @@
 */
 
 
-typedef enum {
+typedef NS_ENUM(NSInteger, LogLevel) {
     LogLevelInvalid = -1,
     LogLevelOff     = 0,
     LogLevelError   = 1,
@@ -37,15 +37,15 @@ typedef enum {
     LogLevelTrace2  = 5,
     LogLevelTrace3  = 6,
     LogLevelTrace4  = 7
-} LogLevel;
+};
 
 @interface TLogger : NSObject
     // NOTE: Do not call this directly, please use the macros for all calls.
-    + (void)log:(Class)callingClass selector:(SEL)selector classInstance: (id) classInstanceOrNil sourceFile:(char *)sourceFile sourceLineNumber:(int)sourceLineNumber logLevel:(LogLevel)level message: (NSString *) message;
+    + (void) log: (LogLevel) level tag: (NSString *) tag message: (NSString *) message file: (const char *) file function: (const char *) function lineNumber: (unsigned int) lineNumber;
 @end
 
 #ifdef DEBUG
-#define LogIfEnabled(clazz,sel,clazzInstanceOrNil,level,...) [TLogger log: clazz selector: sel classInstance: clazzInstanceOrNil sourceFile: __FILE__ sourceLineNumber: __LINE__ logLevel: level message: [NSString stringWithFormat:__VA_ARGS__]]
+#define LogIfEnabled(logLevel,tagName,format,...) [TLogger log: logLevel tag: tagName message: [NSString stringWithFormat: format, ##__VA_ARGS__] file: __FILE__ function: __FUNCTION__ lineNumber: __LINE__]
 #else
-#define LogIfEnabled(clazz,sel,clazzInstanceOrNil,level,...) /* empty */
+#define LogIfEnabled(logLevel,label, format, ...) /* empty */
 #endif
