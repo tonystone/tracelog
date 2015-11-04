@@ -35,10 +35,10 @@ Pod::Spec.new do |s|
   s.ios.deployment_target     = '5.0'
   s.osx.deployment_target     = '10.7'
   s.watchos.deployment_target = '2.0'
-  s.tvos.deployment_target    = '9.0'
+#s.tvos.deployment_target    = '9.0'
 
   s.requires_arc = true
-  s.default_subspecs = 'Objc', 'Swift'
+  s.default_subspecs = 'Objc'
 
   s.public_header_files = 'Pod/TraceLog.h', 'Pod/Internal/TLogger.h'
   s.preserve_paths = 'Pod/*.swift', 'Pod/Internal/*.swift'
@@ -56,7 +56,7 @@ Pod::Spec.new do |s|
     ss.ios.deployment_target = '8.0'
     ss.osx.deployment_target = '10.10'
     ss.watchos.deployment_target = '2.0'
-    ss.tvos.deployment_target = '9.0'
+##ss.tvos.deployment_target = '9.0'
     ss.source_files = 'Pod/*.swift', 'Pod/Internal/*.swift'
     ss.dependency 'TraceLog/Core'
   end

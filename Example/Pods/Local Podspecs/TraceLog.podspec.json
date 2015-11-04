@@ -15,14 +15,10 @@
   "platforms": {
     "ios": "5.0",
     "osx": "10.7",
-    "watchos": "2.0",
-    "tvos": "9.0"
+    "watchos": "2.0"
   },
   "requires_arc": true,
-  "default_subspecs": [
-    "Objc",
-    "Swift"
-  ],
+  "default_subspecs": "Objc",
   "public_header_files": [
     "Pod/TraceLog.h",
     "Pod/Internal/TLogger.h"
@@ -50,8 +46,7 @@
       "platforms": {
         "ios": "8.0",
         "osx": "10.10",
-        "watchos": "2.0",
-        "tvos": "9.0"
+        "watchos": "2.0"
       },
       "source_files": [
         "Pod/*.swift",
