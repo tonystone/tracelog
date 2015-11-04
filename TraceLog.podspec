@@ -31,10 +31,34 @@ Pod::Spec.new do |s|
   s.author           = { "Tony Stone" => "https://github.com/tonystone" }
   s.source           = { :git => "https://github.com/tonystone/tracelog.git", :tag => s.version.to_s }
 
-  s.platform     = :ios, '8.0'
+  # s.platform     = :ios, '8.0'
+  s.ios.deployment_target     = '5.0'
+  s.osx.deployment_target     = '10.7'
+  s.watchos.deployment_target = '2.0'
+  s.tvos.deployment_target    = '9.0'
+
   s.requires_arc = true
+  s.default_subspecs = 'Objc', 'Swift'
 
   s.public_header_files = 'Pod/TraceLog.h', 'Pod/Internal/TLogger.h'
-  s.source_files = 'Pod/TraceLog.h', 'Pod/Internal/*'
+  s.preserve_paths = 'Pod/*.swift', 'Pod/Internal/*.swift'
+
+  s.subspec 'Objc' do |ss|
+    ss.source_files = 'Pod/*.h'
+    ss.dependency 'TraceLog/Core'
+  end
+
+  s.subspec 'Core' do |ss|
+      ss.source_files = 'Pod/Internal/*.{h,m}'
+  end
+
+  s.subspec 'Swift' do |ss|
+    ss.ios.deployment_target = '8.0'
+    ss.osx.deployment_target = '10.10'
+    ss.watchos.deployment_target = '2.0'
+    ss.tvos.deployment_target = '9.0'
+    ss.source_files = 'Pod/*.swift', 'Pod/Internal/*.swift'
+    ss.dependency 'TraceLog/Core'
+  end
 
 end
