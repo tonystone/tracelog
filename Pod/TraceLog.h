@@ -92,7 +92,10 @@
 /**
  * LogError logs an message with LogLevel Error to the LogWriters
  *
- * @param ...   A variable argument list which is similar to NSLog.  Should start with either a format string or a string with no format specifiers.
+ * @param format A format string. This value must not be nil.
+ * @param ...    A comma-separated list of arguments to substitute into format.
+ *
+ * @Note Raises an NSInvalidArgumentException if format is nil.
  *
  * Examples:
  * @code
@@ -113,7 +116,10 @@
 /**
  * LogWarning logs an message with LogLevel Warning to the LogWriters
  *
- * @param ...   A variable argument list which is similar to NSLog.  Should start with either a format string or a string with no format specifiers.
+ * @param format A format string. This value must not be nil.
+ * @param ...    A comma-separated list of arguments to substitute into format.
+ *
+ * @Note Raises an NSInvalidArgumentException if format is nil.
  *
  * Examples:
  * @code
@@ -134,7 +140,10 @@
 /**
  * LogInfo logs an message with LogLevel Info to the LogWriters
  *
- * @param ...   A variable argument list which is similar to NSLog.  Should start with either a format string or a string with no format specifiers.
+ * @param format A format string. This value must not be nil.
+ * @param ...    A comma-separated list of arguments to substitute into format.
+ *
+ * @Note Raises an NSInvalidArgumentException if format is nil.
  *
  * Examples:
  * @code
@@ -155,8 +164,11 @@
 /**
  * LogTrace logs an message with LogLevel Trace to the LogWriters
  *
- * @param level An integer representing the trace LogLevel (i.e. TRACE1, TRACE2, TRACE3, and TRACE4.
- * @param ...   A variable argument list which is similar to NSLog.  Should start with either a format string or a string with no format specifiers.
+ * @param level An integer representing the trace LogLevel (i.e. TRACE1, TRACE2, TRACE3, and TRACE4.)
+ * @param format A format string. This value must not be nil.
+ * @param ...    A comma-separated list of arguments to substitute into format.
+ *
+ * @Note Raises an NSInvalidArgumentException if format is nil.
  *
  * Examples:
  * @code
@@ -176,47 +188,47 @@
 
 // Low level - for use in mixed low level C code.
 /**
- * CLogError logs an message with LogLevel Error to the LogWriters and accepts
- * a class, selector and optionally an instance of a class to log.
+ * CLogError logs an message with LogLevel Error to the LogWriters.
  *
- * @param clazz The class that this call is related to.
- * @param sel   The selector that this call is related to.
- * @param clazzInstanceOrNil the class instance that this call is related to if available.  Optional.
- * @param ...   A variable argument list which is similar to NSLog.  Should start with either a format string or a string with no format specifiers.
+ * @param tag    A string to use as a tag to group this call to other calls related to it. For instance, LogError(format,...) uses the NSStringFromClass([self class]) as a tag.
+ * @param format A format string. This value must not be nil.
+ * @param ...    A comma-separated list of arguments to substitute into format.
+ *
+ * @Note Raises an NSInvalidArgumentException if format is nil.
  */
 #define CLogError(tag,format,...) LogIfEnabled(LogLevelError, tag, format, ##__VA_ARGS__)
 
 /**
- * CLogWarning logs an message with LogLevel Error to the LogWriters and accepts
- * a class, selector and optionally an instance of a class to log.
+ * CLogWarning logs an message with LogLevel Error to the LogWriters.
  *
- * @param clazz The class that this call is related to.
- * @param sel   The selector that this call is related to.
- * @param clazzInstanceOrNil the class instance that this call is related to if available.  Optional.
- * @param ...   A variable argument list which is similar to NSLog.  Should start with either a format string or a string with no format specifiers.
+ * @param tag    A string to use as a tag to group this call to other calls related to it. For instance, LogWarning(format,...) uses the NSStringFromClass([self class]) as a tag.
+ * @param format A format string. This value must not be nil.
+ * @param ...    A comma-separated list of arguments to substitute into format.
+ *
+ * @Note Raises an NSInvalidArgumentException if format is nil.
  */
 #define CLogWarning(tag,format,...) LogIfEnabled(LogLevelWarning, tag, format, ##__VA_ARGS__)
 
 /**
- * CLogInfo logs an message with LogLevel Error to the LogWriters and accepts
- * a class, selector and optionally an instance of a class to log.
+ * CLogInfo logs an message with LogLevel Error to the LogWriters.
  *
- * @param clazz The class that this call is related to.
- * @param sel   The selector that this call is related to.
- * @param clazzInstanceOrNil the class instance that this call is related to if available.  Optional.
- * @param ...   A variable argument list which is similar to NSLog.  Should start with either a format string or a string with no format specifiers.
+ * @param tag    A string to use as a tag to group this call to other calls related to it. For instance, LogInfoformat,...) uses the NSStringFromClass([self class]) as a tag.
+ * @param format A format string. This value must not be nil.
+ * @param ...    A comma-separated list of arguments to substitute into format.
+ *
+ * @Note Raises an NSInvalidArgumentException if format is nil.
  */
 #define CLogInfo(tag,format,...) LogIfEnabled(LogLevelInfo, tag, format, ##__VA_ARGS__)
 
 /**
- * CLogTrace logs an message with LogLevel Error to the LogWriters and accepts
- * a class, selector and optionally an instance of a class to log.
+ * CLogTrace logs an message with LogLevel Error to the LogWriters.
  *
- * @param clazz The class that this call is related to.
- * @param sel   The selector that this call is related to.
- * @param clazzInstanceOrNil the class instance that this call is related to if available.  Optional.
- * @param level An integer representing the trace LogLevel (i.e. TRACE1, TRACE2, TRACE3, and TRACE4.
- * @param ...   A variable argument list which is similar to NSLog.  Should start with either a format string or a string with no format specifiers.
+ * @param level  An integer representing the trace LogLevel (i.e. TRACE1, TRACE2, TRACE3, and TRACE4.)
+ * @param tag    A string to use as a tag to group this call to other calls related to it. For instance, LogInfoformat,...) uses the NSStringFromClass([self class]) as a tag.
+ * @param format A format string. This value must not be nil.
+ * @param ...    A comma-separated list of arguments to substitute into format.
+ *
+ * @Note Raises an NSInvalidArgumentException if format is nil.
  */
 #define CLogTrace(level,tag,format,...) LogIfEnabled((LogLevel) LogLevelTrace1 + ((int)level) - 1, tag, format, ##__VA_ARGS__)
 
