@@ -31,9 +31,8 @@ Pod::Spec.new do |s|
   s.author           = { "Tony Stone" => "https://github.com/tonystone" }
   s.source           = { :git => "https://github.com/tonystone/tracelog.git", :tag => s.version.to_s }
 
-  # s.platform     = :ios, '8.0'
-  s.ios.deployment_target     = '5.0'
-  s.osx.deployment_target     = '10.7'
+  s.ios.deployment_target     = '8.0'
+  s.osx.deployment_target     = '10.10'
   s.watchos.deployment_target = '2.0'
 #s.tvos.deployment_target    = '9.0'
 
@@ -56,7 +55,8 @@ Pod::Spec.new do |s|
     ss.ios.deployment_target = '8.0'
     ss.osx.deployment_target = '10.10'
     ss.watchos.deployment_target = '2.0'
-##ss.tvos.deployment_target = '9.0'
+# ss.tvos.deployment_target = '9.0'
+
     ss.source_files = 'Pod/*.swift', 'Pod/Internal/*.swift'
     ss.dependency 'TraceLog/Core'
   end
