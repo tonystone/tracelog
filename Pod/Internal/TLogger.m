@@ -125,7 +125,7 @@ NSString * stringForLogLevel(LogLevel logLevel);
             _loggedClasses  = [[NSDictionary alloc] initWithDictionary: loggedClasses];
             
             // Print the current configuration
-            [TLogger log: LogLevelError tag: ModuleLogName message: [NSString stringWithFormat: @"%@ has been configured with the following settings: \n%@", ModuleLogName, [TLogger currentConfigurationString]] file:  __FILE__ function: __FUNCTION__ lineNumber: __LINE__];
+            [TLogger log: LogLevelInfo tag: ModuleLogName message: [NSString stringWithFormat: @"%@ has been configured with the following settings: \n%@", ModuleLogName, [TLogger currentConfigurationString]] file:  __FILE__ function: __FUNCTION__ lineNumber: __LINE__];
         }
 #endif
     }

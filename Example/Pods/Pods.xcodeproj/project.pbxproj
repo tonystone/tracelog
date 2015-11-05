@@ -7,576 +7,766 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05D680E79E6623EAD4549468 /* Pods-TraceLog-iOS-Tests-TraceLog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 544E75D0AAF5B4F8CCE42F1C /* Pods-TraceLog-iOS-Tests-TraceLog-dummy.m */; };
-		08947BFC49A5BCAD19358784 /* Pods-TraceLog-OSX-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 43E6360E1A3FB5C032A71B91 /* Pods-TraceLog-OSX-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		1FDD5F4C6815724322A7B4E3 /* TLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9958CD5CFEA7626069BAC19F /* TLogger.m */; };
-		2145D724295A1FC1A5CE1796 /* Pods-TraceLog-OSX-Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = AB5E900D749FE6A73B350FEF /* Pods-TraceLog-OSX-Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		276C5A66F7F0B189FB2284D5 /* TLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = C1A9B0C73BC0186062C98815 /* TLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		28285BAED97089DFE29E0330 /* Pods-TraceLog-OSX-TraceLog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 955E09FDAAEDCF2010A0E760 /* Pods-TraceLog-OSX-TraceLog-dummy.m */; };
-		376F7F5C9AABFE13C1376FDC /* Pods-TraceLog-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 94C910722A4BDE4DC41A060D /* Pods-TraceLog-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		386B7F2920556EEF66EFC941 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6089A9FD48DB00DBED67C84D /* Cocoa.framework */; };
-		3BB93BB85B05050FA834F993 /* TraceLog.h in Headers */ = {isa = PBXBuildFile; fileRef = A87946428BB4544A80E91154 /* TraceLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		3FAEC02D8910EF2D831B32D3 /* Pods-TraceLog-OSX-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = DCE06672D6479AA3BE27B751 /* Pods-TraceLog-OSX-dummy.m */; };
-		439175C91BA5C0DF1B5DECF7 /* Pods-TraceLog-OSX-Tests-TraceLog-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 56DA9661BB08B02C9FBFFA2B /* Pods-TraceLog-OSX-Tests-TraceLog-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		44F2BC538A49134F863E0778 /* TraceLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D33FFC02E4CDF9ABDCA16 /* TraceLog.swift */; };
-		46535DF84F48D76752FD100D /* Pods-TraceLog-OSX-Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F24DCFCF5873D5D8812E7D33 /* Pods-TraceLog-OSX-Tests-dummy.m */; };
-		4F0E5818665C3A41D5A3A1CB /* Pods-TraceLog-iOS-TraceLog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = D1EDC498CE7E1CECDE883EF9 /* Pods-TraceLog-iOS-TraceLog-dummy.m */; };
-		50209D139C5F358C50A9A50A /* TLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = C1A9B0C73BC0186062C98815 /* TLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		5560B88E29DD5B4F9BDF9D9F /* TLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9958CD5CFEA7626069BAC19F /* TLogger.m */; };
-		5FE11B51D75434F87BC27398 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6089A9FD48DB00DBED67C84D /* Cocoa.framework */; };
-		69B180F2331AF05A66A0AEA3 /* TraceLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D33FFC02E4CDF9ABDCA16 /* TraceLog.swift */; };
-		6C6538DFC1215CE571D9AC5D /* TLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = C1A9B0C73BC0186062C98815 /* TLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		6F50C37F9EC481F05CAE3E28 /* TraceLog.h in Headers */ = {isa = PBXBuildFile; fileRef = A87946428BB4544A80E91154 /* TraceLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		749F4D669696477D2FED2C7B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6089A9FD48DB00DBED67C84D /* Cocoa.framework */; };
-		818D50BDD7831DC7D5E9A1B6 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E02CAFCA381E54035923E660 /* Foundation.framework */; };
-		83E9B86375EB3DD39A14E8E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E02CAFCA381E54035923E660 /* Foundation.framework */; };
-		8729AE825CF23DA5BC99B814 /* TraceLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D33FFC02E4CDF9ABDCA16 /* TraceLog.swift */; };
-		8B7012F30CC60EA25C7A19A5 /* Pods-TraceLog-OSX-Tests-TraceLog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 71FB2AD819A34D12E46DF618 /* Pods-TraceLog-OSX-Tests-TraceLog-dummy.m */; };
-		8C01ACC272785DF1C437308F /* Pods-TraceLog-OSX-TraceLog-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 3310C5F61F64A3420D954FAF /* Pods-TraceLog-OSX-TraceLog-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		96F441B147562805E0B7687E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E02CAFCA381E54035923E660 /* Foundation.framework */; };
-		AA7ECFEEAB8EAE95F10ABA9D /* TraceLog.h in Headers */ = {isa = PBXBuildFile; fileRef = A87946428BB4544A80E91154 /* TraceLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		AAC5A32E15F11BE5312CAAB4 /* Pods-TraceLog-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AB7E31593CDC40064EE0BCB9 /* Pods-TraceLog-iOS-dummy.m */; };
-		B7373EC69CE3B7C4B4DBD2B7 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6089A9FD48DB00DBED67C84D /* Cocoa.framework */; };
-		B8DC2E900E74060987EFE062 /* TLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = C1A9B0C73BC0186062C98815 /* TLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BB61AE40DF98380187184E26 /* Pods-TraceLog-iOS-Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C2157B361F009558DD40EDEB /* Pods-TraceLog-iOS-Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		BF882291B3C4B006BDF8122A /* TraceLog.h in Headers */ = {isa = PBXBuildFile; fileRef = A87946428BB4544A80E91154 /* TraceLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C114D113F47E25B39B47128E /* Pods-TraceLog-iOS-Tests-TraceLog-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B7FEC396014051333351694C /* Pods-TraceLog-iOS-Tests-TraceLog-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		C34A19A366F4357A550DC974 /* Pods-TraceLog-iOS-Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 35C92CF22EF79D9A5B24CDF6 /* Pods-TraceLog-iOS-Tests-dummy.m */; };
-		D1FBE19CEE0076BCF1AECCAF /* Pods-TraceLog-iOS-TraceLog-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 65BAFD8894EAA9C2E9659F1B /* Pods-TraceLog-iOS-TraceLog-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		D3CD5DF895906C55D3471B86 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E02CAFCA381E54035923E660 /* Foundation.framework */; };
-		D3F49718C94A6A4938419D0B /* TraceLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = C14D33FFC02E4CDF9ABDCA16 /* TraceLog.swift */; };
-		E4A5BDB28124057653590A33 /* TLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9958CD5CFEA7626069BAC19F /* TLogger.m */; };
-		FC04E19960D9C8EAA585E2A5 /* TLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = 9958CD5CFEA7626069BAC19F /* TLogger.m */; };
+		02B1C3BF83284F690AAC8D0F /* TLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = B7D4D7E2B8F851C9B944216E /* TLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0DC4AE34803687FE73240C6D /* TraceLog.h in Headers */ = {isa = PBXBuildFile; fileRef = F42E08769EF643CBBE5C170A /* TraceLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0F4BC8B2442ADC38EF956560 /* Pods-TraceLog-OSX-Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A98D508888414CC1A79D4D0E /* Pods-TraceLog-OSX-Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		10814EEA64FD1A7BF3316865 /* Pods-TraceLog-WatchOS Extension-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0542938F30763D79536AA69E /* Pods-TraceLog-WatchOS Extension-dummy.m */; };
+		1398298B336195C48620CACA /* TLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC24217C5E306C00C8C0F4A /* TLogger.m */; };
+		19710810F28B682DD788F5E0 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDADF1BCF23A4E31BB81538 /* Foundation.framework */; };
+		1D69FFF87E9465385DE6B880 /* Pods-TraceLog-WatchOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 8467B9CC5660C31EFD82F3A6 /* Pods-TraceLog-WatchOS-dummy.m */; };
+		2A495A2E0541B783DED5C147 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDADF1BCF23A4E31BB81538 /* Foundation.framework */; };
+		2CCD9CEAC119A1B17281D6EC /* TLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC24217C5E306C00C8C0F4A /* TLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -DOS_OBJECT_USE_OBJC=0"; }; };
+		3390F3C1EA2495C1F8011008 /* TraceLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACEDD0AE403BD46EAD18781 /* TraceLog.swift */; };
+		33FC0B57032350E14D794240 /* Pods-TraceLog-WatchOS Extension-TraceLog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E67312FAA09C778DA02DEFFB /* Pods-TraceLog-WatchOS Extension-TraceLog-dummy.m */; };
+		3878BEDAA3811E225F51D535 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDADF1BCF23A4E31BB81538 /* Foundation.framework */; };
+		3B9142FA658289A0B4563FBA /* Pods-TraceLog-iOS-TraceLog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = C6F869E7478531B1919049E0 /* Pods-TraceLog-iOS-TraceLog-dummy.m */; };
+		3C08FFFBD34D97109D3CD875 /* TraceLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACEDD0AE403BD46EAD18781 /* TraceLog.swift */; };
+		3DDEAA6A1BB60901D5A77866 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31957103986AF5F106337385 /* Cocoa.framework */; };
+		47D9B8F1B3FCF24152634AA4 /* Pods-TraceLog-OSX-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = A57CEC7A97AB437C91B4DBDE /* Pods-TraceLog-OSX-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		47F5E8180E054388A34531BE /* TLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC24217C5E306C00C8C0F4A /* TLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -DOS_OBJECT_USE_OBJC=0"; }; };
+		4BE865660C9AA6834C134293 /* TraceLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACEDD0AE403BD46EAD18781 /* TraceLog.swift */; };
+		52ED08385B35B5AE72F40727 /* Pods-TraceLog-OSX-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 9CFF3FA88ADD0CAB82BDE1DE /* Pods-TraceLog-OSX-dummy.m */; };
+		531840831ED6D94001C8FDEE /* Pods-TraceLog-WatchOS Extension-TraceLog-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B0F86432967049711C990E2B /* Pods-TraceLog-WatchOS Extension-TraceLog-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		59A041064C733984BF7B4783 /* TLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC24217C5E306C00C8C0F4A /* TLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -DOS_OBJECT_USE_OBJC=0"; }; };
+		5DE0092597502EA290D3EB1C /* TLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = B7D4D7E2B8F851C9B944216E /* TLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		642570EF59CFC44EB8CDFD72 /* TLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = B7D4D7E2B8F851C9B944216E /* TLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		6BFFB0412807483B75BC3F0F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 021B1C6B969A68F3C3F86ABC /* Foundation.framework */; };
+		6F229D45FB75195F9BCB4BA4 /* Pods-TraceLog-WatchOS Extension-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = D1029654E7A4BDEF677846C3 /* Pods-TraceLog-WatchOS Extension-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		724422EB001C07F479AD58F2 /* Pods-TraceLog-WatchOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 2A5D3C2E7DB2C8B6B56C27E7 /* Pods-TraceLog-WatchOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		73B1E8A195E3899CD7CE0B53 /* Pods-TraceLog-OSX-TraceLog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5979270072592C382FFA0DA3 /* Pods-TraceLog-OSX-TraceLog-dummy.m */; };
+		775ADFE7F9E6566814F20F97 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 021B1C6B969A68F3C3F86ABC /* Foundation.framework */; };
+		778F6016402BF96A09014B62 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5EDADF1BCF23A4E31BB81538 /* Foundation.framework */; };
+		77D896C4B704DB1B8440F618 /* Pods-TraceLog-iOS-TraceLog-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 43D2179DA7F8ED87BAF49678 /* Pods-TraceLog-iOS-TraceLog-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		7FAEDB062568AE6DAB22B7F5 /* Pods-TraceLog-OSX-Tests-TraceLog-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 7B97212EEFC93FCEC79F8160 /* Pods-TraceLog-OSX-Tests-TraceLog-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		82EF240802696A8293A715D5 /* Pods-TraceLog-WatchOS-TraceLog-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 418AA13B6D9398362CAD467D /* Pods-TraceLog-WatchOS-TraceLog-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9060B873099566864E00F825 /* Pods-TraceLog-WatchOS-TraceLog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = E1143B14E47D082555CBF2E2 /* Pods-TraceLog-WatchOS-TraceLog-dummy.m */; };
+		96E929DF1C3D9A976ED5167D /* Pods-TraceLog-iOS-Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = B0E277C715F3787A6C360B40 /* Pods-TraceLog-iOS-Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		99C5F5EE5835DE23001FA9AF /* TLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = B7D4D7E2B8F851C9B944216E /* TLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		9AB9EE2E5E7F69A591585355 /* TLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC24217C5E306C00C8C0F4A /* TLogger.m */; };
+		A7FC49D4A57C112C81E7FFF0 /* Pods-TraceLog-OSX-Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = F5E7202B9D03A1BCA4F4AB67 /* Pods-TraceLog-OSX-Tests-dummy.m */; };
+		AD99512C0F140C6571051DB1 /* Pods-TraceLog-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 86FB553D57DB1CD7EC91057A /* Pods-TraceLog-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B3F33002E50E9AB61DB12DA0 /* TraceLog.h in Headers */ = {isa = PBXBuildFile; fileRef = F42E08769EF643CBBE5C170A /* TraceLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B407C6DFE2A0C7BB9FA52190 /* Pods-TraceLog-iOS-Tests-TraceLog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = CACF4133CDCB6200BD8A8D6A /* Pods-TraceLog-iOS-Tests-TraceLog-dummy.m */; };
+		B55EE9FF01C3FE5F907DB9EB /* TLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = B7D4D7E2B8F851C9B944216E /* TLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B89B26B2CEE731AC102EC1F9 /* Pods-TraceLog-OSX-TraceLog-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 41CD239DE1EAECE24159D2AF /* Pods-TraceLog-OSX-TraceLog-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		BCD4A5FAC1052B0EC6B32388 /* TraceLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = BACEDD0AE403BD46EAD18781 /* TraceLog.swift */; };
+		C0294E642BCB6C402BED7F1B /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31957103986AF5F106337385 /* Cocoa.framework */; };
+		C2D93CDF464CEF0478E1549A /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31957103986AF5F106337385 /* Cocoa.framework */; };
+		C5B8F55E9507514A9994DB47 /* Pods-TraceLog-OSX-Tests-TraceLog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = EDAF5E8358F19C34EBC7F228 /* Pods-TraceLog-OSX-Tests-TraceLog-dummy.m */; };
+		CB03BD93DECA787FF36AA29A /* Pods-TraceLog-iOS-Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 29313421328BDC6C53BD03E6 /* Pods-TraceLog-iOS-Tests-dummy.m */; };
+		CDC52F97C03A6C15C33FC46A /* Pods-TraceLog-iOS-Tests-TraceLog-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = C64EA6CE4B8431C64E1C4377 /* Pods-TraceLog-iOS-Tests-TraceLog-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		E53FED999A6020E0800D27C1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 021B1C6B969A68F3C3F86ABC /* Foundation.framework */; };
+		EA5C0624E1EE48DB316DBAB3 /* Pods-TraceLog-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5E2981FC8EAA65119130DF50 /* Pods-TraceLog-iOS-dummy.m */; };
+		EADED53C0768FA0B2C0949A0 /* TLogger.m in Sources */ = {isa = PBXBuildFile; fileRef = BBC24217C5E306C00C8C0F4A /* TLogger.m */; settings = {COMPILER_FLAGS = "-DOS_OBJECT_USE_OBJC=0 -DOS_OBJECT_USE_OBJC=0"; }; };
+		F0269A50A0BBD232D2C2CBA4 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 021B1C6B969A68F3C3F86ABC /* Foundation.framework */; };
+		F92894F0EAC2BFD6449B7724 /* TLogger.h in Headers */ = {isa = PBXBuildFile; fileRef = B7D4D7E2B8F851C9B944216E /* TLogger.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		F96D65CAF084FE6B6C026F55 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 31957103986AF5F106337385 /* Cocoa.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		1A5BBD0A7E99A1680C1974D7 /* PBXContainerItemProxy */ = {
+		284126F2DFBB324DAF96A746 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F219DFFEE71121888B120DDB /* Project object */;
+			containerPortal = FDDED2C13B3517025ADAF02D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 3B0663FAFBFA48DCBFB5B078;
+			remoteGlobalIDString = F71EA705D1E4A9FCBBFC6A31;
+			remoteInfo = "Pods-TraceLog-iOS-Tests-TraceLog";
+		};
+		28967BCBC71987A27C91A253 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDDED2C13B3517025ADAF02D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 57277FED834C838920E43BE8;
+			remoteInfo = "Pods-TraceLog-WatchOS-TraceLog";
+		};
+		62FD1FBFD1FF941C7FF22921 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDDED2C13B3517025ADAF02D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2C21D63560375FC68B67A60C;
 			remoteInfo = "Pods-TraceLog-OSX-TraceLog";
 		};
-		94B518144949C3EAE8B15A6F /* PBXContainerItemProxy */ = {
+		733721D5437493A755CDCEB0 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F219DFFEE71121888B120DDB /* Project object */;
+			containerPortal = FDDED2C13B3517025ADAF02D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 165F364CA03F33FC209AC224;
+			remoteGlobalIDString = 1386BE56D66630D7FD0A8EAC;
+			remoteInfo = "Pods-TraceLog-WatchOS Extension-TraceLog";
+		};
+		BE9D0FF23E89337A5E2A6777 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = FDDED2C13B3517025ADAF02D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 453669D413709BA8382B656B;
 			remoteInfo = "Pods-TraceLog-OSX-Tests-TraceLog";
 		};
-		B0CE4B90736C637B329B7D50 /* PBXContainerItemProxy */ = {
+		C779A9AF99DCFB73A69A4A0C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = F219DFFEE71121888B120DDB /* Project object */;
+			containerPortal = FDDED2C13B3517025ADAF02D /* Project object */;
 			proxyType = 1;
-			remoteGlobalIDString = 455BD628A444B2E6636D3BE6;
+			remoteGlobalIDString = C500E39E7FECC02B9E98D045;
 			remoteInfo = "Pods-TraceLog-iOS-TraceLog";
-		};
-		FEDC90232E8F681C5518E1BB /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = F219DFFEE71121888B120DDB /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = BB590E6E681174C4596E775C;
-			remoteInfo = "Pods-TraceLog-iOS-Tests-TraceLog";
 		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		057727E1D2D4F454E69A542A /* Pods-TraceLog-OSX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-OSX.debug.xcconfig"; sourceTree = "<group>"; };
-		14FE9E4DD39348FA7F982349 /* Pods-TraceLog-iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TraceLog-iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
-		16EDE52C05BA49556ED5A341 /* Pods-TraceLog-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TraceLog-iOS.modulemap"; sourceTree = "<group>"; };
-		17827FBDED2AF67CC70A74B0 /* Pods-TraceLog-iOS-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-iOS-Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		19F1E8E8D798DE4C53453B53 /* TraceLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraceLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		1D6D4848846F23DDB7682C2F /* Pods-TraceLog-OSX-Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TraceLog-OSX-Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		1D7BBEE698D57A8205DF2FC5 /* Pods-TraceLog-iOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraceLog-iOS-frameworks.sh"; sourceTree = "<group>"; };
-		24EE6101A5B7C9E9E3F86CF4 /* Pods-TraceLog-OSX-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TraceLog-OSX-acknowledgements.markdown"; sourceTree = "<group>"; };
-		2A644C574ED02163EFADBB3E /* Pods-TraceLog-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-iOS.debug.xcconfig"; sourceTree = "<group>"; };
-		2CF55741EFC416D74B5EBE37 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Pods-TraceLog-iOS-TraceLog/Info.plist"; sourceTree = "<group>"; };
-		2F79300D8A7240E2A67E3C2D /* Pods-TraceLog-iOS-Tests-TraceLog.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-iOS-Tests-TraceLog.xcconfig"; path = "../Pods-TraceLog-iOS-Tests-TraceLog/Pods-TraceLog-iOS-Tests-TraceLog.xcconfig"; sourceTree = "<group>"; };
-		3134DF59A2442DB2526ADBDD /* Pods-TraceLog-OSX-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraceLog-OSX-resources.sh"; sourceTree = "<group>"; };
-		32184CC76FCDC5BD89BB771E /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Pods-TraceLog-OSX-TraceLog/Info.plist"; sourceTree = "<group>"; };
-		3310C5F61F64A3420D954FAF /* Pods-TraceLog-OSX-TraceLog-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-TraceLog-OSX-TraceLog-umbrella.h"; path = "../Pods-TraceLog-OSX-TraceLog/Pods-TraceLog-OSX-TraceLog-umbrella.h"; sourceTree = "<group>"; };
-		35C92CF22EF79D9A5B24CDF6 /* Pods-TraceLog-iOS-Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TraceLog-iOS-Tests-dummy.m"; sourceTree = "<group>"; };
-		392A8CCDC3D95846B6B7AEB1 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		3B7CDCC0EFF93C5DF753421E /* Pods-TraceLog-OSX-TraceLog.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "Pods-TraceLog-OSX-TraceLog.modulemap"; path = "../Pods-TraceLog-OSX-TraceLog/Pods-TraceLog-OSX-TraceLog.modulemap"; sourceTree = "<group>"; };
-		42524020A539BCF28C20A24B /* Pods-TraceLog-iOS-Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TraceLog-iOS-Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		43E6360E1A3FB5C032A71B91 /* Pods-TraceLog-OSX-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TraceLog-OSX-umbrella.h"; sourceTree = "<group>"; };
-		4CE79C78B0394C3915B27DD9 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4D7A05B0892E42E9391E4EE3 /* Pods-TraceLog-OSX-Tests-TraceLog.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TraceLog-OSX-Tests-TraceLog.modulemap"; sourceTree = "<group>"; };
-		53FEB6DDFD48D678866529A0 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		544E75D0AAF5B4F8CCE42F1C /* Pods-TraceLog-iOS-Tests-TraceLog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-TraceLog-iOS-Tests-TraceLog-dummy.m"; path = "../Pods-TraceLog-iOS-Tests-TraceLog/Pods-TraceLog-iOS-Tests-TraceLog-dummy.m"; sourceTree = "<group>"; };
-		56690B6AFAA9345A237B5F5F /* Pods-TraceLog-OSX-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-OSX-Tests.release.xcconfig"; sourceTree = "<group>"; };
-		56DA9661BB08B02C9FBFFA2B /* Pods-TraceLog-OSX-Tests-TraceLog-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TraceLog-OSX-Tests-TraceLog-umbrella.h"; sourceTree = "<group>"; };
-		59EBB562695744494453D9C0 /* Pods-TraceLog-iOS-Tests-TraceLog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-TraceLog-iOS-Tests-TraceLog-prefix.pch"; path = "../Pods-TraceLog-iOS-Tests-TraceLog/Pods-TraceLog-iOS-Tests-TraceLog-prefix.pch"; sourceTree = "<group>"; };
-		6089A9FD48DB00DBED67C84D /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
-		6360F659C23F58C3AAE0CF1C /* Pods-TraceLog-iOS-TraceLog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-TraceLog-iOS-TraceLog-prefix.pch"; path = "../Pods-TraceLog-iOS-TraceLog/Pods-TraceLog-iOS-TraceLog-prefix.pch"; sourceTree = "<group>"; };
-		63F2D60A71912948EE7C7235 /* Pods-TraceLog-iOS-Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraceLog-iOS-Tests-resources.sh"; sourceTree = "<group>"; };
-		65BAFD8894EAA9C2E9659F1B /* Pods-TraceLog-iOS-TraceLog-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-TraceLog-iOS-TraceLog-umbrella.h"; path = "../Pods-TraceLog-iOS-TraceLog/Pods-TraceLog-iOS-TraceLog-umbrella.h"; sourceTree = "<group>"; };
-		6922D7BAB1326A3A4CBC64EE /* Pods-TraceLog-iOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraceLog-iOS-resources.sh"; sourceTree = "<group>"; };
-		6AB6DA3EBE727B1ABD776087 /* Pods-TraceLog-OSX-Tests-TraceLog.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-OSX-Tests-TraceLog.xcconfig"; sourceTree = "<group>"; };
-		6AE57E941C6383551B624EA1 /* Pods_TraceLog_OSX_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraceLog_OSX_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6DDAC6BE8F6697D156B1D359 /* Pods_TraceLog_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraceLog_iOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		6E6C1AFB918EABB6D81C7EA7 /* Pods-TraceLog-iOS-Tests-TraceLog.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "Pods-TraceLog-iOS-Tests-TraceLog.modulemap"; path = "../Pods-TraceLog-iOS-Tests-TraceLog/Pods-TraceLog-iOS-Tests-TraceLog.modulemap"; sourceTree = "<group>"; };
-		6FDED0A9225EEE6787E47B21 /* Pods_TraceLog_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraceLog_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		71FB2AD819A34D12E46DF618 /* Pods-TraceLog-OSX-Tests-TraceLog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TraceLog-OSX-Tests-TraceLog-dummy.m"; sourceTree = "<group>"; };
-		77C5C7C510CB8BD5BA1B179A /* Pods-TraceLog-iOS-Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TraceLog-iOS-Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
-		7843A4D3A944C9D7DC5280AA /* Pods-TraceLog-OSX-Tests-TraceLog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TraceLog-OSX-Tests-TraceLog-prefix.pch"; sourceTree = "<group>"; };
-		7E2C918EAB8A6D5C99CB84C4 /* Pods-TraceLog-OSX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-OSX.release.xcconfig"; sourceTree = "<group>"; };
-		8477329BCC9CE0D42FEA3D29 /* Pods-TraceLog-OSX-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TraceLog-OSX-acknowledgements.plist"; sourceTree = "<group>"; };
-		88104ED0092631B43AF6868E /* TraceLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraceLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		889CDFA55DBE43957B470827 /* Pods-TraceLog-iOS-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-iOS-Tests.release.xcconfig"; sourceTree = "<group>"; };
-		901BF60F3EF7A46B573BA011 /* TraceLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraceLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		93D7B155E9BC88085110647A /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Pods-TraceLog-iOS-Tests-TraceLog/Info.plist"; sourceTree = "<group>"; };
-		94C910722A4BDE4DC41A060D /* Pods-TraceLog-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TraceLog-iOS-umbrella.h"; sourceTree = "<group>"; };
-		955E09FDAAEDCF2010A0E760 /* Pods-TraceLog-OSX-TraceLog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-TraceLog-OSX-TraceLog-dummy.m"; path = "../Pods-TraceLog-OSX-TraceLog/Pods-TraceLog-OSX-TraceLog-dummy.m"; sourceTree = "<group>"; };
-		9958CD5CFEA7626069BAC19F /* TLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TLogger.m; sourceTree = "<group>"; };
-		9B1C4F5011DCC1D8DA1E31CB /* Pods-TraceLog-OSX-Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraceLog-OSX-Tests-frameworks.sh"; sourceTree = "<group>"; };
-		A14F1365186206B723EE9EB6 /* Pods-TraceLog-OSX-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraceLog-OSX-frameworks.sh"; sourceTree = "<group>"; };
-		A23792FB0CE98D435EC75BE7 /* Pods-TraceLog-OSX-TraceLog.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-OSX-TraceLog.xcconfig"; path = "../Pods-TraceLog-OSX-TraceLog/Pods-TraceLog-OSX-TraceLog.xcconfig"; sourceTree = "<group>"; };
-		A87946428BB4544A80E91154 /* TraceLog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TraceLog.h; sourceTree = "<group>"; };
-		A92986CF263B15A52508139A /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		AB5E900D749FE6A73B350FEF /* Pods-TraceLog-OSX-Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TraceLog-OSX-Tests-umbrella.h"; sourceTree = "<group>"; };
-		AB7E31593CDC40064EE0BCB9 /* Pods-TraceLog-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TraceLog-iOS-dummy.m"; sourceTree = "<group>"; };
-		ABF4CD1D16BBAC1033AF9668 /* Pods-TraceLog-iOS-Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraceLog-iOS-Tests-frameworks.sh"; sourceTree = "<group>"; };
-		B611E884195AE205998933BF /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B64C0CF4BE0E790CDC3CDD2F /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B7FEC396014051333351694C /* Pods-TraceLog-iOS-Tests-TraceLog-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-TraceLog-iOS-Tests-TraceLog-umbrella.h"; path = "../Pods-TraceLog-iOS-Tests-TraceLog/Pods-TraceLog-iOS-Tests-TraceLog-umbrella.h"; sourceTree = "<group>"; };
-		C14D33FFC02E4CDF9ABDCA16 /* TraceLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TraceLog.swift; sourceTree = "<group>"; };
-		C1A9B0C73BC0186062C98815 /* TLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TLogger.h; sourceTree = "<group>"; };
-		C2157B361F009558DD40EDEB /* Pods-TraceLog-iOS-Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TraceLog-iOS-Tests-umbrella.h"; sourceTree = "<group>"; };
-		C216CE504CA44535BE44C767 /* Pods-TraceLog-OSX-Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraceLog-OSX-Tests-resources.sh"; sourceTree = "<group>"; };
-		C56392D0C72DDAC357CEBACF /* TraceLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraceLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C6EF6E4DC2F949F7ED2756E1 /* Pods-TraceLog-OSX-Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TraceLog-OSX-Tests.modulemap"; sourceTree = "<group>"; };
-		CC6DB1A79AE41F6C36A4DDC1 /* Pods-TraceLog-OSX.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TraceLog-OSX.modulemap"; sourceTree = "<group>"; };
-		D1EDC498CE7E1CECDE883EF9 /* Pods-TraceLog-iOS-TraceLog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-TraceLog-iOS-TraceLog-dummy.m"; path = "../Pods-TraceLog-iOS-TraceLog/Pods-TraceLog-iOS-TraceLog-dummy.m"; sourceTree = "<group>"; };
-		D379575FD3A4A8D4636EE790 /* Pods-TraceLog-OSX-TraceLog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-TraceLog-OSX-TraceLog-prefix.pch"; path = "../Pods-TraceLog-OSX-TraceLog/Pods-TraceLog-OSX-TraceLog-prefix.pch"; sourceTree = "<group>"; };
-		D5A3123E3920368E4AB6A0D7 /* Pods-TraceLog-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-iOS.release.xcconfig"; sourceTree = "<group>"; };
-		DCB395A7B496EDDFEC4EF87C /* Pods-TraceLog-iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TraceLog-iOS-acknowledgements.plist"; sourceTree = "<group>"; };
-		DCE06672D6479AA3BE27B751 /* Pods-TraceLog-OSX-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TraceLog-OSX-dummy.m"; sourceTree = "<group>"; };
-		E02CAFCA381E54035923E660 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
-		E1B5337662DEC3537ADC8B27 /* Pods-TraceLog-OSX-Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TraceLog-OSX-Tests-acknowledgements.plist"; sourceTree = "<group>"; };
-		E33F0C05E5DBE24A59C46F99 /* Pods_TraceLog_OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraceLog_OSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E7D2A8BA2826B924312867F2 /* Pods-TraceLog-iOS-TraceLog.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-iOS-TraceLog.xcconfig"; path = "../Pods-TraceLog-iOS-TraceLog/Pods-TraceLog-iOS-TraceLog.xcconfig"; sourceTree = "<group>"; };
-		F24DCFCF5873D5D8812E7D33 /* Pods-TraceLog-OSX-Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TraceLog-OSX-Tests-dummy.m"; sourceTree = "<group>"; };
-		F28F201C598DA999137B5876 /* Pods-TraceLog-iOS-Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TraceLog-iOS-Tests.modulemap"; sourceTree = "<group>"; };
-		F8EA076797F9A568283F0963 /* Pods-TraceLog-iOS-TraceLog.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "Pods-TraceLog-iOS-TraceLog.modulemap"; path = "../Pods-TraceLog-iOS-TraceLog/Pods-TraceLog-iOS-TraceLog.modulemap"; sourceTree = "<group>"; };
-		FDCDD8666201CDB8AF1CA589 /* Pods-TraceLog-OSX-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-OSX-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		021B1C6B969A68F3C3F86ABC /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS9.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		0542938F30763D79536AA69E /* Pods-TraceLog-WatchOS Extension-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TraceLog-WatchOS Extension-dummy.m"; sourceTree = "<group>"; };
+		0ACFE089F04C299261A72224 /* Pods-TraceLog-OSX-Tests-TraceLog.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-OSX-Tests-TraceLog.xcconfig"; sourceTree = "<group>"; };
+		0BD0075183877E593A2263DD /* Pods-TraceLog-OSX.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-OSX.debug.xcconfig"; sourceTree = "<group>"; };
+		0BF7510E19264E880AF8E06E /* Pods-TraceLog-OSX-TraceLog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-TraceLog-OSX-TraceLog-prefix.pch"; path = "../Pods-TraceLog-OSX-TraceLog/Pods-TraceLog-OSX-TraceLog-prefix.pch"; sourceTree = "<group>"; };
+		10F24EDC1E69B2C1FA3FCF4D /* Pods-TraceLog-WatchOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-WatchOS.release.xcconfig"; sourceTree = "<group>"; };
+		12FD4E9F8A30473574F7A0BE /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Pods-TraceLog-WatchOS-TraceLog/Info.plist"; sourceTree = "<group>"; };
+		182AF25FCE144DF2DDA0DAAD /* Pods-TraceLog-OSX-Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraceLog-OSX-Tests-resources.sh"; sourceTree = "<group>"; };
+		1872BB1C92A8DD54096CDC7F /* Pods_TraceLog_OSX_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraceLog_OSX_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		18FE5619006C52784E16FD9C /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		196563C62340472AB953AECF /* Pods-TraceLog-OSX.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TraceLog-OSX.modulemap"; sourceTree = "<group>"; };
+		1D17EE03683508A0BB9AD81F /* Pods-TraceLog-WatchOS Extension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-WatchOS Extension.debug.xcconfig"; sourceTree = "<group>"; };
+		22E7F71AD76C43965936E5C2 /* Pods-TraceLog-WatchOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TraceLog-WatchOS-acknowledgements.plist"; sourceTree = "<group>"; };
+		25D53ADAAC7C4C11BF4B268E /* Pods-TraceLog-OSX-Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TraceLog-OSX-Tests.modulemap"; sourceTree = "<group>"; };
+		29313421328BDC6C53BD03E6 /* Pods-TraceLog-iOS-Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TraceLog-iOS-Tests-dummy.m"; sourceTree = "<group>"; };
+		29E5BBC037C6461BEB015011 /* Pods_TraceLog_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraceLog_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A5D3C2E7DB2C8B6B56C27E7 /* Pods-TraceLog-WatchOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TraceLog-WatchOS-umbrella.h"; sourceTree = "<group>"; };
+		31957103986AF5F106337385 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		37EC5FD71A1FFE385A91813B /* Pods-TraceLog-WatchOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TraceLog-WatchOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3975365B3BE6790648DC595B /* TraceLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraceLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3990C87B3CCB8315A9C76841 /* Pods-TraceLog-iOS-Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TraceLog-iOS-Tests.modulemap"; sourceTree = "<group>"; };
+		39E24139A9C7937170A7A73D /* Pods-TraceLog-OSX-TraceLog.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-OSX-TraceLog.xcconfig"; path = "../Pods-TraceLog-OSX-TraceLog/Pods-TraceLog-OSX-TraceLog.xcconfig"; sourceTree = "<group>"; };
+		3A27D521AAB4325BB6F1F172 /* Pods-TraceLog-OSX-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TraceLog-OSX-acknowledgements.markdown"; sourceTree = "<group>"; };
+		3B1CB39BF19780E508055F92 /* TraceLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraceLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C43991B50BE69DFC85F621A /* Pods-TraceLog-WatchOS Extension-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraceLog-WatchOS Extension-frameworks.sh"; sourceTree = "<group>"; };
+		4188B330FA0C88D5796D3646 /* Pods-TraceLog-WatchOS Extension.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TraceLog-WatchOS Extension.modulemap"; sourceTree = "<group>"; };
+		418AA13B6D9398362CAD467D /* Pods-TraceLog-WatchOS-TraceLog-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-TraceLog-WatchOS-TraceLog-umbrella.h"; path = "../Pods-TraceLog-WatchOS-TraceLog/Pods-TraceLog-WatchOS-TraceLog-umbrella.h"; sourceTree = "<group>"; };
+		41A9FAD7100F125A4536501E /* Pods-TraceLog-OSX-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraceLog-OSX-resources.sh"; sourceTree = "<group>"; };
+		41CD239DE1EAECE24159D2AF /* Pods-TraceLog-OSX-TraceLog-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-TraceLog-OSX-TraceLog-umbrella.h"; path = "../Pods-TraceLog-OSX-TraceLog/Pods-TraceLog-OSX-TraceLog-umbrella.h"; sourceTree = "<group>"; };
+		43D2179DA7F8ED87BAF49678 /* Pods-TraceLog-iOS-TraceLog-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-TraceLog-iOS-TraceLog-umbrella.h"; path = "../Pods-TraceLog-iOS-TraceLog/Pods-TraceLog-iOS-TraceLog-umbrella.h"; sourceTree = "<group>"; };
+		4423A3BED558E06CACE2F065 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4721B0A1084D3E70EB7153C2 /* Pods-TraceLog-iOS-Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraceLog-iOS-Tests-frameworks.sh"; sourceTree = "<group>"; };
+		4CA5B4B539CB67328AE2E89A /* Pods-TraceLog-iOS-Tests-TraceLog.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-iOS-Tests-TraceLog.xcconfig"; path = "../Pods-TraceLog-iOS-Tests-TraceLog/Pods-TraceLog-iOS-Tests-TraceLog.xcconfig"; sourceTree = "<group>"; };
+		501479EBB1FF51BE7BED4018 /* Pods-TraceLog-OSX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-OSX.release.xcconfig"; sourceTree = "<group>"; };
+		51E0018B0A9A1FEE471F3BDE /* TraceLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraceLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		540395E994B7DAE14721BFA8 /* Pods-TraceLog-OSX-TraceLog.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "Pods-TraceLog-OSX-TraceLog.modulemap"; path = "../Pods-TraceLog-OSX-TraceLog/Pods-TraceLog-OSX-TraceLog.modulemap"; sourceTree = "<group>"; };
+		566C7FAE2304B25A08BE8EBD /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Pods-TraceLog-WatchOS Extension-TraceLog/Info.plist"; sourceTree = "<group>"; };
+		58D221AC2F46EF2B1E2288E2 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		594115EA6FF64C4FBABB9ADA /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		5979270072592C382FFA0DA3 /* Pods-TraceLog-OSX-TraceLog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-TraceLog-OSX-TraceLog-dummy.m"; path = "../Pods-TraceLog-OSX-TraceLog/Pods-TraceLog-OSX-TraceLog-dummy.m"; sourceTree = "<group>"; };
+		5E2981FC8EAA65119130DF50 /* Pods-TraceLog-iOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TraceLog-iOS-dummy.m"; sourceTree = "<group>"; };
+		5EDADF1BCF23A4E31BB81538 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/WatchOS.platform/Developer/SDKs/WatchOS2.0.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
+		5FDDAA9487CCB0268DF5DE18 /* Pods-TraceLog-WatchOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraceLog-WatchOS-resources.sh"; sourceTree = "<group>"; };
+		653C4EE8A4C1EB59D962FEC5 /* Pods-TraceLog-iOS-Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TraceLog-iOS-Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		685466A779E26B2A50E8AD13 /* Pods-TraceLog-WatchOS-TraceLog.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "Pods-TraceLog-WatchOS-TraceLog.modulemap"; path = "../Pods-TraceLog-WatchOS-TraceLog/Pods-TraceLog-WatchOS-TraceLog.modulemap"; sourceTree = "<group>"; };
+		6A95D62B2AB3B6F064AE7602 /* Pods_TraceLog_WatchOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraceLog_WatchOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6B194AC29371A4921B0BF853 /* Pods-TraceLog-OSX-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-OSX-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		6B8630C183B54DCF8E678302 /* TraceLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraceLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6E4F73D64B899BE51110BC71 /* TraceLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraceLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6EBC277AA5A5B563CECA8B39 /* Pods-TraceLog-WatchOS Extension-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraceLog-WatchOS Extension-resources.sh"; sourceTree = "<group>"; };
+		714F0EF8E98D5FFF782D2391 /* Pods-TraceLog-iOS-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-iOS-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		73ACC7820A14780F9D2F408F /* Pods-TraceLog-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-iOS.debug.xcconfig"; sourceTree = "<group>"; };
+		7402D0012254C0308FF9DA4E /* Pods-TraceLog-iOS-Tests-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraceLog-iOS-Tests-resources.sh"; sourceTree = "<group>"; };
+		791B52CB749303BB025C53D2 /* Pods-TraceLog-OSX-Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TraceLog-OSX-Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		7B97212EEFC93FCEC79F8160 /* Pods-TraceLog-OSX-Tests-TraceLog-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TraceLog-OSX-Tests-TraceLog-umbrella.h"; sourceTree = "<group>"; };
+		7E233879DB4B3BCCD706B24D /* Pods-TraceLog-iOS-Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TraceLog-iOS-Tests-acknowledgements.plist"; sourceTree = "<group>"; };
+		81D9E8CA937FA0E75C180238 /* Pods-TraceLog-OSX-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraceLog-OSX-frameworks.sh"; sourceTree = "<group>"; };
+		8467B9CC5660C31EFD82F3A6 /* Pods-TraceLog-WatchOS-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TraceLog-WatchOS-dummy.m"; sourceTree = "<group>"; };
+		86FB553D57DB1CD7EC91057A /* Pods-TraceLog-iOS-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TraceLog-iOS-umbrella.h"; sourceTree = "<group>"; };
+		878330F2E21B38C4C969E135 /* Pods-TraceLog-iOS-TraceLog.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-iOS-TraceLog.xcconfig"; path = "../Pods-TraceLog-iOS-TraceLog/Pods-TraceLog-iOS-TraceLog.xcconfig"; sourceTree = "<group>"; };
+		8A10A6D3A5ACCB51B10CB84D /* Pods-TraceLog-OSX-Tests-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraceLog-OSX-Tests-frameworks.sh"; sourceTree = "<group>"; };
+		8A90EAEB97196F854F08D0D1 /* Pods-TraceLog-WatchOS Extension-TraceLog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-TraceLog-WatchOS Extension-TraceLog-prefix.pch"; path = "../Pods-TraceLog-WatchOS Extension-TraceLog/Pods-TraceLog-WatchOS Extension-TraceLog-prefix.pch"; sourceTree = "<group>"; };
+		9391865A7212E0E7D5D2FAC9 /* Pods-TraceLog-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TraceLog-iOS.modulemap"; sourceTree = "<group>"; };
+		95FB196CB2542B141C1837AE /* Pods_TraceLog_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraceLog_iOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		961CE4A04DB125C1D6493D09 /* Pods-TraceLog-WatchOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-WatchOS.debug.xcconfig"; sourceTree = "<group>"; };
+		9654030A78C148FB2F07D2BE /* Pods-TraceLog-WatchOS Extension-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TraceLog-WatchOS Extension-acknowledgements.plist"; sourceTree = "<group>"; };
+		96E46E415B8301E9B1A33F09 /* Pods-TraceLog-iOS-Tests-TraceLog.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "Pods-TraceLog-iOS-Tests-TraceLog.modulemap"; path = "../Pods-TraceLog-iOS-Tests-TraceLog/Pods-TraceLog-iOS-Tests-TraceLog.modulemap"; sourceTree = "<group>"; };
+		98C0BFAAC810BA04951FE32C /* Pods-TraceLog-iOS-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-iOS-Tests.release.xcconfig"; sourceTree = "<group>"; };
+		99A011A7A380C02952C9B7F3 /* Pods-TraceLog-OSX-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TraceLog-OSX-acknowledgements.plist"; sourceTree = "<group>"; };
+		9A47DC6D87E7EC0780A3FE45 /* Pods-TraceLog-WatchOS-TraceLog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-TraceLog-WatchOS-TraceLog-prefix.pch"; path = "../Pods-TraceLog-WatchOS-TraceLog/Pods-TraceLog-WatchOS-TraceLog-prefix.pch"; sourceTree = "<group>"; };
+		9A7EE0824EA2790A5B02ECA6 /* Pods-TraceLog-iOS-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TraceLog-iOS-acknowledgements.markdown"; sourceTree = "<group>"; };
+		9CFF3FA88ADD0CAB82BDE1DE /* Pods-TraceLog-OSX-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TraceLog-OSX-dummy.m"; sourceTree = "<group>"; };
+		9D3557490DDE7106522B615D /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Pods-TraceLog-OSX-TraceLog/Info.plist"; sourceTree = "<group>"; };
+		9F43468DEC0ABA682E7EA4D5 /* Pods-TraceLog-OSX-Tests-TraceLog.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TraceLog-OSX-Tests-TraceLog.modulemap"; sourceTree = "<group>"; };
+		A4FC6E57C4B26F8D47956196 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A57CEC7A97AB437C91B4DBDE /* Pods-TraceLog-OSX-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TraceLog-OSX-umbrella.h"; sourceTree = "<group>"; };
+		A98D508888414CC1A79D4D0E /* Pods-TraceLog-OSX-Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TraceLog-OSX-Tests-umbrella.h"; sourceTree = "<group>"; };
+		ABFA3984F7641CD2555668FB /* Pods-TraceLog-iOS-TraceLog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-TraceLog-iOS-TraceLog-prefix.pch"; path = "../Pods-TraceLog-iOS-TraceLog/Pods-TraceLog-iOS-TraceLog-prefix.pch"; sourceTree = "<group>"; };
+		AE2F966C65945DF07361723B /* Pods-TraceLog-OSX-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-OSX-Tests.release.xcconfig"; sourceTree = "<group>"; };
+		B01082B481B6E1B7A4BC6080 /* Pods-TraceLog-iOS-resources.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraceLog-iOS-resources.sh"; sourceTree = "<group>"; };
+		B0E277C715F3787A6C360B40 /* Pods-TraceLog-iOS-Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TraceLog-iOS-Tests-umbrella.h"; sourceTree = "<group>"; };
+		B0F86432967049711C990E2B /* Pods-TraceLog-WatchOS Extension-TraceLog-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-TraceLog-WatchOS Extension-TraceLog-umbrella.h"; path = "../Pods-TraceLog-WatchOS Extension-TraceLog/Pods-TraceLog-WatchOS Extension-TraceLog-umbrella.h"; sourceTree = "<group>"; };
+		B5F72BB3DFE5C10BBAE24072 /* Pods_TraceLog_OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraceLog_OSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		B7D4D7E2B8F851C9B944216E /* TLogger.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TLogger.h; sourceTree = "<group>"; };
+		B8E39A4CA94F055BFAF14AE0 /* Pods-TraceLog-iOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraceLog-iOS-frameworks.sh"; sourceTree = "<group>"; };
+		BACEDD0AE403BD46EAD18781 /* TraceLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TraceLog.swift; sourceTree = "<group>"; };
+		BBC24217C5E306C00C8C0F4A /* TLogger.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = TLogger.m; sourceTree = "<group>"; };
+		BECE1CBEF36CC91C99577715 /* Pods-TraceLog-WatchOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TraceLog-WatchOS.modulemap"; sourceTree = "<group>"; };
+		BF69CE88E102F647B77E6A67 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Pods-TraceLog-iOS-TraceLog/Info.plist"; sourceTree = "<group>"; };
+		C157B9F2F8AE21113A8947D5 /* Pods-TraceLog-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-iOS.release.xcconfig"; sourceTree = "<group>"; };
+		C311985C471C10636C642549 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		C64EA6CE4B8431C64E1C4377 /* Pods-TraceLog-iOS-Tests-TraceLog-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-TraceLog-iOS-Tests-TraceLog-umbrella.h"; path = "../Pods-TraceLog-iOS-Tests-TraceLog/Pods-TraceLog-iOS-Tests-TraceLog-umbrella.h"; sourceTree = "<group>"; };
+		C6F869E7478531B1919049E0 /* Pods-TraceLog-iOS-TraceLog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-TraceLog-iOS-TraceLog-dummy.m"; path = "../Pods-TraceLog-iOS-TraceLog/Pods-TraceLog-iOS-TraceLog-dummy.m"; sourceTree = "<group>"; };
+		C8ADF3F5C26B22F63465EDC4 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; name = Info.plist; path = "../Pods-TraceLog-iOS-Tests-TraceLog/Info.plist"; sourceTree = "<group>"; };
+		CAC59470CAA51C58F1340169 /* Pods-TraceLog-iOS-Tests-TraceLog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "Pods-TraceLog-iOS-Tests-TraceLog-prefix.pch"; path = "../Pods-TraceLog-iOS-Tests-TraceLog/Pods-TraceLog-iOS-Tests-TraceLog-prefix.pch"; sourceTree = "<group>"; };
+		CACF4133CDCB6200BD8A8D6A /* Pods-TraceLog-iOS-Tests-TraceLog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-TraceLog-iOS-Tests-TraceLog-dummy.m"; path = "../Pods-TraceLog-iOS-Tests-TraceLog/Pods-TraceLog-iOS-Tests-TraceLog-dummy.m"; sourceTree = "<group>"; };
+		D09899325673C235FBFE27C0 /* Pods-TraceLog-WatchOS Extension-TraceLog.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "Pods-TraceLog-WatchOS Extension-TraceLog.modulemap"; path = "../Pods-TraceLog-WatchOS Extension-TraceLog/Pods-TraceLog-WatchOS Extension-TraceLog.modulemap"; sourceTree = "<group>"; };
+		D1029654E7A4BDEF677846C3 /* Pods-TraceLog-WatchOS Extension-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TraceLog-WatchOS Extension-umbrella.h"; sourceTree = "<group>"; };
+		D277192AEF2346CAE0B18DC1 /* Pods-TraceLog-WatchOS Extension-TraceLog.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-WatchOS Extension-TraceLog.xcconfig"; path = "../Pods-TraceLog-WatchOS Extension-TraceLog/Pods-TraceLog-WatchOS Extension-TraceLog.xcconfig"; sourceTree = "<group>"; };
+		D7CD44F6D84E64CA4514015C /* Pods-TraceLog-WatchOS Extension-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TraceLog-WatchOS Extension-acknowledgements.markdown"; sourceTree = "<group>"; };
+		DD1C4FD9AF1AB651B54E1882 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DD4EE478EA58730B856E4B7E /* Pods-TraceLog-WatchOS-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-TraceLog-WatchOS-frameworks.sh"; sourceTree = "<group>"; };
+		DD76AA7A13B737078B480E7B /* Pods-TraceLog-OSX-Tests-TraceLog-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-TraceLog-OSX-Tests-TraceLog-prefix.pch"; sourceTree = "<group>"; };
+		E06DE2F5F3EABFC44E03458C /* Pods_TraceLog_WatchOS_Extension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraceLog_WatchOS_Extension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E1143B14E47D082555CBF2E2 /* Pods-TraceLog-WatchOS-TraceLog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-TraceLog-WatchOS-TraceLog-dummy.m"; path = "../Pods-TraceLog-WatchOS-TraceLog/Pods-TraceLog-WatchOS-TraceLog-dummy.m"; sourceTree = "<group>"; };
+		E67312FAA09C778DA02DEFFB /* Pods-TraceLog-WatchOS Extension-TraceLog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = "Pods-TraceLog-WatchOS Extension-TraceLog-dummy.m"; path = "../Pods-TraceLog-WatchOS Extension-TraceLog/Pods-TraceLog-WatchOS Extension-TraceLog-dummy.m"; sourceTree = "<group>"; };
+		E9ACFC19E441C20B4DB9F39C /* Pods-TraceLog-WatchOS Extension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-TraceLog-WatchOS Extension.release.xcconfig"; sourceTree = "<group>"; };
+		ECA839650E765E7F02838230 /* Pods-TraceLog-OSX-Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TraceLog-OSX-Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
+		EDAF5E8358F19C34EBC7F228 /* Pods-TraceLog-OSX-Tests-TraceLog-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TraceLog-OSX-Tests-TraceLog-dummy.m"; sourceTree = "<group>"; };
+		F0193F7E8EE3EEA3F08A67D7 /* TraceLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraceLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F06B5AD9BD980C5E7F0C6AFC /* Pods-TraceLog-WatchOS-TraceLog.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-WatchOS-TraceLog.xcconfig"; path = "../Pods-TraceLog-WatchOS-TraceLog/Pods-TraceLog-WatchOS-TraceLog.xcconfig"; sourceTree = "<group>"; };
+		F11F1C9E6BEE9CF55268FAC6 /* Pods-TraceLog-iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TraceLog-iOS-acknowledgements.plist"; sourceTree = "<group>"; };
+		F42E08769EF643CBBE5C170A /* TraceLog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = TraceLog.h; sourceTree = "<group>"; };
+		F5E7202B9D03A1BCA4F4AB67 /* Pods-TraceLog-OSX-Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TraceLog-OSX-Tests-dummy.m"; sourceTree = "<group>"; };
+		F78EB077AB4CFD9B2677ADAB /* Podfile */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		F8E5197E870ADD2E86A6F806 /* Pods-TraceLog-iOS-TraceLog.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; name = "Pods-TraceLog-iOS-TraceLog.modulemap"; path = "../Pods-TraceLog-iOS-TraceLog/Pods-TraceLog-iOS-TraceLog.modulemap"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
-		0039EFFC9149E71308B58EF3 /* Frameworks */ = {
+		07D824A3027910C6B22AA067 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				96F441B147562805E0B7687E /* Foundation.framework in Frameworks */,
+				3878BEDAA3811E225F51D535 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		029E034DDB6DD6D258AC295F /* Frameworks */ = {
+		11A74042F444126561A26E26 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				749F4D669696477D2FED2C7B /* Cocoa.framework in Frameworks */,
+				C2D93CDF464CEF0478E1549A /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		773F21C2AF4C9D017131856E /* Frameworks */ = {
+		3A2593CB9C1B26D8D352B4D6 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				818D50BDD7831DC7D5E9A1B6 /* Foundation.framework in Frameworks */,
+				C0294E642BCB6C402BED7F1B /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		C75B94BEFFF4B254FC1DE3F5 /* Frameworks */ = {
+		4807812F45049BBD19479476 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5FE11B51D75434F87BC27398 /* Cocoa.framework in Frameworks */,
+				19710810F28B682DD788F5E0 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CF691AE2F9060BD83CD1473F /* Frameworks */ = {
+		6A4E82D81281C8DDDF621DBD /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				386B7F2920556EEF66EFC941 /* Cocoa.framework in Frameworks */,
+				775ADFE7F9E6566814F20F97 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D2C5947DD0FF76A3276CA4F3 /* Frameworks */ = {
+		717343D92B59F6C6F0266D30 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				83E9B86375EB3DD39A14E8E0 /* Foundation.framework in Frameworks */,
+				778F6016402BF96A09014B62 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D68A283CC65D0EDAEF076B35 /* Frameworks */ = {
+		B0703033FCBF1F642C356DD5 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B7373EC69CE3B7C4B4DBD2B7 /* Cocoa.framework in Frameworks */,
+				F96D65CAF084FE6B6C026F55 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ECE976595DF3F5622D624399 /* Frameworks */ = {
+		B318CBE3FBD336F445D77D26 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D3CD5DF895906C55D3471B86 /* Foundation.framework in Frameworks */,
+				2A495A2E0541B783DED5C147 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B3AC445E475FCECF9B86265A /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				6BFFB0412807483B75BC3F0F /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D985DEC02861FAC4F284E018 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3DDEAA6A1BB60901D5A77866 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E14C15DA2743456CE26135C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F0269A50A0BBD232D2C2CBA4 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E8C7A38420523779FCEEBFC8 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				E53FED999A6020E0800D27C1 /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		0B92EC8EC711A54B66C4D724 /* Products */ = {
+		14BBD97FE83D1715BB135E04 /* Pods-TraceLog-OSX-Tests */ = {
 			isa = PBXGroup;
 			children = (
-				6FDED0A9225EEE6787E47B21 /* Pods_TraceLog_iOS.framework */,
-				6DDAC6BE8F6697D156B1D359 /* Pods_TraceLog_iOS_Tests.framework */,
-				E33F0C05E5DBE24A59C46F99 /* Pods_TraceLog_OSX.framework */,
-				6AE57E941C6383551B624EA1 /* Pods_TraceLog_OSX_Tests.framework */,
-				88104ED0092631B43AF6868E /* TraceLog.framework */,
-				C56392D0C72DDAC357CEBACF /* TraceLog.framework */,
-				901BF60F3EF7A46B573BA011 /* TraceLog.framework */,
-				19F1E8E8D798DE4C53453B53 /* TraceLog.framework */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
-		10FFA2887F4AA01A2A3CF6CD /* OS X */ = {
-			isa = PBXGroup;
-			children = (
-				6089A9FD48DB00DBED67C84D /* Cocoa.framework */,
-			);
-			name = "OS X";
-			sourceTree = "<group>";
-		};
-		1E822A969EBB2C2084177DB3 /* Objc */ = {
-			isa = PBXGroup;
-			children = (
-				FADCBF81290D026EBB9CFC6D /* Pod */,
-			);
-			name = Objc;
-			sourceTree = "<group>";
-		};
-		2B93C5B875649FDB6870E528 /* Development Pods */ = {
-			isa = PBXGroup;
-			children = (
-				6056BCA6DC41FEFA399D373A /* TraceLog */,
-			);
-			name = "Development Pods";
-			sourceTree = "<group>";
-		};
-		36924D27E1387A515DF4FF33 /* Pods-TraceLog-iOS */ = {
-			isa = PBXGroup;
-			children = (
-				53FEB6DDFD48D678866529A0 /* Info.plist */,
-				16EDE52C05BA49556ED5A341 /* Pods-TraceLog-iOS.modulemap */,
-				14FE9E4DD39348FA7F982349 /* Pods-TraceLog-iOS-acknowledgements.markdown */,
-				DCB395A7B496EDDFEC4EF87C /* Pods-TraceLog-iOS-acknowledgements.plist */,
-				AB7E31593CDC40064EE0BCB9 /* Pods-TraceLog-iOS-dummy.m */,
-				1D7BBEE698D57A8205DF2FC5 /* Pods-TraceLog-iOS-frameworks.sh */,
-				6922D7BAB1326A3A4CBC64EE /* Pods-TraceLog-iOS-resources.sh */,
-				94C910722A4BDE4DC41A060D /* Pods-TraceLog-iOS-umbrella.h */,
-				2A644C574ED02163EFADBB3E /* Pods-TraceLog-iOS.debug.xcconfig */,
-				D5A3123E3920368E4AB6A0D7 /* Pods-TraceLog-iOS.release.xcconfig */,
-			);
-			name = "Pods-TraceLog-iOS";
-			path = "Target Support Files/Pods-TraceLog-iOS";
-			sourceTree = "<group>";
-		};
-		4A58635978DD31CAC8CAC2C9 /* Support Files */ = {
-			isa = PBXGroup;
-			children = (
-				93D7B155E9BC88085110647A /* Info.plist */,
-				392A8CCDC3D95846B6B7AEB1 /* Info.plist */,
-				2CF55741EFC416D74B5EBE37 /* Info.plist */,
-				32184CC76FCDC5BD89BB771E /* Info.plist */,
-				6E6C1AFB918EABB6D81C7EA7 /* Pods-TraceLog-iOS-Tests-TraceLog.modulemap */,
-				2F79300D8A7240E2A67E3C2D /* Pods-TraceLog-iOS-Tests-TraceLog.xcconfig */,
-				544E75D0AAF5B4F8CCE42F1C /* Pods-TraceLog-iOS-Tests-TraceLog-dummy.m */,
-				59EBB562695744494453D9C0 /* Pods-TraceLog-iOS-Tests-TraceLog-prefix.pch */,
-				B7FEC396014051333351694C /* Pods-TraceLog-iOS-Tests-TraceLog-umbrella.h */,
-				F8EA076797F9A568283F0963 /* Pods-TraceLog-iOS-TraceLog.modulemap */,
-				E7D2A8BA2826B924312867F2 /* Pods-TraceLog-iOS-TraceLog.xcconfig */,
-				D1EDC498CE7E1CECDE883EF9 /* Pods-TraceLog-iOS-TraceLog-dummy.m */,
-				6360F659C23F58C3AAE0CF1C /* Pods-TraceLog-iOS-TraceLog-prefix.pch */,
-				65BAFD8894EAA9C2E9659F1B /* Pods-TraceLog-iOS-TraceLog-umbrella.h */,
-				4D7A05B0892E42E9391E4EE3 /* Pods-TraceLog-OSX-Tests-TraceLog.modulemap */,
-				6AB6DA3EBE727B1ABD776087 /* Pods-TraceLog-OSX-Tests-TraceLog.xcconfig */,
-				71FB2AD819A34D12E46DF618 /* Pods-TraceLog-OSX-Tests-TraceLog-dummy.m */,
-				7843A4D3A944C9D7DC5280AA /* Pods-TraceLog-OSX-Tests-TraceLog-prefix.pch */,
-				56DA9661BB08B02C9FBFFA2B /* Pods-TraceLog-OSX-Tests-TraceLog-umbrella.h */,
-				3B7CDCC0EFF93C5DF753421E /* Pods-TraceLog-OSX-TraceLog.modulemap */,
-				A23792FB0CE98D435EC75BE7 /* Pods-TraceLog-OSX-TraceLog.xcconfig */,
-				955E09FDAAEDCF2010A0E760 /* Pods-TraceLog-OSX-TraceLog-dummy.m */,
-				D379575FD3A4A8D4636EE790 /* Pods-TraceLog-OSX-TraceLog-prefix.pch */,
-				3310C5F61F64A3420D954FAF /* Pods-TraceLog-OSX-TraceLog-umbrella.h */,
-			);
-			name = "Support Files";
-			path = "Example/Pods/Target Support Files/Pods-TraceLog-OSX-Tests-TraceLog";
-			sourceTree = "<group>";
-		};
-		4C305FFAB50B62E75AD48775 = {
-			isa = PBXGroup;
-			children = (
-				A92986CF263B15A52508139A /* Podfile */,
-				2B93C5B875649FDB6870E528 /* Development Pods */,
-				A07241AD01DF54F2E1042050 /* Frameworks */,
-				0B92EC8EC711A54B66C4D724 /* Products */,
-				F73ED25C7E6A05F56CEEB7C5 /* Targets Support Files */,
-			);
-			sourceTree = "<group>";
-		};
-		5FB26EC9F71C12B207054FD9 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				B2398899A8D3C1D71DA22530 /* Internal */,
-			);
-			path = Pod;
-			sourceTree = "<group>";
-		};
-		6056BCA6DC41FEFA399D373A /* TraceLog */ = {
-			isa = PBXGroup;
-			children = (
-				FB1368BA864472E6884E7B03 /* Core */,
-				1E822A969EBB2C2084177DB3 /* Objc */,
-				4A58635978DD31CAC8CAC2C9 /* Support Files */,
-				AD4B83693797983673BDE245 /* Swift */,
-			);
-			name = TraceLog;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		72D3D0369B043A9A6D038624 /* Pod */ = {
-			isa = PBXGroup;
-			children = (
-				C14D33FFC02E4CDF9ABDCA16 /* TraceLog.swift */,
-			);
-			path = Pod;
-			sourceTree = "<group>";
-		};
-		74A602AEB43CD1087E8CEE9F /* Pods-TraceLog-iOS-Tests */ = {
-			isa = PBXGroup;
-			children = (
-				B64C0CF4BE0E790CDC3CDD2F /* Info.plist */,
-				F28F201C598DA999137B5876 /* Pods-TraceLog-iOS-Tests.modulemap */,
-				77C5C7C510CB8BD5BA1B179A /* Pods-TraceLog-iOS-Tests-acknowledgements.markdown */,
-				42524020A539BCF28C20A24B /* Pods-TraceLog-iOS-Tests-acknowledgements.plist */,
-				35C92CF22EF79D9A5B24CDF6 /* Pods-TraceLog-iOS-Tests-dummy.m */,
-				ABF4CD1D16BBAC1033AF9668 /* Pods-TraceLog-iOS-Tests-frameworks.sh */,
-				63F2D60A71912948EE7C7235 /* Pods-TraceLog-iOS-Tests-resources.sh */,
-				C2157B361F009558DD40EDEB /* Pods-TraceLog-iOS-Tests-umbrella.h */,
-				17827FBDED2AF67CC70A74B0 /* Pods-TraceLog-iOS-Tests.debug.xcconfig */,
-				889CDFA55DBE43957B470827 /* Pods-TraceLog-iOS-Tests.release.xcconfig */,
-			);
-			name = "Pods-TraceLog-iOS-Tests";
-			path = "Target Support Files/Pods-TraceLog-iOS-Tests";
-			sourceTree = "<group>";
-		};
-		9A51F7F98CF3C6EA18EDF00B /* iOS */ = {
-			isa = PBXGroup;
-			children = (
-				E02CAFCA381E54035923E660 /* Foundation.framework */,
-			);
-			name = iOS;
-			sourceTree = "<group>";
-		};
-		A07241AD01DF54F2E1042050 /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				9A51F7F98CF3C6EA18EDF00B /* iOS */,
-				10FFA2887F4AA01A2A3CF6CD /* OS X */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		AD4B83693797983673BDE245 /* Swift */ = {
-			isa = PBXGroup;
-			children = (
-				72D3D0369B043A9A6D038624 /* Pod */,
-			);
-			name = TraceLog;
-			path = ../..;
-			sourceTree = "<group>";
-		};
-		B2398899A8D3C1D71DA22530 /* Internal */ = {
-			isa = PBXGroup;
-			children = (
-				C1A9B0C73BC0186062C98815 /* TLogger.h */,
-				9958CD5CFEA7626069BAC19F /* TLogger.m */,
-			);
-			path = Internal;
-			sourceTree = "<group>";
-		};
-		DECE4345FB40E66B45E8CFF9 /* Pods-TraceLog-OSX */ = {
-			isa = PBXGroup;
-			children = (
-				4CE79C78B0394C3915B27DD9 /* Info.plist */,
-				CC6DB1A79AE41F6C36A4DDC1 /* Pods-TraceLog-OSX.modulemap */,
-				24EE6101A5B7C9E9E3F86CF4 /* Pods-TraceLog-OSX-acknowledgements.markdown */,
-				8477329BCC9CE0D42FEA3D29 /* Pods-TraceLog-OSX-acknowledgements.plist */,
-				DCE06672D6479AA3BE27B751 /* Pods-TraceLog-OSX-dummy.m */,
-				A14F1365186206B723EE9EB6 /* Pods-TraceLog-OSX-frameworks.sh */,
-				3134DF59A2442DB2526ADBDD /* Pods-TraceLog-OSX-resources.sh */,
-				43E6360E1A3FB5C032A71B91 /* Pods-TraceLog-OSX-umbrella.h */,
-				057727E1D2D4F454E69A542A /* Pods-TraceLog-OSX.debug.xcconfig */,
-				7E2C918EAB8A6D5C99CB84C4 /* Pods-TraceLog-OSX.release.xcconfig */,
-			);
-			name = "Pods-TraceLog-OSX";
-			path = "Target Support Files/Pods-TraceLog-OSX";
-			sourceTree = "<group>";
-		};
-		E0CEA67B18DF9A84A9CE414D /* Pods-TraceLog-OSX-Tests */ = {
-			isa = PBXGroup;
-			children = (
-				B611E884195AE205998933BF /* Info.plist */,
-				C6EF6E4DC2F949F7ED2756E1 /* Pods-TraceLog-OSX-Tests.modulemap */,
-				1D6D4848846F23DDB7682C2F /* Pods-TraceLog-OSX-Tests-acknowledgements.markdown */,
-				E1B5337662DEC3537ADC8B27 /* Pods-TraceLog-OSX-Tests-acknowledgements.plist */,
-				F24DCFCF5873D5D8812E7D33 /* Pods-TraceLog-OSX-Tests-dummy.m */,
-				9B1C4F5011DCC1D8DA1E31CB /* Pods-TraceLog-OSX-Tests-frameworks.sh */,
-				C216CE504CA44535BE44C767 /* Pods-TraceLog-OSX-Tests-resources.sh */,
-				AB5E900D749FE6A73B350FEF /* Pods-TraceLog-OSX-Tests-umbrella.h */,
-				FDCDD8666201CDB8AF1CA589 /* Pods-TraceLog-OSX-Tests.debug.xcconfig */,
-				56690B6AFAA9345A237B5F5F /* Pods-TraceLog-OSX-Tests.release.xcconfig */,
+				58D221AC2F46EF2B1E2288E2 /* Info.plist */,
+				25D53ADAAC7C4C11BF4B268E /* Pods-TraceLog-OSX-Tests.modulemap */,
+				ECA839650E765E7F02838230 /* Pods-TraceLog-OSX-Tests-acknowledgements.markdown */,
+				791B52CB749303BB025C53D2 /* Pods-TraceLog-OSX-Tests-acknowledgements.plist */,
+				F5E7202B9D03A1BCA4F4AB67 /* Pods-TraceLog-OSX-Tests-dummy.m */,
+				8A10A6D3A5ACCB51B10CB84D /* Pods-TraceLog-OSX-Tests-frameworks.sh */,
+				182AF25FCE144DF2DDA0DAAD /* Pods-TraceLog-OSX-Tests-resources.sh */,
+				A98D508888414CC1A79D4D0E /* Pods-TraceLog-OSX-Tests-umbrella.h */,
+				6B194AC29371A4921B0BF853 /* Pods-TraceLog-OSX-Tests.debug.xcconfig */,
+				AE2F966C65945DF07361723B /* Pods-TraceLog-OSX-Tests.release.xcconfig */,
 			);
 			name = "Pods-TraceLog-OSX-Tests";
 			path = "Target Support Files/Pods-TraceLog-OSX-Tests";
 			sourceTree = "<group>";
 		};
-		F73ED25C7E6A05F56CEEB7C5 /* Targets Support Files */ = {
+		219F036E7105B9F23982ABF5 /* Objc */ = {
 			isa = PBXGroup;
 			children = (
-				36924D27E1387A515DF4FF33 /* Pods-TraceLog-iOS */,
-				74A602AEB43CD1087E8CEE9F /* Pods-TraceLog-iOS-Tests */,
-				DECE4345FB40E66B45E8CFF9 /* Pods-TraceLog-OSX */,
-				E0CEA67B18DF9A84A9CE414D /* Pods-TraceLog-OSX-Tests */,
+				70CE9E6AD83AEE03645A5574 /* Pod */,
 			);
-			name = "Targets Support Files";
+			name = Objc;
 			sourceTree = "<group>";
 		};
-		FADCBF81290D026EBB9CFC6D /* Pod */ = {
+		26BF122D4BD675095C50C470 /* watchOS */ = {
 			isa = PBXGroup;
 			children = (
-				A87946428BB4544A80E91154 /* TraceLog.h */,
+				5EDADF1BCF23A4E31BB81538 /* Foundation.framework */,
 			);
-			name = "Targets Support Files";
+			name = watchOS;
 			sourceTree = "<group>";
 		};
-		FB1368BA864472E6884E7B03 /* Core */ = {
+		2ED9E390855F30E4219A8E4B /* Support Files */ = {
 			isa = PBXGroup;
 			children = (
-				5FB26EC9F71C12B207054FD9 /* Pod */,
+				12FD4E9F8A30473574F7A0BE /* Info.plist */,
+				A4FC6E57C4B26F8D47956196 /* Info.plist */,
+				9D3557490DDE7106522B615D /* Info.plist */,
+				C8ADF3F5C26B22F63465EDC4 /* Info.plist */,
+				566C7FAE2304B25A08BE8EBD /* Info.plist */,
+				BF69CE88E102F647B77E6A67 /* Info.plist */,
+				96E46E415B8301E9B1A33F09 /* Pods-TraceLog-iOS-Tests-TraceLog.modulemap */,
+				4CA5B4B539CB67328AE2E89A /* Pods-TraceLog-iOS-Tests-TraceLog.xcconfig */,
+				CACF4133CDCB6200BD8A8D6A /* Pods-TraceLog-iOS-Tests-TraceLog-dummy.m */,
+				CAC59470CAA51C58F1340169 /* Pods-TraceLog-iOS-Tests-TraceLog-prefix.pch */,
+				C64EA6CE4B8431C64E1C4377 /* Pods-TraceLog-iOS-Tests-TraceLog-umbrella.h */,
+				F8E5197E870ADD2E86A6F806 /* Pods-TraceLog-iOS-TraceLog.modulemap */,
+				878330F2E21B38C4C969E135 /* Pods-TraceLog-iOS-TraceLog.xcconfig */,
+				C6F869E7478531B1919049E0 /* Pods-TraceLog-iOS-TraceLog-dummy.m */,
+				ABFA3984F7641CD2555668FB /* Pods-TraceLog-iOS-TraceLog-prefix.pch */,
+				43D2179DA7F8ED87BAF49678 /* Pods-TraceLog-iOS-TraceLog-umbrella.h */,
+				9F43468DEC0ABA682E7EA4D5 /* Pods-TraceLog-OSX-Tests-TraceLog.modulemap */,
+				0ACFE089F04C299261A72224 /* Pods-TraceLog-OSX-Tests-TraceLog.xcconfig */,
+				EDAF5E8358F19C34EBC7F228 /* Pods-TraceLog-OSX-Tests-TraceLog-dummy.m */,
+				DD76AA7A13B737078B480E7B /* Pods-TraceLog-OSX-Tests-TraceLog-prefix.pch */,
+				7B97212EEFC93FCEC79F8160 /* Pods-TraceLog-OSX-Tests-TraceLog-umbrella.h */,
+				540395E994B7DAE14721BFA8 /* Pods-TraceLog-OSX-TraceLog.modulemap */,
+				39E24139A9C7937170A7A73D /* Pods-TraceLog-OSX-TraceLog.xcconfig */,
+				5979270072592C382FFA0DA3 /* Pods-TraceLog-OSX-TraceLog-dummy.m */,
+				0BF7510E19264E880AF8E06E /* Pods-TraceLog-OSX-TraceLog-prefix.pch */,
+				41CD239DE1EAECE24159D2AF /* Pods-TraceLog-OSX-TraceLog-umbrella.h */,
+				D09899325673C235FBFE27C0 /* Pods-TraceLog-WatchOS Extension-TraceLog.modulemap */,
+				D277192AEF2346CAE0B18DC1 /* Pods-TraceLog-WatchOS Extension-TraceLog.xcconfig */,
+				E67312FAA09C778DA02DEFFB /* Pods-TraceLog-WatchOS Extension-TraceLog-dummy.m */,
+				8A90EAEB97196F854F08D0D1 /* Pods-TraceLog-WatchOS Extension-TraceLog-prefix.pch */,
+				B0F86432967049711C990E2B /* Pods-TraceLog-WatchOS Extension-TraceLog-umbrella.h */,
+				685466A779E26B2A50E8AD13 /* Pods-TraceLog-WatchOS-TraceLog.modulemap */,
+				F06B5AD9BD980C5E7F0C6AFC /* Pods-TraceLog-WatchOS-TraceLog.xcconfig */,
+				E1143B14E47D082555CBF2E2 /* Pods-TraceLog-WatchOS-TraceLog-dummy.m */,
+				9A47DC6D87E7EC0780A3FE45 /* Pods-TraceLog-WatchOS-TraceLog-prefix.pch */,
+				418AA13B6D9398362CAD467D /* Pods-TraceLog-WatchOS-TraceLog-umbrella.h */,
+			);
+			name = "Support Files";
+			path = "Example/Pods/Target Support Files/Pods-TraceLog-OSX-Tests-TraceLog";
+			sourceTree = "<group>";
+		};
+		31908A7A1860DFB6ED538B1D /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				29E5BBC037C6461BEB015011 /* Pods_TraceLog_iOS.framework */,
+				95FB196CB2542B141C1837AE /* Pods_TraceLog_iOS_Tests.framework */,
+				B5F72BB3DFE5C10BBAE24072 /* Pods_TraceLog_OSX.framework */,
+				1872BB1C92A8DD54096CDC7F /* Pods_TraceLog_OSX_Tests.framework */,
+				6A95D62B2AB3B6F064AE7602 /* Pods_TraceLog_WatchOS.framework */,
+				E06DE2F5F3EABFC44E03458C /* Pods_TraceLog_WatchOS_Extension.framework */,
+				3B1CB39BF19780E508055F92 /* TraceLog.framework */,
+				6B8630C183B54DCF8E678302 /* TraceLog.framework */,
+				F0193F7E8EE3EEA3F08A67D7 /* TraceLog.framework */,
+				3975365B3BE6790648DC595B /* TraceLog.framework */,
+				51E0018B0A9A1FEE471F3BDE /* TraceLog.framework */,
+				6E4F73D64B899BE51110BC71 /* TraceLog.framework */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		53DD09321FD18DB24327F442 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				BACEDD0AE403BD46EAD18781 /* TraceLog.swift */,
+			);
+			path = Pod;
+			sourceTree = "<group>";
+		};
+		567221BAB26B02CED1FCF3F8 /* Swift */ = {
+			isa = PBXGroup;
+			children = (
+				53DD09321FD18DB24327F442 /* Pod */,
+			);
+			name = Swift;
+			sourceTree = "<group>";
+		};
+		580B41A1E525A52AB57FA439 /* Pods-TraceLog-iOS */ = {
+			isa = PBXGroup;
+			children = (
+				DD1C4FD9AF1AB651B54E1882 /* Info.plist */,
+				9391865A7212E0E7D5D2FAC9 /* Pods-TraceLog-iOS.modulemap */,
+				9A7EE0824EA2790A5B02ECA6 /* Pods-TraceLog-iOS-acknowledgements.markdown */,
+				F11F1C9E6BEE9CF55268FAC6 /* Pods-TraceLog-iOS-acknowledgements.plist */,
+				5E2981FC8EAA65119130DF50 /* Pods-TraceLog-iOS-dummy.m */,
+				B8E39A4CA94F055BFAF14AE0 /* Pods-TraceLog-iOS-frameworks.sh */,
+				B01082B481B6E1B7A4BC6080 /* Pods-TraceLog-iOS-resources.sh */,
+				86FB553D57DB1CD7EC91057A /* Pods-TraceLog-iOS-umbrella.h */,
+				73ACC7820A14780F9D2F408F /* Pods-TraceLog-iOS.debug.xcconfig */,
+				C157B9F2F8AE21113A8947D5 /* Pods-TraceLog-iOS.release.xcconfig */,
+			);
+			name = "Pods-TraceLog-iOS";
+			path = "Target Support Files/Pods-TraceLog-iOS";
+			sourceTree = "<group>";
+		};
+		66C8EDE00B564D4B154E64F7 /* OS X */ = {
+			isa = PBXGroup;
+			children = (
+				31957103986AF5F106337385 /* Cocoa.framework */,
+			);
+			name = "OS X";
+			sourceTree = "<group>";
+		};
+		70CE9E6AD83AEE03645A5574 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				F42E08769EF643CBBE5C170A /* TraceLog.h */,
+			);
+			path = Pod;
+			sourceTree = "<group>";
+		};
+		730D5B877240BF27C9F463C4 /* Pods-TraceLog-WatchOS */ = {
+			isa = PBXGroup;
+			children = (
+				18FE5619006C52784E16FD9C /* Info.plist */,
+				BECE1CBEF36CC91C99577715 /* Pods-TraceLog-WatchOS.modulemap */,
+				37EC5FD71A1FFE385A91813B /* Pods-TraceLog-WatchOS-acknowledgements.markdown */,
+				22E7F71AD76C43965936E5C2 /* Pods-TraceLog-WatchOS-acknowledgements.plist */,
+				8467B9CC5660C31EFD82F3A6 /* Pods-TraceLog-WatchOS-dummy.m */,
+				DD4EE478EA58730B856E4B7E /* Pods-TraceLog-WatchOS-frameworks.sh */,
+				5FDDAA9487CCB0268DF5DE18 /* Pods-TraceLog-WatchOS-resources.sh */,
+				2A5D3C2E7DB2C8B6B56C27E7 /* Pods-TraceLog-WatchOS-umbrella.h */,
+				961CE4A04DB125C1D6493D09 /* Pods-TraceLog-WatchOS.debug.xcconfig */,
+				10F24EDC1E69B2C1FA3FCF4D /* Pods-TraceLog-WatchOS.release.xcconfig */,
+			);
+			name = "Pods-TraceLog-WatchOS";
+			path = "Target Support Files/Pods-TraceLog-WatchOS";
+			sourceTree = "<group>";
+		};
+		7AA29589320E723F1B031527 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				EDD7871A463C30EEA14668B2 /* Pod */,
 			);
 			name = Core;
+			sourceTree = "<group>";
+		};
+		7DA858C4AC152102971C8D25 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				BDA605ACEE183E7B489219AE /* iOS */,
+				66C8EDE00B564D4B154E64F7 /* OS X */,
+				26BF122D4BD675095C50C470 /* watchOS */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7ED6650C0C170A918E7E2429 /* Development Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E0215612A06C15863BEB8DE2 /* TraceLog */,
+			);
+			name = "Development Pods";
+			sourceTree = "<group>";
+		};
+		84766205F5ECFCDB66BED264 /* Pods-TraceLog-iOS-Tests */ = {
+			isa = PBXGroup;
+			children = (
+				C311985C471C10636C642549 /* Info.plist */,
+				3990C87B3CCB8315A9C76841 /* Pods-TraceLog-iOS-Tests.modulemap */,
+				653C4EE8A4C1EB59D962FEC5 /* Pods-TraceLog-iOS-Tests-acknowledgements.markdown */,
+				7E233879DB4B3BCCD706B24D /* Pods-TraceLog-iOS-Tests-acknowledgements.plist */,
+				29313421328BDC6C53BD03E6 /* Pods-TraceLog-iOS-Tests-dummy.m */,
+				4721B0A1084D3E70EB7153C2 /* Pods-TraceLog-iOS-Tests-frameworks.sh */,
+				7402D0012254C0308FF9DA4E /* Pods-TraceLog-iOS-Tests-resources.sh */,
+				B0E277C715F3787A6C360B40 /* Pods-TraceLog-iOS-Tests-umbrella.h */,
+				714F0EF8E98D5FFF782D2391 /* Pods-TraceLog-iOS-Tests.debug.xcconfig */,
+				98C0BFAAC810BA04951FE32C /* Pods-TraceLog-iOS-Tests.release.xcconfig */,
+			);
+			name = "Pods-TraceLog-iOS-Tests";
+			path = "Target Support Files/Pods-TraceLog-iOS-Tests";
+			sourceTree = "<group>";
+		};
+		BDA605ACEE183E7B489219AE /* iOS */ = {
+			isa = PBXGroup;
+			children = (
+				021B1C6B969A68F3C3F86ABC /* Foundation.framework */,
+			);
+			name = iOS;
+			sourceTree = "<group>";
+		};
+		C03121CAB8FAA9340A60DE7F /* Internal */ = {
+			isa = PBXGroup;
+			children = (
+				B7D4D7E2B8F851C9B944216E /* TLogger.h */,
+				BBC24217C5E306C00C8C0F4A /* TLogger.m */,
+			);
+			path = Internal;
+			sourceTree = "<group>";
+		};
+		C58C8E0ED72330A1A4CFCBE6 /* Pods-TraceLog-WatchOS Extension */ = {
+			isa = PBXGroup;
+			children = (
+				4423A3BED558E06CACE2F065 /* Info.plist */,
+				4188B330FA0C88D5796D3646 /* Pods-TraceLog-WatchOS Extension.modulemap */,
+				D7CD44F6D84E64CA4514015C /* Pods-TraceLog-WatchOS Extension-acknowledgements.markdown */,
+				9654030A78C148FB2F07D2BE /* Pods-TraceLog-WatchOS Extension-acknowledgements.plist */,
+				0542938F30763D79536AA69E /* Pods-TraceLog-WatchOS Extension-dummy.m */,
+				3C43991B50BE69DFC85F621A /* Pods-TraceLog-WatchOS Extension-frameworks.sh */,
+				6EBC277AA5A5B563CECA8B39 /* Pods-TraceLog-WatchOS Extension-resources.sh */,
+				D1029654E7A4BDEF677846C3 /* Pods-TraceLog-WatchOS Extension-umbrella.h */,
+				1D17EE03683508A0BB9AD81F /* Pods-TraceLog-WatchOS Extension.debug.xcconfig */,
+				E9ACFC19E441C20B4DB9F39C /* Pods-TraceLog-WatchOS Extension.release.xcconfig */,
+			);
+			name = "Pods-TraceLog-WatchOS Extension";
+			path = "Target Support Files/Pods-TraceLog-WatchOS Extension";
+			sourceTree = "<group>";
+		};
+		D08506F53E19B52B7E75440F = {
+			isa = PBXGroup;
+			children = (
+				F78EB077AB4CFD9B2677ADAB /* Podfile */,
+				7ED6650C0C170A918E7E2429 /* Development Pods */,
+				7DA858C4AC152102971C8D25 /* Frameworks */,
+				31908A7A1860DFB6ED538B1D /* Products */,
+				EAF49B8B4E5CA9C6E255B6B6 /* Targets Support Files */,
+			);
+			sourceTree = "<group>";
+		};
+		E0215612A06C15863BEB8DE2 /* TraceLog */ = {
+			isa = PBXGroup;
+			children = (
+				7AA29589320E723F1B031527 /* Core */,
+				219F036E7105B9F23982ABF5 /* Objc */,
+				2ED9E390855F30E4219A8E4B /* Support Files */,
+				567221BAB26B02CED1FCF3F8 /* Swift */,
+			);
+			name = TraceLog;
+			path = ../..;
+			sourceTree = "<group>";
+		};
+		EAF49B8B4E5CA9C6E255B6B6 /* Targets Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				580B41A1E525A52AB57FA439 /* Pods-TraceLog-iOS */,
+				84766205F5ECFCDB66BED264 /* Pods-TraceLog-iOS-Tests */,
+				FAEA23F57DDF341743E248D9 /* Pods-TraceLog-OSX */,
+				14BBD97FE83D1715BB135E04 /* Pods-TraceLog-OSX-Tests */,
+				730D5B877240BF27C9F463C4 /* Pods-TraceLog-WatchOS */,
+				C58C8E0ED72330A1A4CFCBE6 /* Pods-TraceLog-WatchOS Extension */,
+			);
+			name = "Targets Support Files";
+			sourceTree = "<group>";
+		};
+		EDD7871A463C30EEA14668B2 /* Pod */ = {
+			isa = PBXGroup;
+			children = (
+				C03121CAB8FAA9340A60DE7F /* Internal */,
+			);
+			path = Pod;
+			sourceTree = "<group>";
+		};
+		FAEA23F57DDF341743E248D9 /* Pods-TraceLog-OSX */ = {
+			isa = PBXGroup;
+			children = (
+				594115EA6FF64C4FBABB9ADA /* Info.plist */,
+				196563C62340472AB953AECF /* Pods-TraceLog-OSX.modulemap */,
+				3A27D521AAB4325BB6F1F172 /* Pods-TraceLog-OSX-acknowledgements.markdown */,
+				99A011A7A380C02952C9B7F3 /* Pods-TraceLog-OSX-acknowledgements.plist */,
+				9CFF3FA88ADD0CAB82BDE1DE /* Pods-TraceLog-OSX-dummy.m */,
+				81D9E8CA937FA0E75C180238 /* Pods-TraceLog-OSX-frameworks.sh */,
+				41A9FAD7100F125A4536501E /* Pods-TraceLog-OSX-resources.sh */,
+				A57CEC7A97AB437C91B4DBDE /* Pods-TraceLog-OSX-umbrella.h */,
+				0BD0075183877E593A2263DD /* Pods-TraceLog-OSX.debug.xcconfig */,
+				501479EBB1FF51BE7BED4018 /* Pods-TraceLog-OSX.release.xcconfig */,
+			);
+			name = "Pods-TraceLog-OSX";
+			path = "Target Support Files/Pods-TraceLog-OSX";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
-		0CE7A25EF91C9FC2077264E9 /* Headers */ = {
+		1D4F81DCC6C36C7456250699 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D1FBE19CEE0076BCF1AECCAF /* Pods-TraceLog-iOS-TraceLog-umbrella.h in Headers */,
-				50209D139C5F358C50A9A50A /* TLogger.h in Headers */,
-				3BB93BB85B05050FA834F993 /* TraceLog.h in Headers */,
+				77D896C4B704DB1B8440F618 /* Pods-TraceLog-iOS-TraceLog-umbrella.h in Headers */,
+				B55EE9FF01C3FE5F907DB9EB /* TLogger.h in Headers */,
+				0DC4AE34803687FE73240C6D /* TraceLog.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		26F1BD8FDD8A6B8DD309305C /* Headers */ = {
+		2AC91935DEAF6F0CC8669818 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				439175C91BA5C0DF1B5DECF7 /* Pods-TraceLog-OSX-Tests-TraceLog-umbrella.h in Headers */,
-				B8DC2E900E74060987EFE062 /* TLogger.h in Headers */,
-				AA7ECFEEAB8EAE95F10ABA9D /* TraceLog.h in Headers */,
+				6F229D45FB75195F9BCB4BA4 /* Pods-TraceLog-WatchOS Extension-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8AA40E284643DFB02ED87959 /* Headers */ = {
+		5851E0C42C6EB0EF8247D83E /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				376F7F5C9AABFE13C1376FDC /* Pods-TraceLog-iOS-umbrella.h in Headers */,
+				B89B26B2CEE731AC102EC1F9 /* Pods-TraceLog-OSX-TraceLog-umbrella.h in Headers */,
+				99C5F5EE5835DE23001FA9AF /* TLogger.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		9E2FA0CFA0BA002D695FEF54 /* Headers */ = {
+		70085BFFA80EC4FEA0B688BB /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				BB61AE40DF98380187184E26 /* Pods-TraceLog-iOS-Tests-umbrella.h in Headers */,
+				82EF240802696A8293A715D5 /* Pods-TraceLog-WatchOS-TraceLog-umbrella.h in Headers */,
+				642570EF59CFC44EB8CDFD72 /* TLogger.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A0B564A9A256D2E826447FCA /* Headers */ = {
+		715EC0E18F2E493ACAC0EFFD /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2145D724295A1FC1A5CE1796 /* Pods-TraceLog-OSX-Tests-umbrella.h in Headers */,
+				7FAEDB062568AE6DAB22B7F5 /* Pods-TraceLog-OSX-Tests-TraceLog-umbrella.h in Headers */,
+				5DE0092597502EA290D3EB1C /* TLogger.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B21E63C69969003FE809B8F8 /* Headers */ = {
+		984AFD907A8536EF7774C15A /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8C01ACC272785DF1C437308F /* Pods-TraceLog-OSX-TraceLog-umbrella.h in Headers */,
-				276C5A66F7F0B189FB2284D5 /* TLogger.h in Headers */,
-				6F50C37F9EC481F05CAE3E28 /* TraceLog.h in Headers */,
+				724422EB001C07F479AD58F2 /* Pods-TraceLog-WatchOS-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		CD0A6163256EC331EF5959E0 /* Headers */ = {
+		9E483533F74CD21CC3854194 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C114D113F47E25B39B47128E /* Pods-TraceLog-iOS-Tests-TraceLog-umbrella.h in Headers */,
-				6C6538DFC1215CE571D9AC5D /* TLogger.h in Headers */,
-				BF882291B3C4B006BDF8122A /* TraceLog.h in Headers */,
+				0F4BC8B2442ADC38EF956560 /* Pods-TraceLog-OSX-Tests-umbrella.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		E9D578B7876EC844045ED13B /* Headers */ = {
+		AEF632B6BB99AD845A45CE14 /* Headers */ = {
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				08947BFC49A5BCAD19358784 /* Pods-TraceLog-OSX-umbrella.h in Headers */,
+				96E929DF1C3D9A976ED5167D /* Pods-TraceLog-iOS-Tests-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B42CADBF63481B3CFA054FDF /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				531840831ED6D94001C8FDEE /* Pods-TraceLog-WatchOS Extension-TraceLog-umbrella.h in Headers */,
+				02B1C3BF83284F690AAC8D0F /* TLogger.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EC9262FE8A8319BF1DB41D85 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47D9B8F1B3FCF24152634AA4 /* Pods-TraceLog-OSX-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F957BCC6F892973BE4DA6D10 /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				AD99512C0F140C6571051DB1 /* Pods-TraceLog-iOS-umbrella.h in Headers */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F98AA90E4A2BC54D2DE9AE3C /* Headers */ = {
+			isa = PBXHeadersBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CDC52F97C03A6C15C33FC46A /* Pods-TraceLog-iOS-Tests-TraceLog-umbrella.h in Headers */,
+				F92894F0EAC2BFD6449B7724 /* TLogger.h in Headers */,
+				B3F33002E50E9AB61DB12DA0 /* TraceLog.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXHeadersBuildPhase section */
 
 /* Begin PBXNativeTarget section */
-		165F364CA03F33FC209AC224 /* Pods-TraceLog-OSX-Tests-TraceLog */ = {
+		1386BE56D66630D7FD0A8EAC /* Pods-TraceLog-WatchOS Extension-TraceLog */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = FAF5C8D8DE3D9FCAA236E65C /* Build configuration list for PBXNativeTarget "Pods-TraceLog-OSX-Tests-TraceLog" */;
+			buildConfigurationList = 6DB7835A65063C1C07049ED8 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-WatchOS Extension-TraceLog" */;
 			buildPhases = (
-				7D0E1A05B68223F94F388414 /* Sources */,
-				029E034DDB6DD6D258AC295F /* Frameworks */,
-				26F1BD8FDD8A6B8DD309305C /* Headers */,
+				E4E449830EF58368B0184095 /* Sources */,
+				B318CBE3FBD336F445D77D26 /* Frameworks */,
+				B42CADBF63481B3CFA054FDF /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				01D4067AA3BECA7DDDAAA46B /* PBXTargetDependency */,
 			);
-			name = "Pods-TraceLog-OSX-Tests-TraceLog";
-			productName = "Pods-TraceLog-OSX-Tests-TraceLog";
-			productReference = 19F1E8E8D798DE4C53453B53 /* TraceLog.framework */;
+			name = "Pods-TraceLog-WatchOS Extension-TraceLog";
+			productName = "Pods-TraceLog-WatchOS Extension-TraceLog";
+			productReference = 6B8630C183B54DCF8E678302 /* TraceLog.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		3B0663FAFBFA48DCBFB5B078 /* Pods-TraceLog-OSX-TraceLog */ = {
+		2C21D63560375FC68B67A60C /* Pods-TraceLog-OSX-TraceLog */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = B9A3BBF0666EE82675937C26 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-OSX-TraceLog" */;
+			buildConfigurationList = B84FDC5A7204FC8461F72F01 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-OSX-TraceLog" */;
 			buildPhases = (
-				0D70814AF4FE18B9931FF715 /* Sources */,
-				C75B94BEFFF4B254FC1DE3F5 /* Frameworks */,
-				B21E63C69969003FE809B8F8 /* Headers */,
+				02CEDCE023FCF3BE9F91F381 /* Sources */,
+				B0703033FCBF1F642C356DD5 /* Frameworks */,
+				5851E0C42C6EB0EF8247D83E /* Headers */,
 			);
 			buildRules = (
 			);
@@ -584,16 +774,86 @@
 			);
 			name = "Pods-TraceLog-OSX-TraceLog";
 			productName = "Pods-TraceLog-OSX-TraceLog";
-			productReference = 901BF60F3EF7A46B573BA011 /* TraceLog.framework */;
+			productReference = 51E0018B0A9A1FEE471F3BDE /* TraceLog.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		455BD628A444B2E6636D3BE6 /* Pods-TraceLog-iOS-TraceLog */ = {
+		453669D413709BA8382B656B /* Pods-TraceLog-OSX-Tests-TraceLog */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = C80D045805E8A8E0D1F3C5E0 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-iOS-TraceLog" */;
+			buildConfigurationList = 2062E8A51EA2CADC7BE6C079 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-OSX-Tests-TraceLog" */;
 			buildPhases = (
-				73C3DC746BE39E4D9C94B0B7 /* Sources */,
-				773F21C2AF4C9D017131856E /* Frameworks */,
-				0CE7A25EF91C9FC2077264E9 /* Headers */,
+				1753AF73782F2754945C4989 /* Sources */,
+				11A74042F444126561A26E26 /* Frameworks */,
+				715EC0E18F2E493ACAC0EFFD /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-TraceLog-OSX-Tests-TraceLog";
+			productName = "Pods-TraceLog-OSX-Tests-TraceLog";
+			productReference = 6E4F73D64B899BE51110BC71 /* TraceLog.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		563479BCBA8C0D80B035DE52 /* Pods-TraceLog-WatchOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 5DF4BC9CA6CF02507D584FE4 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-WatchOS" */;
+			buildPhases = (
+				1A6619DDB850C6ED0002A197 /* Sources */,
+				717343D92B59F6C6F0266D30 /* Frameworks */,
+				984AFD907A8536EF7774C15A /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				6C45908B3780F860731DFCD9 /* PBXTargetDependency */,
+			);
+			name = "Pods-TraceLog-WatchOS";
+			productName = "Pods-TraceLog-WatchOS";
+			productReference = 6A95D62B2AB3B6F064AE7602 /* Pods_TraceLog_WatchOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		57277FED834C838920E43BE8 /* Pods-TraceLog-WatchOS-TraceLog */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F18497AC6919EF45D2905CAE /* Build configuration list for PBXNativeTarget "Pods-TraceLog-WatchOS-TraceLog" */;
+			buildPhases = (
+				01681BA91172359064552E06 /* Sources */,
+				4807812F45049BBD19479476 /* Frameworks */,
+				70085BFFA80EC4FEA0B688BB /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "Pods-TraceLog-WatchOS-TraceLog";
+			productName = "Pods-TraceLog-WatchOS-TraceLog";
+			productReference = 3B1CB39BF19780E508055F92 /* TraceLog.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		73E0F508CD3D75437F444337 /* Pods-TraceLog-iOS */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CBBAD7727DC9B0EC1BECC3AE /* Build configuration list for PBXNativeTarget "Pods-TraceLog-iOS" */;
+			buildPhases = (
+				46A6FE471F75EC0728363BFB /* Sources */,
+				E8C7A38420523779FCEEBFC8 /* Frameworks */,
+				F957BCC6F892973BE4DA6D10 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				58C4F8552444222EE9CD4DE7 /* PBXTargetDependency */,
+			);
+			name = "Pods-TraceLog-iOS";
+			productName = "Pods-TraceLog-iOS";
+			productReference = 29E5BBC037C6461BEB015011 /* Pods_TraceLog_iOS.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		C500E39E7FECC02B9E98D045 /* Pods-TraceLog-iOS-TraceLog */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4C345A23CC4577D5FD69B420 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-iOS-TraceLog" */;
+			buildPhases = (
+				F2F3CE2DC3E7131522FE4981 /* Sources */,
+				6A4E82D81281C8DDDF621DBD /* Frameworks */,
+				1D4F81DCC6C36C7456250699 /* Headers */,
 			);
 			buildRules = (
 			);
@@ -601,70 +861,88 @@
 			);
 			name = "Pods-TraceLog-iOS-TraceLog";
 			productName = "Pods-TraceLog-iOS-TraceLog";
-			productReference = 88104ED0092631B43AF6868E /* TraceLog.framework */;
+			productReference = F0193F7E8EE3EEA3F08A67D7 /* TraceLog.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		74B3B1FB7845DC32126A3084 /* Pods-TraceLog-iOS */ = {
+		CBF1230C6EFD2A6CCB1F4745 /* Pods-TraceLog-OSX */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = AF10945690BB82D265CEDE81 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-iOS" */;
+			buildConfigurationList = 65B4A00FFA6B69CB0912C539 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-OSX" */;
 			buildPhases = (
-				128362CA9EE07BD00DD31268 /* Sources */,
-				0039EFFC9149E71308B58EF3 /* Frameworks */,
-				8AA40E284643DFB02ED87959 /* Headers */,
+				610C0ED8B51ED2CBF1A9E1F7 /* Sources */,
+				D985DEC02861FAC4F284E018 /* Frameworks */,
+				EC9262FE8A8319BF1DB41D85 /* Headers */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				188AD1AAAA7F63EDFA1BC2DB /* PBXTargetDependency */,
-			);
-			name = "Pods-TraceLog-iOS";
-			productName = "Pods-TraceLog-iOS";
-			productReference = 6FDED0A9225EEE6787E47B21 /* Pods_TraceLog_iOS.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		799D6B51086BDCD2A4DB59E9 /* Pods-TraceLog-iOS-Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C553FABFF251E7C69630807E /* Build configuration list for PBXNativeTarget "Pods-TraceLog-iOS-Tests" */;
-			buildPhases = (
-				D1282850E37FC2A77D63938C /* Sources */,
-				D2C5947DD0FF76A3276CA4F3 /* Frameworks */,
-				9E2FA0CFA0BA002D695FEF54 /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3FA8E8A03606B8B384101723 /* PBXTargetDependency */,
-			);
-			name = "Pods-TraceLog-iOS-Tests";
-			productName = "Pods-TraceLog-iOS-Tests";
-			productReference = 6DDAC6BE8F6697D156B1D359 /* Pods_TraceLog_iOS_Tests.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		B569CD3F885C801EBC7AE44A /* Pods-TraceLog-OSX */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 1BCADF9B2E08F00AAED00B95 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-OSX" */;
-			buildPhases = (
-				8321B536BB1C4B847184FADC /* Sources */,
-				CF691AE2F9060BD83CD1473F /* Frameworks */,
-				E9D578B7876EC844045ED13B /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				3C2D0DB127E8FE7B28095B22 /* PBXTargetDependency */,
+				A58141A94FA9DB503E1656A7 /* PBXTargetDependency */,
 			);
 			name = "Pods-TraceLog-OSX";
 			productName = "Pods-TraceLog-OSX";
-			productReference = E33F0C05E5DBE24A59C46F99 /* Pods_TraceLog_OSX.framework */;
+			productReference = B5F72BB3DFE5C10BBAE24072 /* Pods_TraceLog_OSX.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		BB590E6E681174C4596E775C /* Pods-TraceLog-iOS-Tests-TraceLog */ = {
+		CFC12529DF7C89329CA2353C /* Pods-TraceLog-iOS-Tests */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 89272E0CBD5812F05D20FD56 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-iOS-Tests-TraceLog" */;
+			buildConfigurationList = FA9FC4085AFFE7637349F6D5 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-iOS-Tests" */;
 			buildPhases = (
-				6B49B2C8FA1C180FAF6105C9 /* Sources */,
-				ECE976595DF3F5622D624399 /* Frameworks */,
-				CD0A6163256EC331EF5959E0 /* Headers */,
+				DCB10D8322EE94EFBB1FAA3D /* Sources */,
+				B3AC445E475FCECF9B86265A /* Frameworks */,
+				AEF632B6BB99AD845A45CE14 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				B4F3BC97BC242E8B3D328449 /* PBXTargetDependency */,
+			);
+			name = "Pods-TraceLog-iOS-Tests";
+			productName = "Pods-TraceLog-iOS-Tests";
+			productReference = 95FB196CB2542B141C1837AE /* Pods_TraceLog_iOS_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E4BAB717815310A3D60CBFBB /* Pods-TraceLog-WatchOS Extension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = E73BB7641B33DCECBB6BDFEE /* Build configuration list for PBXNativeTarget "Pods-TraceLog-WatchOS Extension" */;
+			buildPhases = (
+				7D2FEEA92D7DD11A5CF9A025 /* Sources */,
+				07D824A3027910C6B22AA067 /* Frameworks */,
+				2AC91935DEAF6F0CC8669818 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D8A87D32AB072FA479D49A35 /* PBXTargetDependency */,
+			);
+			name = "Pods-TraceLog-WatchOS Extension";
+			productName = "Pods-TraceLog-WatchOS Extension";
+			productReference = E06DE2F5F3EABFC44E03458C /* Pods_TraceLog_WatchOS_Extension.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		E508F2294BA25C84A2455BC8 /* Pods-TraceLog-OSX-Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 014492455FC5B78FB9A9DC9C /* Build configuration list for PBXNativeTarget "Pods-TraceLog-OSX-Tests" */;
+			buildPhases = (
+				0243C145A0A53546C593E70F /* Sources */,
+				3A2593CB9C1B26D8D352B4D6 /* Frameworks */,
+				9E483533F74CD21CC3854194 /* Headers */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2B68EEA8AE37771453DF399A /* PBXTargetDependency */,
+			);
+			name = "Pods-TraceLog-OSX-Tests";
+			productName = "Pods-TraceLog-OSX-Tests";
+			productReference = 1872BB1C92A8DD54096CDC7F /* Pods_TraceLog_OSX_Tests.framework */;
+			productType = "com.apple.product-type.framework";
+		};
+		F71EA705D1E4A9FCBBFC6A31 /* Pods-TraceLog-iOS-Tests-TraceLog */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2E601A52F19E91C3008D4939 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-iOS-Tests-TraceLog" */;
+			buildPhases = (
+				0CC895742535E26DBA197B92 /* Sources */,
+				E14C15DA2743456CE26135C3 /* Frameworks */,
+				F98AA90E4A2BC54D2DE9AE3C /* Headers */,
 			);
 			buildRules = (
 			);
@@ -672,166 +950,229 @@
 			);
 			name = "Pods-TraceLog-iOS-Tests-TraceLog";
 			productName = "Pods-TraceLog-iOS-Tests-TraceLog";
-			productReference = C56392D0C72DDAC357CEBACF /* TraceLog.framework */;
-			productType = "com.apple.product-type.framework";
-		};
-		BF98FBC540991ABB59D03E2E /* Pods-TraceLog-OSX-Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = C71EC5BC21155C3E69A0E69E /* Build configuration list for PBXNativeTarget "Pods-TraceLog-OSX-Tests" */;
-			buildPhases = (
-				874B1D86011AD7DC700F1204 /* Sources */,
-				D68A283CC65D0EDAEF076B35 /* Frameworks */,
-				A0B564A9A256D2E826447FCA /* Headers */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				34D8B763EC4331D0BA3EBFB7 /* PBXTargetDependency */,
-			);
-			name = "Pods-TraceLog-OSX-Tests";
-			productName = "Pods-TraceLog-OSX-Tests";
-			productReference = 6AE57E941C6383551B624EA1 /* Pods_TraceLog_OSX_Tests.framework */;
+			productReference = 3975365B3BE6790648DC595B /* TraceLog.framework */;
 			productType = "com.apple.product-type.framework";
 		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
-		F219DFFEE71121888B120DDB /* Project object */ = {
+		FDDED2C13B3517025ADAF02D /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0700;
 			};
-			buildConfigurationList = E6D0A6C3A200EF015DCE8BB7 /* Build configuration list for PBXProject "Pods" */;
+			buildConfigurationList = 271E2DD578642E56869AB132 /* Build configuration list for PBXProject "Pods" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
 				en,
 			);
-			mainGroup = 4C305FFAB50B62E75AD48775;
-			productRefGroup = 0B92EC8EC711A54B66C4D724 /* Products */;
+			mainGroup = D08506F53E19B52B7E75440F;
+			productRefGroup = 31908A7A1860DFB6ED538B1D /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				74B3B1FB7845DC32126A3084 /* Pods-TraceLog-iOS */,
-				799D6B51086BDCD2A4DB59E9 /* Pods-TraceLog-iOS-Tests */,
-				BB590E6E681174C4596E775C /* Pods-TraceLog-iOS-Tests-TraceLog */,
-				455BD628A444B2E6636D3BE6 /* Pods-TraceLog-iOS-TraceLog */,
-				B569CD3F885C801EBC7AE44A /* Pods-TraceLog-OSX */,
-				BF98FBC540991ABB59D03E2E /* Pods-TraceLog-OSX-Tests */,
-				165F364CA03F33FC209AC224 /* Pods-TraceLog-OSX-Tests-TraceLog */,
-				3B0663FAFBFA48DCBFB5B078 /* Pods-TraceLog-OSX-TraceLog */,
+				73E0F508CD3D75437F444337 /* Pods-TraceLog-iOS */,
+				CFC12529DF7C89329CA2353C /* Pods-TraceLog-iOS-Tests */,
+				F71EA705D1E4A9FCBBFC6A31 /* Pods-TraceLog-iOS-Tests-TraceLog */,
+				C500E39E7FECC02B9E98D045 /* Pods-TraceLog-iOS-TraceLog */,
+				CBF1230C6EFD2A6CCB1F4745 /* Pods-TraceLog-OSX */,
+				E508F2294BA25C84A2455BC8 /* Pods-TraceLog-OSX-Tests */,
+				453669D413709BA8382B656B /* Pods-TraceLog-OSX-Tests-TraceLog */,
+				2C21D63560375FC68B67A60C /* Pods-TraceLog-OSX-TraceLog */,
+				563479BCBA8C0D80B035DE52 /* Pods-TraceLog-WatchOS */,
+				E4BAB717815310A3D60CBFBB /* Pods-TraceLog-WatchOS Extension */,
+				1386BE56D66630D7FD0A8EAC /* Pods-TraceLog-WatchOS Extension-TraceLog */,
+				57277FED834C838920E43BE8 /* Pods-TraceLog-WatchOS-TraceLog */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
-		0D70814AF4FE18B9931FF715 /* Sources */ = {
+		01681BA91172359064552E06 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				28285BAED97089DFE29E0330 /* Pods-TraceLog-OSX-TraceLog-dummy.m in Sources */,
-				FC04E19960D9C8EAA585E2A5 /* TLogger.m in Sources */,
-				D3F49718C94A6A4938419D0B /* TraceLog.swift in Sources */,
+				9060B873099566864E00F825 /* Pods-TraceLog-WatchOS-TraceLog-dummy.m in Sources */,
+				9AB9EE2E5E7F69A591585355 /* TLogger.m in Sources */,
+				4BE865660C9AA6834C134293 /* TraceLog.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		128362CA9EE07BD00DD31268 /* Sources */ = {
+		0243C145A0A53546C593E70F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AAC5A32E15F11BE5312CAAB4 /* Pods-TraceLog-iOS-dummy.m in Sources */,
+				A7FC49D4A57C112C81E7FFF0 /* Pods-TraceLog-OSX-Tests-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		6B49B2C8FA1C180FAF6105C9 /* Sources */ = {
+		02CEDCE023FCF3BE9F91F381 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05D680E79E6623EAD4549468 /* Pods-TraceLog-iOS-Tests-TraceLog-dummy.m in Sources */,
-				1FDD5F4C6815724322A7B4E3 /* TLogger.m in Sources */,
-				8729AE825CF23DA5BC99B814 /* TraceLog.swift in Sources */,
+				73B1E8A195E3899CD7CE0B53 /* Pods-TraceLog-OSX-TraceLog-dummy.m in Sources */,
+				47F5E8180E054388A34531BE /* TLogger.m in Sources */,
+				3390F3C1EA2495C1F8011008 /* TraceLog.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		73C3DC746BE39E4D9C94B0B7 /* Sources */ = {
+		0CC895742535E26DBA197B92 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4F0E5818665C3A41D5A3A1CB /* Pods-TraceLog-iOS-TraceLog-dummy.m in Sources */,
-				E4A5BDB28124057653590A33 /* TLogger.m in Sources */,
-				44F2BC538A49134F863E0778 /* TraceLog.swift in Sources */,
+				B407C6DFE2A0C7BB9FA52190 /* Pods-TraceLog-iOS-Tests-TraceLog-dummy.m in Sources */,
+				2CCD9CEAC119A1B17281D6EC /* TLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		7D0E1A05B68223F94F388414 /* Sources */ = {
+		1753AF73782F2754945C4989 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8B7012F30CC60EA25C7A19A5 /* Pods-TraceLog-OSX-Tests-TraceLog-dummy.m in Sources */,
-				5560B88E29DD5B4F9BDF9D9F /* TLogger.m in Sources */,
-				69B180F2331AF05A66A0AEA3 /* TraceLog.swift in Sources */,
+				C5B8F55E9507514A9994DB47 /* Pods-TraceLog-OSX-Tests-TraceLog-dummy.m in Sources */,
+				EADED53C0768FA0B2C0949A0 /* TLogger.m in Sources */,
+				BCD4A5FAC1052B0EC6B32388 /* TraceLog.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		8321B536BB1C4B847184FADC /* Sources */ = {
+		1A6619DDB850C6ED0002A197 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				3FAEC02D8910EF2D831B32D3 /* Pods-TraceLog-OSX-dummy.m in Sources */,
+				1D69FFF87E9465385DE6B880 /* Pods-TraceLog-WatchOS-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		874B1D86011AD7DC700F1204 /* Sources */ = {
+		46A6FE471F75EC0728363BFB /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				46535DF84F48D76752FD100D /* Pods-TraceLog-OSX-Tests-dummy.m in Sources */,
+				EA5C0624E1EE48DB316DBAB3 /* Pods-TraceLog-iOS-dummy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		D1282850E37FC2A77D63938C /* Sources */ = {
+		610C0ED8B51ED2CBF1A9E1F7 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				C34A19A366F4357A550DC974 /* Pods-TraceLog-iOS-Tests-dummy.m in Sources */,
+				52ED08385B35B5AE72F40727 /* Pods-TraceLog-OSX-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		7D2FEEA92D7DD11A5CF9A025 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				10814EEA64FD1A7BF3316865 /* Pods-TraceLog-WatchOS Extension-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DCB10D8322EE94EFBB1FAA3D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CB03BD93DECA787FF36AA29A /* Pods-TraceLog-iOS-Tests-dummy.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		E4E449830EF58368B0184095 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				33FC0B57032350E14D794240 /* Pods-TraceLog-WatchOS Extension-TraceLog-dummy.m in Sources */,
+				1398298B336195C48620CACA /* TLogger.m in Sources */,
+				3C08FFFBD34D97109D3CD875 /* TraceLog.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F2F3CE2DC3E7131522FE4981 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				3B9142FA658289A0B4563FBA /* Pods-TraceLog-iOS-TraceLog-dummy.m in Sources */,
+				59A041064C733984BF7B4783 /* TLogger.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		188AD1AAAA7F63EDFA1BC2DB /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = "Pods-TraceLog-iOS-TraceLog";
-			target = 455BD628A444B2E6636D3BE6 /* Pods-TraceLog-iOS-TraceLog */;
-			targetProxy = B0CE4B90736C637B329B7D50 /* PBXContainerItemProxy */;
-		};
-		34D8B763EC4331D0BA3EBFB7 /* PBXTargetDependency */ = {
+		2B68EEA8AE37771453DF399A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-TraceLog-OSX-Tests-TraceLog";
-			target = 165F364CA03F33FC209AC224 /* Pods-TraceLog-OSX-Tests-TraceLog */;
-			targetProxy = 94B518144949C3EAE8B15A6F /* PBXContainerItemProxy */;
+			target = 453669D413709BA8382B656B /* Pods-TraceLog-OSX-Tests-TraceLog */;
+			targetProxy = BE9D0FF23E89337A5E2A6777 /* PBXContainerItemProxy */;
 		};
-		3C2D0DB127E8FE7B28095B22 /* PBXTargetDependency */ = {
+		58C4F8552444222EE9CD4DE7 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-TraceLog-iOS-TraceLog";
+			target = C500E39E7FECC02B9E98D045 /* Pods-TraceLog-iOS-TraceLog */;
+			targetProxy = C779A9AF99DCFB73A69A4A0C /* PBXContainerItemProxy */;
+		};
+		6C45908B3780F860731DFCD9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-TraceLog-WatchOS-TraceLog";
+			target = 57277FED834C838920E43BE8 /* Pods-TraceLog-WatchOS-TraceLog */;
+			targetProxy = 28967BCBC71987A27C91A253 /* PBXContainerItemProxy */;
+		};
+		A58141A94FA9DB503E1656A7 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-TraceLog-OSX-TraceLog";
-			target = 3B0663FAFBFA48DCBFB5B078 /* Pods-TraceLog-OSX-TraceLog */;
-			targetProxy = 1A5BBD0A7E99A1680C1974D7 /* PBXContainerItemProxy */;
+			target = 2C21D63560375FC68B67A60C /* Pods-TraceLog-OSX-TraceLog */;
+			targetProxy = 62FD1FBFD1FF941C7FF22921 /* PBXContainerItemProxy */;
 		};
-		3FA8E8A03606B8B384101723 /* PBXTargetDependency */ = {
+		B4F3BC97BC242E8B3D328449 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = "Pods-TraceLog-iOS-Tests-TraceLog";
-			target = BB590E6E681174C4596E775C /* Pods-TraceLog-iOS-Tests-TraceLog */;
-			targetProxy = FEDC90232E8F681C5518E1BB /* PBXContainerItemProxy */;
+			target = F71EA705D1E4A9FCBBFC6A31 /* Pods-TraceLog-iOS-Tests-TraceLog */;
+			targetProxy = 284126F2DFBB324DAF96A746 /* PBXContainerItemProxy */;
+		};
+		D8A87D32AB072FA479D49A35 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = "Pods-TraceLog-WatchOS Extension-TraceLog";
+			target = 1386BE56D66630D7FD0A8EAC /* Pods-TraceLog-WatchOS Extension-TraceLog */;
+			targetProxy = 733721D5437493A755CDCEB0 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
-		04B78C522510D8AA39D180CA /* Release */ = {
+		0B259E6268E53D47739B2D66 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 889CDFA55DBE43957B470827 /* Pods-TraceLog-iOS-Tests.release.xcconfig */;
+			baseConfigurationReference = 501479EBB1FF51BE7BED4018 /* Pods-TraceLog-OSX.release.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-OSX/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-OSX/Pods-TraceLog-OSX.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_TraceLog_OSX;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		27B445CAB35349561690318A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 714F0EF8E98D5FFF782D2391 /* Pods-TraceLog-iOS-Tests.debug.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -846,7 +1187,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-iOS-Tests/Pods-TraceLog-iOS-Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -857,132 +1198,89 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
-		};
-		2BB2B57785700E1CD9DDE102 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2F79300D8A7240E2A67E3C2D /* Pods-TraceLog-iOS-Tests-TraceLog.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-TraceLog-iOS-Tests-TraceLog/Pods-TraceLog-iOS-Tests-TraceLog-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-iOS-Tests-TraceLog/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-iOS-Tests-TraceLog/Pods-TraceLog-iOS-Tests-TraceLog.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = TraceLog;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
 			name = Debug;
 		};
-		364328A1794CD4F879FB0373 /* Release */ = {
+		2FE92C993C3625DD76F7142D /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E7D2A8BA2826B924312867F2 /* Pods-TraceLog-iOS-TraceLog.xcconfig */;
+			baseConfigurationReference = 10F24EDC1E69B2C1FA3FCF4D /* Pods-TraceLog-WatchOS.release.xcconfig */;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-TraceLog-iOS-TraceLog/Pods-TraceLog-iOS-TraceLog-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-iOS-TraceLog/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-WatchOS/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-iOS-TraceLog/Pods-TraceLog-iOS-TraceLog.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = TraceLog;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		80E059FB6C3B94BE32C65BBB /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		3A325696CBB5021EE2C24286 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 56690B6AFAA9345A237B5F5F /* Pods-TraceLog-OSX-Tests.release.xcconfig */;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-OSX-Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-OSX-Tests/Pods-TraceLog-OSX-Tests.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-WatchOS/Pods-TraceLog-WatchOS.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_TraceLog_OSX_Tests;
-				SDKROOT = macosx;
+				PRODUCT_NAME = Pods_TraceLog_WatchOS;
+				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		4113DD5A43752EBE1D051D08 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D277192AEF2346CAE0B18DC1 /* Pods-TraceLog-WatchOS Extension-TraceLog.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-TraceLog-WatchOS Extension-TraceLog/Pods-TraceLog-WatchOS Extension-TraceLog-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-WatchOS Extension-TraceLog/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-WatchOS Extension-TraceLog/Pods-TraceLog-WatchOS Extension-TraceLog.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = TraceLog;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		4D2AF283DFF3F836E43EDC31 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = D277192AEF2346CAE0B18DC1 /* Pods-TraceLog-WatchOS Extension-TraceLog.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-TraceLog-WatchOS Extension-TraceLog/Pods-TraceLog-WatchOS Extension-TraceLog-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-WatchOS Extension-TraceLog/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-WatchOS Extension-TraceLog/Pods-TraceLog-WatchOS Extension-TraceLog.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = TraceLog;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
-		41257F55557EEFB552A597C3 /* Debug */ = {
+		4DA1A84B67C6F45468A5F34C /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2A644C574ED02163EFADBB3E /* Pods-TraceLog-iOS.debug.xcconfig */;
+			baseConfigurationReference = C157B9F2F8AE21113A8947D5 /* Pods-TraceLog-iOS.release.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -997,7 +1295,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
 				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-iOS/Pods-TraceLog-iOS.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
@@ -1010,131 +1308,9 @@
 			};
 			name = Release;
 		};
-		51E2EE40EB71A77F5C679867 /* Release */ = {
+		4F64D2A53AA715AD3AA9064C /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6AB6DA3EBE727B1ABD776087 /* Pods-TraceLog-OSX-Tests-TraceLog.xcconfig */;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-TraceLog-OSX-Tests-TraceLog/Pods-TraceLog-OSX-Tests-TraceLog-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-OSX-Tests-TraceLog/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-OSX-Tests-TraceLog/Pods-TraceLog-OSX-Tests-TraceLog.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = TraceLog;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		57FD42154F1B973D4009E540 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = A23792FB0CE98D435EC75BE7 /* Pods-TraceLog-OSX-TraceLog.xcconfig */;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-TraceLog-OSX-TraceLog/Pods-TraceLog-OSX-TraceLog-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-OSX-TraceLog/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-OSX-TraceLog/Pods-TraceLog-OSX-TraceLog.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
-				PRODUCT_NAME = TraceLog;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Release;
-		};
-		5E97D84483A697A346174DA1 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = FDCDD8666201CDB8AF1CA589 /* Pods-TraceLog-OSX-Tests.debug.xcconfig */;
-			buildSettings = {
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-OSX-Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-OSX-Tests/Pods-TraceLog-OSX-Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_TraceLog_OSX_Tests;
-				SDKROOT = macosx;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
-			name = Debug;
-		};
-		6CF909FCD7ABF2AA22DBA7C4 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
-				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
-				CLANG_CXX_LIBRARY = "libc++";
-				CLANG_ENABLE_MODULES = YES;
-				CLANG_ENABLE_OBJC_ARC = YES;
-				CLANG_WARN_BOOL_CONVERSION = YES;
-				CLANG_WARN_CONSTANT_CONVERSION = YES;
-				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
-				CLANG_WARN_EMPTY_BODY = YES;
-				CLANG_WARN_ENUM_CONVERSION = YES;
-				CLANG_WARN_INT_CONVERSION = YES;
-				CLANG_WARN_OBJC_ROOT_CLASS = YES;
-				CLANG_WARN_UNREACHABLE_CODE = YES;
-				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				COPY_PHASE_STRIP = YES;
-				ENABLE_NS_ASSERTIONS = NO;
-				GCC_C_LANGUAGE_STANDARD = gnu99;
-				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
-				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNDECLARED_SELECTOR = YES;
-				GCC_WARN_UNINITIALIZED_AUTOS = YES;
-				GCC_WARN_UNUSED_FUNCTION = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				STRIP_INSTALLED_PRODUCT = NO;
-				SYMROOT = "${SRCROOT}/../build";
-				VALIDATE_PRODUCT = YES;
-			};
-			name = Release;
-		};
-		703334473F85727740CB10F0 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 2F79300D8A7240E2A67E3C2D /* Pods-TraceLog-iOS-Tests-TraceLog.xcconfig */;
+			baseConfigurationReference = 4CA5B4B539CB67328AE2E89A /* Pods-TraceLog-iOS-Tests-TraceLog.xcconfig */;
 			buildSettings = {
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
@@ -1149,7 +1325,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-iOS-Tests-TraceLog/Pods-TraceLog-iOS-Tests-TraceLog.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = TraceLog;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
@@ -1157,40 +1333,9 @@
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Release;
-		};
-		7915A5F3244BD56F251EB504 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 17827FBDED2AF67CC70A74B0 /* Pods-TraceLog-iOS-Tests.debug.xcconfig */;
-			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
-				CURRENT_PROJECT_VERSION = 1;
-				DEFINES_MODULE = YES;
-				DYLIB_COMPATIBILITY_VERSION = 1;
-				DYLIB_CURRENT_VERSION = 1;
-				DYLIB_INSTALL_NAME_BASE = "@rpath";
-				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-iOS-Tests/Info.plist";
-				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-iOS-Tests/Pods-TraceLog-iOS-Tests.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_TraceLog_iOS_Tests;
-				SDKROOT = iphoneos;
-				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
-				VERSIONING_SYSTEM = "apple-generic";
-				VERSION_INFO_PREFIX = "";
-			};
 			name = Debug;
 		};
-		9092EB9944EC46D8E36327FD /* Debug */ = {
+		5A16DA7651715D0F85433F17 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
@@ -1227,40 +1372,41 @@
 				ONLY_ACTIVE_ARCH = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYMROOT = "${SRCROOT}/../build";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
 			name = Debug;
 		};
-		C2B035EAB02DCD0137D63011 /* Debug */ = {
+		671DB7231FE5FC7E43A9218B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = E7D2A8BA2826B924312867F2 /* Pods-TraceLog-iOS-TraceLog.xcconfig */;
+			baseConfigurationReference = 0ACFE089F04C299261A72224 /* Pods-TraceLog-OSX-Tests-TraceLog.xcconfig */;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-TraceLog-iOS-TraceLog/Pods-TraceLog-iOS-TraceLog-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-iOS-TraceLog/Info.plist";
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-TraceLog-OSX-Tests-TraceLog/Pods-TraceLog-OSX-Tests-TraceLog-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-OSX-Tests-TraceLog/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-iOS-TraceLog/Pods-TraceLog-iOS-TraceLog.modulemap";
-				MTL_ENABLE_DEBUG_INFO = YES;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-OSX-Tests-TraceLog/Pods-TraceLog-OSX-Tests-TraceLog.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = TraceLog;
-				SDKROOT = iphoneos;
+				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				TARGETED_DEVICE_FAMILY = "1,2";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
 			};
-			name = Debug;
+			name = Release;
 		};
-		C90E878FFE4433488AAAD36B /* Debug */ = {
+		7989368B3EB31D019FFA48AA /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = A23792FB0CE98D435EC75BE7 /* Pods-TraceLog-OSX-TraceLog.xcconfig */;
+			baseConfigurationReference = 6B194AC29371A4921B0BF853 /* Pods-TraceLog-OSX-Tests.debug.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1270,14 +1416,17 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_VERSION = A;
-				GCC_PREFIX_HEADER = "Target Support Files/Pods-TraceLog-OSX-TraceLog/Pods-TraceLog-OSX-TraceLog-prefix.pch";
-				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-OSX-TraceLog/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-OSX-Tests/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-OSX-TraceLog/Pods-TraceLog-OSX-TraceLog.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-OSX-Tests/Pods-TraceLog-OSX-Tests.modulemap";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				PRODUCT_NAME = TraceLog;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_TraceLog_OSX_Tests;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -1286,39 +1435,38 @@
 			};
 			name = Debug;
 		};
-		E9003960B1F5E96F8349132D /* Release */ = {
+		7EE30484C4F0BDAA6DE025E7 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D5A3123E3920368E4AB6A0D7 /* Pods-TraceLog-iOS.release.xcconfig */;
+			baseConfigurationReference = 1D17EE03683508A0BB9AD81F /* Pods-TraceLog-WatchOS Extension.debug.xcconfig */;
 			buildSettings = {
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				APPLICATION_EXTENSION_API_ONLY = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				DEFINES_MODULE = YES;
 				DYLIB_COMPATIBILITY_VERSION = 1;
 				DYLIB_CURRENT_VERSION = 1;
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
-				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-iOS/Info.plist";
+				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-WatchOS Extension/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-iOS/Pods-TraceLog-iOS.modulemap";
-				MTL_ENABLE_DEBUG_INFO = NO;
+				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-WatchOS Extension/Pods-TraceLog-WatchOS Extension.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
 				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_TraceLog_iOS;
-				SDKROOT = iphoneos;
+				PRODUCT_NAME = Pods_TraceLog_WatchOS_Extension;
+				SDKROOT = watchos;
 				SKIP_INSTALL = YES;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				VERSIONING_SYSTEM = "apple-generic";
 				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
 			};
-			name = Release;
+			name = Debug;
 		};
-		F2C8F369945B512CFDF9EB89 /* Debug */ = {
+		8E7BFAB66A84A759BFB2667B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6AB6DA3EBE727B1ABD776087 /* Pods-TraceLog-OSX-Tests-TraceLog.xcconfig */;
+			baseConfigurationReference = 0ACFE089F04C299261A72224 /* Pods-TraceLog-OSX-Tests-TraceLog.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1344,9 +1492,116 @@
 			};
 			name = Debug;
 		};
-		F61FD03E8F82D443DC670060 /* Debug */ = {
+		98BF4B2FED26A036A2438A48 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 057727E1D2D4F454E69A542A /* Pods-TraceLog-OSX.debug.xcconfig */;
+			baseConfigurationReference = 878330F2E21B38C4C969E135 /* Pods-TraceLog-iOS-TraceLog.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-TraceLog-iOS-TraceLog/Pods-TraceLog-iOS-TraceLog-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-iOS-TraceLog/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-iOS-TraceLog/Pods-TraceLog-iOS-TraceLog.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = TraceLog;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		9E08ECAA6B51439BBBC42B0B /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F06B5AD9BD980C5E7F0C6AFC /* Pods-TraceLog-WatchOS-TraceLog.xcconfig */;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-TraceLog-WatchOS-TraceLog/Pods-TraceLog-WatchOS-TraceLog-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-WatchOS-TraceLog/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-WatchOS-TraceLog/Pods-TraceLog-WatchOS-TraceLog.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = TraceLog;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		A6D86ABCD045FAD0343BDE3C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39E24139A9C7937170A7A73D /* Pods-TraceLog-OSX-TraceLog.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-TraceLog-OSX-TraceLog/Pods-TraceLog-OSX-TraceLog-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-OSX-TraceLog/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-OSX-TraceLog/Pods-TraceLog-OSX-TraceLog.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = TraceLog;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		AE5297427E3EFB9EA5606C56 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = E9ACFC19E441C20B4DB9F39C /* Pods-TraceLog-WatchOS Extension.release.xcconfig */;
+			buildSettings = {
+				APPLICATION_EXTENSION_API_ONLY = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-WatchOS Extension/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-WatchOS Extension/Pods-TraceLog-WatchOS Extension.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_TraceLog_WatchOS_Extension;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		BADC8DBC641F5498ADE305BF /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0BD0075183877E593A2263DD /* Pods-TraceLog-OSX.debug.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1375,9 +1630,66 @@
 			};
 			name = Debug;
 		};
-		FDBDB2684C3664DE64B65717 /* Release */ = {
+		C10EF798BFA5B12EAB457C09 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7E2C918EAB8A6D5C99CB84C4 /* Pods-TraceLog-OSX.release.xcconfig */;
+			baseConfigurationReference = 878330F2E21B38C4C969E135 /* Pods-TraceLog-iOS-TraceLog.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-TraceLog-iOS-TraceLog/Pods-TraceLog-iOS-TraceLog-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-iOS-TraceLog/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-iOS-TraceLog/Pods-TraceLog-iOS-TraceLog.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = TraceLog;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		CB13C583B5FDBDCBDD3592C8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 98C0BFAAC810BA04951FE32C /* Pods-TraceLog-iOS-Tests.release.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-iOS-Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-iOS-Tests/Pods-TraceLog-iOS-Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_TraceLog_iOS_Tests;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		CBBE7ABBCBE9611ED0FA9E17 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 39E24139A9C7937170A7A73D /* Pods-TraceLog-OSX-TraceLog.xcconfig */;
 			buildSettings = {
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1388,17 +1700,14 @@
 				DYLIB_INSTALL_NAME_BASE = "@rpath";
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				FRAMEWORK_VERSION = A;
-				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-OSX/Info.plist";
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-TraceLog-OSX-TraceLog/Pods-TraceLog-OSX-TraceLog-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-OSX-TraceLog/Info.plist";
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
-				MACH_O_TYPE = staticlib;
 				MACOSX_DEPLOYMENT_TARGET = 10.10;
-				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-OSX/Pods-TraceLog-OSX.modulemap";
+				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-OSX-TraceLog/Pods-TraceLog-OSX-TraceLog.modulemap";
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_LDFLAGS = "";
-				OTHER_LIBTOOLFLAGS = "";
-				PODS_ROOT = "$(SRCROOT)";
-				PRODUCT_NAME = Pods_TraceLog_OSX;
+				PRODUCT_NAME = TraceLog;
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				VERSIONING_SYSTEM = "apple-generic";
@@ -1406,91 +1715,304 @@
 			};
 			name = Release;
 		};
+		D258203C2835932D9D30FD9F /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_PREPROCESSOR_DEFINITIONS = "RELEASE=1";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				STRIP_INSTALLED_PRODUCT = NO;
+				SYMROOT = "${SRCROOT}/../build";
+				VALIDATE_PRODUCT = YES;
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Release;
+		};
+		D70807963AE55C8FAB6453A8 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4CA5B4B539CB67328AE2E89A /* Pods-TraceLog-iOS-Tests-TraceLog.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-TraceLog-iOS-Tests-TraceLog/Pods-TraceLog-iOS-Tests-TraceLog-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-iOS-Tests-TraceLog/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-iOS-Tests-TraceLog/Pods-TraceLog-iOS-Tests-TraceLog.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = TraceLog;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		D7D1BBE447F315C30A79C779 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F06B5AD9BD980C5E7F0C6AFC /* Pods-TraceLog-WatchOS-TraceLog.xcconfig */;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREFIX_HEADER = "Target Support Files/Pods-TraceLog-WatchOS-TraceLog/Pods-TraceLog-WatchOS-TraceLog-prefix.pch";
+				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-WatchOS-TraceLog/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-WatchOS-TraceLog/Pods-TraceLog-WatchOS-TraceLog.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = TraceLog;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
+		E4E758AC567EC9158D3260AA /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = AE2F966C65945DF07361723B /* Pods-TraceLog-OSX-Tests.release.xcconfig */;
+			buildSettings = {
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				FRAMEWORK_VERSION = A;
+				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-OSX-Tests/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-OSX-Tests/Pods-TraceLog-OSX-Tests.modulemap";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_TraceLog_OSX_Tests;
+				SDKROOT = macosx;
+				SKIP_INSTALL = YES;
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Release;
+		};
+		E7670FCD3E019716570642F2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 73ACC7820A14780F9D2F408F /* Pods-TraceLog-iOS.debug.xcconfig */;
+			buildSettings = {
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-iOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-iOS/Pods-TraceLog-iOS.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_TraceLog_iOS;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+			};
+			name = Debug;
+		};
+		F3BC03EAD4517AFDAD72211A /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 961CE4A04DB125C1D6493D09 /* Pods-TraceLog-WatchOS.debug.xcconfig */;
+			buildSettings = {
+				CURRENT_PROJECT_VERSION = 1;
+				DEFINES_MODULE = YES;
+				DYLIB_COMPATIBILITY_VERSION = 1;
+				DYLIB_CURRENT_VERSION = 1;
+				DYLIB_INSTALL_NAME_BASE = "@rpath";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				INFOPLIST_FILE = "Target Support Files/Pods-TraceLog-WatchOS/Info.plist";
+				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
+				MACH_O_TYPE = staticlib;
+				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-WatchOS/Pods-TraceLog-WatchOS.modulemap";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "";
+				OTHER_LIBTOOLFLAGS = "";
+				PODS_ROOT = "$(SRCROOT)";
+				PRODUCT_NAME = Pods_TraceLog_WatchOS;
+				SDKROOT = watchos;
+				SKIP_INSTALL = YES;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				VERSIONING_SYSTEM = "apple-generic";
+				VERSION_INFO_PREFIX = "";
+				WATCHOS_DEPLOYMENT_TARGET = 2.0;
+			};
+			name = Debug;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		1BCADF9B2E08F00AAED00B95 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-OSX" */ = {
+		014492455FC5B78FB9A9DC9C /* Build configuration list for PBXNativeTarget "Pods-TraceLog-OSX-Tests" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F61FD03E8F82D443DC670060 /* Debug */,
-				FDBDB2684C3664DE64B65717 /* Release */,
+				7989368B3EB31D019FFA48AA /* Debug */,
+				E4E758AC567EC9158D3260AA /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		89272E0CBD5812F05D20FD56 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-iOS-Tests-TraceLog" */ = {
+		2062E8A51EA2CADC7BE6C079 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-OSX-Tests-TraceLog" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				2BB2B57785700E1CD9DDE102 /* Debug */,
-				703334473F85727740CB10F0 /* Release */,
+				8E7BFAB66A84A759BFB2667B /* Debug */,
+				671DB7231FE5FC7E43A9218B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		AF10945690BB82D265CEDE81 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-iOS" */ = {
+		271E2DD578642E56869AB132 /* Build configuration list for PBXProject "Pods" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				41257F55557EEFB552A597C3 /* Debug */,
-				E9003960B1F5E96F8349132D /* Release */,
+				5A16DA7651715D0F85433F17 /* Debug */,
+				D258203C2835932D9D30FD9F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		B9A3BBF0666EE82675937C26 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-OSX-TraceLog" */ = {
+		2E601A52F19E91C3008D4939 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-iOS-Tests-TraceLog" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C90E878FFE4433488AAAD36B /* Debug */,
-				57FD42154F1B973D4009E540 /* Release */,
+				4F64D2A53AA715AD3AA9064C /* Debug */,
+				D70807963AE55C8FAB6453A8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C553FABFF251E7C69630807E /* Build configuration list for PBXNativeTarget "Pods-TraceLog-iOS-Tests" */ = {
+		4C345A23CC4577D5FD69B420 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-iOS-TraceLog" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				7915A5F3244BD56F251EB504 /* Debug */,
-				04B78C522510D8AA39D180CA /* Release */,
+				C10EF798BFA5B12EAB457C09 /* Debug */,
+				98BF4B2FED26A036A2438A48 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C71EC5BC21155C3E69A0E69E /* Build configuration list for PBXNativeTarget "Pods-TraceLog-OSX-Tests" */ = {
+		5DF4BC9CA6CF02507D584FE4 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-WatchOS" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				5E97D84483A697A346174DA1 /* Debug */,
-				3A325696CBB5021EE2C24286 /* Release */,
+				F3BC03EAD4517AFDAD72211A /* Debug */,
+				2FE92C993C3625DD76F7142D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		C80D045805E8A8E0D1F3C5E0 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-iOS-TraceLog" */ = {
+		65B4A00FFA6B69CB0912C539 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-OSX" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				C2B035EAB02DCD0137D63011 /* Debug */,
-				364328A1794CD4F879FB0373 /* Release */,
+				BADC8DBC641F5498ADE305BF /* Debug */,
+				0B259E6268E53D47739B2D66 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		E6D0A6C3A200EF015DCE8BB7 /* Build configuration list for PBXProject "Pods" */ = {
+		6DB7835A65063C1C07049ED8 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-WatchOS Extension-TraceLog" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				9092EB9944EC46D8E36327FD /* Debug */,
-				6CF909FCD7ABF2AA22DBA7C4 /* Release */,
+				4D2AF283DFF3F836E43EDC31 /* Debug */,
+				4113DD5A43752EBE1D051D08 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		FAF5C8D8DE3D9FCAA236E65C /* Build configuration list for PBXNativeTarget "Pods-TraceLog-OSX-Tests-TraceLog" */ = {
+		B84FDC5A7204FC8461F72F01 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-OSX-TraceLog" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
-				F2C8F369945B512CFDF9EB89 /* Debug */,
-				51E2EE40EB71A77F5C679867 /* Release */,
+				A6D86ABCD045FAD0343BDE3C /* Debug */,
+				CBBE7ABBCBE9611ED0FA9E17 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		CBBAD7727DC9B0EC1BECC3AE /* Build configuration list for PBXNativeTarget "Pods-TraceLog-iOS" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				E7670FCD3E019716570642F2 /* Debug */,
+				4DA1A84B67C6F45468A5F34C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		E73BB7641B33DCECBB6BDFEE /* Build configuration list for PBXNativeTarget "Pods-TraceLog-WatchOS Extension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7EE30484C4F0BDAA6DE025E7 /* Debug */,
+				AE5297427E3EFB9EA5606C56 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F18497AC6919EF45D2905CAE /* Build configuration list for PBXNativeTarget "Pods-TraceLog-WatchOS-TraceLog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D7D1BBE447F315C30A79C779 /* Debug */,
+				9E08ECAA6B51439BBBC42B0B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FA9FC4085AFFE7637349F6D5 /* Build configuration list for PBXNativeTarget "Pods-TraceLog-iOS-Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				27B445CAB35349561690318A /* Debug */,
+				CB13C583B5FDBDCBDD3592C8 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = F219DFFEE71121888B120DDB /* Project object */;
+	rootObject = FDDED2C13B3517025ADAF02D /* Project object */;
 }
