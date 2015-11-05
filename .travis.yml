@@ -15,7 +15,6 @@ script:
   
   - xctool -workspace Example/TraceLog.xcworkspace -scheme TraceLog-iOS-Example -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES test
   - xctool -workspace Example/TraceLog.xcworkspace -scheme TraceLog-OSX-Example -sdk macosx GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES test
-  - xctool -workspace Example/TraceLog.xcworkspace -scheme "TraceLog-WatchOS - Notification Extension" -sdk watchsimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES build
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
