@@ -14,18 +14,6 @@ target 'TraceLog-iOS-Tests', :exclusive => true do
    pod "TraceLog/Objc", :path => "../"
 end
 
-target 'TraceLog-WatchOS', :exclusive => true do
-    platform :watchos, '2.0'
-    
-    pod "TraceLog/Swift", :path => "../"
-end
-
-target 'TraceLog-WatchOS Extension', :exclusive => true do
-    platform :watchos, '2.0'
-    
-    pod "TraceLog/Swift", :path => "../"
-end
-
 target 'TraceLog-OSX', :exclusive => true do
    platform :osx, '10.10'
   

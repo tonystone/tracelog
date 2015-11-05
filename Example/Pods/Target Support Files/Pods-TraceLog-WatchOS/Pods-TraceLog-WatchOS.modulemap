@@ -1,6 +1,0 @@
-framework module Pods_TraceLog_WatchOS {
-  umbrella header "Pods-TraceLog-WatchOS-umbrella.h"
-
-  export *
-  module * { export * }
-}
