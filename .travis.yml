@@ -13,7 +13,8 @@ before_install:
 script:
   - pod lib lint
   
-  - xctool -workspace Example/TraceLog.xcworkspace -scheme TraceLog-Example -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES build test 
+  - xctool -workspace Example/TraceLog.xcworkspace -scheme TraceLog-iOS-Example -sdk iphonesimulator GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES test
+  - xctool -workspace Example/TraceLog.xcworkspace -scheme TraceLog-OSX-Example -sdk macosx GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES test
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
