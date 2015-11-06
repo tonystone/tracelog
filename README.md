@@ -1,6 +1,6 @@
 # TraceLog
 
-[![Build Status](https://travis-ci.org/tonystone/tracelog.svg)](https://travis-ci.org/tonystone/tracelog)
+[![Build Status](https://travis-ci.org/tonystone/tracelog.svg?branch=master)](https://travis-ci.org/tonystone/tracelog)
 [![Version](https://img.shields.io/cocoapods/v/TraceLog.svg?style=flat)](http://cocoadocs.org/docsets/TraceLog)
 [![License](https://img.shields.io/cocoapods/l/TraceLog.svg?style=flat)](http://cocoadocs.org/docsets/TraceLog)
 [![Platform](https://img.shields.io/cocoapods/p/TraceLog.svg?style=flat)](http://cocoadocs.org/docsets/TraceLog)
