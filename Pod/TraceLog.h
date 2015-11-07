@@ -32,8 +32,8 @@
     all in the application.
 
     Log output can be configured globally using the LOG_ALL environment variable,
-    by CLASS name using the LOG_CLASS_<CLASSNAME> environment variable pattern,
-    and/or by a CLASS group by using the CLASS_PREFIX_<CLASSPREFIX> environment
+    by TAG name using the LOG_TAG_<TAGNAME> environment variable pattern,
+    and/or by a TAG prefix by using the LOG_PREFIX_<TAGPREFIX> environment
     variable pattern.
 
     Each environment variable set is set with a level as the value.  The following
@@ -55,8 +55,8 @@
 
     Environment Variables and syntax:
 
-            LOG_CLASS_<CLASSNAME>=<LEVEL>
-            LOG_PREFIX_<CLASSPREFIX>=<LEVEL>
+            LOG_TAG_<TAGNAME>=<LEVEL>
+            LOG_PREFIX_<TAGPREFIX>=<LEVEL>
             LOG_ALL=<LEVEL>
 
 
@@ -80,7 +80,7 @@
 
             LOG_ALL=WARNING
             LOG_PREFIX_CS=TRACE1
-            LOG_CLASS_CSManager=TRACE4
+            LOG_TAG_CSManager=TRACE4
 
     This outputs the same as the previous example with the exception of the CSManager class
     which is set to TRACE4 instead of using the less specific TRACE1 setting in LOG_PREFIX.

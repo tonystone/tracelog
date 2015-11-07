@@ -93,17 +93,7 @@
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
-            key = "LOG_CLASS_MissingClass1"
-            value = "WARNING"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "LOG_PREFIX_TL"
-            value = "TRACE4"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "LOG_CLASS_TraceLogTests"
+            key = "LOG_TAG_TraceLogTests"
             value = "TRACE4"
             isEnabled = "YES">
          </EnvironmentVariable>

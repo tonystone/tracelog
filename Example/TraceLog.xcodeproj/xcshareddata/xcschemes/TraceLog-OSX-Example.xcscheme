@@ -79,12 +79,17 @@
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
+            key = "LOG_REGEX_1"
+            value = "TRACE4,tag,/^TraceLog/"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
             key = "LOG_ALL"
             value = "TRACE4"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
-            key = "LOG_CLASS_MyCustomTag"
+            key = "LOG_TAG_MyCustomTag"
             value = "TRACE4"
             isEnabled = "YES">
          </EnvironmentVariable>

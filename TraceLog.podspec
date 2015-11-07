@@ -20,8 +20,8 @@ Pod::Spec.new do |s|
                              all in the application.
 
                              Log output can be configured globally using the LOG_ALL environment variable,
-                             by CLASS name using the LOG_CLASS_<CLASSNAME> environment variable pattern,
-                             and/or by a CLASS group by using the CLASS_PREFIX_<CLASSPREFIX> environment
+                             by TAG name using the LOG_TAG_<TAGNAME> environment variable pattern,
+                             and/or by a TAG prefix by using the LOG_PREFIX_<TAGPREFIX> environment
                              variable pattern.
 
                              Please see the main header file TraceLog.h for more details and examples.

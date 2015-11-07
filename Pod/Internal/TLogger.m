@@ -22,7 +22,7 @@
 
 static NSString * const ModuleLogName  = @"TraceLog";
 
-static NSString * const LogScopeClass  = @"LOG_CLASS_";
+static NSString * const LogScopeTag    = @"LOG_TAG_";
 static NSString * const LogScopePrefix = @"LOG_PREFIX_";
 static NSString * const LogScopeAll    = @"LOG_ALL";
 
@@ -32,12 +32,12 @@ static NSString * const LogScopeAll    = @"LOG_ALL";
 static NSArray      * _logLevelStrings;
 static LogLevel       _globalLogLevel;
 static NSDictionary * _loggedPrefixes;
-static NSDictionary * _loggedClasses;
+static NSDictionary * _loggedTags;
 
 //
 // Forward declarations
 //
-NSNumber * prefixLogLevelForClassName(NSString * className);
+NSNumber * prefixLogLevelForTag(NSString * tag);
 LogLevel logLevelForString(NSString * logLevelString);
 NSString * stringForLogLevel(LogLevel logLevel);
 
@@ -64,11 +64,11 @@ NSString * stringForLogLevel(LogLevel logLevel);
             NSDictionary * environment = [[NSProcessInfo processInfo] environment];
 
             NSMutableDictionary * loggedPrefixes = [[NSMutableDictionary alloc] init];
-            NSMutableDictionary * loggedClasses  = [[NSMutableDictionary alloc] init];
+            NSMutableDictionary * loggedTags = [[NSMutableDictionary alloc] init];
 
             for (NSString * variable in environment) {
                 //
-                // All variables and class names are converted
+                // All variables and log level strings are converted
                 // to upper case for comparison.
                 //
                 NSString * upperCaseVariable = [variable uppercaseString];
@@ -88,7 +88,7 @@ NSString * stringForLogLevel(LogLevel logLevel);
                     
                     if (requestedLogLevel != LogLevelInvalid) {
                         //
-                        // Note: in order to allow for case sensitive class prefix names, we use the variable instead of the uppercase version.
+                        // Note: in order to allow for case sensitive tag prefix names, we use the variable instead of the uppercase version.
                         //
                         NSRange    logLevelScopeRange = [variable rangeOfString: LogScopePrefix];
                         NSString * logLevelScope      = [variable substringFromIndex: logLevelScopeRange.location + logLevelScopeRange.length];
@@ -98,31 +98,25 @@ NSString * stringForLogLevel(LogLevel logLevel);
                         [TLogger log: LogLevelError tag: ModuleLogName message: [NSString stringWithFormat: @"Variable '%@' has an invalid logLevel of '%@'. '%@' will NOT be set.", upperCaseVariable, upperCaselogLevelString, upperCaseVariable] file:  __FILE__ function: __FUNCTION__ lineNumber: __LINE__];
                     }
                     
-                } else if ([upperCaseVariable hasPrefix: LogScopeClass]) {
+                } else if ([upperCaseVariable hasPrefix: LogScopeTag]) {
                     LogLevel requestedLogLevel = logLevelForString(upperCaselogLevelString);
                     
                     if (requestedLogLevel != LogLevelInvalid) {
                         
                         //
-                        // Note: in order to allow for case sensitive class names, we use the variable instead of the uppercase version.
+                        // Note: in order to allow for case sensitive tag names, we use the variable instead of the uppercase version.
                         //
-                        NSRange    logLevelScopeRange = [variable rangeOfString: LogScopeClass];
+                        NSRange    logLevelScopeRange = [variable rangeOfString: LogScopeTag];
                         NSString * logLevelScope      = [variable substringFromIndex: logLevelScopeRange.location + logLevelScopeRange.length];
-                    
-                        // Make sure the class is linked with the, give a warning if not
-                        Class clazz = NSClassFromString(logLevelScope);
-                        if (!clazz) {
-                            [TLogger log: LogLevelWarning tag: ModuleLogName message: [NSString stringWithFormat: @"You've requested logLevel '%@' for class '%@' but this class is not linked with the application.", upperCaselogLevelString, logLevelScope] file:  __FILE__ function: __FUNCTION__ lineNumber: __LINE__];
-                        }
                         
-                        loggedClasses[logLevelScope]  = @(requestedLogLevel);
+                        loggedTags[logLevelScope]  = @(requestedLogLevel);
                     } else {
                         [TLogger log: LogLevelError tag: ModuleLogName message: [NSString stringWithFormat: @"Variable '%@' has an invalid logLevel of '%@'. '%@' will NOT be set.", upperCaseVariable, upperCaselogLevelString, upperCaseVariable] file:  __FILE__ function: __FUNCTION__ lineNumber: __LINE__];
                     }
                 }
             }
             _loggedPrefixes = [[NSDictionary alloc] initWithDictionary: loggedPrefixes];
-            _loggedClasses  = [[NSDictionary alloc] initWithDictionary: loggedClasses];
+            _loggedTags = [[NSDictionary alloc] initWithDictionary: loggedTags];
             
             // Print the current configuration
             [TLogger log: LogLevelInfo tag: ModuleLogName message: [NSString stringWithFormat: @"%@ has been configured with the following settings: \n%@", ModuleLogName, [TLogger currentConfigurationString]] file:  __FILE__ function: __FUNCTION__ lineNumber: __LINE__];
@@ -134,19 +128,14 @@ NSString * stringForLogLevel(LogLevel logLevel);
 
         NSMutableString * loggedString = [[NSMutableString alloc] initWithString: @"{"];
         
-        if ([_loggedClasses count] > 0) {
+        if ([_loggedTags count] > 0) {
             
-            [loggedString appendString: @"\n\tclass: {\n"];
+            [loggedString appendString: @"\n\ttags: {\n"];
             
-            for (NSString  * className in [_loggedClasses allKeys]) {
-                NSString * logLevel = stringForLogLevel((LogLevel)[_loggedClasses[className] intValue]);
+            for (NSString  * tag in [_loggedTags allKeys]) {
+                NSString * logLevel = stringForLogLevel((LogLevel)[_loggedTags[tag] intValue]);
                 
-                [loggedString appendString: [[NSMutableString alloc] initWithFormat: @"\n%30s = %@", [className UTF8String], logLevel]];
-                
-                Class clazz = NSClassFromString(className);
-                if (!clazz) {
-                    [loggedString appendString: [[NSMutableString alloc] initWithFormat: @"%*s" "%@",  8 - (int) [logLevel length], " ", @"(class missing)"]];
-                }
+                [loggedString appendString: [[NSMutableString alloc] initWithFormat: @"\n%30s = %@", [tag UTF8String], logLevel]];
             }
             [loggedString appendString: @"\n\t}"];
         }
@@ -172,21 +161,18 @@ NSString * stringForLogLevel(LogLevel logLevel);
         // Set to the default global level first
         LogLevel currentLevel = _globalLogLevel;
 
-        NSString * className = tag;
-
         // Determine if there is a class log level first
-        NSNumber * classLogLevel  = _loggedClasses[className];
+        NSNumber * tagLogLevel = _loggedTags[tag];
 
-        // Determine the prefixes log level if available
-        NSNumber * prefixLogLevel = prefixLogLevelForClassName(className);
+        if (tagLogLevel) {
+            currentLevel = (LogLevel) [tagLogLevel intValue];
+        } else {
+            // Determine the prefixes log level if available
+            NSNumber * prefixLogLevel = prefixLogLevelForTag(tag);
 
-        //
-        // Now see if there is a user set level for this class
-        //
-        if (classLogLevel) {
-            currentLevel = (LogLevel) [classLogLevel intValue];
-        } else if (prefixLogLevel) {
-            currentLevel = (LogLevel) [prefixLogLevel intValue];
+            if (prefixLogLevel) {
+                currentLevel = (LogLevel) [prefixLogLevel intValue];
+            }
         }
 
         if (currentLevel >= level) {
@@ -199,10 +185,10 @@ NSString * stringForLogLevel(LogLevel logLevel);
 //
 // Low level C functions
 //
-NSNumber * prefixLogLevelForClassName(NSString * className) {
+NSNumber * prefixLogLevelForTag(NSString * tag) {
 
     for (NSString * prefix in [_loggedPrefixes allKeys]) {
-        if ([className hasPrefix: prefix]) {
+        if ([tag hasPrefix: prefix]) {
             return _loggedPrefixes[prefix];
         }
     }
