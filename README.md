@@ -20,12 +20,60 @@ by TAG name using the `LOG_TAG_<TAGNAME>` environment variable pattern,
 and/or by a TAG prefix by using the `LOG_PREFIX_<TAGPREFIX>` environment
 variable pattern.
 
+## Usage
+
+Using TraceLog is extremely simple out of the box.  Although TraceLog is highly 
+configurable, to get started all you have to do is add the pod to your project 
+and start adding log statements where you need them.  TraceLog initializes and 
+does everything else for you. 
+
+
+For Swift Tracelog comes with the following basic Logging functions (Note: hidden parameters and defaults where omitted for simplicity).
+
+```
+    logError  (tag: String? , message: () -> String)
+    logWarning(tag: String?, message: () -> String)
+    logInfo   (tag: String?, message: () -> String)
+    logTrace  (tag: String?, level: UInt, message: () -> String)
+    logTrace  (level: UInt, message: () -> String)
+```
+
+Usage patterns include:
+
+```
+   logTrace {
+       "Simple trace message"
+   }
+
+   logTrace("MyAppName") {
+       "Simple trace message"
+   }
+
+   logTrace("MyAppName", level: 3) {
+       "Simple trace message"
+   }
+
+   logTrace(3) {
+       "Simple trace message"
+   }
+
+   logTrace("MyAppName") {
+       
+       // You can create complex closures that ultimately
+       // return the String that will be logged to the
+       // log Writers.
+       
+       return "Final message String"
+   }
+```
+
+
 ## Configuration
 
 Each environment variable set is set with a level as the value.  The following
 levels are available in order of display priority.  Each level encompasses the
-level below it with TRACE4 including the output from every level.  The lowest
-level setting, aside from no output or OFF, is ERROR which only output errors when
+level below it with `TRACE4` including the output from every level.  The lowest
+level setting, aside from no output or `OFF`, is `ERROR` which only output errors when
 they occur.
 
 Levels:
@@ -49,7 +97,7 @@ Environment Variables and syntax:
 Multiple Environment variables can be set at one time to get the desired level
 of visibility into the workings of the app.  Here are some examples.
 
-Suppose you wanted the first level of TRACE logging for the ClimateSecurity module
+Suppose you wanted the first level of `TRACE` logging for the ClimateSecurity module
 which has a class prefix of CS and you wanted to see only errors and warnings for
 the rest of the application.  You would set the following:
 
@@ -59,9 +107,9 @@ the rest of the application.  You would set the following:
 ```
 
 More specific settings override less specific so in the above example the less specific
-setting is LOG_ALL which is set to WARNING.  The class prefix is specifying a particular
+setting is `LOG_ALL` which is set to `WARNING`.  The class prefix is specifying a particular
 collection of classes that start with the string CS so this is more specific and overrides
-the LOG_ALL.  If you chose to name a specific class, that would override the prefix settings.
+the `LOG_ALL`.  If you chose to name a specific class, that would override the prefix settings.
 
 For instance, in the example above, if we decided for one class in the ClimateSecurity module
 we needed more output, we could set the following
@@ -70,13 +118,13 @@ we needed more output, we could set the following
     LOG_PREFIX_CS=TRACE1
     LOG_TAG_CSManager=TRACE4
 ```
-This outputs the same as the previous example with the exception of the CSManager class
-which is set to TRACE4 instead of using the less specific TRACE1 setting in LOG_PREFIX.
+This outputs the same as the previous example with the exception of the `CSManager` class
+which is set to `TRACE4` instead of using the less specific `TRACE1` setting in `LOG_PREFIX`.
 
 ## Configuring Xcode for logging
 
 In Xcode select "Edit Scheme" from the "Set the active scheme" menu at the top left.  This will 
-bring up the menu below.  Use the instructions above to set the enviroment variables you require 
+bring up the menu below.  Use the instructions above to set the environment variables you require 
 for your debugging session.
 
 <img src=Docs/Xcode-environment-setup-screenshot.png width=597 height=361 />
