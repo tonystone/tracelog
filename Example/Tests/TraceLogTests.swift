@@ -11,47 +11,61 @@ import TraceLog
 
 
 class TraceLogTests: XCTestCase {
-
-    override func setUp() {
-        super.setUp()
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
-    
-    override func tearDown() {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-        super.tearDown()
-    }
     
     func testError() {
-        logError("Swift: Error test");
+        
+        logError() {
+            "Swift: " + __FUNCTION__
+        }
     }
     
     func testWarning() {
-        logWarning("Swift: Warning test");
+        
+        logWarning() {
+            "Swift: " + __FUNCTION__
+        }
     }
 
     func testInfo() {
-        logInfo("Swift: Info test");
+        
+        logInfo {
+            "Swift: " + __FUNCTION__
+        }
     }
     
     func testTrace() {
-        logTrace("Swift: Trace1 test - no level");
+        
+        logTrace {
+            "Swift: " + __FUNCTION__
+        }
     }
     
     func testTrace1() {
-        logTrace("Swift: Trace1 test", level: 1);
+        
+        logTrace(1) {
+            "Swift: " + __FUNCTION__
+        }
     }
-
+    
     func testTrace2() {
-        logTrace("Swift: Trace2 test", level: 2);
+        
+        logTrace(2) {
+            "Swift: " + __FUNCTION__
+        }
     }
     
     func testTrace3() {
-        logTrace("Swift: Trace3 test", level: 3);
+        
+        logTrace(3) {
+            "Swift: " + __FUNCTION__
+        }
     }
     
     func testTrace4() {
-        logTrace("Swift: Trace4 test", level: 4);
+        
+        logTrace(4) {
+            "Swift: " + __FUNCTION__
+        }
     }
     
 }

@@ -90,17 +90,30 @@ import Foundation
     logError logs a message with LogLevel Error to the LogWriters
 
     - Parameters:
-        - message: An expression that evailuates to the String message to log.
         - tag:     A String to use as a tag to group this call to other calls related to it. If not passed or nil, the file name is used as a tag.
+        - message: An closure or trailing closure that evailuates to the String message to log.
 
     Examples:
     ```
-        logError("Error message")
+        logError {
+            "Error message"
+        }
 
-        logError("Error message", tag: "MyAppName")
+        logError("MyAppName") {
+            "Error message"
+        }
+ 
+        logError("MyAppName") {
+            
+            // You can create complex closures that ultimately
+            // return the String that will be logged to the
+            // log Writers.
+ 
+            return "Final message String"
+        }
     ```
 */
-public func logError(@autoclosure message: () -> String, tag: StaticString? = nil, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__) {
+public func logError(tag: String? = nil, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__, message: () -> String) {
     #if !NDEBUG || TRACELOG_TRACE_ALWAYS_ON
         let derivedTag = derivedTagIfNil(file, tag: tag);
         
@@ -114,17 +127,30 @@ public func logError(@autoclosure message: () -> String, tag: StaticString? = ni
     logWarning logs a message with LogLevel Warning to the LogWriters
 
     - Parameters:
-        - message: An expression that evailuates to the String message to log.
         - tag:     A String to use as a tag to group this call to other calls related to it. If not passed or nil, the file name is used as a tag.
+        - message: An closure or trailing closure that evailuates to the String message to log.
 
     Examples:
     ```
-        logWarning("Warning message")
+        logWarning {
+            "Warning message"
+        }
 
-        logWarning("Warning message", tag: "MyAppName")
+        logWarning("MyAppName") {
+            "Warning message"
+        }
+ 
+        logWarning("MyAppName") {
+            
+            // You can create complex closures that ultimately
+            // return the String that will be logged to the
+            // log Writers.
+            
+            return "Final message String"
+        }
     ```
 */
-public func logWarning(@autoclosure message: () -> String, tag: StaticString? = nil, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__) {
+public func logWarning(tag: String? = nil, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__, message: () -> String) {
     #if !NDEBUG || TRACELOG_TRACE_ALWAYS_ON
         let derivedTag = derivedTagIfNil(file, tag: tag);
         
@@ -137,20 +163,32 @@ public func logWarning(@autoclosure message: () -> String, tag: StaticString? = 
     logInfo logs a message with LogLevel Info to the LogWriters
 
     - Parameters:
-        - message: An expression that evailuates to the String message to log.
         - tag:     A String to use as a tag to group this call to other calls related to it. If not passed or nil, the file name is used as a tag.
+        - message: An closure or trailing closure that evailuates to the String message to log.
 
     Examples:
     ```
-        logInfo("Info message")
+        logInfo {
+            "Info message"
+        }
 
-        logInfo("Info message", tag: "MyAppName")
+        logInfo("MyAppName") {
+            "Info message"
+        }
+ 
+        logInfo("MyAppName") {
+            
+            // You can create complex closures that ultimately
+            // return the String that will be logged to the
+            // log Writers.
+            
+            return "Final message String"
     ```
 */
-public func logInfo(@autoclosure message: () -> String, tag: StaticString? = nil, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__) {
+public func logInfo(tag: String? = nil, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__, message: () -> String) {
     #if !NDEBUG || TRACELOG_TRACE_ALWAYS_ON
         let derivedTag = derivedTagIfNil(file, tag: tag);
-
+        
         TLogger.log(LogLevel.Info, tag: derivedTag, message: message(), file: file.stringValue, function: function.stringValue, lineNumber: UInt32(line));
     #endif
 }
@@ -160,22 +198,81 @@ public func logInfo(@autoclosure message: () -> String, tag: StaticString? = nil
     logTrace logs a message with LogLevel Trace to the LogWriters
 
     - Parameters:
-        - message: An expression that evailuates to the String message to log.
-        - level    An integer representing the trace LogLevel (i.e. TRACE1, TRACE2, TRACE3, and TRACE4.)
         - tag:     A String to use as a tag to group this call to other calls related to it. If not passed or nil, the file name is used as a tag.
+        - level    An integer representing the trace LogLevel (i.e. 1, 2, 3, and 4.)
+        - message: An closure or trailing closure that evailuates to the String message to log.
 
     Examples:
     ```
-        logTrace(1"Trace message")
+        logTrace {
+            "Trace message"
+        }
 
-        logTrace(1"Trace message", tag: "MyAppName")
+        logTrace("MyAppName") {
+            "Trace message"
+        }
+ 
+        logTrace("MyAppName", level: 3) {
+            "Trace message"
+        }
+ 
+        logTrace("MyAppName") {
+            
+            // You can create complex closures that ultimately
+            // return the String that will be logged to the
+            // log Writers.
+            
+            return "Final message String"
+        }
     ```
 */
-public func logTrace(@autoclosure message: () -> String, level: Int = LogLevel.rawTraceLevels.start, tag: StaticString? = nil, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__) {
+public func logTrace(tag: String? = nil, level: Int = LogLevel.rawTraceLevels.start, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__, message: () -> String) {
     #if !NDEBUG || TRACELOG_TRACE_ALWAYS_ON
         assert(LogLevel.rawTraceLevels.contains(level), "Trace levels are in the range of \(LogLevel.rawTraceLevels)");
         
         let derivedTag = derivedTagIfNil(file, tag: tag);
+        
+        TLogger.log(LogLevel(rawValue: LogLevel.Trace1.rawValue + level - 1)!, tag: derivedTag, message: message(), file: file.stringValue, function: function.stringValue, lineNumber: UInt32(line));
+    #endif
+}
+
+/**
+    
+    logTrace logs a message with LogLevel Trace to the LogWriters.
+
+    - Parameters:
+        - level    An integer representing the trace LogLevel (i.e. 1, 2, 3, and 4.)
+        - message: An closure or trailing closure that evailuates to the String message to log.
+
+    Examples:
+    ```
+        logTrace(1) {
+            "Trace message"
+        }
+
+        logTrace(2) {
+            "Trace message"
+        }
+ 
+        logTrace(3) {
+            "Trace message"
+        }
+ 
+        logTrace(4) {
+            
+            // You can create complex closures that ultimately
+            // return the String that will be logged to the
+            // log Writers.
+            
+            return "Final message String"
+        }
+    ```
+*/
+public func logTrace(level: Int, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__, message: () -> String) {
+    #if !NDEBUG || TRACELOG_TRACE_ALWAYS_ON
+        assert(LogLevel.rawTraceLevels.contains(level), "Trace levels are in the range of \(LogLevel.rawTraceLevels)");
+        
+        let derivedTag = derivedTagIfNil(file, tag: nil);
         
         TLogger.log(LogLevel(rawValue: LogLevel.Trace1.rawValue + level - 1)!, tag: derivedTag, message: message(), file: file.stringValue, function: function.stringValue, lineNumber: UInt32(line));
     #endif
@@ -198,9 +295,9 @@ private extension String{
     }
 }
 
-private func derivedTagIfNil(file: StaticString, tag: StaticString?) -> String {
+private func derivedTagIfNil(file: StaticString, tag: String?) -> String {
     if let unwrappedTag = tag {
-       return unwrappedTag.stringValue
+       return unwrappedTag
     } else {
         return file.stringValue.lastPathComponent().stringByDeletingPathExtension()
     }
