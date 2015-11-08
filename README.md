@@ -20,7 +20,7 @@ by TAG name using the `LOG_TAG_<TAGNAME>` environment variable pattern,
 and/or by a TAG prefix by using the `LOG_PREFIX_<TAGPREFIX>` environment
 variable pattern.
 
-## Usage (Swift)
+## USage (Swift)
 
 Using TraceLog is extremely simple out of the box.  Although TraceLog is highly 
 configurable, to get started all you have to do is add the pod to your project 
@@ -32,11 +32,11 @@ For Swift Tracelog comes with the following basic Logging functions (Note: hidde
 parameters and defaults where omitted for simplicity).
 
 ```Swift
-    logError  (tag: String? , message: () -> String)
+    logError  (tag: String?, message: () -> String)
     logWarning(tag: String?, message: () -> String)
     logInfo   (tag: String?, message: () -> String)
     logTrace  (tag: String?, level: UInt, message: () -> String)
-    logTrace  (level: UInt, message: () -> String)
+    logTrace  (level: UInt,  message: () -> String)
 ```
 
 Using it is as simple as calling one of the methods depending on the current type of 
@@ -77,8 +77,32 @@ this statement gets logged based on the current environment configuration.  It n
 calling method is used as the tag.
 
 ```Swift
-   logInfo("MyCustomTag") { "A simple informational message" }
+   logInfo("MyCustomTag") { 
+   
+        "A simple informational message" 
+   }
 ```
+
+There are several trace levels for `logTrace` that can be use.  If you pass not level, you get level 1, otherwise specify 
+a level when making the `logTrace` call.   For example, here is a trace level 1 call.
+
+```Swift
+   logTrace(3) { 
+   
+        "A simple trace level message" 
+   }
+```
+
+You can of course also pass a tag like the rest of the log calls.
+
+```Swift
+    logTrace("MyCustomTag", 3) { 
+    
+         "A simple trace level message" 
+    }
+```
+
+That is all there is to adding logging to your **Swift** application!
 
 ## Configuration
 
