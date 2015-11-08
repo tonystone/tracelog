@@ -20,7 +20,7 @@ by TAG name using the `LOG_TAG_<TAGNAME>` environment variable pattern,
 and/or by a TAG prefix by using the `LOG_PREFIX_<TAGPREFIX>` environment
 variable pattern.
 
-## Usage
+## Usage (Swift)
 
 Using TraceLog is extremely simple out of the box.  Although TraceLog is highly 
 configurable, to get started all you have to do is add the pod to your project 
@@ -28,9 +28,10 @@ and start adding log statements where you need them.  TraceLog initializes and
 does everything else for you. 
 
 
-For Swift Tracelog comes with the following basic Logging functions (Note: hidden parameters and defaults where omitted for simplicity).
+For Swift Tracelog comes with the following basic Logging functions (Note: hidden 
+parameters and defaults where omitted for simplicity).
 
-```
+```Swift
     logError  (tag: String? , message: () -> String)
     logWarning(tag: String?, message: () -> String)
     logInfo   (tag: String?, message: () -> String)
@@ -38,35 +39,46 @@ For Swift Tracelog comes with the following basic Logging functions (Note: hidde
     logTrace  (level: UInt, message: () -> String)
 ```
 
-Usage patterns include:
+Using it is as simple as calling one of the methods depending on the current type of 
+message you want to log, for instance to log a simple informational message.
 
+```Swift
+   logInfo { "A simple informational message" }
 ```
-   logTrace {
-       "Simple trace message"
-   }
 
-   logTrace("MyAppName") {
-       "Simple trace message"
-   }
+Since the message parameter is a closure that evaluates to a String any expression 
+that results in a string message can be use.
 
-   logTrace("MyAppName", level: 3) {
-       "Simple trace message"
-   }
-
-   logTrace(3) {
-       "Simple trace message"
-   }
-
-   logTrace("MyAppName") {
-       
-       // You can create complex closures that ultimately
-       // return the String that will be logged to the
-       // log Writers.
-       
-       return "Final message String"
+```Swift
+   logInfo { 
+        "A simple informational message" + 
+        " and another expression or constant that evaluates to a string" 
    }
 ```
 
+We used closures for several reasons, one is that the closure will not be evaluated (and you wont incur the overhead) 
+if logging is disabled or if the log level for this call is higher then the current log level set. And two, more complex
+expressions can be put into the closure to make decisions on the message to be printed based on the current context of
+of the call.  Again, these complex closures will not get executes in the cases mentioned above.  For instance.
+
+```Swift
+    logInfo { 
+         
+         if unwrappedOptionalString = optionalString {
+            return "Executing with \(unwrappedOptionalString)..."
+         } else {
+             return "Executing..."
+         }
+    }
+```
+
+Log methods take an optional tag that you can use to to group related messages and also be used to determine whether 
+this statement gets logged based on the current environment configuration.  It no tag is set, the file name of the 
+calling method is used as the tag.
+
+```Swift
+   logInfo("MyCustomTag") { "A simple informational message" }
+```
 
 ## Configuration
 
