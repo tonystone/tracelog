@@ -20,12 +20,14 @@ by TAG name using the `LOG_TAG_<TAGNAME>` environment variable pattern,
 and/or by a TAG prefix by using the `LOG_PREFIX_<TAGPREFIX>` environment
 variable pattern.
 
-## Usage (Swift)
+## Usage
 
-Using TraceLog with Swift is extremely simple out of the box.  Although TraceLog is 
+Using TraceLog is extremely simple out of the box.  Although TraceLog is 
 highly configurable, to get started all you have to do is add the pod to your project,
 import TraceLog to the files that require logging, and start adding log statements where 
 you need them.  TraceLog initializes and does everything else for you. 
+
+### Swift
 
 For Swift Tracelog comes with the following basic Logging functions (Note: hidden 
 parameters and defaults where omitted for simplicity).
@@ -42,7 +44,7 @@ Using it is as simple as calling one of the methods depending on the current typ
 message you want to log, for instance to log a simple informational message.
 
 ```Swift
-   logInfo { "A simple informational message" }
+    logInfo { "A simple informational message" }
 ```
 
 Since the message parameter is a closure that evaluates to a String any expression 
@@ -50,15 +52,15 @@ that results in a string message can be use.
 
 ```Swift
    logInfo { 
-        "A simple informational message" + 
-        " and another expression or constant that evaluates to a string" 
+        "A simple informational message: " + 
+        " Another expression or constant that evaluates to a string" 
    }
 ```
 
 We used closures for several reasons, one is that the closure will not be evaluated (and you wont incur the overhead) 
 if logging is disabled or if the log level for this call is higher then the current log level set. And two, more complex
 expressions can be put into the closure to make decisions on the message to be printed based on the current context of
-of the call.  Again, these complex closures will not get executes in the cases mentioned above.  For instance.
+of the call.  Again, these complex closures will not get executed in the cases mentioned above.  For instance.
 
 ```Swift
     logInfo { 
@@ -81,7 +83,7 @@ calling method is used as the tag.
    }
 ```
 
-There are several trace levels for `logTrace` that can be use.  If you pass not level, you get level 1, otherwise specify 
+There are several trace levels for `logTrace` that can be use.  If you don't pass a level, you get level 3, otherwise specify 
 a level when making the `logTrace` call.   For example, here is a trace level 1 call.
 
 ```Swift
@@ -93,22 +95,74 @@ a level when making the `logTrace` call.   For example, here is a trace level 1 
 You can of course also pass a tag like the rest of the log calls.
 
 ```Swift
-    logTrace("MyCustomTag", 3) { 
+    logTrace("MyCustomTag", level: 3) { 
          "A simple trace level message" 
     }
 ```
 
 That is all there is to adding logging to your **Swift** application!
 
-## Usage (Objective-C)
+### Objective-C
 
-As with Swift using TraceLog with Objective-C is extremely simple out of the box.  
+As with Swift using TraceLog with Objective-C is extremely simple out of the box.  The Objective-C
+implementation consists of the following main logging methods. Each had a format specifier (like `NSLog`)
+and an optional variable number of arguments that represent your placeholder replacement values. 
 
 ```Objective-C
     LogError  (format,...)
     LogWarning(format,...)
     LogInfo   (format,...)
     LogTrace  (level,format,...)
+```
+
+Using it is as simple as calling one of the methods depending on the current type of 
+message you want to log, for instance to log a simple informational message.
+
+```Objective-C
+    LogInfo(@"A simple informational message");
+```
+
+You can also call it as you would `NSlog` by using the format specifier and parameters for placeholder replacement.
+
+```Objective-C
+    LogInfo(@"A simple informational message: %@", @"Another NSString or expression that evaluates to an NSString");
+```
+
+More complex expressions can be put into the put into the placeholder values by using Objective-C blocks that return 
+a printable NSObject. These can be used to make decisions on the message to be printed based on the current context of
+of the call.  These complex blocks will not get executed (and you wont incur the overhead) if logging is disabled 
+or if the log level for this call is higher then the current log level set.  For instance.
+
+```Objective-C
+    LogInfo(@"Executing%@...", ^() {
+
+        if (optionalString != nil) {
+            return [NSString stringWithFormat: @" with %@", optionalString];
+        } else {
+            return @"";
+        }
+    }() );
+```
+
+There is a special version of Log methods take an optional tag that you can use to to group related messages and 
+also be used to determine whether this statement gets logged based on the current environment configuration.  These 
+methods begin with C (e.g. `CLogInfo`).
+
+```Objective-C
+    CLogInfo(@"MyCustomTag", @"A simple informational message");
+```
+
+There are several trace levels for `LogTrace` that can be use.  If you don't pass a level, you get level 1, otherwise specify 
+a level when making the `logTrace` call.   For example, here is a trace level 3 call.
+
+```Objective-C
+    LogTrace(3, @"A simple trace level message");
+```
+
+You can of course also pass a tag by using the CLog version of the call.
+
+```Objective-C
+    CLogTrace(3, @"MyCustomTag", @"A simple trace level message");
 ```
 
 ## Configuration
@@ -175,6 +229,21 @@ which is set to `TRACE4` instead of using the less specific `TRACE1` setting in 
 
 TraceLog is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
+
+### Swift
+
+```ruby
+pod "TraceLog/Swift"
+```
+
+### Objective-C
+
+```ruby
+pod "TraceLog/ObjC"
+```
+
+Currently Objective-C is the default so you can simply use the following.  We encourage you to use the former form
+to ensure future compatibility.
 
 ```ruby
 pod "TraceLog"
