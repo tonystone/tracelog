@@ -36,12 +36,12 @@ Pod::Spec.new do |s|
   s.watchos.deployment_target = '2.0'
 
   s.requires_arc = true
-  s.default_subspecs = 'Objc'
+  s.default_subspecs = 'ObjC'
 
   s.public_header_files = 'Pod/TraceLog.h', 'Pod/Internal/TLogger.h'
   s.preserve_paths = 'Pod/*.swift', 'Pod/Internal/*.swift'
 
-  s.subspec 'Objc' do |ss|
+  s.subspec 'ObjC' do |ss|
     ss.source_files = 'Pod/*.h'
     ss.dependency 'TraceLog/Core'
   end
