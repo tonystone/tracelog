@@ -20,13 +20,12 @@ by TAG name using the `LOG_TAG_<TAGNAME>` environment variable pattern,
 and/or by a TAG prefix by using the `LOG_PREFIX_<TAGPREFIX>` environment
 variable pattern.
 
-## USage (Swift)
+## Usage (Swift)
 
-Using TraceLog is extremely simple out of the box.  Although TraceLog is highly 
-configurable, to get started all you have to do is add the pod to your project 
-and start adding log statements where you need them.  TraceLog initializes and 
-does everything else for you. 
-
+Using TraceLog with Swift is extremely simple out of the box.  Although TraceLog is 
+highly configurable, to get started all you have to do is add the pod to your project,
+import TraceLog to the files that require logging, and start adding log statements where 
+you need them.  TraceLog initializes and does everything else for you. 
 
 For Swift Tracelog comes with the following basic Logging functions (Note: hidden 
 parameters and defaults where omitted for simplicity).
@@ -67,7 +66,7 @@ of the call.  Again, these complex closures will not get executes in the cases m
          if unwrappedOptionalString = optionalString {
             return "Executing with \(unwrappedOptionalString)..."
          } else {
-             return "Executing..."
+            return "Executing..."
          }
     }
 ```
@@ -78,7 +77,6 @@ calling method is used as the tag.
 
 ```Swift
    logInfo("MyCustomTag") { 
-   
         "A simple informational message" 
    }
 ```
@@ -88,7 +86,6 @@ a level when making the `logTrace` call.   For example, here is a trace level 1 
 
 ```Swift
    logTrace(3) { 
-   
         "A simple trace level message" 
    }
 ```
@@ -97,14 +94,31 @@ You can of course also pass a tag like the rest of the log calls.
 
 ```Swift
     logTrace("MyCustomTag", 3) { 
-    
          "A simple trace level message" 
     }
 ```
 
 That is all there is to adding logging to your **Swift** application!
 
+## Usage (Objective-C)
+
+As with Swift using TraceLog with Objective-C is extremely simple out of the box.  
+
+```Objective-C
+    LogError  (format,...)
+    LogWarning(format,...)
+    LogInfo   (format,...)
+    LogTrace  (level,format,...)
+```
+
 ## Configuration
+
+TraceLog is unique in that it's configured after compilation in the runtime environment. It reads
+environment variables from the process context to set log levels.  These are typically set in
+Xcode by selecting "Edit Scheme" from the "Set the active scheme" menu at the top left.  That 
+brings up the menu below.
+
+<img src=Docs/Xcode-environment-setup-screenshot.png width=597 height=361 />
 
 Each environment variable set is set with a level as the value.  The following
 levels are available in order of display priority.  Each level encompasses the
@@ -156,14 +170,6 @@ we needed more output, we could set the following
 ```
 This outputs the same as the previous example with the exception of the `CSManager` class
 which is set to `TRACE4` instead of using the less specific `TRACE1` setting in `LOG_PREFIX`.
-
-## Configuring Xcode for logging
-
-In Xcode select "Edit Scheme" from the "Set the active scheme" menu at the top left.  This will 
-bring up the menu below.  Use the instructions above to set the environment variables you require 
-for your debugging session.
-
-<img src=Docs/Xcode-environment-setup-screenshot.png width=597 height=361 />
 
 ## Installation
 
