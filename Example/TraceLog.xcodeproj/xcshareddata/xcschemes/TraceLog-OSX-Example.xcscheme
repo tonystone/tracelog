@@ -74,23 +74,18 @@
       </BuildableProductRunnable>
       <EnvironmentVariables>
          <EnvironmentVariable
+            key = "LOG_ALL"
+            value = "INFO"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
             key = "LOG_PREFIX_TraceLog"
             value = "TRACE4"
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
-            key = "LOG_REGEX_1"
-            value = "TRACE4,tag,/^TraceLog/"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "LOG_ALL"
-            value = "TRACE4"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
             key = "LOG_TAG_MyCustomTag"
-            value = "TRACE4"
+            value = "WARNING"
             isEnabled = "YES">
          </EnvironmentVariable>
       </EnvironmentVariables>
