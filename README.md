@@ -13,9 +13,6 @@ after compilation in the runtime environment. It reads environment variables fro
 process context to set log levels. This allows each developer to configure log output 
 per session based on the debugging needs of that session.
 
-When compiled in a RELEASE build, TraceLog is compiled out and has no overhead in
-the application.
-
 ## Usage
 
 Using TraceLog is extremely simple out of the box.  Although TraceLog is 
@@ -134,14 +131,16 @@ of the call.  These complex blocks will not get executed (and you wont incur the
 or if the log level for this call is higher then the current log level set.  For instance.
 
 ```Objective-C
-    LogInfo(@"Executing%@...", ^() {
-
-        if (optionalString != nil) {
-            return [NSString stringWithFormat: @" with %@", optionalString];
-        } else {
-            return @"";
-        }
-    }() );
+    LogInfo(@"Executing%@...", 
+        ^() {
+        
+            if (optionalString != nil) {
+                return [NSString stringWithFormat: @" with %@", optionalString];
+            } else {
+                return @"";
+            }
+        }() 
+    );
 ```
 
 There is a special version of Log methods take an optional tag that you can use to to group related messages and 
@@ -227,6 +226,14 @@ we needed more output, we could set the following
 ```
 This outputs the same as the previous example with the exception of the `CSManager` tag
 which is set to `TRACE4` instead of using the less specific `TRACE1` setting in `LOG_PREFIX`.
+
+## Runtime Overhead
+
+The **Objective-C** implementation was designed to take advantage of the preprocessor and when compiled in a RELEASE build
+when DEBUG is NOT defined, will incur no overhead in the application.
+
+The **Swift** implantation was designed to take advantage of swift compiler optimizations and will incur no overhead when
+compiled with optimization on (-O) and NDEBUG defined.
 
 ## Installation
 
