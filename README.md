@@ -57,7 +57,6 @@ of the call.  Again, these complex closures will not get executed in the cases m
 
 ```Swift
     logInfo { 
-         
          if unwrappedOptionalString = optionalString {
             return "Executing with \(unwrappedOptionalString)..."
          } else {
@@ -133,7 +132,6 @@ or if the log level for this call is higher then the current log level set.  For
 ```Objective-C
     LogInfo(@"Executing%@...", 
         ^() {
-        
             if (optionalString != nil) {
                 return [NSString stringWithFormat: @" with %@", optionalString];
             } else {
@@ -229,11 +227,11 @@ which is set to `TRACE4` instead of using the less specific `TRACE1` setting in 
 
 ## Runtime Overhead
 
-The **Objective-C** implementation was designed to take advantage of the preprocessor and when compiled in a RELEASE build
-when DEBUG is NOT defined, will incur no overhead in the application.
+The **Objective-C** implementation was designed to take advantage of the preprocessor and when compiled in a `RELEASE` build
+when `DEBUG` is NOT defined, will incur **no overhead** in the application.
 
-The **Swift** implantation was designed to take advantage of swift compiler optimizations and will incur no overhead when
-compiled with optimization on (-O) and NDEBUG defined.
+The **Swift** implantation was designed to take advantage of swift compiler optimizations and will incur **no overhead** when
+compiled with optimization on (`-O`) and `NDEBUG` defined.
 
 ## Installation
 
