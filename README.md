@@ -181,7 +181,7 @@ level setting, aside from no output or `OFF`, is `ERROR` which only output error
 they occur.
 
 Levels:
-```bash
+```Shell
     TRACE4
     TRACE3
     TRACE2
@@ -192,7 +192,7 @@ Levels:
     OFF
 ```
 Environment Variables and syntax:
-```bash
+```Shell
     LOG_TAG_<TAGNAME>=<LEVEL>
     LOG_PREFIX_<TAGPREFIX>=<LEVEL>
     LOG_ALL=<LEVEL>
@@ -205,7 +205,7 @@ Suppose you wanted the first level of `TRACE` logging for the ClimateSecurity mo
 which has a class prefix of CS and you wanted to see only errors and warnings for
 the rest of the application.  You would set the following:
 
-```bash
+```Shell
     LOG_ALL=WARNING
     LOG_PREFIX_CS=TRACE1
 ```
@@ -217,7 +217,7 @@ the `LOG_ALL`.  If you chose to name a specific class, that would override the p
 
 For instance, in the example above, if we decided for, one class in the ClimateSecurity module,
 we needed more output, we could set the following
-```bash
+```Shell
     LOG_ALL=WARNING
     LOG_PREFIX_CS=TRACE1
     LOG_TAG_CSManager=TRACE4
