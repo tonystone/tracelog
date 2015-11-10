@@ -166,12 +166,9 @@ You can of course also pass a tag by using the CLog version of the call.
 
 ## Configuration
 
-TraceLog is a runtime configurable debug logging system.  It allows flexible
-configuration via environment variables at run time which allows each developer
-to configure log output per session based on the debugging needs of that session.
-
-The environment is typically set in Xcode by selecting "Edit Scheme" from the 
-"Set the active scheme" menu at the top left.  That brings up the menu below.
+TraceLog is configured via the environment which is typically setup in Xcode by 
+selecting "Edit Scheme" from the "Set the active scheme" menu at the top left.  
+That brings up the menu below.
 
 <img src=Docs/Xcode-environment-setup-screenshot.png width=597 height=361 />
 
