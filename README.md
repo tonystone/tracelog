@@ -8,24 +8,20 @@
 
 ## Introduction
     
-TraceLog is a runtime configurable debug logging system.  It allows flexible
-configuration via environment variables at run time which allows each developer
-to configure log output per session based on the debugging needs of that session.
+TraceLog is a configurable debug logging system.  It is unique in that it's configured 
+after compilation in the runtime environment. It reads environment variables from the 
+process context to set log levels. This allows each developer to configure log output 
+per session based on the debugging needs of that session.
 
-When compiled in a RELEASE build, TraceLog is compiled out and has no overhead at
-all in the application.
-
-Log output can be configured globally using the `LOG_ALL` environment variable,
-by TAG name using the `LOG_TAG_<TAGNAME>` environment variable pattern,
-and/or by a TAG prefix by using the `LOG_PREFIX_<TAGPREFIX>` environment
-variable pattern.
+When compiled in a RELEASE build, TraceLog is compiled out and has no overhead in
+the application.
 
 ## Usage
 
 Using TraceLog is extremely simple out of the box.  Although TraceLog is 
 highly configurable, to get started all you have to do is add the pod to your project,
 import TraceLog to the files that require logging, and start adding log statements where 
-you need them.  TraceLog initializes and does everything else for you. 
+you need them.  TraceLog initializes itself and does everything else for you. 
 
 ### Swift
 
@@ -47,7 +43,7 @@ message you want to log, for instance to log a simple informational message.
     logInfo { "A simple informational message" }
 ```
 
-Since the message parameter is a closure that evaluates to a String any expression 
+Since the message parameter is a closure that evaluates to a String, any expression 
 that results in a string message can be use.
 
 ```Swift
@@ -84,11 +80,15 @@ calling method is used as the tag.
 ```
 
 There are several trace levels for `logTrace` that can be use.  If you don't pass a level, you get level 3, otherwise specify 
-a level when making the `logTrace` call.   For example, here is a trace level 1 call.
+a level when making the `logTrace` call.   For example, here is a trace level 1 and a level 3 call.
 
 ```Swift
+   logTrace { 
+        "A simple trace level 1 message" 
+   }
+
    logTrace(3) { 
-        "A simple trace level message" 
+        "A simple trace level 3 message" 
    }
 ```
 
@@ -105,7 +105,7 @@ That is all there is to adding logging to your **Swift** application!
 ### Objective-C
 
 As with Swift using TraceLog with Objective-C is extremely simple out of the box.  The Objective-C
-implementation consists of the following main logging methods. Each had a format specifier (like `NSLog`)
+implementation consists of the following main logging methods. Each has a format specifier (like `NSLog`)
 and an optional variable number of arguments that represent your placeholder replacement values. 
 
 ```Objective-C
@@ -152,8 +152,7 @@ methods begin with C (e.g. `CLogInfo`).
     CLogInfo(@"MyCustomTag", @"A simple informational message");
 ```
 
-There are several trace levels for `LogTrace` that can be use.  If you don't pass a level, you get level 1, otherwise specify 
-a level when making the `logTrace` call.   For example, here is a trace level 3 call.
+There are several trace levels for `LogTrace` that can be use. For example, here is a trace level 3 call.
 
 ```Objective-C
     LogTrace(3, @"A simple trace level message");
@@ -167,17 +166,24 @@ You can of course also pass a tag by using the CLog version of the call.
 
 ## Configuration
 
-TraceLog is unique in that it's configured after compilation in the runtime environment. It reads
-environment variables from the process context to set log levels.  These are typically set in
-Xcode by selecting "Edit Scheme" from the "Set the active scheme" menu at the top left.  That 
-brings up the menu below.
+TraceLog is a runtime configurable debug logging system.  It allows flexible
+configuration via environment variables at run time which allows each developer
+to configure log output per session based on the debugging needs of that session.
+
+The environment is typically set in Xcode by selecting "Edit Scheme" from the 
+"Set the active scheme" menu at the top left.  That brings up the menu below.
 
 <img src=Docs/Xcode-environment-setup-screenshot.png width=597 height=361 />
+
+Log output can be configured globally using the `LOG_ALL` environment variable,
+by TAG name using the `LOG_TAG_<TAGNAME>` environment variable pattern,
+and/or by a TAG prefix by using the `LOG_PREFIX_<TAGPREFIX>` environment
+variable pattern.
 
 Each environment variable set is set with a level as the value.  The following
 levels are available in order of display priority.  Each level encompasses the
 level below it with `TRACE4` including the output from every level.  The lowest
-level setting, aside from no output or `OFF`, is `ERROR` which only output errors when
+level setting, aside from no output or `OFF`, is `ERROR` which only outputs errors when
 they occur.
 
 Levels:
@@ -211,18 +217,18 @@ the rest of the application.  You would set the following:
 ```
 
 More specific settings override less specific so in the above example the less specific
-setting is `LOG_ALL` which is set to `WARNING`.  The class prefix is specifying a particular
-collection of classes that start with the string CS so this is more specific and overrides
-the `LOG_ALL`.  If you chose to name a specific class, that would override the prefix settings.
+setting is `LOG_ALL` which is set to `WARNING`.  The tag prefix is specifying a particular
+collection of tags that start with the string CS so this is more specific and overrides
+the `LOG_ALL`.  If you chose to name a specific tag, that would override the prefix settings.
 
-For instance, in the example above, if we decided for, one class in the ClimateSecurity module,
+For instance, in the example above, if we decided for one tag in the ClimateSecurity module,
 we needed more output, we could set the following
 ```Shell
     LOG_ALL=WARNING
     LOG_PREFIX_CS=TRACE1
     LOG_TAG_CSManager=TRACE4
 ```
-This outputs the same as the previous example with the exception of the `CSManager` class
+This outputs the same as the previous example with the exception of the `CSManager` tag
 which is set to `TRACE4` instead of using the less specific `TRACE1` setting in `LOG_PREFIX`.
 
 ## Installation
