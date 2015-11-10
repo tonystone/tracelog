@@ -12,19 +12,20 @@ Pod::Spec.new do |s|
   s.version          = "0.4.0"
   s.summary          = "TraceLog a fully configurable logging service."
   s.description      = <<-DESC
-                             TraceLog is a runtime configurable debug logging system.  It allows flexible
-                             configuration via environment variables at run time which allows each developer
-                             to configure log output per session based on the debugging needs of that session.
+                             TraceLog is a configurable debug logging system.  It is unique in that it's configured
+                             after compilation in the runtime environment. It reads environment variables from the
+                             process context to set log levels. This allows each developer to configure log output
+                             per session based on the debugging needs of that session.
 
-                             When compiled in a RELEASE build, TraceLog is compiled out and has no overhead at
-                             all in the application.
+                             When compiled in a RELEASE build, TraceLog is compiled out and has no overhead in
+                             the application.
 
                              Log output can be configured globally using the LOG_ALL environment variable,
                              by TAG name using the LOG_TAG_<TAGNAME> environment variable pattern,
                              and/or by a TAG prefix by using the LOG_PREFIX_<TAGPREFIX> environment
                              variable pattern.
 
-                             Please see the main header file TraceLog.h for more details and examples.
+                             Please see README.md for more details and examples.
                        DESC
   s.license          = 'Apache License, Version 2.0'
   s.homepage         = "https://github.com/tonystone/tracelog"
