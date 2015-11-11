@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "TraceLog"
-  s.version          = "0.4.0"
+  s.version          = "0.4.1"
   s.summary          = "TraceLog a fully configurable logging service."
   s.description      = <<-DESC
                              TraceLog is a configurable debug logging system.  It is unique in that it's configured

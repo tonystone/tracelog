@@ -5,13 +5,13 @@ use_frameworks!
 target 'TraceLog-iOS', :exclusive => true do
    platform :ios, '8.0'
     
-   pod "TraceLog/Objc", :path => "../"
+   pod "TraceLog/ObjC", :path => "../"
 end
 
 target 'TraceLog-iOS-Tests', :exclusive => true do
    platform :ios, '8.0'
   
-   pod "TraceLog/Objc", :path => "../"
+   pod "TraceLog/ObjC", :path => "../"
 end
 
 target 'TraceLog-OSX', :exclusive => true do
