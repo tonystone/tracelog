@@ -164,7 +164,7 @@ public func logInfo(tag: String? = nil, _ file: StaticString = __FILE__, _ funct
 */
 public func logTrace(tag: String? = nil, level: Int = LogLevel.rawTraceLevels.start, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__, message: () -> String) {
     #if !NDEBUG || TRACELOG_TRACE_ALWAYS_ON
-        assert(LogLevel.rawTraceLevels.contains(level), "Trace levels are in the range of \(LogLevel.rawTraceLevels)");
+        assert(LogLevel.rawTraceLevels.contains(level), "Invalid trace level, levels are in the range of \(LogLevel.rawTraceLevels)");
         
         let derivedTag = derivedTagIfNil(file, tag: tag);
         
@@ -215,14 +215,14 @@ public func logTrace(level: Int, _ file: StaticString = __FILE__, _ function: St
 }
 
 
-// MARK: Internal Private functions & Extensions.
+// MARK: Internal & private functions & Extensions.
 
-private extension LogLevel {
+internal extension LogLevel {
     static var rawRange:       ClosedInterval<Int> { get { return LogLevel.Off.rawValue...LogLevel.Trace4.rawValue } }
     static var rawTraceLevels: ClosedInterval<Int> { get { return 1...4 } }
 }
 
-private extension String{
+internal extension String{
     func lastPathComponent() -> String {
         return (self as NSString).lastPathComponent
     }
