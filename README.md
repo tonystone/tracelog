@@ -53,7 +53,7 @@ that results in a string message can be use.
 We used closures for several reasons, one is that the closure will not be evaluated (and you wont incur the overhead) 
 if logging is disabled or if the log level for this call is higher then the current log level set. And two, more complex
 expressions can be put into the closure to make decisions on the message to be printed based on the current context of
-of the call.  Again, these complex closures will not get executed in the cases mentioned above.  For instance.
+of the call.  Again, these complex closures will not get executed in the cases mentioned above.  For instance:
 
 ```Swift
     logInfo { 
@@ -127,7 +127,7 @@ You can also call it as you would `NSlog` by using the format specifier and para
 More complex expressions can be put into the put into the placeholder values by using Objective-C blocks that return 
 a printable NSObject. These can be used to make decisions on the message to be printed based on the current context of
 of the call.  These complex blocks will not get executed (and you wont incur the overhead) if logging is disabled 
-or if the log level for this call is higher then the current log level set.  For instance.
+or if the log level for this call is higher then the current log level set.  For instance:
 
 ```Objective-C
     LogInfo(@"Executing%@...", 
@@ -216,7 +216,7 @@ collection of tags that start with the string CS so this is more specific and ov
 the `LOG_ALL`.  If you chose to name a specific tag, that would override the prefix settings.
 
 For instance, in the example above, if we decided for one tag in the ClimateSecurity module,
-we needed more output, we could set the following
+we needed more output, we could set the following:
 ```Shell
     LOG_ALL=WARNING
     LOG_PREFIX_CS=TRACE1
@@ -255,6 +255,18 @@ to ensure future compatibility.
 
 ```ruby
 pod "TraceLog"
+```
+
+### Mixed Environments
+
+TraceLog was designed to work in mixed environments so you can have **Swift** pod/modules using TraceLog as well as 
+**Objective-C** pods/libraries in the same application. The configuration settings you set will set the values for both. 
+If you have an application that contains mixed **Swift** and **Objective-C** code you can include both submodules 
+into you application.  For example:
+
+```ruby
+pod "TraceLog/Swift"
+pod "TraceLog/ObjC"
 ```
 
 See the ["Using CocoaPods"](https://guides.cocoapods.org/using/using-cocoapods.html) guide for more information.
