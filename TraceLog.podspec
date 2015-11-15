@@ -39,16 +39,16 @@ Pod::Spec.new do |s|
   s.requires_arc = true
   s.default_subspecs = 'ObjC'
 
-  s.public_header_files = 'Pod/TraceLog.h', 'Pod/Internal/TLogger.h'
-  s.preserve_paths = 'Pod/*.swift', 'Pod/Internal/*.swift'
-
-  s.subspec 'ObjC' do |ss|
-    ss.source_files = 'Pod/*.h'
-    ss.dependency 'TraceLog/Core'
+  s.subspec 'Core' do |ss|
+     ss.public_header_files = 'Pod/Core/*.h', 'Pod/Internal/*.h'
+     ss.source_files = 'Pod/Core/**/*.{h,m}'
   end
 
-  s.subspec 'Core' do |ss|
-      ss.source_files = 'Pod/Internal/*.{h,m}'
+  s.subspec 'ObjC' do |ss|
+    ss.public_header_files = 'Pod/ObjC/TraceLog.h'
+    ss.source_files        = 'Pod/ObjC/TraceLog.h'
+
+    ss.dependency 'TraceLog/Core'
   end
 
   s.subspec 'Swift' do |ss|
@@ -56,7 +56,9 @@ Pod::Spec.new do |s|
     ss.osx.deployment_target = '10.10'
     ss.watchos.deployment_target = '2.0'
 
-    ss.source_files = 'Pod/*.swift', 'Pod/Internal/*.swift'
+    ss.source_files = 'Pod/Swift/*.swift'
+    ss.preserve_paths = 'Pod/Swift/*.swift'
+
     ss.dependency 'TraceLog/Core'
   end
 

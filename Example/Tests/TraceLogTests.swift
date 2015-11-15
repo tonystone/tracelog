@@ -9,6 +9,12 @@
 import XCTest
 import TraceLog
 
+internal class Testriter : NSObject, TLWriter {
+
+    func log(date: NSTimeInterval, level: LogLevel, tag: String, message: String?, file: String, function: String, lineNumber: UInt) -> Void {
+    }
+}
+
 
 class TraceLogTests: XCTestCase {
     
