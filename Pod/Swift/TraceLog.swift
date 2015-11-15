@@ -53,7 +53,7 @@ public func logError(tag: String? = nil, _ file: StaticString = __FILE__, _ func
     #if !NDEBUG || TRACELOG_TRACE_ALWAYS_ON
         let derivedTag = derivedTagIfNil(file, tag: tag);
         
-        TLogger.log(LogLevel.Error, tag: derivedTag, message: message(), file: file.stringValue, function: function.stringValue, lineNumber: UInt32(line));
+        TLLogger.logPrimative(LogLevel.Error, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message);
     #endif
 }
 
@@ -90,7 +90,7 @@ public func logWarning(tag: String? = nil, _ file: StaticString = __FILE__, _ fu
     #if !NDEBUG || TRACELOG_TRACE_ALWAYS_ON
         let derivedTag = derivedTagIfNil(file, tag: tag);
         
-        TLogger.log(LogLevel.Warning, tag: derivedTag, message: message(), file: file.stringValue, function: function.stringValue, lineNumber: UInt32(line));
+        TLLogger.logPrimative(LogLevel.Warning, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message);
     #endif
 }
 
@@ -125,7 +125,7 @@ public func logInfo(tag: String? = nil, _ file: StaticString = __FILE__, _ funct
     #if !NDEBUG || TRACELOG_TRACE_ALWAYS_ON
         let derivedTag = derivedTagIfNil(file, tag: tag);
         
-        TLogger.log(LogLevel.Info, tag: derivedTag, message: message(), file: file.stringValue, function: function.stringValue, lineNumber: UInt32(line));
+        TLLogger.logPrimative(LogLevel.Info, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message);
     #endif
 }
 
@@ -168,7 +168,7 @@ public func logTrace(tag: String? = nil, level: Int = LogLevel.rawTraceLevels.st
         
         let derivedTag = derivedTagIfNil(file, tag: tag);
         
-        TLogger.log(LogLevel(rawValue: LogLevel.Trace1.rawValue + level - 1)!, tag: derivedTag, message: message(), file: file.stringValue, function: function.stringValue, lineNumber: UInt32(line));
+        TLLogger.logPrimative(LogLevel(rawValue: LogLevel.Trace1.rawValue + level - 1)!, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message);
     #endif
 }
 
@@ -210,7 +210,7 @@ public func logTrace(level: Int, _ file: StaticString = __FILE__, _ function: St
         
         let derivedTag = derivedTagIfNil(file, tag: nil);
         
-        TLogger.log(LogLevel(rawValue: LogLevel.Trace1.rawValue + level - 1)!, tag: derivedTag, message: message(), file: file.stringValue, function: function.stringValue, lineNumber: UInt32(line));
+        TLLogger.logPrimative(LogLevel(rawValue: LogLevel.Trace1.rawValue + level - 1)!, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message);
     #endif
 }
 

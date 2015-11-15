@@ -1,8 +1,14 @@
 #import <UIKit/UIKit.h>
 
-#import "TLogger.h"
+#import "TLConsoleWriter.h"
+#import "TLLogger.h"
+#import "TLLogLevel.h"
+#import "TLWriter.h"
 #import "TraceLog.h"
-#import "TLogger.h"
+#import "TLConsoleWriter.h"
+#import "TLLogger.h"
+#import "TLLogLevel.h"
+#import "TLWriter.h"
 #import "TraceLog.h"
 
 FOUNDATION_EXPORT double TraceLogVersionNumber;

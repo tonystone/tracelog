@@ -19,27 +19,24 @@
   },
   "requires_arc": true,
   "default_subspecs": "ObjC",
-  "public_header_files": [
-    "Pod/TraceLog.h",
-    "Pod/Internal/TLogger.h"
-  ],
-  "preserve_paths": [
-    "Pod/*.swift",
-    "Pod/Internal/*.swift"
-  ],
   "subspecs": [
     {
+      "name": "Core",
+      "public_header_files": [
+        "Pod/Core/*.h",
+        "Pod/Internal/*.h"
+      ],
+      "source_files": "Pod/Core/**/*.{h,m}"
+    },
+    {
       "name": "ObjC",
-      "source_files": "Pod/*.h",
+      "public_header_files": "Pod/ObjeC/TraceLog.h",
+      "source_files": "Pod/ObjC/TraceLog.h",
       "dependencies": {
         "TraceLog/Core": [
 
         ]
       }
-    },
-    {
-      "name": "Core",
-      "source_files": "Pod/Internal/*.{h,m}"
     },
     {
       "name": "Swift",
@@ -48,10 +45,8 @@
         "osx": "10.10",
         "watchos": "2.0"
       },
-      "source_files": [
-        "Pod/*.swift",
-        "Pod/Internal/*.swift"
-      ],
+      "source_files": "Pod/Swift/*.swift",
+      "preserve_paths": "Pod/Swift/*.swift",
       "dependencies": {
         "TraceLog/Core": [
 

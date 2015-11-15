@@ -95,7 +95,6 @@
 		EA3038401BEA8D6800DC4084 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "TraceLog-iOS/Base.lproj/Main_iPad.storyboard"; sourceTree = SOURCE_ROOT; };
 		EA3038421BEA8D6800DC4084 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = "TraceLog-iOS/Base.lproj/Main_iPhone.storyboard"; sourceTree = SOURCE_ROOT; };
 		EA3038461BEA8E3400DC4084 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = "TraceLog-iOS/en.lproj/InfoPlist.strings"; sourceTree = SOURCE_ROOT; };
-		EA30384D1BEA94DC00DC4084 /* Tests-Bridging-Header.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "Tests-Bridging-Header.h"; sourceTree = "<group>"; };
 		EA30384E1BEA94DC00DC4084 /* TraceLogTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TraceLogTests.m; sourceTree = "<group>"; };
 		EA30384F1BEA94DC00DC4084 /* TraceLogTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraceLogTests.swift; sourceTree = "<group>"; };
 		EA5C7FB41BEBAA7000B3951D /* TraceLog-OSX.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TraceLog-OSX.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -208,8 +207,7 @@
 				EA3037FF1BEA882E00DC4084 /* TLViewController.m */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
-			name = "TraceLog-iOS";
-			path = TraceLog;
+			path = "TraceLog-iOS";
 			sourceTree = "<group>";
 		};
 		6003F594195388D20070C39A /* Supporting Files */ = {
@@ -277,7 +275,6 @@
 		EA30384C1BEA94DC00DC4084 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
-				EA30384D1BEA94DC00DC4084 /* Tests-Bridging-Header.h */,
 				EA30384E1BEA94DC00DC4084 /* TraceLogTests.m */,
 				EA30384F1BEA94DC00DC4084 /* TraceLogTests.swift */,
 			);
@@ -300,8 +297,7 @@
 			children = (
 				EA5C7FCF1BEBAB3200B3951D /* Supporting Files */,
 			);
-			name = "TraceLog-OSX-Tests";
-			path = "TraceLog-OSXTests";
+			path = "TraceLog-OSX-Tests";
 			sourceTree = "<group>";
 		};
 		EA5C7FCF1BEBAB3200B3951D /* Supporting Files */ = {

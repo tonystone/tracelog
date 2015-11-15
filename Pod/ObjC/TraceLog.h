@@ -21,7 +21,8 @@
 #ifndef Pods_TraceLog_h
 #define Pods_TraceLog_h
 
-#import "TLogger.h"
+#import "TLLogger.h"
+#import "TLWriter.h"
 
 // Instance level macros
 

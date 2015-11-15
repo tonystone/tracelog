@@ -1,7 +1,6 @@
 /**
- *   TLogger.h
+ *   TLLogLevel.h
  *
- *   Copyright 2015 The Climate Corporation
  *   Copyright 2015 Tony Stone
  *
  *   Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,16 +15,9 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  *
- *   Created by Tony Stone on 3/4/15.
+ *   Created by Tony Stone on 11/13/15.
  */
 #import <Foundation/Foundation.h>
-
-/*
-  WARNING:  This is a private file and nothing
-  in this file should be used on it's own.  Please
-  see TraceLog.h for the public interface to this.
-*/
-
 
 typedef NS_ENUM(NSInteger, LogLevel) {
     LogLevelInvalid = -1,
@@ -39,13 +31,5 @@ typedef NS_ENUM(NSInteger, LogLevel) {
     LogLevelTrace4  = 7
 };
 
-@interface TLogger : NSObject
-    // NOTE: Do not call this directly, please use the macros for all calls.
-    + (void) log: (LogLevel) level tag: (NSString *) tag message: (NSString *) message file: (const char *) file function: (const char *) function lineNumber: (unsigned int) lineNumber;
-@end
-
-#ifdef DEBUG
-#define LogIfEnabled(logLevel,tagName,format,...) [TLogger log: logLevel tag: tagName message: [NSString stringWithFormat: format, ##__VA_ARGS__] file: __FILE__ function: __FUNCTION__ lineNumber: __LINE__]
-#else
-#define LogIfEnabled(logLevel,label, format, ...) /* empty */
-#endif
+LogLevel logLevelForString(NSString * logLevelString);
+NSString * stringForLogLevel(LogLevel logLevel);

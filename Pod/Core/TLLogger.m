@@ -18,7 +18,10 @@
  *
  *   Created by Tony Stone on 3/4/15.
  */
-#import "TLogger.h"
+#import "TLLogger.h"
+#import "TLLogLevel.h"
+#import "TLWriter.h"
+#import "TLConsoleWriter.h"
 
 static NSString * const ModuleLogName  = @"TraceLog";
 
@@ -29,37 +32,45 @@ static NSString * const LogScopeAll    = @"LOG_ALL";
 //
 // Internal static data
 //
-static NSArray      * _logLevelStrings;
-static LogLevel       _globalLogLevel;
-static NSDictionary * _loggedPrefixes;
-static NSDictionary * _loggedTags;
+static LogLevel         _globalLogLevel;
+static NSDictionary   * _loggedPrefixes;
+static NSDictionary   * _loggedTags;
+static NSMutableArray * _logWriters;
 
 //
 // Forward declarations
 //
 NSNumber * prefixLogLevelForTag(NSString * tag);
-LogLevel logLevelForString(NSString * logLevelString);
-NSString * stringForLogLevel(LogLevel logLevel);
 
 //
 // Main implementation class
 //
-@implementation TLogger
+@implementation TLLogger
 
     + (void) initialize {
 #ifdef DEBUG
 
-        if (self == [TLogger class]) {
+        if (self == [TLLogger class]) {
             //
-            // Note: This must match the positive values of the LogLevel enum.
+            // Set the default level for initialization
             //
-            _logLevelStrings = @[@"OFF", @"ERROR", @"WARNING", @"INFO", @"TRACE1", @"TRACE2", @"TRACE3", @"TRACE4"];
             _globalLogLevel  = LogLevelInfo;
+
+            //
+            // Now we must get the logWriters in place before continuing
+            // in order to be able to log out initialization process.
+            //
+            _logWriters = [[NSMutableArray alloc] init];
+
+            // Add the default console log writer
+            _logWriters[0] = [[TLConsoleWriter alloc] init];
 
             //
             // If the system is enabled, we always print our initialization messages and errors.
             //
-            [TLogger log: LogLevelInfo tag: ModuleLogName message: [[NSMutableString alloc] initWithFormat: @"%@ is enabled, reading environment and configuring logging...", ModuleLogName] file: __FILE__ function: __FUNCTION__ lineNumber: __LINE__];
+            [TLLogger logPrimative: LogLevelInfo tag: ModuleLogName file: __FILE__ function: __FUNCTION__ lineNumber: __LINE__ message: ^{
+                return [[NSMutableString alloc] initWithFormat: @"%@ is enabled, reading environment and configuring logging...", ModuleLogName];
+            }];
             
             NSDictionary * environment = [[NSProcessInfo processInfo] environment];
 
@@ -80,7 +91,9 @@ NSString * stringForLogLevel(LogLevel logLevel);
                     if (requestedLogLevel != LogLevelInvalid) {
                         _globalLogLevel = requestedLogLevel;
                     } else {
-                        [TLogger log: LogLevelError tag: ModuleLogName message: [NSString stringWithFormat: @"Variable '%@' has an invalid logLevel of '%@'. '%@' will be set to %@.", upperCaseVariable, upperCaselogLevelString, LogScopeAll, stringForLogLevel(_globalLogLevel)] file:  __FILE__ function: __FUNCTION__ lineNumber: __LINE__];
+                        [TLLogger logPrimative: LogLevelError tag: ModuleLogName file: __FILE__ function: __FUNCTION__ lineNumber: __LINE__ message: ^{
+                            return [NSString stringWithFormat: @"Variable '%@' has an invalid logLevel of '%@'. '%@' will be set to %@.", upperCaseVariable, upperCaselogLevelString, LogScopeAll, stringForLogLevel(_globalLogLevel)];
+                        }];
                     }
                     
                 } else if ([upperCaseVariable hasPrefix: LogScopePrefix]) {
@@ -95,7 +108,9 @@ NSString * stringForLogLevel(LogLevel logLevel);
                         
                         loggedPrefixes[logLevelScope] =  @(requestedLogLevel);
                     } else {
-                        [TLogger log: LogLevelError tag: ModuleLogName message: [NSString stringWithFormat: @"Variable '%@' has an invalid logLevel of '%@'. '%@' will NOT be set.", upperCaseVariable, upperCaselogLevelString, upperCaseVariable] file:  __FILE__ function: __FUNCTION__ lineNumber: __LINE__];
+                        [TLLogger logPrimative: LogLevelError tag: ModuleLogName file: __FILE__ function: __FUNCTION__ lineNumber: __LINE__  message: ^{
+                            return[NSString stringWithFormat: @"Variable '%@' has an invalid logLevel of '%@'. '%@' will NOT be set.", upperCaseVariable, upperCaselogLevelString, upperCaseVariable];
+                        }];
                     }
                     
                 } else if ([upperCaseVariable hasPrefix: LogScopeTag]) {
@@ -111,7 +126,9 @@ NSString * stringForLogLevel(LogLevel logLevel);
                         
                         loggedTags[logLevelScope]  = @(requestedLogLevel);
                     } else {
-                        [TLogger log: LogLevelError tag: ModuleLogName message: [NSString stringWithFormat: @"Variable '%@' has an invalid logLevel of '%@'. '%@' will NOT be set.", upperCaseVariable, upperCaselogLevelString, upperCaseVariable] file:  __FILE__ function: __FUNCTION__ lineNumber: __LINE__];
+                        [TLLogger logPrimative: LogLevelError tag: ModuleLogName file: __FILE__ function: __FUNCTION__ lineNumber: __LINE__  message: ^{
+                            return [NSString stringWithFormat: @"Variable '%@' has an invalid logLevel of '%@'. '%@' will NOT be set.", upperCaseVariable, upperCaselogLevelString, upperCaseVariable];
+                         }];
                     }
                 }
             }
@@ -119,7 +136,9 @@ NSString * stringForLogLevel(LogLevel logLevel);
             _loggedTags = [[NSDictionary alloc] initWithDictionary: loggedTags];
             
             // Print the current configuration
-            [TLogger log: LogLevelInfo tag: ModuleLogName message: [NSString stringWithFormat: @"%@ has been configured with the following settings: \n%@", ModuleLogName, [TLogger currentConfigurationString]] file:  __FILE__ function: __FUNCTION__ lineNumber: __LINE__];
+            [TLLogger logPrimative: LogLevelInfo tag: ModuleLogName file: __FILE__ function: __FUNCTION__ lineNumber: __LINE__ message: ^{
+                return [NSString stringWithFormat: @"%@ has been configured with the following settings: \n%@", ModuleLogName, [TLLogger currentConfigurationString]];
+            }];
         }
 #endif
     }
@@ -156,27 +175,38 @@ NSString * stringForLogLevel(LogLevel logLevel);
         return loggedString;
     }
 
-    + (void) log: (LogLevel) level tag: (NSString *) tag message: (NSString *) message file: (const char *) file function: (const char *) function lineNumber: (unsigned int) lineNumber {
-
+    + (LogLevel) logLevelForContext: (NSString *) tag file: (const char *) file function: (const char *) function lineNumber: (NSUInteger) lineNumber {
+        
         // Set to the default global level first
-        LogLevel currentLevel = _globalLogLevel;
-
+        LogLevel level = _globalLogLevel;
+        
         // Determine if there is a class log level first
         NSNumber * tagLogLevel = _loggedTags[tag];
-
+        
         if (tagLogLevel) {
-            currentLevel = (LogLevel) [tagLogLevel intValue];
+            level = (LogLevel) [tagLogLevel intValue];
         } else {
             // Determine the prefixes log level if available
             NSNumber * prefixLogLevel = prefixLogLevelForTag(tag);
-
+            
             if (prefixLogLevel) {
-                currentLevel = (LogLevel) [prefixLogLevel intValue];
+                level = (LogLevel) [prefixLogLevel intValue];
             }
         }
+        return level;
+    }
 
+    + (void) logPrimative: (LogLevel) level tag: (nonnull NSString *) tag file: (nonnull const char *) file function: (nonnull const char *) function lineNumber: (NSUInteger) lineNumber message: (nonnull NSString  *(^) (void)) message {
+       
+        LogLevel currentLevel = [self logLevelForContext: tag file: file function: function lineNumber: lineNumber];
+        
         if (currentLevel >= level) {
-            NSLog(@"%7s: <%@> %@", [stringForLogLevel(level) cStringUsingEncoding:NSUTF8StringEncoding], tag, message);
+            NSTimeInterval timestamp     = [NSDate timeIntervalSinceReferenceDate];
+            NSString     * messageString = message();
+            
+            for (id <TLWriter> logWriter in _logWriters) {
+                [logWriter log: timestamp level: level tag: tag message: messageString file: [NSString stringWithUTF8String: file] function: [NSString stringWithUTF8String: function] lineNumber: lineNumber];
+            }
         }
     }
 
@@ -195,21 +225,5 @@ NSNumber * prefixLogLevelForTag(NSString * tag) {
     return nil;
 }
 
-LogLevel logLevelForString(NSString * logLevelString) {
 
-    for (LogLevel logLevel = LogLevelOff; logLevel < [_logLevelStrings count]; logLevel++) {
-        if ([logLevelString isEqualToString: _logLevelStrings[logLevel]]) {
-            return logLevel;
-        }
-    }
-    return LogLevelInvalid;
-}
-
-NSString * stringForLogLevel(LogLevel logLevel) {
-
-    if (logLevel > [_logLevelStrings count] || logLevel < 0) {
-        return @"INVALID";
-    }
-    return _logLevelStrings[logLevel];
-}
 
