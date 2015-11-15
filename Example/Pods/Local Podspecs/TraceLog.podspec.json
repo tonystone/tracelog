@@ -1,7 +1,7 @@
 {
   "name": "TraceLog",
   "version": "0.4.1",
-  "summary": "TraceLog a fully configurable logging service.",
+  "summary": "Dead Simple: logging the way it's meant to be!",
   "description": "TraceLog is a configurable debug logging system.  It is unique in that it's configured\nafter compilation in the runtime environment. It reads environment variables from the\nprocess context to set log levels. This allows each developer to configure log output\nper session based on the debugging needs of that session.\n\nWhen compiled in a RELEASE build, TraceLog is compiled out and has no overhead in\nthe application.\n\nLog output can be configured globally using the LOG_ALL environment variable,\nby TAG name using the LOG_TAG_<TAGNAME> environment variable pattern,\nand/or by a TAG prefix by using the LOG_PREFIX_<TAGPREFIX> environment\nvariable pattern.\n\nPlease see README.md for more details and examples.",
   "license": "Apache License, Version 2.0",
   "homepage": "https://github.com/tonystone/tracelog",
@@ -30,7 +30,7 @@
     },
     {
       "name": "ObjC",
-      "public_header_files": "Pod/ObjeC/TraceLog.h",
+      "public_header_files": "Pod/ObjC/TraceLog.h",
       "source_files": "Pod/ObjC/TraceLog.h",
       "dependencies": {
         "TraceLog/Core": [

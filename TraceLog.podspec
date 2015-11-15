@@ -45,7 +45,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'ObjC' do |ss|
-    ss.public_header_files = 'Pod/ObjeC/TraceLog.h'
+    ss.public_header_files = 'Pod/ObjC/TraceLog.h'
     ss.source_files        = 'Pod/ObjC/TraceLog.h'
 
     ss.dependency 'TraceLog/Core'
