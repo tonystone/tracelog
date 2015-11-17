@@ -79,6 +79,11 @@
             isEnabled = "YES">
          </EnvironmentVariable>
          <EnvironmentVariable
+            key = "LOG_TAG_AppDelegate"
+            value = "TRACE4"
+            isEnabled = "YES">
+         </EnvironmentVariable>
+         <EnvironmentVariable
             key = "LOG_PREFIX_TraceLog"
             value = "TRACE4"
             isEnabled = "YES">
