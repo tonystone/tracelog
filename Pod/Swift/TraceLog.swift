@@ -50,10 +50,10 @@ import Foundation
     ```
 */
 public func logError(tag: String? = nil, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__, message: () -> String) {
-    #if !NDEBUG || TRACELOG_TRACE_ALWAYS_ON
+    #if DEBUG || TRACELOG_ENABLE
         let derivedTag = derivedTagIfNil(file, tag: tag);
         
-        TLLogger.logPrimative(LogLevel.Error, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message);
+        TLLogger.logPrimitive(LogLevel.Error, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message);
     #endif
 }
 
@@ -87,10 +87,10 @@ public func logError(tag: String? = nil, _ file: StaticString = __FILE__, _ func
     ```
 */
 public func logWarning(tag: String? = nil, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__, message: () -> String) {
-    #if !NDEBUG || TRACELOG_TRACE_ALWAYS_ON
+    #if DEBUG || TRACELOG_ENABLE
         let derivedTag = derivedTagIfNil(file, tag: tag);
         
-        TLLogger.logPrimative(LogLevel.Warning, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message);
+        TLLogger.logPrimitive(LogLevel.Warning, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message);
     #endif
 }
 
@@ -122,10 +122,10 @@ public func logWarning(tag: String? = nil, _ file: StaticString = __FILE__, _ fu
     ```
 */
 public func logInfo(tag: String? = nil, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__, message: () -> String) {
-    #if !NDEBUG || TRACELOG_TRACE_ALWAYS_ON
+    #if DEBUG || TRACELOG_ENABLE
         let derivedTag = derivedTagIfNil(file, tag: tag);
         
-        TLLogger.logPrimative(LogLevel.Info, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message);
+        TLLogger.logPrimitive(LogLevel.Info, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message);
     #endif
 }
 
@@ -163,12 +163,12 @@ public func logInfo(tag: String? = nil, _ file: StaticString = __FILE__, _ funct
     ```
 */
 public func logTrace(tag: String? = nil, level: Int = LogLevel.rawTraceLevels.start, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__, message: () -> String) {
-    #if !NDEBUG || TRACELOG_TRACE_ALWAYS_ON
+    #if DEBUG || TRACELOG_ENABLE
         assert(LogLevel.rawTraceLevels.contains(level), "Invalid trace level, levels are in the range of \(LogLevel.rawTraceLevels)");
         
         let derivedTag = derivedTagIfNil(file, tag: tag);
         
-        TLLogger.logPrimative(LogLevel(rawValue: LogLevel.Trace1.rawValue + level - 1)!, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message);
+        TLLogger.logPrimitive(LogLevel(rawValue: LogLevel.Trace1.rawValue + level - 1)!, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message);
     #endif
 }
 
@@ -205,12 +205,12 @@ public func logTrace(tag: String? = nil, level: Int = LogLevel.rawTraceLevels.st
     ```
 */
 public func logTrace(level: Int, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__, message: () -> String) {
-    #if !NDEBUG || TRACELOG_TRACE_ALWAYS_ON
+    #if DEBUG || TRACELOG_ENABLE
         assert(LogLevel.rawTraceLevels.contains(level), "Trace levels are in the range of \(LogLevel.rawTraceLevels)");
         
         let derivedTag = derivedTagIfNil(file, tag: nil);
         
-        TLLogger.logPrimative(LogLevel(rawValue: LogLevel.Trace1.rawValue + level - 1)!, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message);
+        TLLogger.logPrimitive(LogLevel(rawValue: LogLevel.Trace1.rawValue + level - 1)!, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message);
     #endif
 }
 
