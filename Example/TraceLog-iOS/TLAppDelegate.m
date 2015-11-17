@@ -26,6 +26,11 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    LogInfo(@"Test info message");
+    
+    LogTrace(1,@"Test trace 1 message");
+    
     return YES;
 }
 							
