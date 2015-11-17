@@ -231,7 +231,7 @@ The **Objective-C** implementation was designed to take advantage of the preproc
 when `DEBUG` is NOT defined, will incur **no overhead** in the application.
 
 The **Swift** implantation was designed to take advantage of swift compiler optimizations and will incur **no overhead** when
-compiled with optimization on (`-O`) and `NDEBUG` defined.
+compiled with optimization on (`-O`) and `DEBUG` is NOT defined.
 
 ## Installation
 
@@ -243,6 +243,15 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod "TraceLog/Swift"
 ```
+
+For Swift modules, you must enable TraceLog by adding the Swift Compiler flag `DEBUG` 
+to the TraceLog framework (not the project itself). 
+
+1. Find the TraceLog project target
+1. Go to: Build Settings -> Swift Compiler - Custom Flags  
+2. Add `-D DEBUG` flag to the scheme's that you require logging   
+
+<img src='Docs/Swift Compiler - Custom Flags - DEBUG.png' width=600 height=120 />
 
 ### Objective-C
 
