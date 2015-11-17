@@ -24,8 +24,8 @@
 @implementation TLConsoleWriter
 
     - (void) log: (NSTimeInterval) timestamp level: (LogLevel) level tag: (nonnull const NSString *) tag message: (nullable const NSString *) message file: (nonnull const NSString *) file function: (const NSString *) function lineNumber: (NSUInteger) lineNumber {
-
-            NSLog(@"%7s: <%@> %@", [stringForLogLevel(level) cStringUsingEncoding:NSUTF8StringEncoding], tag, message);
+        
+        NSLog(@"%7s: <%@> %@", [stringForLogLevel(level) cStringUsingEncoding:NSUTF8StringEncoding], tag, message);
     }
 
 @end

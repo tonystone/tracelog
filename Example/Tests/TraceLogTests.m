@@ -82,7 +82,7 @@
     }
 
     - (void) testLogTrace_WithInvalidLevel {
-        LogTrace(5,@"Objective-C Level Test - TRACE%u",5);
+        XCTAssertThrowsSpecificNamed((LogTrace(5,@"Objective-C Level Test - TRACE%u",5)), NSException, NSInternalInconsistencyException);
     }
 
     //
