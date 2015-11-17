@@ -27,17 +27,14 @@
   see TraceLog.h for the public interface to this.
 */
 
-//typedef NSString*_Nonnull(^logPrimativeMessageBlock)();
-//void logPrimative(LogLevel level, NSString * _Nonnull tag, logPrimativeMessageBlock _Nonnull message, const char * _Nonnull file, const char * _Nonnull function, unsigned int lineNumber);
-
 @interface TLLogger : NSObject
 
     // NOTE: Do not call this directly, please use the macros for all calls.
-    + (void) logPrimative:  (LogLevel) level tag: (nonnull NSString *) tag file: (nonnull const char *) file function: (nonnull const char *) function lineNumber: (NSUInteger) lineNumber message: (nonnull NSString * _Nullable (^) (void)) message;
+    + (void) logPrimitive: (LogLevel) level tag: (nonnull NSString *) tag file: (nonnull const char *) file function: (nonnull const char *) function lineNumber: (NSUInteger) lineNumber message: (nonnull NSString * _Nullable (^)()) message;
 @end
 
-#ifdef DEBUG
-#define LogIfEnabled(logLevel,tagName,format,...) [TLLogger logPrimative: logLevel tag: tagName file: __FILE__ function: __FUNCTION__ lineNumber: __LINE__ message: ^{ return [NSString stringWithFormat: format, ##__VA_ARGS__]; }]
+#if DEBUG || TRACELOG_ENABLE
+    #define LogIfEnabled(logLevel,tagName,format,...) [TLLogger logPrimitive: logLevel tag: tagName file: __FILE__ function: __FUNCTION__ lineNumber: __LINE__ message: ^{ return [NSString stringWithFormat: format, ##__VA_ARGS__]; }]
 #else
-#define LogIfEnabled(logLevel,label, format, ...) /* empty */
+    #define LogIfEnabled(logLevel,label, format, ...) ((void)0)
 #endif
