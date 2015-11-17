@@ -939,7 +939,7 @@
 				INFOPLIST_FILE = "TraceLog-OSX/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
-				OTHER_SWIFT_FLAGS = "$(inherited) \"-D DEBUG\"";
+				OTHER_SWIFT_FLAGS = "$(inherited) \"-D\"  \"DEBUG\"";
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.TraceLog-OSX";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;

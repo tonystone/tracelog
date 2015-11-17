@@ -13,11 +13,11 @@
             buildForProfiling = "YES"
             buildForArchiving = "YES">
             <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "234EC1F30FF57BF9D3588660"
-               BlueprintName = "Pods-TraceLog-OSX-Tests-TraceLog"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "TraceLog.framework">
+               BuildableIdentifier = 'primary'
+               BlueprintIdentifier = '13C8CED25E6B6C955A0D190F'
+               BlueprintName = 'Pods-TraceLog-OSX-Tests-TraceLog'
+               ReferencedContainer = 'container:Pods.xcodeproj'
+               BuildableName = 'TraceLog.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
