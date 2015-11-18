@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "TraceLog"
-  s.version          = "0.4.3"
+  s.version          = "0.4.4"
   s.summary          = "Dead Simple: logging the way it's meant to be!"
   s.description      = <<-DESC
                              TraceLog is a configurable debug logging system.  It is unique in that it's configured
@@ -35,31 +35,31 @@ Pod::Spec.new do |s|
   s.ios.deployment_target     = '5.0'
   s.osx.deployment_target     = '10.7'
   s.watchos.deployment_target = '2.0'
-  s.tvos.deployment_target = '9.0'
+  s.tvos.deployment_target    = '9.0'
 
   s.requires_arc = true
   s.default_subspecs = 'ObjC'
 
   s.subspec 'Core' do |ss|
-     ss.public_header_files = 'Pod/Core/*.h', 'Pod/Internal/*.h'
-     ss.source_files = 'Pod/Core/**/*.{h,m}'
+     ss.public_header_files = 'TraceLog/Core/*.h', 'TraceLog/Internal/*.h'
+     ss.source_files = 'TraceLog/Core/**/*.{h,m}'
   end
 
   s.subspec 'ObjC' do |ss|
-    ss.public_header_files = 'Pod/ObjC/TraceLog.h'
-    ss.source_files        = 'Pod/ObjC/TraceLog.h'
+    ss.public_header_files = 'TraceLog/ObjC/TraceLog.h'
+    ss.source_files        = 'TraceLog/ObjC/TraceLog.h'
 
     ss.dependency 'TraceLog/Core'
   end
 
   s.subspec 'Swift' do |ss|
-    ss.ios.deployment_target = '8.0'
-    ss.osx.deployment_target = '10.10'
+    ss.ios.deployment_target     = '8.0'
+    ss.osx.deployment_target     = '10.10'
     ss.watchos.deployment_target = '2.0'
-    ss.tvos.deployment_target = '9.0'
+    ss.tvos.deployment_target    = '9.0'
 
-    ss.source_files = 'Pod/Swift/*.swift'
-    ss.preserve_paths = 'Pod/Swift/*.swift'
+    ss.source_files = 'TraceLog/Swift/*.swift'
+    ss.preserve_paths = 'TraceLog/Swift/*.swift'
 
     ss.dependency 'TraceLog/Core'
   end
