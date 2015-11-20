@@ -20,9 +20,29 @@
 #import <Foundation/Foundation.h>
 #import "TLLogLevel.h"
 
+/**
+ * @interface   TLWriter
+ *
+ * @brief       Implement this protocol to allow you to plug in your class as a TLWriter into TraceLog.
+ *
+ * @author      Tony Stone
+ * @date        11/12/15
+ */
 @protocol TLWriter <NSObject>
 
 @required
+
+    /**
+     * Called when the logger needs to log an event to this logger.
+     *
+     * @param timestamp             Timestamp of the log event (number of seconds from 1970).
+     * @param level                 The LogLevel of this logging event. Note: log will not be called if the LegLevel is not set to above this calls log level
+     * @param tag                   The tag associated with the log event.
+     * @param message               The message string (already formatted) for this logging event.
+     * @param file                  The source file (of the calling program) of this logging event.
+     * @param function              The function (of the calling program) which is being called.
+     * @param lineNumber            The source line number (of the calling program) of this logging event.
+     */
     - (void) log: (NSTimeInterval) timestamp level: (LogLevel) level tag: (nonnull const NSString *) tag message: (nullable const NSString *) message file: (nonnull const NSString *) file function: (nonnull const NSString *) function lineNumber: (NSUInteger) lineNumber;
 
 @end
