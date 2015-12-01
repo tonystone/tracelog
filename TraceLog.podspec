@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "TraceLog"
-  s.version          = "0.4.4"
+  s.version          = "0.4.5"
   s.summary          = "Dead Simple: logging the way it's meant to be!"
   s.description      = <<-DESC
                              TraceLog is a configurable debug logging system.  It is unique in that it's configured
@@ -62,6 +62,8 @@ Pod::Spec.new do |s|
     ss.preserve_paths = 'TraceLog/Swift/*.swift'
 
     ss.dependency 'TraceLog/Core'
+
+    ss.xcconfig = { "OTHER_SWIFT_FLAGS[config=Debug]" => "$(inherited) -D COCOAPODS -DDEBUG" }
   end
 
 end

@@ -233,6 +233,9 @@ when `DEBUG` is NOT defined, will incur **no overhead** in the application.
 The **Swift** implantation was designed to take advantage of swift compiler optimizations and will incur **no overhead** when
 compiled with optimization on (`-O`) and `DEBUG` is NOT defined.
 
+Note: In both cases above, the default settings will be set correctly to enable TraceLog for the **Debug** configuration
+      and optimized out for the **Release** configuration.
+
 ## Installation
 
 TraceLog is available through [CocoaPods](http://cocoapods.org). To install
@@ -243,15 +246,6 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod "TraceLog/Swift"
 ```
-
-For Swift modules, you must enable TraceLog by adding the Swift Compiler flag `DEBUG` 
-to the TraceLog framework (not the project itself). 
-
-1. Find the TraceLog project target
-1. Go to: Build Settings -> Swift Compiler - Custom Flags  
-2. Add `-D DEBUG` flag to the scheme's that you require logging   
-
-<img src='Docs/Swift Compiler - Custom Flags - DEBUG.png' width=600 height=120 />
 
 ### Objective-C
 
@@ -270,8 +264,8 @@ pod "TraceLog"
 
 TraceLog was designed to work in mixed environments so you can have **Swift** pod/modules using TraceLog as well as 
 **Objective-C** pods/libraries in the same application. The configuration settings you set will set the values for both. 
-If you have an application that contains mixed **Swift** and **Objective-C** code you can include both submodules 
-into you application.  For example:
+If you have an application that contains mixed **Swift** and **Objective-C** code you can include both sub-modules 
+into your application.  For example:
 
 ```ruby
 pod "TraceLog/Swift"
