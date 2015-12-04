@@ -57,7 +57,7 @@ of the call.  Again, these complex closures will not get executed in the cases m
 
 ```Swift
     logInfo { 
-         if unwrappedOptionalString = optionalString {
+         if let unwrappedOptionalString = optionalString {
             return "Executing with \(unwrappedOptionalString)..."
          } else {
             return "Executing..."
