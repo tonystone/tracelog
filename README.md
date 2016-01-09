@@ -41,7 +41,7 @@ message you want to log, for instance to log a simple informational message.
 ```
 
 Since the message parameter is a closure that evaluates to a String, any expression 
-that results in a string message can be use.
+that results in a string message can be used.
 
 ```Swift
    logInfo { 
@@ -124,7 +124,7 @@ You can also call it as you would `NSlog` by using the format specifier and para
     LogInfo(@"A simple informational message: %@", @"Another NSString or expression that evaluates to an NSString");
 ```
 
-More complex expressions can be put into the put into the placeholder values by using Objective-C blocks that return 
+More complex expressions can be put into the placeholder values by using Objective-C blocks that return 
 a printable NSObject. These can be used to make decisions on the message to be printed based on the current context of
 of the call.  These complex blocks will not get executed (and you wont incur the overhead) if logging is disabled 
 or if the log level for this call is higher then the current log level set.  For instance:
