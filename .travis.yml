@@ -3,8 +3,9 @@ xcode_workspace: Example/TraceLog.xcworkspace
 xcode_scheme: TraceLog-Example
 osx_image: xcode7.3
 
+# "This temporarily uses xctool master in order to bypass facebook/xctool#684.", change this back to `brew install xctool` and revert the below script
 before_install:
-    - brew install xctool
+    - git clone https://github.com/facebook/xctool
     - gem install cocoapods --quiet
     - pod --version
     - pod setup --silent
@@ -13,8 +14,8 @@ before_install:
 script:
   - pod lib lint
   
-  - xctool -workspace Example/TraceLog.xcworkspace -scheme TraceLog-iOS-Example -sdk iphonesimulator test
-  - xctool -workspace Example/TraceLog.xcworkspace -scheme TraceLog-OSX-Example -sdk macosx test
+  - xctool/xctoolsh -workspace Example/TraceLog.xcworkspace -scheme TraceLog-iOS-Example -sdk iphonesimulator test
+  - xctool/xctoolsh -workspace Example/TraceLog.xcworkspace -scheme TraceLog-OSX-Example -sdk macosx test
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
