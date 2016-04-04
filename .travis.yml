@@ -14,8 +14,8 @@ before_install:
 script:
   - pod lib lint
   
-  - xctool/xctoolsh -workspace Example/TraceLog.xcworkspace -scheme TraceLog-iOS-Example -sdk iphonesimulator test
-  - xctool/xctoolsh -workspace Example/TraceLog.xcworkspace -scheme TraceLog-OSX-Example -sdk macosx test
+  - xctool/xctool.sh -workspace Example/TraceLog.xcworkspace -scheme TraceLog-iOS-Example -sdk iphonesimulator test
+  - xctool/xctool.sh -workspace Example/TraceLog.xcworkspace -scheme TraceLog-OSX-Example -sdk macosx test
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
