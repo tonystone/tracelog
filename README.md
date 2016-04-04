@@ -247,6 +247,9 @@ it, simply add the following line to your Podfile:
 pod "TraceLog/Swift"
 ```
 
+**Note**: The code has been updated to use Swift 2.2 syntax, therefore dependent projects must use 
+Xcode 7.3 (or greater) to support this. The pod will still remain backwards compatible to iOS 8.0.
+
 ### Objective-C
 
 ```ruby
