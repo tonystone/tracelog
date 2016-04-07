@@ -49,7 +49,7 @@ import Foundation
         }
     ```
 */
-public func logError(tag: String? = nil, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message: () -> String) {
+public func logError(tag: String? = nil, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__, message: () -> String) {
     #if DEBUG || TRACELOG_ENABLE
         let derivedTag = derivedTagIfNil(file, tag: tag);
         
@@ -86,7 +86,7 @@ public func logError(tag: String? = nil, _ file: StaticString = #file, _ functio
         }
     ```
 */
-public func logWarning(tag: String? = nil, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message: () -> String) {
+public func logWarning(tag: String? = nil, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__, message: () -> String) {
     #if DEBUG || TRACELOG_ENABLE
         let derivedTag = derivedTagIfNil(file, tag: tag);
         
@@ -121,7 +121,7 @@ public func logWarning(tag: String? = nil, _ file: StaticString = #file, _ funct
             return "Final message String"
     ```
 */
-public func logInfo(tag: String? = nil, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message: () -> String) {
+public func logInfo(tag: String? = nil, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__, message: () -> String) {
     #if DEBUG || TRACELOG_ENABLE
         let derivedTag = derivedTagIfNil(file, tag: tag);
         
@@ -162,7 +162,7 @@ public func logInfo(tag: String? = nil, _ file: StaticString = #file, _ function
         }
     ```
 */
-public func logTrace(tag: String? = nil, level: Int = LogLevel.rawTraceLevels.start, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message: () -> String) {
+public func logTrace(tag: String? = nil, level: Int = LogLevel.rawTraceLevels.start, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__, message: () -> String) {
     #if DEBUG || TRACELOG_ENABLE
         assert(LogLevel.rawTraceLevels.contains(level), "Invalid trace level, levels are in the range of \(LogLevel.rawTraceLevels)");
         
@@ -204,7 +204,7 @@ public func logTrace(tag: String? = nil, level: Int = LogLevel.rawTraceLevels.st
         }
     ```
 */
-public func logTrace(level: Int, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message: () -> String) {
+public func logTrace(level: Int, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__, message: () -> String) {
     #if DEBUG || TRACELOG_ENABLE
         assert(LogLevel.rawTraceLevels.contains(level), "Trace levels are in the range of \(LogLevel.rawTraceLevels)");
         
