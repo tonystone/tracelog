@@ -20,6 +20,12 @@ highly configurable, to get started all you have to do is add the pod to your pr
 import TraceLog to the files that require logging, and start adding log statements where 
 you need them.  TraceLog initializes itself and does everything else for you. 
 
+## Requirements
+
+| Xcode | Swift | iOS | tvOS |  OS X |
+|:-----:|:-----:|:---:|:----:|:-----:|
+| 7.2.1 |  2.1  | 8.0 | 9.0  | 10.10 |
+
 ### Swift
 
 For Swift Tracelog comes with the following basic Logging functions (Note: hidden 
