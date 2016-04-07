@@ -20,6 +20,12 @@ highly configurable, to get started all you have to do is add the pod to your pr
 import TraceLog to the files that require logging, and start adding log statements where 
 you need them.  TraceLog initializes itself and does everything else for you. 
 
+## Requirements
+
+| Xcode | Swift | iOS | tvOS |  OS X |
+|:-----:|:-----:|:---:|:----:|:-----:|
+| 7.2.1 |  2.1  | 8.0 | 9.0  | 10.10 |
+
 ### Swift
 
 For Swift Tracelog comes with the following basic Logging functions (Note: hidden 
@@ -246,9 +252,6 @@ it, simply add the following line to your Podfile:
 ```ruby
 pod "TraceLog/Swift"
 ```
-
-**Note**: The code has been updated to use Swift 2.2 syntax, therefore dependent projects must use 
-Xcode 7.3 (or greater) to support this. The pod will still remain backwards compatible to iOS 8.0.
 
 ### Objective-C
 

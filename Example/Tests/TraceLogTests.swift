@@ -21,56 +21,56 @@ class TraceLogTests: XCTestCase {
     func testError() {
         
         logError() {
-            "Swift: " + #function
+            "Swift: " + __FUNCTION__
         }
     }
     
     func testWarning() {
         
         logWarning() {
-            "Swift: " + #function
+            "Swift: " + __FUNCTION__
         }
     }
 
     func testInfo() {
         
         logInfo {
-            "Swift: " + #function
+            "Swift: " + __FUNCTION__
         }
     }
     
     func testTrace() {
         
         logTrace {
-            "Swift: " + #function
+            "Swift: " + __FUNCTION__
         }
     }
     
     func testTrace1() {
         
         logTrace(1) {
-            "Swift: " + #function
+            "Swift: " + __FUNCTION__
         }
     }
     
     func testTrace2() {
         
         logTrace(2) {
-            "Swift: " + #function
+            "Swift: " + __FUNCTION__
         }
     }
     
     func testTrace3() {
         
         logTrace(3) {
-            "Swift: " + #function
+            "Swift: " + __FUNCTION__
         }
     }
     
     func testTrace4() {
         
         logTrace(4) {
-            "Swift: " + #function
+            "Swift: " + __FUNCTION__
         }
     }
     
