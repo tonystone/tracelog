@@ -14,7 +14,7 @@ env:
 
 script:
     - set -o pipefail
-    - xcodebuild clean test -workspace Example/GeoFeatures.xcworkspace $MATRIX_TARGET GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
+    - xcodebuild clean test -workspace Example/TraceLog.xcworkspace $MATRIX_TARGET GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
