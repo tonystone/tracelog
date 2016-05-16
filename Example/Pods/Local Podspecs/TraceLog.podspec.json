@@ -23,11 +23,7 @@
   "subspecs": [
     {
       "name": "Core",
-      "public_header_files": [
-        "TraceLog/Core/*.h",
-        "TraceLog/Internal/*.h"
-      ],
-      "source_files": "TraceLog/Core/**/*.{h,m}"
+      "source_files": "TraceLog/Core/**/*.{h,m,swift}"
     },
     {
       "name": "ObjC",

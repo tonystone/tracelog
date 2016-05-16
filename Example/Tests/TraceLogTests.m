@@ -18,13 +18,14 @@
  *
  *   Created by Tony Stone on 3/4/15.
  */
-#import <TraceLog/TraceLog.h>
 #import <XCTest/XCTest.h>
 
-@interface TraceLogTests : XCTestCase
+@import TraceLog;
+
+@interface TraceLogTests_ObjC : XCTestCase
 @end
 
-@implementation TraceLogTests
+@implementation TraceLogTests_ObjC
 
     //
     // Object level calls
@@ -79,10 +80,6 @@
 
     - (void) testLogTrace4_WithFormatString {
         LogTrace(4,@"Objective-C Level Test - TRACE%u",4);
-    }
-
-    - (void) testLogTrace_WithInvalidLevel {
-        XCTAssertThrowsSpecificNamed((LogTrace(5,@"Objective-C Level Test - TRACE%u",5)), NSException, NSInternalInconsistencyException);
     }
 
     //

@@ -21,10 +21,6 @@
 		EA3038001BEA882E00DC4084 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA3037FB1BEA882E00DC4084 /* Images.xcassets */; };
 		EA3038011BEA882E00DC4084 /* TLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3037FD1BEA882E00DC4084 /* TLAppDelegate.m */; };
 		EA3038021BEA882E00DC4084 /* TLViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3037FF1BEA882E00DC4084 /* TLViewController.m */; };
-		EA30382D1BEA898B00DC4084 /* Pods-TraceLog-iOS.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EA30382B1BEA898B00DC4084 /* Pods-TraceLog-iOS.debug.xcconfig */; };
-		EA30382E1BEA898B00DC4084 /* Pods-TraceLog-iOS.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EA30382C1BEA898B00DC4084 /* Pods-TraceLog-iOS.release.xcconfig */; };
-		EA3038311BEA89B800DC4084 /* Pods-TraceLog-iOS-Tests.debug.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EA30382F1BEA89B800DC4084 /* Pods-TraceLog-iOS-Tests.debug.xcconfig */; };
-		EA3038321BEA89B800DC4084 /* Pods-TraceLog-iOS-Tests.release.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = EA3038301BEA89B800DC4084 /* Pods-TraceLog-iOS-Tests.release.xcconfig */; };
 		EA3038431BEA8D6800DC4084 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA30383F1BEA8D6800DC4084 /* Main_iPad.storyboard */; };
 		EA3038441BEA8D6800DC4084 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA3038411BEA8D6800DC4084 /* Main_iPhone.storyboard */; };
 		EA3038471BEA8E3400DC4084 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = EA3038451BEA8E3400DC4084 /* InfoPlist.strings */; };
@@ -401,7 +397,7 @@
 			attributes = {
 				CLASSPREFIX = TL;
 				LastSwiftUpdateCheck = 0710;
-				LastUpgradeCheck = 0700;
+				LastUpgradeCheck = 0730;
 				ORGANIZATIONNAME = "Tony Stone";
 				TargetAttributes = {
 					6003F5AD195388D20070C39A = {
@@ -442,11 +438,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA30382D1BEA898B00DC4084 /* Pods-TraceLog-iOS.debug.xcconfig in Resources */,
 				EA3038471BEA8E3400DC4084 /* InfoPlist.strings in Resources */,
 				EA3038001BEA882E00DC4084 /* Images.xcassets in Resources */,
 				EA3038431BEA8D6800DC4084 /* Main_iPad.storyboard in Resources */,
-				EA30382E1BEA898B00DC4084 /* Pods-TraceLog-iOS.release.xcconfig in Resources */,
 				EA3038441BEA8D6800DC4084 /* Main_iPhone.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -455,8 +449,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EA3038321BEA89B800DC4084 /* Pods-TraceLog-iOS-Tests.release.xcconfig in Resources */,
-				EA3038311BEA89B800DC4084 /* Pods-TraceLog-iOS-Tests.debug.xcconfig in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -837,7 +829,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TraceLog-iOS/TraceLog-Prefix.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/TraceLog-iOS/Info.plist";
@@ -856,7 +847,6 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
-				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "TraceLog-iOS/TraceLog-Prefix.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (

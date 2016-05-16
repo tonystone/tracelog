@@ -17,7 +17,25 @@
  *
  *   Created by Tony Stone on 11/1/15.
  */
-import Foundation
+import Swift
+
+public func initialize(logWriters writers: [Writer]) {
+    #if DEBUG || TRACELOG_ENABLE
+        Logger.intialize(writers, environment: Environment())
+    #endif
+}
+
+public func initialize<T : CollectionType where T.Generator.Element == (String, String)>(environment environment: T) {
+    #if DEBUG || TRACELOG_ENABLE
+        Logger.intialize([ConsoleWriter()], environment: environment)
+    #endif
+}
+
+public func initialize<T : CollectionType where T.Generator.Element == (String, String)>(logWriters writers: [Writer], environment environment: T) {
+    #if DEBUG || TRACELOG_ENABLE
+        Logger.intialize(writers, environment: environment)
+    #endif
+}
 
 // MARK: Public Interface
 
@@ -49,11 +67,11 @@ import Foundation
         }
     ```
 */
-public func logError(tag: String? = nil, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__, message: () -> String) {
+public func logError(tag: String? = nil, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message: () -> String) {
     #if DEBUG || TRACELOG_ENABLE
-        let derivedTag = derivedTagIfNil(file, tag: tag);
+        let derivedTag = derivedTagIfNil(file, tag: tag)
         
-        TLLogger.logPrimitive(LogLevel.Error, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message);
+        Logger.logPrimitive(LogLevel.Error, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message)
     #endif
 }
 
@@ -86,11 +104,11 @@ public func logError(tag: String? = nil, _ file: StaticString = __FILE__, _ func
         }
     ```
 */
-public func logWarning(tag: String? = nil, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__, message: () -> String) {
+public func logWarning(tag: String? = nil, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message: () -> String) {
     #if DEBUG || TRACELOG_ENABLE
-        let derivedTag = derivedTagIfNil(file, tag: tag);
+        let derivedTag = derivedTagIfNil(file, tag: tag)
         
-        TLLogger.logPrimitive(LogLevel.Warning, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message);
+        Logger.logPrimitive(LogLevel.Warning, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message)
     #endif
 }
 
@@ -121,11 +139,11 @@ public func logWarning(tag: String? = nil, _ file: StaticString = __FILE__, _ fu
             return "Final message String"
     ```
 */
-public func logInfo(tag: String? = nil, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__, message: () -> String) {
+public func logInfo(tag: String? = nil, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message: () -> String) {
     #if DEBUG || TRACELOG_ENABLE
-        let derivedTag = derivedTagIfNil(file, tag: tag);
+        let derivedTag = derivedTagIfNil(file, tag: tag)
         
-        TLLogger.logPrimitive(LogLevel.Info, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message);
+        Logger.logPrimitive(LogLevel.Info, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message)
     #endif
 }
 
@@ -162,13 +180,13 @@ public func logInfo(tag: String? = nil, _ file: StaticString = __FILE__, _ funct
         }
     ```
 */
-public func logTrace(tag: String? = nil, level: Int = LogLevel.rawTraceLevels.start, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__, message: () -> String) {
+public func logTrace(tag: String? = nil, level: Int = LogLevel.rawTraceLevels.start, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message: () -> String) {
     #if DEBUG || TRACELOG_ENABLE
-        assert(LogLevel.rawTraceLevels.contains(level), "Invalid trace level, levels are in the range of \(LogLevel.rawTraceLevels)");
+        assert(LogLevel.rawTraceLevels.contains(level), "Invalid trace level, levels are in the range of \(LogLevel.rawTraceLevels)")
         
-        let derivedTag = derivedTagIfNil(file, tag: tag);
+        let derivedTag = derivedTagIfNil(file, tag: tag)
         
-        TLLogger.logPrimitive(LogLevel(rawValue: LogLevel.Trace1.rawValue + level - 1)!, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message);
+        Logger.logPrimitive(LogLevel(rawValue: LogLevel.Trace1.rawValue + level - 1)!, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message)
     #endif
 }
 
@@ -204,25 +222,20 @@ public func logTrace(tag: String? = nil, level: Int = LogLevel.rawTraceLevels.st
         }
     ```
 */
-public func logTrace(level: Int, _ file: StaticString = __FILE__, _ function: StaticString = __FUNCTION__, _ line: UInt = __LINE__, message: () -> String) {
+public func logTrace(level: Int, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message: () -> String) {
     #if DEBUG || TRACELOG_ENABLE
-        assert(LogLevel.rawTraceLevels.contains(level), "Trace levels are in the range of \(LogLevel.rawTraceLevels)");
+        assert(LogLevel.rawTraceLevels.contains(level), "Trace levels are in the range of \(LogLevel.rawTraceLevels)")
         
-        let derivedTag = derivedTagIfNil(file, tag: nil);
+        let derivedTag = derivedTagIfNil(file, tag: nil)
         
-        TLLogger.logPrimitive(LogLevel(rawValue: LogLevel.Trace1.rawValue + level - 1)!, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message);
+        Logger.logPrimitive(LogLevel(rawValue: LogLevel.Trace1.rawValue + level - 1)!, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message)
     #endif
 }
 
 
 // MARK: Internal & private functions & Extensions.
 
-internal extension LogLevel {
-    static var rawRange:       ClosedInterval<Int> { get { return LogLevel.Off.rawValue...LogLevel.Trace4.rawValue } }
-    static var rawTraceLevels: ClosedInterval<Int> { get { return 1...4 } }
-}
-
-internal extension String{
+internal extension String {
     func lastPathComponent() -> String {
         return (self as NSString).lastPathComponent
     }

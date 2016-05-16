@@ -1,7 +1,7 @@
 /**
- *   TLWriter.h
+ *   Writer.swift
  *
- *   Copyright 2015 Tony Stone
+ *   Copyright 2016 Tony Stone
  *
  *   Licensed under the Apache License, Version 2.0 (the "License");
  *   you may not use this file except in compliance with the License.
@@ -15,23 +15,25 @@
  *   See the License for the specific language governing permissions and
  *   limitations under the License.
  *
- *   Created by Tony Stone on 11/12/15.
+ *   Created by Tony Stone on 4/23/16.
  */
-#import <Foundation/Foundation.h>
-#import "TLLogLevel.h"
+import Swift
 
-/**
- * @interface   TLWriter
- *
- * @brief       Implement this protocol to allow you to plug in your class as a TLWriter into TraceLog.
- *
- * @author      Tony Stone
- * @date        11/12/15
- */
-@protocol TLWriter <NSObject>
+public protocol RuntimeContext {
+    var processName: String { get }
+    var processIdentifier: Int { get }
+    var threadIdentifier: UInt64 { get }
+}
 
-@required
+public protocol StaticContext {
+    var file: String { get }
+    var function: String { get }
+    var lineNumber: UInt { get }
+    var column: UInt { get }
+}
 
+public protocol Writer {
+    
     /**
      * Called when the logger needs to log an event to this logger.
      *
@@ -43,6 +45,5 @@
      * @param function              The function (of the calling program) which is being called.
      * @param lineNumber            The source line number (of the calling program) of this logging event.
      */
-    - (void) log: (NSTimeInterval) timestamp level: (LogLevel) level tag: (nonnull const NSString *) tag message: (nullable const NSString *) message file: (nonnull const NSString *) file function: (nonnull const NSString *) function lineNumber: (NSUInteger) lineNumber;
-
-@end
+    func log(timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext)
+}

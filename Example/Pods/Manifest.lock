@@ -11,9 +11,9 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   TraceLog:
-    :path: ../
+    :path: "../"
 
 SPEC CHECKSUMS:
-  TraceLog: 35aa90699d88ce5828413ad02966063af72c154d
+  TraceLog: ba6cabbcecbfa9649343aed47e2ad32d884bdcc1
 
 COCOAPODS: 0.39.0
