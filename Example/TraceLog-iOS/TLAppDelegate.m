@@ -19,7 +19,8 @@
  *   Created by Tony Stone on 3/4/15.
  */
 #import "TLAppDelegate.h"
-#import <TraceLog/TraceLog.h>
+
+@import TraceLog;
 
 @implementation TLAppDelegate
 
