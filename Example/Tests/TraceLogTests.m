@@ -18,8 +18,9 @@
  *
  *   Created by Tony Stone on 3/4/15.
  */
-#import <TraceLog/TraceLog.h>
 #import <XCTest/XCTest.h>
+
+@import TraceLog;
 
 @interface TraceLogTests : XCTestCase
 @end
