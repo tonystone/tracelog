@@ -283,7 +283,7 @@ Compiling TraceLog requires XCode 7.3 or above as well as specfic minimum deploy
 
 | OS X  | iOS | tvOS | watchOS | 
 |:-----:|:---:|:----:|:-------:|
-| 10.11 | 8.0 | 9.0  |   2.0   |
+| 10.10 | 8.0 | 9.0  |   2.0   |
 
 ### Objective-C
 
