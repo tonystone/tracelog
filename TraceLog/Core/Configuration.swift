@@ -21,18 +21,18 @@ import Foundation
 
 internal let ModuleLogName  = "TraceLog"
 
-private let LogTag    = "LOG_TAG_"
-private let LogPrefix = "LOG_PREFIX_"
-private let LogAll    = "LOG_ALL"
-
-internal enum ConfigurationError : Error {
-    case invalidLogLevel(String)
-}
-
 ///
 /// Internal data
 ///
 internal class Configuration  {
+    
+    enum ConfigurationError : Error {
+        case invalidLogLevel(String)
+    }
+    
+    private static let logTag    = "LOG_TAG_"
+    private static let logPrefix = "LOG_PREFIX_"
+    private static let logAll    = "LOG_ALL"
     
     var globalLogLevel = LogLevel.info
     
@@ -66,21 +66,21 @@ internal class Configuration  {
             let upperCaseVariable        = variable.uppercased()
             let upperCaselogLevelString  = value.uppercased()
             
-            if upperCaseVariable.hasPrefix(LogAll) {
+            if upperCaseVariable.hasPrefix(Configuration.logAll) {
                 
                 if let level = upperCaselogLevelString.asLogLevel() {
                     self.globalLogLevel = level
                 } else {
-                    errors.append(.invalidLogLevel("Variable '\(upperCaseVariable)' has an invalid logLevel of '\(upperCaselogLevelString)'. '\(LogAll)' will be set to \(self.globalLogLevel)."))
+                    errors.append(.invalidLogLevel("Variable '\(upperCaseVariable)' has an invalid logLevel of '\(upperCaselogLevelString)'. '\(Configuration.logAll)' will be set to \(self.globalLogLevel)."))
                 }
                 
-            } else if upperCaseVariable.hasPrefix(LogPrefix) {
+            } else if upperCaseVariable.hasPrefix(Configuration.logPrefix) {
                 
                 if let level = upperCaselogLevelString.asLogLevel() {
                     ///
                     /// Note: in order to allow for case sensitive tag prefix names, we use the variable instead of the uppercase version.
                     ///
-                    if let logLevelScopeRange = variable.range(of: LogPrefix) {
+                    if let logLevelScopeRange = variable.range(of: Configuration.logPrefix) {
                         let logLevelScope = variable.substring(from: logLevelScopeRange.upperBound)
                         
                         self.loggedPrefixes[logLevelScope] =  level
@@ -89,13 +89,13 @@ internal class Configuration  {
                     errors.append(.invalidLogLevel("Variable '\(upperCaseVariable)' has an invalid logLevel of '\(upperCaselogLevelString)'. '\(upperCaseVariable)' will NOT be set."))
                 }
                 
-            } else if upperCaseVariable.hasPrefix(LogTag) {
+            } else if upperCaseVariable.hasPrefix(Configuration.logTag) {
                 
                 if let level = upperCaselogLevelString.asLogLevel() {
                     ///
                     /// Note: in order to allow for case sensitive tag names, we use the variable instead of the uppercase version.
                     ///
-                    if let logLevelScopeRange = variable.range(of: LogTag) {
+                    if let logLevelScopeRange = variable.range(of: Configuration.logTag) {
                         let logLevelScope      = variable.substring(from: logLevelScopeRange.upperBound)
                         
                         self.loggedTags[logLevelScope] =  level
@@ -108,7 +108,10 @@ internal class Configuration  {
         return errors
     }
     
-    func logLevel(_ tag: String) -> LogLevel {
+    ///
+    /// Determine the LogLevel for this tag based on the configuration
+    ///
+    func logLevel(for tag: String) -> LogLevel {
         
         /// Set to the default global level first
         var level = self.globalLogLevel
@@ -119,20 +122,13 @@ internal class Configuration  {
         } else {
             
             /// Determine the prefixes log level if available
-            if let prefixLogLevel = prefixLogLevelForTag(tag) {
-                level = prefixLogLevel
+            for (prefix, logLevel) in self.loggedPrefixes {
+                if tag.hasPrefix(prefix) {
+                    level = logLevel
+                }
             }
         }
         return level;
-    }
-    
-    fileprivate func prefixLogLevelForTag(_ tag: String) -> LogLevel? {
-        for (prefix, logLevel) in self.loggedPrefixes {
-            if prefix.hasPrefix(prefix) {
-                return logLevel
-            }
-        }
-        return nil;
     }
 }
 
