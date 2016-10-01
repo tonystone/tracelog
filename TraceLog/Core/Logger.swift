@@ -76,6 +76,7 @@ internal final class Logger {
     ///
     /// Initializes the logging system with the specified writers and environement
     ///
+    ///  Note: this is an optional call
     ///
     class func intialize(_ writers: [Writer] = [ConsoleWriter()], environment: Environment = Environment()) {
         
@@ -91,6 +92,9 @@ internal final class Logger {
         }
     }
     
+    ///
+    /// Low level logging function for Swift calls
+    ///
     class func logPrimitive(_ level: LogLevel, tag: String, file: String, function: String, lineNumber: UInt, message: () -> String) {
 
         // Capture the context outside the dispatch queue
@@ -99,7 +103,7 @@ internal final class Logger {
         
         queue.performBlockAndWait {
             
-            if config.logLevel(tag) >= level {
+            if config.logLevel(for: tag) >= level {
                 let timestamp = Date.timeIntervalSinceReferenceDate
 
                 // Evaluate the message now
@@ -118,6 +122,10 @@ internal final class Logger {
 ///
 @objc(TLLogger)
 open class TLLogger : NSObject {
+    
+    ///
+    /// Low level logging function for ObjC calls
+    ///
     open class func logPrimitive(_ level: Int, tag: String, file: String, function: String, lineNumber: UInt, message: () -> String) {
         assert(LogLevel.rawRange.contains(level), "Invalid log level, values must be in the the range \(LogLevel.rawRange)")
         
