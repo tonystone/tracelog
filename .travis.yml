@@ -3,17 +3,17 @@ os: osx
 osx_image: xcode8.0
 
 before_install:
-    - brew install xctool
-    - gem install cocoapods --quiet
-    - pod --version
-    - pod setup --silent
-    - pod repo update --silent
-    
+    - gem install xcpretty -N --no-ri --no-rdoc
+
+env:
+    matrix:
+        - MATRIX_TARGET="-scheme TraceLog-iOS-Example -sdk iphonesimulator"
+        - MATRIX_TARGET="-scheme TraceLog-OSX-Example -sdk macosx"
+
+
 script:
-  - pod lib lint
-  
-  - xctool -workspace Example/TraceLog.xcworkspace -scheme TraceLog-iOS-Example -sdk iphonesimulator test
-  - xctool -workspace Example/TraceLog.xcworkspace -scheme TraceLog-OSX-Example -sdk macosx test
+    - set -o pipefail
+    - xcodebuild clean test -workspace Example/TraceLog.xcworkspace $MATRIX_TARGET GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

@@ -17,13 +17,13 @@ target 'TraceLog-iOS-Tests' do
 end
 
 target 'TraceLog-OSX' do
-   platform :osx, '10.10'
+   platform :osx, '10.11'
   
    pod "TraceLog/Swift", :path => "../"
 end
 
 target 'TraceLog-OSX-Tests' do
-   platform :osx, '10.10'
+   platform :osx, '10.11'
     
    pod "TraceLog/Swift", :path => "../"
 end
