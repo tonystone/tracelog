@@ -210,6 +210,10 @@ NSNumber * prefixLogLevelForTag(NSString * tag);
         }
     }
 
+    + (void) setWriters:(NSArray *)writers {
+        _logWriters = writers.mutableCopy;
+    }
+
 @end
 
 //

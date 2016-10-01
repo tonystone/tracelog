@@ -29,6 +29,9 @@
 
 @interface TLLogger : NSObject
 
+    //  Set the log writers to use for output.
+    + (void) setWriters: (nonnull NSArray *) writers;
+
     // NOTE: Do not call this directly, please use the macros for all calls.
     + (void) logPrimitive: (LogLevel) level tag: (nonnull NSString *) tag file: (nonnull const char *) file function: (nonnull const char *) function lineNumber: (NSUInteger) lineNumber message: (nonnull NSString * _Nullable (^)()) message;
 @end
