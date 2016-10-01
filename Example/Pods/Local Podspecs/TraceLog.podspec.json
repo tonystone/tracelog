@@ -1,6 +1,6 @@
 {
   "name": "TraceLog",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "summary": "Dead Simple: logging the way it's meant to be!",
   "description": "TraceLog is a configurable debug logging system.  It is unique in that it's configured\nafter compilation in the runtime environment. It reads environment variables from the\nprocess context to set log levels. This allows each developer to configure log output\nper session based on the debugging needs of that session.\n\nWhen compiled in a RELEASE build, TraceLog is compiled out and has no overhead in\nthe application.\n\nLog output can be configured globally using the LOG_ALL environment variable,\nby TAG name using the LOG_TAG_<TAGNAME> environment variable pattern,\nand/or by a TAG prefix by using the LOG_PREFIX_<TAGPREFIX> environment\nvariable pattern.\n\nPlease see README.md for more details and examples.",
   "license": "Apache License, Version 2.0",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/tonystone/tracelog.git",
-    "tag": "1.0.0"
+    "tag": "2.0.0"
   },
   "platforms": {
     "ios": "5.0",

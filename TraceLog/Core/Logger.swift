@@ -20,28 +20,22 @@
 import Swift
 import Foundation
 
-
-@objc(TLLogger)
-public class TLLogger : NSObject {
-    public class func logPrimitive(level: Int, tag: String, file: String, function: String, lineNumber: UInt, message: () -> String) {
-        assert(LogLevel.rawRange.contains(level), "Invalid log level, values must be in the the range \(LogLevel.rawRange)")
-        
-        Logger.logPrimitive(LogLevel(rawValue: level)!, tag: tag, file: file, function: function, lineNumber: lineNumber, message: message)
-    }
-}
-
-/**
-    Internal class to initialize and low level log
- */
-internal class Logger {
+///
+/// A class that it used to initialize the system and 
+/// log messages to the writers.
+///
+internal final class Logger {
     
+    ///
+    /// A concrete class that Implements the RuntimeContext interface
+    ///
     internal class RuntimeContextImpl : RuntimeContext {
         internal let processName: String
         internal let processIdentifier: Int
         internal let threadIdentifier: UInt64
         
         internal init() {
-            let process  = NSProcessInfo.processInfo()
+            let process  = ProcessInfo.processInfo
             var threadID: UInt64 = 0
             
             pthread_threadid_np(pthread_self(), &threadID)
@@ -51,7 +45,10 @@ internal class Logger {
         }
     }
     
-    internal class StaticContextImpl : StaticContext{
+    ///
+    /// A concrete class that Implements the StaticContext interface
+    ///
+    internal class StaticContextImpl : StaticContext {
         internal let file: String
         internal let function: String
         internal let lineNumber: UInt
@@ -65,9 +62,9 @@ internal class Logger {
         }
     }
     
-    private static let queue = RecursiveSerialQueue(name: "tracelog.write.queue")
+    fileprivate static let queue = RecursiveSerialQueue(name: "tracelog.write.queue")
     
-    private static let config  = { () -> Configuration in
+    fileprivate static let config  = { () -> Configuration in
         
         let configuration = Configuration()
         
@@ -76,22 +73,26 @@ internal class Logger {
         return configuration
     }()
     
-    class func intialize<T : CollectionType where T.Generator.Element == (String, String)>(writers: [Writer], environment: T) {
+    ///
+    /// Initializes the logging system with the specified writers and environement
+    ///
+    ///
+    class func intialize(_ writers: [Writer] = [ConsoleWriter()], environment: Environment = Environment()) {
         
         queue.performBlockAndWait {
             
             let errors = config.load(writers, environment: environment)
             
             for error in errors {
-                logPrimitive(.Info, tag: ModuleLogName, file: #file, function: #function, lineNumber: #line) {
+                logPrimitive(.info, tag: ModuleLogName, file: #file, function: #function, lineNumber: #line) {
                     "\(error)"
                 }
             }
         }
     }
     
-    class func logPrimitive(level: LogLevel, tag: String, file: String, function: String, lineNumber: UInt, message: () -> String) {
-        
+    class func logPrimitive(_ level: LogLevel, tag: String, file: String, function: String, lineNumber: UInt, message: () -> String) {
+
         // Capture the context outside the dispatch queue
         let runtimeContext = RuntimeContextImpl()
         let staticContext  = StaticContextImpl(file: file, function: function, lineNumber: lineNumber, column: 0)
@@ -99,7 +100,7 @@ internal class Logger {
         queue.performBlockAndWait {
             
             if config.logLevel(tag) >= level {
-                let timestamp = NSDate.timeIntervalSinceReferenceDate()
+                let timestamp = Date.timeIntervalSinceReferenceDate
 
                 // Evaluate the message now
                 let messageString = message()
@@ -109,6 +110,18 @@ internal class Logger {
                 }
             }
         }
+    }
+}
+
+///
+/// Internal class exposed to objective-C for low level loggin
+///
+@objc(TLLogger)
+open class TLLogger : NSObject {
+    open class func logPrimitive(_ level: Int, tag: String, file: String, function: String, lineNumber: UInt, message: () -> String) {
+        assert(LogLevel.rawRange.contains(level), "Invalid log level, values must be in the the range \(LogLevel.rawRange)")
+        
+        Logger.logPrimitive(LogLevel(rawValue: level)!, tag: tag, file: file, function: function, lineNumber: lineNumber, message: message)
     }
 }
 

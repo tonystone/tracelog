@@ -25,15 +25,15 @@ public func initialize(logWriters writers: [Writer]) {
     #endif
 }
 
-public func initialize<T : CollectionType where T.Generator.Element == (String, String)>(environment environment: T) {
+public func initialize<T : Collection>(environment: T) where T.Iterator.Element == (key: String, value: String)  {
     #if DEBUG || TRACELOG_ENABLE
-        Logger.intialize([ConsoleWriter()], environment: environment)
+        Logger.intialize([ConsoleWriter()], environment: Environment(environment))
     #endif
 }
 
-public func initialize<T : CollectionType where T.Generator.Element == (String, String)>(logWriters writers: [Writer], environment environment: T) {
+public func initialize<T : Collection>(logWriters writers: [Writer], environment: T) where T.Iterator.Element == (key: String, value: String) {
     #if DEBUG || TRACELOG_ENABLE
-        Logger.intialize(writers, environment: environment)
+        Logger.intialize(writers, environment: Environment(environment))
     #endif
 }
 
@@ -69,9 +69,9 @@ public func initialize<T : CollectionType where T.Generator.Element == (String, 
 */
 public func logError(tag: String? = nil, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message: () -> String) {
     #if DEBUG || TRACELOG_ENABLE
-        let derivedTag = derivedTagIfNil(file, tag: tag)
+        let derivedTag = derivedTagIfNil(file: file, tag: tag)
         
-        Logger.logPrimitive(LogLevel.Error, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message)
+        Logger.logPrimitive(LogLevel.error, tag: derivedTag, file: String(describing: file), function: String(describing: function), lineNumber: line, message: message)
     #endif
 }
 
@@ -106,9 +106,9 @@ public func logError(tag: String? = nil, _ file: StaticString = #file, _ functio
 */
 public func logWarning(tag: String? = nil, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message: () -> String) {
     #if DEBUG || TRACELOG_ENABLE
-        let derivedTag = derivedTagIfNil(file, tag: tag)
+        let derivedTag = derivedTagIfNil(file: file, tag: tag)
         
-        Logger.logPrimitive(LogLevel.Warning, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message)
+        Logger.logPrimitive(LogLevel.warning, tag: derivedTag, file: String(describing: file), function: String(describing: function), lineNumber: line, message: message)
     #endif
 }
 
@@ -141,9 +141,9 @@ public func logWarning(tag: String? = nil, _ file: StaticString = #file, _ funct
 */
 public func logInfo(tag: String? = nil, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message: () -> String) {
     #if DEBUG || TRACELOG_ENABLE
-        let derivedTag = derivedTagIfNil(file, tag: tag)
+        let derivedTag = derivedTagIfNil(file: file, tag: tag)
         
-        Logger.logPrimitive(LogLevel.Info, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message)
+        Logger.logPrimitive(LogLevel.info, tag: derivedTag, file: String(describing: file), function: String(describing: function), lineNumber: line, message: message)
     #endif
 }
 
@@ -180,13 +180,13 @@ public func logInfo(tag: String? = nil, _ file: StaticString = #file, _ function
         }
     ```
 */
-public func logTrace(tag: String? = nil, level: Int = LogLevel.rawTraceLevels.start, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message: () -> String) {
+public func logTrace(_ tag: String? = nil, level: Int = LogLevel.rawTraceLevels.lowerBound, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message: () -> String) {
     #if DEBUG || TRACELOG_ENABLE
         assert(LogLevel.rawTraceLevels.contains(level), "Invalid trace level, levels are in the range of \(LogLevel.rawTraceLevels)")
         
-        let derivedTag = derivedTagIfNil(file, tag: tag)
+        let derivedTag = derivedTagIfNil(file: file, tag: tag)
         
-        Logger.logPrimitive(LogLevel(rawValue: LogLevel.Trace1.rawValue + level - 1)!, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message)
+        Logger.logPrimitive(LogLevel(rawValue: LogLevel.trace1.rawValue + level - 1)!, tag: derivedTag, file: String(describing: file), function: String(describing: function), lineNumber: line, message: message)
     #endif
 }
 
@@ -222,13 +222,13 @@ public func logTrace(tag: String? = nil, level: Int = LogLevel.rawTraceLevels.st
         }
     ```
 */
-public func logTrace(level: Int, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message: () -> String) {
+public func logTrace(_ level: Int, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message: () -> String) {
     #if DEBUG || TRACELOG_ENABLE
         assert(LogLevel.rawTraceLevels.contains(level), "Trace levels are in the range of \(LogLevel.rawTraceLevels)")
         
-        let derivedTag = derivedTagIfNil(file, tag: nil)
+        let derivedTag = derivedTagIfNil(file: file, tag: nil)
         
-        Logger.logPrimitive(LogLevel(rawValue: LogLevel.Trace1.rawValue + level - 1)!, tag: derivedTag, file: file.stringValue, function: function.stringValue, lineNumber: line, message: message)
+        Logger.logPrimitive(LogLevel(rawValue: LogLevel.trace1.rawValue + level - 1)!, tag: derivedTag, file: String(describing: file), function: String(describing: function), lineNumber: line, message: message)
     #endif
 }
 
@@ -240,7 +240,7 @@ internal extension String {
         return (self as NSString).lastPathComponent
     }
     func stringByDeletingPathExtension() -> String {
-        return (self as NSString).stringByDeletingPathExtension
+        return (self as NSString).deletingPathExtension
     }
 }
 
@@ -248,6 +248,6 @@ private func derivedTagIfNil(file: StaticString, tag: String?) -> String {
     if let unwrappedTag = tag {
        return unwrappedTag
     } else {
-        return file.stringValue.lastPathComponent().stringByDeletingPathExtension()
+        return String(describing: file).lastPathComponent().stringByDeletingPathExtension()
     }
 }

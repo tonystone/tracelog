@@ -1,7 +1,6 @@
-language: objective-c
-xcode_workspace: Example/TraceLog.xcworkspace
-xcode_scheme: TraceLog-Example
-osx_image: xcode7.3
+language: swift
+os: osx
+osx_image: xcode8.0
 
 before_install:
     - brew install xctool

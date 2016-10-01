@@ -1,5 +1,5 @@
 framework module TraceLog {
-  umbrella header "Pods-TraceLog-OSX-TraceLog-umbrella.h"
+  umbrella header "TraceLog-Core-ObjC-umbrella.h"
 
   export *
   module * { export * }

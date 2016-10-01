@@ -17,7 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     let test = true;
     var moduleName = "MyCustomTag"
     
-    func applicationDidFinishLaunching(aNotification: NSNotification) {
+    func applicationDidFinishLaunching(_ aNotification: Notification) {
         
 //        //
 //        // Log an Info level message using a trailing closure.

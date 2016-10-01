@@ -19,19 +19,9 @@
  */
 import Swift
 
-public protocol RuntimeContext {
-    var processName: String { get }
-    var processIdentifier: Int { get }
-    var threadIdentifier: UInt64 { get }
-}
-
-public protocol StaticContext {
-    var file: String { get }
-    var function: String { get }
-    var lineNumber: UInt { get }
-    var column: UInt { get }
-}
-
+///
+/// Public protocol for writing log messages to some device or endpoint
+///
 public protocol Writer {
     
     /**
@@ -45,5 +35,25 @@ public protocol Writer {
      * @param function              The function (of the calling program) which is being called.
      * @param lineNumber            The source line number (of the calling program) of this logging event.
      */
-    func log(timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext)
+    func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext)
 }
+
+///
+/// Runtime context captured at the time of the log statement
+///
+public protocol RuntimeContext {
+    var processName: String { get }
+    var processIdentifier: Int { get }
+    var threadIdentifier: UInt64 { get }
+}
+
+///
+/// Static context captured at the time of the log statement
+///
+public protocol StaticContext {
+    var file: String { get }
+    var function: String { get }
+    var lineNumber: UInt { get }
+    var column: UInt { get }
+}
+

@@ -19,10 +19,17 @@
  */
 import Foundation
 
-public class Environment : DictionaryLiteralConvertible {
+open class Environment :  Collection, ExpressibleByDictionaryLiteral {
     
     public typealias Key   = String
     public typealias Value = String
+    
+    /// The element type of a Environment: a tuple containing an individual
+    /// key-value pair.
+    public typealias Element = (key: Key, value: Value)
+    
+    /// The index type of a dictionary.
+    public typealias Index = DictionaryIndex<Key, Value>
     
     public required init(dictionaryLiteral elements: (Key, Value)...) {
         storage = [Key: Value]()
@@ -31,31 +38,57 @@ public class Environment : DictionaryLiteralConvertible {
             storage[key] = value
         }
     }
+
+    public init<T : Collection>(_ elements: T) where T.Iterator.Element == Element {
+        storage = [Key: Value]()
+        
+        for (key, value) in elements {
+            storage[key] = value
+        }
+    }
     
     public init() {
-        let process  = NSProcessInfo.processInfo()
+        let process  = ProcessInfo.processInfo
         
         self.storage = process.environment
     }
-    private var storage: [Key: Value]
-}
+    fileprivate var storage: [Key: Value]
 
-extension Environment : CollectionType  {
+    
+    /// Returns the position immediately after the given index.
+    ///
+    /// - Parameter i: A valid index of the collection. `i` must be less than
+    ///   `endIndex`.
+    /// - Returns: The index value immediately after `i`.
+    public func index(after i: Index) -> Index {
+        return storage.index(after: i)
+    }
 
-    /**
-     Always zero, which is the index of the first element when non-empty.
-     */
-    public var startIndex : DictionaryIndex<Key, Value> { return storage.startIndex }
+    ///
+    /// Always zero, which is the index of the first element when non-empty.
+    ///
+    public var startIndex : Index {
+        return storage.startIndex
+    }
     
-    /**
-     A "past-the-end" element index; the successor of the last valid subscript argument.
-     */
-    public var endIndex  : DictionaryIndex<Key, Value> { return storage.endIndex }
+    ///
+    /// A "past-the-end" element index; the successor of the last valid subscript argument.
+    ///
+    public var endIndex  : Index {
+        return storage.endIndex
+    }
     
-    public subscript(position : DictionaryIndex<Key, Value>) -> (key: Key, value: Value) {
-        
+    public subscript(position : Index) -> Element {
+        return storage[position]
+    }
+    
+    public subscript(key: Key) -> Value? {
         get {
-            return storage[position]
+            return storage[key]
+        }
+        
+        set {
+            storage[key] = newValue
         }
     }
 }

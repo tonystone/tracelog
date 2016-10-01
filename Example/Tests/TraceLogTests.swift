@@ -20,7 +20,7 @@ import TraceLog
 class TraceLogTests_Swift : XCTestCase {
     
     override class func setUp() {
-//        TraceLog.initialize(environment: ["LOG_ALL": "TRACE4"])
+        TraceLog.initialize(environment: ["LOG_ALL": "TRACE4"])
     }
     
     func testError() {

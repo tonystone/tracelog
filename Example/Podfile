@@ -2,25 +2,27 @@ source 'https://github.com/CocoaPods/Specs.git'
 
 use_frameworks!
 
-target 'TraceLog-iOS', :exclusive => true do
+install! 'cocoapods', :deterministic_uuids => false
+
+target 'TraceLog-iOS' do
    platform :ios, '8.0'
     
    pod "TraceLog/ObjC", :path => "../"
 end
 
-target 'TraceLog-iOS-Tests', :exclusive => true do
+target 'TraceLog-iOS-Tests' do
    platform :ios, '8.0'
   
    pod "TraceLog/ObjC", :path => "../"
 end
 
-target 'TraceLog-OSX', :exclusive => true do
+target 'TraceLog-OSX' do
    platform :osx, '10.10'
   
    pod "TraceLog/Swift", :path => "../"
 end
 
-target 'TraceLog-OSX-Tests', :exclusive => true do
+target 'TraceLog-OSX-Tests' do
    platform :osx, '10.10'
     
    pod "TraceLog/Swift", :path => "../"

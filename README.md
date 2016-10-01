@@ -24,7 +24,7 @@ you need them.  TraceLog initializes itself and does everything else for you.
 
 | Xcode | Swift | iOS | tvOS |  OS X |
 |:-----:|:-----:|:---:|:----:|:-----:|
-| 7.3   |  2.2  | 8.0 | 9.0  | 10.10 |
+| 8.0   |  3.0  | 8.0 | 9.0  | 10.10 |
 
 ### Swift
 

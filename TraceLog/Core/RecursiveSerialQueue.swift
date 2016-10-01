@@ -21,24 +21,23 @@ import Foundation
 
 internal class RecursiveSerialQueue {
     
-    static  var queueID = 1
-    
-    private let queue: dispatch_queue_t
-    private let context: UnsafeMutablePointer<Void>
+    fileprivate let queue: DispatchQueue
+    fileprivate var queueID = DispatchSpecificKey<String>()
+    fileprivate let context: String
     
     init (name: String) {
-        queue = dispatch_queue_create(name, DISPATCH_QUEUE_SERIAL)
-        context = UnsafeMutablePointer<Void>(Unmanaged<dispatch_queue_t>.passUnretained(queue).toOpaque())
+        self.context = name
+        self.queue   = DispatchQueue(label: name, attributes: [])
         
-        dispatch_queue_set_specific(queue, &RecursiveSerialQueue.queueID, context, nil)
+        self.queue.setSpecific(key: self.queueID, value: context)
     }
     
-    func performBlockAndWait (block: () -> Void) {
+    func performBlockAndWait (_ block: () -> Void) {
         
-        if dispatch_get_specific(&RecursiveSerialQueue.queueID) == context {
+        if DispatchQueue.getSpecific(key: self.queueID) == context {
             block()
         } else {
-            dispatch_sync(queue, block)
+            queue.sync(execute: block)
         }
     }
 }

@@ -19,34 +19,47 @@
  */
 import Foundation
 
-public class ConsoleWriter : Writer {
+open class ConsoleWriter : Writer {
     
-    let dateFormatter: NSDateFormatter = {
-        
-        var formatter = NSDateFormatter()
-        //2016-04-23 10:34:26.849 Fields[39068:5120468]
-        
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
-        
-        return formatter
-    }()
-    
+    ///
+    /// Default constructor for this writer
+    ///
     public init() {}
     
-    public func log(timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
-        let date    = NSDate(timeIntervalSinceReferenceDate: timestamp)
-        let message = String(format: "%@ \(runtimeContext.processName)[\(runtimeContext.processIdentifier):\(runtimeContext.threadIdentifier)] %7@: <%@> %@", self.dateFormatter.stringFromDate(date), "\(level)", tag, message)
+    ///
+    /// Required log function for the logger
+    ///
+    open func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
+        let date    = Date(timeIntervalSinceReferenceDate: timestamp)
+        let message = String(format: "%@ \(runtimeContext.processName)[\(runtimeContext.processIdentifier):\(runtimeContext.threadIdentifier)] %7@: <%@> %@", self.dateFormatter.string(from: date), "\(level)", tag, message)
         
         synchronize {
             print(message)
         }
     }
     
-    private func synchronize (block: () -> Void) {
-        if NSThread.isMainThread() {
+    ///
+    /// Synchronize the block pased on the main thread
+    /// using the main thread directly if already on it.
+    ///
+    private func synchronize (_ block: () -> Void) {
+        if Thread.isMainThread {
             block()
         } else {
-            dispatch_sync(dispatch_get_main_queue(), block)
+            DispatchQueue.main.sync(execute: block)
         }
     }
+    
+    ///
+    /// Internal date formattor for this logger
+    ///
+    private let dateFormatter: DateFormatter = {
+        
+        var formatter = DateFormatter()
+        
+        //2016-04-23 10:34:26.849 Fields[39068:5120468]
+        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+        
+        return formatter
+    }()
 }

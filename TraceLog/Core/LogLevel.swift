@@ -19,6 +19,25 @@
  */
 import Swift
 
+///
+/// LogLevels
+///
+/// Note: this enum must support both Swift and ObjC
+///
+@objc public enum LogLevel : Int, Comparable {
+    case off     = 0
+    case error   = 1
+    case warning = 2
+    case info    = 3
+    case trace1  = 4
+    case trace2  = 5
+    case trace3  = 6
+    case trace4  = 7
+}
+
+///
+/// To support description below
+///
 private let logLevelStrings = [
     "OFF",
     "ERROR",
@@ -30,15 +49,13 @@ private let logLevelStrings = [
     "TRACE4"
 ]
 
-@objc public enum LogLevel : Int, Comparable {
-    case Off     = 0
-    case Error   = 1
-    case Warning = 2
-    case Info    = 3
-    case Trace1  = 4
-    case Trace2  = 5
-    case Trace3  = 6
-    case Trace4  = 7
+// Note: Objective-c type enums currently do not print their value
+///      so this is required for display of the levels.
+extension LogLevel: CustomStringConvertible {
+    
+    public var description: String {
+        return logLevelStrings[self.rawValue]
+    }
 }
 
 public func <(lhs: LogLevel, rhs: LogLevel) -> Bool {
@@ -50,24 +67,15 @@ public func ==(lhs: LogLevel, rhs: LogLevel) -> Bool {
 }
 
 internal extension LogLevel {
-    static var rawRange:       ClosedInterval<Int> { get { return LogLevel.Off.rawValue...LogLevel.Trace4.rawValue } }
-    static var rawTraceLevels: ClosedInterval<Int> { get { return 1...4 } }
-}
-
-// Note: Objective-c type enum currently do not print their value
-///      so this is required for display of the levels.
-extension LogLevel: CustomStringConvertible {
-    
-    public var description: String {
-        return logLevelStrings[self.rawValue]
-    }
+    static var rawRange:       ClosedRange<Int> { get { return LogLevel.off.rawValue...LogLevel.trace4.rawValue } }
+    static var rawTraceLevels: ClosedRange<Int> { get { return 1...4 } }
 }
 
 internal extension String {
     
     func asLogLevel () -> LogLevel? {
         
-        for rawLevel in LogLevel.Off.rawValue...LogLevel.Trace4.rawValue {
+        for rawLevel in LogLevel.off.rawValue...LogLevel.trace4.rawValue {
             if let level = LogLevel(rawValue: rawLevel) {
             
                 if self == level.description {
