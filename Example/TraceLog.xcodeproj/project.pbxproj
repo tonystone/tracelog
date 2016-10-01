@@ -92,6 +92,7 @@
 		EA5C7FC21BEBAA7000B3951D /* TraceLog-OSX-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TraceLog-OSX-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA5C7FD01BEBAB3E00B3951D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "TraceLog-OSX-Tests/Info.plist"; sourceTree = SOURCE_ROOT; };
 		EA5C7FD31BEBCD8E00B3951D /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
+		EAB6DE011DA01D1E00ACEEF3 /* TraceLog.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TraceLog.playground; sourceTree = "<group>"; };
 		F6F6EC735F92A56AF571C04D /* Pods-TraceLog-OSX-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-OSX-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraceLog-OSX-Tests/Pods-TraceLog-OSX-Tests.release.xcconfig"; sourceTree = "<group>"; };
 		F87B3B34F4B8B59C25C88136 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -156,6 +157,7 @@
 		6003F581195388D10070C39A = {
 			isa = PBXGroup;
 			children = (
+				EAB6DE001DA01CFE00ACEEF3 /* Playground */,
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				6003F593195388D20070C39A /* TraceLog-iOS */,
 				6003F5B5195388D20070C39A /* TraceLog-iOS-Tests */,
@@ -284,6 +286,14 @@
 				EA5C7FD01BEBAB3E00B3951D /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		EAB6DE001DA01CFE00ACEEF3 /* Playground */ = {
+			isa = PBXGroup;
+			children = (
+				EAB6DE011DA01D1E00ACEEF3 /* TraceLog.playground */,
+			);
+			name = Playground;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
