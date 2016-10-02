@@ -41,7 +41,7 @@ Pod::Spec.new do |s|
   s.default_subspecs = 'ObjC'
 
   s.subspec 'Core' do |ss|
-     ss.source_files = 'TraceLog/Core/**/*.{h,m,swift}'
+     ss.source_files = 'TraceLog/Core/**/*.swift'
   end
 
   s.subspec 'ObjC' do |ss|
@@ -62,7 +62,14 @@ Pod::Spec.new do |s|
 
     ss.dependency 'TraceLog/Core'
 
-    ss.xcconfig = { "OTHER_SWIFT_FLAGS[config=Debug]" => "$(inherited) -D COCOAPODS -DDEBUG" }
+    ss.xcconfig = {
+        'OTHER_SWIFT_FLAGS[config=Debug]' => '$(inherited) -D COCOAPODS -DDEBUG'
+    }
   end
+
+  # Defined for all projects
+  s.pod_target_xcconfig = {
+     'SWIFT_VERSION' => '3.0'
+  }
 
 end
