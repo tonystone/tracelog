@@ -16,7 +16,6 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		94F84F2BF5989F50E8E87219 /* Pods_TraceLog_OSX_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0FE882C098E5BF8E836F517 /* Pods_TraceLog_OSX_Tests.framework */; };
-		EA08B81B1DA08AC10023CBD1 /* TraceLogPerformanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA08B81A1DA08AC10023CBD1 /* TraceLogPerformanceTests.m */; };
 		EA08B81C1DA08AC10023CBD1 /* TraceLogPerformanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA08B81A1DA08AC10023CBD1 /* TraceLogPerformanceTests.m */; };
 		EA08B81E1DA08AD00023CBD1 /* TraceLogPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA08B81D1DA08AD00023CBD1 /* TraceLogPerformanceTests.swift */; };
 		EA08B8221DA0A08F0023CBD1 /* LoggerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA08B8201DA09DF20023CBD1 /* LoggerProxy.swift */; };
@@ -678,7 +677,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA3038501BEA94DC00DC4084 /* TraceLogTests.m in Sources */,
-				EA08B81B1DA08AC10023CBD1 /* TraceLogPerformanceTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -902,6 +900,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = DAD59558981C388F77499E21 /* Pods-TraceLog-iOS-Tests.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
@@ -932,6 +931,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 01A5A6E364804B51BADF10AC /* Pods-TraceLog-iOS-Tests.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ENABLE_MODULES = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "";
