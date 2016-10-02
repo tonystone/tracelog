@@ -16,6 +16,9 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		94F84F2BF5989F50E8E87219 /* Pods_TraceLog_OSX_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0FE882C098E5BF8E836F517 /* Pods_TraceLog_OSX_Tests.framework */; };
+		EA08B81B1DA08AC10023CBD1 /* TraceLogPerformanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA08B81A1DA08AC10023CBD1 /* TraceLogPerformanceTests.m */; };
+		EA08B81C1DA08AC10023CBD1 /* TraceLogPerformanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA08B81A1DA08AC10023CBD1 /* TraceLogPerformanceTests.m */; };
+		EA08B81E1DA08AD00023CBD1 /* TraceLogPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA08B81D1DA08AD00023CBD1 /* TraceLogPerformanceTests.swift */; };
 		EA3037FA1BEA880300DC4084 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3037F71BEA880300DC4084 /* main.m */; };
 		EA3038001BEA882E00DC4084 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA3037FB1BEA882E00DC4084 /* Images.xcassets */; };
 		EA3038011BEA882E00DC4084 /* TLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3037FD1BEA882E00DC4084 /* TLAppDelegate.m */; };
@@ -68,6 +71,8 @@
 		C6FC67581D386ED7A654BFBA /* Pods-TraceLog-OSX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-OSX.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraceLog-OSX/Pods-TraceLog-OSX.release.xcconfig"; sourceTree = "<group>"; };
 		D063B377EF428F4934F11DFC /* Pods_TraceLog_OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraceLog_OSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAD59558981C388F77499E21 /* Pods-TraceLog-iOS-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-iOS-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraceLog-iOS-Tests/Pods-TraceLog-iOS-Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		EA08B81A1DA08AC10023CBD1 /* TraceLogPerformanceTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TraceLogPerformanceTests.m; sourceTree = "<group>"; };
+		EA08B81D1DA08AD00023CBD1 /* TraceLogPerformanceTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TraceLogPerformanceTests.swift; sourceTree = "<group>"; };
 		EA3037F61BEA880300DC4084 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "TraceLog-iOS/Info.plist"; sourceTree = SOURCE_ROOT; };
 		EA3037F71BEA880300DC4084 /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = "TraceLog-iOS/main.m"; sourceTree = SOURCE_ROOT; };
 		EA3037F81BEA880300DC4084 /* TraceLog-Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = "TraceLog-Prefix.pch"; path = "TraceLog-iOS/TraceLog-Prefix.pch"; sourceTree = SOURCE_ROOT; };
@@ -256,7 +261,9 @@
 			isa = PBXGroup;
 			children = (
 				EA30384E1BEA94DC00DC4084 /* TraceLogTests.m */,
+				EA08B81A1DA08AC10023CBD1 /* TraceLogPerformanceTests.m */,
 				EA30384F1BEA94DC00DC4084 /* TraceLogTests.swift */,
+				EA08B81D1DA08AD00023CBD1 /* TraceLogPerformanceTests.swift */,
 			);
 			path = Tests;
 			sourceTree = "<group>";
@@ -667,6 +674,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA3038501BEA94DC00DC4084 /* TraceLogTests.m in Sources */,
+				EA08B81B1DA08AC10023CBD1 /* TraceLogPerformanceTests.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -683,6 +691,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA5C7FD21BEBAB6D00B3951D /* TraceLogTests.swift in Sources */,
+				EA08B81C1DA08AC10023CBD1 /* TraceLogPerformanceTests.m in Sources */,
+				EA08B81E1DA08AD00023CBD1 /* TraceLogPerformanceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -985,6 +995,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;
@@ -997,6 +1008,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.TraceLog-OSX-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TraceLog-OSX.app/Contents/MacOS/TraceLog-OSX";
 			};
@@ -1008,6 +1020,7 @@
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CODE_SIGN_IDENTITY = "";
 				COMBINE_HIDPI_IMAGES = YES;

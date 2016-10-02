@@ -19,7 +19,7 @@
  */
 import Foundation
 
-open class Environment :  Collection, ExpressibleByDictionaryLiteral {
+public class Environment :  Collection, ExpressibleByDictionaryLiteral {
     
     public typealias Key   = String
     public typealias Value = String

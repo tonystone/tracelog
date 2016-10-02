@@ -1,10 +1,11 @@
 EMBEDDED_CONTENT_CONTAINS_SWIFT = YES
-FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/TraceLog-Core-ObjC"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "$PODS_CONFIGURATION_BUILD_DIR/TraceLog-Core-ObjC-Swift-iOS"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/Frameworks' '@loader_path/Frameworks'
-OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/TraceLog-Core-ObjC/TraceLog.framework/Headers"
+OTHER_CFLAGS = $(inherited) -iquote "$PODS_CONFIGURATION_BUILD_DIR/TraceLog-Core-ObjC-Swift-iOS/TraceLog.framework/Headers"
 OTHER_LDFLAGS = $(inherited) -framework "TraceLog"
 OTHER_SWIFT_FLAGS = $(inherited) "-D" "COCOAPODS"
+OTHER_SWIFT_FLAGS[config=Debug] = $(inherited) -D COCOAPODS -DDEBUG
 PODS_BUILD_DIR = $BUILD_DIR
 PODS_CONFIGURATION_BUILD_DIR = $PODS_BUILD_DIR/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)
 PODS_ROOT = ${SRCROOT}/Pods

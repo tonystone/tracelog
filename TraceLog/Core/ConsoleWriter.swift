@@ -19,7 +19,7 @@
  */
 import Foundation
 
-open class ConsoleWriter : Writer {
+public class ConsoleWriter : Writer {
     
     ///
     /// Default constructor for this writer

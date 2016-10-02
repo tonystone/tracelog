@@ -9,70 +9,62 @@
 import XCTest
 import TraceLog
 
-//
-//internal class TestWriter : Writer {
-//    func log(timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
-//        print(message)
-//    }
-//}
-
-
 class TraceLogTests_Swift : XCTestCase {
     
     override class func setUp() {
-        TraceLog.initialize(environment: ["LOG_ALL": "TRACE4"])
+        TraceLog.initialize(logWriters: [ConsoleWriter()], environment: ["LOG_ALL": "TRACE4"])
     }
     
-    func testError() {
+    func testLogError() {
         
         logError() {
             "Swift: " + #function
         }
     }
     
-    func testWarning() {
+    func testLogWarning() {
         
         logWarning() {
             "Swift: " + #function
         }
     }
 
-    func testInfo() {
+    func testLogInfo() {
         
         logInfo {
             "Swift: " + #function
         }
     }
     
-    func testTrace() {
+    func testLogTrace() {
         
         logTrace {
             "Swift: " + #function
         }
     }
     
-    func testTrace1() {
+    func testLogTrace1() {
         
         logTrace(1) {
             "Swift: " + #function
         }
     }
     
-    func testTrace2() {
+    func testLogTrace2() {
         
         logTrace(2) {
             "Swift: " + #function
         }
     }
     
-    func testTrace3() {
+    func testLogTrace3() {
         
         logTrace(3) {
             "Swift: " + #function
         }
     }
     
-    func testTrace4() {
+    func testLogTrace4() {
         
         logTrace(4) {
             "Swift: " + #function

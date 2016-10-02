@@ -18,8 +18,7 @@
  *
  *   Created by Tony Stone on 3/4/15.
  */
-#import <XCTest/XCTest.h>
-
+@import XCTest;
 @import TraceLog;
 
 @interface TraceLogTests_ObjC : XCTestCase
@@ -27,90 +26,71 @@
 
 @implementation TraceLogTests_ObjC
 
+    + (void)setUp {
+//        [TLLogger setWriters: @[ [[TLConsoleWriter alloc] init] ]];
+    }
+
     //
     // Object level calls
     //
-    - (void) testLogError_WithString {
-        LogError(@"Objective-C Level Test - ERROR");
+    - (void) testLogError {
+        LogError(@"ObjC: %s", __FUNCTION__);
     }
 
-    - (void) testLogError_WithFormatString {
-        LogError(@"Objective-C Level Test - %@", @"ERROR");
+    - (void) testLogWarning {
+        LogWarning(@"ObjC: %s", __FUNCTION__);
     }
 
-    - (void) testLogWarning_WithString {
-        LogWarning(@"Objective-C Level Test - WARNING");
+    - (void) testLogInfo {
+        LogInfo(@"ObjC: %s", __FUNCTION__);
     }
 
-    - (void) testLogInfo_WithString {
-        LogInfo(@"Objective-C Level Test - INFO");
-    }
-
-    - (void) testLogInfo_WithFormatString {
-        LogInfo(@"Objective-C Level Test - %@", @"INFO");
-    }
-
-    - (void) testLogTrace1_WithString {
-        LogTrace(1,@"Objective-C Level Test - TRACE1");
-    }
-
-    - (void) testLogTrace1_WithFormatString {
-        LogTrace(1,@"Objective-C Level Test - TRACE%u",1);
+    - (void) testLogTrace1{
+        LogTrace(1,@"ObjC: %s", __FUNCTION__);
     }
 
     - (void) testLogTrace2_WithString {
-        LogTrace(2,@"Objective-C Level Test - TRACE2");
+        LogTrace(2,@"ObjC: %s", __FUNCTION__);
     }
 
-    - (void) testLogTrace2_WithFormatString {
-        LogTrace(2,@"Objective-C Level Test - TRACE%u",2);
+    - (void) testLogTrace3 {
+        LogTrace(3,@"ObjC: %s", __FUNCTION__);
     }
 
-    - (void) testLogTrace3_WithString {
-        LogTrace(3,@"Objective-C Level Test - TRACE3");
-    }
-
-    - (void) testLogTrace3_WithFormatString {
-        LogTrace(3,@"Objective-C Level Test - TRACE%u",3);
-    }
-
-    - (void) testLogTrace4_WithString {
-        LogTrace(4,@"Objective-C Level Test - TRACE4");
-    }
-
-    - (void) testLogTrace4_WithFormatString {
-        LogTrace(4,@"Objective-C Level Test - TRACE%u",4);
+    - (void) testLogTrace4 {
+        LogTrace(4,@"ObjC: %s", __FUNCTION__);
     }
 
     //
     // C-Level Call tests
     //
     - (void) testCLogError {
-        CLogError(NSStringFromClass([self class]), @"C Level Test - ERROR");
+        CLogError(NSStringFromClass([self class]), @"C: %s", __FUNCTION__);
     }
 
     - (void) testCLogWarning {
-        CLogWarning(NSStringFromClass([self class]), @"C Level Test - WARNING");
+        CLogWarning(NSStringFromClass([self class]), @"C: %s", __FUNCTION__);
     }
 
     - (void) testCLogInfo {
-        CLogInfo(NSStringFromClass([self class]), @"C Level Test - INFO");
+        CLogInfo(NSStringFromClass([self class]), @"C: %s", __FUNCTION__);
     }
 
     - (void) testCLogTrace1 {
-        CLogTrace(1, NSStringFromClass([self class]), @"C Level Test - TRACE%u",1);
+        CLogTrace(1, NSStringFromClass([self class]), @"C: %s", __FUNCTION__);
     }
 
     - (void) testCLogTrace2 {
-        CLogTrace(2, NSStringFromClass([self class]), @"C Level Test - TRACE%u",2);
+        CLogTrace(2, NSStringFromClass([self class]), @"C: %s", __FUNCTION__);
     }
 
     - (void) testCLogTrace3 {
-        CLogTrace(3, NSStringFromClass([self class]), @"C Level Test - TRACE%u",3);
+        CLogTrace(3, NSStringFromClass([self class]), @"C: %s", __FUNCTION__);
     }
 
     - (void) testCLogTrace4 {
-        CLogTrace(4, NSStringFromClass([self class]), @"C Level Test - TRACE%u",4);
+        CLogTrace(4, NSStringFromClass([self class]), @"C: %s", __FUNCTION__);
     }
+
 
 @end
