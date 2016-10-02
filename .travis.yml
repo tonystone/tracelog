@@ -7,7 +7,7 @@ before_install:
 
 env:
     matrix:
-        - MATRIX_TARGET="-scheme TraceLog-iOS-Example -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=9.3'"
+        - MATRIX_TARGET="-scheme TraceLog-iOS-Example -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.0'"
         - MATRIX_TARGET="-scheme TraceLog-OSX-Example -sdk macosx"
 
 
