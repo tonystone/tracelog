@@ -20,10 +20,13 @@
   },
   "requires_arc": true,
   "default_subspecs": "ObjC",
+  "pod_target_xcconfig": {
+    "SWIFT_VERSION": "3.0"
+  },
   "subspecs": [
     {
       "name": "Core",
-      "source_files": "TraceLog/Core/**/*.{h,m,swift}"
+      "source_files": "TraceLog/Core/**/*.swift"
     },
     {
       "name": "ObjC",
