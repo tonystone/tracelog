@@ -26,10 +26,6 @@
 
 @implementation TraceLogTests_ObjC
 
-    + (void)setUp {
-//        [TLLogger setWriters: @[ [[TLConsoleWriter alloc] init] ]];
-    }
-
     //
     // Object level calls
     //
