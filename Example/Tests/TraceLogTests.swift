@@ -9,65 +9,62 @@
 import XCTest
 import TraceLog
 
-internal class Testriter : NSObject, TLWriter {
-
-    func log(date: NSTimeInterval, level: LogLevel, tag: String, message: String?, file: String, function: String, lineNumber: UInt) -> Void {
-    }
-}
-
-
-class TraceLogTests: XCTestCase {
+class TraceLogTests_Swift : XCTestCase {
     
-    func testError() {
+    override class func setUp() {
+        TLLogger.setWriters([TLConsoleWriter()]) 
+    }
+    
+    func testLogError() {
         
         logError() {
             "Swift: " + #function
         }
     }
     
-    func testWarning() {
+    func testLogWarning() {
         
         logWarning() {
             "Swift: " + #function
         }
     }
 
-    func testInfo() {
+    func testLogInfo() {
         
         logInfo {
             "Swift: " + #function
         }
     }
     
-    func testTrace() {
+    func testLogTrace() {
         
         logTrace {
             "Swift: " + #function
         }
     }
     
-    func testTrace1() {
+    func testLogTrace1() {
         
         logTrace(1) {
             "Swift: " + #function
         }
     }
     
-    func testTrace2() {
+    func testLogTrace2() {
         
         logTrace(2) {
             "Swift: " + #function
         }
     }
     
-    func testTrace3() {
+    func testLogTrace3() {
         
         logTrace(3) {
             "Swift: " + #function
         }
     }
     
-    func testTrace4() {
+    func testLogTrace4() {
         
         logTrace(4) {
             "Swift: " + #function
