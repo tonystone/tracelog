@@ -277,7 +277,7 @@ See the ["Using CocoaPods"](https://guides.cocoapods.org/using/using-cocoapods.h
 
 ## Requirements
 
-Compiling TraceLog requires XCode 7.3 or above as well as specfic minimum deployment targets for each language.  These are listed below.
+Compiling TraceLog requires **XCode 8.0** or above as well as specfic minimum deployment targets for each language.  These are listed below.
 
 ### Swift
 
