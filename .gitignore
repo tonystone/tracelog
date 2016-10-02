@@ -38,3 +38,14 @@ DerivedData
 ## Directory-based project format:
 .idea/
 *.iml
+
+#
+#  Swift Compile output on Linux
+#
+.build
+
+#
+# Vagrant
+#
+.vagrant
+
