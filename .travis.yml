@@ -1,4 +1,4 @@
-language: swift
+language: objective-c
 os: osx
 osx_image: xcode8
 
@@ -7,13 +7,12 @@ before_install:
 
 env:
     matrix:
-        - MATRIX_TARGET="-scheme TraceLog-iOS-Example -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 6,OS=10.0'"
-        - MATRIX_TARGET="-scheme TraceLog-OSX-Example -sdk macosx"
-
+        - SCHEME=TraceLog-iOS-Example TEST_DEST="platform=iOS Simulator,OS=10.0,name=iPhone 6" TEST_SDK=iphonesimulator
+        - SCHEME=TraceLog-OSX-Example TEST_DEST="platform=OS X,arch=x86_64" TEST_SDK=macosx
 
 script:
     - set -o pipefail
-    - xcodebuild clean test -workspace Example/TraceLog.xcworkspace $MATRIX_TARGET GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
+    - xcodebuild clean test -workspace Example/TraceLog.xcworkspace -scheme="$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
