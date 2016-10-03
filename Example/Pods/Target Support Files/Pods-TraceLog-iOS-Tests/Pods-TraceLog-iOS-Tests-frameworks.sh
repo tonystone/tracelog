@@ -84,8 +84,8 @@ strip_invalid_archs() {
 
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/TraceLog-Core-ObjC-Swift-iOS/TraceLog.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/TraceLog.default-ObjC-iOS/TraceLog.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
-  install_framework "$BUILT_PRODUCTS_DIR/TraceLog-Core-ObjC-Swift-iOS/TraceLog.framework"
+  install_framework "$BUILT_PRODUCTS_DIR/TraceLog.default-ObjC-iOS/TraceLog.framework"
 fi

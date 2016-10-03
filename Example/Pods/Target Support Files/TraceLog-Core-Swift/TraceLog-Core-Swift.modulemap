@@ -1,6 +1,0 @@
-framework module TraceLog {
-  umbrella header "TraceLog-Core-Swift-umbrella.h"
-
-  export *
-  module * { export * }
-}

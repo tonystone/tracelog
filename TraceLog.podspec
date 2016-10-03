@@ -32,39 +32,27 @@ Pod::Spec.new do |s|
   s.author           = { "Tony Stone" => "https://github.com/tonystone" }
   s.source           = { :git => "https://github.com/tonystone/tracelog.git", :tag => s.version.to_s }
 
-  s.ios.deployment_target     = '5.0'
-  s.osx.deployment_target     = '10.7'
+  s.ios.deployment_target     = '8.0'
+  s.osx.deployment_target     = '10.10'
   s.watchos.deployment_target = '2.0'
   s.tvos.deployment_target    = '9.0'
 
   s.requires_arc = true
-  s.default_subspecs = 'ObjC'
+  s.default_subspecs = 'Swift'
 
-  s.subspec 'Core' do |ss|
-     ss.source_files = 'TraceLog/Core/**/*.swift'
-  end
+  s.subspec 'Swift' do |swift|
+    swift.source_files = 'Sources/TraceLog/*.swift'
 
-  s.subspec 'ObjC' do |ss|
-    ss.public_header_files = 'TraceLog/ObjC/TraceLog.h'
-    ss.source_files        = 'TraceLog/ObjC/TraceLog.h'
-
-    ss.dependency 'TraceLog/Core'
-  end
-
-  s.subspec 'Swift' do |ss|
-    ss.ios.deployment_target     = '8.0'
-    ss.osx.deployment_target     = '10.10'
-    ss.watchos.deployment_target = '2.0'
-    ss.tvos.deployment_target    = '9.0'
-
-    ss.source_files = 'TraceLog/Swift/*.swift'
-    ss.preserve_paths = 'TraceLog/Swift/*.swift'
-
-    ss.dependency 'TraceLog/Core'
-
-    ss.xcconfig = {
+    swift.xcconfig = {
         'OTHER_SWIFT_FLAGS[config=Debug]' => '$(inherited) -D COCOAPODS -DDEBUG'
     }
+  end
+
+  s.subspec 'ObjC' do |objc|
+    objc.dependency 'TraceLog/Swift'
+
+    objc.public_header_files = 'Sources/TraceLogObjC/TraceLog.h'
+    objc.source_files        = 'Sources/TraceLogObjC/*.{h,swift}'
   end
 
   # Defined for all projects

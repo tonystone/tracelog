@@ -1,9 +1,17 @@
-# TraceLog
+# TraceLog ![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-lightgray.svg?style=flat)
 
-[![Build Status](https://travis-ci.org/tonystone/tracelog.svg?branch=master)](https://travis-ci.org/tonystone/tracelog)
+<a href="https://developer.apple.com/swift/" target="_blank">
+    <img src="https://img.shields.io/badge/Platforms-ios%20%7C%20osx%20%7C%20watchos%20%7C%20tvos%20%7C%20linux%20-lightgray.svg?style=flat" alt="Platforms: ios | osx | watchos | tvos | Linux">
+</a>
+<a href="https://developer.apple.com/swift/" target="_blank">
+    <img src="https://img.shields.io/badge/Compatible-CocoaPods%20%7C%20Swift%20PM-lightgray.svg?style=flat" alt="Compatible: CocoaPods | Swift PM">
+</a>
+<a href="https://developer.apple.com/swift/" target="_blank">
+   <img src="https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat" alt="Swift 3.0">
+</a>
 [![Version](https://img.shields.io/cocoapods/v/TraceLog.svg?style=flat)](http://cocoadocs.org/docsets/TraceLog)
-[![License](https://img.shields.io/cocoapods/l/TraceLog.svg?style=flat)](http://cocoadocs.org/docsets/TraceLog)
-[![Platform](https://img.shields.io/cocoapods/p/TraceLog.svg?style=flat)](http://cocoadocs.org/docsets/TraceLog)
+[![Build Status](https://travis-ci.org/tonystone/tracelog.svg?branch=master)](https://travis-ci.org/tonystone/tracelog)
+
 
 
 ## Introduction

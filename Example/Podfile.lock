@@ -1,21 +1,21 @@
 PODS:
-  - TraceLog/Core (2.0.0)
+  - TraceLog (2.0.0):
+    - TraceLog/Swift (= 2.0.0)
   - TraceLog/ObjC (2.0.0):
-    - TraceLog/Core
-  - TraceLog/Swift (2.0.0):
-    - TraceLog/Core
+    - TraceLog/Swift
+  - TraceLog/Swift (2.0.0)
 
 DEPENDENCIES:
+  - TraceLog (from `../`)
   - TraceLog/ObjC (from `../`)
-  - TraceLog/Swift (from `../`)
 
 EXTERNAL SOURCES:
   TraceLog:
     :path: "../"
 
 SPEC CHECKSUMS:
-  TraceLog: 748f5403d4d8f170e0bb437b9e547ea3d1309d78
+  TraceLog: f9acbff36c2a34f996a4883200db474216d33d5d
 
-PODFILE CHECKSUM: fb95f2c06f224930fe31595faf9e39b00c265a4c
+PODFILE CHECKSUM: 57e96c2f73a1a54e9ac44b6dcac0f3349c0826d1
 
 COCOAPODS: 1.0.1
