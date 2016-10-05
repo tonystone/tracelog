@@ -36,7 +36,7 @@ internal class Configuration  {
     
     var loggedPrefixes: [String : LogLevel] = [:]
     var loggedTags:     [String : LogLevel] = [:]
-    var logWriters:     [Writer]            = [ConsoleWriter()]
+    var writers:        [Writer]            = [ConsoleWriter()]
     
     init () {}
     
@@ -49,12 +49,12 @@ internal class Configuration  {
         
         self.globalLogLevel = LogLevel.info
         
-        self.logWriters.removeAll()
+        self.writers.removeAll()
         self.loggedPrefixes.removeAll()
         self.loggedTags.removeAll()
 
         /// Initialize the writers first
-        self.logWriters.append(contentsOf: writers)
+        self.writers.append(contentsOf: writers)
         
         for (variable, value) in environment {
             ///
