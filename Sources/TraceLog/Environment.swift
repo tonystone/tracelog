@@ -22,7 +22,7 @@ import Foundation
 ///
 /// A class that it used to capture and represent the os environment variables.
 ///
-internal class Environment :  Collection, ExpressibleByDictionaryLiteral {
+public class Environment :  Collection, ExpressibleByDictionaryLiteral {
     
     public typealias Key   = String
     public typealias Value = String
