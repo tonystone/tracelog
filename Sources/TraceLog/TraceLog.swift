@@ -68,7 +68,7 @@ func logError(_ tag: String? = nil, _ file: String = #file, _ function: String =
     #if DEBUG || TRACELOG_ENABLE || os(Linux)
         let derivedTag = derivedTagIfNil(file: file, tag: tag)
         
-        Logger.logPrimitive(LogLevel.error, tag: derivedTag, file: file, function: function, lineNumber: line, message: message)
+        Logger.logPrimitive(LogLevel.error, tag: derivedTag, file: file, function: function, line: line, message: message)
     #endif
 }
 
@@ -103,7 +103,7 @@ func logWarning(_ tag: String? = nil, _ file: String = #file, _ function: String
     #if DEBUG || TRACELOG_ENABLE || os(Linux)
         let derivedTag = derivedTagIfNil(file: file, tag: tag)
         
-        Logger.logPrimitive(LogLevel.warning, tag: derivedTag, file: file, function: function, lineNumber: line, message: message)
+        Logger.logPrimitive(LogLevel.warning, tag: derivedTag, file: file, function: function, line: line, message: message)
     #endif
 }
 
@@ -137,7 +137,7 @@ func logInfo(_ tag: String? = nil, _ file: String = #file, _ function: String = 
     #if DEBUG || TRACELOG_ENABLE || os(Linux)
         let derivedTag = derivedTagIfNil(file: file, tag: tag)
         
-        Logger.logPrimitive(LogLevel.info, tag: derivedTag, file: file, function: function, lineNumber: line, message: message)
+        Logger.logPrimitive(LogLevel.info, tag: derivedTag, file: file, function: function, line: line, message: message)
     #endif
 }
 
@@ -180,7 +180,7 @@ func logTrace(_ tag: String? = nil, level: Int = LogLevel.rawTraceLevels.lowerBo
         
         let derivedTag = derivedTagIfNil(file: file, tag: tag)
         
-        Logger.logPrimitive(LogLevel(rawValue: LogLevel.trace1.rawValue + level - 1)!, tag: derivedTag, file: file, function: function, lineNumber: line, message: message)
+        Logger.logPrimitive(LogLevel(rawValue: LogLevel.trace1.rawValue + level - 1)!, tag: derivedTag, file: file, function: function, line: line, message: message)
     #endif
 }
 
@@ -222,7 +222,7 @@ func logTrace(_ level: Int, _ file: String = #file, _ function: String = #functi
         
         let derivedTag = derivedTagIfNil(file: file, tag: nil)
         
-        Logger.logPrimitive(LogLevel(rawValue: LogLevel.trace1.rawValue + level - 1)!, tag: derivedTag, file: file, function: function, lineNumber: line, message: message)
+        Logger.logPrimitive(LogLevel(rawValue: LogLevel.trace1.rawValue + level - 1)!, tag: derivedTag, file: file, function: function, line: line, message: message)
     #endif
 }
 

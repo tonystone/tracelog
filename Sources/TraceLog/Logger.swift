@@ -64,12 +64,12 @@ internal final class Logger {
     internal class StaticContextImpl : StaticContext {
         internal let file: String
         internal let function: String
-        internal let lineNumber: Int
+        internal let line: Int
         
-        internal init(file: String, function: String, lineNumber: Int) {
+        internal init(file: String, function: String, line: Int) {
             self.file       = file
             self.function   = function
-            self.lineNumber = lineNumber
+            self.line       = line
         }
     }
     
@@ -100,13 +100,13 @@ internal final class Logger {
         
             let errors = config.load(writers, environment: environment)
 
-            logPrimitive(.info, tag: moduleLogName, file: #file, function: #function, lineNumber: #line) {
+            logPrimitive(.info, tag: moduleLogName, file: #file, function: #function, line: #line) {
                 "\(moduleLogName) initialized with configuration: \(config.description)"
             }
             
             for error in errors {
                 
-                logPrimitive(.warning, tag: moduleLogName, file: #file, function: #function, lineNumber: #line) {
+                logPrimitive(.warning, tag: moduleLogName, file: #file, function: #function, line: #line) {
                     "\(error)"
                 }
             }
@@ -116,11 +116,11 @@ internal final class Logger {
     ///
     /// Low level logging function for Swift calls
     ///
-    class func logPrimitive(_ level: LogLevel, tag: String, file: String, function: String, lineNumber: Int, message: @escaping () -> String) {
+    class func logPrimitive(_ level: LogLevel, tag: String, file: String, function: String, line: Int, message: @escaping () -> String) {
 
         // Capture the context outside the dispatch queue
         let runtimeContext = RuntimeContextImpl()
-        let staticContext  = StaticContextImpl(file: file, function: function, lineNumber: lineNumber)
+        let staticContext  = StaticContextImpl(file: file, function: function, line: line)
         
         ///
         /// All logPrimative calls are asynchronous
@@ -153,10 +153,10 @@ internal final class Logger {
         ///
         /// Low level logging function for ObjC calls
         ///
-        open class func logPrimitive(_ level: Int, tag: String, file: String, function: String, lineNumber: Int, message: @escaping () -> String) {
+        open class func logPrimitive(_ level: Int, tag: String, file: String, function: String, line: Int, message: @escaping () -> String) {
             assert(LogLevel.rawRange.contains(level), "Invalid log level, values must be in the the range \(LogLevel.rawRange)")
             
-            Logger.logPrimitive(LogLevel(rawValue: level)!, tag: tag, file: file, function: function, lineNumber: lineNumber, message: message)
+            Logger.logPrimitive(LogLevel(rawValue: level)!, tag: tag, file: file, function: function, line: line, message: message)
         }
     }
     

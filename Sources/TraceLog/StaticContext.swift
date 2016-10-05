@@ -24,5 +24,5 @@
 public protocol StaticContext {
     var file: String { get }
     var function: String { get }
-    var lineNumber: Int { get }
+    var line: Int { get }
 }
