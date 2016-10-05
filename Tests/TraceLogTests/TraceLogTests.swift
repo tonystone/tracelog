@@ -21,25 +21,30 @@ class ExpectationValues : Writer {
     let message: String
     let file: String
     let function: String
+    let testFileFunction: Bool
     
-    init(expectation: XCTestExpectation, level: LogLevel, tag: String, message: String, file: String = #file, function: String = #function) {
+    init(expectation: XCTestExpectation, level: LogLevel, tag: String, message: String, file: String = #file, function: String = #function, testFileFunction: Bool = true) {
         self.expectation = expectation
         self.level = level
         self.tag = tag
         self.message = message
         self.file = file
         self.function = function
+        self.testFileFunction = testFileFunction
     }
     
     func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
         
         if level == self.level &&
             tag == self.tag &&
-            message == self.message &&
-            staticContext.file == self.file &&
-            staticContext.function == self.function
-        {
-            expectation.fulfill()
+            message == self.message {
+            
+            if !testFileFunction ||
+                staticContext.file == self.file &&
+                staticContext.function == self.function
+            {
+                expectation.fulfill()
+            }
         }
     }
 }
@@ -56,13 +61,30 @@ class TraceLogTests_Swift : XCTestCase {
     }
     
     func testinitialize_LogWriters() {
-        TraceLog.initialize(logWriters: [ConsoleWriter()])
+        let testMessage = "TraceLog initialized with configuration: {\n\tglobal: {\n\n\t\tALL = INFO\n\t}\n}"
+        
+        let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .info, tag: "TraceLog", message: testMessage, testFileFunction: false)
+        
+        TraceLog.initialize(logWriters: [expectedValues])
+        
+        self.waitForExpectations(timeout: 2) { error in
+            XCTAssertNil(error)
+        }
     }
     
     func testinitialize_LogWriters_Environment() {
-        TraceLog.initialize(logWriters: [ConsoleWriter()], environment: ["LOG_ALL": "TRACE4",
+
+        let testMessage = "TraceLog initialized with configuration: {\n\ttags: {\n\n\t\tTraceLog = TRACE4\n\t}\n\tprefixes: {\n\n\t\tNS = OFF\n\t}\n\tglobal: {\n\n\t\tALL = TRACE4\n\t}\n}"
+        
+        let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .info, tag: "TraceLog", message: testMessage, testFileFunction: false)
+        
+        TraceLog.initialize(logWriters: [expectedValues], environment: ["LOG_ALL": "TRACE4",
                                                                          "LOG_PREFIX_NS" : "OFF",
                                                                          "LOG_TAG_TraceLog" : "TRACE4"])
+        
+        self.waitForExpectations(timeout: 2) { error in
+            XCTAssertNil(error)
+        }
     }
     
     func testLogError() {
