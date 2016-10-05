@@ -65,7 +65,7 @@ class TraceLogTests_Swift : XCTestCase {
         
         let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .info, tag: "TraceLog", message: testMessage, testFileFunction: false)
         
-        TraceLog.initialize(logWriters: [expectedValues])
+        TraceLog.initialize(writers: [expectedValues])
         
         self.waitForExpectations(timeout: 2) { error in
             XCTAssertNil(error)
@@ -78,7 +78,7 @@ class TraceLogTests_Swift : XCTestCase {
         
         let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .info, tag: "TraceLog", message: testMessage, testFileFunction: false)
         
-        TraceLog.initialize(logWriters: [expectedValues], environment: ["LOG_ALL": "TRACE4",
+        TraceLog.initialize(writers: [expectedValues], environment: ["LOG_ALL": "TRACE4",
                                                                          "LOG_PREFIX_NS" : "OFF",
                                                                          "LOG_TAG_TraceLog" : "TRACE4"])
         
@@ -92,7 +92,7 @@ class TraceLogTests_Swift : XCTestCase {
         
         let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .error, tag: testTag, message: testMessage)
 
-        TraceLog.initialize(logWriters: [expectedValues], environment: ["LOG_ALL": "ERROR"])
+        TraceLog.initialize(writers: [expectedValues], environment: ["LOG_ALL": "ERROR"])
         
         logError(testTag) { testMessage }
         
@@ -106,7 +106,7 @@ class TraceLogTests_Swift : XCTestCase {
         
         let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .warning, tag: testTag, message: testMessage)
         
-        TraceLog.initialize(logWriters: [expectedValues], environment: ["LOG_ALL": "WARNING"])
+        TraceLog.initialize(writers: [expectedValues], environment: ["LOG_ALL": "WARNING"])
         
         logWarning(testTag) { testMessage }
         
@@ -120,7 +120,7 @@ class TraceLogTests_Swift : XCTestCase {
         
         let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .info, tag: testTag, message: testMessage)
         
-        TraceLog.initialize(logWriters: [expectedValues], environment: ["LOG_ALL": "INFO"])
+        TraceLog.initialize(writers: [expectedValues], environment: ["LOG_ALL": "INFO"])
         
         logInfo(testTag) { testMessage }
         
@@ -134,7 +134,7 @@ class TraceLogTests_Swift : XCTestCase {
         
         let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .trace1, tag: testTag, message: testMessage)
         
-        TraceLog.initialize(logWriters: [expectedValues], environment: ["LOG_ALL": "TRACE1"])
+        TraceLog.initialize(writers: [expectedValues], environment: ["LOG_ALL": "TRACE1"])
         
         logTrace(testTag, level: 1) { testMessage }
         
@@ -148,7 +148,7 @@ class TraceLogTests_Swift : XCTestCase {
         
         let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .trace1, tag: testTag, message: testMessage)
         
-        TraceLog.initialize(logWriters: [expectedValues], environment: ["LOG_ALL": "TRACE1"])
+        TraceLog.initialize(writers: [expectedValues], environment: ["LOG_ALL": "TRACE1"])
         
         logTrace(testTag, level: 1) { testMessage }
         
@@ -162,7 +162,7 @@ class TraceLogTests_Swift : XCTestCase {
         
         let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .trace2, tag: testTag, message: testMessage)
         
-        TraceLog.initialize(logWriters: [expectedValues], environment: ["LOG_ALL": "TRACE2"])
+        TraceLog.initialize(writers: [expectedValues], environment: ["LOG_ALL": "TRACE2"])
         
         logTrace(testTag, level: 2) { testMessage }
         
@@ -176,7 +176,7 @@ class TraceLogTests_Swift : XCTestCase {
         
         let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .trace3, tag: testTag, message: testMessage)
         
-        TraceLog.initialize(logWriters: [expectedValues], environment: ["LOG_ALL": "TRACE3"])
+        TraceLog.initialize(writers: [expectedValues], environment: ["LOG_ALL": "TRACE3"])
         
         logTrace(testTag, level: 3) { testMessage }
         
@@ -190,7 +190,7 @@ class TraceLogTests_Swift : XCTestCase {
         
         let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .trace4, tag: testTag, message: testMessage)
         
-        TraceLog.initialize(logWriters: [expectedValues], environment: ["LOG_ALL": "TRACE4"])
+        TraceLog.initialize(writers: [expectedValues], environment: ["LOG_ALL": "TRACE4"])
         
         logTrace(testTag, level: 4) { testMessage }
         
