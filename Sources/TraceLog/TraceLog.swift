@@ -76,7 +76,7 @@ public func initialize<T : Collection>(logWriters writers: [Writer], environment
         }
     ```
 */
-public func logError(tag: String? = nil, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message: @escaping () -> String) {
+public func logError(_ tag: String? = nil, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message: @escaping () -> String) {
     #if DEBUG || TRACELOG_ENABLE || os(Linux)
         let derivedTag = derivedTagIfNil(file: file, tag: tag)
         
@@ -113,7 +113,7 @@ public func logError(tag: String? = nil, _ file: StaticString = #file, _ functio
         }
     ```
 */
-public func logWarning(tag: String? = nil, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message:  @escaping () -> String) {
+public func logWarning(_ tag: String? = nil, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message:  @escaping () -> String) {
     #if DEBUG || TRACELOG_ENABLE || os(Linux)
         let derivedTag = derivedTagIfNil(file: file, tag: tag)
         
@@ -148,7 +148,7 @@ public func logWarning(tag: String? = nil, _ file: StaticString = #file, _ funct
             return "Final message String"
     ```
 */
-public func logInfo(tag: String? = nil, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message:  @escaping () -> String) {
+public func logInfo(_ tag: String? = nil, _ file: StaticString = #file, _ function: StaticString = #function, _ line: UInt = #line, message:  @escaping () -> String) {
     #if DEBUG || TRACELOG_ENABLE || os(Linux)
         let derivedTag = derivedTagIfNil(file: file, tag: tag)
         
