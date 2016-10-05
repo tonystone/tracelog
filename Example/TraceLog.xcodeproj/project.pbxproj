@@ -30,6 +30,8 @@
 		6003F5B1195388D20070C39A /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F58D195388D20070C39A /* Foundation.framework */; };
 		6003F5B2195388D20070C39A /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6003F591195388D20070C39A /* UIKit.framework */; };
 		94F84F2BF5989F50E8E87219 /* Pods_TraceLog_OSX_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0FE882C098E5BF8E836F517 /* Pods_TraceLog_OSX_Tests.framework */; };
+		EA2FC7EE1DA4A00A00902D21 /* TraceLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7E7B0A1DA297A400E3B511 /* TraceLogTests.swift */; };
+		EA2FC7EF1DA4A01100902D21 /* TraceLogPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7E7B081DA297A400E3B511 /* TraceLogPerformanceTests.swift */; };
 		EA3037FA1BEA880300DC4084 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3037F71BEA880300DC4084 /* main.m */; };
 		EA3038001BEA882E00DC4084 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA3037FB1BEA882E00DC4084 /* Images.xcassets */; };
 		EA3038011BEA882E00DC4084 /* TLAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = EA3037FD1BEA882E00DC4084 /* TLAppDelegate.m */; };
@@ -752,7 +754,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				EA7E7B0C1DA30E9000E3B511 /* LoggerProxy.swift in Sources */,
+				EA2FC7EE1DA4A00A00902D21 /* TraceLogTests.swift in Sources */,
 				EA7E7B0B1DA30E8D00E3B511 /* TraceLogTests.m in Sources */,
+				EA2FC7EF1DA4A01100902D21 /* TraceLogPerformanceTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
