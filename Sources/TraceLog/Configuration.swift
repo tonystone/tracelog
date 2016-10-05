@@ -22,10 +22,17 @@ import Foundation
 ///
 /// Internal Configuration data
 ///
-internal class Configuration  {
+internal class Configuration {
     
-    enum ConfigurationError : Error {
+    enum ConfigurationError : Error, CustomStringConvertible {
         case invalidLogLevel(String)
+        
+        var description: String {
+            switch self {
+            case .invalidLogLevel(let value):
+                return value
+            }
+        }
     }
     
     private static let logTag    = "LOG_TAG_"

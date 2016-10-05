@@ -107,7 +107,7 @@ internal final class Logger {
             for error in errors {
                 
                 logPrimitive(.warning, tag: moduleLogName, file: #file, function: #function, line: #line) {
-                    "\(error)"
+                    "\(error.description)"
                 }
             }
         }
