@@ -7,7 +7,11 @@ before_install:
 
 env:
     matrix:
+        - SCHEME=TraceLog-iOS-Example TEST_DEST="platform=iOS Simulator,OS=10.0,name=iPhone 6s" TEST_SDK=iphonesimulator
         - SCHEME=TraceLog-iOS-Example TEST_DEST="platform=iOS Simulator,OS=10.0,name=iPhone 6" TEST_SDK=iphonesimulator
+        - SCHEME=TraceLog-iOS-Example TEST_DEST="platform=iOS Simulator,OS=9.3,name=iPhone 6" TEST_SDK=iphonesimulator
+        - SCHEME=TraceLog-iOS-Example TEST_DEST="platform=iOS Simulator,OS=9.2,name=iPhone 5s" TEST_SDK=iphonesimulator
+        - SCHEME=TraceLog-iOS-Example TEST_DEST="platform=iOS Simulator,OS=9.0,name=iPhone 4s" TEST_SDK=iphonesimulator
         - SCHEME=TraceLog-OSX-Example TEST_DEST="platform=OS X,arch=x86_64" TEST_SDK=macosx
 
 script:

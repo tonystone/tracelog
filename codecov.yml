@@ -14,8 +14,7 @@ coverage:
   - build/.*
   - .build/.*
   - .vagrant/.*
-  - .*Tests.m
-  - .*Tests.swift
+  - Tests/.*
   status:
     patch: false
 
