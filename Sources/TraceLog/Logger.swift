@@ -26,6 +26,8 @@ import DispatchIntrospection
    import SwiftGlibc.POSIX.pthread
 #endif
 
+fileprivate let moduleLogName  = "TraceLog"
+
 ///
 /// A class that it used to initialize the system and 
 /// log messages to the writers.
@@ -88,7 +90,7 @@ internal final class Logger {
     ///
     ///  Note: this is an optional call
     ///
-    class func intialize(_ writers: [Writer] = [ConsoleWriter()], environment: Environment = Environment()) {
+    class func intialize(_ writers: [Writer], environment: Environment) {
         
         ///
         /// Note: we use a syncrhonouse call here for the initialization, all
@@ -98,13 +100,13 @@ internal final class Logger {
         
             let errors = config.load(writers, environment: environment)
 
-            logPrimitive(.info, tag: ModuleLogName, file: #file, function: #function, lineNumber: #line) {
-                "\(ModuleLogName) initialized with configuration: \(config.description)"
+            logPrimitive(.info, tag: moduleLogName, file: #file, function: #function, lineNumber: #line) {
+                "\(moduleLogName) initialized with configuration: \(config.description)"
             }
             
             for error in errors {
                 
-                logPrimitive(.warning, tag: ModuleLogName, file: #file, function: #function, lineNumber: #line) {
+                logPrimitive(.warning, tag: moduleLogName, file: #file, function: #function, lineNumber: #line) {
                     "\(error)"
                 }
             }
@@ -131,7 +133,7 @@ internal final class Logger {
                 // Evaluate the message now
                 let messageString = message()
 
-                for writer in config.logWriters {
+                for writer in config.writers {
                     writer.log(timestamp, level: level, tag: tag, message: messageString, runtimeContext: runtimeContext, staticContext: staticContext)
                 }
             }
