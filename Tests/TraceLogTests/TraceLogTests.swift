@@ -87,6 +87,45 @@ class TraceLogTests_Swift : XCTestCase {
         }
     }
     
+    func testinitialize_LogWriters_Environment_GlobalInvalidLogLevel() {
+        
+        let testMessage = "invalidLogLevel(\"Variable \\\'LOG_ALL\\\' has an invalid logLevel of \\\'TRACE5\\\'. \\\'LOG_ALL\\\' will be set to INFO.\")"
+        
+        let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .warning, tag: "TraceLog", message: testMessage, testFileFunction: false)
+        
+        TraceLog.initialize(writers: [expectedValues], environment: ["LOG_ALL": "TRACE5"])
+        
+        self.waitForExpectations(timeout: 2) { error in
+            XCTAssertNil(error)
+        }
+    }
+    
+    func testinitialize_LogWriters_Environment_PrefixInvalidLogLevel() {
+        
+        let testMessage = "invalidLogLevel(\"Variable \\\'LOG_PREFIX_NS\\\' has an invalid logLevel of \\\'TRACE5\\\'. \\\'LOG_PREFIX_NS\\\' will NOT be set.\")"
+        
+        let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .warning, tag: "TraceLog", message: testMessage, testFileFunction: false)
+        
+        TraceLog.initialize(writers: [expectedValues], environment: ["LOG_PREFIX_NS": "TRACE5"])
+        
+        self.waitForExpectations(timeout: 2) { error in
+            XCTAssertNil(error)
+        }
+    }
+    
+    func testinitialize_LogWriters_Environment_TagInvalidLogLevel() {
+        
+        let testMessage = "invalidLogLevel(\"Variable \\\'LOG_TAG_TRACELOG\\\' has an invalid logLevel of \\\'TRACE5\\\'. \\\'LOG_TAG_TRACELOG\\\' will NOT be set.\")"
+        
+        let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .warning, tag: "TraceLog", message: testMessage, testFileFunction: false)
+        
+        TraceLog.initialize(writers: [expectedValues], environment: ["LOG_TAG_TraceLog": "TRACE5"])
+        
+        self.waitForExpectations(timeout: 2) { error in
+            XCTAssertNil(error)
+        }
+    }
+    
     func testLogError() {
         let testMessage = "Swift: " + #function
         
