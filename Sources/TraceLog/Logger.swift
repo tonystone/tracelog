@@ -62,9 +62,9 @@ internal final class Logger {
     internal class StaticContextImpl : StaticContext {
         internal let file: String
         internal let function: String
-        internal let lineNumber: UInt
+        internal let lineNumber: Int
         
-        internal init(file: String, function: String, lineNumber: UInt) {
+        internal init(file: String, function: String, lineNumber: Int) {
             self.file       = file
             self.function   = function
             self.lineNumber = lineNumber
@@ -114,7 +114,7 @@ internal final class Logger {
     ///
     /// Low level logging function for Swift calls
     ///
-    class func logPrimitive(_ level: LogLevel, tag: String, file: String, function: String, lineNumber: UInt, message: @escaping () -> String) {
+    class func logPrimitive(_ level: LogLevel, tag: String, file: String, function: String, lineNumber: Int, message: @escaping () -> String) {
 
         // Capture the context outside the dispatch queue
         let runtimeContext = RuntimeContextImpl()
@@ -151,7 +151,7 @@ internal final class Logger {
         ///
         /// Low level logging function for ObjC calls
         ///
-        open class func logPrimitive(_ level: Int, tag: String, file: String, function: String, lineNumber: UInt, message: @escaping () -> String) {
+        open class func logPrimitive(_ level: Int, tag: String, file: String, function: String, lineNumber: Int, message: @escaping () -> String) {
             assert(LogLevel.rawRange.contains(level), "Invalid log level, values must be in the the range \(LogLevel.rawRange)")
             
             Logger.logPrimitive(LogLevel(rawValue: level)!, tag: tag, file: file, function: function, lineNumber: lineNumber, message: message)
