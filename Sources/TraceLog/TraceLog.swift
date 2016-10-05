@@ -22,6 +22,12 @@ import Foundation
 
 internal let ModuleLogName  = "TraceLog"
 
+public func initialize() {
+    #if !TRACELOG_DISABLED
+        Logger.intialize()
+    #endif
+}
+
 public func initialize(logWriters writers: [Writer]) {
     #if DEBUG || TRACELOG_ENABLE || os(Linux)
         Logger.intialize(writers, environment: Environment())

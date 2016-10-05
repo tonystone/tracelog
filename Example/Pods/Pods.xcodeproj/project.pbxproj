@@ -16,7 +16,6 @@
 		1781E0DD3745C5033D95E076 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F850FAAD44F0D55E0D9A623 /* Configuration.swift */; };
 		1CDFEEE362483384A89BEEEC /* ConsoleWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6EE7871B8CB43E5C9F95103A /* ConsoleWriter.swift */; };
 		1CFAF064F4BA17A4C0855A99 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F850FAAD44F0D55E0D9A623 /* Configuration.swift */; };
-		1DB027AB8F39A9A55B7616BE /* TLLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BE944BC684A1E6CB87C91 /* TLLogger.swift */; };
 		1E59592F2488EA4C4E165318 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A778E39B18AF65215559DF /* Environment.swift */; };
 		2406F114C57E375BD282953C /* TraceLog.h in Headers */ = {isa = PBXBuildFile; fileRef = 5C44EEC2D4562FF66544129F /* TraceLog.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		26C431D1D152D2326661645B /* Writer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7044A6600049DAC3FE137B7D /* Writer.swift */; };
@@ -25,7 +24,6 @@
 		358077D2FB9DA9B6506EC5E9 /* TraceLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7531602A5B48D02057EB89C9 /* TraceLog.swift */; };
 		35F6D8E2813B06C9B9A432A6 /* Pods-TraceLog-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 5E2C9AB1DAB5866A0CF878A3 /* Pods-TraceLog-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		38415D90D5A4645336A35284 /* TraceLog-ObjC-Swift-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 355C77785F5757DAB04AAD40 /* TraceLog-ObjC-Swift-dummy.m */; };
-		3BD84789640EF9920646B26E /* TLLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BE944BC684A1E6CB87C91 /* TLLogger.swift */; };
 		3F90904FC45394422E4BB699 /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F850FAAD44F0D55E0D9A623 /* Configuration.swift */; };
 		507CB47B1975C081AC06FC6E /* Pods-TraceLog-OSX-Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = FC53270B3646063C0F7A02A7 /* Pods-TraceLog-OSX-Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		53259AC43D4494B86748A928 /* StaticContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9432618A2B3C819975F75F43 /* StaticContext.swift */; };
@@ -36,7 +34,6 @@
 		625A01C81F22D7571DFEBC61 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 56F8D8007C5E579BDF0A1B64 /* Cocoa.framework */; };
 		625DDB9DE21A7E6B632075D2 /* Writer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7044A6600049DAC3FE137B7D /* Writer.swift */; };
 		65E5FBFC0F40337386776CA9 /* TraceLog-ObjC-Swift-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = EF3153BB6DBF4B38929ED27B /* TraceLog-ObjC-Swift-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		73C720ACD7202D36AE424C6E /* TLLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BE944BC684A1E6CB87C91 /* TLLogger.swift */; };
 		73EF3B64D9404B77ACD21E2B /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 421374D489E87EB6E2451AFD /* Logger.swift */; };
 		75E44947DC401A4E771DE211 /* Writer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7044A6600049DAC3FE137B7D /* Writer.swift */; };
 		7FC4C3C7DCDA02031A5F0EAC /* Writer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7044A6600049DAC3FE137B7D /* Writer.swift */; };
@@ -59,7 +56,6 @@
 		ABC1A41DEA7410D7C1DADF8E /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CA1F18528DC3A136F184CDD /* Foundation.framework */; };
 		AEB9E76B105F94B43AC702E2 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 18A778E39B18AF65215559DF /* Environment.swift */; };
 		B3A716C78445A42B10683977 /* LogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0F11F79F9A9A6B8622351D /* LogLevel.swift */; };
-		B3D38D3625ED101B4D72D39F /* TLLogger.swift in Sources */ = {isa = PBXBuildFile; fileRef = B82BE944BC684A1E6CB87C91 /* TLLogger.swift */; };
 		B75086BE3264171FB5575A44 /* LogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF0F11F79F9A9A6B8622351D /* LogLevel.swift */; };
 		B9C755D93F9972998A5482AD /* TraceLog-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = AA17E663AD4641E5F643414F /* TraceLog-dummy.m */; };
 		C6CD9B6113F9F4C475F17A74 /* RuntimeContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = D65ED2B740277E1993722A1B /* RuntimeContext.swift */; };
@@ -167,7 +163,6 @@
 		B32120D7B9AD1700995C194F /* Pods-TraceLog-iOS.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = "Pods-TraceLog-iOS.modulemap"; sourceTree = "<group>"; };
 		B32D671A7982CC2B7EA6EE90 /* TraceLog.default-ObjC-OSX-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = "TraceLog.default-ObjC-OSX-umbrella.h"; path = "../TraceLog.default-ObjC-OSX/TraceLog.default-ObjC-OSX-umbrella.h"; sourceTree = "<group>"; };
 		B3F6936CBB00E42A4E6FD124 /* TraceLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = TraceLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		B82BE944BC684A1E6CB87C91 /* TLLogger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = TLLogger.swift; sourceTree = "<group>"; };
 		B83AA36BEAF1DA3A241A2D0F /* Pods-TraceLog-iOS-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TraceLog-iOS-acknowledgements.plist"; sourceTree = "<group>"; };
 		BC4B339BB67401A5AA144BAF /* TraceLog.default-ObjC-iOS.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "TraceLog.default-ObjC-iOS.xcconfig"; path = "../TraceLog.default-ObjC-iOS/TraceLog.default-ObjC-iOS.xcconfig"; sourceTree = "<group>"; };
 		BF0F11F79F9A9A6B8622351D /* LogLevel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; path = LogLevel.swift; sourceTree = "<group>"; };
@@ -416,7 +411,6 @@
 				7531602A5B48D02057EB89C9 /* TraceLog.swift */,
 				18A778E39B18AF65215559DF /* Environment.swift */,
 				421374D489E87EB6E2451AFD /* Logger.swift */,
-				B82BE944BC684A1E6CB87C91 /* TLLogger.swift */,
 				7044A6600049DAC3FE137B7D /* Writer.swift */,
 				9432618A2B3C819975F75F43 /* StaticContext.swift */,
 				6EE7871B8CB43E5C9F95103A /* ConsoleWriter.swift */,
@@ -772,7 +766,6 @@
 				B75086BE3264171FB5575A44 /* LogLevel.swift in Sources */,
 				5A0F61C4C4210010F2B7C2E5 /* RuntimeContext.swift in Sources */,
 				9F94098F9EF296CD8322A9A2 /* StaticContext.swift in Sources */,
-				1DB027AB8F39A9A55B7616BE /* TLLogger.swift in Sources */,
 				58B503C6E9822A615C423BF7 /* TraceLog.default-ObjC-iOS-dummy.m in Sources */,
 				D23B3AF40A8D061621F466D8 /* TraceLog.swift in Sources */,
 				7FC4C3C7DCDA02031A5F0EAC /* Writer.swift in Sources */,
@@ -798,7 +791,6 @@
 				880C4D978D019337AEE56EC8 /* LogLevel.swift in Sources */,
 				5C8E61308762DA86503E3633 /* RuntimeContext.swift in Sources */,
 				EED1A78B9924565A94978C2F /* StaticContext.swift in Sources */,
-				3BD84789640EF9920646B26E /* TLLogger.swift in Sources */,
 				7FF5F940C1B0B41601A97748 /* TraceLog.default-ObjC-OSX-dummy.m in Sources */,
 				0FF9C5E8AFC15E7C9A852529 /* TraceLog.swift in Sources */,
 				75E44947DC401A4E771DE211 /* Writer.swift in Sources */,
@@ -816,7 +808,6 @@
 				B3A716C78445A42B10683977 /* LogLevel.swift in Sources */,
 				8B7BFF02DA9BEE40BA041BA1 /* RuntimeContext.swift in Sources */,
 				53259AC43D4494B86748A928 /* StaticContext.swift in Sources */,
-				B3D38D3625ED101B4D72D39F /* TLLogger.swift in Sources */,
 				B9C755D93F9972998A5482AD /* TraceLog-dummy.m in Sources */,
 				358077D2FB9DA9B6506EC5E9 /* TraceLog.swift in Sources */,
 				625DDB9DE21A7E6B632075D2 /* Writer.swift in Sources */,
@@ -834,7 +825,6 @@
 				F093ACCF42222CC2085E977A /* LogLevel.swift in Sources */,
 				C6CD9B6113F9F4C475F17A74 /* RuntimeContext.swift in Sources */,
 				57488995C709539D5F3F0011 /* StaticContext.swift in Sources */,
-				73C720ACD7202D36AE424C6E /* TLLogger.swift in Sources */,
 				38415D90D5A4645336A35284 /* TraceLog-ObjC-Swift-dummy.m in Sources */,
 				27AE37247D7722B1EA8ED597 /* TraceLog.swift in Sources */,
 				26C431D1D152D2326661645B /* Writer.swift in Sources */,
