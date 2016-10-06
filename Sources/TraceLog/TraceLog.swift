@@ -28,7 +28,7 @@ import Foundation
 ///
 /// - Parameters:
 ///     - writers:     A String to use as a tag to group this call to other calls related to it. If not passed or nil, the file name is used as a tag.
-///     - environment: An closure or trailing closure that evailuates to the String message to log.
+///     - environment: An closure or trailing closure that evaluates to the String message to log.
 ///
 public
 func initialize(writers: [Writer] = [ConsoleWriter()], environment: Environment = Environment()) {
@@ -42,7 +42,7 @@ func initialize(writers: [Writer] = [ConsoleWriter()], environment: Environment 
 ///
 /// - Parameters:
 ///     - tag:     A String to use as a tag to group this call to other calls related to it. If not passed or nil, the file name is used as a tag.
-///     - message: An closure or trailing closure that evailuates to the String message to log.
+///     - message: An closure or trailing closure that evaluates to the String message to log.
 ///
 /// Examples:
 /// ```
@@ -77,7 +77,7 @@ func logError(_ tag: String? = nil, _ file: String = #file, _ function: String =
 ///
 /// - Parameters:
 ///     - tag:     A String to use as a tag to group this call to other calls related to it. If not passed or nil, the file name is used as a tag.
-///     - message: An closure or trailing closure that evailuates to the String message to log.
+///     - message: An closure or trailing closure that evaluates to the String message to log.
 ///
 /// Examples:
 /// ```
@@ -111,7 +111,7 @@ func logWarning(_ tag: String? = nil, _ file: String = #file, _ function: String
 ///
 /// - Parameters:
 ///     - tag:     A String to use as a tag to group this call to other calls related to it. If not passed or nil, the file name is used as a tag.
-///     - message: An closure or trailing closure that evailuates to the String message to log.
+///     - message: An closure or trailing closure that evaluates to the String message to log.
 ///
 /// Examples:
 /// ```
@@ -147,7 +147,7 @@ func logInfo(_ tag: String? = nil, _ file: String = #file, _ function: String = 
 /// - Parameters:
 ///     - tag:     A String to use as a tag to group this call to other calls related to it. If not passed or nil, the file name is used as a tag.
 ///     - level    An integer representing the trace LogLevel (i.e. 1, 2, 3, and 4.)
-///     - message: An closure or trailing closure that evailuates to the String message to log.
+///     - message: An closure or trailing closure that evaluates to the String message to log.
 ///
 /// Examples:
 /// ```
@@ -189,7 +189,7 @@ func logTrace(_ tag: String? = nil, level: Int = LogLevel.rawTraceLevels.lowerBo
 ///
 /// - Parameters:
 ///     - level    An integer representing the trace LogLevel (i.e. 1, 2, 3, and 4.)
-///     - message: An closure or trailing closure that evailuates to the String message to log.
+///     - message: An closure or trailing closure that evaluates to the String message to log.
 ///
 /// Examples:
 /// ```

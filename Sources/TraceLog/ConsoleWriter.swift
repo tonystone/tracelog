@@ -38,7 +38,7 @@ public class ConsoleWriter : Writer {
         
         ///
         /// Note: we currently use the calling thread to synchronize knowing that 
-        ///       tracelog calls us a serial queue.  This can cause interleaving 
+        ///       TraceLog calls us a serial queue.  This can cause interleaving
         ///       of other message in the output should other threads be used to 
         ///       print to the screen.
         ///

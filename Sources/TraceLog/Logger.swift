@@ -74,7 +74,7 @@ internal final class Logger {
     }
     
     ///
-    /// Serilialization queue for init and writing 
+    /// Serialization queue for init and writing
     ///
     fileprivate static let queue = DispatchQueue(label: "tracelog.write.queue")
     
@@ -86,14 +86,14 @@ internal final class Logger {
     fileprivate static let config = Configuration()
     
     ///
-    /// Initializes the logging system with the specified writers and environement
+    /// Configure the logging system with the specified writers and environment
     ///
     ///  Note: this is an optional call
     ///
     class func intialize(_ writers: [Writer], environment: Environment) {
         
         ///
-        /// Note: we use a syncrhonouse call here for the initialization, all
+        /// Note: we use a synchronous call here for the initialization, all
         ///       other calls must be async in order not to conflict with this one.
         ///
         queue.sync {
