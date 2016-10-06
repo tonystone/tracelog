@@ -90,7 +90,7 @@ internal final class Logger {
     ///
     ///  Note: this is an optional call
     ///
-    class func intialize(_ writers: [Writer], environment: Environment) {
+    class func configure(writers: [Writer], environment: Environment) {
         
         ///
         /// Note: we use a synchronous call here for the initialization, all
@@ -100,13 +100,13 @@ internal final class Logger {
         
             let errors = config.load(writers, environment: environment)
 
-            logPrimitive(.info, tag: moduleLogName, file: #file, function: #function, line: #line) {
+            logPrimitive(level: .info, tag: moduleLogName, file: #file, function: #function, line: #line) {
                 "\(moduleLogName) initialized with configuration: \(config.description)"
             }
             
             for error in errors {
                 
-                logPrimitive(.warning, tag: moduleLogName, file: #file, function: #function, line: #line) {
+                logPrimitive(level: .warning, tag: moduleLogName, file: #file, function: #function, line: #line) {
                     "\(error.description)"
                 }
             }
@@ -116,7 +116,7 @@ internal final class Logger {
     ///
     /// Low level logging function for Swift calls
     ///
-    class func logPrimitive(_ level: LogLevel, tag: String, file: String, function: String, line: Int, message: @escaping () -> String) {
+    class func logPrimitive(level: LogLevel, tag: String, file: String, function: String, line: Int, message: @escaping () -> String) {
 
         // Capture the context outside the dispatch queue
         let runtimeContext = RuntimeContextImpl()
