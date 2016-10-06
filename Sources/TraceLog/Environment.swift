@@ -17,6 +17,7 @@
 ///
 ///  Created by Tony Stone on 4/26/16.
 ///
+import Swift
 import Foundation
 
 ///
