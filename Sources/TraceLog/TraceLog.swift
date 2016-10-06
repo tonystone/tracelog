@@ -31,9 +31,9 @@ import Foundation
 ///     - environment: An closure or trailing closure that evaluates to the String message to log.
 ///
 public
-func initialize(writers: [Writer] = [ConsoleWriter()], environment: Environment = Environment()) {
+func configure(writers: [Writer] = [ConsoleWriter()], environment: Environment = Environment()) {
     #if DEBUG || TRACELOG_ENABLE || os(Linux)
-        Logger.intialize(writers, environment: environment)
+        Logger.configure(writers: writers, environment: environment)
     #endif
 }
 

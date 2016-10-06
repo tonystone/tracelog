@@ -16,7 +16,7 @@ class TraceLogPerformanceTests_Swift : XCTestCase {
     func testLogError_Performance() {
         
         // Reset the logger to the default before testing
-        TraceLog.initialize(writers: [ConsoleWriter()], environment: ["LOG_ALL": "TRACE4"])
+        TraceLog.configure(writers: [ConsoleWriter()], environment: ["LOG_ALL": "TRACE4"])
         
         self.measure {
             
@@ -29,7 +29,7 @@ class TraceLogPerformanceTests_Swift : XCTestCase {
     func testLogTrace4_Performance() {
         
         // Reset the logger to the default before testing
-        TraceLog.initialize(writers: [ConsoleWriter()], environment: ["LOG_ALL": "TRACE4"])
+        TraceLog.configure(writers: [ConsoleWriter()], environment: ["LOG_ALL": "TRACE4"])
         
         self.measure {
             
@@ -42,7 +42,7 @@ class TraceLogPerformanceTests_Swift : XCTestCase {
     func testLogError_Performance_NullWriter() {
         
         /// Remove the log writers for this test so we see the time it takes to process internally without io
-        TraceLog.initialize(writers: [], environment: ["LOG_ALL": "TRACE4"])
+        TraceLog.configure(writers: [], environment: ["LOG_ALL": "TRACE4"])
         
         self.measure {
             
@@ -55,7 +55,7 @@ class TraceLogPerformanceTests_Swift : XCTestCase {
     func testLogTrace4_Performance_NullWriter() {
         
         /// Remove the log writers for this test so we see the time it takes to process internally without io
-        TraceLog.initialize(writers: [], environment: ["LOG_ALL": "TRACE4"])
+        TraceLog.configure(writers: [], environment: ["LOG_ALL": "TRACE4"])
         
         self.measure {
             

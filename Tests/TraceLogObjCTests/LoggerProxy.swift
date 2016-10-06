@@ -20,6 +20,6 @@ public class LoggerProxy : NSObject {
             writers.append(ConsoleWriter())
         }
         
-        TraceLog.initialize(writers: writers, environment: Environment(environment))
+        TraceLog.configure(writers: writers, environment: Environment(environment))
     }
 }

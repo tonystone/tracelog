@@ -148,15 +148,23 @@ internal final class Logger {
     /// Internal class exposed to objective-C for low level logging
     ///
     @objc(TLLogger)
-    open class TLLogger : NSObject {
+    public class TLLogger : NSObject {
+        
+        public class func configure() {
+            Logger.configure(writers: [ConsoleWriter()], environment: Environment())
+        }
+        
+        public class func configure(environment: [String : String]) {
+            Logger.configure(writers: [ConsoleWriter()], environment: Environment(environment))
+        }
         
         ///
         /// Low level logging function for ObjC calls
         ///
-        open class func logPrimitive(_ level: Int, tag: String, file: String, function: String, line: Int, message: @escaping () -> String) {
+        public class func logPrimitive(_ level: Int, tag: String, file: String, function: String, line: Int, message: @escaping () -> String) {
             assert(LogLevel.rawRange.contains(level), "Invalid log level, values must be in the the range \(LogLevel.rawRange)")
             
-            Logger.logPrimitive(LogLevel(rawValue: level)!, tag: tag, file: file, function: function, line: line, message: message)
+            Logger.logPrimitive(level: LogLevel(rawValue: level)!, tag: tag, file: file, function: function, line: line, message: message)
         }
     }
     
