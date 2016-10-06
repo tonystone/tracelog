@@ -56,12 +56,12 @@ class TraceLogTests_Swift : XCTestCase {
     
     let testTag = "Test Tag"
     
-    func testinitialize_NoArgs() {
+    func testInitialize_NoArgs() {
         TraceLog.configure()
     }
     
-    func testinitialize_LogWriters() {
-        let testMessage = "TraceLog initialized with configuration: {\n\tglobal: {\n\n\t\tALL = INFO\n\t}\n}"
+    func testInitialize_LogWriters() {
+        let testMessage = "TraceLog Configured using: {\n\tglobal: {\n\n\t\tALL = INFO\n\t}\n}"
         
         let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .info, tag: "TraceLog", message: testMessage, testFileFunction: false)
         
@@ -72,9 +72,9 @@ class TraceLogTests_Swift : XCTestCase {
         }
     }
     
-    func testinitialize_LogWriters_Environment() {
+    func testInitialize_LogWriters_Environment() {
 
-        let testMessage = "TraceLog initialized with configuration: {\n\ttags: {\n\n\t\tTraceLog = TRACE4\n\t}\n\tprefixes: {\n\n\t\tNS = OFF\n\t}\n\tglobal: {\n\n\t\tALL = TRACE4\n\t}\n}"
+        let testMessage = "TraceLog Configured using: {\n\ttags: {\n\n\t\tTraceLog = TRACE4\n\t}\n\tprefixes: {\n\n\t\tNS = OFF\n\t}\n\tglobal: {\n\n\t\tALL = TRACE4\n\t}\n}"
         
         let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .info, tag: "TraceLog", message: testMessage, testFileFunction: false)
         
@@ -87,7 +87,7 @@ class TraceLogTests_Swift : XCTestCase {
         }
     }
     
-    func testinitialize_LogWriters_Environment_GlobalInvalidLogLevel() {
+    func testInitialize_LogWriters_Environment_GlobalInvalidLogLevel() {
         
         let testMessage = "Variable \'LOG_ALL\' has an invalid logLevel of \'TRACE5\'. \'LOG_ALL\' will be set to INFO."
         
@@ -100,7 +100,7 @@ class TraceLogTests_Swift : XCTestCase {
         }
     }
     
-    func testinitialize_LogWriters_Environment_PrefixInvalidLogLevel() {
+    func testInitialize_LogWriters_Environment_PrefixInvalidLogLevel() {
         
         let testMessage = "Variable \'LOG_PREFIX_NS\' has an invalid logLevel of \'TRACE5\'. \'LOG_PREFIX_NS\' will NOT be set."
         
@@ -113,7 +113,7 @@ class TraceLogTests_Swift : XCTestCase {
         }
     }
     
-    func testinitialize_LogWriters_Environment_TagInvalidLogLevel() {
+    func testInitialize_LogWriters_Environment_TagInvalidLogLevel() {
         
         let testMessage = "Variable \'LOG_TAG_TRACELOG\' has an invalid logLevel of \'TRACE5\'. \'LOG_TAG_TRACELOG\' will NOT be set."
         

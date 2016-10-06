@@ -49,10 +49,10 @@
 		EA7E7B0B1DA30E8D00E3B511 /* TraceLogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7E7B051DA297A400E3B511 /* TraceLogTests.m */; };
 		EA7E7B0C1DA30E9000E3B511 /* LoggerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7E7B021DA297A400E3B511 /* LoggerProxy.swift */; };
 		EA7E7B0D1DA30E9C00E3B511 /* TraceLogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7E7B051DA297A400E3B511 /* TraceLogTests.m */; };
-		EA7E7B0F1DA30EA500E3B511 /* TraceLogPerformanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7E7B041DA297A400E3B511 /* TraceLogPerformanceTests.m */; };
 		EA7E7B101DA30EAD00E3B511 /* LoggerProxy.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7E7B021DA297A400E3B511 /* LoggerProxy.swift */; };
 		EA7E7B111DA30EB100E3B511 /* TraceLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7E7B0A1DA297A400E3B511 /* TraceLogTests.swift */; };
 		EA7E7B121DA30EB600E3B511 /* TraceLogPerformanceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7E7B081DA297A400E3B511 /* TraceLogPerformanceTests.swift */; };
+		EAEA3C081DA5F19D005E4167 /* TraceLogPerformanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7E7B041DA297A400E3B511 /* TraceLogPerformanceTests.m */; };
 		FE0C5F3D78FB75CC2189C519 /* Pods_TraceLog_iOS_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 57AED31A36AFF901BC5A0E63 /* Pods_TraceLog_iOS_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -764,6 +764,7 @@
 				EA7E7B0C1DA30E9000E3B511 /* LoggerProxy.swift in Sources */,
 				EA2FC7EE1DA4A00A00902D21 /* TraceLogTests.swift in Sources */,
 				EA68802C1DA5AE0500119145 /* ConfigurationTests.swift in Sources */,
+				EAEA3C081DA5F19D005E4167 /* TraceLogPerformanceTests.m in Sources */,
 				EA7E7B0B1DA30E8D00E3B511 /* TraceLogTests.m in Sources */,
 				EA1E259D1DA5891100CECAA8 /* EnvironmentTests.swift in Sources */,
 				EA2FC7EF1DA4A01100902D21 /* TraceLogPerformanceTests.swift in Sources */,
@@ -787,7 +788,6 @@
 				EA7E7B0D1DA30E9C00E3B511 /* TraceLogTests.m in Sources */,
 				EA68802D1DA5AE0500119145 /* ConfigurationTests.swift in Sources */,
 				EA7E7B111DA30EB100E3B511 /* TraceLogTests.swift in Sources */,
-				EA7E7B0F1DA30EA500E3B511 /* TraceLogPerformanceTests.m in Sources */,
 				EA1E259E1DA5891200CECAA8 /* EnvironmentTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

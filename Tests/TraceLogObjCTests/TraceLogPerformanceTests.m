@@ -9,7 +9,7 @@
 @import XCTest;
 @import TraceLog;
 
-#import "TraceLog_OSX_Tests-Swift.h"
+#import "TraceLog_iOS_Tests-Swift.h"
 
 /// Test iteration count for all performance tests in this file
 static const int testIterations = 10000;
@@ -22,7 +22,7 @@ static const int testIterations = 10000;
     - (void) testLogError_Performance {
         
         // Reset the logger to the default before testing
-        [LoggerProxy intitializeWithEnvironment: @{@"LOG_ALL": @"TRACE4"} withConsoleWriter: YES];
+        [TLLogger configureWithEnvironment: @{@"LOG_ALL": @"TRACE4"}];
         
         [self measureBlock:^{
         
@@ -35,7 +35,7 @@ static const int testIterations = 10000;
     - (void) testLogTrace4_Performance {
         
         // Reset the logger to the default before testing
-        [LoggerProxy intitializeWithEnvironment: @{@"LOG_ALL": @"TRACE4"} withConsoleWriter: YES];
+        [TLLogger configureWithEnvironment: @{@"LOG_ALL": @"TRACE4"}];
         
         [self measureBlock:^{
         
