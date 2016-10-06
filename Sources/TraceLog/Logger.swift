@@ -88,12 +88,13 @@ internal final class Logger {
     ///
     /// Configure the logging system with the specified writers and environment
     ///
-    ///  Note: this is an optional call
+    ///  Note: this is a required call if you want to control the log level from ennvironment variables.
+    ///        TraceLog sets itself to the default LogLevel of INFO if this call is not made.
     ///
     class func configure(writers: [Writer], environment: Environment) {
         
         ///
-        /// Note: we use a synchronous call here for the initialization, all
+        /// Note: we use a synchronous call here for the configuration, all
         ///       other calls must be async in order not to conflict with this one.
         ///
         queue.sync {
@@ -101,7 +102,7 @@ internal final class Logger {
             let errors = config.load(writers, environment: environment)
 
             logPrimitive(level: .info, tag: moduleLogName, file: #file, function: #function, line: #line) {
-                "\(moduleLogName) initialized with configuration: \(config.description)"
+                "\(moduleLogName) Configured using: \(config.description)"
             }
             
             for error in errors {
