@@ -245,61 +245,74 @@ compiled with optimization on (`-O`) and `DEBUG` is NOT defined.
 Note: In both cases above, the default settings will be set correctly to enable TraceLog for the **Debug** configuration
       and optimized out for the **Release** configuration.
 
-## Installation
+## Compatibility
 
-TraceLog is available through [CocoaPods](http://cocoapods.org). To install
-it, simply add the following line to your Podfile:
-
-### Swift
-
-```ruby
-pod "TraceLog/Swift"
-```
-
-### Objective-C
-
-```ruby
-pod "TraceLog/ObjC"
-```
-
-Currently Objective-C is the default so you can simply use the following.  We encourage you to use the former form
-to ensure future compatibility.
-
-```ruby
-pod "TraceLog"
-```
-
-### Mixed Environments
-
-TraceLog was designed to work in mixed environments so you can have **Swift** pod/modules using TraceLog as well as 
-**Objective-C** pods/libraries in the same application. The configuration settings you set will set the values for both. 
-If you have an application that contains mixed **Swift** and **Objective-C** code you can include both sub-modules 
-into your application.  For example:
-
-```ruby
-pod "TraceLog/Swift"
-pod "TraceLog/ObjC"
-```
-
-See the ["Using CocoaPods"](https://guides.cocoapods.org/using/using-cocoapods.html) guide for more information.
-
+TraceLog has been tested on macOS, iOS, and Ubuntu.
 
 ## Requirements
 
-Compiling TraceLog requires **XCode 8.0** or above as well as specfic minimum deployment targets for each language.  These are listed below.
+### Swift 3.0
 
-### Swift
+TraceLog requires **Swift 3.0** or higher to compile.
+
+#### Linux (Ubuntu)
+
+After you have installed a **Swift 3.0** toolchain from Swift.org, open up a terminal window and type
+
+`swift --version`
+
+It will produce a message similar to this one:
+
+`Apple Swift version 3.0 (swiftlang-800.0.33.1 clang-800.0.31)
+Target: x86_64-apple-macosx10.9`
+
+Make sure you are running the latest version of **Swift 3.0**. TraceLog will not compile successfully if you are running a version of Swift that is lower than 3.0.
+
+Note:  If you are running **Ubuntu 14.04**, this version requires **clang 3.8** and **lldb 3.8** on the system.  To install them on the target build system run:
+
+Compiling TraceLog on OSX requires **XCode 8.0** or above as well as specfic minimum deployment targets for each language.  These are listed below.
 
 | OS X  | iOS | tvOS | watchOS | 
 |:-----:|:---:|:----:|:-------:|
 | 10.10 | 8.0 | 9.0  |   2.0   |
 
+
+## Installation (Swift Package Manager)
+
+TraceLog now supports dependency management via Swift Package Manager on All Apple OS variants as well as Linux.  To add TraceLog as a dependecy to your project add the following to your `Package.swit` file in the project root.
+
+Please see [Swift Package Manager](https://swift.org/package-manager/#conceptual-overview) for further information.
+
+## Installation (CocoaPods)
+
+TraceLog is available through [CocoaPods](http://cocoapods.org). Currently Swift is the default so to install it, simply add the following line to your Podfile:
+
+### Swift
+
+```ruby
+pod "TraceLog"
+```
+Please note that this is a change from the 1.x versions of TraceLog in where Objective-C was the default.  Now to use Objective-C, you must specify the subspec as follows:
+
 ### Objective-C
 
-| OS X  | iOS | tvOS | watchOS |   
-|:-----:|:---:|:----:|:-------:|
-| 10.7  | 5.0 | 9.0  |   2.0   |
+```ruby
+pod "TraceLog/ObjC"
+```
+### Mixed Environments
 
+TraceLog was designed to work in mixed environments so you can have **Swift** pod/modules using TraceLog as well as 
+**Objective-C** pods/libraries in the same application. The configuration settings you set will set the values for both. 
+If you have an application that contains mixed **Swift** and **Objective-C** code you can include both into your application.  
+
+For example:
+
+```ruby
+pod "TraceLog"
+pod "TraceLog/ObjC"
+```
+
+See the ["Using CocoaPods"](https://guides.cocoapods.org/using/using-cocoapods.html) guide for more information.
 
 ## Author
 
