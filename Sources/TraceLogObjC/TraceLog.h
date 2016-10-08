@@ -123,7 +123,7 @@
 /*
  WARNING:  LogIfEnabled is private and should not be used directly
  */
-#if DEBUG || TRACELOG_ENABLE
+#if !TRACELOG_DISABLED
     #define LogIfEnabled(logLevel,tagName,format,...) [TLLogger logPrimitive: logLevel tag: tagName file: [NSString stringWithUTF8String: __FILE__] function: [NSString stringWithUTF8String: __FUNCTION__] line: __LINE__ message: ^{ return [NSString stringWithFormat: format, ##__VA_ARGS__]; }]
 #else
     #define LogIfEnabled(logLevel,label, format, ...) ((void)0)

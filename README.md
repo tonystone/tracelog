@@ -236,14 +236,16 @@ which is set to `TRACE4` instead of using the less specific `TRACE1` setting in 
 
 ## Runtime Overhead
 
-The **Objective-C** implementation was designed to take advantage of the preprocessor and when compiled in a `RELEASE` build
-when `DEBUG` is NOT defined, will incur **no overhead** in the application.
+The **Swift** implantation was designed to take advantage of swift compiler optimizations and will 
+incur **no overhead** when compiled with optimization on (`-O`) and `TRACELOG_DISABLED` is defined.  
 
-The **Swift** implantation was designed to take advantage of swift compiler optimizations and will incur **no overhead** when
-compiled with optimization on (`-O`) and `DEBUG` is NOT defined.
+The **Objective-C** implementation was designed to take advantage of the preprocessor and when 
+compiled with `TRACELOG_DISABLED` defined, will incur **no overhead** in the application.
 
-Note: In both cases above, the default settings will be set correctly to enable TraceLog for the **Debug** configuration
-      and optimized out for the **Release** configuration.
+For XCode `TRACELOG_DISABLED` can be set in the project target. For **Swift Package Manager** pass a swiftc directive 
+to `swift build` as in the following example.
+
+`swift build -Xswiftc -DTRACELOG_DISABLED`
 
 ## Compatibility
 
