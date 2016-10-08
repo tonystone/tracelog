@@ -24,17 +24,18 @@ import Swift
 ///
 public protocol Writer {
     
-    /**
-     * Called when the logger needs to log an event to this logger.
-     *
-     * @param timestamp             Timestamp of the log event (number of seconds from 1970).
-     * @param level                 The LogLevel of this logging event. Note: log will not be called if the LegLevel is not set to above this calls log level
-     * @param tag                   The tag associated with the log event.
-     * @param message               The message string (already formatted) for this logging event.
-     * @param file                  The source file (of the calling program) of this logging event.
-     * @param function              The function (of the calling program) which is being called.
-     * @param lineNumber            The source line number (of the calling program) of this logging event.
-     */
+    ///
+    /// Called when the logger needs to log an event to this logger.
+    ///
+    /// - Parameters:
+    ///     - timestamp:             Timestamp of the log event (number of seconds from 1970).
+    ///     - level:                 The LogLevel of this logging event. Note: log will not be called if the LegLevel is not set to above this calls log level
+    ///     - tag:                   The tag associated with the log event.
+    ///     - message:               The message string (already formatted) for this logging event.
+    ///     - file:                  The source file (of the calling program) of this logging event.
+    ///     - runtimeContext:        An object containing information about the state of the runtime such as thread ID (seealso: RuntimeContext)
+    ///     - staticContext:         An object containing the static information at the time of the func call such as function name and line number (seealso: StaticContext)
+    ///
     func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext)
 }
 

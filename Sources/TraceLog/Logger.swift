@@ -124,12 +124,12 @@ internal final class Logger {
         let staticContext  = StaticContextImpl(file: file, function: function, line: line)
         
         ///
-        /// All logPrimative calls are asynchronous
+        /// All logPrimitive calls are asynchronous
         ///
         queue.async {
             
             if config.logLevel(for: tag) >= level {
-                let timestamp = Date.timeIntervalSinceReferenceDate
+                let timestamp = Date().timeIntervalSince1970
                 
                 // Evaluate the message now
                 let messageString = message()

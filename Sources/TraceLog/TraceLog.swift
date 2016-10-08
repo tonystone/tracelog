@@ -27,8 +27,15 @@ import Foundation
 /// This method must be called.
 ///
 /// - Parameters:
-///     - writers:     A String to use as a tag to group this call to other calls related to it. If not passed or nil, the file name is used as a tag.
-///     - environment: An closure or trailing closure that evaluates to the String message to log.
+///     - writers:     An Array of objects that implement the Writer protocol used to process messages that are logged. Note the writers are called in the order they are in this array.
+///     - environment: Either a Dictionary<String, String> or an Environment object that contains the key/value pairs of configuration variables for TraceLog.
+///
+/// Example:
+/// ```
+///     TraceLog.configure(writers: [MyWriter()], environment: ["LOG_ALL": "TRACE4",
+///                                                              "LOG_PREFIX_NS" : "OFF",
+///                                                              "LOG_TAG_TraceLog" : "TRACE4"])
+/// ```
 ///
 public
 func configure(writers: [Writer] = [ConsoleWriter()], environment: Environment = Environment()) {

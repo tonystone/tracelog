@@ -76,7 +76,7 @@ internal class Configuration {
                 if let level = upperCaselogLevelString.asLogLevel() {
                     self.globalLogLevel = level
                 } else {
-                    errors.append(.invalidLogLevel("Variable '\(upperCaseVariable)' has an invalid logLevel of '\(upperCaselogLevelString)'. '\(Configuration.logAll)' will be set to \(self.globalLogLevel)."))
+                    errors.append(.invalidLogLevel("Variable '\(upperCaseVariable)' has an invalid logLevel of '\(upperCaselogLevelString)'. '\(upperCaseVariable)' will be set to \(self.globalLogLevel)."))
                 }
                 
             } else if upperCaseVariable.hasPrefix(Configuration.logPrefix) {
@@ -127,9 +127,10 @@ internal class Configuration {
         } else {
             
             /// Determine the prefixes log level if available
-            for (prefix, logLevel) in self.loggedPrefixes {
+            for (prefix, logLevel) in self.loggedPrefixes.reversed() {
                 if tag.hasPrefix(prefix) {
                     level = logLevel
+                    break
                 }
             }
         }
