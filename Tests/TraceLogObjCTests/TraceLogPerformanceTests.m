@@ -12,7 +12,7 @@
 #import "TraceLog_iOS_Tests-Swift.h"
 
 /// Test iteration count for all performance tests in this file
-static const int testIterations = 10000;
+static const int testIterations = 1000;
 
 @interface TraceLogPerformanceTests_ObjC : XCTestCase
 @end

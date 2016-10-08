@@ -9,7 +9,7 @@ import XCTest
 import TraceLog
 
 /// Test iteration count for all performance tests in this file
-private let testIterations = 10000
+private let testIterations = 1000
 
 class TraceLogPerformanceTests_Swift : XCTestCase {
     
