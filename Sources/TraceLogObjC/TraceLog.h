@@ -139,7 +139,7 @@
  *
  * @Note Raises an NSInvalidArgumentException if format is nil.
  */
-#define CLogError(tag,format,...) LogIfEnabled(LogLevelError, tag, format, ##__VA_ARGS__)
+#define CLogError(tag,format,...) LogIfEnabled(TLLogger.LogLevelError, tag, format, ##__VA_ARGS__)
 
 /**
  * CLogWarning logs an message with LogLevel Error to the LogWriters.
@@ -150,7 +150,7 @@
  *
  * @Note Raises an NSInvalidArgumentException if format is nil.
  */
-#define CLogWarning(tag,format,...) LogIfEnabled(LogLevelWarning, tag, format, ##__VA_ARGS__)
+#define CLogWarning(tag,format,...) LogIfEnabled(TLLogger.LogLevelWarning, tag, format, ##__VA_ARGS__)
 
 /**
  * CLogInfo logs an message with LogLevel Error to the LogWriters.
@@ -161,7 +161,7 @@
  *
  * @Note Raises an NSInvalidArgumentException if format is nil.
  */
-#define CLogInfo(tag,format,...) LogIfEnabled(LogLevelInfo, tag, format, ##__VA_ARGS__)
+#define CLogInfo(tag,format,...) LogIfEnabled(TLLogger.LogLevelInfo, tag, format, ##__VA_ARGS__)
 
 /**
  * CLogTrace logs an message with LogLevel Error to the LogWriters.
@@ -173,6 +173,6 @@
  *
  * @Note Raises an NSInvalidArgumentException if format is nil.
  */
-#define CLogTrace(level,tag,format,...) LogIfEnabled((LogLevel) LogLevelTrace1 + ((int)level) - 1, tag, format, ##__VA_ARGS__)
+#define CLogTrace(level,tag,format,...) LogIfEnabled(TLLogger.LogLevelTrace1 + ((int)level) - 1, tag, format, ##__VA_ARGS__)
 
 #endif

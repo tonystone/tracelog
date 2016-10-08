@@ -76,7 +76,7 @@ internal class Configuration {
                 if let level = upperCaselogLevelString.asLogLevel() {
                     self.globalLogLevel = level
                 } else {
-                    errors.append(.invalidLogLevel("Variable '\(upperCaseVariable)' has an invalid logLevel of '\(upperCaselogLevelString)'. '\(upperCaseVariable)' will be set to \(self.globalLogLevel)."))
+                    errors.append(.invalidLogLevel("Variable '\(upperCaseVariable)' has an invalid logLevel of '\(upperCaselogLevelString)'. '\(upperCaseVariable)' will be set to \(String(describing: self.globalLogLevel).uppercased())."))
                 }
                 
             } else if upperCaseVariable.hasPrefix(Configuration.logPrefix) {
@@ -155,7 +155,7 @@ extension Configuration : CustomStringConvertible {
             
             for (tag, level) in self.loggedTags {
                 
-                loggedString += "\n\t\t\(tag) = \(level)"
+                loggedString += "\n\t\t\(tag) = \(String(describing: level).uppercased())"
             }
             loggedString += "\n\t}"
         }
@@ -166,11 +166,11 @@ extension Configuration : CustomStringConvertible {
             
             for (prefix, level) in self.loggedPrefixes {
                 
-                loggedString += "\n\t\t\(prefix) = \(level)"
+                loggedString += "\n\t\t\(prefix) = \(String(describing: level).uppercased())"
             }
             loggedString += "\n\t}"
         }
-        loggedString += "\n\tglobal: {\n\n\t\tALL = \(self.globalLogLevel)\n\t}\n}"
+        loggedString += "\n\tglobal: {\n\n\t\tALL = \(String(describing: self.globalLogLevel).uppercased())\n\t}\n}"
         
         return loggedString
     }

@@ -151,6 +151,15 @@ internal final class Logger {
     @objc(TLLogger)
     public class TLLogger : NSObject {
         
+        public static let LogLevelOff     = LogLevel.off.rawValue
+        public static let LogLevelError   = LogLevel.error.rawValue
+        public static let LogLevelWarning = LogLevel.warning.rawValue
+        public static let LogLevelInfo    = LogLevel.info.rawValue
+        public static let LogLevelTrace1  = LogLevel.trace1.rawValue
+        public static let LogLevelTrace2  = LogLevel.trace2.rawValue
+        public static let LogLevelTrace3  = LogLevel.trace3.rawValue
+        public static let LogLevelTrace4  = LogLevel.trace4.rawValue
+        
         public class func configure() {
             Logger.configure(writers: [ConsoleWriter()], environment: Environment())
         }

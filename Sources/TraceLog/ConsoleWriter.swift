@@ -32,9 +32,10 @@ public class ConsoleWriter : Writer {
     ///
     open func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
 
-        let levelString = "\(String(repeating: " ", count: 7 - level.description.characters.count))\(level)"
-        let date        = Date(timeIntervalSince1970: timestamp)
-        let message     = String(format: "\(self.dateFormatter.string(from: date)) \(runtimeContext.processName)[\(runtimeContext.processIdentifier):\(runtimeContext.threadIdentifier)] \(levelString): <\(tag)> \(message)")
+        let uppercasedLevel = "\(level)".uppercased()
+        let levelString     = "\(String(repeating: " ", count: 7 - uppercasedLevel.characters.count))\(uppercasedLevel)"
+        let date            = Date(timeIntervalSince1970: timestamp)
+        let message         = String(format: "\(self.dateFormatter.string(from: date)) \(runtimeContext.processName)[\(runtimeContext.processIdentifier):\(runtimeContext.threadIdentifier)] \(levelString): <\(tag)> \(message)")
         
         ///
         /// Note: we currently use the calling thread to synchronize knowing that 

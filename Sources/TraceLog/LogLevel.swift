@@ -18,14 +18,11 @@
 ///  Created by Tony Stone on 4/23/16.
 ///
 import Swift
-import Foundation
 
 ///
 /// LogLevels
 ///
-/// Note: this enum must support both Swift and ObjC
-///
-@objc public enum LogLevel : Int, Comparable {
+public enum LogLevel : Int {
     case off     = 0
     case error   = 1
     case warning = 2
@@ -34,30 +31,20 @@ import Foundation
     case trace2  = 5
     case trace3  = 6
     case trace4  = 7
-}
-
-///
-/// To support description below
-///
-private let logLevelStrings = [
-    "OFF",
-    "ERROR",
-    "WARNING",
-    "INFO",
-    "TRACE1",
-    "TRACE2",
-    "TRACE3",
-    "TRACE4"
-]
-
-// Note: Objective-c type enums currently do not print their value
-///      so this is required for display of the levels.
-extension LogLevel: CustomStringConvertible {
     
-    public var description: String {
-        return logLevelStrings[self.rawValue]
-    }
+    ///
+    /// Note: Update below if you add another case statement to this enum
+    ///
+    /// I don't like this either but it's the only sane way to be able
+    /// to loop through all the elemenets for lookup. It's kept
+    /// here so you remember to update it should a new case
+    /// statement be added above.
+    ///
+    static let allValues: [LogLevel]  = [.off,  .error,  .warning,  .info,  .trace1,  .trace2,  .trace3, .trace4]
 }
+
+/// Extend the LogLevel with the ability to compare them
+extension LogLevel : Comparable {}
 
 public func <(lhs: LogLevel, rhs: LogLevel) -> Bool {
     return lhs.rawValue < rhs.rawValue
@@ -76,12 +63,12 @@ internal extension String {
     
     func asLogLevel () -> LogLevel? {
         
-        for rawLevel in LogLevel.off.rawValue...LogLevel.trace4.rawValue {
-            if let level = LogLevel(rawValue: rawLevel) {
+        let lowercasedSelf = self.lowercased()
+        
+        for level in LogLevel.allValues {
             
-                if self == level.description {
+            if lowercasedSelf == String(describing: level) {
                     return level
-                }
             }
         }
         return nil
