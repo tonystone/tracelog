@@ -236,19 +236,12 @@ func logTrace(_ level: Int, _ file: String = #file, _ function: String = #functi
 
 // MARK: Internal & private functions & Extensions.
 
-internal extension String {
-    func lastPathComponent() -> String {
-        return URL(fileURLWithPath: self).lastPathComponent
-    }
-    func stringByDeletingPathExtension() -> String {
-        return URL(fileURLWithPath: self).deletingPathExtension().lastPathComponent
-    }
-}
-
-private func derivedTagIfNil(file: String, tag: String?) -> String {
+@inline(__always)
+private
+func derivedTagIfNil(file: String, tag: String?) -> String {
     if let unwrappedTag = tag {
        return unwrappedTag
     } else {
-        return file.lastPathComponent().stringByDeletingPathExtension()
+        return URL(fileURLWithPath: file).deletingPathExtension().lastPathComponent
     }
 }
