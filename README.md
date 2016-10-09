@@ -272,6 +272,10 @@ Make sure you are running the latest version of **Swift 3.0**. TraceLog will not
 
 Note:  If you are running **Ubuntu 14.04**, this version requires **clang 3.8** and **lldb 3.8** on the system.  To install them on the target build system run:
 
+```
+sudo apt-get -y install clang-3.8 lldb-3.8 libicu-dev
+```
+
 Compiling TraceLog on OSX requires **XCode 8.0** or above as well as specfic minimum deployment targets for each language.  These are listed below.
 
 | OS X  | iOS | tvOS | watchOS | 
