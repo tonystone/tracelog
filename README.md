@@ -232,7 +232,7 @@ which is set to `TRACE4` instead of using the less specific `TRACE1` setting in 
 #### Configuration (Environment)
 
 TraceLog can be configured via the environment either manually using `export` or via Xcode. 
-In order for TraceLog to read the environment on startup you must call it's configure method at 
+In order for TraceLog to read the environment on startup you must call its configure method at 
 the beginning of your application.
 
 ```
@@ -282,7 +282,7 @@ the logging endpoint.
 
 ## Runtime Overhead
 
-The **Swift** implantation was designed to take advantage of swift compiler optimizations and will 
+The **Swift** implementation was designed to take advantage of swift compiler optimizations and will 
 incur **no overhead** when compiled with optimization on (`-O`) and `TRACELOG_DISABLED` is defined.  
 
 The **Objective-C** implementation was designed to take advantage of the preprocessor and when 
