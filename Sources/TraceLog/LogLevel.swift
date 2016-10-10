@@ -23,7 +23,6 @@ import Swift
 /// LogLevels
 ///
 public enum LogLevel : Int {
-    case off     = 0
     case error   = 1
     case warning = 2
     case info    = 3
@@ -40,7 +39,7 @@ public enum LogLevel : Int {
     /// here so you remember to update it should a new case
     /// statement be added above.
     ///
-    static let allValues: [LogLevel]  = [.off,  .error,  .warning,  .info,  .trace1,  .trace2,  .trace3, .trace4]
+    static let allValues: [LogLevel]  = [.error,  .warning,  .info,  .trace1,  .trace2,  .trace3, .trace4]
 }
 
 /// Extend the LogLevel with the ability to compare them
@@ -55,7 +54,7 @@ public func ==(lhs: LogLevel, rhs: LogLevel) -> Bool {
 }
 
 internal extension LogLevel {
-    static var rawRange:       ClosedRange<Int> { get { return LogLevel.off.rawValue...LogLevel.trace4.rawValue } }
+    static var rawRange:       ClosedRange<Int> { get { return LogLevel.error.rawValue...LogLevel.trace4.rawValue } }
     static var rawTraceLevels: ClosedRange<Int> { get { return 1...4 } }
 }
 

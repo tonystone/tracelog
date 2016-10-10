@@ -34,12 +34,12 @@ class TraceLogTests_Swift : XCTestCase {
     
     func testInitialize_LogWriters_Environment() {
 
-        let testMessage = "TraceLog Configured using: {\n\ttags: {\n\n\t\tTraceLog = TRACE4\n\t}\n\tprefixes: {\n\n\t\tNS = OFF\n\t}\n\tglobal: {\n\n\t\tALL = TRACE4\n\t}\n}"
+        let testMessage = "TraceLog Configured using: {\n\ttags: {\n\n\t\tTraceLog = TRACE4\n\t}\n\tprefixes: {\n\n\t\tNS = ERROR\n\t}\n\tglobal: {\n\n\t\tALL = TRACE4\n\t}\n}"
         
         let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .info, tag: "TraceLog", message: testMessage, testFileFunction: false)
         
         TraceLog.configure(writers: [expectedValues], environment: ["LOG_ALL": "TRACE4",
-                                                                    "LOG_PREFIX_NS" : "OFF",
+                                                                    "LOG_PREFIX_NS" : "ERROR",
                                                                     "LOG_TAG_TraceLog" : "TRACE4"])
         
         self.waitForExpectations(timeout: 2) { error in

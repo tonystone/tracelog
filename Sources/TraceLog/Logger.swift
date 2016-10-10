@@ -151,7 +151,6 @@ internal final class Logger {
     @objc(TLLogger)
     public class TLLogger : NSObject {
         
-        public static let LogLevelOff     = LogLevel.off.rawValue
         public static let LogLevelError   = LogLevel.error.rawValue
         public static let LogLevelWarning = LogLevel.warning.rawValue
         public static let LogLevelInfo    = LogLevel.info.rawValue

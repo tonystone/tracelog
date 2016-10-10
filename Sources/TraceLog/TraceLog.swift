@@ -33,7 +33,7 @@ import Foundation
 /// Example:
 /// ```
 ///     TraceLog.configure(writers: [MyWriter()], environment: ["LOG_ALL": "TRACE4",
-///                                                              "LOG_PREFIX_NS" : "OFF",
+///                                                              "LOG_PREFIX_NS" : "ERROR",
 ///                                                              "LOG_TAG_TraceLog" : "TRACE4"])
 /// ```
 ///

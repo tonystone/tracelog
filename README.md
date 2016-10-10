@@ -186,7 +186,7 @@ variable pattern.
 Each environment variable set is set with a level as the value.  The following
 levels are available in order of display priority.  Each level encompasses the
 level below it with `TRACE4` including the output from every level.  The lowest
-level setting, aside from no output or `OFF`, is `ERROR` which only outputs errors when
+level setting is `ERROR` which only outputs errors when
 they occur.
 
 Levels:
@@ -198,7 +198,6 @@ Levels:
     INFO
     WARNING
     ERROR
-    OFF
 ```
 Environment Variables and syntax:
 ```Shell
