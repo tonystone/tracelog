@@ -1,19 +1,82 @@
-language: objective-c
-os: osx
-osx_image: xcode7.3
+language: generic
 
 before_install:
-    - gem install xcpretty -N --no-ri --no-rdoc
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then gem install xcpretty -N --no-ri --no-rdoc ; fi
 
-env:
-    matrix:
-        - MATRIX_TARGET="-scheme TraceLog-iOS-Example -sdk iphonesimulator"
-        - MATRIX_TARGET="-scheme TraceLog-OSX-Example -sdk macosx"
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -y ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then wget https://swift.org/builds/swift-3.0-release/ubuntu1404/swift-3.0-RELEASE/swift-3.0-RELEASE-ubuntu14.04.tar.gz    ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then tar xzvf swift-3.0-RELEASE-ubuntu14.04.tar.gz    ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export PATH=swift-3.0-RELEASE-ubuntu14.04/usr/bin:$PATH    ; fi
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get -y install clang-3.8 lldb-3.8 libicu-dev  ; fi
 
+git:
+  submodules: false
 
+matrix:
+  include:
+    - 
+      os: linux
+      dist: trusty
+      sudo: required
+      env: 
+         - BUILD="swift build"
+    - 
+      os: osx
+      osx_image: xcode8
+      env: 
+         - BUILD="swift build"
+    - 
+      os: osx
+      osx_image: xcode8
+      env: 
+         - BUILD="xcodebuild"
+         - TEST_DEST="platform=iOS Simulator,OS=10.0,name=iPhone 6s" 
+         - TEST_SDK=iphonesimulator
+         - SCHEME=TraceLog-iOS-Example 
+    - 
+      os: osx
+      osx_image: xcode8
+      env: 
+         - BUILD="xcodebuild"
+         - TEST_DEST="platform=iOS Simulator,OS=10.0,name=iPhone 6" 
+         - TEST_SDK=iphonesimulator
+         - SCHEME=TraceLog-iOS-Example 
+    - 
+      os: osx
+      osx_image: xcode8
+      env: 
+         - BUILD="xcodebuild"
+         - TEST_DEST="platform=iOS Simulator,OS=9.3,name=iPhone 6" 
+         - TEST_SDK=iphonesimulator
+         - SCHEME=TraceLog-iOS-Example 
+    - 
+      os: osx
+      osx_image: xcode8
+      env: 
+         - BUILD="xcodebuild"
+         - TEST_DEST="platform=iOS Simulator,OS=9.2,name=iPhone 5s" 
+         - TEST_SDK=iphonesimulator
+         - SCHEME=TraceLog-iOS-Example 
+    - 
+      os: osx
+      osx_image: xcode8
+      env: 
+         - BUILD="xcodebuild"
+         - TEST_DEST="platform=iOS Simulator,OS=9.0,name=iPhone 4s" 
+         - TEST_SDK=iphonesimulator
+         - SCHEME=TraceLog-iOS-Example 
+    - 
+      os: osx
+      osx_image: xcode8
+      env: 
+         - BUILD="xcodebuild"
+         - TEST_DEST="platform=OS X,arch=x86_64" 
+         - TEST_SDK=macosx
+         - SCHEME=TraceLog-OSX-Example 
+         
 script:
-    - set -o pipefail
-    - xcodebuild clean test -workspace Example/TraceLog.xcworkspace $MATRIX_TARGET GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty
+  - if [[ "$BUILD" == "swift build"  ]]; then swift test ; fi
+  - if [[ "$BUILD" == "xcodebuild"  ]]; then xcodebuild clean test -workspace Example/TraceLog.xcworkspace -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty ; fi
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)

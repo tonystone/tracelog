@@ -1,6 +1,0 @@
-framework module TraceLog {
-  umbrella header "Pods-TraceLog-iOS-TraceLog-umbrella.h"
-
-  export *
-  module * { export * }
-}

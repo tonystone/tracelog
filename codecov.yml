@@ -1,0 +1,21 @@
+
+
+comment:
+  layout: header, changes, diff
+coverage:
+  ignore:
+  - Example/.*
+  - Scripts/.*
+  - Docs/.*
+  - Pods/.*
+  - Applications/Xcode.app/.*
+  - vendor/.*
+  - Carthage/.*
+  - build/.*
+  - .build/.*
+  - .vagrant/.*
+  - Tests/.*
+  status:
+    patch: false
+
+
