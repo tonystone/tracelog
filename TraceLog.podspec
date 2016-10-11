@@ -42,10 +42,6 @@ Pod::Spec.new do |s|
 
   s.subspec 'Swift' do |swift|
     swift.source_files = 'Sources/TraceLog/*.swift'
-
-    swift.xcconfig = {
-        'OTHER_SWIFT_FLAGS[config=Debug]' => '$(inherited) -D COCOAPODS -DDEBUG'
-    }
   end
 
   s.subspec 'ObjC' do |objc|
@@ -54,10 +50,5 @@ Pod::Spec.new do |s|
     objc.public_header_files = 'Sources/TraceLogObjC/TraceLog.h'
     objc.source_files        = 'Sources/TraceLogObjC/*.{h,swift}'
   end
-
-  # Defined for all projects
-  s.pod_target_xcconfig = {
-     'SWIFT_VERSION' => '3.0'
-  }
 
 end

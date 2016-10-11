@@ -20,16 +20,10 @@
   },
   "requires_arc": true,
   "default_subspecs": "Swift",
-  "pod_target_xcconfig": {
-    "SWIFT_VERSION": "3.0"
-  },
   "subspecs": [
     {
       "name": "Swift",
-      "source_files": "Sources/TraceLog/*.swift",
-      "xcconfig": {
-        "OTHER_SWIFT_FLAGS[config=Debug]": "$(inherited) -D COCOAPODS -DDEBUG"
-      }
+      "source_files": "Sources/TraceLog/*.swift"
     },
     {
       "name": "ObjC",
