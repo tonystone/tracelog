@@ -3,10 +3,6 @@ language: generic
 git:
   submodules: false
 
-env:
-  global:
-     - COCOAPODS_VERSION="1.1.0.rc.2"
-
 matrix:
   include:
     - 
@@ -78,7 +74,8 @@ matrix:
 before_install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then gem install xcpretty -N --no-ri --no-rdoc ; fi
 
-  - if [[ "$BUILD" == "pod lint" ]]; then gem install cocoapods --version "$COCOAPODS_VERSION" --no-document ; fi
+  - if [[ "$BUILD" == "pod lint" ]]; then gem install bundler ; fi
+  - if [[ "$BUILD" == "pod lint" ]]; then bundler install ; fi
 
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -y ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then wget https://swift.org/builds/swift-3.0-release/ubuntu1404/swift-3.0-RELEASE/swift-3.0-RELEASE-ubuntu14.04.tar.gz    ; fi
@@ -88,7 +85,7 @@ before_install:
 
 script:
   - if [[ "$BUILD" == "swift build"  ]]; then swift test ; fi
-  - if [[ "$BUILD" == "pod lint"  ]]; then pod lib lint ; fi
+  - if [[ "$BUILD" == "pod lint"  ]]; then bundler exec pod lib lint ; fi
   - if [[ "$BUILD" == "xcodebuild" ]]; then xcodebuild clean test -workspace Example/TraceLog.xcworkspace -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty ; fi
 
 after_success:
