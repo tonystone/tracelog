@@ -86,7 +86,7 @@ before_install:
 script:
   - if [[ "$BUILD" == "swift build"  ]]; then swift test ; fi
   - if [[ "$BUILD" == "pod lint"  ]]; then bundler exec pod lib lint ; fi
-  - if [[ "$BUILD" == "xcodebuild" ]]; then xcodebuild clean test -workspace Example/TraceLog.xcworkspace -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty ; fi
+  - if [[ "$BUILD" == "xcodebuild" ]]; then xcodebuild clean test -workspace Example/TraceLog.xcworkspace -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | bundler exec xcpretty ; fi
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
