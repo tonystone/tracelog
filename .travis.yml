@@ -75,8 +75,9 @@ before_install:
   #
   # If there is a Gemfile for this os, install bundler and ask bundler to install the gems
   #
+  - if [ -e Gemfile."$TRAVIS_OS_NAME" ]; then export BUNDLE_GEMFILE=Gemfile."$TRAVIS_OS_NAME" ; fi
   - if [ -e Gemfile."$TRAVIS_OS_NAME" ]; then gem install bundler ; fi
-  - if [ -e Gemfile."$TRAVIS_OS_NAME" ]; then bundler install --gemfile Gemfile."$TRAVIS_OS_NAME" ; fi
+  - if [ -e Gemfile."$TRAVIS_OS_NAME" ]; then bundler install ; fi
 
   #
   # Linux requires downloading Swift and tools
