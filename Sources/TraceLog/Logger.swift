@@ -149,8 +149,12 @@ internal final class Logger {
 
 #if os(OSX) || os(iOS) || os(tvOS) || os(watchOS)
     
+    /// Internal class exposed to objective-C for low level logging.
     ///
-    /// Internal class exposed to objective-C for low level logging
+    /// - Warning:  This is a private class and nothing in this class should be used on it's own.  Please see TraceLog.h for the public interface to this.
+    ///
+    /// - Note: In order to continue to support Objective-C, this class must be public and also visible to both Swift and ObjC.  This class is not meant to be
+    ///         used directly in either language.
     ///
     @objc(TLLogger)
     public class TLLogger : NSObject {
