@@ -88,10 +88,7 @@ internal final class Logger {
     ///
     /// Configure the logging system with the specified writers and environment
     ///
-    ///  Note: this is a required call if you want to control the log level from ennvironment variables.
-    ///        TraceLog sets itself to the default LogLevel of INFO if this call is not made.
-    ///
-    class func configure(writers: [Writer], environment: Environment) {
+    class func configure(writers: [Writer]? = nil, environment: Environment? = nil) {
         
         ///
         /// Note: we use a synchronous call here for the configuration, all
@@ -99,16 +96,23 @@ internal final class Logger {
         ///
         queue.sync {
         
-            let errors = config.load(writers, environment: environment)
-
-            logPrimitive(level: .info, tag: moduleLogName, file: #file, function: #function, line: #line) {
-                "\(moduleLogName) Configured using: \(config.description)"
+            if let writers = writers {
+                self.config.writers = writers
             }
             
-            for error in errors {
+            if let environment = environment {
                 
-                logPrimitive(level: .warning, tag: moduleLogName, file: #file, function: #function, line: #line) {
-                    "\(error.description)"
+                let errors = config.load(environment: environment)
+                
+                logPrimitive(level: .info, tag: moduleLogName, file: #file, function: #function, line: #line) {
+                    "\(moduleLogName) Configured using: \(config.description)"
+                }
+                
+                for error in errors {
+                    
+                    logPrimitive(level: .warning, tag: moduleLogName, file: #file, function: #function, line: #line) {
+                        "\(error.description)"
+                    }
                 }
             }
         }
@@ -145,8 +149,12 @@ internal final class Logger {
 
 #if os(OSX) || os(iOS) || os(tvOS) || os(watchOS)
     
+    /// Internal class exposed to objective-C for low level logging.
     ///
-    /// Internal class exposed to objective-C for low level logging
+    /// - Warning:  This is a private class and nothing in this class should be used on it's own.  Please see TraceLog.h for the public interface to this.
+    ///
+    /// - Note: In order to continue to support Objective-C, this class must be public and also visible to both Swift and ObjC.  This class is not meant to be
+    ///         used directly in either language.
     ///
     @objc(TLLogger)
     public class TLLogger : NSObject {
