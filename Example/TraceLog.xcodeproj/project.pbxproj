@@ -95,7 +95,7 @@
 		C6FC67581D386ED7A654BFBA /* Pods-TraceLog-OSX.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-OSX.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraceLog-OSX/Pods-TraceLog-OSX.release.xcconfig"; sourceTree = "<group>"; };
 		D063B377EF428F4934F11DFC /* Pods_TraceLog_OSX.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraceLog_OSX.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DAD59558981C388F77499E21 /* Pods-TraceLog-iOS-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-iOS-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraceLog-iOS-Tests/Pods-TraceLog-iOS-Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		EA1DD02A1DAEDBF5007BEB25 /* Gemfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = Gemfile; path = ../Gemfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		EA1DD02A1DAEDBF5007BEB25 /* Gemfile.osx */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = Gemfile.osx; path = ../Gemfile.osx; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EA1DD02B1DAFFA4E007BEB25 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
 		EA1E259A1DA5864100CECAA8 /* EnvironmentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentTests.swift; sourceTree = "<group>"; };
 		EA2FC7ED1DA4538A00902D21 /* codecov.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = codecov.yml; path = ../codecov.yml; sourceTree = "<group>"; };
@@ -292,7 +292,7 @@
 				EA2FC7ED1DA4538A00902D21 /* codecov.yml */,
 				EA7E7AB51DA0CB8100E3B511 /* Package.swift */,
 				EA7E7AB41DA0C8B800E3B511 /* Vagrantfile */,
-				EA1DD02A1DAEDBF5007BEB25 /* Gemfile */,
+				EA1DD02A1DAEDBF5007BEB25 /* Gemfile.osx */,
 				EA1DD02B1DAFFA4E007BEB25 /* .gitignore */,
 			);
 			name = "Podspec Metadata";

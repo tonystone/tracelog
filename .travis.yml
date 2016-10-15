@@ -72,11 +72,16 @@ matrix:
 
 
 before_install:
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then gem install xcpretty -N --no-ri --no-rdoc ; fi
+  #
+  # If there is a Gemfile for this os, install bundler and ask bundler to install the gems
+  #
+  - if [ -e Gemfile."$TRAVIS_OS_NAME" ]; then export BUNDLE_GEMFILE=Gemfile."$TRAVIS_OS_NAME" ; fi
+  - if [ -e Gemfile."$TRAVIS_OS_NAME" ]; then gem install bundler ; fi
+  - if [ -e Gemfile."$TRAVIS_OS_NAME" ]; then bundler install ; fi
 
-  - if [[ "$BUILD" == "pod lint" ]]; then gem install bundler ; fi
-  - if [[ "$BUILD" == "pod lint" ]]; then bundler install ; fi
-
+  #
+  # Linux requires downloading Swift and tools
+  #
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get update -y ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then wget https://swift.org/builds/swift-3.0-release/ubuntu1404/swift-3.0-RELEASE/swift-3.0-RELEASE-ubuntu14.04.tar.gz    ; fi
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then tar xzvf swift-3.0-RELEASE-ubuntu14.04.tar.gz    ; fi
@@ -86,7 +91,7 @@ before_install:
 script:
   - if [[ "$BUILD" == "swift build"  ]]; then swift test ; fi
   - if [[ "$BUILD" == "pod lint"  ]]; then bundler exec pod lib lint ; fi
-  - if [[ "$BUILD" == "xcodebuild" ]]; then xcodebuild clean test -workspace Example/TraceLog.xcworkspace -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | xcpretty ; fi
+  - if [[ "$BUILD" == "xcodebuild" ]]; then xcodebuild clean test -workspace Example/TraceLog.xcworkspace -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES GCC_GENERATE_TEST_COVERAGE_FILES=YES | bundler exec xcpretty ; fi
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
