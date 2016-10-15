@@ -54,4 +54,5 @@ DerivedData
 #
 # Note: we currently don't include the Gemfile lock because all we really care about is locking in the Cocoapods version
 #
-Gemfile.lock
+Gemfile*.lock
+
