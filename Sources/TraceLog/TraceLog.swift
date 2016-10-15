@@ -38,11 +38,25 @@ import Foundation
 /// ```
 ///
 public
-func configure(writers: [Writer] = [ConsoleWriter()], environment: Environment = Environment()) {
+func configure() {
+    #if !TRACELOG_DISABLED
+        Logger.configure(writers: [ConsoleWriter()], environment: Environment())
+    #endif
+}
+public
+func configure(writers: [Writer]) {
+    #if !TRACELOG_DISABLED
+        Logger.configure(writers: writers, environment: Environment())
+    #endif
+}
+
+public
+func configure(writers: [Writer], environment: Environment) {
     #if !TRACELOG_DISABLED
         Logger.configure(writers: writers, environment: environment)
     #endif
 }
+
 
 ///
 /// logError logs a message with LogLevel Error to the LogWriters

@@ -48,20 +48,16 @@ internal class Configuration {
     init () {}
     
     ///
-    /// (Re)Load this structure with the values for writers and the environment variables
+    /// (Re)Load this structure with the values for the environment variables
     ///
-    func load(_ writers: [Writer], environment: Environment) -> [ConfigurationError] {
+    func load(environment: Environment) -> [ConfigurationError] {
         
         var errors = [ConfigurationError]()
         
         self.globalLogLevel = LogLevel.info
-        
-        self.writers.removeAll()
+    
         self.loggedPrefixes.removeAll()
         self.loggedTags.removeAll()
-
-        /// Initialize the writers first
-        self.writers.append(contentsOf: writers)
         
         for (variable, value) in environment {
             ///
