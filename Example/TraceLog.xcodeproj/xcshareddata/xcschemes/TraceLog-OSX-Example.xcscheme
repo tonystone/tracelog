@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EA5C7FB31BEBAA7000B3951D"
+               BlueprintIdentifier = "EA0B86BF1DB4266B0048B0B6"
                BuildableName = "TraceLog-OSX.app"
                BlueprintName = "TraceLog-OSX"
                ReferencedContainer = "container:TraceLog.xcodeproj">
@@ -26,13 +26,13 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      shouldUseLaunchSchemeArgsEnv = "NO">
+      shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
          <TestableReference
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EA5C7FC11BEBAA7000B3951D"
+               BlueprintIdentifier = "EA0B86CD1DB4266B0048B0B6"
                BuildableName = "TraceLog-OSX-Tests.xctest"
                BlueprintName = "TraceLog-OSX-Tests"
                ReferencedContainer = "container:TraceLog.xcodeproj">
@@ -42,7 +42,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EA5C7FB31BEBAA7000B3951D"
+            BlueprintIdentifier = "EA0B86BF1DB4266B0048B0B6"
             BuildableName = "TraceLog-OSX.app"
             BlueprintName = "TraceLog-OSX"
             ReferencedContainer = "container:TraceLog.xcodeproj">
@@ -65,34 +65,12 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EA5C7FB31BEBAA7000B3951D"
+            BlueprintIdentifier = "EA0B86BF1DB4266B0048B0B6"
             BuildableName = "TraceLog-OSX.app"
             BlueprintName = "TraceLog-OSX"
             ReferencedContainer = "container:TraceLog.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
-      <EnvironmentVariables>
-         <EnvironmentVariable
-            key = "LOG_ALL"
-            value = "INFO"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "LOG_TAG_AppDelegate"
-            value = "TRACE5"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "LOG_PREFIX_TraceLog"
-            value = "TRACE4"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-         <EnvironmentVariable
-            key = "LOG_TAG_MyCustomTag"
-            value = "WARNING"
-            isEnabled = "YES">
-         </EnvironmentVariable>
-      </EnvironmentVariables>
       <AdditionalOptions>
       </AdditionalOptions>
    </LaunchAction>
@@ -106,7 +84,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "EA5C7FB31BEBAA7000B3951D"
+            BlueprintIdentifier = "EA0B86BF1DB4266B0048B0B6"
             BuildableName = "TraceLog-OSX.app"
             BlueprintName = "TraceLog-OSX"
             ReferencedContainer = "container:TraceLog.xcodeproj">

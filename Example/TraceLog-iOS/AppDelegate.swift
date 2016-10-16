@@ -1,23 +1,24 @@
 //
 //  AppDelegate.swift
-//  TraceLog-OSX
+//  TraceLog-iOS
 //
-//  Created by Tony Stone on 11/5/15.
-//  Copyright © 2015 Tony Stone. All rights reserved.
+//  Created by Tony Stone on 10/16/16.
+//  Copyright © 2016 Tony Stone. All rights reserved.
 //
 
-import Cocoa
+import UIKit
 import TraceLog
 
-@NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
-    @IBOutlet weak var window: NSWindow!
-    
+    var window: UIWindow?
+
     let test = true;
     var moduleName = "MyCustomTag"
     
-    func applicationDidFinishLaunching(_ aNotification: Notification) {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+
         
         //
         // Configure the TraceLog environment.
@@ -75,7 +76,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         // Log a Trace level 2 message using a trailing closure and a specific tag.
         //
         logTrace(moduleName, level: 2) {
-           "A string produced as a result of a () -> String closure being evaluated."
+            "A string produced as a result of a () -> String closure being evaluated."
         }
         
         //
@@ -84,6 +85,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         logTrace(2) {
             "A string produced as a result of a () -> String closure being evaluated."
         }
+
+        return true
     }
 
 }
