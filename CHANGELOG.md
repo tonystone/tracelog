@@ -1,6 +1,15 @@
 # Change Log
 All significant changes to this project will be documented in this file.
 
+## [2.0.2] 
+Not yet released publicly
+
+#### Added
+- Added required tests to bring coverage back to 100%.
+
+#### Updated
+- Deprecated TLLogger.configure and TLLogger.configureWithEnvironment.  Use TraceLog.configure in swift instead.
+
 ## [2.0.1](https://github.com/tonystone/tracelog/tree/2.0.1)
 Released on 2016-10-16. 
 
