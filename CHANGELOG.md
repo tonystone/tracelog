@@ -11,6 +11,7 @@ Released on 2016-10-16.
 #### Updated
 - Inline documentation for all public classes and functions.
 - Combined TraceLog.configure func's into one with the same symantics as the 3 previous funcs.
+- iOS example application converting it to Swift.
 
 #### Fixed
 - Cocoadocs documentation creation.
