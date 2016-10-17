@@ -22,7 +22,7 @@ static const int testIterations = 1000;
     - (void) testLogError_Performance {
         
         // Reset the logger to the default before testing
-        [TLLogger configureWithEnvironment: @{@"LOG_ALL": @"TRACE4"}];
+        [LoggerProxy configureWithEnvironment: @{@"LOG_ALL": @"TRACE4"} withConsoleWriter: YES];
         
         [self measureBlock:^{
         
@@ -35,7 +35,7 @@ static const int testIterations = 1000;
     - (void) testLogTrace4_Performance {
         
         // Reset the logger to the default before testing
-        [TLLogger configureWithEnvironment: @{@"LOG_ALL": @"TRACE4"}];
+        [LoggerProxy configureWithEnvironment: @{@"LOG_ALL": @"TRACE4"} withConsoleWriter: YES];
         
         [self measureBlock:^{
         
@@ -48,7 +48,7 @@ static const int testIterations = 1000;
     - (void) testLogError_Performance_NullWriter {
     
         // Remove the log writers for this test so we see the time it takes to process internally without io
-        [LoggerProxy intitializeWithEnvironment: @{@"LOG_ALL": @"TRACE4"} withConsoleWriter: NO];
+        [LoggerProxy configureWithEnvironment: @{@"LOG_ALL": @"TRACE4"} withConsoleWriter: NO];
         
         [self measureBlock:^{
 
@@ -61,7 +61,7 @@ static const int testIterations = 1000;
     - (void) testLogTrace4_Performance_NullWriter {
     
         // Remove the log writers for this test so we see the time it takes to process internally without io
-        [LoggerProxy intitializeWithEnvironment: @{@"LOG_ALL": @"TRACE4"} withConsoleWriter: NO];
+        [LoggerProxy configureWithEnvironment: @{@"LOG_ALL": @"TRACE4"} withConsoleWriter: NO];
         
         [self measureBlock:^{
         
