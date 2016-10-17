@@ -72,6 +72,7 @@
 		07634F9C9D528916420BDD4B /* Pods-TraceLog-iOS-Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-iOS-Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraceLog-iOS-Tests/Pods-TraceLog-iOS-Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		1114AFE75770FDCCAADD266F /* TraceLog.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = TraceLog.podspec; path = ../TraceLog.podspec; sourceTree = "<group>"; };
 		27D7F4C2BCD83FA1A87F4FE7 /* Pods_TraceLog_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraceLog_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3669818474ED4C3372731A77 /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
 		57AED31A36AFF901BC5A0E63 /* Pods_TraceLog_iOS_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraceLog_iOS_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6003F58D195388D20070C39A /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		6003F58F195388D20070C39A /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -228,6 +229,7 @@
 				EA7E7AB41DA0C8B800E3B511 /* Vagrantfile */,
 				EA1DD02A1DAEDBF5007BEB25 /* Gemfile.osx */,
 				EA1DD02B1DAFFA4E007BEB25 /* .gitignore */,
+				3669818474ED4C3372731A77 /* CHANGELOG.md */,
 			);
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
