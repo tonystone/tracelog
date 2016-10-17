@@ -250,7 +250,6 @@
 			children = (
 				EA0B86DD1DB426ED0048B0B6 /* Info.plist */,
 			);
-			name = "TraceLog-OSX-Tests";
 			path = "TraceLog-OSX-Tests";
 			sourceTree = "<group>";
 		};
@@ -981,7 +980,7 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				DEVELOPMENT_TEAM = MR4939Y2DA;
 				INFOPLIST_FILE = "TraceLog-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.TraceLog-iOS";
@@ -1006,7 +1005,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = "TraceLog-iOS/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.TraceLog-iOS";
