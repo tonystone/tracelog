@@ -17,12 +17,19 @@
 ///
 ///  Created by Tony Stone on 10/4/16.
 ///
+import Swift
 
 ///
 /// Runtime context captured at the time of the log statement
 ///
 public protocol RuntimeContext {
+    
+    /// The name of the current process.
     var processName: String { get }
+    
+    /// The identifier of the  current process (often called process ID).
     var processIdentifier: Int { get }
+    
+    /// The current threads identifier.
     var threadIdentifier: UInt64 { get }
 }

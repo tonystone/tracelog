@@ -17,12 +17,19 @@
 ///
 ///  Created by Tony Stone on 10/4/16.
 ///
+import Swift
 
 ///
 /// Static context captured at the time of the log statement
 ///
 public protocol StaticContext {
+    
+    /// The file name with path component captured at the time the Log<level> func was called to log a message.
     var file: String { get }
+    
+    /// The function name of the calling func captured at the time the Log<level> func was called to log a message.
     var function: String { get }
+    
+    /// The line number captured at the time the Log<level> func was called to log a message.  Will be the line number of the log call.
     var line: Int { get }
 }

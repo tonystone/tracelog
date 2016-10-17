@@ -20,35 +20,52 @@
 import Swift
 
 ///
-/// LogLevels
+/// LogLevels represent the logging level defined by TraceLog.  These parallel the
+/// environment variables that can be set to configure TraceLog.
 ///
 public enum LogLevel : Int {
+    
+    /// Represents the lowest level of logging and is used to log errors that happen in the system.
     case error   = 1
+    
+    /// Represents a warning in the system.
     case warning = 2
+    
+    /// An informational message for the user.  Note, this is the mote common level used.
     case info    = 3
+    
+    /// The first level of low level tracing and debug logging.  Use this level for deeper information about the operation of a particular function.
     case trace1  = 4
+    
+    /// The second level of low level tracing and debug logging.
     case trace2  = 5
+    
+    /// The third level of low level tracing and debug logging.
     case trace3  = 6
+    
+    /// The forth level of low level tracing and debug logging. Use this level to get complete logging information.  This level includes all logging in the system.
     case trace4  = 7
     
     ///
     /// Note: Update below if you add another case statement to this enum
     ///
     /// I don't like this either but it's the only sane way to be able
-    /// to loop through all the elemenets for lookup. It's kept
+    /// to loop through all the elements for lookup. It's kept
     /// here so you remember to update it should a new case
     /// statement be added above.
     ///
-    static let allValues: [LogLevel]  = [.error,  .warning,  .info,  .trace1,  .trace2,  .trace3, .trace4]
+    internal static let allValues: [LogLevel]  = [.error,  .warning,  .info,  .trace1,  .trace2,  .trace3, .trace4]
 }
 
 /// Extend the LogLevel with the ability to compare them
 extension LogLevel : Comparable {}
 
+/// Returns true if lhs LogLevel is less than to rhs LogLevel
 public func <(lhs: LogLevel, rhs: LogLevel) -> Bool {
     return lhs.rawValue < rhs.rawValue
 }
 
+/// Returns true if lhs LogLevel is equal to rhs LogLevel
 public func ==(lhs: LogLevel, rhs: LogLevel) -> Bool {
     return lhs.rawValue == rhs.rawValue
 }

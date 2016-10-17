@@ -20,6 +20,13 @@
 import Foundation
 import Dispatch
 
+///
+/// ConsoleWriter is the default `Writer` in **TraceLog** and writes to stdout.
+///
+/// This writer will be installed for you if you do not set any other writer's
+/// at configuration time.  Its a basic writer that can be used at any time that
+/// you want the output to go to the stdout.
+///
 public class ConsoleWriter : Writer {
     
     ///
@@ -30,7 +37,7 @@ public class ConsoleWriter : Writer {
     ///
     /// Required log function for the logger
     ///
-    open func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
+    public func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
 
         let uppercasedLevel = "\(level)".uppercased()
         let levelString     = "\(String(repeating: " ", count: 7 - uppercasedLevel.characters.count))\(uppercasedLevel)"
@@ -47,7 +54,7 @@ public class ConsoleWriter : Writer {
     }
     
     ///
-    /// Internal date formattor for this logger
+    /// Internal date formatter for this logger
     ///
     private let dateFormatter: DateFormatter = {
         
