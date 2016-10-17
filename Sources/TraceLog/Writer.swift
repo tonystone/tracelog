@@ -20,7 +20,18 @@
 import Swift
 
 ///
-/// Public protocol for writing log messages to some device or endpoint
+/// The Writer protocol defines the interface required when writing
+/// a log writer for the **TraceLog** system. Log writers are used
+/// to output all log<level> messages to an output device like
+/// stdout, http endpoint, tcp/ip sockets, etc.
+///
+/// There are no constructor/init requirements so any init method can be defined
+/// in your writer to initialize it prior to passing it to TraceLog.
+///
+/// ConsoleWriter is a concrete implementation of the Writer protocol and
+/// can be used as a basic example of creating custom writers.
+///
+/// - seealso: ConsoleWriter
 ///
 public protocol Writer {
     
@@ -35,6 +46,10 @@ public protocol Writer {
     ///     - file:                  The source file (of the calling program) of this logging event.
     ///     - runtimeContext:        An object containing information about the state of the runtime such as thread ID (seealso: RuntimeContext)
     ///     - staticContext:         An object containing the static information at the time of the func call such as function name and line number (seealso: StaticContext)
+    ///
+    /// - Seealso: LogLevel
+    /// - Seealso: RuntimeContext
+    /// - Seealso: StaticContext
     ///
     func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext)
 }

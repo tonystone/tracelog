@@ -10,9 +10,9 @@ import Foundation
 import TraceLog
 
 @objc
-public class LoggerProxy : NSObject {
+open class LoggerProxy : NSObject {
     
-    public class func intitialize(environment: [String : String], withConsoleWriter: Bool) {
+    open class func intitialize(environment: [String : String], withConsoleWriter: Bool) {
         
         var writers: [Writer] = []
         

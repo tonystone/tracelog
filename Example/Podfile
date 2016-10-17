@@ -7,7 +7,7 @@ install! 'cocoapods', :deterministic_uuids => false
 target 'TraceLog-iOS' do
    platform :ios, '8.0'
     
-   pod "TraceLog/ObjC", :path => "../"
+   pod "TraceLog", :path => "../"
 end
 
 target 'TraceLog-iOS-Tests' do
