@@ -179,7 +179,7 @@
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
 				EAB6DE001DA01CFE00ACEEF3 /* Playground */,
 				EA51B84C1DB3FC2A007551DC /* TraceLog-iOS */,
-				EA51B8611DB3FC2A007551DC /* TraceLog-iOSTests */,
+				EA51B8611DB3FC2A007551DC /* TraceLog-iOS-Tests */,
 				EA0B86C11DB4266B0048B0B6 /* TraceLog-OSX */,
 				EA0B86D11DB4266B0048B0B6 /* TraceLog-OSX-Tests */,
 				EA30384C1BEA94DC00DC4084 /* Tests */,
@@ -249,7 +249,7 @@
 				EA0B86DD1DB426ED0048B0B6 /* Info.plist */,
 			);
 			name = "TraceLog-OSX-Tests";
-			path = "TraceLog-OSXTests";
+			path = "TraceLog-OSX-Tests";
 			sourceTree = "<group>";
 		};
 		EA30384C1BEA94DC00DC4084 /* Tests */ = {
@@ -276,12 +276,12 @@
 			path = "TraceLog-iOS";
 			sourceTree = "<group>";
 		};
-		EA51B8611DB3FC2A007551DC /* TraceLog-iOSTests */ = {
+		EA51B8611DB3FC2A007551DC /* TraceLog-iOS-Tests */ = {
 			isa = PBXGroup;
 			children = (
 				EA0B86DB1DB4269A0048B0B6 /* Info.plist */,
 			);
-			path = "TraceLog-iOSTests";
+			path = "TraceLog-iOS-Tests";
 			sourceTree = "<group>";
 		};
 		EA7E7AE11DA1EF9400E3B511 /* Scripts */ = {
@@ -363,7 +363,7 @@
 				EA0B86D01DB4266B0048B0B6 /* PBXTargetDependency */,
 			);
 			name = "TraceLog-OSX-Tests";
-			productName = "TraceLog-OSXTests";
+			productName = "TraceLog-OSX-Tests";
 			productReference = EA0B86CE1DB4266B0048B0B6 /* TraceLog-OSX-Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
@@ -404,7 +404,7 @@
 				EA51B8601DB3FC2A007551DC /* PBXTargetDependency */,
 			);
 			name = "TraceLog-iOS-Tests";
-			productName = "TraceLog-iOSTests";
+			productName = "TraceLog-iOS-Tests";
 			productReference = EA51B85E1DB3FC2A007551DC /* TraceLog-iOS-Tests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
