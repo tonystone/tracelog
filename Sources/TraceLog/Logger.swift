@@ -167,10 +167,12 @@ internal final class Logger {
         public static let LogLevelTrace3  = LogLevel.trace3.rawValue
         public static let LogLevelTrace4  = LogLevel.trace4.rawValue
         
+        @available(*, deprecated: 2.0.2)
         public class func configure() {
             Logger.configure(writers: [ConsoleWriter()], environment: Environment())
         }
         
+        @available(*, deprecated: 2.0.2)
         public class func configure(environment: [String : String]) {
             Logger.configure(writers: [ConsoleWriter()], environment: Environment(environment))
         }
