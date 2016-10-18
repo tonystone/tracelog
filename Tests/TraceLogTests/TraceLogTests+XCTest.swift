@@ -29,12 +29,12 @@ extension TraceLogTests_Swift {
 
    static var allTests : [(String, (TraceLogTests_Swift) -> () throws -> Void)] {
       return [
-                ("testInitialize_NoArgs", testInitialize_NoArgs),
-                ("testInitialize_LogWriters", testInitialize_LogWriters),
-                ("testInitialize_LogWriters_Environment", testInitialize_LogWriters_Environment),
-                ("testInitialize_LogWriters_Environment_GlobalInvalidLogLevel", testInitialize_LogWriters_Environment_GlobalInvalidLogLevel),
-                ("testInitialize_LogWriters_Environment_PrefixInvalidLogLevel", testInitialize_LogWriters_Environment_PrefixInvalidLogLevel),
-                ("testInitialize_LogWriters_Environment_TagInvalidLogLevel", testInitialize_LogWriters_Environment_TagInvalidLogLevel),
+                ("testConfigure_NoArgs", testConfigure_NoArgs),
+                ("testConfigure_LogWriters", testConfigure_LogWriters),
+                ("testConfigure_LogWriters_Environment", testConfigure_LogWriters_Environment),
+                ("testConfigure_LogWriters_Environment_GlobalInvalidLogLevel", testConfigure_LogWriters_Environment_GlobalInvalidLogLevel),
+                ("testConfigure_LogWriters_Environment_PrefixInvalidLogLevel", testConfigure_LogWriters_Environment_PrefixInvalidLogLevel),
+                ("testConfigure_LogWriters_Environment_TagInvalidLogLevel", testConfigure_LogWriters_Environment_TagInvalidLogLevel),
                 ("testLogError", testLogError),
                 ("testLogWarning", testLogWarning),
                 ("testLogInfo", testLogInfo),
