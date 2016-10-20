@@ -92,7 +92,7 @@ Vagrant.configure("2") do |config|
     #
     # Install the needed development and admin packages
     #
-    sudo apt-get --assume-yes install clang libicu-dev libcurl3
+    sudo apt-get --assume-yes install clang libicu-dev libcurl3 libpython2.7-dev
     #
     # Import the gpg keys
     #
