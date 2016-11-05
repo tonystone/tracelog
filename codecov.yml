@@ -1,20 +1,21 @@
 
 
 comment:
-  layout: header, changes, diff
+  layout: header, changes, diff, tree
 coverage:
   ignore:
-  - Example/.*
-  - Scripts/.*
-  - Docs/.*
-  - Pods/.*
-  - Applications/Xcode.app/.*
-  - vendor/.*
-  - Carthage/.*
-  - build/.*
-  - .build/.*
-  - .vagrant/.*
-  - Tests/.*
+    - Example/.*
+    - Scripts/.*
+    - Docs/.*
+    - Tests/.*
+    - Pods/.*
+    - Applications/Xcode.app/.*
+    - vendor/.*
+    - Carthage/.*
+    - build/.*
+    - .build/.*
+    - .vagrant/.*
+
   status:
     patch: false
 
