@@ -34,7 +34,7 @@ import Swift
 /// - seealso: ConsoleWriter
 ///
 public protocol Writer {
-    
+
     ///
     /// Called when the logger needs to log an event to this logger.
     ///
@@ -53,5 +53,3 @@ public protocol Writer {
     ///
     func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext)
 }
-
-

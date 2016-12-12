@@ -21,7 +21,7 @@
 #ifndef Pods_TraceLog_h
 #define Pods_TraceLog_h
 
-// Instance level macros
+/// Instance level macros
 
 /**
  * LogError logs an message with LogLevel Error to the LogWriters
@@ -129,7 +129,7 @@
     #define LogIfEnabled(logLevel,label, format, ...) ((void)0)
 #endif
 
-// Low level - for use in mixed low level C code.
+/// Low level - for use in mixed low level C code.
 /**
  * CLogError logs an message with LogLevel Error to the LogWriters.
  *

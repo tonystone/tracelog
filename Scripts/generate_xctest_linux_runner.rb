@@ -71,16 +71,23 @@ def createExtensionFile(fileName, classes)
          
          for classArray in classes
              file.write "extension " + classArray[0] + " {\n\n"
-             file.write "   static var allTests : [(String, (" + classArray[0] + ") -> () throws -> Void)] {\n"
+             file.write "   static var allTests: [(String, (" + classArray[0] + ") -> () throws -> Void)] {\n"
              file.write "      return [\n"
-             
+
+             first = true
+
              for funcName in classArray[1]
-                 file.write "                (\"" + funcName + "\", " + funcName + "),\n"
+                 if !first
+                     file.write ",\n"
+                 end
+                 file.write "                (\"" + funcName + "\", " + funcName + ")"
+
+                 first = false
              end
              
-             file.write "           ]\n"
+             file.write "\n           ]\n"
              file.write "   }\n"
-             file.write "}\n\n"
+             file.write "}\n"
          end
      }
 end
@@ -102,13 +109,19 @@ def createLinuxMain(testsDirectory, allTestSubDirectories, files)
         file.write "\n"
         file.write "   XCTMain([\n"
 
+        first = true
+
         for classes in files
             for classArray in classes
-                file.write "         testCase(" + classArray[0] + ".allTests),\n"
+                if !first
+                    file.write ",\n"
+                end
+                file.write "         testCase(" + classArray[0] + ".allTests)"
+                first = false
             end
         end
-        file.write"    ])\n"
-        file.write "#endif"
+        file.write"\n    ])\n"
+        file.write "#endif\n"
     }
 end
 

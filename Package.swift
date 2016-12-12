@@ -21,14 +21,14 @@ import PackageDescription
 
 let package = Package(
     name: "TraceLog",
-    
+
     targets: [
         /// The `TraceLog` is the main target in this file
         Target(
             /// The main TraceLog package
             name: "TraceLog",
             dependencies: [])],
-    
+
     exclude: ["_Pods.xcodeproj", "Docs", "Example", "Scripts", "Sources/TraceLogObjC", "Tests/TraceLogObjCTests", "TraceLog.podspec"]
 )
 

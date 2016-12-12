@@ -27,13 +27,12 @@ import XCTest
 
 extension EnvironmentTests {
 
-   static var allTests : [(String, (EnvironmentTests) -> () throws -> Void)] {
+   static var allTests: [(String, (EnvironmentTests) -> () throws -> Void)] {
       return [
                 ("testInit", testInit),
                 ("testInit_DictionaryLiteral", testInit_DictionaryLiteral),
                 ("testInit_CollectionType", testInit_CollectionType),
-                ("testSubscript", testSubscript),
+                ("testSubscript", testSubscript)
            ]
    }
 }
-
