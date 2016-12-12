@@ -107,6 +107,7 @@
 		EA51B8591DB3FC2A007551DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA51B85E1DB3FC2A007551DC /* TraceLog-iOS-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TraceLog-iOS-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA5C7FD31BEBCD8E00B3951D /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
+		EA5E86C11DFF085000C60155 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		EA68802B1DA5AE0400119145 /* ConfigurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
 		EA7E7AB41DA0C8B800E3B511 /* Vagrantfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = Vagrantfile; path = ../Vagrantfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EA7E7AB51DA0CB8100E3B511 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
@@ -226,6 +227,7 @@
 				1114AFE75770FDCCAADD266F /* TraceLog.podspec */,
 				80A4C846D301093D2C7B815A /* README.md */,
 				F87B3B34F4B8B59C25C88136 /* LICENSE */,
+				EA5E86C11DFF085000C60155 /* .swiftlint.yml */,
 				EA5C7FD31BEBCD8E00B3951D /* .travis.yml */,
 				EA2FC7ED1DA4538A00902D21 /* codecov.yml */,
 				EA7E7AB51DA0CB8100E3B511 /* Package.swift */,
@@ -341,6 +343,7 @@
 				EA0B86BE1DB4266B0048B0B6 /* Resources */,
 				C66D2B43507DB81039263188 /* [CP] Embed Pods Frameworks */,
 				F75163AD661A2B470E4797C6 /* [CP] Copy Pods Resources */,
+				EA5E86C31DFF097A00C60155 /* Swiftlint */,
 			);
 			buildRules = (
 			);
@@ -376,6 +379,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EA51B8651DB3FC2A007551DC /* Build configuration list for PBXNativeTarget "TraceLog-iOS" */;
 			buildPhases = (
+				EA5E86C21DFF095600C60155 /* Swiftlint */,
 				D6B0088F1D827386366D3FA7 /* [CP] Check Pods Manifest.lock */,
 				EA51B8471DB3FC2A007551DC /* Sources */,
 				EA51B8481DB3FC2A007551DC /* Frameworks */,
@@ -653,6 +657,34 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
+		};
+		EA5E86C21DFF095600C60155 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint lint --path ../\nelse\necho \"warning: SwiftLint not installed, please install using `brew install swiftlint`.  You can find more information here https://github.com/realm/SwiftLint\"\nfi";
+		};
+		EA5E86C31DFF097A00C60155 /* Swiftlint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = Swiftlint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint lint --path ../\nelse\necho \"warning: SwiftLint not installed, please install using `brew install swiftlint`.  You can find more information here https://github.com/realm/SwiftLint\"\nfi";
 		};
 		EA7E7AF21DA2025700E3B511 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
