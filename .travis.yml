@@ -89,6 +89,7 @@ before_install:
   #
   - |
     if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+        brew unlink swiftlint
         brew install swiftlint
     fi
   #
