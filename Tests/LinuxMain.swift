@@ -31,7 +31,7 @@ import XCTest
    XCTMain([
          testCase(ConfigurationTests.allTests),
          testCase(EnvironmentTests.allTests),
-         testCase(TraceLogPerformanceTests_Swift.allTests),
-         testCase(TraceLogTests_Swift.allTests),
+         testCase(TraceLogPerformanceTestsSwift.allTests),
+         testCase(TraceLogTestsSwift.allTests)
     ])
 #endif

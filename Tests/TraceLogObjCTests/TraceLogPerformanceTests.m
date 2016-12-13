@@ -1,10 +1,10 @@
-//
-//  TraceLogPerformanceTests.m
-//  TraceLog
-//
-//  Created by Tony Stone on 10/1/16.
-//  Copyright © 2016 Tony Stone. All rights reserved.
-//
+///
+///  TraceLogPerformanceTests.m
+///  TraceLog
+///
+///  Created by Tony Stone on 10/1/16.
+///  Copyright © 2016 Tony Stone. All rights reserved.
+///
 
 @import XCTest;
 @import TraceLog;
@@ -21,7 +21,7 @@ static const int testIterations = 1000;
 
     - (void) testLogError_Performance {
         
-        // Reset the logger to the default before testing
+        /// Reset the logger to the default before testing
         [LoggerProxy configureWithEnvironment: @{@"LOG_ALL": @"TRACE4"} withConsoleWriter: YES];
         
         [self measureBlock:^{
@@ -34,7 +34,7 @@ static const int testIterations = 1000;
 
     - (void) testLogTrace4_Performance {
         
-        // Reset the logger to the default before testing
+        /// Reset the logger to the default before testing
         [LoggerProxy configureWithEnvironment: @{@"LOG_ALL": @"TRACE4"} withConsoleWriter: YES];
         
         [self measureBlock:^{
@@ -47,7 +47,7 @@ static const int testIterations = 1000;
 
     - (void) testLogError_Performance_NullWriter {
     
-        // Remove the log writers for this test so we see the time it takes to process internally without io
+        /// Remove the log writers for this test so we see the time it takes to process internally without io
         [LoggerProxy configureWithEnvironment: @{@"LOG_ALL": @"TRACE4"} withConsoleWriter: NO];
         
         [self measureBlock:^{
@@ -60,7 +60,7 @@ static const int testIterations = 1000;
 
     - (void) testLogTrace4_Performance_NullWriter {
     
-        // Remove the log writers for this test so we see the time it takes to process internally without io
+        /// Remove the log writers for this test so we see the time it takes to process internally without io
         [LoggerProxy configureWithEnvironment: @{@"LOG_ALL": @"TRACE4"} withConsoleWriter: NO];
         
         [self measureBlock:^{

@@ -26,9 +26,9 @@
 
 @implementation TraceLogTests_ObjC
 
-    //
-    // Object level calls
-    //
+    ///
+    /// Object level calls
+    ///
     - (void) testLogError {
         LogError(@"ObjC: %s", __FUNCTION__);
     }
@@ -57,9 +57,9 @@
         LogTrace(4,@"ObjC: %s", __FUNCTION__);
     }
 
-    //
-    // C-Level Call tests
-    //
+    ///
+    /// C-Level Call tests
+    ///
     - (void) testCLogError {
         CLogError(NSStringFromClass([self class]), @"C: %s", __FUNCTION__);
     }

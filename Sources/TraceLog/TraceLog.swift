@@ -37,8 +37,7 @@ import Foundation
 ///                                                              "LOG_TAG_TraceLog" : "TRACE4"])
 /// ```
 ///
-public
-func configure(writers: [Writer] = [ConsoleWriter()], environment: Environment = Environment()) {
+public func configure(writers: [Writer] = [ConsoleWriter()], environment: Environment = Environment()) {
     #if !TRACELOG_DISABLED
         Logger.configure(writers: writers, environment: environment)
     #endif
@@ -70,11 +69,10 @@ func configure(writers: [Writer] = [ConsoleWriter()], environment: Environment =
 ///         return "Final message String"
 ///     }
 /// ```
-public
-func logError(_ tag: String? = nil, _ file: String = #file, _ function: String = #function, _ line: Int = #line, message: @escaping () -> String) {
+public func logError(_ tag: String? = nil, _ file: String = #file, _ function: String = #function, _ line: Int = #line, message: @escaping () -> String) {
     #if !TRACELOG_DISABLED
         let derivedTag = derivedTagIfNil(file: file, tag: tag)
-        
+
         Logger.logPrimitive(level: LogLevel.error, tag: derivedTag, file: file, function: function, line: line, message: message)
     #endif
 }
@@ -105,11 +103,10 @@ func logError(_ tag: String? = nil, _ file: String = #file, _ function: String =
 ///         return "Final message String"
 ///     }
 /// ```
-public
-func logWarning(_ tag: String? = nil, _ file: String = #file, _ function: String = #function, _ line: Int = #line, message:  @escaping () -> String) {
+public func logWarning(_ tag: String? = nil, _ file: String = #file, _ function: String = #function, _ line: Int = #line, message:  @escaping () -> String) {
     #if !TRACELOG_DISABLED
         let derivedTag = derivedTagIfNil(file: file, tag: tag)
-        
+
         Logger.logPrimitive(level: LogLevel.warning, tag: derivedTag, file: file, function: function, line: line, message: message)
     #endif
 }
@@ -139,11 +136,10 @@ func logWarning(_ tag: String? = nil, _ file: String = #file, _ function: String
 ///         return "Final message String"
 /// ```
 ///
-public
-func logInfo(_ tag: String? = nil, _ file: String = #file, _ function: String = #function, _ line: Int = #line, message:  @escaping () -> String) {
+public func logInfo(_ tag: String? = nil, _ file: String = #file, _ function: String = #function, _ line: Int = #line, message:  @escaping () -> String) {
     #if !TRACELOG_DISABLED
         let derivedTag = derivedTagIfNil(file: file, tag: tag)
-        
+
         Logger.logPrimitive(level: LogLevel.info, tag: derivedTag, file: file, function: function, line: line, message: message)
     #endif
 }
@@ -180,14 +176,13 @@ func logInfo(_ tag: String? = nil, _ file: String = #file, _ function: String = 
 ///     }
 /// ```
 ///
-public
-func logTrace(_ tag: String? = nil, level: Int = LogLevel.rawTraceLevels.lowerBound, _ file: String = #file, _ function: String = #function, _ line: Int = #line, message: @escaping () -> String) {
+public func logTrace(_ tag: String? = nil, level: Int = LogLevel.rawTraceLevels.lowerBound, _ file: String = #file, _ function: String = #function, _ line: Int = #line, message: @escaping () -> String) {
     #if !TRACELOG_DISABLED
         assert(LogLevel.rawTraceLevels.contains(level), "Invalid trace level, levels are in the range of \(LogLevel.rawTraceLevels)")
-        
+
         let derivedTag = derivedTagIfNil(file: file, tag: tag)
-        
-        Logger.logPrimitive(level: LogLevel(rawValue: LogLevel.trace1.rawValue + level - 1)!, tag: derivedTag, file: file, function: function, line: line, message: message)
+
+        Logger.logPrimitive(level: LogLevel(rawValue: LogLevel.trace1.rawValue + level - 1)!, tag: derivedTag, file: file, function: function, line: line, message: message)    // swiftlint:disable:this force_unwrapping
     #endif
 }
 
@@ -222,23 +217,20 @@ func logTrace(_ tag: String? = nil, level: Int = LogLevel.rawTraceLevels.lowerBo
 ///     }
 /// ```
 ///
-public
-func logTrace(_ level: Int, _ file: String = #file, _ function: String = #function, _ line: Int = #line, message: @escaping () -> String) {
+public func logTrace(_ level: Int, _ file: String = #file, _ function: String = #function, _ line: Int = #line, message: @escaping () -> String) {
     #if !TRACELOG_DISABLED
         assert(LogLevel.rawTraceLevels.contains(level), "Trace levels are in the range of \(LogLevel.rawTraceLevels)")
-        
+
         let derivedTag = derivedTagIfNil(file: file, tag: nil)
-        
-        Logger.logPrimitive(level: LogLevel(rawValue: LogLevel.trace1.rawValue + level - 1)!, tag: derivedTag, file: file, function: function, line: line, message: message)
+
+        Logger.logPrimitive(level: LogLevel(rawValue: LogLevel.trace1.rawValue + level - 1)!, tag: derivedTag, file: file, function: function, line: line, message: message) // swiftlint:disable:this force_unwrapping
     #endif
 }
 
-
-// MARK: Internal & private functions & Extensions.
+/// MARK: Internal & private functions & Extensions.
 
 @inline(__always)
-private
-func derivedTagIfNil(file: String, tag: String?) -> String {
+private func derivedTagIfNil(file: String, tag: String?) -> String {
     if let unwrappedTag = tag {
        return unwrappedTag
     } else {

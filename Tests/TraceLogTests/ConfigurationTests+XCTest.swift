@@ -27,7 +27,7 @@ import XCTest
 
 extension ConfigurationTests {
 
-   static var allTests : [(String, (ConfigurationTests) -> () throws -> Void)] {
+   static var allTests: [(String, (ConfigurationTests) -> () throws -> Void)] {
       return [
                 ("testInit", testInit),
                 ("testLoad_Prefixes", testLoad_Prefixes),
@@ -35,8 +35,7 @@ extension ConfigurationTests {
                 ("testLogLevel_All_Default", testLogLevel_All_Default),
                 ("testLogLevel_All_Set", testLogLevel_All_Set),
                 ("testLogLevel_Prefix", testLogLevel_Prefix),
-                ("testLogLevel_Tag", testLogLevel_Tag),
+                ("testLogLevel_Tag", testLogLevel_Tag)
            ]
    }
 }
-

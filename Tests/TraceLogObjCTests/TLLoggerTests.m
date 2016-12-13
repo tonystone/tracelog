@@ -1,10 +1,10 @@
-//
-//  TLLoggerTests.m
-//  TraceLog
-//
-//  Created by Tony Stone on 10/17/16.
-//  Copyright © 2016 Tony Stone. All rights reserved.
-//
+///
+///  TLLoggerTests.m
+///  TraceLog
+///
+///  Created by Tony Stone on 10/17/16.
+///  Copyright © 2016 Tony Stone. All rights reserved.
+///
 
 @import XCTest;
 @import TraceLog;
