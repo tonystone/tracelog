@@ -84,7 +84,13 @@ before_install:
        gem install bundler
        bundler install
     fi
-
+  #
+  # OSX requires swiftlint be installed
+  #
+  - |
+    if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
+        brew install swiftlint
+    fi
   #
   # Linux requires downloading Swift and tools
   #
