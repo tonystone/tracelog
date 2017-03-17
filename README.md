@@ -1,16 +1,20 @@
 # TraceLog ![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-lightgray.svg?style=flat)
 
 <a href="https://github.com/tonystone/tracelog/" target="_blank">
-    <img src="https://img.shields.io/badge/Platforms-ios%20%7C%20osx%20%7C%20watchos%20%7C%20tvos%20%7C%20linux%20-lightgray.svg?style=flat" alt="Platforms: ios | osx | watchos | tvos | Linux">
+    <img src="https://img.shields.io/badge/Platforms-ios%20%7C%20osx%20%7C%20watchos%20%7C%20tvos%20%7C%20linux%20-lightgray.svg?style=flat" alt="Platforms: ios | osx | watchos | tvos | Linux" />
 </a>
 <a href="https://github.com/tonystone/tracelog/" target="_blank">
-    <img src="https://img.shields.io/badge/Compatible-CocoaPods%20%7C%20Swift%20PM-lightgray.svg?style=flat" alt="Compatible: CocoaPods | Swift PM">
+    <img src="https://img.shields.io/badge/Compatible-CocoaPods%20%7C%20Swift%20PM-lightgray.svg?style=flat" alt="Compatible: CocoaPods | Swift PM" />
 </a>
 <a href="https://github.com/tonystone/tracelog/" target="_blank">
-   <img src="https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat" alt="Swift 3.0">
+   <img src="https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat" alt="Swift 3.0"/>
 </a>
-[![Version](https://img.shields.io/cocoapods/v/TraceLog.svg?style=flat)](http://cocoadocs.org/docsets/TraceLog)
-[![Build Status](https://travis-ci.org/tonystone/tracelog.svg?branch=master)](https://travis-ci.org/tonystone/tracelog)
+<a href="http://cocoadocs.org/docsets/TraceLog" target="_blank">
+   <img src="https://img.shields.io/cocoapods/v/TraceLog.svg?style=flat" alt="Version"/>
+</a>
+<a href="https://travis-ci.org/tonystone/tracelog" target="_blank">
+   <img src="https://travis-ci.org/tonystone/tracelog.svg?branch=master" alt="Build Status"/>
+</a>
 <a href="https://codecov.io/gh/tonystone/tracelog">
   <img src="https://codecov.io/gh/tonystone/tracelog/branch/master/graph/badge.svg" alt="Codecov" />
 </a>
@@ -35,11 +39,11 @@ For Swift TraceLog comes with the following basic Logging functions (Note: hidde
 parameters and defaults where omitted for simplicity).
 
 ```Swift
-    logError  (tag: String?, message: () -> String)
-    logWarning(tag: String?, message: () -> String)
-    logInfo   (tag: String?, message: () -> String)
-    logTrace  (tag: String?, level: UInt, message: () -> String)
-    logTrace  (level: UInt,  message: () -> String)
+    logError  (tag: String?, message: @escaping () -> String)
+    logWarning(tag: String?, message: @escaping () -> String)
+    logInfo   (tag: String?, message: @escaping () -> String)
+    logTrace  (tag: String?, level: UInt, message: @escaping () -> String)
+    logTrace  (level: UInt, @escaping message: () -> String)
 ```
 
 Using it is as simple as calling one of the methods depending on the current type of 
