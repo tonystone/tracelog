@@ -960,7 +960,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 891473E71DC2552104DE267A /* Pods-TraceLog-OSX-Tests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -986,7 +985,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = F6F6EC735F92A56AF571C04D /* Pods-TraceLog-OSX-Tests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1056,7 +1054,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 07634F9C9D528916420BDD4B /* Pods-TraceLog-iOS-Tests.debug.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -1080,7 +1077,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 03F60E2D7BA57EDBAEF16B43 /* Pods-TraceLog-iOS-Tests.release.xcconfig */;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
