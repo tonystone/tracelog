@@ -90,7 +90,7 @@ before_install:
   - |
     if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
         brew unlink swiftlint
-        brew install swiftlint
+        brew install https://raw.githubusercontent.com/Homebrew/homebrew-core/498e8046cc166d1c7043de66735f1a5567f8f0ef/Formula/swiftlint.rb
     fi
   #
   # Linux requires downloading Swift and tools

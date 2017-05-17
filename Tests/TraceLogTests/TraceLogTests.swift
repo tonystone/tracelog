@@ -39,8 +39,8 @@ class TraceLogTestsSwift: XCTestCase {
         let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .info, tag: "TraceLog", message: testMessage, testFileFunction: false)
 
         TraceLog.configure(writers: [expectedValues], environment: ["LOG_ALL": "TRACE4",
-                                                                    "LOG_PREFIX_NS" : "ERROR",
-                                                                    "LOG_TAG_TraceLog" : "TRACE4"])
+                                                                    "LOG_PREFIX_NS": "ERROR",
+                                                                    "LOG_TAG_TraceLog": "TRACE4"])
 
         self.waitForExpectations(timeout: 2) { error in
             XCTAssertNil(error)
