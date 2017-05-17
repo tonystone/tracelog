@@ -16,11 +16,11 @@ class EnvironmentTests: XCTestCase {
     }
 
     func testInit_DictionaryLiteral() {
-        XCTAssertEqual(Environment(["TEST_VAR1" : "Value1", "TEST_VAR2" : "Value2"]).count, 2)
+        XCTAssertEqual(Environment(["TEST_VAR1": "Value1", "TEST_VAR2": "Value2"]).count, 2)
     }
 
     func testInit_CollectionType() {
-        XCTAssertEqual(Environment(Environment(["TEST_VAR1" : "Value1", "TEST_VAR2" : "Value2"])).count, 2)
+        XCTAssertEqual(Environment(Environment(["TEST_VAR1": "Value1", "TEST_VAR2": "Value2"])).count, 2)
     }
 
     func testSubscript() {
