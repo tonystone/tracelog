@@ -1,14 +1,17 @@
 # Change Log
 All significant changes to this project will be documented in this file.
 
-## [2.0.2] 
-Not yet released publicly
+## [2.0.2](https://github.com/tonystone/tracelog/tree/2.0.2) 
 
 #### Added
 - Added required tests to bring coverage back to 100%.
 
 #### Updated
 - Deprecated TLLogger.configure and TLLogger.configureWithEnvironment.  Use TraceLog.configure in swift instead.
+- Changed Vagrant file to include libpython2.7 required for Swift REPL.
+
+#### Fixed
+- Removed unnecessary String with formatters call that can result in a crash if the interpolated string includes formatter options that the String(format:) function will never have matching parameters for.
 
 ## [2.0.1](https://github.com/tonystone/tracelog/tree/2.0.1)
 Released on 2016-10-16. 
