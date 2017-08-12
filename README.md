@@ -372,9 +372,9 @@ See the ["Using CocoaPods"](https://guides.cocoapods.org/using/using-cocoapods.h
 
 ## Author
 
-Tony Stone ([https://github.com/tonystone] (https://github.com/tonystone))
+Tony Stone ([https://github.com/tonystone](https://github.com/tonystone))
 
 ## License
 
-TraceLog is released under the [Apache License, Version 2.0] (http://www.apache.org/licenses/LICENSE-2.0.html)
+TraceLog is released under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html)
 
