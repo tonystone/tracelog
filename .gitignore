@@ -47,7 +47,11 @@ DerivedData
 #
 # Vagrant
 #
+# This project uses the eternal repo for the Vagrant file which can be located here (https://github.com/tonystone/vagrant-swift)
+#
 .vagrant
+Vagrantfile
+vagrantfile
 
 #
 # Ruby bundler
