@@ -106,10 +106,9 @@
 		EA51B8571DB3FC2A007551DC /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EA51B8591DB3FC2A007551DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		EA51B85E1DB3FC2A007551DC /* TraceLog-iOS-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TraceLog-iOS-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
-		EA5C7FD31BEBCD8E00B3951D /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; };
+		EA5C7FD31BEBCD8E00B3951D /* .travis.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .travis.yml; path = ../.travis.yml; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EA5E86C11DFF085000C60155 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .swiftlint.yml; path = ../.swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		EA68802B1DA5AE0400119145 /* ConfigurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
-		EA7E7AB41DA0C8B800E3B511 /* Vagrantfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = Vagrantfile; path = ../Vagrantfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EA7E7AB51DA0CB8100E3B511 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
 		EA7E7AF71DA206D800E3B511 /* generate_xctest_linux_runner.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = generate_xctest_linux_runner.rb; sourceTree = "<group>"; };
 		EA7E7B021DA297A400E3B511 /* LoggerProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerProxy.swift; sourceTree = "<group>"; };
@@ -231,7 +230,6 @@
 				EA5C7FD31BEBCD8E00B3951D /* .travis.yml */,
 				EA2FC7ED1DA4538A00902D21 /* codecov.yml */,
 				EA7E7AB51DA0CB8100E3B511 /* Package.swift */,
-				EA7E7AB41DA0C8B800E3B511 /* Vagrantfile */,
 				EA1DD02A1DAEDBF5007BEB25 /* Gemfile.osx */,
 				EA1DD02B1DAFFA4E007BEB25 /* .gitignore */,
 				3669818474ED4C3372731A77 /* CHANGELOG.md */,
