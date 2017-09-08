@@ -297,45 +297,34 @@ to `swift build` as in the following example.
 
 `swift build -Xswiftc -DTRACELOG_DISABLED`
 
-## Compatibility
+## Minimum Requirements
 
-TraceLog has been tested on macOS, iOS, and Ubuntu.
+Build Environment
 
-## Requirements
+| Platform | Swift | Swift Build | Xcode |
+|:--------:|:-----:|:----------:|:------:|
+| Linux    | 3.0 | &#x2714; | &#x2718; |
+| OSX      | 3.0 | &#x2714; | Xcode 8.0 |
 
-### Swift 3.0
+Minimum Runtime Version
 
-TraceLog requires **Swift 3.0** or higher to compile.
+| iOS |  OS X | tvOS | watchOS | Linux |
+|:---:|:-----:|:----:|:-------:|:------------:|
+| 8.0 | 10.10 | 9.0  |   2.0   | Ubuntu 14.04, 16.04, 16.10 |
 
-#### Linux (Ubuntu)
-
-After you have installed a **Swift 3.0** toolchain from Swift.org, open up a terminal window and type
-
-`swift --version`
-
-It will produce a message similar to this one:
-
-`Apple Swift version 3.0 (swiftlang-800.0.33.1 clang-800.0.31)
-Target: x86_64-apple-macosx10.9`
-
-Make sure you are running the latest version of **Swift 3.0**. TraceLog will not compile successfully if you are running a version of Swift that is lower than 3.0.
-
-Note:  If you are running **Ubuntu 14.04**, this version requires **clang 3.8** and **lldb 3.8** on the system.  To install them on the target build system run:
-
-```
-sudo apt-get -y install clang-3.8 lldb-3.8 libicu-dev
-```
-
-Compiling TraceLog on OSX requires **XCode 8.0** or above as well as specfic minimum deployment targets for each language.  These are listed below.
-
-| OS X  | iOS | tvOS | watchOS | 
-|:-----:|:---:|:----:|:-------:|
-| 10.10 | 8.0 | 9.0  |   2.0   |
-
+> **Note:**
+>
+> To build and run on **Linux** we have a a preconfigure **Vagrant** file located at [https://github.com/tonystone/vagrant-swift](https://github.com/tonystone/vagrant-swift)
+> 
+> Use:
+> ```
+> > vagrant --swift-version=3.1.1 up`
+> ```
+> You can use either the 3.0 or 3.1.1 build for linux. If using the 3.0 build, you will not be able to use REPL.
 
 ## Installation (Swift Package Manager)
 
-TraceLog now supports dependency management via Swift Package Manager on All Apple OS variants as well as Linux.  To add TraceLog as a dependency to your project add the following to your `Package.swift` file in the project root.
+TraceLog now supports dependency management via Swift Package Manager on All Apple OS variants as well as Linux.
 
 Please see [Swift Package Manager](https://swift.org/package-manager/#conceptual-overview) for further information.
 
