@@ -315,12 +315,9 @@ Minimum Runtime Version
 > **Note:**
 >
 > To build and run on **Linux** we have a a preconfigure **Vagrant** file located at [https://github.com/tonystone/vagrant-swift](https://github.com/tonystone/vagrant-swift)
-> 
-> Use:
-> ```
-> > vagrant --swift-version=3.1.1 up`
-> ```
-> You can use either the 3.0 or 3.1.1 build for linux. If using the 3.0 build, you will not be able to use REPL.
+>
+> See the [README](https://github.com/tonystone/vagrant-swift/blob/master/README.md) for instructions.
+>
 
 ## Installation (Swift Package Manager)
 
