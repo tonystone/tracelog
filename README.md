@@ -15,7 +15,7 @@
 <a href="https://codecov.io/gh/tonystone/tracelog">
   <img src="https://codecov.io/gh/tonystone/tracelog/branch/master/graph/badge.svg" alt="Codecov" />
 </a>
-<a href="https://github.com/tonystone/coherence/" target="_blank">
+<a href="https://github.com/tonystone/tracelog/" target="_blank">
     <img src="https://img.shields.io/cocoapods/dt/TraceLog.svg?style=flat" alt="Downloads">
 </a>
 
