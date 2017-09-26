@@ -1,10 +1,10 @@
-# TraceLog ![License: Apache 2.0](https://img.shields.io/badge/License-Apache%202.0-lightgray.svg?style=flat)
+# TraceLog ![license: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-lightgray.svg?style=flat)
 
 <a href="https://github.com/tonystone/tracelog/" target="_blank">
-    <img src="https://img.shields.io/badge/Platforms-ios%20%7C%20osx%20%7C%20watchos%20%7C%20tvos%20%7C%20linux%20-lightgray.svg?style=flat" alt="Platforms: ios | osx | watchos | tvos | Linux" />
+    <img src="https://img.shields.io/badge/platforms-iOS%20%7C%20macOS%20%7C%20watchOS%20%7C%20tvOS%20%7C%20Linux%20-lightgray.svg?style=flat" alt="Platforms: iOS | macOS | watchOS | tvOS | Linux" />
 </a>
 <a href="https://github.com/tonystone/tracelog/" target="_blank">
-    <img src="https://img.shields.io/badge/Compatible-CocoaPods%20%7C%20Swift%20PM-lightgray.svg?style=flat" alt="Compatible: CocoaPods | Swift PM" />
+    <img src="https://img.shields.io/badge/compatible-CocoaPods%20%7C%20SPM-lightgray.svg?style=flat" alt="compatible: CocoaPods | SPM" />
 </a>
 <a href="https://github.com/tonystone/tracelog/" target="_blank">
    <img src="https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat" alt="Swift 3.0"/>
@@ -17,6 +17,9 @@
 </a>
 <a href="https://codecov.io/gh/tonystone/tracelog">
   <img src="https://codecov.io/gh/tonystone/tracelog/branch/master/graph/badge.svg" alt="Codecov" />
+</a>
+<a href="https://github.com/tonystone/coherence/" target="_blank">
+    <img src="https://img.shields.io/cocoapods/dt/TraceLog.svg?style=flat" alt="Downloads">
 </a>
 
 ## Introduction
