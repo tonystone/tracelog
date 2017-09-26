@@ -4,9 +4,6 @@
     <img src="https://img.shields.io/badge/platforms-iOS%20%7C%20macOS%20%7C%20watchOS%20%7C%20tvOS%20%7C%20Linux%20-lightgray.svg?style=flat" alt="Platforms: iOS | macOS | watchOS | tvOS | Linux" />
 </a>
 <a href="https://github.com/tonystone/tracelog/" target="_blank">
-    <img src="https://img.shields.io/badge/compatible-CocoaPods%20%7C%20SPM-lightgray.svg?style=flat" alt="compatible: CocoaPods | SPM" />
-</a>
-<a href="https://github.com/tonystone/tracelog/" target="_blank">
    <img src="https://img.shields.io/badge/Swift-3.0-orange.svg?style=flat" alt="Swift 3.0"/>
 </a>
 <a href="http://cocoadocs.org/docsets/TraceLog" target="_blank">
