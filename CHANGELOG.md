@@ -1,6 +1,11 @@
 # Change Log
 All significant changes to this project will be documented in this file.
 
+## [2.1.0](https://github.com/tonystone/tracelog/tree/2.1.0)
+
+#### Added
+- Log level `OFF` to allow turning off logging for a specific level (global, prefix, tag). 
+
 ## [2.0.2](https://github.com/tonystone/tracelog/tree/2.0.2) 
 
 #### Added
