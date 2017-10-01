@@ -88,5 +88,4 @@
         CLogTrace(4, NSStringFromClass([self class]), @"C: %s", __FUNCTION__);
     }
 
-
 @end
