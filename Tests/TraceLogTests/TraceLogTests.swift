@@ -7,6 +7,8 @@
 ///
 
 import XCTest
+import Dispatch
+
 import TraceLog
 
 ///
