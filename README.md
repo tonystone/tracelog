@@ -193,7 +193,7 @@ the `LOG_PREFIX_<TAGPREFIX>` variable pattern.
 Each environment variable set is set with a level as the value.  The following
 levels are available in order of display priority.  Each level encompasses the
 level below it with `TRACE4` including the output from every level.  The lowest
-level setting is `ERROR` which only outputs errors when they occur.
+level setting is `OFF` which turns logging off for the level set.
 
 Levels:
 ```Shell
@@ -204,6 +204,7 @@ Levels:
     INFO
     WARNING
     ERROR
+    OFF
 ```
 
 Multiple Environment variables can be set at one time to get the desired level
