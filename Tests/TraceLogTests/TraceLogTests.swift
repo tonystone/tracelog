@@ -7,6 +7,8 @@
 ///
 
 import XCTest
+import Dispatch
+
 import TraceLog
 
 ///
@@ -195,6 +197,150 @@ class TraceLogTestsSwift: XCTestCase {
 
         self.waitForExpectations(timeout: 2) { error in
             XCTAssertNil(error)
+        }
+    }
+
+    func testLogErrorWhileOff() {
+        let testMessage = "Swift: " + #function
+        let semaphore = DispatchSemaphore(value: 0)
+
+        let writer = FailWhenFiredWriter(semaphore: semaphore)
+
+        TraceLog.configure(writers: [writer], environment: ["LOG_ALL": "OFF"])
+
+        logError(testTag) { testMessage }
+
+        let result = semaphore.wait(wallTimeout: DispatchWallTime.now() + .seconds(1))
+
+        /// Note: success in this case means the test failed because the semaphore was signaled by the call to log the message.
+        if result == .success {
+            XCTAssertNil("Log level was OFF but message was written anyway.")
+        }
+    }
+
+    func testLogWarningWhileOff() {
+        let testMessage = "Swift: " + #function
+        let semaphore = DispatchSemaphore(value: 0)
+
+        let writer = FailWhenFiredWriter(semaphore: semaphore)
+
+        TraceLog.configure(writers: [writer], environment: ["LOG_ALL": "OFF"])
+
+        logWarning(testTag) { testMessage }
+
+        let result = semaphore.wait(wallTimeout: DispatchWallTime.now() + .seconds(1))
+
+        /// Note: success in this case means the test failed because the semaphore was signaled by the call to log the message.
+        if result == .success {
+            XCTAssertNil("Log level was OFF but message was written anyway.")
+        }
+    }
+
+    func testLogInfoWhileOff() {
+        let testMessage = "Swift: " + #function
+        let semaphore = DispatchSemaphore(value: 0)
+
+        let writer = FailWhenFiredWriter(semaphore: semaphore)
+
+        TraceLog.configure(writers: [writer], environment: ["LOG_ALL": "OFF"])
+
+        logInfo(testTag) { testMessage }
+
+        let result = semaphore.wait(wallTimeout: DispatchWallTime.now() + .seconds(1))
+
+        /// Note: success in this case means the test failed because the semaphore was signaled by the call to log the message.
+        if result == .success {
+            XCTAssertNil("Log level was OFF but message was written anyway.")
+        }
+    }
+
+    func testLogTraceWhileOff() {
+        let testMessage = "Swift: " + #function
+        let semaphore = DispatchSemaphore(value: 0)
+
+        let writer = FailWhenFiredWriter(semaphore: semaphore)
+
+        TraceLog.configure(writers: [writer], environment: ["LOG_ALL": "OFF"])
+
+        logTrace(testTag) { testMessage }
+
+        let result = semaphore.wait(wallTimeout: DispatchWallTime.now() + .seconds(1))
+
+        /// Note: success in this case means the test failed because the semaphore was signaled by the call to log the message.
+        if result == .success {
+            XCTAssertNil("Log level was OFF but message was written anyway.")
+        }
+    }
+
+    func testLogTrace1WhileOff() {
+        let testMessage = "Swift: " + #function
+        let semaphore = DispatchSemaphore(value: 0)
+
+        let writer = FailWhenFiredWriter(semaphore: semaphore)
+
+        TraceLog.configure(writers: [writer], environment: ["LOG_ALL": "OFF"])
+
+        logTrace(1, testTag) { testMessage }
+
+        let result = semaphore.wait(wallTimeout: DispatchWallTime.now() + .seconds(1))
+
+        /// Note: success in this case means the test failed because the semaphore was signaled by the call to log the message.
+        if result == .success {
+            XCTAssertNil("Log level was OFF but message was written anyway.")
+        }
+    }
+
+    func testLogTrace2WhileOff() {
+        let testMessage = "Swift: " + #function
+        let semaphore = DispatchSemaphore(value: 0)
+
+        let writer = FailWhenFiredWriter(semaphore: semaphore)
+
+        TraceLog.configure(writers: [writer], environment: ["LOG_ALL": "OFF"])
+
+        logTrace(2, testTag) { testMessage }
+
+        let result = semaphore.wait(wallTimeout: DispatchWallTime.now() + .seconds(1))
+
+        /// Note: success in this case means the test failed because the semaphore was signaled by the call to log the message.
+        if result == .success {
+            XCTAssertNil("Log level was OFF but message was written anyway.")
+        }
+    }
+
+    func testLogTrace3WhileOff() {
+        let testMessage = "Swift: " + #function
+        let semaphore = DispatchSemaphore(value: 0)
+
+        let writer = FailWhenFiredWriter(semaphore: semaphore)
+
+        TraceLog.configure(writers: [writer], environment: ["LOG_ALL": "OFF"])
+
+        logTrace(3, testTag) { testMessage }
+
+        let result = semaphore.wait(wallTimeout: DispatchWallTime.now() + .seconds(1))
+
+        /// Note: success in this case means the test failed because the semaphore was signaled by the call to log the message.
+        if result == .success {
+            XCTAssertNil("Log level was OFF but message was written anyway.")
+        }
+    }
+
+    func testLogTrace4WhileOff() {
+        let testMessage = "Swift: " + #function
+        let semaphore = DispatchSemaphore(value: 0)
+
+        let writer = FailWhenFiredWriter(semaphore: semaphore)
+
+        TraceLog.configure(writers: [writer], environment: ["LOG_ALL": "OFF"])
+
+        logTrace(4, testTag) { testMessage }
+
+        let result = semaphore.wait(wallTimeout: DispatchWallTime.now() + .seconds(1))
+
+        /// Note: success in this case means the test failed because the semaphore was signaled by the call to log the message.
+        if result == .success {
+            XCTAssertNil("Log level was OFF but message was written anyway.")
         }
     }
 }

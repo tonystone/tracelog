@@ -182,7 +182,7 @@ internal final class Logger {
         /// Low level logging function for ObjC calls
         ///
         public class func logPrimitive(_ level: Int, tag: String, file: String, function: String, line: Int, message: @escaping () -> String) {
-            assert(LogLevel.rawRange.contains(level), "Invalid log level, values must be in the the range \(LogLevel.rawRange)")
+            assert(LogLevel.validLogableRange.contains(level), "Invalid log level, values must be in the the range \(LogLevel.validLogableRange)")
 
             Logger.logPrimitive(level: LogLevel(rawValue: level)!, tag: tag, file: file, function: function, line: line, message: message)  // swiftlint:disable:this force_unwrapping
         }

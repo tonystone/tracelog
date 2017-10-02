@@ -25,6 +25,9 @@ import Swift
 ///
 public enum LogLevel: Int {
 
+    /// Used to turn logging completely off for the selected level (global, prefix, tag).
+    case off     = 0
+
     /// Represents the lowest level of logging and is used to log errors that happen in the system.
     case error   = 1
 
@@ -54,7 +57,7 @@ public enum LogLevel: Int {
     /// here so you remember to update it should a new case
     /// statement be added above.
     ///
-    internal static let allValues: [LogLevel]  = [.error, .warning, .info, .trace1, .trace2, .trace3, .trace4]
+    internal static let allValues: [LogLevel]  = [.off, .error, .warning, .info, .trace1, .trace2, .trace3, .trace4]
 }
 
 /// Extend the LogLevel with the ability to compare them
@@ -72,8 +75,17 @@ public func == (lhs: LogLevel, rhs: LogLevel) -> Bool {
 
 internal extension LogLevel {
 
-    static var rawRange: ClosedRange<Int> { return LogLevel.error.rawValue...LogLevel.trace4.rawValue }
-    static var rawTraceLevels: ClosedRange<Int> { return 1...4 }
+    ///
+    /// Note: validLogableRange is used to limit the values that can be passed to through from Objective-c when making a log primative call.
+    ///       The values in this range should only be thoughs that represent a log call.  OFF should not be part of this range because
+    ///       there is no LogOff call.
+    ///
+    static var validLogableRange: ClosedRange<Int> { return LogLevel.error.rawValue...LogLevel.trace4.rawValue }
+
+    ///
+    /// Used to validate the trace levels that are used in Objective-c
+    ///
+    static var validTraceLevels:  ClosedRange<Int> { return 1...4 }
 }
 
 internal extension String {

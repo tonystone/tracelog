@@ -7,6 +7,8 @@
 ///
 import XCTest
 import Foundation
+import Dispatch
+
 import TraceLog
 
 ///
@@ -45,5 +47,21 @@ class ExpectationValues: Writer {
                 expectation.fulfill()
             }
         }
+    }
+}
+
+///
+/// No result Writer
+///
+class FailWhenFiredWriter: Writer {
+
+    let semaphore: DispatchSemaphore
+
+    init(semaphore: DispatchSemaphore) {
+        self.semaphore = semaphore
+    }
+
+    func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
+        semaphore.signal()
     }
 }
