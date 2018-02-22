@@ -40,13 +40,13 @@ public class ConsoleWriter: Writer {
     public func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
 
         let uppercasedLevel = "\(level)".uppercased()
-        let levelString     = "\(String(repeating: " ", count: 7 - uppercasedLevel.characters.count))\(uppercasedLevel)"
+        let levelString     = "\(String(repeating: " ", count: 7 - uppercasedLevel.count))\(uppercasedLevel)"
         let date            = Date(timeIntervalSince1970: timestamp)
         let message         = "\(self.dateFormatter.string(from: date)) \(runtimeContext.processName)[\(runtimeContext.processIdentifier):\(runtimeContext.threadIdentifier)] \(levelString): <\(tag)> \(message)"
 
         ///
         /// Note: we currently use the calling thread to synchronize knowing that
-        ///       TraceLog calls us a serial queue.  This can cause interleaving
+        ///       TraceLog calls us in a serial queue.  This can cause interleaving
         ///       of other message in the output should other threads be used to
         ///       print to the screen.
         ///
