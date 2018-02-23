@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "TraceLog"
-  s.version          = "2.1.0"
+  s.version          = "2.2.0"
   s.summary          = "Dead Simple: logging the way it's meant to be!"
   s.description      = <<-DESC
                              TraceLog is a configurable debug logging system.  It is unique in that it's configured
