@@ -1,6 +1,11 @@
 # Change Log
 All significant changes to this project will be documented in this file.
 
+## [2.2.0](https://github.com/tonystone/tracelog/tree/2.2.0)
+
+#### Updated
+- Change build environment requirements to xcode9.2 / Swift 4.0.3 (note: this is ust the build, targets are still the same).
+
 ## [2.1.0](https://github.com/tonystone/tracelog/tree/2.1.0)
 
 #### Added

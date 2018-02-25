@@ -61,7 +61,7 @@ public enum LogLevel: Int {
 }
 
 /// Extend the LogLevel with the ability to compare them
-extension LogLevel : Comparable {}
+extension LogLevel: Comparable {}
 
 /// Returns true if lhs LogLevel is less than to rhs LogLevel
 public func < (lhs: LogLevel, rhs: LogLevel) -> Bool {

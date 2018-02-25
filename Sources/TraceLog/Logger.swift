@@ -26,7 +26,7 @@ import DispatchIntrospection
    import SwiftGlibc.POSIX.pthread
 #endif
 
-fileprivate let moduleLogName  = "TraceLog"
+private let moduleLogName  = "TraceLog"
 
 ///
 /// A class that it used to initialize the system and
@@ -174,7 +174,7 @@ internal final class Logger {
         }
 
         @available(*, deprecated: 2.0.2)
-        public class func configure(environment: [String : String]) {
+        public class func configure(environment: [String: String]) {
             Logger.configure(writers: [ConsoleWriter()], environment: Environment(environment))
         }
 

@@ -263,8 +263,8 @@ Build Environment
 
 | Platform | Swift | Swift Build | Xcode |
 |:--------:|:-----:|:----------:|:------:|
-| Linux    | 3.0 | &#x2714; | &#x2718; |
-| OSX      | 3.0 | &#x2714; | Xcode 8.0 |
+| Linux    | 4.0.3 | &#x2714; | &#x2718; |
+| OSX      | 4.0.3 | &#x2714; | Xcode 9.2 |
 
 Minimum Runtime Version
 

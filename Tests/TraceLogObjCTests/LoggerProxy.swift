@@ -12,7 +12,7 @@ import TraceLog
 @objc
 open class LoggerProxy: NSObject {
 
-    open class func configure(environment: [String : String], withConsoleWriter: Bool) {
+    open class func configure(environment: [String: String], withConsoleWriter: Bool) {
 
         var writers: [Writer] = []
 

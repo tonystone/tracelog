@@ -41,8 +41,8 @@ internal class Configuration {
 
     var globalLogLevel = LogLevel.info
 
-    var loggedPrefixes: [String : LogLevel] = [:]
-    var loggedTags: [String : LogLevel] = [:]
+    var loggedPrefixes: [String: LogLevel] = [:]
+    var loggedTags: [String: LogLevel] = [:]
     var writers: [Writer]            = [ConsoleWriter()]
 
     init () {}
@@ -137,7 +137,7 @@ internal class Configuration {
 ///
 /// Allow the configuration to be printed
 ///
-extension Configuration : CustomStringConvertible {
+extension Configuration: CustomStringConvertible {
 
     /// FIXME: Add printing of the Writers installed.
 

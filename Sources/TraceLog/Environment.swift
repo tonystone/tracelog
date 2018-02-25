@@ -101,8 +101,8 @@ public class Environment: Collection, ExpressibleByDictionaryLiteral {
     ///   `endIndex`.
     /// - Returns: The index value immediately after `i`.
     ///
-    public func index(after i: Index) -> Index {
-        return storage.index(after: i)
+    public func index(after index: Index) -> Index {
+        return storage.index(after: index)
     }
 
     ///
