@@ -40,8 +40,6 @@
 		EA51B8531DB3FC2A007551DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA51B8511DB3FC2A007551DC /* Main.storyboard */; };
 		EA51B8551DB3FC2A007551DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA51B8541DB3FC2A007551DC /* Assets.xcassets */; };
 		EA51B8581DB3FC2A007551DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA51B8561DB3FC2A007551DC /* LaunchScreen.storyboard */; };
-		EAEE78651DB50EE8002D984E /* TLLoggerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEE78641DB50EE8002D984E /* TLLoggerTests.m */; };
-		EAEE78661DB50EE8002D984E /* TLLoggerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEE78641DB50EE8002D984E /* TLLoggerTests.m */; };
 		EAF067131DB4017D00E641E2 /* TraceLogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7E7B051DA297A400E3B511 /* TraceLogTests.m */; };
 		EAF067141DB4018700E641E2 /* TraceLogPerformanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7E7B041DA297A400E3B511 /* TraceLogPerformanceTests.m */; };
 		EAF067151DB4019300E641E2 /* TraceLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7E7B0A1DA297A400E3B511 /* TraceLogTests.swift */; };
@@ -119,7 +117,6 @@
 		EA90A6281DA72C4F00B12B76 /* ExpectationValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpectationValues.swift; sourceTree = "<group>"; };
 		EAB6DE011DA01D1E00ACEEF3 /* TraceLog.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TraceLog.playground; sourceTree = "<group>"; };
 		EAE2A6D71DA314BE0042AF83 /* Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Bridging-Header.h"; sourceTree = "<group>"; };
-		EAEE78641DB50EE8002D984E /* TLLoggerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLLoggerTests.m; sourceTree = "<group>"; };
 		ED1178223449E14D366EF420 /* Pods-TraceLog-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraceLog-iOS/Pods-TraceLog-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		EEAE2A58843DC65665DF8047 /* Pods-TraceLog-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraceLog-iOS/Pods-TraceLog-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		F6F6EC735F92A56AF571C04D /* Pods-TraceLog-OSX-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-OSX-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraceLog-OSX-Tests/Pods-TraceLog-OSX-Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -302,7 +299,6 @@
 			children = (
 				EA7E7B051DA297A400E3B511 /* TraceLogTests.m */,
 				EA7E7B041DA297A400E3B511 /* TraceLogPerformanceTests.m */,
-				EAEE78641DB50EE8002D984E /* TLLoggerTests.m */,
 				EA7E7B021DA297A400E3B511 /* LoggerProxy.swift */,
 			);
 			path = TraceLogObjCTests;
@@ -423,27 +419,29 @@
 			attributes = {
 				CLASSPREFIX = TL;
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Tony Stone";
 				TargetAttributes = {
 					EA0B86BF1DB4266B0048B0B6 = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 					};
 					EA0B86CD1DB4266B0048B0B6 = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 						TestTargetID = EA0B86BF1DB4266B0048B0B6;
 					};
 					EA51B84A1DB3FC2A007551DC = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = MR4939Y2DA;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Manual;
 					};
 					EA51B85D1DB3FC2A007551DC = {
 						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Manual;
 						TestTargetID = EA51B84A1DB3FC2A007551DC;
 					};
@@ -749,7 +747,6 @@
 				EA0B86E01DB428110048B0B6 /* ConfigurationTests.swift in Sources */,
 				EA0B86E11DB428160048B0B6 /* TraceLogPerformanceTests.swift in Sources */,
 				EA0B86E21DB4281F0048B0B6 /* TraceLogTests.swift in Sources */,
-				EAEE78661DB50EE8002D984E /* TLLoggerTests.m in Sources */,
 				EA0B86E51DB4282B0048B0B6 /* TraceLogTests.m in Sources */,
 				EA0B86E41DB428280048B0B6 /* LoggerProxy.swift in Sources */,
 			);
@@ -770,7 +767,6 @@
 			files = (
 				EAF067131DB4017D00E641E2 /* TraceLogTests.m in Sources */,
 				EAF067161DB4019700E641E2 /* TraceLogPerformanceTests.swift in Sources */,
-				EAEE78651DB50EE8002D984E /* TLLoggerTests.m in Sources */,
 				EAF067171DB4019C00E641E2 /* ConfigurationTests.swift in Sources */,
 				EAF067151DB4019300E641E2 /* TraceLogTests.swift in Sources */,
 				EAF067141DB4018700E641E2 /* TraceLogPerformanceTests.m in Sources */,
@@ -835,12 +831,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -887,12 +885,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -941,7 +941,7 @@
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -964,7 +964,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.TraceLog-OSX";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -988,7 +988,7 @@
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TraceLog-OSX.app/Contents/MacOS/TraceLog-OSX";
 			};
 			name = Debug;
@@ -1012,7 +1012,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.TraceLog-OSX-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TraceLog-OSX.app/Contents/MacOS/TraceLog-OSX";
 			};
 			name = Release;
@@ -1037,7 +1037,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "iOS Development Profile";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1058,7 +1058,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.TraceLog-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1080,7 +1080,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TraceLog-iOS.app/TraceLog-iOS";
 			};
 			name = Debug;
@@ -1102,7 +1102,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.TraceLog-iOS-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TraceLog-iOS.app/TraceLog-iOS";
 			};
 			name = Release;
