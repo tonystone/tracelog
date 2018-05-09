@@ -82,7 +82,7 @@ internal class Configuration {
                     /// Note: in order to allow for case sensitive tag prefix names, we use the variable instead of the uppercase version.
                     ///
                     if let logLevelScopeRange = variable.range(of: Configuration.logPrefix) {
-                        let logLevelScope = variable.substring(from: logLevelScopeRange.upperBound)
+                        let logLevelScope = String(variable[logLevelScopeRange.upperBound...])
 
                         self.loggedPrefixes[logLevelScope] =  level
                     }
@@ -97,7 +97,7 @@ internal class Configuration {
                     /// Note: in order to allow for case sensitive tag names, we use the variable instead of the uppercase version.
                     ///
                     if let logLevelScopeRange = variable.range(of: Configuration.logTag) {
-                        let logLevelScope      = variable.substring(from: logLevelScopeRange.upperBound)
+                        let logLevelScope      = String(variable[logLevelScopeRange.upperBound...])
 
                         self.loggedTags[logLevelScope] =  level
                     }

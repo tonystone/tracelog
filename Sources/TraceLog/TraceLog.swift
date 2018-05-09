@@ -176,7 +176,7 @@ public func logInfo(_ tag: String? = nil, _ file: String = #file, _ function: St
 ///     }
 /// ```
 ///
-public func logTrace(_ tag: String? = nil, level: Int = LogLevel.validTraceLevels.lowerBound, _ file: String = #file, _ function: String = #function, _ line: Int = #line, message: @escaping () -> String) {
+public func logTrace(_ tag: String? = nil, level: Int = LogLevel.trace1.rawValue, _ file: String = #file, _ function: String = #function, _ line: Int = #line, message: @escaping () -> String) {
     #if !TRACELOG_DISABLED
         assert(LogLevel.validTraceLevels.contains(level), "Invalid trace level, levels are in the range of \(LogLevel.validTraceLevels)")
 
