@@ -95,6 +95,7 @@
 		EA1DD02B1DAFFA4E007BEB25 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
 		EA1E259A1DA5864100CECAA8 /* EnvironmentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentTests.swift; sourceTree = "<group>"; };
 		EA23E6DD20A47B1600211C9F /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Gemfile; path = ../Gemfile; sourceTree = "<group>"; };
+		EA23E6DE20A47DDB00211C9F /* .swift-version */ = {isa = PBXFileReference; lastKnownFileType = text; name = ".swift-version"; path = "../.swift-version"; sourceTree = "<group>"; };
 		EA2FC7ED1DA4538A00902D21 /* codecov.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = codecov.yml; path = ../codecov.yml; sourceTree = "<group>"; };
 		EA51B84B1DB3FC2A007551DC /* TraceLog-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TraceLog-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA51B84D1DB3FC2A007551DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -221,6 +222,7 @@
 			isa = PBXGroup;
 			children = (
 				1114AFE75770FDCCAADD266F /* TraceLog.podspec */,
+				EA23E6DE20A47DDB00211C9F /* .swift-version */,
 				80A4C846D301093D2C7B815A /* README.md */,
 				F87B3B34F4B8B59C25C88136 /* LICENSE */,
 				EA5E86C11DFF085000C60155 /* .swiftlint.yml */,
