@@ -87,8 +87,8 @@ before_install:
   # If there is a Gemfile for this os, install bundler and ask bundler to install the gems
   #
   - |
-    if [ -e Gemfile."$TRAVIS_OS_NAME" ]; then
-       export BUNDLE_GEMFILE=Gemfile."$TRAVIS_OS_NAME"
+    if [ -e Gemfile ]; then
+       export BUNDLE_GEMFILE=Gemfile
        gem install bundler
        bundler install
     fi
