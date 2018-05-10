@@ -160,27 +160,18 @@ internal final class Logger {
     @objc(TLLogger)
     public class TLLogger: NSObject {
 
-        public static let LogLevelError   = LogLevel.error.rawValue
-        public static let LogLevelWarning = LogLevel.warning.rawValue
-        public static let LogLevelInfo    = LogLevel.info.rawValue
-        public static let LogLevelTrace1  = LogLevel.trace1.rawValue
-        public static let LogLevelTrace2  = LogLevel.trace2.rawValue
-        public static let LogLevelTrace3  = LogLevel.trace3.rawValue
-        public static let LogLevelTrace4  = LogLevel.trace4.rawValue
-
-        @available(*, deprecated: 2.0.2)
-        public class func configure() {
-            Logger.configure(writers: [ConsoleWriter()], environment: Environment())
-        }
-
-        @available(*, deprecated: 2.0.2)
-        public class func configure(environment: [String: String]) {
-            Logger.configure(writers: [ConsoleWriter()], environment: Environment(environment))
-        }
+        @objc public static let LogLevelError   = LogLevel.error.rawValue
+        @objc public static let LogLevelWarning = LogLevel.warning.rawValue
+        @objc public static let LogLevelInfo    = LogLevel.info.rawValue
+        @objc public static let LogLevelTrace1  = LogLevel.trace1.rawValue
+        @objc public static let LogLevelTrace2  = LogLevel.trace2.rawValue
+        @objc public static let LogLevelTrace3  = LogLevel.trace3.rawValue
+        @objc public static let LogLevelTrace4  = LogLevel.trace4.rawValue
 
         ///
         /// Low level logging function for ObjC calls
         ///
+        @objc
         public class func logPrimitive(_ level: Int, tag: String, file: String, function: String, line: Int, message: @escaping () -> String) {
             assert(LogLevel.validLogableRange.contains(level), "Invalid log level, values must be in the the range \(LogLevel.validLogableRange)")
 

@@ -1,3 +1,4 @@
+// swift-tools-version:4.0
 ///
 ///  Package.swift
 ///
@@ -21,18 +22,15 @@ import PackageDescription
 
 let package = Package(
     name: "TraceLog",
-
+    products: [
+        .library(name: "TraceLog", type: .dynamic, targets: ["TraceLog"])
+    ],
     targets: [
-        /// The `TraceLog` is the main target in this file
-        Target(
-            /// The main TraceLog package
-            name: "TraceLog",
-            dependencies: [])],
+        /// Module targets
+        .target(name: "TraceLog", dependencies: [], path: "Sources/TraceLog"),
 
-    exclude: ["_Pods.xcodeproj", "Docs", "Example", "Scripts", "Sources/TraceLogObjC", "Tests/TraceLogObjCTests", "TraceLog.podspec"]
+        /// Tests
+        .testTarget(name: "TraceLogTests", dependencies: ["TraceLog"], path: "Tests/TraceLogTests")
+    ],
+    swiftLanguageVersions: [4]
 )
-
-/// Added the modules to a framework module
-let dylib = Product(name: "TraceLog", type: .Library(.Dynamic), modules: "TraceLog")
-
-products.append(dylib)

@@ -40,8 +40,6 @@
 		EA51B8531DB3FC2A007551DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA51B8511DB3FC2A007551DC /* Main.storyboard */; };
 		EA51B8551DB3FC2A007551DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA51B8541DB3FC2A007551DC /* Assets.xcassets */; };
 		EA51B8581DB3FC2A007551DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA51B8561DB3FC2A007551DC /* LaunchScreen.storyboard */; };
-		EAEE78651DB50EE8002D984E /* TLLoggerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEE78641DB50EE8002D984E /* TLLoggerTests.m */; };
-		EAEE78661DB50EE8002D984E /* TLLoggerTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EAEE78641DB50EE8002D984E /* TLLoggerTests.m */; };
 		EAF067131DB4017D00E641E2 /* TraceLogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7E7B051DA297A400E3B511 /* TraceLogTests.m */; };
 		EAF067141DB4018700E641E2 /* TraceLogPerformanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7E7B041DA297A400E3B511 /* TraceLogPerformanceTests.m */; };
 		EAF067151DB4019300E641E2 /* TraceLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7E7B0A1DA297A400E3B511 /* TraceLogTests.swift */; };
@@ -94,9 +92,10 @@
 		EA0B86CE1DB4266B0048B0B6 /* TraceLog-OSX-Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "TraceLog-OSX-Tests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA0B86DB1DB4269A0048B0B6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = "TraceLog-iOS-Tests/Info.plist"; sourceTree = SOURCE_ROOT; };
 		EA0B86DD1DB426ED0048B0B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = "TraceLog-OSX-Tests/Info.plist"; sourceTree = SOURCE_ROOT; };
-		EA1DD02A1DAEDBF5007BEB25 /* Gemfile.osx */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; name = Gemfile.osx; path = ../Gemfile.osx; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		EA1DD02B1DAFFA4E007BEB25 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; name = .gitignore; path = ../.gitignore; sourceTree = "<group>"; };
 		EA1E259A1DA5864100CECAA8 /* EnvironmentTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EnvironmentTests.swift; sourceTree = "<group>"; };
+		EA23E6DD20A47B1600211C9F /* Gemfile */ = {isa = PBXFileReference; lastKnownFileType = text; name = Gemfile; path = ../Gemfile; sourceTree = "<group>"; };
+		EA23E6DE20A47DDB00211C9F /* .swift-version */ = {isa = PBXFileReference; lastKnownFileType = text; name = ".swift-version"; path = "../.swift-version"; sourceTree = "<group>"; };
 		EA2FC7ED1DA4538A00902D21 /* codecov.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = codecov.yml; path = ../codecov.yml; sourceTree = "<group>"; };
 		EA51B84B1DB3FC2A007551DC /* TraceLog-iOS.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "TraceLog-iOS.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA51B84D1DB3FC2A007551DC /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -110,16 +109,15 @@
 		EA5E86C11DFF085000C60155 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .swiftlint.yml; path = ../.swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		EA68802B1DA5AE0400119145 /* ConfigurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
 		EA7E7AB51DA0CB8100E3B511 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
-		EA7E7AF71DA206D800E3B511 /* generate_xctest_linux_runner.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = generate_xctest_linux_runner.rb; sourceTree = "<group>"; };
+		EA7E7AF71DA206D800E3B511 /* xctest_tool.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = xctest_tool.rb; sourceTree = "<group>"; };
 		EA7E7B021DA297A400E3B511 /* LoggerProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerProxy.swift; sourceTree = "<group>"; };
 		EA7E7B041DA297A400E3B511 /* TraceLogPerformanceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TraceLogPerformanceTests.m; sourceTree = "<group>"; };
 		EA7E7B051DA297A400E3B511 /* TraceLogTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TraceLogTests.m; sourceTree = "<group>"; };
 		EA7E7B081DA297A400E3B511 /* TraceLogPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceLogPerformanceTests.swift; sourceTree = "<group>"; };
 		EA7E7B0A1DA297A400E3B511 /* TraceLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceLogTests.swift; sourceTree = "<group>"; };
 		EA90A6281DA72C4F00B12B76 /* ExpectationValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpectationValues.swift; sourceTree = "<group>"; };
-		EAB6DE011DA01D1E00ACEEF3 /* TraceLog.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TraceLog.playground; sourceTree = "<group>"; };
+		EAB6DE011DA01D1E00ACEEF3 /* TraceLog.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TraceLog.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EAE2A6D71DA314BE0042AF83 /* Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Bridging-Header.h"; sourceTree = "<group>"; };
-		EAEE78641DB50EE8002D984E /* TLLoggerTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TLLoggerTests.m; sourceTree = "<group>"; };
 		ED1178223449E14D366EF420 /* Pods-TraceLog-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraceLog-iOS/Pods-TraceLog-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		EEAE2A58843DC65665DF8047 /* Pods-TraceLog-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraceLog-iOS/Pods-TraceLog-iOS.release.xcconfig"; sourceTree = "<group>"; };
 		F6F6EC735F92A56AF571C04D /* Pods-TraceLog-OSX-Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-OSX-Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraceLog-OSX-Tests/Pods-TraceLog-OSX-Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -224,13 +222,14 @@
 			isa = PBXGroup;
 			children = (
 				1114AFE75770FDCCAADD266F /* TraceLog.podspec */,
+				EA23E6DE20A47DDB00211C9F /* .swift-version */,
 				80A4C846D301093D2C7B815A /* README.md */,
 				F87B3B34F4B8B59C25C88136 /* LICENSE */,
 				EA5E86C11DFF085000C60155 /* .swiftlint.yml */,
 				EA5C7FD31BEBCD8E00B3951D /* .travis.yml */,
 				EA2FC7ED1DA4538A00902D21 /* codecov.yml */,
+				EA23E6DD20A47B1600211C9F /* Gemfile */,
 				EA7E7AB51DA0CB8100E3B511 /* Package.swift */,
-				EA1DD02A1DAEDBF5007BEB25 /* Gemfile.osx */,
 				EA1DD02B1DAFFA4E007BEB25 /* .gitignore */,
 				3669818474ED4C3372731A77 /* CHANGELOG.md */,
 			);
@@ -291,7 +290,7 @@
 		EA7E7AE11DA1EF9400E3B511 /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
-				EA7E7AF71DA206D800E3B511 /* generate_xctest_linux_runner.rb */,
+				EA7E7AF71DA206D800E3B511 /* xctest_tool.rb */,
 			);
 			name = Scripts;
 			path = ../Scripts;
@@ -302,7 +301,6 @@
 			children = (
 				EA7E7B051DA297A400E3B511 /* TraceLogTests.m */,
 				EA7E7B041DA297A400E3B511 /* TraceLogPerformanceTests.m */,
-				EAEE78641DB50EE8002D984E /* TLLoggerTests.m */,
 				EA7E7B021DA297A400E3B511 /* LoggerProxy.swift */,
 			);
 			path = TraceLogObjCTests;
@@ -341,7 +339,6 @@
 				EA0B86BD1DB4266B0048B0B6 /* Frameworks */,
 				EA0B86BE1DB4266B0048B0B6 /* Resources */,
 				C66D2B43507DB81039263188 /* [CP] Embed Pods Frameworks */,
-				F75163AD661A2B470E4797C6 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -361,7 +358,6 @@
 				EA0B86CB1DB4266B0048B0B6 /* Frameworks */,
 				EA0B86CC1DB4266B0048B0B6 /* Resources */,
 				8D00E5600E7FE6C2F933DCD3 /* [CP] Embed Pods Frameworks */,
-				BDD4C2C0F283C197AF135E69 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -383,7 +379,6 @@
 				EA51B8481DB3FC2A007551DC /* Frameworks */,
 				EA51B8491DB3FC2A007551DC /* Resources */,
 				9BC86AA450860CF540198346 /* [CP] Embed Pods Frameworks */,
-				277CF8DF73D522635DC59582 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -403,7 +398,6 @@
 				EA51B85B1DB3FC2A007551DC /* Frameworks */,
 				EA51B85C1DB3FC2A007551DC /* Resources */,
 				41F3F9FCD804F21004B57697 /* [CP] Embed Pods Frameworks */,
-				71B771B44AFCC93CEA531D93 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -423,27 +417,29 @@
 			attributes = {
 				CLASSPREFIX = TL;
 				LastSwiftUpdateCheck = 0800;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Tony Stone";
 				TargetAttributes = {
 					EA0B86BF1DB4266B0048B0B6 = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 					};
 					EA0B86CD1DB4266B0048B0B6 = {
 						CreatedOnToolsVersion = 8.0;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Automatic;
 						TestTargetID = EA0B86BF1DB4266B0048B0B6;
 					};
 					EA51B84A1DB3FC2A007551DC = {
 						CreatedOnToolsVersion = 8.0;
 						DevelopmentTeam = MR4939Y2DA;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Manual;
 					};
 					EA51B85D1DB3FC2A007551DC = {
 						CreatedOnToolsVersion = 8.0;
-						LastSwiftMigration = 0900;
+						LastSwiftMigration = 0930;
 						ProvisioningStyle = Manual;
 						TestTargetID = EA51B84A1DB3FC2A007551DC;
 					};
@@ -508,30 +504,18 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		277CF8DF73D522635DC59582 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraceLog-iOS/Pods-TraceLog-iOS-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		41F3F9FCD804F21004B57697 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TraceLog-iOS-Tests/Pods-TraceLog-iOS-Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/TraceLog.default-ObjC-iOS/TraceLog.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TraceLog.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -544,28 +528,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TraceLog-iOS-Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
-			showEnvVarsInLog = 0;
-		};
-		71B771B44AFCC93CEA531D93 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraceLog-iOS-Tests/Pods-TraceLog-iOS-Tests-resources.sh\"\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		82BE3C2CF2FC60332F57E1B7 /* [CP] Check Pods Manifest.lock */ = {
@@ -574,13 +546,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TraceLog-OSX-Tests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		8D00E5600E7FE6C2F933DCD3 /* [CP] Embed Pods Frameworks */ = {
@@ -589,9 +564,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TraceLog-OSX-Tests/Pods-TraceLog-OSX-Tests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/TraceLog.default-ObjC-macOS/TraceLog.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TraceLog.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -604,28 +582,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TraceLog-iOS/Pods-TraceLog-iOS-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/TraceLog-iOS/TraceLog.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TraceLog.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraceLog-iOS/Pods-TraceLog-iOS-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		BDD4C2C0F283C197AF135E69 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraceLog-OSX-Tests/Pods-TraceLog-OSX-Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		C66D2B43507DB81039263188 /* [CP] Embed Pods Frameworks */ = {
@@ -634,9 +600,12 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-TraceLog-OSX/Pods-TraceLog-OSX-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/TraceLog-macOS/TraceLog.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/TraceLog.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -649,13 +618,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TraceLog-iOS-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		EA5E86C21DFF095600C60155 /* Swiftlint */ = {
@@ -697,22 +669,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "export LC_ALL=en_US.UTF-8\ncd ../\nScripts/generate_xctest_linux_runner.rb";
-		};
-		F75163AD661A2B470E4797C6 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraceLog-OSX/Pods-TraceLog-OSX-resources.sh\"\n";
-			showEnvVarsInLog = 0;
+			shellScript = "export LC_ALL=en_US.UTF-8\ncd ../\nScripts/xctest_tool.rb";
 		};
 		FDD14A09EB0D619EB0553C62 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -720,13 +677,16 @@
 			files = (
 			);
 			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TraceLog-OSX-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n";
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -749,7 +709,6 @@
 				EA0B86E01DB428110048B0B6 /* ConfigurationTests.swift in Sources */,
 				EA0B86E11DB428160048B0B6 /* TraceLogPerformanceTests.swift in Sources */,
 				EA0B86E21DB4281F0048B0B6 /* TraceLogTests.swift in Sources */,
-				EAEE78661DB50EE8002D984E /* TLLoggerTests.m in Sources */,
 				EA0B86E51DB4282B0048B0B6 /* TraceLogTests.m in Sources */,
 				EA0B86E41DB428280048B0B6 /* LoggerProxy.swift in Sources */,
 			);
@@ -770,7 +729,6 @@
 			files = (
 				EAF067131DB4017D00E641E2 /* TraceLogTests.m in Sources */,
 				EAF067161DB4019700E641E2 /* TraceLogPerformanceTests.swift in Sources */,
-				EAEE78651DB50EE8002D984E /* TLLoggerTests.m in Sources */,
 				EAF067171DB4019C00E641E2 /* ConfigurationTests.swift in Sources */,
 				EAF067151DB4019300E641E2 /* TraceLogTests.swift in Sources */,
 				EAF067141DB4018700E641E2 /* TraceLogPerformanceTests.m in Sources */,
@@ -835,12 +793,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -887,12 +847,14 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -941,7 +903,7 @@
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -964,7 +926,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.TraceLog-OSX";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -988,7 +950,7 @@
 				SDKROOT = macosx;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TraceLog-OSX.app/Contents/MacOS/TraceLog-OSX";
 			};
 			name = Debug;
@@ -1012,7 +974,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.TraceLog-OSX-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TraceLog-OSX.app/Contents/MacOS/TraceLog-OSX";
 			};
 			name = Release;
@@ -1037,7 +999,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "iOS Development Profile";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1058,7 +1020,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.TraceLog-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1080,7 +1042,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TraceLog-iOS.app/TraceLog-iOS";
 			};
 			name = Debug;
@@ -1102,7 +1064,7 @@
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.TraceLog-iOS-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 3.0;
+				SWIFT_VERSION = 4.0;
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/TraceLog-iOS.app/TraceLog-iOS";
 			};
 			name = Release;
