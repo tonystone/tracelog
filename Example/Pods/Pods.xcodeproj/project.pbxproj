@@ -69,6 +69,10 @@
 		000000000D60 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 000000000260 /* Foundation.framework */; };
 		000000000DE0 /* Pods-TraceLog-iOS-Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 000000000DC0 /* Pods-TraceLog-iOS-Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		000000000E40 /* Pods-TraceLog-iOS-Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 000000000E30 /* Pods-TraceLog-iOS-Tests-dummy.m */; };
+		EAB559C420B897A8007EF488 /* OSLogWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB559C120B8975F007EF488 /* OSLogWriter.swift */; };
+		EAB559C520B897A9007EF488 /* OSLogWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB559C120B8975F007EF488 /* OSLogWriter.swift */; };
+		EAB559C620B897A9007EF488 /* OSLogWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB559C120B8975F007EF488 /* OSLogWriter.swift */; };
+		EAB559C720B897AA007EF488 /* OSLogWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAB559C120B8975F007EF488 /* OSLogWriter.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -193,6 +197,7 @@
 		000000000E10 /* Pods-TraceLog-iOS-Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-TraceLog-iOS-Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		000000000E20 /* Pods-TraceLog-iOS-Tests-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-TraceLog-iOS-Tests-acknowledgements.markdown"; sourceTree = "<group>"; };
 		000000000E30 /* Pods-TraceLog-iOS-Tests-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-TraceLog-iOS-Tests-dummy.m"; sourceTree = "<group>"; };
+		EAB559C120B8975F007EF488 /* OSLogWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = OSLogWriter.swift; path = Sources/TraceLog/OSLogWriter.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -334,6 +339,7 @@
 			children = (
 				0000000000D0 /* Configuration.swift */,
 				0000000000E0 /* ConsoleWriter.swift */,
+				EAB559C120B8975F007EF488 /* OSLogWriter.swift */,
 				0000000000F0 /* Environment.swift */,
 				000000000100 /* Logger.swift */,
 				000000000110 /* LogLevel.swift */,
@@ -744,6 +750,7 @@
 				0000000002E0 /* StaticContext.swift in Sources */,
 				0000000003A0 /* TraceLog-iOS-dummy.m in Sources */,
 				0000000002F0 /* TraceLog.swift in Sources */,
+				EAB559C420B897A8007EF488 /* OSLogWriter.swift in Sources */,
 				000000000300 /* Writer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -761,6 +768,7 @@
 				0000000004B0 /* StaticContext.swift in Sources */,
 				000000000560 /* TraceLog-macOS-dummy.m in Sources */,
 				0000000004C0 /* TraceLog.swift in Sources */,
+				EAB559C520B897A9007EF488 /* OSLogWriter.swift in Sources */,
 				0000000004D0 /* Writer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -778,6 +786,7 @@
 				000000000670 /* StaticContext.swift in Sources */,
 				000000000710 /* TraceLog.default-ObjC-iOS-dummy.m in Sources */,
 				000000000680 /* TraceLog.swift in Sources */,
+				EAB559C620B897A9007EF488 /* OSLogWriter.swift in Sources */,
 				000000000690 /* Writer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -795,6 +804,7 @@
 				000000000820 /* StaticContext.swift in Sources */,
 				0000000008C0 /* TraceLog.default-ObjC-macOS-dummy.m in Sources */,
 				000000000830 /* TraceLog.swift in Sources */,
+				EAB559C720B897AA007EF488 /* OSLogWriter.swift in Sources */,
 				000000000840 /* Writer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

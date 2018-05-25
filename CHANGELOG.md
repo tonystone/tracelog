@@ -1,6 +1,12 @@
 # Change Log
 All significant changes to this project will be documented in this file.
 
+## [3.1.0](https://github.com/tonystone/tracelog/tree/3.1.0)
+
+#### Added
+- `#dsohandle` to catpured calling context.
+- `OSLogWriter` for Apple Logging.
+
 ## [3.0.0](https://github.com/tonystone/tracelog/tree/3.0.0)
 
 #### Updated
