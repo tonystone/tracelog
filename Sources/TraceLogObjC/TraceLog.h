@@ -21,6 +21,8 @@
 #ifndef Pods_TraceLog_h
 #define Pods_TraceLog_h
 
+#include <os/trace.h>
+
 /// Instance level macros
 
 /**
@@ -124,9 +126,9 @@
  WARNING:  LogIfEnabled is private and should not be used directly
  */
 #if !TRACELOG_DISABLED
-    #define LogIfEnabled(logLevel,tagName,format,...) [TLLogger logPrimitive: logLevel tag: tagName file: [NSString stringWithUTF8String: __FILE__] function: [NSString stringWithUTF8String: __FUNCTION__] line: __LINE__ message: ^{ return [NSString stringWithFormat: format, ##__VA_ARGS__]; }]
+    #define LogIfEnabled(logLevel,tagName,format,...) [TLLogger logPrimitive: logLevel tag: tagName dso: &__dso_handle file: [NSString stringWithUTF8String: __FILE__] function: [NSString stringWithUTF8String: __FUNCTION__] line: __LINE__ message: ^{ return [NSString stringWithFormat: format, ##__VA_ARGS__]; }]
 #else
-    #define LogIfEnabled(logLevel,label, format, ...) ((void)0)
+    #define LogIfEnabled(logLevel,tagName,format, ...) ((void)0)
 #endif
 
 /// Low level - for use in mixed low level C code.

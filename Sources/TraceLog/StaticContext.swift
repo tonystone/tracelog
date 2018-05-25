@@ -24,6 +24,9 @@ import Swift
 ///
 public protocol StaticContext {
 
+    /// The Dynamic Shared Object pointer capturing the calling method context.  This is an opeque pointer to an internal structure.
+    var dso: UnsafeRawPointer { get }
+
     /// The file name with path component captured at the time the Log<level> func was called to log a message.
     var file: String { get }
 
