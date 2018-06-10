@@ -112,6 +112,7 @@ script:
     if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
        # Fix travis issue: https://github.com/travis-ci/travis-ci/issues/6307
        rvm get head --auto-dotfiles || true
+       log config --subsystem "xctest" --mode "persist:debug"
     fi
   - |
     if [[ "$BUILD" == "swift build"  ]]; then
