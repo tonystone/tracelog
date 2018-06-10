@@ -9,21 +9,21 @@ env:
 
 matrix:
   include:
-    - 
+    -
       os: linux
       dist: trusty
       sudo: required
-      env: 
-         - BUILD="swift build"
-    - 
-      os: osx
-      osx_image: xcode9.3
-      env: 
+      env:
          - BUILD="swift build"
     -
       os: osx
       osx_image: xcode9.3
-      env: 
+      env:
+         - BUILD="swift build"
+    -
+      os: osx
+      osx_image: xcode9.3
+      env:
          - BUILD="pod lint"
     -
       os: osx
@@ -33,54 +33,54 @@ matrix:
          - TEST_DEST="platform=iOS Simulator,OS=11.3,name=iPhone 8"
          - TEST_SDK=iphonesimulator
          - SCHEME=TraceLog-iOS-Example
-    - 
+    -
       os: osx
       osx_image: xcode9.3
-      env: 
+      env:
          - BUILD="xcodebuild"
          - TEST_DEST="platform=iOS Simulator,OS=10.0,name=iPhone 6s"
          - TEST_SDK=iphonesimulator
-         - SCHEME=TraceLog-iOS-Example 
-    - 
+         - SCHEME=TraceLog-iOS-Example
+    -
       os: osx
       osx_image: xcode9.3
-      env: 
+      env:
          - BUILD="xcodebuild"
-         - TEST_DEST="platform=iOS Simulator,OS=10.0,name=iPhone 6" 
+         - TEST_DEST="platform=iOS Simulator,OS=10.0,name=iPhone 6"
          - TEST_SDK=iphonesimulator
-         - SCHEME=TraceLog-iOS-Example 
-    - 
+         - SCHEME=TraceLog-iOS-Example
+    -
       os: osx
       osx_image: xcode9.3
-      env: 
+      env:
          - BUILD="xcodebuild"
-         - TEST_DEST="platform=iOS Simulator,OS=9.3,name=iPhone 6" 
+         - TEST_DEST="platform=iOS Simulator,OS=9.3,name=iPhone 6"
          - TEST_SDK=iphonesimulator
-         - SCHEME=TraceLog-iOS-Example 
-    - 
+         - SCHEME=TraceLog-iOS-Example
+    -
       os: osx
       osx_image: xcode9.3
-      env: 
+      env:
          - BUILD="xcodebuild"
-         - TEST_DEST="platform=iOS Simulator,OS=9.2,name=iPhone 5s" 
+         - TEST_DEST="platform=iOS Simulator,OS=9.2,name=iPhone 5s"
          - TEST_SDK=iphonesimulator
-         - SCHEME=TraceLog-iOS-Example 
-    - 
+         - SCHEME=TraceLog-iOS-Example
+    -
       os: osx
       osx_image: xcode9.3
-      env: 
+      env:
          - BUILD="xcodebuild"
-         - TEST_DEST="platform=iOS Simulator,OS=9.0,name=iPhone 4s" 
+         - TEST_DEST="platform=iOS Simulator,OS=9.0,name=iPhone 4s"
          - TEST_SDK=iphonesimulator
-         - SCHEME=TraceLog-iOS-Example 
-    - 
+         - SCHEME=TraceLog-iOS-Example
+    -
       os: osx
       osx_image: xcode9.3
-      env: 
+      env:
          - BUILD="xcodebuild"
-         - TEST_DEST="platform=OS X,arch=x86_64" 
+         - TEST_DEST="platform=OS X,arch=x86_64"
          - TEST_SDK=macosx
-         - SCHEME=TraceLog-OSX-Example 
+         - SCHEME=TraceLog-OSX-Example
 
 before_install:
   #
@@ -108,6 +108,7 @@ before_install:
     fi
 
 script:
+  set -e  # Fail (and stop build) on first non zero exit code
   - |
     if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
        # Fix travis issue: https://github.com/travis-ci/travis-ci/issues/6307
@@ -129,6 +130,7 @@ script:
         xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" -enableCodeCoverage YES test              | bundler exec xcpretty
         set +o pipefail
     fi
+  set +e
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
