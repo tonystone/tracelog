@@ -43,6 +43,7 @@ DerivedData
 #  Swift Compile output on Linux
 #
 .build
+Package.resolved
 
 #
 # Vagrant
@@ -59,4 +60,3 @@ vagrantfile
 # Note: we currently don't include the Gemfile lock because all we really care about is locking in the Cocoapods version
 #
 Gemfile*.lock
-
