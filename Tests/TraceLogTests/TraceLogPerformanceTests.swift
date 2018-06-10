@@ -13,32 +13,6 @@ private let testIterations = 1000
 
 class TraceLogPerformanceTestsSwift: XCTestCase {
 
-    func testLogErrorPerformance() {
-
-        /// Reset the logger to the default before testing
-        TraceLog.configure(writers: [ConsoleWriter()], environment: ["LOG_ALL": "TRACE4"])
-
-        self.measure {
-
-            for _ in 0..<testIterations {
-                logError { "Swift: " + #function }
-            }
-        }
-    }
-
-    func testLogTrace4Performance() {
-
-        /// Reset the logger to the default before testing
-        TraceLog.configure(writers: [ConsoleWriter()], environment: ["LOG_ALL": "TRACE4"])
-
-        self.measure {
-
-            for _ in 0..<testIterations {
-                logTrace(1) { "Swift: " + #function }
-            }
-        }
-    }
-
     func testLogErrorPerformance_NullWriter() {
 
         /// Remove the log writers for this test so we see the time it takes to process internally without io
