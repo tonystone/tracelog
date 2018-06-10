@@ -224,18 +224,25 @@ class TraceLogWithUnifiedLoggingWriterTests: XCTestCase {
 /// Test wrapper function to execute log tests.
 ///
 @available(iOS 10.0, macOS 10.12, watchOS 3.0, tvOS 10.0, *)
-private func _testLog(for level: LogLevel, _ staticContext: TestStaticContext, _ writer: UnifiedLoggingWriter, _ subsystem: String? = nil, logBlock: ((timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: TestRuntimeContext, staticContext: TestStaticContext), UnifiedLoggingWriter) -> Void) {
+private func _testLog(for level: LogLevel, _ staticContext: TestStaticContext, _ writer: UnifiedLoggingWriter, _ subsystemOrNil: String? = nil, logBlock: ((timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: TestRuntimeContext, staticContext: TestStaticContext), UnifiedLoggingWriter) -> Void) {
 
     /// This is the time in microseconds since the epoch UTC to match the journals time stamps.
     let timestamp = Date().timeIntervalSince1970 * 1000.0
 
     let input = (timestamp: timestamp, level: level, tag:  "TestTag", message: "UnifiedLoggingWriter test .\(level) message at timestamp \(timestamp)", runtimeContext: TestRuntimeContext("TestProcess", 10, 100), staticContext: staticContext)
+    let subsystem = subsystemOrNil ?? input.runtimeContext.processName
 
     /// If Unified Logging is not configured for this test, we fail early.
-    let log = OSLog(subsystem: subsystem ?? input.runtimeContext.processName, category: input.tag)
+    let log = OSLog(subsystem: subsystem, category: input.tag)
 
     guard log.isEnabled(type: writer.convertLogLevel(for: input.level))
-            else { XCTFail("Log not configured for test."); return }
+            else {
+
+                XCTFail("\n\nCannot complete test execution.\n\n" +
+                        "\tUnified Logging is not configured for this case case.\n\n" +
+                        "\tPlease run `sudo log config --subsystem \"\(subsystem)\" --mode \"persist:debug\"` before running this test.\n");
+                return
+    }
 
     /// Write to the test writer
     logBlock(input, writer)
