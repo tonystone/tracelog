@@ -13,10 +13,10 @@
 		0000000002B0 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000F0 /* Environment.swift */; };
 		0000000002C0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000100 /* Logger.swift */; };
 		0000000002D0 /* LogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000110 /* LogLevel.swift */; };
-		0000000002E0 /* OSLogWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000120 /* OSLogWriter.swift */; };
-		0000000002F0 /* RuntimeContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000130 /* RuntimeContext.swift */; };
-		000000000300 /* StaticContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000140 /* StaticContext.swift */; };
-		000000000310 /* TraceLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000150 /* TraceLog.swift */; };
+		0000000002E0 /* RuntimeContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000120 /* RuntimeContext.swift */; };
+		0000000002F0 /* StaticContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000130 /* StaticContext.swift */; };
+		000000000300 /* TraceLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000140 /* TraceLog.swift */; };
+		000000000310 /* UnifiedLoggingWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000150 /* UnifiedLoggingWriter.swift */; };
 		000000000320 /* Writer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000160 /* Writer.swift */; };
 		000000000380 /* TraceLog-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 000000000360 /* TraceLog-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0000000003C0 /* TraceLog-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 0000000003B0 /* TraceLog-iOS-dummy.m */; };
@@ -26,10 +26,10 @@
 		000000000490 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000F0 /* Environment.swift */; };
 		0000000004A0 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000100 /* Logger.swift */; };
 		0000000004B0 /* LogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000110 /* LogLevel.swift */; };
-		0000000004C0 /* OSLogWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000120 /* OSLogWriter.swift */; };
-		0000000004D0 /* RuntimeContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000130 /* RuntimeContext.swift */; };
-		0000000004E0 /* StaticContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000140 /* StaticContext.swift */; };
-		0000000004F0 /* TraceLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000150 /* TraceLog.swift */; };
+		0000000004C0 /* RuntimeContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000120 /* RuntimeContext.swift */; };
+		0000000004D0 /* StaticContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000130 /* StaticContext.swift */; };
+		0000000004E0 /* TraceLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000140 /* TraceLog.swift */; };
+		0000000004F0 /* UnifiedLoggingWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000150 /* UnifiedLoggingWriter.swift */; };
 		000000000500 /* Writer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000160 /* Writer.swift */; };
 		000000000550 /* TraceLog-macOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 000000000530 /* TraceLog-macOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		000000000590 /* TraceLog-macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 000000000580 /* TraceLog-macOS-dummy.m */; };
@@ -40,10 +40,10 @@
 		000000000660 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000F0 /* Environment.swift */; };
 		000000000670 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000100 /* Logger.swift */; };
 		000000000680 /* LogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000110 /* LogLevel.swift */; };
-		000000000690 /* OSLogWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000120 /* OSLogWriter.swift */; };
-		0000000006A0 /* RuntimeContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000130 /* RuntimeContext.swift */; };
-		0000000006B0 /* StaticContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000140 /* StaticContext.swift */; };
-		0000000006C0 /* TraceLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000150 /* TraceLog.swift */; };
+		000000000690 /* RuntimeContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000120 /* RuntimeContext.swift */; };
+		0000000006A0 /* StaticContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000130 /* StaticContext.swift */; };
+		0000000006B0 /* TraceLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000140 /* TraceLog.swift */; };
+		0000000006C0 /* UnifiedLoggingWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000150 /* UnifiedLoggingWriter.swift */; };
 		0000000006D0 /* Writer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000160 /* Writer.swift */; };
 		000000000710 /* TraceLog.default-ObjC-iOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 000000000700 /* TraceLog.default-ObjC-iOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		000000000750 /* TraceLog.default-ObjC-iOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 000000000740 /* TraceLog.default-ObjC-iOS-dummy.m */; };
@@ -54,10 +54,10 @@
 		000000000820 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0000000000F0 /* Environment.swift */; };
 		000000000830 /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000100 /* Logger.swift */; };
 		000000000840 /* LogLevel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000110 /* LogLevel.swift */; };
-		000000000850 /* OSLogWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000120 /* OSLogWriter.swift */; };
-		000000000860 /* RuntimeContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000130 /* RuntimeContext.swift */; };
-		000000000870 /* StaticContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000140 /* StaticContext.swift */; };
-		000000000880 /* TraceLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000150 /* TraceLog.swift */; };
+		000000000850 /* RuntimeContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000120 /* RuntimeContext.swift */; };
+		000000000860 /* StaticContext.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000130 /* StaticContext.swift */; };
+		000000000870 /* TraceLog.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000140 /* TraceLog.swift */; };
+		000000000880 /* UnifiedLoggingWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000150 /* UnifiedLoggingWriter.swift */; };
 		000000000890 /* Writer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000160 /* Writer.swift */; };
 		0000000008D0 /* TraceLog.default-ObjC-macOS-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 0000000008C0 /* TraceLog.default-ObjC-macOS-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		000000000910 /* TraceLog.default-ObjC-macOS-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 000000000900 /* TraceLog.default-ObjC-macOS-dummy.m */; };
@@ -113,10 +113,10 @@
 		0000000000F0 /* Environment.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Environment.swift; path = Sources/TraceLog/Environment.swift; sourceTree = "<group>"; };
 		000000000100 /* Logger.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Logger.swift; path = Sources/TraceLog/Logger.swift; sourceTree = "<group>"; };
 		000000000110 /* LogLevel.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = LogLevel.swift; path = Sources/TraceLog/LogLevel.swift; sourceTree = "<group>"; };
-		000000000120 /* OSLogWriter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OSLogWriter.swift; path = Sources/TraceLog/OSLogWriter.swift; sourceTree = "<group>"; };
-		000000000130 /* RuntimeContext.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RuntimeContext.swift; path = Sources/TraceLog/RuntimeContext.swift; sourceTree = "<group>"; };
-		000000000140 /* StaticContext.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StaticContext.swift; path = Sources/TraceLog/StaticContext.swift; sourceTree = "<group>"; };
-		000000000150 /* TraceLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TraceLog.swift; path = Sources/TraceLog/TraceLog.swift; sourceTree = "<group>"; };
+		000000000120 /* RuntimeContext.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = RuntimeContext.swift; path = Sources/TraceLog/RuntimeContext.swift; sourceTree = "<group>"; };
+		000000000130 /* StaticContext.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = StaticContext.swift; path = Sources/TraceLog/StaticContext.swift; sourceTree = "<group>"; };
+		000000000140 /* TraceLog.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = TraceLog.swift; path = Sources/TraceLog/TraceLog.swift; sourceTree = "<group>"; };
+		000000000150 /* UnifiedLoggingWriter.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = UnifiedLoggingWriter.swift; path = Sources/TraceLog/UnifiedLoggingWriter.swift; sourceTree = "<group>"; };
 		000000000160 /* Writer.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Writer.swift; path = Sources/TraceLog/Writer.swift; sourceTree = "<group>"; };
 		000000000180 /* TraceLog.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = TraceLog.h; path = Sources/TraceLogObjC/TraceLog.h; sourceTree = "<group>"; };
 		0000000001A0 /* Swift Compiler - Custom Flags - DEBUG.png */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = image.png; name = "Swift Compiler - Custom Flags - DEBUG.png"; path = "Docs/Swift Compiler - Custom Flags - DEBUG.png"; sourceTree = "<group>"; };
@@ -342,10 +342,10 @@
 				0000000000F0 /* Environment.swift */,
 				000000000100 /* Logger.swift */,
 				000000000110 /* LogLevel.swift */,
-				000000000120 /* OSLogWriter.swift */,
-				000000000130 /* RuntimeContext.swift */,
-				000000000140 /* StaticContext.swift */,
-				000000000150 /* TraceLog.swift */,
+				000000000120 /* RuntimeContext.swift */,
+				000000000130 /* StaticContext.swift */,
+				000000000140 /* TraceLog.swift */,
+				000000000150 /* UnifiedLoggingWriter.swift */,
 				000000000160 /* Writer.swift */,
 			);
 			name = Swift;
@@ -746,11 +746,11 @@
 				0000000002B0 /* Environment.swift in Sources */,
 				0000000002C0 /* Logger.swift in Sources */,
 				0000000002D0 /* LogLevel.swift in Sources */,
-				0000000002E0 /* OSLogWriter.swift in Sources */,
-				0000000002F0 /* RuntimeContext.swift in Sources */,
-				000000000300 /* StaticContext.swift in Sources */,
+				0000000002E0 /* RuntimeContext.swift in Sources */,
+				0000000002F0 /* StaticContext.swift in Sources */,
 				0000000003C0 /* TraceLog-iOS-dummy.m in Sources */,
-				000000000310 /* TraceLog.swift in Sources */,
+				000000000300 /* TraceLog.swift in Sources */,
+				000000000310 /* UnifiedLoggingWriter.swift in Sources */,
 				000000000320 /* Writer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -764,11 +764,11 @@
 				000000000490 /* Environment.swift in Sources */,
 				0000000004A0 /* Logger.swift in Sources */,
 				0000000004B0 /* LogLevel.swift in Sources */,
-				0000000004C0 /* OSLogWriter.swift in Sources */,
-				0000000004D0 /* RuntimeContext.swift in Sources */,
-				0000000004E0 /* StaticContext.swift in Sources */,
+				0000000004C0 /* RuntimeContext.swift in Sources */,
+				0000000004D0 /* StaticContext.swift in Sources */,
 				000000000590 /* TraceLog-macOS-dummy.m in Sources */,
-				0000000004F0 /* TraceLog.swift in Sources */,
+				0000000004E0 /* TraceLog.swift in Sources */,
+				0000000004F0 /* UnifiedLoggingWriter.swift in Sources */,
 				000000000500 /* Writer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -782,11 +782,11 @@
 				000000000660 /* Environment.swift in Sources */,
 				000000000670 /* Logger.swift in Sources */,
 				000000000680 /* LogLevel.swift in Sources */,
-				000000000690 /* OSLogWriter.swift in Sources */,
-				0000000006A0 /* RuntimeContext.swift in Sources */,
-				0000000006B0 /* StaticContext.swift in Sources */,
+				000000000690 /* RuntimeContext.swift in Sources */,
+				0000000006A0 /* StaticContext.swift in Sources */,
 				000000000750 /* TraceLog.default-ObjC-iOS-dummy.m in Sources */,
-				0000000006C0 /* TraceLog.swift in Sources */,
+				0000000006B0 /* TraceLog.swift in Sources */,
+				0000000006C0 /* UnifiedLoggingWriter.swift in Sources */,
 				0000000006D0 /* Writer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -800,11 +800,11 @@
 				000000000820 /* Environment.swift in Sources */,
 				000000000830 /* Logger.swift in Sources */,
 				000000000840 /* LogLevel.swift in Sources */,
-				000000000850 /* OSLogWriter.swift in Sources */,
-				000000000860 /* RuntimeContext.swift in Sources */,
-				000000000870 /* StaticContext.swift in Sources */,
+				000000000850 /* RuntimeContext.swift in Sources */,
+				000000000860 /* StaticContext.swift in Sources */,
 				000000000910 /* TraceLog.default-ObjC-macOS-dummy.m in Sources */,
-				000000000880 /* TraceLog.swift in Sources */,
+				000000000870 /* TraceLog.swift in Sources */,
+				000000000880 /* UnifiedLoggingWriter.swift in Sources */,
 				000000000890 /* Writer.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -925,7 +925,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -986,7 +986,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
@@ -1281,7 +1281,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-OSX/Pods-TraceLog-OSX.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -1317,7 +1317,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-OSX/Pods-TraceLog-OSX.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -1354,7 +1354,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-OSX-Tests/Pods-TraceLog-OSX-Tests.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";
@@ -1390,7 +1390,7 @@
 				INSTALL_PATH = "$(LOCAL_LIBRARY_DIR)/Frameworks";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/Frameworks";
 				MACH_O_TYPE = staticlib;
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MODULEMAP_FILE = "Target Support Files/Pods-TraceLog-OSX-Tests/Pods-TraceLog-OSX-Tests.modulemap";
 				OTHER_LDFLAGS = "";
 				OTHER_LIBTOOLFLAGS = "";

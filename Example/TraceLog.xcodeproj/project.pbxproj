@@ -40,6 +40,8 @@
 		EA51B8531DB3FC2A007551DC /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA51B8511DB3FC2A007551DC /* Main.storyboard */; };
 		EA51B8551DB3FC2A007551DC /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EA51B8541DB3FC2A007551DC /* Assets.xcassets */; };
 		EA51B8581DB3FC2A007551DC /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EA51B8561DB3FC2A007551DC /* LaunchScreen.storyboard */; };
+		EABCEDFC20C433C00000EA32 /* UnifiedLoggingWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABCEDFB20C433C00000EA32 /* UnifiedLoggingWriterTests.swift */; };
+		EABCEDFD20C433C00000EA32 /* UnifiedLoggingWriterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EABCEDFB20C433C00000EA32 /* UnifiedLoggingWriterTests.swift */; };
 		EAF067131DB4017D00E641E2 /* TraceLogTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7E7B051DA297A400E3B511 /* TraceLogTests.m */; };
 		EAF067141DB4018700E641E2 /* TraceLogPerformanceTests.m in Sources */ = {isa = PBXBuildFile; fileRef = EA7E7B041DA297A400E3B511 /* TraceLogPerformanceTests.m */; };
 		EAF067151DB4019300E641E2 /* TraceLogTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA7E7B0A1DA297A400E3B511 /* TraceLogTests.swift */; };
@@ -117,6 +119,7 @@
 		EA7E7B0A1DA297A400E3B511 /* TraceLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceLogTests.swift; sourceTree = "<group>"; };
 		EA90A6281DA72C4F00B12B76 /* ExpectationValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpectationValues.swift; sourceTree = "<group>"; };
 		EAB6DE011DA01D1E00ACEEF3 /* TraceLog.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TraceLog.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
+		EABCEDFB20C433C00000EA32 /* UnifiedLoggingWriterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnifiedLoggingWriterTests.swift; sourceTree = "<group>"; };
 		EAE2A6D71DA314BE0042AF83 /* Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Bridging-Header.h"; sourceTree = "<group>"; };
 		ED1178223449E14D366EF420 /* Pods-TraceLog-iOS.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-iOS.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TraceLog-iOS/Pods-TraceLog-iOS.debug.xcconfig"; sourceTree = "<group>"; };
 		EEAE2A58843DC65665DF8047 /* Pods-TraceLog-iOS.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TraceLog-iOS.release.xcconfig"; path = "Pods/Target Support Files/Pods-TraceLog-iOS/Pods-TraceLog-iOS.release.xcconfig"; sourceTree = "<group>"; };
@@ -313,6 +316,7 @@
 				EA7E7B081DA297A400E3B511 /* TraceLogPerformanceTests.swift */,
 				EA68802B1DA5AE0400119145 /* ConfigurationTests.swift */,
 				EA1E259A1DA5864100CECAA8 /* EnvironmentTests.swift */,
+				EABCEDFB20C433C00000EA32 /* UnifiedLoggingWriterTests.swift */,
 				EA90A6281DA72C4F00B12B76 /* ExpectationValues.swift */,
 			);
 			path = TraceLogTests;
@@ -709,6 +713,7 @@
 				EA0B86E01DB428110048B0B6 /* ConfigurationTests.swift in Sources */,
 				EA0B86E11DB428160048B0B6 /* TraceLogPerformanceTests.swift in Sources */,
 				EA0B86E21DB4281F0048B0B6 /* TraceLogTests.swift in Sources */,
+				EABCEDFD20C433C00000EA32 /* UnifiedLoggingWriterTests.swift in Sources */,
 				EA0B86E51DB4282B0048B0B6 /* TraceLogTests.m in Sources */,
 				EA0B86E41DB428280048B0B6 /* LoggerProxy.swift in Sources */,
 			);
@@ -731,6 +736,7 @@
 				EAF067161DB4019700E641E2 /* TraceLogPerformanceTests.swift in Sources */,
 				EAF067171DB4019C00E641E2 /* ConfigurationTests.swift in Sources */,
 				EAF067151DB4019300E641E2 /* TraceLogTests.swift in Sources */,
+				EABCEDFC20C433C00000EA32 /* UnifiedLoggingWriterTests.swift in Sources */,
 				EAF067141DB4018700E641E2 /* TraceLogPerformanceTests.m in Sources */,
 				EAF067191DB401A400E641E2 /* ExpectationValues.swift in Sources */,
 				EAF0671A1DB401C800E641E2 /* LoggerProxy.swift in Sources */,
@@ -828,7 +834,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -875,7 +881,7 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -896,7 +902,6 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				INFOPLIST_FILE = "TraceLog-OSX/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.TraceLog-OSX";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -921,7 +926,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = "TraceLog-OSX/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.TraceLog-OSX";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -943,7 +947,6 @@
 				DEBUG_INFORMATION_FORMAT = dwarf;
 				INFOPLIST_FILE = "TraceLog-OSX-Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.TraceLog-OSX-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -969,7 +972,6 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				INFOPLIST_FILE = "TraceLog-OSX-Tests/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.TraceLog-OSX-Tests";
 				PRODUCT_NAME = "$(TARGET_NAME)";
