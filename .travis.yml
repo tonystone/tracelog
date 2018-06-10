@@ -108,7 +108,7 @@ before_install:
     fi
 
 script:
-  set -e  # Fail (and stop build) on first non zero exit code
+  - set -e  # Fail (and stop build) on first non zero exit code
   - |
     if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
        # Fix travis issue: https://github.com/travis-ci/travis-ci/issues/6307
@@ -130,7 +130,7 @@ script:
         xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" -enableCodeCoverage YES test              | bundler exec xcpretty
         set +o pipefail
     fi
-  set +e
+  - set +e
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
