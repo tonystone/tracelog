@@ -17,14 +17,15 @@
 ///
 ///  Created by Tony Stone on 5/31/18.
 ///
-#if os(macOS) || os(iOS) || os(tvOS) || os(watchOS)
+
+// Note: These tests can only run on OSX since they require Process which is not available on other platforms.
+#if os(macOS)
 
 import Foundation
-
 import XCTest
-@testable import TraceLog
-
 import os.log
+
+@testable import TraceLog
 
 ///
 /// Direct Logging to the Logger
