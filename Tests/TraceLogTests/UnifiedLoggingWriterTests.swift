@@ -231,6 +231,7 @@ private func _testLog(for level: LogLevel, _ staticContext: TestStaticContext, _
 
     let input = (timestamp: timestamp, level: level, tag:  "TestTag", message: "UnifiedLoggingWriter test .\(level) message at timestamp \(timestamp)", runtimeContext: TestRuntimeContext("TestProcess", 10, 100), staticContext: staticContext)
 
+    /// If Unified Logging is not configured for this test, we fail early.
     let log = OSLog(subsystem: subsystem ?? input.runtimeContext.processName, category: input.tag)
 
     guard log.isEnabled(type: writer.convertLogLevel(for: input.level))
@@ -248,20 +249,27 @@ private func _testLog(for level: LogLevel, _ staticContext: TestStaticContext, _
 @available(iOS 10.0, macOS 10.12, watchOS 3.0, tvOS 10.0, *)
 private func validateLogEntry(for input: (timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: TestRuntimeContext, staticContext: TestStaticContext), writer: UnifiedLoggingWriter, subsystem: String?) {
 
-    let log = OSLog(subsystem: subsystem ?? input.runtimeContext.processName, category: input.tag)
+    let command = "log show --predicate 'eventMessage == \"\(input.message)\"' --info --debug --style json --last 2"
 
-    guard log.isEnabled(type: writer.convertLogLevel(for: input.level))
-            else { XCTFail("Log not configured for test."); return }
+    ///
+    /// Note: Unified takes an undetermined time before log entries are available to
+    /// the log command so we try up to 10 times to find the value before giving up.
+    ///
+    for _ in 0...10 {
+        let data = shell(command)
 
-    let command = "log show --predicate 'eventMessage == \"\(input.message)\"' --info --debug --style json --last 1m"
-
-    let data = shell(command)
-
-    do {
-        let objects = try JSONSerialization.jsonObject(with: data)
+        let objects: Any
+        do {
+            objects = try JSONSerialization.jsonObject(with: data)
+        } catch {
+            XCTFail("Could parse JSON \(String(data: data, encoding: .utf8) ?? "nil"), error: \(error)."); return
+        }
 
         guard let logEntries = objects as? [[String: Any]]
             else { XCTFail("Incorrect json object returned from parsing log show results, expected [[String: Any]] but got \(type(of: objects))."); return }
+
+        guard logEntries.count > 0
+            else { continue }
 
         /// Find the journal entry by message string (message string should be unique based on the string + timestamp).
         for jsonEntry in logEntries where jsonEntry["eventMessage"] as? String ?? "" == input.message {
@@ -269,21 +277,32 @@ private func validateLogEntry(for input: (timestamp: Double, level: LogLevel, ta
             /// These should be all the fields we pass to systemd journal.
             ///
             assertValue(for: jsonEntry, key: "subsystem",   eqauls: subsystem ?? input.runtimeContext.processName)
-            assertValue(for: jsonEntry, key: "messageType", eqauls: "\(writer.convertLogLevel(for: input.level))")
+            assertValue(for: jsonEntry, key: "messageType", eqauls: "\(writer.convertLogLevel(for: input.level).description)")
             assertValue(for: jsonEntry, key: "category",    eqauls: input.tag)
 
             return  /// If we found a match and compared it, we're done!
         }
-        XCTFail("Log entry not found using command: \"\(command)\".")
-    } catch {
-        XCTFail("Could parse JSON \(String(data: data, encoding: .utf8) ?? "nil"), error: \(error)."); return
     }
+    XCTFail("Log entry not found using command: \"\(command)\".")
 }
 
 private func assertValue(for jsonObject: [String: Any], key: String, eqauls expected: String) {
     let result = jsonObject[key] as? String ?? ""
 
     XCTAssertEqual(result, expected, "\(key) should be \"\(expected)\" but is equal to \"\(result)\".")
+}
+
+@available(iOS 10.0, macOS 10.12, watchOS 3.0, tvOS 10.0, *)
+extension OSLogType {
+
+    public var description: String {
+        switch self {
+            case .fault: return "Fault"
+            case .error: return "Error"
+            case .debug: return "Debug"
+            default:     return "Default"
+        }
+    }
 }
 
 ///
