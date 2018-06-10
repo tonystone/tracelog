@@ -108,7 +108,6 @@ before_install:
     fi
 
 script:
-  - set -e  # Fail (and stop build) on first non zero exit code
   - |
     if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
        # Fix travis issue: https://github.com/travis-ci/travis-ci/issues/6307
@@ -120,17 +119,20 @@ script:
     fi
   - |
     if [[ "$BUILD" == "pod lint" ]]; then
+        set -e  # Fail (and stop build) on first non zero exit code
         bundler exec pod repo update
         bundler exec pod lib lint
+        set +e
     fi
   - |
     if [[ "$BUILD" == "xcodebuild"  ]]; then
+        set -e  # Fail (and stop build) on first non zero exit code
         set -o pipefail
         xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" -enableCodeCoverage YES build-for-testing | bundler exec xcpretty
         xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" -enableCodeCoverage YES test              | bundler exec xcpretty
         set +o pipefail
+        set +e
     fi
-  - set +e
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
