@@ -32,6 +32,8 @@ Pod::Spec.new do |s|
   s.author           = { "Tony Stone" => "https://github.com/tonystone" }
   s.source           = { :git => "https://github.com/tonystone/tracelog.git", :tag => s.version.to_s }
 
+  s.swift_version = '4.1'
+
   s.ios.deployment_target     = '9.0'
   s.osx.deployment_target     = '10.10'
   s.watchos.deployment_target = '2.0'
