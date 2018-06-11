@@ -38,7 +38,7 @@ matrix:
       osx_image: xcode9.3
       env:
          - BUILD="xcodebuild"
-         - TEST_DEST="platform=iOS Simulator,OS=10.0,name=iPhone 6s"
+         - TEST_DEST="platform=iOS Simulator,OS=10.2,name=iPhone 6s"
          - TEST_SDK=iphonesimulator
          - SCHEME=TraceLog-iOS-Example
     -
@@ -46,33 +46,10 @@ matrix:
       osx_image: xcode9.3
       env:
          - BUILD="xcodebuild"
-         - TEST_DEST="platform=iOS Simulator,OS=10.0,name=iPhone 6"
+         - TEST_DEST="platform=iOS Simulator,OS=10.2,name=iPhone 6"
          - TEST_SDK=iphonesimulator
          - SCHEME=TraceLog-iOS-Example
-    -
-      os: osx
-      osx_image: xcode9.3
-      env:
-         - BUILD="xcodebuild"
-         - TEST_DEST="platform=iOS Simulator,OS=9.3,name=iPhone 6"
-         - TEST_SDK=iphonesimulator
-         - SCHEME=TraceLog-iOS-Example
-    -
-      os: osx
-      osx_image: xcode9.3
-      env:
-         - BUILD="xcodebuild"
-         - TEST_DEST="platform=iOS Simulator,OS=9.2,name=iPhone 5s"
-         - TEST_SDK=iphonesimulator
-         - SCHEME=TraceLog-iOS-Example
-    -
-      os: osx
-      osx_image: xcode9.3
-      env:
-         - BUILD="xcodebuild"
-         - TEST_DEST="platform=iOS Simulator,OS=9.0,name=iPhone 4s"
-         - TEST_SDK=iphonesimulator
-         - SCHEME=TraceLog-iOS-Example
+
     -
       os: osx
       osx_image: xcode9.3
@@ -93,6 +70,15 @@ before_install:
        bundler install
     fi
   #
+  # OSX
+  #
+  - |
+    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
+       # Fix travis issue: https://github.com/travis-ci/travis-ci/issues/6307
+       rvm get head --auto-dotfiles || true
+       sudo log config --subsystem "xctest" --mode "persist:debug"
+    fi
+  #
   # Linux requires downloading Swift and tools
   #
   - |
@@ -108,12 +94,6 @@ before_install:
     fi
 
 script:
-  - |
-    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
-       # Fix travis issue: https://github.com/travis-ci/travis-ci/issues/6307
-       rvm get head --auto-dotfiles || true
-       sudo log config --subsystem "xctest" --mode "persist:debug"
-    fi
   - |
     if [[ "$BUILD" == "swift build"  ]]; then
       swift test
