@@ -256,23 +256,23 @@ private func _testLog(for level: LogLevel, _ staticContext: TestStaticContext, _
 @available(iOS 10.0, macOS 10.12, watchOS 3.0, tvOS 10.0, *)
 private func validateLogEntry(for input: (timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: TestRuntimeContext, staticContext: TestStaticContext), writer: UnifiedLoggingWriter, subsystem: String?) {
 
-    let command = "log show --predicate 'eventMessage == \"\(input.message)\"' --info --debug --style json --last 2"
+    let command = "log show --predicate 'eventMessage == \"\(input.message)\"' --info --debug --style json"
 
     ///
     /// Note: Unified takes an undetermined time before log entries are available to
     /// the log command so we try up to 10 times to find the value before giving up.
     ///
-    var retryTime: useconds_t = 500
+    var retryTime: useconds_t = 1000
 
     for _ in 0...10 {
 
-        let data = shell(command)
+        let data = shell(command + " --last \(retryTime / 1000)")
 
         let objects: Any
         do {
             objects = try JSONSerialization.jsonObject(with: data)
         } catch {
-            XCTFail("Could parse JSON \(String(data: data, encoding: .utf8) ?? "nil"), error: \(error)."); return
+            XCTFail("Could not parse JSON \(String(data: data, encoding: .utf8) ?? "nil"), error: \(error)."); return
         }
 
         guard let logEntries = objects as? [[String: Any]]
