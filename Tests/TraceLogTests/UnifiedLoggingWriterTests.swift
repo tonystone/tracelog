@@ -262,7 +262,10 @@ private func validateLogEntry(for input: (timestamp: Double, level: LogLevel, ta
     /// Note: Unified takes an undetermined time before log entries are available to
     /// the log command so we try up to 10 times to find the value before giving up.
     ///
+    var retryTime: useconds_t = 500
+
     for _ in 0...10 {
+
         let data = shell(command)
 
         let objects: Any
@@ -276,7 +279,12 @@ private func validateLogEntry(for input: (timestamp: Double, level: LogLevel, ta
             else { XCTFail("Incorrect json object returned from parsing log show results, expected [[String: Any]] but got \(type(of: objects))."); return }
 
         guard logEntries.count > 0
-            else { continue }
+            else {
+                usleep(retryTime)
+                retryTime = retryTime * 2   /// progressivly sleep longer for each retry.
+
+                continue
+            }
 
         /// Find the journal entry by message string (message string should be unique based on the string + timestamp).
         for jsonEntry in logEntries where jsonEntry["eventMessage"] as? String ?? "" == input.message {
