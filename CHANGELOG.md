@@ -1,6 +1,11 @@
 # Change Log
 All significant changes to this project will be documented in this file.
 
+## [3.1.0](https://github.com/tonystone/tracelog/tree/3.1.0)
+
+#### Added
+- `UnifiedLoggingWriter` for Apple Unified Logging system logging using TraceLog.
+
 ## [3.0.0](https://github.com/tonystone/tracelog/tree/3.0.0)
 
 #### Updated
@@ -19,9 +24,9 @@ All significant changes to this project will be documented in this file.
 ## [2.1.0](https://github.com/tonystone/tracelog/tree/2.1.0)
 
 #### Added
-- Log level `OFF` to allow turning off logging for a specific level (global, prefix, tag). 
+- Log level `OFF` to allow turning off logging for a specific level (global, prefix, tag).
 
-## [2.0.2](https://github.com/tonystone/tracelog/tree/2.0.2) 
+## [2.0.2](https://github.com/tonystone/tracelog/tree/2.0.2)
 
 #### Added
 - Added required tests to bring coverage back to 100%.
@@ -34,7 +39,7 @@ All significant changes to this project will be documented in this file.
 - Removed unnecessary String with formatters call that can result in a crash if the interpolated string includes formatter options that the String(format:) function will never have matching parameters for.
 
 ## [2.0.1](https://github.com/tonystone/tracelog/tree/2.0.1)
-Released on 2016-10-16. 
+Released on 2016-10-16.
 
 #### Added
 - The `OS_ACTIVITY_MODE` environment variable to iOS and OSX Example.

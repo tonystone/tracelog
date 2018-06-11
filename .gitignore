@@ -24,6 +24,8 @@ DerivedData
 # http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
 #
 #Pods/
+#Podfile.lock
+#Manifest.lock
 
 #####
 # OS X temporary files that should never be committed
@@ -43,6 +45,7 @@ DerivedData
 #  Swift Compile output on Linux
 #
 .build
+Package.resolved
 
 #
 # Vagrant

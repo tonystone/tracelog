@@ -64,9 +64,9 @@ internal final class Logger {
     ///
     internal class StaticContextImpl: StaticContext {
 
-        internal let file: String
-        internal let function: String
-        internal let line: Int
+        public let file: String
+        public let function: String
+        public let line: Int
 
         internal init(file: String, function: String, line: Int) {
             self.file       = file

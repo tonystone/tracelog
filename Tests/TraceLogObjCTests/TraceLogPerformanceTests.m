@@ -19,37 +19,11 @@ static const int testIterations = 1000;
 
 @implementation TraceLogPerformanceTests_ObjC
 
-    - (void) testLogError_Performance {
-        
-        /// Reset the logger to the default before testing
-        [LoggerProxy configureWithEnvironment: @{@"LOG_ALL": @"TRACE4"} withConsoleWriter: YES];
-        
-        [self measureBlock:^{
-        
-            for (int i = 0; i < testIterations; i++) {
-                LogError(@"ObjC: %s", __FUNCTION__);
-            }
-        }];
-    }
-
-    - (void) testLogTrace4_Performance {
-        
-        /// Reset the logger to the default before testing
-        [LoggerProxy configureWithEnvironment: @{@"LOG_ALL": @"TRACE4"} withConsoleWriter: YES];
-        
-        [self measureBlock:^{
-        
-            for (int i = 0; i < testIterations; i++) {
-                LogTrace(4,@"ObjC: %s", __FUNCTION__);
-            }
-        }];
-    }
-
     - (void) testLogError_Performance_NullWriter {
-    
+
         /// Remove the log writers for this test so we see the time it takes to process internally without io
         [LoggerProxy configureWithEnvironment: @{@"LOG_ALL": @"TRACE4"} withConsoleWriter: NO];
-        
+
         [self measureBlock:^{
 
             for (int i = 0; i < testIterations; i++) {
@@ -59,12 +33,12 @@ static const int testIterations = 1000;
     }
 
     - (void) testLogTrace4_Performance_NullWriter {
-    
+
         /// Remove the log writers for this test so we see the time it takes to process internally without io
         [LoggerProxy configureWithEnvironment: @{@"LOG_ALL": @"TRACE4"} withConsoleWriter: NO];
-        
+
         [self measureBlock:^{
-        
+
             for (int i = 0; i < testIterations; i++) {
                 LogTrace(4,@"ObjC: %s", __FUNCTION__);
             }
