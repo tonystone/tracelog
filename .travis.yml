@@ -54,7 +54,7 @@ matrix:
       osx_image: xcode9.3
       env:
          - BUILD="xcodebuild"
-         - TEST_DEST="platform=iOS Simulator,OS=8.4,name=iPhone 6"
+         - TEST_DEST="platform=iOS Simulator,OS=8.1,name=iPhone 6"
          - TEST_SDK=iphonesimulator
 
     -
