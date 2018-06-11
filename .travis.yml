@@ -128,10 +128,8 @@ script:
   - |
     if [[ "$BUILD" == "xcodebuild"  ]]; then
         set -e  # Fail (and stop build) on first non zero exit code
-        set -o pipefail
-        xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" -enableCodeCoverage YES build-for-testing | bundler exec xcpretty
-        xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" -enableCodeCoverage YES test              | bundler exec xcpretty
-        set +o pipefail
+        xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" -enableCodeCoverage YES build-for-testing
+        xcodebuild -workspace "$WORKSPACE" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" -enableCodeCoverage YES test
         set +e
     fi
 
