@@ -240,7 +240,7 @@ private func _testLog(for level: LogLevel, _ staticContext: TestStaticContext, _
 
                 XCTFail("\n\nCannot complete test execution.\n\n" +
                         "\tUnified Logging is not configured for this case case.\n\n" +
-                        "\tPlease run `sudo log config --subsystem \"\(subsystem)\" --mode \"persist:debug\"` before running this test.\n");
+                        "\tPlease run `sudo log config --subsystem \"\(subsystem)\" --mode \"persist:debug\"` before running this test.\n")
                 return
     }
 
