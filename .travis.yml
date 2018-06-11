@@ -33,22 +33,6 @@ matrix:
          - TEST_DEST="platform=iOS Simulator,OS=11.3,name=iPhone 8"
          - TEST_SDK=iphonesimulator
          - SCHEME=TraceLog-iOS-Example
-    -
-      os: osx
-      osx_image: xcode9.3
-      env:
-         - BUILD="xcodebuild"
-         - TEST_DEST="platform=iOS Simulator,OS=10.2,name=iPhone 6s"
-         - TEST_SDK=iphonesimulator
-         - SCHEME=TraceLog-iOS-Example
-    -
-      os: osx
-      osx_image: xcode9.3
-      env:
-         - BUILD="xcodebuild"
-         - TEST_DEST="platform=iOS Simulator,OS=10.2,name=iPhone 6"
-         - TEST_SDK=iphonesimulator
-         - SCHEME=TraceLog-iOS-Example
 
     -
       os: osx
@@ -78,6 +62,7 @@ before_install:
        rvm get head --auto-dotfiles || true
        sudo log config --subsystem "xctest" --mode "persist:debug"
        sudo log config --subsystem "TraceLog-OSX" --mode "persist:debug"
+       sudo log config --subsystem "TraceLog-iOS" --mode "persist:debug"
     fi
   #
   # Linux requires downloading Swift and tools
