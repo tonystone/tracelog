@@ -45,7 +45,7 @@
  * }
  * @endcode
  */
-#define LogError(format,...)       CLogError(NSStringFromClass([self class]), format, ##__VA_ARGS__)
+#define LogError(format,...) CLogError(NSStringFromClass([self class]), format, ##__VA_ARGS__)
 
 /**
  * LogWarning logs an message with LogLevel Warning to the LogWriters
@@ -69,7 +69,7 @@
  * }
  * @endcode
  */
-#define LogWarning(format,...)     CLogWarning(NSStringFromClass([self class]), format, ##__VA_ARGS__)
+#define LogWarning(format,...) CLogWarning(NSStringFromClass([self class]), format, ##__VA_ARGS__)
 
 /**
  * LogInfo logs an message with LogLevel Info to the LogWriters
@@ -93,7 +93,7 @@
  * }
  * @endcode
  */
-#define LogInfo(format,...)        CLogInfo(NSStringFromClass([self class]), format, ##__VA_ARGS__)
+#define LogInfo(format,...) CLogInfo(NSStringFromClass([self class]), format, ##__VA_ARGS__)
 
 /**
  * LogTrace logs an message with LogLevel Trace to the LogWriters
@@ -174,5 +174,34 @@
  * @Note Raises an NSInvalidArgumentException if format is nil.
  */
 #define CLogTrace(level,tag,format,...) LogIfEnabled(TLLogger.LogLevelTrace1 + ((int)level) - 1, tag, format, ##__VA_ARGS__)
+
+#if !COCOAPODS
+///
+/// Swift Package Manager requires these to be declared otherwise, the
+/// TraceLog module needs to be included with this header for Objective-C
+/// which is undesierable.
+///
+#import <Foundation/Foundation.h>
+
+/// Internal class exposed to objective-C for low level logging.
+///
+/// - Warning:  This is a private class and nothing in this class should be used on it's own.  Please see TraceLog.h for the public interface to this.
+///
+/// - Note: In order to continue to support Objective-C, this class must be public and also visible to both Swift and ObjC.  This class is not meant to be
+///         used directly in either language.
+///
+@interface TLLogger: NSObject
+
+    @property (class, nonatomic, readonly) NSInteger LogLevelError;
+    @property (class, nonatomic, readonly) NSInteger LogLevelWarning;
+    @property (class, nonatomic, readonly) NSInteger LogLevelInfo;
+    @property (class, nonatomic, readonly) NSInteger LogLevelTrace1;
+    @property (class, nonatomic, readonly) NSInteger LogLevelTrace2;
+    @property (class, nonatomic, readonly) NSInteger LogLevelTrace3;
+    @property (class, nonatomic, readonly) NSInteger LogLevelTrace4;
+
+    + (void) logPrimitive: (NSInteger) level tag: (NSString * __nonnull) tag file: (NSString *) file function: (NSString *) function line: (NSUInteger) line message: (NSString * _Nonnull (^)(void)) messageBlock;
+@end
+#endif
 
 #endif

@@ -22,9 +22,6 @@ import PackageDescription
 
 let package = Package(
     name: "TraceLog",
-    products: [
-        .library(name: "TraceLog", type: .dynamic, targets: ["TraceLog"])
-    ],
     targets: [
         /// Module targets
         .target(name: "TraceLog", dependencies: [], path: "Sources/TraceLog"),
@@ -34,3 +31,18 @@ let package = Package(
     ],
     swiftLanguageVersions: [4]
 )
+
+var productTargets = ["TraceLog"]
+
+///
+/// These platforms can also support Objective-C so we create a module for it.
+///
+#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS)
+    package.targets.append(.target(name: "TraceLogObjC", dependencies: ["TraceLog"], path: "Sources/TraceLogObjC"))
+    package.targets.append(.testTarget(name: "TraceLogObjCTests", dependencies: ["TraceLogObjC"], path: "Tests/TraceLogObjCTests"))
+
+    productTargets.append("TraceLogObjC")
+#endif
+
+/// Main products section
+package.products.append(.library(name: "TraceLog", type: .dynamic, targets: productTargets))

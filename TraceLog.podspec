@@ -47,8 +47,8 @@ Pod::Spec.new do |s|
   s.subspec 'ObjC' do |objc|
     objc.dependency 'TraceLog/Swift'
 
-    objc.public_header_files = 'Sources/TraceLogObjC/TraceLog.h'
-    objc.source_files        = 'Sources/TraceLogObjC/*.{h,swift}'
+    objc.public_header_files = 'Sources/TraceLogObjC/include/TraceLog.h'
+    objc.source_files        = 'Sources/TraceLogObjC/**/*.{h,m}'
   end
 
 end
