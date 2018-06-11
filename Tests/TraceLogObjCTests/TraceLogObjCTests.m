@@ -19,12 +19,13 @@
  *   Created by Tony Stone on 3/4/15.
  */
 @import XCTest;
-@import TraceLog;
 
-@interface TraceLogTests_ObjC : XCTestCase
+#import "TraceLog.h"
+
+@interface TraceLogObjCTests : XCTestCase
 @end
 
-@implementation TraceLogTests_ObjC
+@implementation TraceLogObjCTests
 
     ///
     /// Object level calls

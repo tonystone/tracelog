@@ -1,10 +1,14 @@
 # Change Log
 All significant changes to this project will be documented in this file.
 
-## [3.1.0](https://github.com/tonystone/tracelog/tree/3.1.0)
+## [4.0.0-beta.1](https://github.com/tonystone/tracelog/tree/4.0.0-beta.1)
 
 #### Added
 - `UnifiedLoggingWriter` for Apple Unified Logging system logging using TraceLog.
+
+#### Removed
+- Removed all Xcode projects, Xcode projects are now generated using Swift Package Manager.
+- Dropped iOS 8 support.
 
 ## [3.0.0](https://github.com/tonystone/tracelog/tree/3.0.0)
 

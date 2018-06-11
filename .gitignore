@@ -16,6 +16,13 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
+*.xcodeproj
+*.xcworkspace
+
+#
+# VS Code
+#
+.vscode
 
 # CocoaPods
 #
@@ -23,9 +30,9 @@ DerivedData
 # you should judge for yourself, the pros and cons are mentioned at:
 # http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
 #
-#Pods/
-#Podfile.lock
-#Manifest.lock
+Pods/
+Podfile.lock
+Manifest.lock
 
 #####
 # OS X temporary files that should never be committed
@@ -62,4 +69,3 @@ vagrantfile
 # Note: we currently don't include the Gemfile lock because all we really care about is locking in the Cocoapods version
 #
 Gemfile*.lock
-
