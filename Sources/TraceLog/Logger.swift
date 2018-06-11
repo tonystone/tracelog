@@ -48,12 +48,12 @@ internal final class Logger {
             self.processName = process.processName
             self.processIdentifier = Int(process.processIdentifier)
 
-            #if os(macOS)
+            #if os(iOS) || os(macOS) || os(watchOS) || os(tvOS)
                 var threadID: UInt64 = 0
 
                 pthread_threadid_np(pthread_self(), &threadID)
                 self.threadIdentifier = threadID
-            #else   // FIXME: Currently it does not seem like Linux supports the pthread_threadid_np method
+            #else   // FIXME: Linux does not support the pthread_threadid_np function, gettid in s syscall must be used.
                 self.threadIdentifier = 0
             #endif
         }
@@ -76,46 +76,25 @@ internal final class Logger {
     }
 
     ///
-    /// Serialization queue for init and writing
+    /// Initialize the config with the default configuration first.  The
+    /// user can re-init this at a later time or simply use the default.
     ///
-    fileprivate static let queue = DispatchQueue(label: "tracelog.write.queue")
-
-    ///
-    /// Initialize the config with the default configuration
-    /// read from the environment first.  The user can re-init
-    /// this at a later time or simply use the default.
-    ///
-    fileprivate static let config = Configuration()
+    fileprivate static var config = Configuration()
 
     ///
     /// Configure the logging system with the specified writers and environment
     ///
-    class func configure(writers: [Writer]? = nil, environment: Environment? = nil) {
+    class func configure(mode: Mode, writers: [Writer], environment: Environment) {
 
-        ///
-        /// Note: we use a synchronous call here for the configuration, all
-        ///       other calls must be async in order not to conflict with this one.
-        ///
-        queue.sync {
+        self.config = Configuration(mode: mode, writers: writers, environment: environment)
 
-            if let writers = writers {
-                self.config.writers = writers
-            }
+        logPrimitive(level: .info, tag: moduleLogName, file: #file, function: #function, line: #line) {
+            "\(moduleLogName) Configured using: \(config.description)"
+        }
 
-            if let environment = environment {
-
-                let errors = config.load(environment: environment)
-
-                logPrimitive(level: .info, tag: moduleLogName, file: #file, function: #function, line: #line) {
-                    "\(moduleLogName) Configured using: \(config.description)"
-                }
-
-                for error in errors {
-
-                    logPrimitive(level: .warning, tag: moduleLogName, file: #file, function: #function, line: #line) {
-                        "\(error.description)"
-                    }
-                }
+        for error in self.config.errors {
+            logPrimitive(level: .warning, tag: moduleLogName, file: #file, function: #function, line: #line) {
+                "\(error.description)"
             }
         }
     }
@@ -124,25 +103,25 @@ internal final class Logger {
     /// Low level logging function for Swift calls
     ///
     class func logPrimitive(level: LogLevel, tag: String, file: String, function: String, line: Int, message: @escaping () -> String) {
-
-        /// Capture the context outside the dispatch queue
-        let runtimeContext = RuntimeContextImpl()
-        let staticContext  = StaticContextImpl(file: file, function: function, line: line)
-
         ///
-        /// All logPrimitive calls are asynchronous
+        /// Capture the timestamp as early as possible to
+        /// get the most accruate time.
         ///
-        queue.async {
+        let timestamp = Date().timeIntervalSince1970
 
-            if config.logLevel(for: tag) >= level {
-                let timestamp = Date().timeIntervalSince1970
+        /// Copy the config pointer so it does not change while we are using it.
+        let localConfig = self.config
 
-                /// Evaluate the message now
-                let messageString = message()
+        if localConfig.logLevel(for: tag) >= level {
 
-                for writer in config.writers {
-                    writer.log(timestamp, level: level, tag: tag, message: messageString, runtimeContext: runtimeContext, staticContext: staticContext)
-                }
+            let runtimeContext = RuntimeContextImpl()
+            let staticContext  = StaticContextImpl(file: file, function: function, line: line)
+
+            /// Evaluate the message now
+            let messageString = message()
+
+            for writer in localConfig.writers {
+                writer.log(timestamp, level: level, tag: tag, message: messageString, runtimeContext: runtimeContext, staticContext: staticContext)
             }
         }
     }

@@ -21,25 +21,56 @@ import Swift
 import Foundation
 
 ///
+/// The modes that TraceLog can run in.
+///
+public enum Mode {
+    ///
+    /// Asynchronous non-blocking mode.  A general mode used for most
+    /// application which queues all messages before being evaluated or logged.
+    /// This ensures minimal delays in application execution due to logging.
+    ///
+    case async
+    ///
+    /// Synchronous blocking mode.  Useful for scripting applications and other
+    /// applications where it is required for the call not to return until the
+    /// message is printed.
+    ///
+    case sync
+}
+
+///
 /// Initializes TraceLog with an optional array of Writers and the Environment.
 ///
 /// This call is optional but in order to read from the environment on start up,
-/// This method must be called.
+/// this method must be called.
 ///
 /// - Parameters:
+///     - mode:        The concurrency `Mode` to run TraceLog in. Async is the default.
 ///     - writers:     An Array of objects that implement the Writer protocol used to process messages that are logged. Note the writers are called in the order they are in this array.
 ///     - environment: Either a Dictionary<String, String> or an Environment object that contains the key/value pairs of configuration variables for TraceLog.
 ///
-/// Example:
+/// - Example:
+///
+/// Start TraceLog in the default mode, with default writers.
+/// ```
+///     TraceLog.configure()
+/// ```
+///
+/// Start TraceLog in the default mode, replacing the default writer with `MyWriter` reading the environment for log level settings.
+/// ```
+///     TraceLog.configure(writers: [MyWriter()])
+/// ```
+///
+/// Start TraceLog in the default mode, replacing the default writer with `MyWriter` and setting log levels programmatically.
 /// ```
 ///     TraceLog.configure(writers: [MyWriter()], environment: ["LOG_ALL": "TRACE4",
 ///                                                              "LOG_PREFIX_NS" : "ERROR",
 ///                                                              "LOG_TAG_TraceLog" : "TRACE4"])
 /// ```
 ///
-public func configure(writers: [Writer] = [ConsoleWriter()], environment: Environment = Environment()) {
+public func configure(mode: Mode = .async, writers: [Writer] = [ConsoleWriter()], environment: Environment = Environment()) {
     #if !TRACELOG_DISABLED
-        Logger.configure(writers: writers, environment: environment)
+    Logger.configure(mode: mode, writers: writers, environment: environment)
     #endif
 }
 

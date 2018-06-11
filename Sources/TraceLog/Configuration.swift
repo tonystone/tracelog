@@ -19,10 +19,12 @@
 ///
 import Foundation
 
-///
-/// Internal Configuration data
-///
-internal class Configuration {
+extension Configuration {
+
+    private struct Default {
+
+        static let mode: Mode = .async
+    }
 
     enum ConfigurationError: Error, CustomStringConvertible {
         case invalidLogLevel(String)
@@ -38,19 +40,35 @@ internal class Configuration {
     private static let logTag    = "LOG_TAG_"
     private static let logPrefix = "LOG_PREFIX_"
     private static let logAll    = "LOG_ALL"
+}
 
-    var globalLogLevel = LogLevel.info
+///
+/// Internal Configuration data
+///
+internal class Configuration {
 
-    var loggedPrefixes: [String: LogLevel] = [:]
-    var loggedTags: [String: LogLevel] = [:]
-    var writers: [Writer]            = [ConsoleWriter()]
+    var mode:           Mode                 = Default.mode
+    var globalLogLevel: LogLevel             = .info
+    var loggedPrefixes: [String: LogLevel]   = [:]
+    var loggedTags:     [String: LogLevel]   = [:]
+    var writers:        [WriterProxy]        = []
+    var errors:         [ConfigurationError] = []
 
-    init () {}
+    init(mode: Mode = Default.mode, writers: [Writer] = [ConsoleWriter()], environment: Environment = Environment()) {
+        self.mode = mode
+        self.writers = []
+
+        for writer in writers {
+            self.writers.append(WriterProxy.newProxy(for: writer, mode: self.mode))
+        }
+
+        self.errors = self.parse(environment: environment)
+    }
 
     ///
     /// (Re)Load this structure with the values for the environment variables
     ///
-    func load(environment: Environment) -> [ConfigurationError] {
+    private func parse(environment: Environment) -> [ConfigurationError] {
 
         var errors = [ConfigurationError]()
 
