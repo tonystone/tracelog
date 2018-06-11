@@ -6,20 +6,6 @@
 	objectVersion = 46;
 	objects = {
 
-/* Begin PBXAggregateTarget section */
-		EA7E7AEE1DA2025000E3B511 /* Process Test Files */ = {
-			isa = PBXAggregateTarget;
-			buildConfigurationList = EA7E7AEF1DA2025000E3B511 /* Build configuration list for PBXAggregateTarget "Process Test Files" */;
-			buildPhases = (
-				EA7E7AF21DA2025700E3B511 /* ShellScript */,
-			);
-			dependencies = (
-			);
-			name = "Process Test Files";
-			productName = "Process Test Files";
-		};
-/* End PBXAggregateTarget section */
-
 /* Begin PBXBuildFile section */
 		0E87ABA35C23358EC0146880 /* Pods_TraceLog_iOS.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F1D6D652DA1F8605A5BA82F0 /* Pods_TraceLog_iOS.framework */; };
 		3471A24BC4F1A85D14A28E0E /* Pods_TraceLog_OSX_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E6975B127A69C431BBF370C /* Pods_TraceLog_OSX_Tests.framework */; };
@@ -113,14 +99,12 @@
 		EA5E86C11DFF085000C60155 /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; name = .swiftlint.yml; path = ../.swiftlint.yml; sourceTree = SOURCE_ROOT; };
 		EA68802B1DA5AE0400119145 /* ConfigurationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ConfigurationTests.swift; sourceTree = "<group>"; };
 		EA7E7AB51DA0CB8100E3B511 /* Package.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Package.swift; path = ../Package.swift; sourceTree = "<group>"; };
-		EA7E7AF71DA206D800E3B511 /* xctest_tool.rb */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.ruby; path = xctest_tool.rb; sourceTree = "<group>"; };
 		EA7E7B021DA297A400E3B511 /* LoggerProxy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoggerProxy.swift; sourceTree = "<group>"; };
 		EA7E7B041DA297A400E3B511 /* TraceLogPerformanceTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TraceLogPerformanceTests.m; sourceTree = "<group>"; };
 		EA7E7B051DA297A400E3B511 /* TraceLogTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TraceLogTests.m; sourceTree = "<group>"; };
 		EA7E7B081DA297A400E3B511 /* TraceLogPerformanceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceLogPerformanceTests.swift; sourceTree = "<group>"; };
 		EA7E7B0A1DA297A400E3B511 /* TraceLogTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TraceLogTests.swift; sourceTree = "<group>"; };
 		EA90A6281DA72C4F00B12B76 /* ExpectationValues.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExpectationValues.swift; sourceTree = "<group>"; };
-		EAB6DE011DA01D1E00ACEEF3 /* TraceLog.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = TraceLog.playground; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.swift; };
 		EABCEDFB20C433C00000EA32 /* UnifiedLoggingWriterTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnifiedLoggingWriterTests.swift; sourceTree = "<group>"; };
 		EAE2A6D71DA314BE0042AF83 /* Tests-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tests-Bridging-Header.h"; sourceTree = "<group>"; };
 		F1D6D652DA1F8605A5BA82F0 /* Pods_TraceLog_iOS.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TraceLog_iOS.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -167,7 +151,6 @@
 			isa = PBXGroup;
 			children = (
 				60FF7A9C1954A5C5007DD14C /* Podspec Metadata */,
-				EAB6DE001DA01CFE00ACEEF3 /* Playground */,
 				EA51B84C1DB3FC2A007551DC /* TraceLog-iOS */,
 				EA51B8611DB3FC2A007551DC /* TraceLog-iOS-Tests */,
 				EA0B86C11DB4266B0048B0B6 /* TraceLog-OSX */,
@@ -175,7 +158,6 @@
 				EA30384C1BEA94DC00DC4084 /* Tests */,
 				6003F58C195388D20070C39A /* Frameworks */,
 				6003F58B195388D20070C39A /* Products */,
-				EA7E7AE11DA1EF9400E3B511 /* Scripts */,
 				F24D3ECF0B031927E2CF101D /* Pods */,
 			);
 			sourceTree = "<group>";
@@ -275,15 +257,6 @@
 			path = "TraceLog-iOS-Tests";
 			sourceTree = "<group>";
 		};
-		EA7E7AE11DA1EF9400E3B511 /* Scripts */ = {
-			isa = PBXGroup;
-			children = (
-				EA7E7AF71DA206D800E3B511 /* xctest_tool.rb */,
-			);
-			name = Scripts;
-			path = ../Scripts;
-			sourceTree = SOURCE_ROOT;
-		};
 		EA7E7B011DA297A400E3B511 /* TraceLogObjCTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -305,14 +278,6 @@
 				EA90A6281DA72C4F00B12B76 /* ExpectationValues.swift */,
 			);
 			path = TraceLogTests;
-			sourceTree = "<group>";
-		};
-		EAB6DE001DA01CFE00ACEEF3 /* Playground */ = {
-			isa = PBXGroup;
-			children = (
-				EAB6DE011DA01D1E00ACEEF3 /* TraceLog.playground */,
-			);
-			name = Playground;
 			sourceTree = "<group>";
 		};
 		F24D3ECF0B031927E2CF101D /* Pods */ = {
@@ -464,7 +429,6 @@
 				EA51B85D1DB3FC2A007551DC /* TraceLog-iOS-Tests */,
 				EA0B86BF1DB4266B0048B0B6 /* TraceLog-OSX */,
 				EA0B86CD1DB4266B0048B0B6 /* TraceLog-OSX-Tests */,
-				EA7E7AEE1DA2025000E3B511 /* Process Test Files */,
 			);
 		};
 /* End PBXProject section */
@@ -631,19 +595,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraceLog-iOS-Tests/Pods-TraceLog-iOS-Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		EA7E7AF21DA2025700E3B511 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "export LC_ALL=en_US.UTF-8\ncd ../\nScripts/xctest_tool.rb";
 		};
 		F28D44717C37D2ECB6F62BEE /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1041,20 +992,6 @@
 			};
 			name = Release;
 		};
-		EA7E7AF01DA2025000E3B511 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Debug;
-		};
-		EA7E7AF11DA2025000E3B511 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				PRODUCT_NAME = "$(TARGET_NAME)";
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1099,15 +1036,6 @@
 			buildConfigurations = (
 				EA51B8691DB3FC2A007551DC /* Debug */,
 				EA51B86A1DB3FC2A007551DC /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		EA7E7AEF1DA2025000E3B511 /* Build configuration list for PBXAggregateTarget "Process Test Files" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				EA7E7AF01DA2025000E3B511 /* Debug */,
-				EA7E7AF11DA2025000E3B511 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
