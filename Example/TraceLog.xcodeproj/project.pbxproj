@@ -338,7 +338,6 @@
 			buildConfigurationList = EA0B86D91DB4266B0048B0B6 /* Build configuration list for PBXNativeTarget "TraceLog-OSX" */;
 			buildPhases = (
 				B32ECBB97DDE42E7561DAE00 /* [CP] Check Pods Manifest.lock */,
-				EA5E86C31DFF097A00C60155 /* Swiftlint */,
 				EA0B86BC1DB4266B0048B0B6 /* Sources */,
 				EA0B86BD1DB4266B0048B0B6 /* Frameworks */,
 				EA0B86BE1DB4266B0048B0B6 /* Resources */,
@@ -378,7 +377,6 @@
 			buildConfigurationList = EA51B8651DB3FC2A007551DC /* Build configuration list for PBXNativeTarget "TraceLog-iOS" */;
 			buildPhases = (
 				072D1B80038CBC4F779EADCD /* [CP] Check Pods Manifest.lock */,
-				EA5E86C21DFF095600C60155 /* Swiftlint */,
 				EA51B8471DB3FC2A007551DC /* Sources */,
 				EA51B8481DB3FC2A007551DC /* Frameworks */,
 				EA51B8491DB3FC2A007551DC /* Resources */,
@@ -633,34 +631,6 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-TraceLog-iOS-Tests/Pods-TraceLog-iOS-Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
-		};
-		EA5E86C21DFF095600C60155 /* Swiftlint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Swiftlint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint lint --path ../\nelse\necho \"warning: SwiftLint not installed, please install using `brew install swiftlint`.  You can find more information here https://github.com/realm/SwiftLint\"\nfi";
-		};
-		EA5E86C31DFF097A00C60155 /* Swiftlint */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = Swiftlint;
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "if which swiftlint >/dev/null; then\nswiftlint lint --path ../\nelse\necho \"warning: SwiftLint not installed, please install using `brew install swiftlint`.  You can find more information here https://github.com/realm/SwiftLint\"\nfi";
 		};
 		EA7E7AF21DA2025700E3B511 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
