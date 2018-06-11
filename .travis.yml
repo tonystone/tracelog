@@ -77,6 +77,7 @@ before_install:
        # Fix travis issue: https://github.com/travis-ci/travis-ci/issues/6307
        rvm get head --auto-dotfiles || true
        sudo log config --subsystem "xctest" --mode "persist:debug"
+       sudo log config --subsystem "TraceLog-OSX" --mode "persist:debug"
     fi
   #
   # Linux requires downloading Swift and tools
