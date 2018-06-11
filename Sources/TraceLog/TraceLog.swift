@@ -70,7 +70,7 @@ public enum Mode {
 ///
 public func configure(mode: Mode = .async, writers: [Writer] = [ConsoleWriter()], environment: Environment = Environment()) {
     #if !TRACELOG_DISABLED
-    Logger.configure(mode: mode, writers: writers, environment: environment)
+        Logger.configure(mode: mode, writers: writers, environment: environment)
     #endif
 }
 
