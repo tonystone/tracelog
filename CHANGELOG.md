@@ -8,6 +8,7 @@ All significant changes to this project will be documented in this file.
 
 #### Removed
 - Removed all Xcode projects, Xcode projects are now generated using Swift Package Manager.
+- Dropped iOS 8 support.
 
 ## [3.0.0](https://github.com/tonystone/tracelog/tree/3.0.0)
 
