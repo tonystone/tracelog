@@ -5,7 +5,8 @@ All significant changes to this project will be documented in this file.
 
 #### Added
 - Added `UnifiedLoggingWriter` for Apple Unified Logging system logging using TraceLog.
-- Added mode to TraceLog.configuration to allow async or sync mode of operation. Sync mode is useful to use cases that have short lived processes (scripts) or require real time logging.
+- Added mode to TraceLog.configuration to allow direct, async, or sync mode of operation. Sync & direct mode are useful for use cases that have short-lived processes (scripts) or require real-time logging.
+- Added ability to set the concurrency mode individually for each Writer.
 
 #### Removed
 - Removed all Xcode projects, Xcode projects are now generated using Swift Package Manager.
