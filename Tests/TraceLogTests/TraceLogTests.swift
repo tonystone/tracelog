@@ -18,30 +18,6 @@ class TraceLogTestsSwift: XCTestCase {
 
     let testTag = "Test Tag"
 
-    private class SleepyWriter: Writer {
-        let sleepTime: useconds_t
-
-        init(sleepTime: useconds_t) {
-            self.sleepTime = sleepTime
-        }
-
-        func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
-            usleep(sleepTime)
-        }
-    }
-
-    private class CallbackWriter: Writer {
-        let callback: (Double, LogLevel, String, String, RuntimeContext, StaticContext) -> Void
-
-        init(callback: @escaping (Double, LogLevel, String, String, RuntimeContext, StaticContext) -> Void) {
-            self.callback = callback
-        }
-
-        func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
-            callback(timestamp, level, tag, message, runtimeContext, staticContext)
-        }
-    }
-
     // MARK: - Configuration
 
     func testConfigureWithNoArgs() {
@@ -51,7 +27,7 @@ class TraceLogTestsSwift: XCTestCase {
     func testConfigureWithLogWriters() {
         let testMessage = "TraceLog Configured using: {\n\tglobal: {\n\n\t\tALL = INFO\n\t}\n}"
 
-        let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .info, tag: "TraceLog", message: testMessage, testFileFunction: false)
+        let expectedValues = ValidateExpectedValuesWriter(expectation: self.expectation(description: testMessage), level: .info, tag: "TraceLog", message: testMessage, testFileFunction: false)
 
         TraceLog.configure(writers: [expectedValues], environment: ["LOG_ALL": "INFO"])
 
@@ -64,7 +40,7 @@ class TraceLogTestsSwift: XCTestCase {
 
         let testMessage = "TraceLog Configured using: {\n\ttags: {\n\n\t\tTraceLog = TRACE4\n\t}\n\tprefixes: {\n\n\t\tNS = ERROR\n\t}\n\tglobal: {\n\n\t\tALL = TRACE4\n\t}\n}"
 
-        let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .info, tag: "TraceLog", message: testMessage, testFileFunction: false)
+        let expectedValues = ValidateExpectedValuesWriter(expectation: self.expectation(description: testMessage), level: .info, tag: "TraceLog", message: testMessage, testFileFunction: false)
 
         TraceLog.configure(writers: [expectedValues], environment: ["LOG_ALL": "TRACE4",
                                                                     "LOG_PREFIX_NS": "ERROR",
@@ -79,7 +55,7 @@ class TraceLogTestsSwift: XCTestCase {
 
         let testMessage = "Variable \'LOG_ALL\' has an invalid logLevel of \'TRACE5\'. \'LOG_ALL\' will be set to INFO."
 
-        let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .warning, tag: "TraceLog", message: testMessage, testFileFunction: false)
+        let expectedValues = ValidateExpectedValuesWriter(expectation: self.expectation(description: testMessage), level: .warning, tag: "TraceLog", message: testMessage, testFileFunction: false)
 
         TraceLog.configure(writers: [expectedValues], environment: ["LOG_ALL": "TRACE5"])
 
@@ -92,7 +68,7 @@ class TraceLogTestsSwift: XCTestCase {
 
         let testMessage = "Variable \'LOG_PREFIX_NS\' has an invalid logLevel of \'TRACE5\'. \'LOG_PREFIX_NS\' will NOT be set."
 
-        let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .warning, tag: "TraceLog", message: testMessage, testFileFunction: false)
+        let expectedValues = ValidateExpectedValuesWriter(expectation: self.expectation(description: testMessage), level: .warning, tag: "TraceLog", message: testMessage, testFileFunction: false)
 
         TraceLog.configure(writers: [expectedValues], environment: ["LOG_PREFIX_NS": "TRACE5"])
 
@@ -105,7 +81,7 @@ class TraceLogTestsSwift: XCTestCase {
 
         let testMessage = "Variable \'LOG_TAG_TRACELOG\' has an invalid logLevel of \'TRACE5\'. \'LOG_TAG_TRACELOG\' will NOT be set."
 
-        let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .warning, tag: "TraceLog", message: testMessage, testFileFunction: false)
+        let expectedValues = ValidateExpectedValuesWriter(expectation: self.expectation(description: testMessage), level: .warning, tag: "TraceLog", message: testMessage, testFileFunction: false)
 
         TraceLog.configure(writers: [expectedValues], environment: ["LOG_TAG_TraceLog": "TRACE5"])
 
@@ -216,7 +192,7 @@ class TraceLogTestsSwift: XCTestCase {
     func testLogError() {
         let testMessage = "Swift: " + #function
 
-        let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .error, tag: testTag, message: testMessage)
+        let expectedValues = ValidateExpectedValuesWriter(expectation: self.expectation(description: testMessage), level: .error, tag: testTag, message: testMessage)
 
         TraceLog.configure(writers: [expectedValues], environment: ["LOG_ALL": "ERROR"])
 
@@ -230,7 +206,7 @@ class TraceLogTestsSwift: XCTestCase {
     func testLogWarning() {
         let testMessage = "Swift: " + #function
 
-        let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .warning, tag: testTag, message: testMessage)
+        let expectedValues = ValidateExpectedValuesWriter(expectation: self.expectation(description: testMessage), level: .warning, tag: testTag, message: testMessage)
 
         TraceLog.configure(writers: [expectedValues], environment: ["LOG_ALL": "WARNING"])
 
@@ -244,7 +220,7 @@ class TraceLogTestsSwift: XCTestCase {
     func testLogInfo() {
         let testMessage = "Swift: " + #function
 
-        let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .info, tag: testTag, message: testMessage)
+        let expectedValues = ValidateExpectedValuesWriter(expectation: self.expectation(description: testMessage), level: .info, tag: testTag, message: testMessage)
 
         TraceLog.configure(writers: [expectedValues], environment: ["LOG_ALL": "INFO"])
 
@@ -258,7 +234,7 @@ class TraceLogTestsSwift: XCTestCase {
     func testLogTrace() {
         let testMessage = "Swift: " + #function
 
-        let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .trace1, tag: testTag, message: testMessage)
+        let expectedValues = ValidateExpectedValuesWriter(expectation: self.expectation(description: testMessage), level: .trace1, tag: testTag, message: testMessage)
 
         TraceLog.configure(writers: [expectedValues], environment: ["LOG_ALL": "TRACE1"])
 
@@ -272,7 +248,7 @@ class TraceLogTestsSwift: XCTestCase {
     func testLogTrace1() {
         let testMessage = "Swift: " + #function
 
-        let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .trace1, tag: testTag, message: testMessage)
+        let expectedValues = ValidateExpectedValuesWriter(expectation: self.expectation(description: testMessage), level: .trace1, tag: testTag, message: testMessage)
 
         TraceLog.configure(writers: [expectedValues], environment: ["LOG_ALL": "TRACE1"])
 
@@ -286,7 +262,7 @@ class TraceLogTestsSwift: XCTestCase {
     func testLogTrace2() {
         let testMessage = "Swift: " + #function
 
-        let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .trace2, tag: testTag, message: testMessage)
+        let expectedValues = ValidateExpectedValuesWriter(expectation: self.expectation(description: testMessage), level: .trace2, tag: testTag, message: testMessage)
 
         TraceLog.configure(writers: [expectedValues], environment: ["LOG_ALL": "TRACE2"])
 
@@ -300,7 +276,7 @@ class TraceLogTestsSwift: XCTestCase {
     func testLogTrace3() {
         let testMessage = "Swift: " + #function
 
-        let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .trace3, tag: testTag, message: testMessage)
+        let expectedValues = ValidateExpectedValuesWriter(expectation: self.expectation(description: testMessage), level: .trace3, tag: testTag, message: testMessage)
 
         TraceLog.configure(writers: [expectedValues], environment: ["LOG_ALL": "TRACE3"])
 
@@ -314,7 +290,7 @@ class TraceLogTestsSwift: XCTestCase {
     func testLogTrace4() {
         let testMessage = "Swift: " + #function
 
-        let expectedValues = ExpectationValues(expectation: self.expectation(description: testMessage), level: .trace4, tag: testTag, message: testMessage)
+        let expectedValues = ValidateExpectedValuesWriter(expectation: self.expectation(description: testMessage), level: .trace4, tag: testTag, message: testMessage)
 
         TraceLog.configure(writers: [expectedValues], environment: ["LOG_ALL": "TRACE4"])
 

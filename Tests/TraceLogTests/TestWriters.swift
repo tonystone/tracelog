@@ -1,5 +1,5 @@
 ///
-///  ExpectationValues.swift
+///  ValidateExpectedValuesWriter.swift
 ///  TraceLog
 ///
 ///  Created by Tony Stone on 10/6/16.
@@ -12,9 +12,39 @@ import Dispatch
 import TraceLog
 
 ///
+/// Null Writer that sleeps for the passed in time when a message is recieved.
+///
+class SleepyWriter: Writer {
+    let sleepTime: useconds_t
+
+    init(sleepTime: useconds_t) {
+        self.sleepTime = sleepTime
+    }
+
+    func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
+        usleep(sleepTime)
+    }
+}
+
+///
+/// A Writer that when the log func is called, will execute your block of code passing you the values.
+///
+class CallbackWriter: Writer {
+    let callback: (Double, LogLevel, String, String, RuntimeContext, StaticContext) -> Void
+
+    init(callback: @escaping (Double, LogLevel, String, String, RuntimeContext, StaticContext) -> Void) {
+        self.callback = callback
+    }
+
+    func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
+        callback(timestamp, level, tag, message, runtimeContext, staticContext)
+    }
+}
+
+///
 /// Log Writer which captures the expected value and fulfills the XCTestExpectation when it matches the message
 ///
-class ExpectationValues: Writer {
+class ValidateExpectedValuesWriter: Writer {
 
     let expectation: XCTestExpectation
 
