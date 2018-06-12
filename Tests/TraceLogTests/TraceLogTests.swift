@@ -208,7 +208,7 @@ class TraceLogTestsSwift: XCTestCase {
                 }
             }
         }
-        XCTAssertEqual(loggers.wait(timeout: .now() + 30.0), .success)
+        XCTAssertEqual(loggers.wait(timeout: .now() + 60.0), .success)
     }
 
     // MARK: - Logging Methods
