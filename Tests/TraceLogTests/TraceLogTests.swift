@@ -155,29 +155,30 @@ class TraceLogTestsSwift: XCTestCase {
     }
 
     func testNoDeadLockDirectMode() {
-        TraceLog.configure(writers: [.direct(SleepyWriter(sleepTime: 500))], environment: ["LOG_ALL": "INFO"])
+        TraceLog.configure(writers: [.direct(SleepyWriter(sleepTime: 100))], environment: ["LOG_ALL": "INFO"])
 
         self._testNoDeadLock()
     }
 
     func testNoDeadLockSyncMode() {
-        TraceLog.configure(writers: [.sync(SleepyWriter(sleepTime: 500))], environment: ["LOG_ALL": "INFO"])
+        TraceLog.configure(writers: [.sync(SleepyWriter(sleepTime: 100))], environment: ["LOG_ALL": "INFO"])
 
         self._testNoDeadLock()
     }
 
     func testNoDeadLockAsyncMode() {
-        TraceLog.configure(writers: [.async(SleepyWriter(sleepTime: 500))], environment: ["LOG_ALL": "INFO"])
+        TraceLog.configure(writers: [.async(SleepyWriter(sleepTime: 100))], environment: ["LOG_ALL": "INFO"])
 
         self._testNoDeadLock()
     }
 
     func _testNoDeadLock() {
 
+        let queue   = DispatchQueue(label: "_testNoDeadLock.queue", attributes: .concurrent)
         let loggers = DispatchGroup()
 
         for _ in 0...20 {
-            DispatchQueue.global().async(group: loggers) {
+            queue.async(group: loggers) {
 
                 for _ in 0...1000 {
                     logInfo { "Random test message." }
