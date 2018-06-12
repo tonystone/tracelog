@@ -18,6 +18,32 @@ class TraceLogTestsSwift: XCTestCase {
 
     let testTag = "Test Tag"
 
+    private class SleepyWriter: Writer {
+        let sleepTime: useconds_t
+
+        init(sleepTime: useconds_t) {
+            self.sleepTime = sleepTime
+        }
+
+        func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
+            usleep(sleepTime)
+        }
+    }
+
+    private class CallbackWriter: Writer {
+        let callback: (Double, LogLevel, String, String, RuntimeContext, StaticContext) -> Void
+
+        init(callback: @escaping (Double, LogLevel, String, String, RuntimeContext, StaticContext) -> Void) {
+            self.callback = callback
+        }
+
+        func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
+            callback(timestamp, level, tag, message, runtimeContext, staticContext)
+        }
+    }
+
+    // MARK: - Configuration
+
     func testConfigureWithNoArgs() {
         TraceLog.configure()
     }
@@ -87,6 +113,105 @@ class TraceLogTestsSwift: XCTestCase {
             XCTAssertNil(error)
         }
     }
+
+    // MARK: ConcurrencyMode tests
+
+    func testModeDirectIsSameThread() {
+        let input: (thread: Thread, message: String) = (Thread.current, "Random test message.")
+
+        let validatingWriter = CallbackWriter() { (timestamp, level, tag, message, runtimeContext, staticContext) -> Void in
+
+            // We ignore all but the message that is equal to our input message to avoid TraceLogs startup messages
+            if message == input.message {
+                XCTAssertEqual(Thread.current, input.thread)
+            }
+        }
+
+        TraceLog.configure(writers: [.direct(validatingWriter)], environment: ["LOG_ALL": "INFO"])
+
+        logInfo { input.message }
+    }
+
+    // Note: it does not make sense to test Sync for same thread or different as there is no gaurentee it will be either.
+
+    func testModeAsyncIsDifferentThread() {
+        let semaphore = DispatchSemaphore(value: 0)
+        let input: (thread: Thread, message: String) = (Thread.current, "Random test message.")
+
+        let validatingWriter = CallbackWriter() { (timestamp, level, tag, message, runtimeContext, staticContext) -> Void in
+
+            // We ignore all but the message that is equal to our input message to avoid TraceLogs startup messages
+            if message == input.message {
+                XCTAssertNotEqual(Thread.current, input.thread)
+
+                semaphore.signal()
+            }
+        }
+
+        /// Setup test with Writer
+        TraceLog.configure(writers: [.async(validatingWriter)], environment: ["LOG_ALL": "INFO"])
+
+        /// Run test.
+        logInfo { input.message }
+
+        /// Wait for the thread to return
+        XCTAssertEqual(semaphore.wait(timeout: .now() + 0.1), .success)
+    }
+
+    func testModeSyncBlocks() {
+        let input: (thread: Thread, message: String) = (Thread.current, "Random test message.")
+        var logged: Bool = false
+
+        let validatingWriter = CallbackWriter() { (timestamp, level, tag, message, runtimeContext, staticContext) -> Void in
+
+            // We ignore all but the message that is equal to our input message to avoid TraceLogs startup messages
+            if message == input.message {
+                logged = true
+            }
+        }
+
+        TraceLog.configure(writers: [.sync(validatingWriter)], environment: ["LOG_ALL": "INFO"])
+
+        /// This should block until our writer is called.
+        logInfo { input.message }
+
+        XCTAssertEqual(logged, true) /// Not a difinitive test.
+    }
+
+    func testNoDeadLockDirectMode() {
+        TraceLog.configure(writers: [.direct(SleepyWriter(sleepTime: 500))], environment: ["LOG_ALL": "INFO"])
+
+        self._testNoDeadLock()
+    }
+
+    func testNoDeadLockSyncMode() {
+        TraceLog.configure(writers: [.sync(SleepyWriter(sleepTime: 500))], environment: ["LOG_ALL": "INFO"])
+
+        self._testNoDeadLock()
+    }
+
+    func testNoDeadLockAsyncMode() {
+        TraceLog.configure(writers: [.async(SleepyWriter(sleepTime: 500))], environment: ["LOG_ALL": "INFO"])
+
+        self._testNoDeadLock()
+    }
+
+    func _testNoDeadLock() {
+
+        let loggers = DispatchGroup()
+
+        for _ in 0...20 {
+            DispatchQueue.global().async(group: loggers) {
+
+                for _ in 0...1000 {
+                    logInfo { "Random test message." }
+                }
+            }
+        }
+        XCTAssertEqual(loggers.wait(timeout: .now() + 30.0), .success)
+    }
+
+    // MARK: - Logging Methods
 
     func testLogError() {
         let testMessage = "Swift: " + #function
@@ -199,6 +324,8 @@ class TraceLogTestsSwift: XCTestCase {
             XCTAssertNil(error)
         }
     }
+
+    // MARK: - Logging Methods when level below log level.
 
     func testLogErrorWhileOff() {
         let testMessage = "Swift: " + #function
