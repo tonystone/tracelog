@@ -21,11 +21,6 @@ import Foundation
 
 extension Configuration {
 
-    private struct Default {
-
-        static let mode: Mode = .async
-    }
-
     enum ConfigurationError: Error, CustomStringConvertible {
         case invalidLogLevel(String)
 
@@ -47,20 +42,14 @@ extension Configuration {
 ///
 internal class Configuration {
 
-    var mode:           Mode                 = Default.mode
     var globalLogLevel: LogLevel             = .info
     var loggedPrefixes: [String: LogLevel]   = [:]
     var loggedTags:     [String: LogLevel]   = [:]
-    var writers:        [WriterProxy]        = []
+    var writers:        [Writer]             = []
     var errors:         [ConfigurationError] = []
 
-    init(mode: Mode = Default.mode, writers: [Writer] = [ConsoleWriter()], environment: Environment = Environment()) {
-        self.mode = mode
-        self.writers = []
-
-        for writer in writers {
-            self.writers.append(WriterProxy.newProxy(for: writer, mode: self.mode))
-        }
+    init(writers: [WriterConcurrencyMode] = [.async(ConsoleWriter())], environment: Environment = Environment()) {
+        self.writers = writers.map( { $0.proxy() } )
 
         self.errors = self.parse(environment: environment)
     }

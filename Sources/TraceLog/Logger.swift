@@ -84,9 +84,9 @@ internal final class Logger {
     ///
     /// Configure the logging system with the specified writers and environment
     ///
-    class func configure(mode: Mode, writers: [Writer], environment: Environment) {
+    class func configure(writers: [WriterConcurrencyMode], environment: Environment) {
 
-        self.config = Configuration(mode: mode, writers: writers, environment: environment)
+        self.config = Configuration(writers: writers, environment: environment)
 
         logPrimitive(level: .info, tag: moduleLogName, file: #file, function: #function, line: #line) {
             "\(moduleLogName) Configured using: \(config.description)"
