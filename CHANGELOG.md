@@ -4,7 +4,9 @@ All significant changes to this project will be documented in this file.
 ## [4.0.0-beta.1](https://github.com/tonystone/tracelog/tree/4.0.0-beta.1)
 
 #### Added
-- `UnifiedLoggingWriter` for Apple Unified Logging system logging using TraceLog.
+- Added `UnifiedLoggingWriter` for Apple Unified Logging system logging using TraceLog.
+- Added mode to TraceLog.configuration to allow direct, async, or sync mode of operation. Sync & direct mode are useful for use cases that have short-lived processes (scripts) or require real-time logging.
+- Added ability to set the concurrency mode individually for each Writer.
 
 #### Removed
 - Removed all Xcode projects, Xcode projects are now generated using Swift Package Manager.

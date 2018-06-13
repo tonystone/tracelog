@@ -18,7 +18,12 @@
 ///  Created by Tony Stone on 4/23/16.
 ///
 import Foundation
-import Dispatch
+
+#if os(OSX) || os(iOS) || os(watchOS) || os(tvOS)
+    import Darwin
+#elseif os(Linux) || os(FreeBSD) || os(PS4) || os(Android)  /* Swift 5 support: || os(Cygwin) || os(Haiku) */
+    import Glibc
+#endif
 
 ///
 /// ConsoleWriter is the default `Writer` in **TraceLog** and writes to stdout.
@@ -30,9 +35,27 @@ import Dispatch
 public class ConsoleWriter: Writer {
 
     ///
+    /// Low level mutex for locking print since it's not reentrent.
+    ///
+    private var mutex = pthread_mutex_t()
+
+    ///
     /// Default constructor for this writer
     ///
-    public init() {}
+    public init() {
+        var attributes = pthread_mutexattr_t()
+        guard pthread_mutexattr_init(&attributes) == 0
+            else { fatalError("pthread_mutexattr_init") }
+        pthread_mutexattr_settype(&attributes, Int32(PTHREAD_MUTEX_RECURSIVE))
+
+        guard pthread_mutex_init(&mutex, &attributes) == 0
+            else { fatalError("pthread_mutex_init") }
+        pthread_mutexattr_destroy(&attributes)
+    }
+
+    deinit {
+        pthread_mutex_destroy(&mutex)
+    }
 
     ///
     /// Required log function for the logger
@@ -45,12 +68,21 @@ public class ConsoleWriter: Writer {
         let message         = "\(self.dateFormatter.string(from: date)) \(runtimeContext.processName)[\(runtimeContext.processIdentifier):\(runtimeContext.threadIdentifier)] \(levelString): <\(tag)> \(message)"
 
         ///
-        /// Note: we currently use the calling thread to synchronize knowing that
-        ///       TraceLog calls us in a serial queue.  This can cause interleaving
-        ///       of other message in the output should other threads be used to
-        ///       print to the screen.
+        /// Note: Since we could be called on any thread in TraceLog direct mode
+        /// we protect the print statement with a low-level mutex.
         ///
+        /// Pthreads mutexes were chosen because out of all the methods of synchronization
+        /// available in swift (queue, dispatch semaphores, etc), pthread mutexes are
+        /// the lowest overhead and fastest lock.
+        ///
+        /// We also want to ensure we maintain thread boundaries when in direct mode (avoid
+        /// jumping threads).
+        ///
+        pthread_mutex_lock(&mutex)
+
         print(message)
+
+        pthread_mutex_unlock(&mutex)
     }
 
     ///

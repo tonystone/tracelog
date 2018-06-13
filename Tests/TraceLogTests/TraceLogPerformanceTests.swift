@@ -13,13 +13,15 @@ private let testIterations = 1000
 
 class TraceLogPerformanceTestsSwift: XCTestCase {
 
+    struct NullWriter: Writer {
+        func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {}
+    }
+
     func testLogErrorPerformance_NullWriter() {
 
-        /// Remove the log writers for this test so we see the time it takes to process internally without io
-        TraceLog.configure(writers: [], environment: ["LOG_ALL": "TRACE4"])
+        TraceLog.configure(writers: [.async(NullWriter())], environment: ["LOG_ALL": "TRACE4"])
 
         self.measure {
-
             for _ in 0..<testIterations {
                 logError { "Swift: " + #function }
             }
@@ -29,7 +31,7 @@ class TraceLogPerformanceTestsSwift: XCTestCase {
     func testLogTrace4Performance_NullWriter() {
 
         /// Remove the log writers for this test so we see the time it takes to process internally without io
-        TraceLog.configure(writers: [], environment: ["LOG_ALL": "TRACE4"])
+        TraceLog.configure(writers: [.async(NullWriter())], environment: ["LOG_ALL": "TRACE4"])
 
         self.measure {
 
