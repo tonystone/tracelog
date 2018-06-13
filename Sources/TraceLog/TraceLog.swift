@@ -38,9 +38,9 @@ import Foundation
 ///     TraceLog.configure()
 /// ```
 ///
-/// Start TraceLog the with default writer in `.sync` mode.
+/// Start TraceLog the with default writer in `.direct` mode.
 /// ```
-///     TraceLog.configure(mode: .sync)
+///     TraceLog.configure(mode: .direct)
 /// ```
 ///
 /// Start TraceLog in the default mode, replacing the default writer with `MyWriter` reading the environment for log level settings.
