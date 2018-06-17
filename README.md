@@ -21,8 +21,31 @@
 
 ## Introduction
 
-TraceLog is a configurable debug logging system.  It is unique in that it's configured after compilation in the runtime environment. It reads environment variables from the process context to set log levels. This allows each developer to configure log output
-per session based on the debugging needs of that session.
+TraceLog's is designed to be a universal, flexible, portable, lightweight, and easy to use logging and trace facility. 
+
+### TraceLog Design Philosophy
+1) **Universal**: With TraceLog you are not locked into one type of logging system, as a matter of fact, you can choose to use a combination of log writers to write to various endpoints and systems.
+2) **Flexible**: With TraceLog you can filter messages at dynamically at run time or statically at compile time.  Choose whatever combination of `Writers` and filters that work for your particular use case. Write your own custom `Writer`s to plug into TraceLog for customized use-cases.
+3) **Portable**: At this writing, TraceLog is one of the few logging systems that was designed to run on all swift supported platforms and be used in multiple languages (Swift and Objective-C).
+4) **Lightweight**: TraceLog's footprint is small and efficient.  It's designed and meant to be as efficient on resources as can be and also optimize itself out if required by the use case.
+5) **Easy to use**: TraceLog can be used right out of the box with **No** setup or special dependencies.  That was designed in, and we've worked hard to maintain that over the years.  You can literally link to it and start adding `log` statements to your app and get useful output on any platform.
+
+### Features
+
+ - [x] Quick and easy to get started.
+ - [x] Fully configurable.
+ - [x] Message filtering.
+ - [x] **Logging Levels** (error, warning, info, trace1, trace2, trace3, trace4).
+ - [x] Custom **tag** support for message grouping and filtering.
+ - [x] Dynamically configurable levels via the OS environment at run time or inline code compiled into the application.
+ - [x] Installable Log Writers (multiple writers at a time)
+ - [x] Create custom Log writers for any use-case.
+ - [x] Multiple **concurrency modes** for writing to Writers. Settable globally or per Writer installed.
+   * **direct** - straight through real-time logging.
+   * **sync** - blocking queued logging.
+   * **async** - background thread logging.
+- [x] **Multi-language**: Swift and Objective-C support.
+- [x] **Portable**: Linux, macOS, iOS, tvOS, WatchOS
 
 ## Usage
 
