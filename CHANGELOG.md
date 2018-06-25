@@ -3,8 +3,13 @@ All significant changes to this project will be documented in this file.
 
 ## [4.0.0-beta.2](https://github.com/tonystone/tracelog/tree/4.0.0-beta.2)
 
+#### Added
+- Added `TestHarness` to assist developers in testing their own `Writer` types.
+- Added `shell` utility to assist in testing `Writer` types.
+- Added TraceLogTestTools module/library to allow use of new `TestHarness` and other Utilities.
+
 #### Removed
-- Removed the `UnifiedLoggingWriter` and instead using external `AdaptiveWriter` which adapts to various platforms for latest system log.
+- Removed the `UnifiedLoggingWriter` and instead using external `AdaptiveSystemLogWriter` which adapts to various platforms for latest system log.
 
 ## [4.0.0-beta.1](https://github.com/tonystone/tracelog/tree/4.0.0-beta.1)
 

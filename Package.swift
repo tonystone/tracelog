@@ -24,10 +24,11 @@ let package = Package(
     name: "TraceLog",
     targets: [
         /// Module targets
-        .target(name: "TraceLog", dependencies: [], path: "Sources/TraceLog"),
+        .target(name: "TraceLog",          dependencies: [],           path: "Sources/TraceLog"),
+        .target(name: "TraceLogTestTools", dependencies: ["TraceLog"], path: "Tests/TraceLogTestTools"),
 
         /// Tests
-        .testTarget(name: "TraceLogTests", dependencies: ["TraceLog"], path: "Tests/TraceLogTests")
+        .testTarget(name: "TraceLogTests", dependencies: ["TraceLog", "TraceLogTestTools"], path: "Tests/TraceLogTests")
     ],
     swiftLanguageVersions: [4]
 )
@@ -46,3 +47,4 @@ var productTargets = ["TraceLog"]
 
 /// Main products section
 package.products.append(.library(name: "TraceLog", type: .dynamic, targets: productTargets))
+package.products.append(.library(name: "TraceLogTestTools", type: .dynamic, targets: ["TraceLogTestTools"]))
