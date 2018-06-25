@@ -20,6 +20,8 @@
 import Foundation
 import XCTest
 
+#if os(macOS) || os(Linux)
+
 ///
 /// Helper to run the shell and return the output
 ///
@@ -34,3 +36,5 @@ public func shell(_ command: String) -> Data {
 
     return pipe.fileHandleForReading.readDataToEndOfFile()
 }
+
+#endif
