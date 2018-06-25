@@ -1,5 +1,5 @@
 ///
-///  Package.xcconfig
+///  SleepyTestWriter.swift
 ///
 ///  Copyright 2018 Tony Stone
 ///
@@ -15,11 +15,24 @@
 ///  See the License for the specific language governing permissions and
 ///  limitations under the License.
 ///
-///  Created by Tony Stone on 6/11/18.
+///  Created by Tony Stone on 6/20/18.
 ///
-CLANG_ENABLE_MODULES = YES
+import XCTest
+import Foundation
 
-IPHONEOS_DEPLOYMENT_TARGET = 9.0
-MACOSX_DEPLOYMENT_TARGET = 10.10
-TVOS_DEPLOYMENT_TARGET = 9.0
-WATCHOS_DEPLOYMENT_TARGET = 2.0
+import TraceLog
+
+///
+/// Null Test Writer that sleeps for the passed in time when a message is recieved.
+///
+class SleepyTestWriter: Writer {
+    let sleepTime: useconds_t
+
+    init(sleepTime: useconds_t) {
+        self.sleepTime = sleepTime
+    }
+
+    func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
+        usleep(sleepTime)
+    }
+}

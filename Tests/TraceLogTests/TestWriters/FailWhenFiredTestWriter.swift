@@ -1,5 +1,5 @@
 ///
-///  Package.xcconfig
+///  FailWhenFiredTestWriter.swift
 ///
 ///  Copyright 2018 Tony Stone
 ///
@@ -15,11 +15,26 @@
 ///  See the License for the specific language governing permissions and
 ///  limitations under the License.
 ///
-///  Created by Tony Stone on 6/11/18.
+///  Created by Tony Stone on 6/20/18.
 ///
-CLANG_ENABLE_MODULES = YES
+import XCTest
+import Foundation
+import Dispatch
 
-IPHONEOS_DEPLOYMENT_TARGET = 9.0
-MACOSX_DEPLOYMENT_TARGET = 10.10
-TVOS_DEPLOYMENT_TARGET = 9.0
-WATCHOS_DEPLOYMENT_TARGET = 2.0
+import TraceLog
+
+///
+/// No result Writer
+///
+class FailWhenFiredWriter: Writer {
+
+    let semaphore: DispatchSemaphore
+
+    init(semaphore: DispatchSemaphore) {
+        self.semaphore = semaphore
+    }
+
+    func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
+        semaphore.signal()
+    }
+}
