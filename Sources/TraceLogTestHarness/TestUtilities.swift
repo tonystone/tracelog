@@ -25,6 +25,9 @@ import XCTest
 ///
 /// Helper to run the shell and return the output
 ///
+@available(iOS, unavailable)
+@available(tvOS, unavailable)
+@available(watchOS, unavailable)
 public func shell(_ command: String) -> Data {
     let task = Process()
     task.launchPath = "/bin/bash"

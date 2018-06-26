@@ -47,32 +47,25 @@ public class TestHarness<T: Reader> {
     public let writer: T.WriterType
 
     ///
-    /// Instance of a Reader to use for validating the results of the test.
-    ///
-    public var reader: T {
-        return _reader.reader
-    }
-
-    ///
     /// Boxed version of the reader so it can be stored.
     ///
-    private let _reader: _AnyReaderBox<T>
+    private let reader: _AnyReaderBox<T>
 
     ///
     /// Initialize a test harness with the specified writer that is under test and a reader to search for the entry so it can be validated.
     ///
     public init(writer: T.WriterType, reader: T) {
         self.writer = writer
-        self._reader = _AnyReaderBox(reader)
+        self.reader = _AnyReaderBox(reader)
     }
 
     ///
     /// Executes test block (that must contain a call one of TraceLogs log functions) and validates the results.
     ///
-    public func testLog(for level: LogLevel, tag tagOrNil: String? = nil, message messageOrNil: String? = nil, _ file: String = #file, _ function: String = #function, _ line: Int = #line,
+    public func testLog(for level: LogLevel, tag tagOrNil: String? = nil, message messageOrNil: String? = nil, file: String = #file, function: String = #function, line: Int = #line,
                         testBlock: (String, String, String, String, Int) -> Void, validationBlock: (_ writer: T.WriterType, _ result: LogEntry?, _ expected: LogEntry)-> Void)  {
 
-        self._testLog(for: level, tag: tagOrNil, message: messageOrNil, file, function, line, testBlock: { (timestamp, level, tag, message, runtimeContext, staticContext) in
+        self._testLog(for: level, tag: tagOrNil, message: messageOrNil, file: file, function: function, line: line, testBlock: { (timestamp, level, tag, message, runtimeContext, staticContext) in
 
             testBlock(tag, message, file, function, line)
 
@@ -82,10 +75,10 @@ public class TestHarness<T: Reader> {
     ///
     /// Calls the writer directly with the given LogLevel and validates the results.
     ///
-    public func testLog(for level: LogLevel, tag tagOrNil: String? = nil, message messageOrNil: String? = nil, _ file: String = #file, _ function: String = #function, _ line: Int = #line,
+    public func testLog(for level: LogLevel, tag tagOrNil: String? = nil, message messageOrNil: String? = nil, file: String = #file, function: String = #function, line: Int = #line,
                         validationBlock: (_ writer: T.WriterType, _ result: LogEntry?, _ expected: LogEntry)-> Void)  {
 
-        self._testLog(for: level, tag: tagOrNil, message: messageOrNil, file, function, line, testBlock: { (timestamp, level, tag, message, runtimeContext, staticContext) in
+        self._testLog(for: level, tag: tagOrNil, message: messageOrNil, file: file, function: function, line: line, testBlock: { (timestamp, level, tag, message, runtimeContext, staticContext) in
 
             /// Execute the test
             self.writer.log(timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)
@@ -96,7 +89,7 @@ public class TestHarness<T: Reader> {
     ///
     /// Test a TraceLog log message to a writer.
     ///
-    private func _testLog(for level: LogLevel, tag tagOrNil: String? = nil, message messageOrNil: String? = nil, _ file: String = #file, _ function: String = #function, _ line: Int = #line,
+    private func _testLog(for level: LogLevel, tag tagOrNil: String? = nil, message messageOrNil: String? = nil, file: String = #file, function: String = #function, line: Int = #line,
                         testBlock: (Double, LogLevel, String, String, RuntimeContext, StaticContext) -> Void, validationBlock: (_ writer: T.WriterType, _ result: LogEntry?, _ expected: LogEntry)-> Void)  {
 
         /// This is the time in microseconds since the epoch UTC to match the journals time stamps.
@@ -111,7 +104,7 @@ public class TestHarness<T: Reader> {
         /// Execute the test
         testBlock(timestamp, level, tag, message, runtimeContext, staticContext)
 
-        let result = self._reader.logEntry(for: writer, timestamp: timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)
+        let result = self.reader.logEntry(for: self.writer, timestamp: timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)
 
         let expected = LogEntry(timestamp: timestamp, level: level, message: message, tag: tag, file: staticContext.file, function: staticContext.function, line: staticContext.line, processName: runtimeContext.processName, processIdentifier: runtimeContext.processIdentifier, threadIdentifier: Int(runtimeContext.threadIdentifier))
 
@@ -177,10 +170,6 @@ private class _AnyReaderBox<ConcreteReader: Reader>: _AnyReaderBase<ConcreteRead
 /// Private boxing class base for use in storing our Reader which has an associated type.
 ///
 private class _AnyReaderBase<T: Writer>: Reader {
-    init() {
-        guard type(of: self) != _AnyReaderBase.self
-            else { fatalError("Cannot initialize, must be subclass") }
-    }
 
     func logEntry(for writer: T, timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogEntry? {
         fatalError("Must override")
@@ -218,6 +207,14 @@ private struct TestRuntimeContext: RuntimeContext {
         let process  = ProcessInfo.processInfo
         self.processName = process.processName
         self.processIdentifier = Int(process.processIdentifier)
-        self.threadIdentifier = threadIdentifier
+
+        #if os(iOS) || os(macOS) || os(watchOS) || os(tvOS)
+            var threadID: UInt64 = 0
+
+            pthread_threadid_np(pthread_self(), &threadID)
+            self.threadIdentifier = threadID
+        #else   // FIXME: Linux does not support the pthread_threadid_np function, gettid in s syscall must be used.
+            self.threadIdentifier = 0
+        #endif
     }
 }
