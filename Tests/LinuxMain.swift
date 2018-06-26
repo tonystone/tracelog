@@ -5,12 +5,15 @@
 import XCTest
 
 @testable import TraceLogTests
+@testable import TraceLogTestHarnessTests
 
 XCTMain([
    testCase(TraceLogPerformanceTestsSwift.allTests),
    testCase(TraceLogTestsSwift.allTests),
    testCase(EnvironmentTests.allTests),
-   testCase(ConfigurationTests.allTests)
+   testCase(ConfigurationTests.allTests),
+   testCase(TestHarnessTests.allTests),
+   testCase(TestUtilitiesTests.allTests)
 ])
 
 extension TraceLogPerformanceTestsSwift {
@@ -91,6 +94,50 @@ extension ConfigurationTests {
                 ("testLogLevel_All_Set_InvalidLevel", testLogLevel_All_Set_InvalidLevel),
                 ("testLogLevel_Prefix", testLogLevel_Prefix),
                 ("testLogLevel_Tag", testLogLevel_Tag)
+           ]
+   }
+}
+
+extension TestHarnessTests {
+
+   static var allTests: [(String, (TestHarnessTests) -> () throws -> Void)] {
+      return [
+                ("testLogForError",   testLogForError),
+                ("testLogForWarning", testLogForWarning),
+                ("testLogForInfo",    testLogForInfo),
+                ("testLogForTrace1",  testLogForTrace1),
+                ("testLogForTrace2",  testLogForTrace2),
+                ("testLogForTrace3",  testLogForTrace3),
+                ("testLogForTrace4",  testLogForTrace4),
+
+                ("testLogWithCustomMessage",  testLogWithCustomMessage),
+                ("testLogWithCustomTag",      testLogWithCustomTag),
+                ("testLogWithCustomFile",     testLogWithCustomFile),
+                ("testLogWithCustomFunction", testLogWithCustomFunction),
+                ("testLogWithCustomLine",     testLogWithCustomLine),
+
+                ("testLogTestBlockForError",   testLogTestBlockForError),
+                ("testLogTestBlockForWarning", testLogTestBlockForWarning),
+                ("testLogTestBlockForInfo",    testLogTestBlockForInfo),
+                ("testLogTestBlockForTrace1",  testLogTestBlockForTrace1),
+                ("testLogTestBlockForTrace2",  testLogTestBlockForTrace2),
+                ("testLogTestBlockForTrace3",  testLogTestBlockForTrace3),
+                ("testLogTestBlockForTrace4",  testLogTestBlockForTrace4),
+
+                ("testLogTestBlockWithCustomMessage",  testLogTestBlockWithCustomMessage),
+                ("testLogTestBlockWithCustomTag",      testLogTestBlockWithCustomTag),
+                ("testLogTestBlockWithCustomFile",     testLogTestBlockWithCustomFile),
+                ("testLogTestBlockWithCustomFunction", testLogTestBlockWithCustomFunction),
+                ("testLogTestBlockWithCustomLine",     testLogTestBlockWithCustomLine)
+           ]
+   }
+}
+
+extension TestUtilitiesTests {
+
+   static var allTests: [(String, (TestUtilitiesTests) -> () throws -> Void)] {
+      return [
+                ("testShell",   testShell)
            ]
    }
 }
