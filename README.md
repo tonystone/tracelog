@@ -25,8 +25,8 @@ TraceLog's is designed to be a universal, flexible, portable, lightweight, and e
 
 ### TraceLog Design Philosophy
 1) **Universal**: With TraceLog you are not locked into one type of logging system, as a matter of fact, you can choose to use a combination of log writers to write to various endpoints and systems.
-2) **Flexible**: With TraceLog you can filter messages at dynamically at run time or statically at compile time.  Choose whatever combination of `Writers` and filters that work for your particular use case. Write your own custom `Writer`s to plug into TraceLog for customized use-cases.
-3) **Portable**: At this writing, TraceLog is one of the few logging systems that was designed to run on all swift supported platforms and be used in multiple languages (Swift and Objective-C).
+2) **Flexible**: With TraceLog you can filter messages dynamically at run time or statically at compile time.  Choose whatever combination of `Writers` and filters that work for your particular use case. Write your own custom `Writer`s to plug into TraceLog for customized use-cases.
+3) **Portable**: At this writing, TraceLog is one of the few logging systems that was designed to run on all swift supported platforms (Linux, macOs, iOS, tvOS, and watchOS) and be used in multiple languages (Swift and Objective-C).
 4) **Lightweight**: TraceLog's footprint is small and efficient.  It's designed and meant to be as efficient on resources as can be and also optimize itself out if required by the use case.
 5) **Easy to use**: TraceLog can be used right out of the box with **No** setup or special dependencies.  That was designed in, and we've worked hard to maintain that over the years.  You can literally link to it and start adding `log` statements to your app and get useful output on any platform.
 
@@ -267,7 +267,7 @@ let networkWriter = NetworkWriter(url: URL("http://mydomain.com/log"))
 TraceLog.configure(writers: [ConsoleWriter(), networkWriter])
 ```
 
-Since writers are instantiated before the call, you are free to initialize them with whatever makes sense for the writer type be created.  For instance in the case of the network writer the URL of
+Since writers are instantiated before the call, you are free to initialize them with whatever makes sense for the writer type to be created.  For instance in the case of the network writer the URL of
 the logging endpoint.
 
 ## Runtime Overhead
