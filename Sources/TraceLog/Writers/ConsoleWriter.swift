@@ -31,7 +31,7 @@ public class ConsoleWriter: Writer {
     ///
     /// Low level mutex for locking print since it's not reentrent.
     ///
-    private var mutex
+    private var mutex: Mutex
 
     ///
     /// Default constructor for this writer
@@ -75,7 +75,7 @@ public class ConsoleWriter: Writer {
 
         var formatter = DateFormatter()
 
-        /// 2016-04-23 10:34:26.849 Fields[39068:5120468]
+        /// 2016-04-23 10:34:26.849
         formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
 
         return formatter
