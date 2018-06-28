@@ -29,15 +29,11 @@ import Foundation
 public class ConsoleWriter: Writer {
 
     ///
-    /// Low level mutex for locking print since it's not reentrent.
-    ///
-    private var mutex: Mutex
-
-    ///
     /// Default constructor for this writer
     ///
-    public init() {
-        self.mutex = Mutex(.recursive)
+    public init(dateFormatter: DateFormatter = Default.dateFormatter) {
+        self.dateFormatter = dateFormatter
+        self.mutex         = Mutex(.recursive)
     }
 
     ///
@@ -69,15 +65,37 @@ public class ConsoleWriter: Writer {
     }
 
     ///
-    /// Internal date formatter for this logger
+    /// DateFormater being used
     ///
-    private let dateFormatter: DateFormatter = {
+    private let dateFormatter: DateFormatter
 
-        var formatter = DateFormatter()
-
-        /// 2016-04-23 10:34:26.849
-        formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
-
-        return formatter
-    }()
+    ///
+    /// Low level mutex for locking print since it's not reentrent.
+    ///
+    private var mutex: Mutex
 }
+
+extension ConsoleWriter {
+
+    ///
+    /// Default values for this class.
+    ///
+    public enum Default {
+
+        ///
+        /// Default DateFormatter for this writer if one is not supplied.
+        ///
+        /// - Note: Format is "yyyy-MM-dd HH:mm:ss.SSS"
+        ///
+        /// - Example: "2016-04-23 10:34:26.849"
+        ///
+        public static let dateFormatter: DateFormatter = {
+            var formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+
+            return formatter
+        }()
+    }
+
+}
+
