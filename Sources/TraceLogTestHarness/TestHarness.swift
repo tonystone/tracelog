@@ -92,8 +92,7 @@ public class TestHarness<T: Reader> {
     private func _testLog(for level: LogLevel, tag tagOrNil: String? = nil, message messageOrNil: String? = nil, file: String = #file, function: String = #function, line: Int = #line,
                         testBlock: (Double, LogLevel, String, String, RuntimeContext, StaticContext) -> Void, validationBlock: (_ writer: T.WriterType, _ result: LogEntry?, _ expected: LogEntry)-> Void)  {
 
-        /// This is the time in microseconds since the epoch UTC to match the journals time stamps.
-        let timestamp = Date().timeIntervalSince1970 * 1000.0
+        let timestamp = Date().timeIntervalSince1970
 
         let staticContext  = TestStaticContext(file, function, line)
         let runtimeContext = TestRuntimeContext()
