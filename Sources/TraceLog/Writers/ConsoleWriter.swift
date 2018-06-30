@@ -48,7 +48,7 @@ public class ConsoleWriter: Writer {
 
         ///
         /// Note: Since we could be called on any thread in TraceLog direct mode
-        /// we protect the print statement with a low-level mutex.
+        /// we protect stdout with a low-level mutex.
         ///
         /// Pthreads mutexes were chosen because out of all the methods of synchronization
         /// available in swift (queue, dispatch semaphores, etc), pthread mutexes are
@@ -59,7 +59,7 @@ public class ConsoleWriter: Writer {
         ///
         mutex.lock()
 
-        print(message)
+        FileHandle.standardOutput.write(Data(message.utf8))
 
         mutex.unlock()
     }
