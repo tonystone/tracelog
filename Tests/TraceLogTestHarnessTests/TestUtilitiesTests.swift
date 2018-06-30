@@ -44,3 +44,12 @@ final class TestUtilitiesTests: XCTestCase {
         #endif
     }
 }
+
+extension TestUtilitiesTests {
+
+   static var allTests: [(String, (TestUtilitiesTests) -> () throws -> Void)] {
+      return [
+                ("testShell",   testShell)
+           ]
+   }
+}

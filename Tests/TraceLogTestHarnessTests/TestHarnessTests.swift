@@ -280,3 +280,39 @@ final class TestHarnessTests: XCTestCase {
         })
     }
 }
+
+extension TestHarnessTests {
+
+   static var allTests: [(String, (TestHarnessTests) -> () throws -> Void)] {
+      return [
+                ("testLogForError",   testLogForError),
+                ("testLogForWarning", testLogForWarning),
+                ("testLogForInfo",    testLogForInfo),
+                ("testLogForTrace1",  testLogForTrace1),
+                ("testLogForTrace2",  testLogForTrace2),
+                ("testLogForTrace3",  testLogForTrace3),
+                ("testLogForTrace4",  testLogForTrace4),
+
+                ("testLogWithCustomMessage",  testLogWithCustomMessage),
+                ("testLogWithCustomTag",      testLogWithCustomTag),
+                ("testLogWithCustomFile",     testLogWithCustomFile),
+                ("testLogWithCustomFunction", testLogWithCustomFunction),
+                ("testLogWithCustomLine",     testLogWithCustomLine),
+
+                ("testLogTestBlockForError",   testLogTestBlockForError),
+                ("testLogTestBlockForWarning", testLogTestBlockForWarning),
+                ("testLogTestBlockForInfo",    testLogTestBlockForInfo),
+                ("testLogTestBlockForTrace1",  testLogTestBlockForTrace1),
+                ("testLogTestBlockForTrace2",  testLogTestBlockForTrace2),
+                ("testLogTestBlockForTrace3",  testLogTestBlockForTrace3),
+                ("testLogTestBlockForTrace4",  testLogTestBlockForTrace4),
+
+                ("testLogTestBlockWithCustomMessage",  testLogTestBlockWithCustomMessage),
+                ("testLogTestBlockWithCustomTag",      testLogTestBlockWithCustomTag),
+                ("testLogTestBlockWithCustomFile",     testLogTestBlockWithCustomFile),
+                ("testLogTestBlockWithCustomFunction", testLogTestBlockWithCustomFunction),
+                ("testLogTestBlockWithCustomLine",     testLogTestBlockWithCustomLine)
+           ]
+   }
+}
+

@@ -41,3 +41,13 @@ class TraceLogPerformanceTestsSwift: XCTestCase {
         }
     }
 }
+
+extension TraceLogPerformanceTestsSwift {
+
+   static var allTests: [(String, (TraceLogPerformanceTestsSwift) -> () throws -> Void)] {
+      return [
+                ("testLogErrorPerformance_NullWriter", testLogErrorPerformance_NullWriter),
+                ("testLogTrace4Performance_NullWriter", testLogTrace4Performance_NullWriter)
+           ]
+   }
+}
