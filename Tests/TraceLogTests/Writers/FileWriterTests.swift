@@ -42,14 +42,65 @@ let testEqual: (FileWriter, LogEntry?, LogEntry) -> Void = { writer, result, exp
 ///
 class FileWriterTests: XCTestCase {
 
+    override func setUp() {
+        /// Clean up log files before each start
+
+        let fileManager = FileManager.default
+        let filePattern = ".*\\.log$"
+
+        guard let regex = try? NSRegularExpression(pattern: filePattern)
+            else { XCTFail("Failed to create regex for testing logfile existence."); return  }
+
+        do {
+            for file in try fileManager.contentsOfDirectory(atPath: "./") {
+                if regex.firstMatch(in: file, range: NSRange(file.startIndex..., in: file)) != nil {
+                    try fileManager.removeItem(atPath: file)
+                }
+            }
+        } catch {
+            XCTFail("Failed to cleanup log files before test: \(error).")
+        }
+    }
+
     // MARK: - Init method tests
 
-    // func testSyslogIdentifier() {
-    //     let subsystemIdentifier = "TestSubsystemIdentifier"
+    ///
+    /// A new log file should be created for each init.
+    ///
+    func testRotationOnInit() throws {
 
-    //     /// Create a custom instance of the TestHarness so the subsystem can be passed.
-    //     TestHarness(writer: AdaptiveWriter(subsystem: subsystemIdentifier), reader: PlatformReader()).testLog(for: .error, validationBlock: testEqual);
-    // }
+        let type    = String(describing: FileWriterTests.self)
+        let function = (#function).replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
+
+        let fileName  = "\(type).\(function)"
+        let fileExt   = ".log"
+        let directory = "./"
+        let filePattern = "\(fileName)-(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3})\(fileExt)"
+
+        guard let regex = try? NSRegularExpression(pattern: filePattern)
+            else { XCTFail("Failed to create regex for testing logfile existence."); return  }
+
+        let fileManager = FileManager.default
+
+        _  = try FileWriter(fileConfiguration: FileWriter.Configuration(fileName: fileName + fileExt, directory: directory))
+
+        /// Test for fileName + fileExt
+
+        XCTAssertTrue(fileManager.fileExists(atPath: "\(directory)\(fileName)\(fileExt)"))
+
+        _  = try FileWriter(fileConfiguration: FileWriter.Configuration(fileName: fileName + fileExt, directory: directory))
+
+        /// Test for fileName + fileExt and fileName + "-" + date + fileExt
+
+        XCTAssertTrue(fileManager.fileExists(atPath: "\(directory)\(fileName)\(fileExt)"))
+
+        for file in try fileManager.contentsOfDirectory(atPath: directory) {
+            if regex.firstMatch(in: file, range: NSRange(file.startIndex..., in: file)) != nil {
+                return /// We found it so the test is complete
+            }
+        }
+        XCTFail("Could not locate archive file using pattern: \(filePattern)")
+    }
 
     // MARK: - Direct calls to the writer with default conversion table.
 
@@ -85,6 +136,7 @@ class FileWriterTests: XCTestCase {
 extension FileWriterTests {
     static var allTests: [(String, (FileWriterTests) -> () throws -> Void)] {
         return [
+            ("testRotationOnInit", testRotationOnInit),
             ("testLogError", testLogError),
             ("testLogWarning", testLogWarning),
             ("testLogInfo", testLogInfo),
