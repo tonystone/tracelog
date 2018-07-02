@@ -30,7 +30,7 @@ let testEqual: (FileWriter, LogEntry?, LogEntry) -> Void = { writer, result, exp
     guard let result = result
         else { XCTFail("Failed to locate log entry."); return }
 
-    XCTAssertEqual(result.timestamp ?? -1.0, expected.timestamp ?? -2.0, accuracy: 0.001)
+    XCTAssertEqual(result.timestamp ?? -1.0, expected.timestamp ?? -2.0, accuracy: 0.01)
     XCTAssertEqual(result.level,             expected.level)
     XCTAssertEqual(result.message,           expected.message)
     XCTAssertEqual(result.tag,               expected.tag)
