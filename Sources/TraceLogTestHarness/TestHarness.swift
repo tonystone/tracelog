@@ -152,7 +152,8 @@ public struct LogEntry {
 ///
 /// Private boxing class for use in storing our Reader which has an associated type.
 ///
-private class _AnyReaderBox<ConcreteReader: Reader>: _AnyReaderBase<ConcreteReader.WriterType> {
+internal /* @testable */
+class _AnyReaderBox<ConcreteReader: Reader>: _AnyReaderBase<ConcreteReader.WriterType> {
 
     var reader: ConcreteReader
 
@@ -168,10 +169,11 @@ private class _AnyReaderBox<ConcreteReader: Reader>: _AnyReaderBase<ConcreteRead
 ///
 /// Private boxing class base for use in storing our Reader which has an associated type.
 ///
-private class _AnyReaderBase<T: Writer>: Reader {
+internal /* @testable */
+class _AnyReaderBase<T: Writer>: Reader {
 
     func logEntry(for writer: T, timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogEntry? {
-        fatalError("Must override")
+        return nil
     }
 }
 

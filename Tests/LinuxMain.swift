@@ -13,6 +13,7 @@ XCTMain([
    testCase(EnvironmentTests.allTests),
    testCase(ConfigurationTests.allTests),
    testCase(TestHarnessTests.allTests),
+   testCase(AnyReaderTests.allTests),
    testCase(TestUtilitiesTests.allTests),
    testCase(FileWriterTests.allTests),
    testCase(TraceLogWithFileWriterTests.allTests),

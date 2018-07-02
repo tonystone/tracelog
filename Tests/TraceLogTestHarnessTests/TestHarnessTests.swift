@@ -316,3 +316,45 @@ extension TestHarnessTests {
    }
 }
 
+///
+/// Misc Tests of AnyReader for completeness of coverage
+///
+class AnyReaderTests: XCTestCase {
+
+    struct TestRunTimeContext: RuntimeContext {
+        var processName: String      { return "TestProcess" }
+        var processIdentifier: Int   { return 100 }
+        var threadIdentifier: UInt64 { return 1100 }
+    }
+
+    struct TestStaticContext: StaticContext {
+        var file: String     { return #file }
+        var function: String { return #function }
+        var line: Int        { return #line }
+    }
+
+    // MARK: - Test AnyReader
+
+    func test_AnyReaderBase() {
+        let anyReader = _AnyReaderBase<BufferWriter>()
+
+        XCTAssertNil(anyReader.logEntry(for: BufferWriter(), timestamp: Date().timeIntervalSinceNow, level: .info, tag: "tag", message: "message", runtimeContext: TestRunTimeContext(), staticContext: TestStaticContext()))
+    }
+
+    func test_AnyReaderBox() {
+        let anyReader = _AnyReaderBox(BufferReader())
+
+        XCTAssertNil(anyReader.logEntry(for: BufferWriter(), timestamp: Date().timeIntervalSinceNow, level: .info, tag: "tag", message: "message", runtimeContext: TestRunTimeContext(), staticContext: TestStaticContext()))
+    }
+}
+
+extension AnyReaderTests {
+
+    static var allTests: [(String, (AnyReaderTests) -> () throws -> Void)] {
+        return [
+            ("test_AnyReaderBase", test_AnyReaderBase),
+            ("test_AnyReaderBox",  test_AnyReaderBox)
+
+        ]
+    }
+}
