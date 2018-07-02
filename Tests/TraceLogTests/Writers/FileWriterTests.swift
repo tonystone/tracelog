@@ -112,10 +112,12 @@ class FileWriterTests: XCTestCase {
         /// Since the file cannot be created in the a directory that does not exist.
         ///
         XCTAssertThrowsError(try FileWriter(fileConfiguration: FileWriter.Configuration(fileName: fileName, directory: directory))) { (error) in
+            switch error {
+            case FileWriter.Error.createFailed(let message):
+                XCTAssertNotNil(message.range(of: "^Failed to create log file: .*/FileWriterTests.testCanNotCreateLogFileOnInit.log$", options: [.regularExpression, .anchored]))
 
-
-
-            print(error)
+            default: XCTFail("Incorrect error returned: \(error)")
+            }
         }
     }
 
