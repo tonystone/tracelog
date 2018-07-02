@@ -23,6 +23,8 @@ import TraceLogTestHarness
 
 @testable import TraceLog
 
+let testDirectory = "TraceLogTestsTmp"
+
 let testEqual: (FileWriter, LogEntry?, LogEntry) -> Void = { writer, result, expected in
 
     guard let result = result
@@ -43,20 +45,17 @@ let testEqual: (FileWriter, LogEntry?, LogEntry) -> Void = { writer, result, exp
 class FileWriterTests: XCTestCase {
 
     override func setUp() {
-        /// Clean up log files before each start
-
-        let fileManager = FileManager.default
-        let filePattern = ".*\\.log$"
-
-        guard let regex = try? NSRegularExpression(pattern: filePattern)
-            else { XCTFail("Failed to create regex for testing logfile existence."); return  }
-
         do {
-            for file in try fileManager.contentsOfDirectory(atPath: "./") {
-                if regex.firstMatch(in: file, range: NSRange(file.startIndex..., in: file)) != nil {
-                    try fileManager.removeItem(atPath: file)
-                }
-            }
+            /// Create the test directory
+            try FileManager.default.createDirectory(atPath: testDirectory, withIntermediateDirectories: false)
+        } catch {
+            XCTFail("Failed to cleanup log files before test: \(error).")
+        }
+    }
+
+    override func tearDown() {
+        do {
+            try FileManager.default.removeItem(atPath: testDirectory)
         } catch {
             XCTFail("Failed to cleanup log files before test: \(error).")
         }
@@ -74,7 +73,6 @@ class FileWriterTests: XCTestCase {
 
         let fileName  = "\(type).\(function)"
         let fileExt   = ".log"
-        let directory = "./"
         let filePattern = "\(fileName)-(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3})\(fileExt)"
 
         guard let regex = try? NSRegularExpression(pattern: filePattern)
@@ -82,24 +80,43 @@ class FileWriterTests: XCTestCase {
 
         let fileManager = FileManager.default
 
-        _  = try FileWriter(fileConfiguration: FileWriter.Configuration(fileName: fileName + fileExt, directory: directory))
+        _  = try FileWriter(fileConfiguration: FileWriter.Configuration(fileName: fileName + fileExt, directory: testDirectory))
 
         /// Test for fileName + fileExt
 
-        XCTAssertTrue(fileManager.fileExists(atPath: "\(directory)\(fileName)\(fileExt)"))
+        XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/\(fileName)\(fileExt)"))
 
-        _  = try FileWriter(fileConfiguration: FileWriter.Configuration(fileName: fileName + fileExt, directory: directory))
+        _  = try FileWriter(fileConfiguration: FileWriter.Configuration(fileName: fileName + fileExt, directory: testDirectory))
 
         /// Test for fileName + fileExt and fileName + "-" + date + fileExt
 
-        XCTAssertTrue(fileManager.fileExists(atPath: "\(directory)\(fileName)\(fileExt)"))
+        XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/\(fileName)\(fileExt)"))
 
-        for file in try fileManager.contentsOfDirectory(atPath: directory) {
+        for file in try fileManager.contentsOfDirectory(atPath: testDirectory) {
             if regex.firstMatch(in: file, range: NSRange(file.startIndex..., in: file)) != nil {
                 return /// We found it so the test is complete
             }
         }
         XCTFail("Could not locate archive file using pattern: \(filePattern)")
+    }
+
+    func testCanNotCreateLogFileOnInit() {
+
+        let type    = String(describing: FileWriterTests.self)
+        let function = (#function).replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
+
+        let fileName  = "\(type).\(function).log"
+        let directory = "DirectoryThatDoesNotExist"
+
+        ///
+        /// Since the file cannot be created in the a directory that does not exist.
+        ///
+        XCTAssertThrowsError(try FileWriter(fileConfiguration: FileWriter.Configuration(fileName: fileName, directory: directory))) { (error) in
+
+
+
+            print(error)
+        }
     }
 
     // MARK: - Direct calls to the writer with default conversion table.
@@ -137,6 +154,7 @@ extension FileWriterTests {
     static var allTests: [(String, (FileWriterTests) -> () throws -> Void)] {
         return [
             ("testRotationOnInit", testRotationOnInit),
+            ("testCanNotCreateLogFileOnInit", testCanNotCreateLogFileOnInit),
             ("testLogError", testLogError),
             ("testLogWarning", testLogWarning),
             ("testLogInfo", testLogInfo),
@@ -152,6 +170,23 @@ extension FileWriterTests {
 /// Logging through TraceLog to the Logger
 ///
 class TraceLogWithFileWriterTests: XCTestCase {
+
+    override func setUp() {
+        do {
+            /// Create the test directory
+            try FileManager.default.createDirectory(atPath: testDirectory, withIntermediateDirectories: false)
+        } catch {
+            XCTFail("Failed to cleanup log files before test: \(error).")
+        }
+    }
+
+    override func tearDown() {
+        do {
+            try FileManager.default.removeItem(atPath: testDirectory)
+        } catch {
+            XCTFail("Failed to cleanup log files before test: \(error).")
+        }
+    }
 
     func testLogError() {
 
@@ -234,13 +269,12 @@ extension TraceLogWithFileWriterTests {
 ///
 /// Creates a TestHarness for the specific test class and function.
 ///
-func testHarness<T>(for callerType: T.Type, configureTraceLog: Bool = false, function: String = #function) -> TestHarness<FileReader>? {
+func testHarness<T>(for callerType: T.Type, configureTraceLog: Bool = false, directory: String = testDirectory,function: String = #function) -> TestHarness<FileReader>? {
 
     let type    = String(describing: callerType)
     let function = function.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
 
     let fileName  = "\(type).\(function).log"
-    let directory = "./"
 
     let writer: FileWriter
     do {
@@ -268,7 +302,7 @@ class FileReader: Reader {
     func logEntry(for writer: FileWriter, timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogEntry? {
 
         do {
-            let url = URL(fileURLWithPath: directory).appendingPathComponent(fileName)
+            let url = URL(fileURLWithPath: self.directory).appendingPathComponent(fileName)
 
             let data = try String(contentsOf: url)
             let entries = data.components(separatedBy: .newlines)
