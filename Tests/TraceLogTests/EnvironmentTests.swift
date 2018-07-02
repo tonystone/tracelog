@@ -7,20 +7,25 @@
 ///
 
 import XCTest
+
 @testable import TraceLog
 
 class EnvironmentTests: XCTestCase {
 
     func testInit() {
-        XCTAssertTrue(Environment().count > 0)   /// Note: Assumes there will be something set in the environment.
+        XCTAssertTrue(Environment().count > 0)
     }
 
     func testInit_DictionaryLiteral() {
-        XCTAssertEqual(Environment(["TEST_VAR1": "Value1", "TEST_VAR2": "Value2"]).count, 2)
+        let input: Environment = ["TEST_VAR1": "Value1", "TEST_VAR2": "Value2"]
+
+        XCTAssertEqual(input.count, 2)
     }
 
     func testInit_CollectionType() {
-        XCTAssertEqual(Environment(Environment(["TEST_VAR1": "Value1", "TEST_VAR2": "Value2"])).count, 2)
+        let input = Environment(["TEST_VAR1": "Value1", "TEST_VAR2": "Value2"])
+
+        XCTAssertEqual(Environment(input).count, 2)
     }
 
     func testSubscript() {

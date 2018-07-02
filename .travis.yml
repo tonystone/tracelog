@@ -114,9 +114,9 @@ script:
   - |
     if [[ "$BUILD" == "xcodebuild"  ]]; then
         set -e  # Fail (and stop build) on first non zero exit code
-        swift package generate-xcodeproj --xcconfig-overrides Package.xcconfig
-        xcodebuild -project "$PROJECT" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" -enableCodeCoverage YES build-for-testing
-        xcodebuild -project "$PROJECT" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" -enableCodeCoverage YES test
+        swift package generate-xcodeproj --xcconfig-overrides Package.xcconfig --enable-code-coverage
+        xcodebuild -project "$PROJECT" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" build-for-testing
+        xcodebuild -project "$PROJECT" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" test
         set +e
     fi
 
