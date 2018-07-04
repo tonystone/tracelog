@@ -16,6 +16,7 @@ XCTMain([
    testCase(AnyReaderTests.allTests),
    testCase(TestUtilitiesTests.allTests),
    testCase(FileWriterTests.allTests),
+   testCase(FileWriterInternalsTests.allTests),
    testCase(TraceLogWithFileWriterTests.allTests),
    testCase(MutexTests.allTests)
 ])

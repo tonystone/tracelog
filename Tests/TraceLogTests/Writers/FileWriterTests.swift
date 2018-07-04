@@ -80,13 +80,13 @@ class FileWriterTests: XCTestCase {
 
         let fileManager = FileManager.default
 
-        _  = try FileWriter(fileConfiguration: FileWriter.Configuration(fileName: fileName + fileExt, directory: testDirectory))
+        _  = try FileWriter(fileConfiguration: FileWriter.FileConfiguration(name: fileName + fileExt, directory: testDirectory))
 
         /// Test for fileName + fileExt
 
         XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/\(fileName)\(fileExt)"))
 
-        _  = try FileWriter(fileConfiguration: FileWriter.Configuration(fileName: fileName + fileExt, directory: testDirectory))
+        _  = try FileWriter(fileConfiguration: FileWriter.FileConfiguration(name: fileName + fileExt, directory: testDirectory))
 
         /// Test for fileName + fileExt and fileName + "-" + date + fileExt
 
@@ -100,6 +100,52 @@ class FileWriterTests: XCTestCase {
         XCTFail("Could not locate archive file using pattern: \(filePattern)")
     }
 
+        ///
+    /// A new log file should be created for each init.
+    ///
+    func testRotationOnWrite() throws {
+
+        let type    = String(describing: FileWriterTests.self)
+        let function = (#function).replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
+
+        let fileName  = "\(type).\(function)"
+        let fileExt   = ".log"
+
+        let testHarness = TestHarness(writer: try FileWriter(fileConfiguration: FileWriter.FileConfiguration(name: fileName + fileExt, directory: testDirectory, maxSize: 64)), reader: FileReader(fileName: fileName, directory: testDirectory))
+
+        let fileManager = FileManager.default
+
+        /// Test for fileName + fileExt but archive does not exist
+
+        XCTAssertFalse(try self.archiveExists(fileName: fileName, fileExt: fileExt), "Archive exists already.")
+        XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/\(fileName)\(fileExt)"))
+
+        ///
+        /// Writing to the log should force a log rotation since the maxSize is set below the size of the message.
+        ///
+        testHarness.testLog(for: .info, validationBlock: { _,_,_ in } )
+
+        /// Test for fileName + fileExt and fileName + "-" + date + fileExt
+
+        XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/\(fileName)\(fileExt)"))
+        XCTAssertTrue(try self.archiveExists(fileName: fileName, fileExt: fileExt))
+    }
+
+    func archiveExists(fileName: String, fileExt: String) throws -> Bool {
+
+        let filePattern = "\(fileName)-(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3})\(fileExt)"
+
+        guard let regex = try? NSRegularExpression(pattern: filePattern)
+            else { XCTFail("Failed to create regex for testing logfile existence."); return false  }
+
+        for file in try FileManager.default.contentsOfDirectory(atPath: testDirectory) {
+            if regex.firstMatch(in: file, range: NSRange(file.startIndex..., in: file)) != nil {
+                return true
+            }
+        }
+        return false
+    }
+
     func testCanNotCreateLogFileOnInit() {
 
         let type    = String(describing: FileWriterTests.self)
@@ -111,7 +157,7 @@ class FileWriterTests: XCTestCase {
         ///
         /// Since the file cannot be created in the a directory that does not exist.
         ///
-        XCTAssertThrowsError(try FileWriter(fileConfiguration: FileWriter.Configuration(fileName: fileName, directory: directory))) { (error) in
+        XCTAssertThrowsError(try FileWriter(fileConfiguration: FileWriter.FileConfiguration(name: fileName, directory: directory))) { (error) in
             switch error {
             case FileWriter.Error.createFailed(let message):
                 XCTAssertNotNil(message.range(of: "^Failed to create log file: .*/FileWriterTests.testCanNotCreateLogFileOnInit.log$", options: [.regularExpression, .anchored]))
@@ -280,7 +326,7 @@ func testHarness<T>(for callerType: T.Type, configureTraceLog: Bool = false, dir
 
     let writer: FileWriter
     do {
-        writer  = try FileWriter(fileConfiguration: FileWriter.Configuration(fileName: fileName, directory: directory))
+        writer  = try FileWriter(fileConfiguration: FileWriter.FileConfiguration(name: fileName, directory: directory))
     } catch {
         XCTFail("Failed to instantiate FileWriter: \(error)"); return nil
     }
@@ -391,8 +437,7 @@ class FileReader: Reader {
                                     threadIdentifier: threadIdentifier)
                 }
             }
-
-        } catch {}
+        } catch { /* Fallthrough */ }
 
         return nil
     }
