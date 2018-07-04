@@ -17,13 +17,12 @@
 ///
 ///  Created by Tony Stone on 6/27/18.
 ///
-
 import XCTest
 import TraceLogTestHarness
 
 @testable import TraceLog
 
-let testDirectory = "TraceLogTestsTmp"
+private let testDirectory = "TraceLogTestsTmp"
 
 let testEqual: (FileWriter, LogEntry?, LogEntry) -> Void = { writer, result, expected in
 
@@ -72,32 +71,22 @@ class FileWriterTests: XCTestCase {
         let function = (#function).replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
 
         let fileName  = "\(type).\(function)"
-        let fileExt   = ".log"
-        let filePattern = "\(fileName)-(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3})\(fileExt)"
-
-        guard let regex = try? NSRegularExpression(pattern: filePattern)
-            else { XCTFail("Failed to create regex for testing logfile existence."); return  }
+        let fileExt   = "log"
 
         let fileManager = FileManager.default
 
-        _  = try FileWriter(fileConfiguration: FileWriter.FileConfiguration(name: fileName + fileExt, directory: testDirectory))
+        _  = try FileWriter(fileConfiguration: FileWriter.FileConfiguration(name: "\(fileName).\(fileExt)", directory: testDirectory))
 
         /// Test for fileName + fileExt
 
-        XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/\(fileName)\(fileExt)"))
+        XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/\(fileName).\(fileExt)"))
 
-        _  = try FileWriter(fileConfiguration: FileWriter.FileConfiguration(name: fileName + fileExt, directory: testDirectory))
+        _  = try FileWriter(fileConfiguration: FileWriter.FileConfiguration(name: "\(fileName).\(fileExt)", directory: testDirectory))
 
         /// Test for fileName + fileExt and fileName + "-" + date + fileExt
 
-        XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/\(fileName)\(fileExt)"))
-
-        for file in try fileManager.contentsOfDirectory(atPath: testDirectory) {
-            if regex.firstMatch(in: file, range: NSRange(file.startIndex..., in: file)) != nil {
-                return /// We found it so the test is complete
-            }
-        }
-        XCTFail("Could not locate archive file using pattern: \(filePattern)")
+        XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/\(fileName).\(fileExt)"))
+        XCTAssertTrue(try archiveExists(fileName: fileName, fileExt: fileExt, directory: testDirectory))
     }
 
         ///
@@ -109,16 +98,16 @@ class FileWriterTests: XCTestCase {
         let function = (#function).replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
 
         let fileName  = "\(type).\(function)"
-        let fileExt   = ".log"
+        let fileExt   = "log"
 
-        let testHarness = TestHarness(writer: try FileWriter(fileConfiguration: FileWriter.FileConfiguration(name: fileName + fileExt, directory: testDirectory, maxSize: 64)), reader: FileReader(fileName: fileName, directory: testDirectory))
+        let testHarness = TestHarness(writer: try FileWriter(fileConfiguration: FileWriter.FileConfiguration(name: "\(fileName).\(fileExt)", directory: testDirectory, maxSize: 64)), reader: FileReader(fileName: fileName, directory: testDirectory))
 
         let fileManager = FileManager.default
 
         /// Test for fileName + fileExt but archive does not exist
 
-        XCTAssertFalse(try self.archiveExists(fileName: fileName, fileExt: fileExt), "Archive exists already.")
-        XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/\(fileName)\(fileExt)"))
+        XCTAssertFalse(try archiveExists(fileName: fileName, fileExt: fileExt, directory: testDirectory), "Archive exists already.")
+        XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/\(fileName).\(fileExt)"))
 
         ///
         /// Writing to the log should force a log rotation since the maxSize is set below the size of the message.
@@ -127,44 +116,8 @@ class FileWriterTests: XCTestCase {
 
         /// Test for fileName + fileExt and fileName + "-" + date + fileExt
 
-        XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/\(fileName)\(fileExt)"))
-        XCTAssertTrue(try self.archiveExists(fileName: fileName, fileExt: fileExt))
-    }
-
-    func archiveExists(fileName: String, fileExt: String) throws -> Bool {
-
-        let filePattern = "\(fileName)-(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3})\(fileExt)"
-
-        guard let regex = try? NSRegularExpression(pattern: filePattern)
-            else { XCTFail("Failed to create regex for testing logfile existence."); return false  }
-
-        for file in try FileManager.default.contentsOfDirectory(atPath: testDirectory) {
-            if regex.firstMatch(in: file, range: NSRange(file.startIndex..., in: file)) != nil {
-                return true
-            }
-        }
-        return false
-    }
-
-    func testCanNotCreateLogFileOnInit() {
-
-        let type    = String(describing: FileWriterTests.self)
-        let function = (#function).replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
-
-        let fileName  = "\(type).\(function).log"
-        let directory = "DirectoryThatDoesNotExist"
-
-        ///
-        /// Since the file cannot be created in the a directory that does not exist.
-        ///
-        XCTAssertThrowsError(try FileWriter(fileConfiguration: FileWriter.FileConfiguration(name: fileName, directory: directory))) { (error) in
-            switch error {
-            case FileWriter.Error.createFailed(let message):
-                XCTAssertNotNil(message.range(of: "^Failed to create log file: .*/FileWriterTests.testCanNotCreateLogFileOnInit.log$", options: [.regularExpression, .anchored]))
-
-            default: XCTFail("Incorrect error returned: \(error)")
-            }
-        }
+        XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/\(fileName).\(fileExt)"))
+        XCTAssertTrue(try archiveExists(fileName: fileName, fileExt: fileExt, directory: testDirectory))
     }
 
     // MARK: - Direct calls to the writer with default conversion table.
@@ -202,7 +155,6 @@ extension FileWriterTests {
     static var allTests: [(String, (FileWriterTests) -> () throws -> Void)] {
         return [
             ("testRotationOnInit", testRotationOnInit),
-            ("testCanNotCreateLogFileOnInit", testCanNotCreateLogFileOnInit),
             ("testLogError", testLogError),
             ("testLogWarning", testLogWarning),
             ("testLogInfo", testLogInfo),

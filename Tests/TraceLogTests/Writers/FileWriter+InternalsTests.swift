@@ -22,37 +22,90 @@ import TraceLogTestHarness
 
 @testable import TraceLog
 
+private let testDirectory = "FileWriterInternalsTestsTmp"
+
 ///
 /// Direct Logging to the Logger
 ///
 class FileWriterInternalsTests: XCTestCase {
 
+    override func setUp() {
+        do {
+            /// Create the test directory
+            try FileManager.default.createDirectory(atPath: testDirectory, withIntermediateDirectories: false)
+        } catch {
+            XCTFail("Failed to cleanup log files before test: \(error).")
+        }
+    }
+
+    override func tearDown() {
+        do {
+            if FileManager.default.fileExists(atPath: testDirectory) {
+                try FileManager.default.removeItem(atPath: testDirectory)
+            }
+        } catch {
+            XCTFail("Failed to cleanup log files before test: \(error).")
+        }
+    }
+
     func testOpen() {
-        let input = open(fileURL: URL(fileURLWithPath: "./test.log"), fallbackHandle: FileHandle.standardOutput)
+        let input = open(fileURL: URL(fileURLWithPath: "\(testDirectory)/test.log"), fallbackHandle: FileHandle.standardOutput)
 
         XCTAssertNotEqual(input, FileHandle.standardOutput)
 
         close(fileHandle: input)
     }
 
-    func testOpenForcingFallback() {
-        XCTAssertEqual(open(fileURL: URL(fileURLWithPath: "NonExistentDirectory/test.log"), fallbackHandle: FileHandle.standardOutput), FileHandle.standardOutput)
+    func testOpenCreatingDirectory() throws {
+        let fileManager = FileManager.default
+
+        if fileManager.fileExists(atPath: "NonExistentDirectory") {
+            try fileManager.removeItem(atPath: "NonExistentDirectory")
+        }
+
+        /// If should not fallback
+        XCTAssertNotEqual(open(fileURL: URL(fileURLWithPath: "NonExistentDirectory/test.log"), fallbackHandle: FileHandle.standardOutput), FileHandle.standardOutput)
+        XCTAssertTrue(fileManager.fileExists(atPath: "NonExistentDirectory/test.log"))
     }
 
+    ///
+    /// Test rotation of a file.
+    ///
     func testRotate() throws {
-        let handle = open(fileURL: URL(fileURLWithPath: "./test.log"), fallbackHandle: FileHandle.standardOutput)
+        let handle = open(fileURL: URL(fileURLWithPath: "\(testDirectory)/test.log"), fallbackHandle: FileHandle.standardOutput)
 
-        let logFile: FileWriter.LogFile = (handle: handle, config: FileWriter.FileConfiguration(name: "test.log", directory: "./"))
+        let logFile: FileWriter.LogFile = (handle: handle, config: FileWriter.FileConfiguration(name: "test.log", directory: testDirectory))
 
-        XCTAssertNotEqual(rotate(file: logFile, fallbackHandle: FileHandle.standardOutput, dateFormatter: DateFormatter()).handle, FileHandle.standardOutput)
+        ///
+        /// Note: This tests ensures it does not fallback to the fallback handler.
+        ///
+        XCTAssertNotEqual(rotate(file: logFile, fallbackHandle: FileHandle.standardOutput, dateFormatter: FileWriter.Default.dateFormatter).handle, FileHandle.standardOutput)
+        XCTAssertTrue(try archiveExists(fileName: "test", fileExt: "log", directory: testDirectory))
     }
 
-    func testRotateForcingFallback() throws {
-        let handle = open(fileURL: URL(fileURLWithPath: "./test.log"), fallbackHandle: FileHandle.standardOutput)
+    ///
+    /// Test failing rotation behavour.
+    ///
+    func testRotateFailure() throws {
+        let fallbackPath = "\(testDirectory)/fallbackFile.log"
 
-        let logFile: FileWriter.LogFile = (handle: handle, config: FileWriter.FileConfiguration(name: "test.log", directory: "NoExistentDirectory"))
+        let fallbackHandle = try { () throws -> FileHandle in
+            FileManager.default.createFile(atPath: fallbackPath, contents: Data(), attributes: nil)
+            return try FileHandle(forWritingTo: URL(fileURLWithPath: fallbackPath))
+        }()
 
-        XCTAssertEqual(rotate(file: logFile, fallbackHandle: FileHandle.standardOutput, dateFormatter: DateFormatter()).handle, FileHandle.standardOutput)
+        let logFile: FileWriter.LogFile = (handle: try open(fileURL: URL(fileURLWithPath: "\(testDirectory)/test.log")), config: FileWriter.FileConfiguration(name: "test.log", directory: testDirectory))
+
+        /// Remove the test file so the next step (rotation) fails to find it.
+        try FileManager.default.removeItem(atPath: "\(testDirectory)/test.log")
+
+        XCTAssertNotEqual(rotate(file: logFile, fallbackHandle: fallbackHandle, dateFormatter: DateFormatter()).handle, fallbackHandle)
+
+        fallbackHandle.closeFile()
+
+        let message = try String(contentsOf: URL(fileURLWithPath: fallbackPath))
+
+        XCTAssertNotNil(message.range(of: "^Failed to archive, file does not exist: .*\(testDirectory)/test.log$", options: [.regularExpression, .anchored]))
     }
 }
 
@@ -60,8 +113,9 @@ extension FileWriterInternalsTests {
     static var allTests: [(String, (FileWriterInternalsTests) -> () throws -> Void)] {
         return [
             ("testOpen", testOpen),
-            ("testOpenForcingFallback", testOpenForcingFallback),
-            ("testRotateForcingFallback", testRotateForcingFallback)
+            ("testOpenCreatingDirectory", testOpenCreatingDirectory),
+            ("testRotate", testRotate),
+            ("testRotateFailure", testRotateFailure)
         ]
     }
 }
