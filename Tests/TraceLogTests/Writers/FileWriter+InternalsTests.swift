@@ -38,13 +38,30 @@ class FileWriterInternalsTests: XCTestCase {
     func testOpenForcingFallback() {
         XCTAssertEqual(open(fileURL: URL(fileURLWithPath: "NonExistentDirectory/test.log"), fallbackHandle: FileHandle.standardOutput), FileHandle.standardOutput)
     }
+
+    func testRotate() throws {
+        let handle = open(fileURL: URL(fileURLWithPath: "./test.log"), fallbackHandle: FileHandle.standardOutput)
+
+        let logFile: FileWriter.LogFile = (handle: handle, config: FileWriter.FileConfiguration(name: "test.log", directory: "./"))
+
+        XCTAssertNotEqual(rotate(file: logFile, fallbackHandle: FileHandle.standardOutput, dateFormatter: DateFormatter()).handle, FileHandle.standardOutput)
+    }
+
+    func testRotateForcingFallback() throws {
+        let handle = open(fileURL: URL(fileURLWithPath: "./test.log"), fallbackHandle: FileHandle.standardOutput)
+
+        let logFile: FileWriter.LogFile = (handle: handle, config: FileWriter.FileConfiguration(name: "test.log", directory: "NoExistentDirectory"))
+
+        XCTAssertEqual(rotate(file: logFile, fallbackHandle: FileHandle.standardOutput, dateFormatter: DateFormatter()).handle, FileHandle.standardOutput)
+    }
 }
 
 extension FileWriterInternalsTests {
     static var allTests: [(String, (FileWriterInternalsTests) -> () throws -> Void)] {
         return [
             ("testOpen", testOpen),
-            ("testOpenForcingFallback", testOpenForcingFallback)
+            ("testOpenForcingFallback", testOpenForcingFallback),
+            ("testRotateForcingFallback", testRotateForcingFallback)
         ]
     }
 }

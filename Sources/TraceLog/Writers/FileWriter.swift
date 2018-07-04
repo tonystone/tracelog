@@ -78,7 +78,7 @@ extension FileWriter {
     ///
     /// Represents log file configuration settings
     ///
-    public struct FileConfiguration {
+    public struct FileConfiguration: Equatable {
         public let name: String
         public let directory: String
         public let encoding: String.Encoding
