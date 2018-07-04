@@ -23,6 +23,7 @@ extension FileWriter {
 
     public enum Error: Swift.Error {
         case createFailed(String)
+        case fileDoesNotExist(String)
     }
 
     ///
@@ -116,8 +117,14 @@ public class FileWriter: Writer {
         self.mutex           = Mutex(.recursive)
         self.stripFormatting = stripFormatting
 
-        try archive(fileURL: config.url, dateFormatter: dateFormatter)
+        ///
+        /// If an existing file is present, archive it before starting.
+        ///
+        if FileManager.default.fileExists(atPath: config.url.path) {
+            try archive(fileURL: config.url, dateFormatter: dateFormatter)
+        }
 
+        /// Open the file for writng.
         self.file = (handle: try open(fileURL: config.url), config: config)
     }
 
@@ -189,18 +196,17 @@ public class FileWriter: Writer {
 internal /* @testable */
 func rotate(file: FileWriter.LogFile, fallbackHandle: FileHandle, dateFormatter: DateFormatter) -> FileWriter.LogFile {
 
-    var newFile: FileWriter.LogFile = (handle: fallbackHandle, config: file.config)
+    close(fileHandle: file.handle)
 
     do {
-        close(fileHandle: file.handle)
-        defer {
-            newFile.handle = open(fileURL: file.config.url, fallbackHandle: fallbackHandle)
-        }
         try archive(fileURL: file.config.url, dateFormatter: dateFormatter)
+
+    } catch FileWriter.Error.fileDoesNotExist(let message) {
+        fallbackHandle.write(Data("\(message)\n".utf8))
     } catch {
-        newFile.handle.write(Data("\(error)".utf8))
+        fallbackHandle.write(Data("\(error.localizedDescription)\n".utf8))
     }
-    return newFile
+    return (handle: open(fileURL: file.config.url, fallbackHandle: fallbackHandle), config: file.config)
 }
 
 ///
@@ -211,15 +217,16 @@ func archive(fileURL url: URL, dateFormatter: DateFormatter) throws {
 
     let fileManager = FileManager.default
 
+    guard fileManager.fileExists(atPath: url.path)
+        else { throw FileWriter.Error.fileDoesNotExist("Failed to archive, file does not exist: \(url.absoluteString)")}
+
     /// Rotate if exists
-    if fileManager.fileExists(atPath: url.path) {
-        let directory = url.deletingLastPathComponent()
-        let rootName  = url.deletingPathExtension().lastPathComponent
+    let directory = url.deletingLastPathComponent()
+    let rootName  = url.deletingPathExtension().lastPathComponent
 
-        let archivedFileURL = directory.appendingPathComponent("\(rootName)-\(dateFormatter.string(from: Date())).log")
+    let archivedFileURL = directory.appendingPathComponent("\(rootName)-\(dateFormatter.string(from: Date())).log")
 
-        try fileManager.moveItem(at: url, to: archivedFileURL)
-    }
+    try fileManager.moveItem(at: url, to: archivedFileURL)
 }
 
 ///
@@ -232,8 +239,15 @@ func open(fileURL url: URL) throws -> FileHandle {
 
     if !fileManager.fileExists(atPath: url.path) {
 
+        ///
+        /// Create the directory if it does not exist.
+        ///
+        /// Note: If the directory already exists this method will succeed if withIntermediateDirectories is true.
+        ///
+        try fileManager.createDirectory(at: url.deletingLastPathComponent(), withIntermediateDirectories: true, attributes: nil)
+
         guard fileManager.createFile(atPath: url.path, contents: nil, attributes: nil)
-            else { throw FileWriter.Error.createFailed("Failed to create log file: \(url.path)") }
+            else { throw FileWriter.Error.createFailed("Failed to create log file: \(url.absoluteString)") }
     }
 
     let fileHandle = try FileHandle(forWritingTo: url)
@@ -250,11 +264,13 @@ func open(fileURL url: URL, fallbackHandle: FileHandle) -> FileHandle {
 
     do {
         return try open(fileURL: url)
-    } catch {
-        fallbackHandle.write(Data("Failed to open log file at: \(url), error:\(error)".utf8))
 
-        return fallbackHandle
+    } catch FileWriter.Error.createFailed(let message) {
+        fallbackHandle.write(Data("\(message)\n".utf8))
+    } catch {
+        fallbackHandle.write(Data("\(error.localizedDescription)\n".utf8))
     }
+    return fallbackHandle
 }
 
 ///
