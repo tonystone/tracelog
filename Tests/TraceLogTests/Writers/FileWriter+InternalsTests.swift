@@ -59,13 +59,19 @@ class FileWriterInternalsTests: XCTestCase {
     func testOpenCreatingDirectory() throws {
         let fileManager = FileManager.default
 
-        if fileManager.fileExists(atPath: "NonExistentDirectory") {
-            try fileManager.removeItem(atPath: "NonExistentDirectory")
+        if fileManager.fileExists(atPath: testDirectory) {
+            try fileManager.removeItem(atPath: testDirectory)
         }
 
-        /// If should not fallback
-        XCTAssertNotEqual(open(fileURL: URL(fileURLWithPath: "NonExistentDirectory/test.log"), fallbackHandle: FileHandle.standardOutput), FileHandle.standardOutput)
-        XCTAssertTrue(fileManager.fileExists(atPath: "NonExistentDirectory/test.log"))
+        /// It should not fallback to the fallback handle
+        XCTAssertNotEqual(open(fileURL: URL(fileURLWithPath: "\(testDirectory)/test.log"), fallbackHandle: FileHandle.standardOutput), FileHandle.standardOutput)
+        XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/test.log"))
+    }
+
+    func testOpenFailure() throws {
+
+        /// It should be the fallback file handle
+        XCTAssertEqual(open(fileURL: URL(fileURLWithPath: "file://dev/null"), fallbackHandle: FileHandle.standardOutput), FileHandle.standardOutput)
     }
 
     ///
@@ -80,6 +86,8 @@ class FileWriterInternalsTests: XCTestCase {
         /// Note: This tests ensures it does not fallback to the fallback handler.
         ///
         XCTAssertNotEqual(rotate(file: logFile, fallbackHandle: FileHandle.standardOutput, dateFormatter: FileWriter.Default.dateFormatter).handle, FileHandle.standardOutput)
+
+       /// And of course we make sure the file was created.
         XCTAssertTrue(try archiveExists(fileName: "test", fileExt: "log", directory: testDirectory))
     }
 

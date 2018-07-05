@@ -60,6 +60,22 @@ class FileWriterTests: XCTestCase {
         }
     }
 
+    // MARK: - Error
+
+    func testErrorCreateFailedDescription() {
+        let input = FileWriter.Error.createFailed("Test createFailed message")
+        let expected = "Test createFailed message"
+
+        XCTAssertEqual(input.description, expected)
+    }
+
+    func testErrorFileDoesNotExistDescription() {
+        let input = FileWriter.Error.fileDoesNotExist("Test fileDoesNotExist message")
+        let expected = "Test fileDoesNotExist message"
+
+        XCTAssertEqual(input.description, expected)
+    }
+
     // MARK: - Init method tests
 
     ///
@@ -154,6 +170,8 @@ class FileWriterTests: XCTestCase {
 extension FileWriterTests {
     static var allTests: [(String, (FileWriterTests) -> () throws -> Void)] {
         return [
+            ("testErrorCreateFailedDescription", testErrorCreateFailedDescription),
+            ("testErrorFileDoesNotExistDescription", testErrorFileDoesNotExistDescription),
             ("testRotationOnInit", testRotationOnInit),
             ("testLogError", testLogError),
             ("testLogWarning", testLogWarning),
