@@ -90,7 +90,7 @@ class FileWriterInternalsTests: XCTestCase {
         let fallbackPath = "\(testDirectory)/fallbackFile.log"
 
         let fallbackHandle = try { () throws -> FileHandle in
-            FileManager.default.createFile(atPath: fallbackPath, contents: Data(), attributes: nil)
+            _ = FileManager.default.createFile(atPath: fallbackPath, contents: Data(), attributes: nil)
             return try FileHandle(forWritingTo: URL(fileURLWithPath: fallbackPath))
         }()
 
