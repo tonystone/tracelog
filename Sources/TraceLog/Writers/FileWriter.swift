@@ -21,9 +21,18 @@ import Foundation
 
 extension FileWriter {
 
-    public enum Error: Swift.Error {
+    public enum Error: Swift.Error, CustomStringConvertible {
         case createFailed(String)
         case fileDoesNotExist(String)
+
+        public var description: String {
+            switch self {
+            case let .createFailed(message):
+                return message
+            case let .fileDoesNotExist(message):
+                return message
+            }
+        }
     }
 
     ///
@@ -201,10 +210,8 @@ func rotate(file: FileWriter.LogFile, fallbackHandle: FileHandle, dateFormatter:
     do {
         try archive(fileURL: file.config.url, dateFormatter: dateFormatter)
 
-    } catch FileWriter.Error.fileDoesNotExist(let message) {
-        fallbackHandle.write(Data("\(message)\n".utf8))
     } catch {
-        fallbackHandle.write(Data("\(error.localizedDescription)\n".utf8))
+        fallbackHandle.write(Data("\(error)\n".utf8))
     }
     return (handle: open(fileURL: file.config.url, fallbackHandle: fallbackHandle), config: file.config)
 }
@@ -265,10 +272,8 @@ func open(fileURL url: URL, fallbackHandle: FileHandle) -> FileHandle {
     do {
         return try open(fileURL: url)
 
-    } catch FileWriter.Error.createFailed(let message) {
-        fallbackHandle.write(Data("\(message)\n".utf8))
     } catch {
-        fallbackHandle.write(Data("\(error.localizedDescription)\n".utf8))
+        fallbackHandle.write(Data("\(error)\n".utf8))
     }
     return fallbackHandle
 }
