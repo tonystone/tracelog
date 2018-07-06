@@ -123,7 +123,7 @@ public class FileWriter: Writer {
     public init(fileConfiguration config: FileConfiguration = FileConfiguration(), stripFormatting: Bool = Default.stripFormatting, dateFormatter: DateFormatter = Default.dateFormatter) throws {
 
         self.dateFormatter   = dateFormatter
-        self.mutex           = Mutex(.recursive)
+        self.mutex           = Mutex(.normal)
         self.stripFormatting = stripFormatting
 
         ///

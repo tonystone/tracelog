@@ -33,7 +33,7 @@ public class ConsoleWriter: Writer {
     ///
     public init(dateFormatter: DateFormatter = Default.dateFormatter) {
         self.dateFormatter = dateFormatter
-        self.mutex         = Mutex(.recursive)
+        self.mutex         = Mutex(.normal)
     }
 
     ///
