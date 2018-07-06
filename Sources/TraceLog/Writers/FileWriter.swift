@@ -274,8 +274,9 @@ func open(fileURL url: URL, fallbackHandle: FileHandle) -> FileHandle {
 
     } catch {
         fallbackHandle.write(Data("\(error)\n".utf8))
+
+        return fallbackHandle
     }
-    return fallbackHandle
 }
 
 ///
