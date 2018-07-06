@@ -46,7 +46,7 @@ TraceLog's is designed to be a universal, flexible, portable, lightweight, and e
         * **File (FileWriter)** - A file writer which writes log output to files on local disk managing rotation and archive of files as needed.
     * External
         * **Apple Unified Logging (AdaptiveWriter)** - On Apple platforms the AdaptiveWriter writes to the Unified Logging System (see [https://github.com/tonystone/tracelog-adaptive-writer](https://github.com/tonystone/tracelog-adaptive-writer)).
-        * **Linux systemd Journal (AdaptiveWriter)** - On Linux platforms the AdaptiveWriter writes to the systemd jounral (see [https://github.com/tonystone/tracelog-adaptive-writer](https://github.com/tonystone/tracelog-adaptive-writer))
+        * **Linux systemd Journal (AdaptiveWriter)** - On Linux platforms the AdaptiveWriter writes to the systemd journal (see [https://github.com/tonystone/tracelog-adaptive-writer](https://github.com/tonystone/tracelog-adaptive-writer))
  - [x] Multiple **concurrency modes** for writing to Writers. Settable globally or per Writer installed.
    * **direct** - straight through real-time logging.
    * **sync** - blocking queued logging.
