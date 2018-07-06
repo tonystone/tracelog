@@ -40,12 +40,13 @@ TraceLog's is designed to be a universal, flexible, portable, lightweight, and e
  - [x] Dynamically configurable levels via the OS environment at run time or inline code compiled into the application.
  - [x] Installable Log Writers (multiple writers at a time)
  - [x] Create custom Log writers for any use-case.
- - [x] Predefined log writers.
+ - [x] Predefined log writers to write to various endpoints.
     * Built-in
-        * **ConsoleWriter** - A simple standard out (stdout) writer for logging to the console or terminal.
-        * **FileWriter** - A file writer which writes log output to files on local disk managing rotation and archive of files as needed.
+        * **Stdout (ConsoleWriter)** - A simple standard out (stdout) writer for logging to the console or terminal.
+        * **File (FileWriter)** - A file writer which writes log output to files on local disk managing rotation and archive of files as needed.
     * External
-        * **AdaptiveWriter** - A writer that adapts to the platform it's running on.  On Linux it writes to the ***systemd journal*** and on Darwin platforms it writes to Apple's ***Unified Logging System*** (see [https://github.com/tonystone/tracelog-adaptive-writer](https://github.com/tonystone/tracelog-adaptive-writer))
+        * **Apple Unified Logging (AdaptiveWriter)** - On Apple platforms the AdaptiveWriter writes to the Unified Logging System (see [https://github.com/tonystone/tracelog-adaptive-writer](https://github.com/tonystone/tracelog-adaptive-writer)).
+        * **Linux systemd Journal (AdaptiveWriter)** - On Linux platforms the AdaptiveWriter writes to the systemd jounral (see [https://github.com/tonystone/tracelog-adaptive-writer](https://github.com/tonystone/tracelog-adaptive-writer))
  - [x] Multiple **concurrency modes** for writing to Writers. Settable globally or per Writer installed.
    * **direct** - straight through real-time logging.
    * **sync** - blocking queued logging.
