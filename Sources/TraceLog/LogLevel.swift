@@ -34,7 +34,7 @@ public enum LogLevel: Int {
     /// Represents a warning in the system.
     case warning = 2
 
-    /// An informational message for the user.  Note, this is the mote common level used.
+    /// An informational message for the user.  Note, this is the most common level used.
     case info    = 3
 
     /// The first level of low level tracing and debug logging.  Use this level for deeper information about the operation of a particular function.

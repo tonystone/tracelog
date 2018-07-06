@@ -36,8 +36,8 @@ public enum ConcurrencyMode {
     case direct
 
     ///
-    /// Synchronous blocking mode is simaler to direct in that it blocks
-    /// but this mode also uses a queue for all writes.  The benifits of
+    /// Synchronous blocking mode is similer to direct in that it blocks
+    /// but this mode also uses a queue for all writes.  The benefits of
     /// that is that all threads writing to the log will be serialized
     /// through before calling the writer (one call to the writer at a
     /// time).

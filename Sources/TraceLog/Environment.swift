@@ -54,9 +54,7 @@ public class Environment: Collection, ExpressibleByDictionaryLiteral {
     public required init(dictionaryLiteral elements: (Key, Value)...) {
         storage = [Key: Value]()
 
-        for (key, value) in elements {
-            storage[key] = value
-        }
+        elements.forEach( { self.storage[$0] = $1 } )
     }
 
     ///
@@ -70,13 +68,10 @@ public class Environment: Collection, ExpressibleByDictionaryLiteral {
     ///
     ///     let environment =  Environment(values)
     ///
-    public init<T: Collection>(_ elements: T)
-            where T.Iterator.Element == Element {
+    public init<T: Collection>(_ elements: T) where T.Iterator.Element == Element {
         storage = [Key: Value]()
 
-        for (key, value) in elements {
-            storage[key] = value
-        }
+        elements.forEach( { self.storage[$0] = $1 } )
     }
 
     ///

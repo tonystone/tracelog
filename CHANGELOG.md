@@ -1,6 +1,11 @@
 # Change Log
 All significant changes to this project will be documented in this file.
 
+## [4.0.0-beta.3](https://github.com/tonystone/tracelog/tree/4.0.0-beta.3)
+
+#### Added
+- Added `FileWriter` class for writing to local log files.
+
 ## [4.0.0-beta.2](https://github.com/tonystone/tracelog/tree/4.0.0-beta.2)
 
 #### Added

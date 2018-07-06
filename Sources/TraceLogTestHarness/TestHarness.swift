@@ -92,8 +92,7 @@ public class TestHarness<T: Reader> {
     private func _testLog(for level: LogLevel, tag tagOrNil: String? = nil, message messageOrNil: String? = nil, file: String = #file, function: String = #function, line: Int = #line,
                         testBlock: (Double, LogLevel, String, String, RuntimeContext, StaticContext) -> Void, validationBlock: (_ writer: T.WriterType, _ result: LogEntry?, _ expected: LogEntry)-> Void)  {
 
-        /// This is the time in microseconds since the epoch UTC to match the journals time stamps.
-        let timestamp = Date().timeIntervalSince1970 * 1000.0
+        let timestamp = Date().timeIntervalSince1970
 
         let staticContext  = TestStaticContext(file, function, line)
         let runtimeContext = TestRuntimeContext()
@@ -117,7 +116,7 @@ public class TestHarness<T: Reader> {
 ///
 public struct LogEntry {
 
-    public init(timestamp: Double, level: LogLevel, message: String, tag: String? = nil, file: String? = nil, function: String? = nil, line: Int? = nil, processName: String? = nil, processIdentifier: Int? = nil, threadIdentifier: Int? = nil, customAttributes: [String: Any]? = nil) {
+    public init(timestamp: Double? = nil, level: LogLevel? = nil, message: String? = nil, tag: String? = nil, file: String? = nil, function: String? = nil, line: Int? = nil, processName: String? = nil, processIdentifier: Int? = nil, threadIdentifier: Int? = nil, customAttributes: [String: Any]? = nil) {
 
         /// Required
         self.timestamp = timestamp
@@ -135,9 +134,9 @@ public struct LogEntry {
         self.customAttributes = customAttributes
 
     }
-    public let timestamp: Double
-    public let level: LogLevel
-    public let message: String
+    public let timestamp: Double?
+    public let level: LogLevel?
+    public let message: String?
 
     public let tag: String?
     public let file: String?
@@ -153,7 +152,8 @@ public struct LogEntry {
 ///
 /// Private boxing class for use in storing our Reader which has an associated type.
 ///
-private class _AnyReaderBox<ConcreteReader: Reader>: _AnyReaderBase<ConcreteReader.WriterType> {
+internal /* @testable */
+class _AnyReaderBox<ConcreteReader: Reader>: _AnyReaderBase<ConcreteReader.WriterType> {
 
     var reader: ConcreteReader
 
@@ -169,10 +169,11 @@ private class _AnyReaderBox<ConcreteReader: Reader>: _AnyReaderBase<ConcreteRead
 ///
 /// Private boxing class base for use in storing our Reader which has an associated type.
 ///
-private class _AnyReaderBase<T: Writer>: Reader {
+internal /* @testable */
+class _AnyReaderBase<T: Writer>: Reader {
 
     func logEntry(for writer: T, timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogEntry? {
-        fatalError("Must override")
+        return nil
     }
 }
 

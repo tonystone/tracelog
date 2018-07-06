@@ -43,7 +43,7 @@ Pod::Spec.new do |s|
   s.default_subspecs = 'Swift'
 
   s.subspec 'Swift' do |swift|
-    swift.source_files = 'Sources/TraceLog/*.swift'
+    swift.source_files = 'Sources/TraceLog/**/*.swift'
   end
 
   s.subspec 'ObjC' do |objc|

@@ -280,3 +280,81 @@ final class TestHarnessTests: XCTestCase {
         })
     }
 }
+
+extension TestHarnessTests {
+
+   static var allTests: [(String, (TestHarnessTests) -> () throws -> Void)] {
+      return [
+                ("testLogForError",   testLogForError),
+                ("testLogForWarning", testLogForWarning),
+                ("testLogForInfo",    testLogForInfo),
+                ("testLogForTrace1",  testLogForTrace1),
+                ("testLogForTrace2",  testLogForTrace2),
+                ("testLogForTrace3",  testLogForTrace3),
+                ("testLogForTrace4",  testLogForTrace4),
+
+                ("testLogWithCustomMessage",  testLogWithCustomMessage),
+                ("testLogWithCustomTag",      testLogWithCustomTag),
+                ("testLogWithCustomFile",     testLogWithCustomFile),
+                ("testLogWithCustomFunction", testLogWithCustomFunction),
+                ("testLogWithCustomLine",     testLogWithCustomLine),
+
+                ("testLogTestBlockForError",   testLogTestBlockForError),
+                ("testLogTestBlockForWarning", testLogTestBlockForWarning),
+                ("testLogTestBlockForInfo",    testLogTestBlockForInfo),
+                ("testLogTestBlockForTrace1",  testLogTestBlockForTrace1),
+                ("testLogTestBlockForTrace2",  testLogTestBlockForTrace2),
+                ("testLogTestBlockForTrace3",  testLogTestBlockForTrace3),
+                ("testLogTestBlockForTrace4",  testLogTestBlockForTrace4),
+
+                ("testLogTestBlockWithCustomMessage",  testLogTestBlockWithCustomMessage),
+                ("testLogTestBlockWithCustomTag",      testLogTestBlockWithCustomTag),
+                ("testLogTestBlockWithCustomFile",     testLogTestBlockWithCustomFile),
+                ("testLogTestBlockWithCustomFunction", testLogTestBlockWithCustomFunction),
+                ("testLogTestBlockWithCustomLine",     testLogTestBlockWithCustomLine)
+           ]
+   }
+}
+
+///
+/// Misc Tests of AnyReader for completeness of coverage
+///
+class AnyReaderTests: XCTestCase {
+
+    struct TestRunTimeContext: RuntimeContext {
+        var processName: String      { return "TestProcess" }
+        var processIdentifier: Int   { return 100 }
+        var threadIdentifier: UInt64 { return 1100 }
+    }
+
+    struct TestStaticContext: StaticContext {
+        var file: String     { return #file }
+        var function: String { return #function }
+        var line: Int        { return #line }
+    }
+
+    // MARK: - Test AnyReader
+
+    func test_AnyReaderBase() {
+        let anyReader = _AnyReaderBase<BufferWriter>()
+
+        XCTAssertNil(anyReader.logEntry(for: BufferWriter(), timestamp: Date().timeIntervalSinceNow, level: .info, tag: "tag", message: "message", runtimeContext: TestRunTimeContext(), staticContext: TestStaticContext()))
+    }
+
+    func test_AnyReaderBox() {
+        let anyReader = _AnyReaderBox(BufferReader())
+
+        XCTAssertNil(anyReader.logEntry(for: BufferWriter(), timestamp: Date().timeIntervalSinceNow, level: .info, tag: "tag", message: "message", runtimeContext: TestRunTimeContext(), staticContext: TestStaticContext()))
+    }
+}
+
+extension AnyReaderTests {
+
+    static var allTests: [(String, (AnyReaderTests) -> () throws -> Void)] {
+        return [
+            ("test_AnyReaderBase", test_AnyReaderBase),
+            ("test_AnyReaderBox",  test_AnyReaderBox)
+
+        ]
+    }
+}
