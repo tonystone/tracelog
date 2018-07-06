@@ -21,7 +21,7 @@
 
 ## Introduction
 
-TraceLog's is designed to be a universal, flexible, portable, lightweight, and easy to use logging and trace facility. 
+TraceLog's is designed to be a universal, flexible, portable, lightweight, and easy to use logging and trace facility.
 
 ### TraceLog Design Philosophy
 1) **Universal**: With TraceLog you are not locked into one type of logging system, as a matter of fact, you can choose to use a combination of log writers to write to various endpoints and systems.
@@ -40,6 +40,12 @@ TraceLog's is designed to be a universal, flexible, portable, lightweight, and e
  - [x] Dynamically configurable levels via the OS environment at run time or inline code compiled into the application.
  - [x] Installable Log Writers (multiple writers at a time)
  - [x] Create custom Log writers for any use-case.
+ - [x] Predefined log writers.
+    * Built-in
+        * **ConsoleWriter** - A simple standard out (stdout) writer for logging to the console or terminal.
+        * **FileWriter** - A file writer which writes log output to files on local disk managing rotation and archive of files as needed.
+    * External
+        * **AdaptiveWriter** - A writer that adapts to the platform it's running on.  On Linux it writes to the ***systemd journal*** and on Darwin platforms it writes to Apple's ***Unified Logging System*** (see [https://github.com/tonystone/tracelog-adaptive-writer](https://github.com/tonystone/tracelog-adaptive-writer))
  - [x] Multiple **concurrency modes** for writing to Writers. Settable globally or per Writer installed.
    * **direct** - straight through real-time logging.
    * **sync** - blocking queued logging.
@@ -57,7 +63,7 @@ import TraceLog to the files that require logging and start adding log statement
 For Swift TraceLog comes with the following basic Logging functions (Note: hidden
 parameters and defaults were omitted for simplicity).
 
-```Swift
+```swift
     logError  (tag: String?, message: @escaping () -> String)
     logWarning(tag: String?, message: @escaping () -> String)
     logInfo   (tag: String?, message: @escaping () -> String)
@@ -67,13 +73,13 @@ parameters and defaults were omitted for simplicity).
 
 Using it is as simple as calling one of the methods depending on the current type of message you want to log, for instance, to log a simple informational message.
 
-```Swift
+```swift
     logInfo { "A simple informational message" }
 ```
 
 Since the message parameter is a closure that evaluates to a String, any expression that results in a string message can be used.
 
-```Swift
+```swift
    logInfo {
         "A simple informational message: " +
         " Another expression or constant that evaluates to a string"
@@ -82,7 +88,7 @@ Since the message parameter is a closure that evaluates to a String, any express
 
 We used closures for several reasons; one is that the closure will not be evaluated (and you won't incur the overhead) if logging is disabled or if the log level for this call is higher than the current log level set. And two, more complex expressions can be put into the closure to make decisions on the message to be printed based on the current context of the call.  Again, these complex closures will not get executed in the cases mentioned above.  For instance:
 
-```Swift
+```swift
     logInfo {
          if let unwrappedOptionalString = optionalString {
             return "Executing with \(unwrappedOptionalString)..."
@@ -94,7 +100,7 @@ We used closures for several reasons; one is that the closure will not be evalua
 
 Log methods take an optional tag that you can use to group related messages and also be used to determine whether this statement gets logged based on the current environment configuration.  It no tag is set, the file name of the calling method is used as the tag.
 
-```Swift
+```swift
    logInfo("MyCustomTag") {
         "A simple informational message"
    }
@@ -102,7 +108,7 @@ Log methods take an optional tag that you can use to group related messages and 
 
 There are several trace levels for `logTrace` that can be used.  If you don't pass a level, you get level 3, otherwise, specify a level when making the `logTrace` call.   For example, here is a trace level 1 and a level 3 call.
 
-```Swift
+```swift
    logTrace {
         "A simple trace level 1 message"
    }
@@ -114,7 +120,7 @@ There are several trace levels for `logTrace` that can be used.  If you don't pa
 
 You can of course also pass a tag like the rest of the log calls.
 
-```Swift
+```swift
     logTrace("MyCustomTag", level: 3) {
          "A simple trace level message"
     }
@@ -126,7 +132,7 @@ That is all there is to adding logging to your **Swift** application!
 
 As with Swift using TraceLog with Objective-C is extremely simple out of the box.  The Objective-C implementation consists of the following primary logging methods. Each has a format specifier (like `NSLog`) and an optional variable number of arguments that represent your placeholder replacement values.
 
-```Objective-C
+```objc
     LogError  (format,...)
     LogWarning(format,...)
     LogInfo   (format,...)
@@ -135,19 +141,19 @@ As with Swift using TraceLog with Objective-C is extremely simple out of the box
 
 Using it is as simple as calling one of the methods depending on the current type of message you want to log, for instance, to log a simple informational message.
 
-```Objective-C
+```objc
     LogInfo(@"A simple informational message");
 ```
 
 You can also call it as you would `NSlog` by using the format specifier and parameters for placeholder replacement.
 
-```Objective-C
+```objc
     LogInfo(@"A simple informational message: %@", @"Another NSString or expression that evaluates to an NSString");
 ```
 
 More complex expressions can be put into the placeholder values by using Objective-C blocks that return a printable NSObject. These can be used to make decisions on the message to be printed based on the current context of the call.  These complex blocks will not get executed (and you won't incur the overhead) if logging is disabled or if the log level for this call is higher than the current log level set.  For instance:
 
-```Objective-C
+```objc
     LogInfo(@"Executing%@...",
         ^() {
             if (optionalString != nil) {
@@ -161,19 +167,19 @@ More complex expressions can be put into the placeholder values by using Objecti
 
 There is a special version of Log methods take an optional tag that you can use to group related messages and also be used to determine whether this statement gets logged based on the current environment configuration.  These methods begin with C (e.g. `CLogInfo`).
 
-```Objective-C
+```objc
     CLogInfo(@"MyCustomTag", @"A simple informational message");
 ```
 
 There are several trace levels for `LogTrace` that can be used. For example, here is a trace level 3 call.
 
-```Objective-C
+```objc
     LogTrace(3, @"A simple trace level message");
 ```
 
 You can of course also pass a tag by using the CLog version of the call.
 
-```Objective-C
+```objc
     CLogTrace(3, @"MyCustomTag", @"A simple trace level message");
 ```
 
@@ -183,7 +189,7 @@ TraceLog is configured via variables that are either set in the runtime environm
 
 These variables consist of the following:
 
-```Shell
+```shell
     LOG_ALL=<LEVEL>
     LOG_TAG_<TAGNAME>=<LEVEL>
     LOG_PREFIX_<TAGPREFIX>=<LEVEL>
@@ -195,7 +201,7 @@ the `LOG_PREFIX_<TAGPREFIX>` variable pattern.
 Each environment variable set is set with a level as the value.  The following levels are available in order of display priority.  Each level encompasses the level below it with `TRACE4` including the output from every level.  The lowest level setting is `OFF` which turns logging off for the level set.
 
 Levels:
-```Shell
+```shell
     TRACE4
     TRACE3
     TRACE2
@@ -211,7 +217,7 @@ Multiple Environment variables can be set at one time to get the desired level o
 
 Suppose you wanted the first level of `TRACE` logging for your Networking module which has a class prefix of NT and you wanted to see only errors and warnings for the rest of the application.  You would set the following:
 
-```Shell
+```shell
     LOG_ALL=WARNING
     LOG_PREFIX_NT=TRACE1
 ```
@@ -220,7 +226,7 @@ More specific settings override less specific so in the above example, the less 
 the `LOG_ALL`.  If you choose to name a particular tag, that will override the prefix settings.
 
 For instance, in the example above, if we decided for one tag in the Networking module, we needed more output, we could set the following:
-```Shell
+```shell
     LOG_ALL=WARNING
     LOG_PREFIX_NT=TRACE1
     LOG_TAG_NTSerializer=TRACE4
@@ -232,7 +238,7 @@ This outputs the same as the previous example except for the `NTSerializer` tag 
 TraceLog can be configured via the environment either manually using `export` or via Xcode.
 For TraceLog to read the environment on startup, you must call its configure method at the beginning of your application.
 
-```
+```swift
    TraceLog.configure()
 ```
 
@@ -245,10 +251,10 @@ To set up the environment using Xcode, select "Edit Scheme" from the "Set the ac
 TraceLog.configure() accepts an optional parameter called environment which you can pass the environment.  This allows you to set the configuration options at startup time (note: this ignores any variables passed in the environment).
 
 Here is an example of setting the configuration via `TraceLog.configure()`.
-```
-TraceLog.configure(environment: ["LOG_ALL": "TRACE4",
-                                 "LOG_PREFIX_NS" : "ERROR",
-                                 "LOG_TAG_TraceLog" : "TRACE4"])
+```swift
+    TraceLog.configure(environment: ["LOG_ALL": "TRACE4",
+                                    "LOG_PREFIX_NS" : "ERROR",
+                                    "LOG_TAG_TraceLog" : "TRACE4"])
 ```
 
 Note: Although the environment is typically set once at the beginning of the application, `TraceLog.configure`
@@ -261,14 +267,44 @@ which outputs to `stdout`.  You can change the writers at any time and chain mul
 
 Writers must implement the `Writer` protocol.  To install them, simply call configure with an array of `Writers`.
 
-```
-let networkWriter = NetworkWriter(url: URL("http://mydomain.com/log"))
+```swift
+    let networkWriter = NetworkWriter(url: URL("http://mydomain.com/log"))
 
-TraceLog.configure(writers: [ConsoleWriter(), networkWriter])
+    TraceLog.configure(writers: [ConsoleWriter(), networkWriter])
 ```
 
 Since writers are instantiated before the call, you are free to initialize them with whatever makes sense for the writer type to be created.  For instance in the case of the network writer the URL of
 the logging endpoint.
+
+## Concurrency Modes
+
+TraceLog can be configured to run in 3 main concurrency modes, `.direct`, `.sync`, or `.async`.  These modes determine how TraceLog will invoke each writer as it logs your logging statements.
+
+* `.direct` - Direct, as the name implies, will directly call the writer from the calling thread with no indirection. It will block until the writer(s) in this mode have completed the write to the endpoint. Useful for scripting applications and other applications where it is required for the call not to return until the message is printed.
+
+* `.sync` - Synchronous blocking mode is simaler to direct in that it blocks but this mode also uses a queue for all writes.  The benifits of that is that all threads writing to the log will be serialized through before calling the writer (one call to the writer at a time).
+
+* `.async` - Asynchronous non-blocking mode.  A general mode used for most application which queues all messages before being evaluated or logged. This ensures minimal delays in application execution due to logging.
+
+Modes can be configured globally for all writers including the default writer by simply setting the mode in the configuration step as in the example below.
+```swift
+    TraceLog.configure(mode: .direct)
+```
+This will set TraceLog's default writer to `.direct` mode.
+
+You can also configure each writer individually by wrapping the writer in a mode as in the example below.
+
+```swift
+    TraceLog.configure(writers: [.direct(ConsoleWriter()), .async(FileWriter())])
+```
+This will set the ConsoleWriter to write directly (synchronously) when you log but will queue the FileWriter calls to write in the background asynchronously.
+
+You can also set all writers to the same mode by setting the default mode and passing the writer as normal as in the following statement.
+
+```swift
+    TraceLog.configure(mode: .direct, writers: [ConsoleWriter(), FileWriter()])
+```
+This sets both the ConsoleWriter and the FileWriter to `.direct` mode.
 
 ## Runtime Overhead
 
