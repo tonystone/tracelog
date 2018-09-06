@@ -336,7 +336,7 @@ Minimum Runtime Version
 
 > **Note:**
 >
-> To build and run on **Linux** we have a a preconfigure **Vagrant** file located at [https://github.com/tonystone/vagrant-swift](https://github.com/tonystone/vagrant-swift)
+> To build and run on **Linux** we have a a pre-configured **Vagrant** file located at [https://github.com/tonystone/vagrant-swift](https://github.com/tonystone/vagrant-swift)
 >
 > See the [README](https://github.com/tonystone/vagrant-swift/blob/master/README.md) for instructions.
 >

@@ -1,27 +1,15 @@
 # Change Log
 All significant changes to this project will be documented in this file.
 
-## [4.0.0-beta.3](https://github.com/tonystone/tracelog/tree/4.0.0-beta.3)
+## [4.0.0](https://github.com/tonystone/tracelog/tree/4.0.0)
 
 #### Added
+- Added mode to TraceLog.configuration to allow direct, async, or sync mode of operation. Sync & direct mode are useful for use cases that have short-lived processes (scripts) or require real-time logging.
+- Added ability to set the concurrency mode individually for each Writer.
 - Added `FileWriter` class for writing to local log files.
-
-## [4.0.0-beta.2](https://github.com/tonystone/tracelog/tree/4.0.0-beta.2)
-
-#### Added
 - Added `TestHarness` to assist developers in testing their own `Writer` types.
 - Added `shell` utility to assist in testing `Writer` types.
 - Added TraceLogTestTools module/library to allow use of new `TestHarness` and other Utilities.
-
-#### Removed
-- Removed the `UnifiedLoggingWriter` and instead using external `AdaptiveSystemLogWriter` which adapts to various platforms for latest system log.
-
-## [4.0.0-beta.1](https://github.com/tonystone/tracelog/tree/4.0.0-beta.1)
-
-#### Added
-- Added `UnifiedLoggingWriter` for Apple Unified Logging system logging using TraceLog.
-- Added mode to TraceLog.configuration to allow direct, async, or sync mode of operation. Sync & direct mode are useful for use cases that have short-lived processes (scripts) or require real-time logging.
-- Added ability to set the concurrency mode individually for each Writer.
 
 #### Removed
 - Removed all Xcode projects, Xcode projects are now generated using Swift Package Manager.
