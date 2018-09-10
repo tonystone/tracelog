@@ -1,6 +1,11 @@
 # Change Log
 All significant changes to this project will be documented in this file.
 
+## [4.0.1](https://github.com/tonystone/tracelog/tree/4.0.1)
+
+#### Fixed
+- Adding missing newline to `ConsoleWriter` output (issue #55).
+
 ## [4.0.0](https://github.com/tonystone/tracelog/tree/4.0.0)
 
 #### Added
