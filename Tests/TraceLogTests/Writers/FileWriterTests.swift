@@ -22,9 +22,9 @@ import TraceLogTestHarness
 
 @testable import TraceLog
 
-private let testDirectory = "TraceLogTestsTmp"
+private let testDirectory = "FileWriterTestsTmp"
 
-let testEqual: (FileWriter, LogEntry?, LogEntry) -> Void = { writer, result, expected in
+private let testEqual: (FileWriter, LogEntry?, LogEntry) -> Void = { writer, result, expected in
 
     guard let result = result
         else { XCTFail("Failed to locate log entry."); return }
@@ -173,6 +173,7 @@ extension FileWriterTests {
             ("testErrorCreateFailedDescription", testErrorCreateFailedDescription),
             ("testErrorFileDoesNotExistDescription", testErrorFileDoesNotExistDescription),
             ("testRotationOnInit", testRotationOnInit),
+            ("testRotationOnWrite", testRotationOnWrite),
             ("testLogError", testLogError),
             ("testLogWarning", testLogWarning),
             ("testLogInfo", testLogInfo),
@@ -287,7 +288,7 @@ extension TraceLogWithFileWriterTests {
 ///
 /// Creates a TestHarness for the specific test class and function.
 ///
-func testHarness<T>(for callerType: T.Type, configureTraceLog: Bool = false, directory: String = testDirectory,function: String = #function) -> TestHarness<FileReader>? {
+private func testHarness<T>(for callerType: T.Type, configureTraceLog: Bool = false, directory: String = testDirectory, function: String = #function) -> TestHarness<FileReader>? {
 
     let type    = String(describing: callerType)
     let function = function.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
@@ -307,7 +308,7 @@ func testHarness<T>(for callerType: T.Type, configureTraceLog: Bool = false, dir
     return TestHarness(writer: writer, reader: FileReader(fileName: fileName, directory: directory))
 }
 
-class FileReader: Reader {
+private class FileReader: Reader {
 
     private let fileName: String
     private let directory: String

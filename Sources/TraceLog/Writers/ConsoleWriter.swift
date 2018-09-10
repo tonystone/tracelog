@@ -28,12 +28,22 @@ import Foundation
 ///
 public class ConsoleWriter: Writer {
 
+
     ///
     /// Default constructor for this writer
     ///
-    public init(dateFormatter: DateFormatter = Default.dateFormatter) {
+    public convenience init(dateFormatter: DateFormatter = Default.dateFormatter) {
+        self.init(dateFormatter: dateFormatter, fileHandle: FileHandle.standardOutput)
+    }
+
+    ///
+    /// Internal constructor for this writer
+    ///
+    internal /* @Testable */
+    init(dateFormatter: DateFormatter, fileHandle: FileHandle) {
         self.dateFormatter = dateFormatter
         self.mutex         = Mutex(.normal)
+        self.output        = fileHandle
     }
 
     ///
@@ -44,7 +54,7 @@ public class ConsoleWriter: Writer {
         let uppercasedLevel = "\(level)".uppercased()
         let levelString     = "\(String(repeating: " ", count: 7 - uppercasedLevel.count))\(uppercasedLevel)"
         let date            = Date(timeIntervalSince1970: timestamp)
-        let message         = "\(self.dateFormatter.string(from: date)) \(runtimeContext.processName)[\(runtimeContext.processIdentifier):\(runtimeContext.threadIdentifier)] \(levelString): <\(tag)> \(message)"
+        let message         = "\(self.dateFormatter.string(from: date)) \(runtimeContext.processName)[\(runtimeContext.processIdentifier):\(runtimeContext.threadIdentifier)] \(levelString): <\(tag)> \(message)\n"
 
         ///
         /// Note: Since we could be called on any thread in TraceLog direct mode
@@ -59,7 +69,7 @@ public class ConsoleWriter: Writer {
         ///
         mutex.lock()
 
-        FileHandle.standardOutput.write(Data(message.utf8))
+        output.write(Data(message.utf8))
 
         mutex.unlock()
     }
@@ -73,6 +83,11 @@ public class ConsoleWriter: Writer {
     /// Low level mutex for locking print since it's not reentrent.
     ///
     private var mutex: Mutex
+
+    ///
+    /// FileHandle to write the output to.
+    ///
+    private let output: FileHandle
 }
 
 extension ConsoleWriter {
