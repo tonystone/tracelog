@@ -22,7 +22,7 @@ import TraceLog
 
 @testable import TraceLogTestHarness
 
-let testEqual: (BufferWriter, LogEntry?, LogEntry) -> Void = { writer, result, expected in
+private let testEqual: (BufferWriter, LogEntry?, LogEntry) -> Void = { writer, result, expected in
 
     guard let result = result
         else { XCTFail("Failed to locate log entry."); return }
