@@ -239,7 +239,7 @@ class TraceLogTestsSwift: XCTestCase {
 
         TraceLog.configure(writers: [expectedValues], environment: ["LOG_ALL": "TRACE1"])
 
-        logTrace(testTag, level: 1) { testMessage }
+        logTrace(testTag) { testMessage }
 
         self.waitForExpectations(timeout: 2) { error in
             XCTAssertNil(error)

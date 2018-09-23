@@ -196,7 +196,7 @@ public func logInfo(_ tag: String? = nil, _ file: String = #file, _ function: St
 ///
 /// - Parameters:
 ///     - tag:     A String to use as a tag to group this call to other calls related to it. If not passed or nil, the file name is used as a tag.
-///     - level    An integer representing the trace LogLevel (i.e. 1, 2, 3, and 4.)
+///     - level    An integer representing the trace LogLevel (i.e. 1, 2, 3, and 4.) If no value is passed, the default trace level is 1.
 ///     - message: An closure or trailing closure that evaluates to the String message to log.
 ///
 /// Examples:
@@ -223,7 +223,7 @@ public func logInfo(_ tag: String? = nil, _ file: String = #file, _ function: St
 ///     }
 /// ```
 ///
-public func logTrace(_ tag: String? = nil, level: Int = LogLevel.trace1.rawValue, _ file: String = #file, _ function: String = #function, _ line: Int = #line, message: @escaping () -> String) {
+public func logTrace(_ tag: String? = nil, level: Int = 1, _ file: String = #file, _ function: String = #function, _ line: Int = #line, message: @escaping () -> String) {
     #if !TRACELOG_DISABLED
         assert(LogLevel.validTraceLevels.contains(level), "Invalid trace level, levels are in the range of \(LogLevel.validTraceLevels)")
 

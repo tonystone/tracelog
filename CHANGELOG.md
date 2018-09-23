@@ -1,6 +1,11 @@
 # Change Log
 All significant changes to this project will be documented in this file.
 
+## 4.x.x (Upcoming release)
+
+#### Fixed
+- Fixed `logTrace` when no trace level is passed.  It's now the correct default value of 1 instead of 4 (issue #58).
+
 ## [4.0.1](https://github.com/tonystone/tracelog/tree/4.0.1)
 
 #### Fixed
