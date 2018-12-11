@@ -28,7 +28,6 @@ import Foundation
 ///
 public class ConsoleWriter: Writer {
 
-
     ///
     /// Default constructor for this writer
     ///
@@ -39,7 +38,7 @@ public class ConsoleWriter: Writer {
     ///
     /// Internal constructor for this writer
     ///
-    internal /* @Testable */
+    internal /* @testable */
     init(dateFormatter: DateFormatter, fileHandle: FileHandle) {
         self.dateFormatter = dateFormatter
         self.mutex         = Mutex(.normal)
