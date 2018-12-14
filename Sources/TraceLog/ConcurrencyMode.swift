@@ -18,6 +18,7 @@
 ///  Created by Tony Stone on 5/12/18.
 ///
 import Swift
+import Dispatch
 
 ///
 /// The system wide modes that TraceLog can run in.  Used to configure a mode globally at configure time.
@@ -91,6 +92,68 @@ public enum WriterConcurrencyMode {
 }
 
 ///
+/// Async mode can be configured for various options, this enum allows you to refine the
+/// behaviour and options of the asynchronous mode of operation.
+///
+public enum AsyncOption {
+
+    ///
+    /// A BufferStrategy is the action the internal
+    /// buffer will take when a new log entry is logged
+    /// but the buffer is at it's limit (maxSize).
+    ///
+    public enum BufferStrategy {
+
+        /// If dropTail is used, when the buffer is filled
+        /// to its maximum capacity, the newly arriving log
+        /// entries are dropped until the buffer has
+        /// enough room to accept incoming entries.
+        ///
+        /// - Parameter at: start dropping log entries when this number of entries is reached in the buffer.
+        ///
+        case dropTail(at: Int)
+
+        /// If dropHead is used, when the buffer is filled
+        /// to its maximum capacity, the oldest entry (head)
+        /// is dropped to make room for the newly arriving log
+        /// entry.
+        ///
+        /// - Parameter at: start dropping log entries when this number of entries is reached in the buffer.
+        ///
+        case dropHead(at: Int)
+
+        /// If expand is set, the buffer will continue
+        /// to expand until the available memory is exhausted.
+        ///
+        case expand
+    }
+
+    /// Back the async mode with a buffer for when the writer is not `available` to
+    /// write to it's endpoint.  Useful for situations where the endpoint may not
+    /// be available at all times.
+    ///
+    /// Whenever the writer returns false for `available` TraceLog will buffer the
+    /// log entries until the endpoint is `available`. It will check the writer for
+    /// availability based on the `writeInterval` parameter. Once available, TraceLog
+    /// will write each log entry in the buffer (in order) until the end of the
+    /// buffer or the Writer becomes unavailable again.
+    ///
+    /// Buffering is useful for many different use case including:
+    ///
+    /// E.g. In an iOS application when protected data is not available to your
+    ///      app but you require visibility into the apps logging even during
+    ////     these times.
+    ///
+    ///      A network writer when the network connection is unavailable for any reason.
+    ///
+    /// - Parameters:
+    ///     - writeInternal: if the writer is currently buffering, TraceLog will periodically check whether the writer is available and write if it is.  This is the timeframe between checks.
+    ///     - strategy: The buffer strategy to use when buffering.
+    ///
+    case buffer(writeInterval: DispatchTimeInterval, strategy: BufferStrategy)
+}
+
+///
 /// Internal ConcurrencyMode extension.
 ///
 internal extension ConcurrencyMode {
@@ -114,9 +177,9 @@ internal extension WriterConcurrencyMode {
 
     func proxy() -> Writer {
         switch self {
-            case .direct(let writer):  return writer
-            case .sync(let writer):    return SynchronousWriterProxy(writer: writer)
-            case .async(let writer):   return AsynchronousWriterProxy(writer: writer)
+            case .direct(let writer):              return writer
+            case .sync  (let writer):              return SyncWriterProxy (writer: writer)
+            case .async (let writer):              return AsyncWriterProxy(writer: writer, options: [])
         }
     }
 }
