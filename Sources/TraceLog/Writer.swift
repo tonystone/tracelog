@@ -52,4 +52,23 @@ public protocol Writer {
     /// - Seealso: StaticContext
     ///
     func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext)
+
+    ///
+    /// Is this Writer available for writing to its endpoint.
+    ///
+    /// - Example:
+    ///     If you are a file type `Writer`, is the file open and accessible.
+    ///     If a network endpoint, has the socket been established and is it writable.
+    ///
+    ///
+    var available: Bool { get }
+}
+
+public extension Writer {
+
+    ///
+    /// Default implementation of available always assumes
+    /// the Writer is available.
+    ///
+    public var available: Bool { return true }
 }
