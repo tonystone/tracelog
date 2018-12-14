@@ -35,47 +35,6 @@ private let moduleLogName  = "TraceLog"
 internal final class Logger {
 
     ///
-    /// A concrete class that Implements the RuntimeContext interface
-    ///
-    internal class RuntimeContextImpl: RuntimeContext {
-
-        internal let processName: String
-        internal let processIdentifier: Int
-        internal let threadIdentifier: UInt64
-
-        internal init() {
-            let process  = ProcessInfo.processInfo
-            self.processName = process.processName
-            self.processIdentifier = Int(process.processIdentifier)
-
-            #if os(iOS) || os(macOS) || os(watchOS) || os(tvOS)
-                var threadID: UInt64 = 0
-
-                pthread_threadid_np(pthread_self(), &threadID)
-                self.threadIdentifier = threadID
-            #else   // FIXME: Linux does not support the pthread_threadid_np function, gettid in s syscall must be used.
-                self.threadIdentifier = 0
-            #endif
-        }
-    }
-
-    ///
-    /// A concrete class that Implements the StaticContext interface
-    ///
-    internal class StaticContextImpl: StaticContext {
-
-        public let file: String
-        public let function: String
-        public let line: Int
-
-        internal init(file: String, function: String, line: Int) {
-            self.file       = file
-            self.function   = function
-            self.line       = line
-        }
-    }
-
-    ///
     /// Initialize the config with the default configuration first.  The
     /// user can re-init this at a later time or simply use the default.
     ///
@@ -125,6 +84,50 @@ internal final class Logger {
             }
         }
     }
+}
+
+private extension Logger {
+      ///
+    /// A concrete class that Implements the RuntimeContext interface
+    ///
+    private class RuntimeContextImpl: RuntimeContext {
+
+        internal let processName: String
+        internal let processIdentifier: Int
+        internal let threadIdentifier: UInt64
+
+        internal init() {
+            let process  = ProcessInfo.processInfo
+            self.processName = process.processName
+            self.processIdentifier = Int(process.processIdentifier)
+
+            #if os(iOS) || os(macOS) || os(watchOS) || os(tvOS)
+                var threadID: UInt64 = 0
+
+                pthread_threadid_np(pthread_self(), &threadID)
+                self.threadIdentifier = threadID
+            #else  // FIXME: Linux does not support the pthread_threadid_np function, syscall(SYS_gettid) must be used.
+                self.threadIdentifier = 0
+            #endif
+        }
+    }
+
+    ///
+    /// A concrete class that Implements the StaticContext interface
+    ///
+    private class StaticContextImpl: StaticContext {
+
+        public let file: String
+        public let function: String
+        public let line: Int
+
+        internal init(file: String, function: String, line: Int) {
+            self.file       = file
+            self.function   = function
+            self.line       = line
+        }
+    }
+
 }
 
 #if os(OSX) || os(iOS) || os(tvOS) || os(watchOS)
