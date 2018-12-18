@@ -184,7 +184,7 @@ private class LogEntryQueue {
     ///
     public var isFull: Bool {
         switch strategy {
-            case .dropTail(let limit): fallthrough
+            case .dropTail(let limit): return storage.count >= limit
             case .dropHead(let limit): return storage.count >= limit
             case .expand:              return false
         }
