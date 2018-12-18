@@ -87,7 +87,8 @@ internal final class Logger {
 }
 
 private extension Logger {
-      ///
+
+    ///
     /// A concrete class that Implements the RuntimeContext interface
     ///
     private class RuntimeContextImpl: RuntimeContext {
@@ -127,7 +128,6 @@ private extension Logger {
             self.line       = line
         }
     }
-
 }
 
 #if os(OSX) || os(iOS) || os(tvOS) || os(watchOS)
