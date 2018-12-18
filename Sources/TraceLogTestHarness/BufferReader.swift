@@ -24,6 +24,8 @@ import TraceLog
 ///
 public class BufferReader: Reader {
 
+    public init() {}
+
     public func logEntry(for writer: BufferWriter, timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogEntry? {
 
         guard let logEntry = writer.buffer[message]

@@ -29,6 +29,8 @@ public class BufferWriter: Writer {
     ///
     public var buffer: [String: (timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext)] = [:]
 
+    public init() {}
+
     ///
     /// Required log function for the `Writer`.
     ///
