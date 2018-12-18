@@ -21,20 +21,23 @@
 import Swift
 import Dispatch
 
-///
 /// Synchronous proxy for instances of Writer.
 ///
 internal class SyncWriterProxy: Writer {
 
-    ///
     /// The writer this class proxies.
     ///
     private let writer: Writer
 
-    ///
     /// Serialization queue for writing
     ///
     private let queue: DispatchQueue
+
+    /// Is the Writer available?
+    ///
+    internal var available: Bool {
+        return self.writer.available
+    }
 
     internal init(writer: Writer) {
         self.writer = writer
@@ -48,8 +51,5 @@ internal class SyncWriterProxy: Writer {
         }
     }
 
-    var available: Bool {
-        return self.writer.available
-    }
 }
 
