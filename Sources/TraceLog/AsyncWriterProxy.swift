@@ -19,27 +19,22 @@
 ///
 import Foundation
 
-
-///
 /// A fault tolerant buffer backed writer proxy for instances of Writer.
 ///
 /// This proxy will write directly to the writer unless the writer is
-/// unavailable (can't write to it's end point), in this case, it's buffers
+/// unavailable (can't write to it's end point), in this case, it buffers
 /// the messages until they can be written.
 ///
 internal class AsyncWriterProxy: Writer {
 
-    ///
     /// The writer this class proxies.
     ///
     private let writer: Writer
 
-    ///
     /// Serialization queue for writing
     ///
     private let queue: DispatchQueue
 
-    ///
     /// If buffering is enabled, this will
     /// contain the buffer queue and the
     /// write timer to write out the queue.
@@ -96,9 +91,13 @@ internal class AsyncWriterProxy: Writer {
             ///
             buffer.queue.enqueue((timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext))
 
+            /// Attempt to write the entries in the buffer.
+            ///
             self.writeBuffer()
 
-            /// Resume the buffer writer if the buffer has any entries left after the write.
+            /// If the buffer was not completely written, resume the
+            /// the write timer so that the writer will attempt again
+            /// on the next write interval.
             ///
             if !buffer.queue.isEmpty {
                 buffer.writeTimer.resume()
@@ -138,10 +137,9 @@ internal class AsyncWriterProxy: Writer {
     }
 }
 
-///
 /// A LogEntryQueue is a FIFO queue that uses variable
-/// strategies for limiting or not the buffer size and
-/// dropping entries as appropriate.
+/// strategies for limiting (or not limiting) the buffer
+/// size and dropping entries as appropriate.
 ///
 private class LogEntryQueue {
 
