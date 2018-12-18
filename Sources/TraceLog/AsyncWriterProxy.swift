@@ -41,7 +41,26 @@ internal class AsyncWriterProxy: Writer {
     ///
     private var buffer: (queue: LogEntryQueue, writeTimer: BlockTimer)?
 
+    /// Is the Writer available?
     ///
+    internal var available: Bool {
+
+        return self.queue.sync {
+
+            /// If we are buffering, we are always available.
+            ///
+            guard let buffer = self.buffer
+                else {
+                    /// If not buffering, the state is detemined
+                    /// by the writer we proxy.
+                    ///
+                    return self.writer.available
+            }
+
+            return !buffer.queue.isFull
+        }
+    }
+
     /// Initialize the proxy with the proxied Writer and any options to configure.
     ///
     internal init(writer: Writer, options: [AsyncOption]) {
@@ -58,10 +77,6 @@ internal class AsyncWriterProxy: Writer {
                 writeTimer.handler = { [weak self] in
 
                     self?.queue.async {
-                        guard !writeTimer.isCancelled
-                            else {
-                                return
-                        }
                         self?.writeBuffer()
                     }
                 }
@@ -117,7 +132,7 @@ internal class AsyncWriterProxy: Writer {
         /// If the writer is available, read and log all message
         /// (in order) from the buffer.
         ///
-        for _ in 0..<buffer.queue.count {
+        for _ in 1...buffer.queue.count {
 
             if !self.writer.available {
                 break  /// Stop on the first entry that cannot be written.
@@ -144,7 +159,7 @@ internal class AsyncWriterProxy: Writer {
 private class LogEntryQueue {
 
     typealias Element = (timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext)
-    typealias Index = Int
+    typealias Index   = Int
 
     /// The strategy this queue instance is using to queue items.
     ///
@@ -163,6 +178,16 @@ private class LogEntryQueue {
     ///
     public var isEmpty: Bool {
         return storage.isEmpty
+    }
+
+    /// Is the queue empty?
+    ///
+    public var isFull: Bool {
+        switch strategy {
+            case .dropTail(let limit): fallthrough
+            case .dropHead(let limit): return storage.count >= limit
+            case .expand:              return false
+        }
     }
 
     /// Count of current items in the queue
