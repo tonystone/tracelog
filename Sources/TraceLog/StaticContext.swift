@@ -37,6 +37,6 @@ public protocol StaticContext: CustomStringConvertible {
 public extension StaticContext {
 
     public var description: String {
-        return "StaticContext {file: \(self.file), function: \(self.function), line: \(self.line)}"
+        return "StaticContext {file: \"\(self.file)\", function: \"\(self.function)\", line: \(self.line)}"
     }
 }
