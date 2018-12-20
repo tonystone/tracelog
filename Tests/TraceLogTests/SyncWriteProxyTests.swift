@@ -44,12 +44,3 @@ class SyncWriterProxyTests: XCTestCase {
         XCTAssertEqual(SyncWriterProxy(writer: testWriter).available, false)
     }
 }
-
-extension SyncWriterProxyTests {
-
-    static var allTests: [(String, (SyncWriterProxyTests) -> () throws -> Void)] {
-        return [
-            ("testAvailable", testAvailable)
-        ]
-    }
-}

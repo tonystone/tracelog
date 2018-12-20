@@ -347,14 +347,3 @@ class AnyReaderTests: XCTestCase {
         XCTAssertNil(anyReader.logEntry(for: BufferWriter(), timestamp: Date().timeIntervalSinceNow, level: .info, tag: "tag", message: "message", runtimeContext: TestRunTimeContext(), staticContext: TestStaticContext()))
     }
 }
-
-extension AnyReaderTests {
-
-    static var allTests: [(String, (AnyReaderTests) -> () throws -> Void)] {
-        return [
-            ("test_AnyReaderBase", test_AnyReaderBase),
-            ("test_AnyReaderBox",  test_AnyReaderBox)
-
-        ]
-    }
-}

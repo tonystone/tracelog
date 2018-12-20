@@ -91,20 +91,6 @@ class ConsoleWriterTests: XCTestCase {
     }
 }
 
-extension ConsoleWriterTests {
-    static var allTests: [(String, (ConsoleWriterTests) -> () throws -> Void)] {
-        return [
-            ("testLogError", testLogError),
-            ("testLogWarning", testLogWarning),
-            ("testLogInfo", testLogInfo),
-            ("testLogTrace1", testLogTrace1),
-            ("testLogTrace2", testLogTrace2),
-            ("testLogTrace3", testLogTrace3),
-            ("testLogTrace4", testLogTrace4)
-        ]
-    }
-}
-
 ///
 /// Creates a TestHarness for the specific test class.
 ///

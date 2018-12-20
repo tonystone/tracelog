@@ -33,12 +33,3 @@ class RuntimeContextTests: XCTestCase {
         XCTAssertEqual(input.description, expected)
     }
 }
-
-extension RuntimeContextTests {
-
-    static var allTests: [(String, (RuntimeContextTests) -> () throws -> Void)] {
-        return [
-            ("testDescription", testDescription)
-        ]
-    }
-}

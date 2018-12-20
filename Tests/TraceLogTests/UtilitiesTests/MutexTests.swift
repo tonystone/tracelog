@@ -104,16 +104,3 @@ class MutexTests: XCTestCase {
         mutex.unlock()  /// Cleanup
     }
 }
-
-
-extension MutexTests {
-   static var allTests: [(String, (MutexTests) -> () throws -> Void)] {
-      return [
-                ("testLockUnlock", testLockUnlock),
-                ("testLockUnlockRecursive", testLockUnlockRecursive),
-                ("testLockUnlockNonRecursiveBlocked", testLockUnlockNonRecursiveBlocked),
-                ("testLockBlocked", testLockBlocked),
-                ("testTryLockBlocked", testTryLockBlocked)
-           ]
-   }
-}
