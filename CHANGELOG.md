@@ -3,6 +3,9 @@ All significant changes to this project will be documented in this file.
 
 ## 4.x.x (Upcoming release)
 
+#### Added
+- Added `.buffering option for `.async` concurrency modes to allow for buffering when the writer is not available to write to its endpoint.
+
 #### Fixed
 - Fixed `logTrace` when no trace level is passed.  It's now the correct default value of 1 instead of 4 (issue #58).
 
