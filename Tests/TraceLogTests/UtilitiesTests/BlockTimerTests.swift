@@ -46,7 +46,7 @@ class BlockTimerTests: XCTestCase {
     func testRepeatFire() {
 
         let fired = XCTestExpectation(description: "did fire")
-        fired.expectedFulfillmentCount = 8
+        fired.expectedFulfillmentCount = 5
 
         let timer = BlockTimer(deadline: .now(), repeating: .milliseconds(100), queue: self.queue)
         timer.handler = {
@@ -91,7 +91,7 @@ class BlockTimerTests: XCTestCase {
         /// Now make sure we can continue.
         ///
         let resumed = XCTestExpectation(description: "resumed")
-        resumed.expectedFulfillmentCount = 9
+        resumed.expectedFulfillmentCount = 5
 
         timer.handler = {
             resumed.fulfill()
