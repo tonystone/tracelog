@@ -36,7 +36,7 @@ extension TestHarnessTests {
     ]
 }
 
-#if os(Linux)
+#if !canImport(ObjectiveC)
 extension TestUtilitiesTests {
     static let __allTests = [
         ("testShell", testShell),

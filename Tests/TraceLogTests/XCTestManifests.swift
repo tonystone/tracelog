@@ -179,7 +179,7 @@ extension WriterTests {
     ]
 }
 
-#if os(Linux)
+#if !canImport(ObjectiveC)
 public func __allTests() -> [XCTestCaseEntry] {
     return [
         testCase(AsyncWriterProxyTests.__allTests),
