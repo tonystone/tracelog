@@ -161,7 +161,7 @@ internal extension ConcurrencyMode {
     ///
     /// Internal func to convert a `ConcurrencyMode` to a `WriterConcurrencyMode`.
     ///
-    internal func writerMode(for writer: Writer) -> WriterConcurrencyMode {
+    func writerMode(for writer: Writer) -> WriterConcurrencyMode {
         switch self {
             case .direct: return .direct(writer)
             case .sync:   return .sync(writer)
