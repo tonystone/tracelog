@@ -25,17 +25,19 @@ import XCTest
 ///
 /// Helper to run the shell and return the output
 ///
+@available(OSX 10.13, *)
 @available(iOS, unavailable)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
-public func shell(_ command: String) -> Data {
+public func shell(_ command: String) throws -> Data {
     let task = Process()
-    task.launchPath = "/bin/bash"
+    task.executableURL = URL(fileURLWithPath: "/bin/bash")
     task.arguments = ["-c", command]
 
     let pipe = Pipe()
     task.standardOutput = pipe
-    task.launch()
+
+    try task.run()
 
     return pipe.fileHandleForReading.readDataToEndOfFile()
 }
