@@ -36,7 +36,7 @@ public protocol RuntimeContext: CustomStringConvertible {
 
 public extension RuntimeContext {
 
-    public var description: String {
+    var description: String {
         return "RuntimeContext {processName: \"\(self.processName)\", processIdentifier: \(self.processIdentifier), threadIdentifier: \(self.threadIdentifier)}"
     }
 }

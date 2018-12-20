@@ -70,5 +70,5 @@ public extension Writer {
     /// Default implementation of available always assumes
     /// the Writer is available.
     ///
-    public var available: Bool { return true }
+    var available: Bool { return true }
 }
