@@ -179,7 +179,7 @@ extension WriterTests {
     ]
 }
 
-#if !os(macOS)
+#if os(Linux)
 public func __allTests() -> [XCTestCaseEntry] {
     return [
         testCase(AsyncWriterProxyTests.__allTests),

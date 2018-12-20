@@ -36,7 +36,7 @@ extension TestHarnessTests {
     ]
 }
 
-#if !os(macOS)
+#if os(Linux)
 extension TestUtilitiesTests {
     static let __allTests = [
         ("testShell", testShell),
