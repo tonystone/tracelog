@@ -312,3 +312,21 @@ class AsyncWriterProxyTests: XCTestCase {
         self.wait(for: [testWriter.expectation], timeout: 2)
     }
 }
+
+extension AsyncWriterProxyTests {
+
+    static var allTests: [(String, (AsyncWriterProxyTests) -> () throws -> Void)] {
+        return [
+            ("testAvailableNoBuffering", testAvailableNoBuffering),
+            ("testAvailableWithDropTailBuffering", testAvailableWithDropTailBuffering),
+            ("testAvailableWithDropHeadBuffering", testAvailableWithDropHeadBuffering),
+            ("testAvailableWithExpandBuffering", testAvailableWithExpandBuffering),
+            ("testLog", testLog),
+            ("testLogWithBufferingWriterAvailable", testLogWithBufferingWriterAvailable),
+            ("testLogWithBufferingWriterUnavailable", testLogWithBufferingWriterUnavailable),
+            ("testLogWithBufferingWriterDelayedAvailability", testLogWithBufferingWriterDelayedAvailability),
+            ("testLogWithBufferingAndDropTailBufferLimitOverflow", testLogWithBufferingAndDropTailBufferLimitOverflow),
+            ("testLogWithBufferingAndDropHeadBufferLimitOverflow", testLogWithBufferingAndDropHeadBufferLimitOverflow)
+        ]
+    }
+}

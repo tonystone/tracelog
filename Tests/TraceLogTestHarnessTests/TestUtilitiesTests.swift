@@ -22,8 +22,10 @@ import TraceLog
 
 @testable import TraceLogTestHarness
 
+
 final class TestUtilitiesTests: XCTestCase {
 
+    @available(OSX 10.13, *)
     func testShell() throws {
 
         #if !os(iOS) && !os(tvOS) && !os(watchOS)
@@ -35,7 +37,7 @@ final class TestUtilitiesTests: XCTestCase {
         try testString.write(to: testURL, atomically: true, encoding: .utf8)
 
         /// Read the file using shell
-        let data = shell("cat \(testFile)")
+        let data = try shell("cat \(testFile)")
 
         XCTAssertEqual(String(data: data, encoding: .utf8), testString)
 
@@ -47,9 +49,14 @@ final class TestUtilitiesTests: XCTestCase {
 
 extension TestUtilitiesTests {
 
-   static var allTests: [(String, (TestUtilitiesTests) -> () throws -> Void)] {
-      return [
+    static var allTests: [(String, (TestUtilitiesTests) -> () throws -> Void)] {
+        if #available(OSX 10.13, *) {
+            return [
                 ("testShell",   testShell)
-           ]
+            ]
+        } else {
+            // Fallback on earlier versions
+            return []
+        }
    }
 }

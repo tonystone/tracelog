@@ -39,3 +39,12 @@ class WriterTests: XCTestCase {
         XCTAssertEqual(TestWriter().available, true)
     }
 }
+
+extension WriterTests {
+
+    static var allTests: [(String, (WriterTests) -> () throws -> Void)] {
+        return [
+            ("testAvailableDefaultValue", testAvailableDefaultValue)
+        ]
+    }
+}

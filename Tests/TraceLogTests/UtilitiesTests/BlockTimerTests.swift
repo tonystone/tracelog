@@ -141,3 +141,16 @@ class BlockTimerTests: XCTestCase {
         self.wait(for: [fired], timeout: 1)
     }
 }
+
+extension BlockTimerTests {
+
+    static var allTests: [(String, (BlockTimerTests) -> () throws -> Void)] {
+        return [
+            ("testDealloc", testDealloc),
+            ("testRepeatFire", testRepeatFire),
+            ("testSuspendResume", testSuspendResume),
+            ("testResumeWhenResumed", testResumeWhenResumed),
+            ("testSuspendWhenSuspended", testSuspendWhenSuspended)
+        ]
+    }
+}

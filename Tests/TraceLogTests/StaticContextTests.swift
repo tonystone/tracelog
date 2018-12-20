@@ -33,3 +33,12 @@ class StaticContextTests: XCTestCase {
         XCTAssertEqual(input.description, expected)
     }
 }
+
+extension StaticContextTests {
+
+    static var allTests: [(String, (StaticContextTests) -> () throws -> Void)] {
+        return [
+            ("testDescription", testDescription)
+        ]
+    }
+}
