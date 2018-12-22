@@ -92,13 +92,17 @@ class ValidateExpectedValuesTestWriter: Writer {
 
     /// Required Writer.log function (required by the Writer protocol).
     ///
-    func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
+    func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogResult {
+
+        /// If we are not currently available, return error
+        guard available
+            else { return .failed(.unavailable) }
 
         /// Drop (Filter) any entries that are contained
         /// in our list of tags to filter.
         ///
         guard !filterTags.contains(tag)
-            else { return }
+            else { return .success }
 
         /// The index will be the resultCount before incrementing
         let index = self.resultCount
@@ -113,7 +117,7 @@ class ValidateExpectedValuesTestWriter: Writer {
                 else {
                     let newEntry = (timestamp: timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)
 
-                    XCTFail("\(newEntry) is not equal to: \(expected)"); return }
+                    XCTFail("\(newEntry) is not equal to: \(expected)"); return .failed(.error) }
 
             /// Optional comparisons
             ///
@@ -123,30 +127,31 @@ class ValidateExpectedValuesTestWriter: Writer {
             ///
             if let expectedTimestamp = expected.timestamp {
                 guard timestamp == expectedTimestamp
-                    else { XCTFail("Timestamp \(timestamp) is not equal to: \(expectedTimestamp)"); return }
+                    else { XCTFail("Timestamp \(timestamp) is not equal to: \(expectedTimestamp)"); return .failed(.error) }
             }
 
             if let expectedRuntimeContext = expected.runtimeContext {
                 guard runtimeContext.processIdentifier == expectedRuntimeContext.processIdentifier &&
                       runtimeContext.processName       == expectedRuntimeContext.processName &&
                       runtimeContext.threadIdentifier  == expectedRuntimeContext.threadIdentifier
-                    else { XCTFail("\(runtimeContext) is not equal to: \(expectedRuntimeContext)"); return }
+                    else { XCTFail("\(runtimeContext) is not equal to: \(expectedRuntimeContext)"); return .failed(.error)  }
             }
 
             if let expectedStaticContext = expected.staticContext {
                 guard staticContext.file     == expectedStaticContext.file &&
                       staticContext.function == expectedStaticContext.function
-                    else { XCTFail("\(staticContext) is not equal to: \(expectedStaticContext)"); return }
+                    else { XCTFail("\(staticContext) is not equal to: \(expectedStaticContext)"); return .failed(.error) }
 
                 if !ignoreLineInComparison {
                     guard staticContext.line == expectedStaticContext.line
-                        else { XCTFail("\(staticContext) is not equal to: \(expectedStaticContext)"); return }
+                        else { XCTFail("\(staticContext) is not equal to: \(expectedStaticContext)"); return .failed(.error) }
                 }
             }
 
             /// If it matches all required fields increment the fulfullment count
             self.expectation.fulfill()
         }
+        return .success
     }
 }
 

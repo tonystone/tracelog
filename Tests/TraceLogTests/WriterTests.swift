@@ -26,16 +26,5 @@ import Dispatch
 ///
 class WriterTests: XCTestCase {
 
-    /// The writers default value when no implementation is supplied, should be `true`.
-    ///
-    func testAvailableDefaultValue() {
 
-        /// Test Writer with no available implementation.
-        ///
-        class TestWriter: Writer {
-            func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {}
-        }
-
-        XCTAssertEqual(TestWriter().available, true)
-    }
 }

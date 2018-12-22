@@ -27,20 +27,4 @@ import TraceLogTestHarness
 ///
 class SyncWriterProxyTests: XCTestCase {
 
-    func testAvailable() {
-
-        class TestWriter: Writer {
-            var available: Bool = true
-            func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {}
-        }
-
-        let testWriter = TestWriter()
-
-        // Test the default of the TestWriter which is `true`
-        XCTAssertEqual(SyncWriterProxy(writer: testWriter).available, true)
-
-        // Now set it to false to ensure it flows through
-        testWriter.available = false
-        XCTAssertEqual(SyncWriterProxy(writer: testWriter).available, false)
-    }
 }
