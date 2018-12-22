@@ -4,7 +4,7 @@
     <img src="https://img.shields.io/badge/platforms-iOS%20%7C%20macOS%20%7C%20watchOS%20%7C%20tvOS%20%7C%20Linux%20-lightgray.svg?style=flat" alt="Platforms: iOS | macOS | watchOS | tvOS | Linux" />
 </a>
 <a href="https://github.com/tonystone/tracelog/" target="_blank">
-   <img src="https://img.shields.io/badge/Swift-4.1-orange.svg?style=flat" alt="Swift 4.1"/>
+   <img src="https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat" alt="Swift 5.0"/>
 </a>
 <a href="http://cocoadocs.org/docsets/TraceLog" target="_blank">
    <img src="https://img.shields.io/cocoapods/v/TraceLog.svg?style=flat" alt="Version"/>
@@ -325,8 +325,8 @@ Build Environment
 
 | Platform | Swift | Swift Build | Xcode |
 |:--------:|:-----:|:----------:|:------:|
-| Linux    | 4.1 | &#x2714; | &#x2718; |
-| OSX      | 4.1 | &#x2714; | Xcode 9.3 |
+| Linux    | 5.0 | &#x2714; | &#x2718; |
+| OSX      | 5.0 | &#x2714; | Xcode 10 |
 
 Minimum Runtime Version
 

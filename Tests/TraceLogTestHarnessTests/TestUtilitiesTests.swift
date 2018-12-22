@@ -24,22 +24,23 @@ import TraceLog
 
 final class TestUtilitiesTests: XCTestCase {
 
+    @available(OSX 10.13, *)
     func testShell() throws {
 
         #if !os(iOS) && !os(tvOS) && !os(watchOS)
 
-        let testString = "Random test String."
-        let testFile   = "TestFile.txt"
-        let testURL    = URL(fileURLWithPath: testFile)
+            let testString = "Random test String."
+            let testFile   = "TestFile.txt"
+            let testURL    = URL(fileURLWithPath: testFile)
 
-        try testString.write(to: testURL, atomically: true, encoding: .utf8)
+            try testString.write(to: testURL, atomically: true, encoding: .utf8)
 
-        /// Read the file using shell
-        let data = shell("cat \(testFile)")
+            /// Read the file using shell
+            let data = try shell("cat \(testFile)")
 
-        XCTAssertEqual(String(data: data, encoding: .utf8), testString)
+            XCTAssertEqual(String(data: data, encoding: .utf8), testString)
 
-        try FileManager.default.removeItem(at: testURL)
+            try FileManager.default.removeItem(at: testURL)
 
         #endif
     }
@@ -48,8 +49,13 @@ final class TestUtilitiesTests: XCTestCase {
 extension TestUtilitiesTests {
 
    static var allTests: [(String, (TestUtilitiesTests) -> () throws -> Void)] {
-      return [
+        if #available(OSX 10.13, *) {
+            return [
                 ("testShell",   testShell)
            ]
+        } else {
+            // Fallback on earlier versions
+            return []
+        }
    }
 }
