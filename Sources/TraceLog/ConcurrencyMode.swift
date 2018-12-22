@@ -194,12 +194,12 @@ internal extension ConcurrencyMode {
 ///
 internal extension WriterConcurrencyMode {
 
-    func proxy() -> Writer {
+    func proxy() -> WriterProxy {
         switch self {
-            case .direct(let writer):              return writer
-            case .sync  (let writer):              return SyncWriterProxy (writer: writer)
-            case .async (let writer):              return AsyncWriterProxy(writer: writer, options: [])
-            case .async2(let writer, let options): return AsyncWriterProxy(writer: writer, options: options)
+            case .direct(let writer):              return DirectWriterProxy(writer: writer)
+            case .sync  (let writer):              return SyncWriterProxy  (writer: writer)
+            case .async (let writer):              return AsyncWriterProxy (writer: writer, options: [])
+            case .async2(let writer, let options): return AsyncWriterProxy (writer: writer, options: options)
 
         }
     }

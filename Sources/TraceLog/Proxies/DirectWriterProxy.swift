@@ -1,5 +1,5 @@
 ///
-///  SynchronousWriterProxy.swift
+///  DirectWriterProxy.swift
 ///
 ///  Copyright 2018 Tony Stone
 ///
@@ -15,41 +15,25 @@
 ///  See the License for the specific language governing permissions and
 ///  limitations under the License.
 ///
-///  Created by Tony Stone on 5/27/18.
-///
+///  Created by Tony Stone on 12/22/18.
 ///
 import Swift
 import Dispatch
 
-/// Synchronous proxy for instances of Writer.
+/// Direct proxy for instances of Writer.
 ///
-internal class SyncWriterProxy: Writer {
+internal class DirectWriterProxy: WriterProxy {
 
     /// The writer this class proxies.
     ///
     private let writer: Writer
 
-    /// Serialization queue for writing
-    ///
-    private let queue: DispatchQueue
-
-    /// Is the Writer available?
-    ///
-    internal var available: Bool {
-        return self.writer.available
-    }
-
     internal init(writer: Writer) {
         self.writer = writer
-        self.queue = DispatchQueue(label: "tracelog.write.queue.\(String(describing: writer.self))")
     }
 
     @inline(__always)
     internal func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
-        queue.sync {
-            self.writer.log(timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)
-        }
+        _ = self.writer.log(timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)
     }
-
 }
-
