@@ -25,7 +25,7 @@ import Foundation
 /// unavailable (can't write to it's end point), in this case, it buffers
 /// the messages until they can be written.
 ///
-internal class AsyncWriterProxy: Writer {
+internal class AsyncWriterProxy: WriterProxy {
 
     /// The writer this class proxies.
     ///
@@ -40,26 +40,6 @@ internal class AsyncWriterProxy: Writer {
     /// write timer to write out the queue.
     ///
     private var buffer: (queue: LogEntryQueue, writeTimer: BlockTimer)?
-
-    /// Is the Writer available?
-    ///
-    internal var available: Bool {
-
-        return self.queue.sync {
-
-            /// If we are buffering, we are always available.
-            ///
-            guard let buffer = self.buffer
-                else {
-                    /// If not buffering, the state is detemined
-                    /// by the writer we proxy.
-                    ///
-                    return self.writer.available
-            }
-
-            return !buffer.queue.isFull
-        }
-    }
 
     /// Initialize the proxy with the proxied Writer and any options to configure.
     ///
@@ -93,7 +73,7 @@ internal class AsyncWriterProxy: Writer {
 
         self.queue.async {
 
-            /// If buffering is not enabled, simply write and return.
+            /// If buffering is not enabled, simply write and return the writers value.
             ///
             guard let buffer = self.buffer
                 else {
@@ -134,12 +114,19 @@ internal class AsyncWriterProxy: Writer {
         ///
         for _ in 1...buffer.queue.count {
 
-            if !self.writer.available {
-                break  /// Stop on the first entry that cannot be written.
-            }
-            let entry = buffer.queue.dequeue()
+            let entry = buffer.queue.peek()
 
-            self.writer.log(entry.timestamp, level: entry.level, tag: entry.tag, message: entry.message, runtimeContext: entry.runtimeContext, staticContext: entry.staticContext)
+            switch self.writer.log(entry.timestamp, level: entry.level, tag: entry.tag, message: entry.message, runtimeContext: entry.runtimeContext, staticContext: entry.staticContext) {
+
+            case .success:
+                _ = buffer.queue.dequeue(); continue
+            case .failed(let reason):
+                switch reason {
+                    case .unavailable: break
+                    default: break
+                }
+                break
+            }
         }
 
         /// If we got through all of them, it's safe to
@@ -227,6 +214,12 @@ private class LogEntryQueue {
     ///
     public func dequeue() -> Element {
         return storage.remove(at: 0)
+    }
+
+    /// Retrieves, but does not remove, the head of this queue, or returns nil if this queue is empty.
+    ///
+    public func peek() -> Element {
+        return storage[0]
     }
 }
 
