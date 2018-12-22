@@ -18,24 +18,24 @@ matrix:
          - BUILD="swift build"
     -
       os: osx
-      osx_image: xcode9.3
+      osx_image: xcode10
       env:
          - BUILD="swift build"
     -
       os: osx
-      osx_image: xcode9.3
+      osx_image: xcode10
       env:
          - BUILD="pod lint"
     -
       os: osx
-      osx_image: xcode9.3
+      osx_image: xcode10
       env:
          - BUILD="xcodebuild"
          - TEST_DEST="platform=iOS Simulator,OS=11.3,name=iPhone 8"
          - TEST_SDK=iphonesimulator
     -
       os: osx
-      osx_image: xcode9.3
+      osx_image: xcode10
       env:
          - BUILD="xcodebuild"
          - TEST_DEST="platform=iOS Simulator,OS=10.3.1,name=iPhone 7"
@@ -43,7 +43,7 @@ matrix:
 
     -
       os: osx
-      osx_image: xcode9.3
+      osx_image: xcode10
       env:
          - BUILD="xcodebuild"
          - TEST_DEST="platform=iOS Simulator,OS=9.3,name=iPhone 6s"
@@ -51,7 +51,7 @@ matrix:
 
     -
       os: osx
-      osx_image: xcode9.3
+      osx_image: xcode10
       env:
          - BUILD="xcodebuild"
          - TEST_DEST="platform=OS X,arch=x86_64"
@@ -75,6 +75,10 @@ before_install:
        # Fix travis issue: https://github.com/travis-ci/travis-ci/issues/6307
        rvm get head --auto-dotfiles || true
        sudo log config --subsystem "xctest" --mode "persist:debug"
+
+       curl -O https://swift.org/builds/swift-5.0-branch/xcode/swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-20-a/swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-20-a-osx.pkg
+       sudo installer -pkg swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-20-a-osx.pkg -target /
+       export TOOLCHAINS=swift
     fi
   #
   # OSX
