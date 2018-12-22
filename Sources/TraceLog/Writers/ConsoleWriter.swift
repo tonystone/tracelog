@@ -48,7 +48,7 @@ public class ConsoleWriter: Writer {
     ///
     /// Required log function for the logger
     ///
-    public func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
+    public func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogResult {
 
         let uppercasedLevel = "\(level)".uppercased()
         let levelString     = "\(String(repeating: " ", count: 7 - uppercasedLevel.count))\(uppercasedLevel)"
@@ -71,6 +71,8 @@ public class ConsoleWriter: Writer {
         output.write(Data(message.utf8))
 
         mutex.unlock()
+
+        return .success
     }
 
     ///
