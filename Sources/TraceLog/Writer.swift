@@ -47,28 +47,41 @@ public protocol Writer {
     ///     - runtimeContext:        An object containing information about the state of the runtime such as thread ID (seealso: RuntimeContext)
     ///     - staticContext:         An object containing the static information at the time of the func call such as function name and line number (seealso: StaticContext)
     ///
+    /// - Returns: LogResult indicating the result of the attempt to log the statement to the endpoint.
+    ///
     /// - Seealso: LogLevel
     /// - Seealso: RuntimeContext
     /// - Seealso: StaticContext
     ///
-    func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext)
-
-    ///
-    /// Is this Writer available for writing to its endpoint.
-    ///
-    /// - Example:
-    ///     If you are a file type `Writer`, is the file open and accessible.
-    ///     If a network endpoint, has the socket been established and is it writable.
-    ///
-    ///
-    var available: Bool { get }
+    @discardableResult
+    func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogResult
 }
 
-public extension Writer {
+/// Result of logging to a Writer.
+///
+public enum LogResult {
 
+    /// The write was successful.
     ///
-    /// Default implementation of available always assumes
-    /// the Writer is available.
+    case success
+
+    /// The write failed to write for
+    /// the Reason specified.
     ///
-    var available: Bool { return true }
+    /// - Parameter Reason: The reason for the failure.
+    ///
+    case failed(Reason)
+
+    /// The reason for the failure.
+    ///
+    public enum Reason {
+
+        /// The Writer is unavailable for writing.
+        ///
+        case unavailable
+
+        /// The writer unrecoverably failed to write.
+        ///
+        case error // (Error)
+    }
 }
