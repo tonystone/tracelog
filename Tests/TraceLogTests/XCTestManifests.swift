@@ -2,10 +2,6 @@ import XCTest
 
 extension AsyncWriterProxyTests {
     static let __allTests = [
-        ("testAvailableNoBuffering", testAvailableNoBuffering),
-        ("testAvailableWithDropHeadBuffering", testAvailableWithDropHeadBuffering),
-        ("testAvailableWithDropTailBuffering", testAvailableWithDropTailBuffering),
-        ("testAvailableWithExpandBuffering", testAvailableWithExpandBuffering),
         ("testLog", testLog),
         ("testLogWithBufferingAndDropHeadBufferLimitOverflow", testLogWithBufferingAndDropHeadBufferLimitOverflow),
         ("testLogWithBufferingAndDropTailBufferLimitOverflow", testLogWithBufferingAndDropTailBufferLimitOverflow),
@@ -116,8 +112,7 @@ extension StaticContextTests {
 }
 
 extension SyncWriterProxyTests {
-    static let __allTests = [
-        ("testAvailable", testAvailable),
+    static let __allTests: [(String, () -> Void)] = [
     ]
 }
 
@@ -174,8 +169,7 @@ extension TraceLogWithFileWriterTests {
 }
 
 extension WriterTests {
-    static let __allTests = [
-        ("testAvailableDefaultValue", testAvailableDefaultValue),
+    static let __allTests: [(String, () -> Void)] = [
     ]
 }
 
