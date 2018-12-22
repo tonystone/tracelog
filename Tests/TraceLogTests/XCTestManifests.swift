@@ -112,7 +112,7 @@ extension StaticContextTests {
 }
 
 extension SyncWriterProxyTests {
-    static let __allTests: [(String, () -> Void)] = [
+    static let __allTests: [(String, (XCTestCase) -> () -> Void)] = [
     ]
 }
 
@@ -169,7 +169,7 @@ extension TraceLogWithFileWriterTests {
 }
 
 extension WriterTests {
-    static let __allTests: [(String, () -> Void)] = [
+    static let __allTests: [(String, (XCTestCase) -> () -> Void)] = [
     ]
 }
 
