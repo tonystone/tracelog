@@ -18,13 +18,12 @@
 ///  Created by Tony Stone on 5/12/18.
 ///
 import Swift
+import Dispatch
 
-///
 /// The system wide modes that TraceLog can run in.  Used to configure a mode globally at configure time.
 ///
 public enum ConcurrencyMode {
 
-    ///
     /// Direct, as the name implies, will directly call the writer from
     /// the calling thread with no indirection. It will block until the
     /// writer(s) in this mode have completed the write to the endpoint.
@@ -35,7 +34,6 @@ public enum ConcurrencyMode {
     ///
     case direct
 
-    ///
     /// Synchronous blocking mode is similer to direct in that it blocks
     /// but this mode also uses a queue for all writes.  The benefits of
     /// that is that all threads writing to the log will be serialized
@@ -44,25 +42,21 @@ public enum ConcurrencyMode {
     ///
     case sync
 
-    ///
     /// Asynchronous non-blocking mode.  A general mode used for most
-    /// application which queues all messages before being evaluated or logged.
-    /// This ensures minimal delays in application execution due to logging.
+    /// application which moves processing of the write to
+    /// a background queue for minimal delays when logging.
     ///
     case async
 
-    ///
-    /// The default mode used if no mode is specified (.async).
+    /// The default mode used if no mode is specified (.async(options: [])).
     ///
     case `default`
 }
 
-///
 /// Mode to run a specific Writer in. Used to wrap a writer to change the specific mode it operates in.
 ///
 public enum WriterConcurrencyMode {
 
-    ///
     /// Direct, as the name implies, will directly call the writer from
     /// the calling thread with no indirection. It will block until the
     /// writer(s) in this mode have completed the write to the endpoint.
@@ -71,21 +65,23 @@ public enum WriterConcurrencyMode {
     /// it is required for the call not to return until the message is
     /// printed.
     ///
+    /// - Parameters writer: The `Writer` instance to enable direct mode for.
+    ///
     case direct(Writer)
 
-    ///
     /// Synchronous blocking mode is simaler to direct in that it blocks
     /// but this mode also uses a queue for all writes.  The benifits of
     /// that is that all threads writing to the log will be serialized
     /// through before calling the writer (one call to the writer at a
     /// time).
     ///
+    /// - Parameters writer: The `Writer` instance to enable sync mode for.
+    ///
     case sync(Writer)
 
-    ///
     /// Asynchronous non-blocking mode.  A general mode used for most
-    /// application which queues all messages before being evaluated or logged.
-    /// This ensures minimal delays in application execution due to logging.
+    /// application which moves processing of the write to
+    /// a background queue for minimal delays when logging.
     ///
     case async(Writer)
 }
@@ -95,14 +91,13 @@ public enum WriterConcurrencyMode {
 ///
 internal extension ConcurrencyMode {
 
-    ///
     /// Internal func to convert a `ConcurrencyMode` to a `WriterConcurrencyMode`.
     ///
     func writerMode(for writer: Writer) -> WriterConcurrencyMode {
         switch self {
-            case .direct: return .direct(writer)
-            case .sync:   return .sync(writer)
-            default:      return .async(writer)
+            case .direct:              return .direct(writer)
+            case .sync:                return .sync(writer)
+            default:                   return .async(writer)
         }
     }
 }
@@ -112,11 +107,12 @@ internal extension ConcurrencyMode {
 ///
 internal extension WriterConcurrencyMode {
 
-    func proxy() -> Writer {
+    func proxy() -> WriterProxy {
         switch self {
-            case .direct(let writer):  return writer
-            case .sync(let writer):    return SynchronousWriterProxy(writer: writer)
-            case .async(let writer):   return AsynchronousWriterProxy(writer: writer)
+            case .direct(let writer):              return DirectWriterProxy(writer: writer)
+            case .sync  (let writer):              return SyncWriterProxy  (writer: writer)
+            case .async (let writer):              return AsyncWriterProxy (writer: writer)
+
         }
     }
 }

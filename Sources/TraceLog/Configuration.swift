@@ -45,7 +45,7 @@ internal class Configuration {
     var globalLogLevel: LogLevel             = .info
     var loggedPrefixes: [String: LogLevel]   = [:]
     var loggedTags:     [String: LogLevel]   = [:]
-    var writers:        [Writer]             = []
+    var writers:        [WriterProxy]        = []
     var errors:         [ConfigurationError] = []
 
     init(writers: [WriterConcurrencyMode] = [.async(ConsoleWriter())], environment: Environment = Environment()) {
