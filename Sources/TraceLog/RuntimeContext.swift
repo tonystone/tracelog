@@ -22,7 +22,7 @@ import Swift
 ///
 /// Runtime context captured at the time of the log statement
 ///
-public protocol RuntimeContext {
+public protocol RuntimeContext: CustomStringConvertible {
 
     /// The name of the current process.
     var processName: String { get }
@@ -32,4 +32,11 @@ public protocol RuntimeContext {
 
     /// The current threads identifier.
     var threadIdentifier: UInt64 { get }
+}
+
+public extension RuntimeContext {
+
+    var description: String {
+        return "RuntimeContext {processName: \"\(self.processName)\", processIdentifier: \(self.processIdentifier), threadIdentifier: \(self.threadIdentifier)}"
+    }
 }
