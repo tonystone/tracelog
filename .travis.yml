@@ -104,6 +104,8 @@ script:
   - |
     if [[ "$BUILD" == "pod lint" ]]; then
         set -e  # Fail (and stop build) on first non zero exit code
+        # Currently we can't build using swift 5 under cocoapods.
+        export TOOLCHAINS=
         bundler exec pod lib lint
         set +e
     fi
