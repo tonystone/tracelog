@@ -35,15 +35,3 @@ class EnvironmentTests: XCTestCase {
         XCTAssertEqual(environment["TEST_VAR1"], "Value1")
     }
 }
-
-extension EnvironmentTests {
-
-   static var allTests: [(String, (EnvironmentTests) -> () throws -> Void)] {
-      return [
-                ("testInit", testInit),
-                ("testInit_DictionaryLiteral", testInit_DictionaryLiteral),
-                ("testInit_CollectionType", testInit_CollectionType),
-                ("testSubscript", testSubscript)
-           ]
-   }
-}

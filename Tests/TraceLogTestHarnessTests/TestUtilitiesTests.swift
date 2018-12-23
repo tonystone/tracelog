@@ -45,17 +45,3 @@ final class TestUtilitiesTests: XCTestCase {
         #endif
     }
 }
-
-extension TestUtilitiesTests {
-
-   static var allTests: [(String, (TestUtilitiesTests) -> () throws -> Void)] {
-        if #available(OSX 10.13, *) {
-            return [
-                ("testShell",   testShell)
-           ]
-        } else {
-            // Fallback on earlier versions
-            return []
-        }
-   }
-}

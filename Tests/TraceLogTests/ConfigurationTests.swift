@@ -105,27 +105,3 @@ class ConfigurationTests: XCTestCase {
         XCTAssertEqual(configuration.logLevel(for: "TestTag1"), LogLevel.trace4)
     }
 }
-
-extension ConfigurationTests {
-
-   static var allTests: [(String, (ConfigurationTests) -> () throws -> Void)] {
-      return [
-                ("testInit", testInit),
-                ("testLoad_Prefixes", testLoad_Prefixes),
-                ("testLoad_Tags", testLoad_Tags),
-                ("testLogLevel_All_Default", testLogLevel_All_Default),
-                ("testLogLevel_All_Set", testLogLevel_All_Set),
-                ("testLogLevel_All_Set_Off", testLogLevel_All_Set_Off),
-                ("testLogLevel_All_Set_Error", testLogLevel_All_Set_Error),
-                ("testLogLevel_All_Set_Warning", testLogLevel_All_Set_Warning),
-                ("testLogLevel_All_Set_Info", testLogLevel_All_Set_Info),
-                ("testLogLevel_All_Set_Trace1", testLogLevel_All_Set_Trace1),
-                ("testLogLevel_All_Set_Trace2", testLogLevel_All_Set_Trace2),
-                ("testLogLevel_All_Set_Trace3", testLogLevel_All_Set_Trace3),
-                ("testLogLevel_All_Set_Trace4", testLogLevel_All_Set_Trace4),
-                ("testLogLevel_All_Set_InvalidLevel", testLogLevel_All_Set_InvalidLevel),
-                ("testLogLevel_Prefix", testLogLevel_Prefix),
-                ("testLogLevel_Tag", testLogLevel_Tag)
-           ]
-   }
-}

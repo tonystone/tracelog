@@ -39,7 +39,7 @@ var productTargets = ["TraceLog", "TraceLogTestHarness"]
 ///
 /// These platforms can also support Objective-C so we create a module for it.
 ///
-#if os(iOS) || os(macOS) || os(watchOS) || os(tvOS)
+#if canImport(ObjectiveC)
     package.targets.append(.target(name: "TraceLogObjC",          dependencies: ["TraceLog"],     path: "Sources/TraceLogObjC"))
     package.targets.append(.testTarget(name: "TraceLogObjCTests", dependencies: ["TraceLogObjC"], path: "Tests/TraceLogObjCTests"))
 
