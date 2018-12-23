@@ -1,7 +1,10 @@
 # Change Log
 All significant changes to this project will be documented in this file.
 
-## 4.x.x (Upcoming release)
+## [x.x.x] (Upcoming release)
+
+#### Changed
+- Required Swift 5 for compilation.
 
 #### Fixed
 - Fixed `logTrace` when no trace level is passed.  It's now the correct default value of 1 instead of 4 (issue #58).
