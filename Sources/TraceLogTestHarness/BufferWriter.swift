@@ -29,6 +29,10 @@ public class BufferWriter: Writer {
     ///
     public var buffer: [String: (timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext)] = [:]
 
+    /// Initialize an intance of `self` to its initial empty state.
+    ///
+    public init() {}
+
     ///
     /// Required log function for the `Writer`.
     ///
