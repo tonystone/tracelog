@@ -24,6 +24,10 @@ import TraceLog
 ///
 public class BufferReader: Reader {
 
+    /// Initialize an intance of `self` to its initial empty state.
+    ///
+    public init() {}
+
     public func logEntry(for writer: BufferWriter, timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogEntry? {
 
         guard let logEntry = writer.buffer[message]
