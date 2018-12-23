@@ -23,7 +23,7 @@ import Swift
 /// LogLevels represent the logging level defined by TraceLog.  These parallel the
 /// environment variables that can be set to configure TraceLog.
 ///
-public enum LogLevel: Int {
+public enum LogLevel: Int, CaseIterable {
 
     /// Used to turn logging completely off for the selected level (global, prefix, tag).
     case off     = 0
@@ -48,16 +48,6 @@ public enum LogLevel: Int {
 
     /// The forth level of low level tracing and debug logging. Use this level to get complete logging information.  This level includes all logging in the system.
     case trace4  = 7
-
-    ///
-    /// Note: Update below if you add another case statement to this enum
-    ///
-    /// I don't like this either but it's the only sane way to be able
-    /// to loop through all the elements for lookup. It's kept
-    /// here so you remember to update it should a new case
-    /// statement be added above.
-    ///
-    internal static let allValues: [LogLevel]  = [.off, .error, .warning, .info, .trace1, .trace2, .trace3, .trace4]
 }
 
 /// Extend the LogLevel with the ability to compare them
@@ -94,7 +84,7 @@ internal extension String {
 
         let lowercasedSelf = self.lowercased()
 
-        for level in LogLevel.allValues {
+        for level in LogLevel.allCases {
 
             if lowercasedSelf == String(describing: level) {
                     return level
