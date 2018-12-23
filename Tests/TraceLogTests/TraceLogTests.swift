@@ -449,39 +449,3 @@ class TraceLogTestsSwift: XCTestCase {
         }
     }
 }
-
-extension TraceLogTestsSwift {
-
-   static var allTests: [(String, (TraceLogTestsSwift) -> () throws -> Void)] {
-      return [
-                ("testConfigureWithNoArgs", testConfigureWithNoArgs),
-                ("testConfigureWithLogWriters", testConfigureWithLogWriters),
-                ("testConfigureWithLogWritersAndEnvironment", testConfigureWithLogWritersAndEnvironment),
-                ("testConfigureWithLogWritersAndEnvironmentGlobalInvalidLogLevel", testConfigureWithLogWritersAndEnvironmentGlobalInvalidLogLevel),
-                ("testConfigureWithLogWritersAndEnvironmentPrefixInvalidLogLevel", testConfigureWithLogWritersAndEnvironmentPrefixInvalidLogLevel),
-                ("testConfigureWithLogWritersAndEnvironmentTagInvalidLogLevel", testConfigureWithLogWritersAndEnvironmentTagInvalidLogLevel),
-                ("testModeDirectIsSameThread", testModeDirectIsSameThread),
-                ("testModeAsyncIsDifferentThread", testModeAsyncIsDifferentThread),
-                ("testModeSyncBlocks", testModeSyncBlocks),
-                ("testNoDeadLockDirectMode", testNoDeadLockDirectMode),
-                ("testNoDeadLockSyncMode", testNoDeadLockSyncMode),
-                ("testNoDeadLockAsyncMode", testNoDeadLockAsyncMode),
-                ("testLogError", testLogError),
-                ("testLogWarning", testLogWarning),
-                ("testLogInfo", testLogInfo),
-                ("testLogTrace", testLogTrace),
-                ("testLogTrace1", testLogTrace1),
-                ("testLogTrace2", testLogTrace2),
-                ("testLogTrace3", testLogTrace3),
-                ("testLogTrace4", testLogTrace4),
-                ("testLogErrorWhileOff", testLogErrorWhileOff),
-                ("testLogWarningWhileOff", testLogWarningWhileOff),
-                ("testLogInfoWhileOff", testLogInfoWhileOff),
-                ("testLogTraceWhileOff", testLogTraceWhileOff),
-                ("testLogTrace1WhileOff", testLogTrace1WhileOff),
-                ("testLogTrace2WhileOff", testLogTrace2WhileOff),
-                ("testLogTrace3WhileOff", testLogTrace3WhileOff),
-                ("testLogTrace4WhileOff", testLogTrace4WhileOff)
-           ]
-   }
-}

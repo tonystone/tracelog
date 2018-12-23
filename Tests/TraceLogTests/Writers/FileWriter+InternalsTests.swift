@@ -116,14 +116,3 @@ class FileWriterInternalsTests: XCTestCase {
         XCTAssertNotNil(message.range(of: "^Failed to archive, file does not exist: .*\(testDirectory)/test.log$", options: [.regularExpression, .anchored]))
     }
 }
-
-extension FileWriterInternalsTests {
-    static var allTests: [(String, (FileWriterInternalsTests) -> () throws -> Void)] {
-        return [
-            ("testOpen", testOpen),
-            ("testOpenCreatingDirectory", testOpenCreatingDirectory),
-            ("testRotate", testRotate),
-            ("testRotateFailure", testRotateFailure)
-        ]
-    }
-}
