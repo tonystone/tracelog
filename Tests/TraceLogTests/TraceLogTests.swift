@@ -185,7 +185,8 @@ class TraceLogTestsSwift: XCTestCase {
                 }
             }
         }
-        XCTAssertEqual(loggers.wait(timeout: .now() + 60.0), .success)
+        /// Note: Increased this wait time to 120 for iPhone 6s iOS 9.3 which was taking a little longer to run throught the test.
+        XCTAssertEqual(loggers.wait(timeout: .now() + 120.0), .success)
     }
 
     // MARK: - Logging Methods
