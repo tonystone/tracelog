@@ -23,7 +23,7 @@ matrix:
          - BUILD="swift build"
     -
       os: osx
-      osx_image: xcode10
+      osx_image: xcode9.3
       env:
          - BUILD="pod lint"
     -
@@ -79,15 +79,7 @@ before_install:
        curl -O https://swift.org/builds/swift-5.0-branch/xcode/swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-20-a/swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-20-a-osx.pkg
        sudo installer -pkg swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-20-a-osx.pkg -target /
        export TOOLCHAINS=swift
-    fi
-  #
-  # OSX
-  #
-  - |
-    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
-       # Fix travis issue: https://github.com/travis-ci/travis-ci/issues/6307
-       rvm get head --auto-dotfiles || true
-       sudo log config --subsystem "xctest" --mode "persist:debug"
+       swift --version
     fi
   #
   # Linux requires downloading Swift and tools
