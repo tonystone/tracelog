@@ -6,6 +6,7 @@ All significant changes to this project will be documented in this file.
 #### Added
 - Added `TextOutputFormatter` protocol to define formatters for use with text output stream type Writers.
 - Added `TextFormat`, an implementation of a TextOutputFormatter that formats its output based on a supplied template (this is the default formatter for Console and File output).
+- Added `TextOutputWriter` protocol to define types that write text to their output and accept `ZTextOutputFormatter` types to format the output.
 
 #### Changed
 - Required Swift 5 for compilation.
