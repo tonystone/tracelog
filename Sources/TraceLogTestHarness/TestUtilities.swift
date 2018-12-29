@@ -25,20 +25,28 @@ import XCTest
 ///
 /// Helper to run the shell and return the output
 ///
-@available(OSX 10.13, *)
 @available(iOS, unavailable)
 @available(tvOS, unavailable)
 @available(watchOS, unavailable)
 public func shell(_ command: String) throws -> Data {
     let task = Process()
-    task.executableURL = URL(fileURLWithPath: "/bin/bash")
+    if #available(OSX 10.13, *) {
+        task.executableURL = URL(fileURLWithPath: "/bin/bash")
+    } else {
+        // Fallback on earlier versions
+        task.launchPath = "/bin/bash"
+    }
     task.arguments = ["-c", command]
 
     let pipe = Pipe()
     task.standardOutput = pipe
 
-    try task.run()
-
+    if #available(OSX 10.13, *) {
+        try task.run()
+    } else {
+        // Fallback on earlier versions
+        task.launch()
+    }
     return pipe.fileHandleForReading.readDataToEndOfFile()
 }
 

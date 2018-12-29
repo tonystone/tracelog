@@ -36,13 +36,13 @@ extension TestHarnessTests {
     ]
 }
 
-#if !canImport(ObjectiveC)
 extension TestUtilitiesTests {
     static let __allTests = [
         ("testShell", testShell),
     ]
 }
 
+#if !os(macOS)
 public func __allTests() -> [XCTestCaseEntry] {
     return [
         testCase(AnyReaderTests.__allTests),

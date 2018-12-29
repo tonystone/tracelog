@@ -24,7 +24,6 @@ import TraceLog
 
 final class TestUtilitiesTests: XCTestCase {
 
-    @available(OSX 10.13, *)
     func testShell() throws {
 
         #if !os(iOS) && !os(tvOS) && !os(watchOS)
