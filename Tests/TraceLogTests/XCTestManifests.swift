@@ -78,6 +78,51 @@ extension MutexTests {
     ]
 }
 
+extension TextFormatTests {
+    static let __allTests = [
+        ("testInitWithDateFormatter", testInitWithDateFormatter),
+        ("testInitWithNoParameters", testInitWithNoParameters),
+        ("testInitWithStripControlCharacters", testInitWithStripControlCharacters),
+        ("testInitWithStripControlCharactersAndDateFormatter", testInitWithStripControlCharactersAndDateFormatter),
+        ("testInitWithTemplate", testInitWithTemplate),
+        ("testInitWithTerminator", testInitWithTerminator),
+        ("testStripControlCharactersFalseLeavesTheCharacters", testStripControlCharactersFalseLeavesTheCharacters),
+        ("testStripControlCharactersTrueActuallyStrips", testStripControlCharactersTrueActuallyStrips),
+        ("testTemplateAllConstants", testTemplateAllConstants),
+        ("testTemplateConstantsArePassedThrough", testTemplateConstantsArePassedThrough),
+        ("testTemplateDate", testTemplateDate),
+        ("testTemplateDefault", testTemplateDefault),
+        ("testTemplateDoubleWrappedVariable", testTemplateDoubleWrappedVariable),
+        ("testTemplateFile", testTemplateFile),
+        ("testTemplateFunction", testTemplateFunction),
+        ("testTemplateIncorrectVariables", testTemplateIncorrectVariables),
+        ("testTemplateLevel", testTemplateLevel),
+        ("testTemplateLine", testTemplateLine),
+        ("testTemplateMessage", testTemplateMessage),
+        ("testTemplateMessageWithEmbeddedMessageVariable", testTemplateMessageWithEmbeddedMessageVariable),
+        ("testTemplateMessageWithEmbeddedVaraibles", testTemplateMessageWithEmbeddedVaraibles),
+        ("testTemplateMessageWithEmbeddedVaraiblesReversed", testTemplateMessageWithEmbeddedVaraiblesReversed),
+        ("testTemplateMultipleDate", testTemplateMultipleDate),
+        ("testTemplateMultipleFile", testTemplateMultipleFile),
+        ("testTemplateMultipleFunction", testTemplateMultipleFunction),
+        ("testTemplateMultipleLevel", testTemplateMultipleLevel),
+        ("testTemplateMultipleLine", testTemplateMultipleLine),
+        ("testTemplateMultipleMessage", testTemplateMultipleMessage),
+        ("testTemplateMultipleProcessIdentifier", testTemplateMultipleProcessIdentifier),
+        ("testTemplateMultipleProcessName", testTemplateMultipleProcessName),
+        ("testTemplateMultipleTag", testTemplateMultipleTag),
+        ("testTemplateMultipleThreadIdentifier", testTemplateMultipleThreadIdentifier),
+        ("testTemplateMultipleTimestamp", testTemplateMultipleTimestamp),
+        ("testTemplateProcessIdentifier", testTemplateProcessIdentifier),
+        ("testTemplateProcessName", testTemplateProcessName),
+        ("testTemplateTag", testTemplateTag),
+        ("testTemplateThreadIdentifier", testTemplateThreadIdentifier),
+        ("testTemplateTimestamp", testTemplateTimestamp),
+        ("testTemplateWithAllVariables", testTemplateWithAllVariables),
+        ("testTerminatorCanBeSet", testTerminatorCanBeSet),
+    ]
+}
+
 extension TraceLogPerformanceTestsSwift {
     static let __allTests = [
         ("testLogErrorPerformance_NullWriter", testLogErrorPerformance_NullWriter),
@@ -139,6 +184,7 @@ public func __allTests() -> [XCTestCaseEntry] {
         testCase(FileWriterInternalsTests.__allTests),
         testCase(FileWriterTests.__allTests),
         testCase(MutexTests.__allTests),
+        testCase(TextFormatTests.__allTests),
         testCase(TraceLogPerformanceTestsSwift.__allTests),
         testCase(TraceLogTestsSwift.__allTests),
         testCase(TraceLogWithFileWriterTests.__allTests),
