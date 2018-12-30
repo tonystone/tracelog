@@ -22,5 +22,9 @@ import Foundation
 /// A formatter type for formating the output of a `Writer` type.
 ///
 public protocol ByteOutputFormatter {
+
+    /// Accepts traceLogs standard parameters and outputs an Array of bytes
+    /// containing the formatted output.
+    ///
     func bytes(from timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> [UInt8]?
 }

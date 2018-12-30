@@ -47,16 +47,16 @@ import Foundation
 /// file type output, a newline "\n" is required in order to write multiple lines to the screen
 /// or file.
 ///
-/// Stripping Control Characters
+/// Control Characters
 /// ============================
 ///
 /// TraceLog allows you to embed formatting control characters (\r\n\t\)  into the message when logging messages. The TextFormat
-/// allows you to strip those out so that the output can be more concise or machine readable if required.
+/// allows you to strip those out or escape them so that the output can be more concise or machine readable if required.
 ///
 /// Logging a statement like this is great for reading on the console but could cause issues with parsing
 /// a format the requires analyzing the entries.
 ///
-///     let formatter = TextFormat(stripControlCharacters: true)
+///     let formatter = TextFormat(options: [.controlCharacters(.strip)])
 ///
 ///     TraceLog.configure(writers: [ConsoleWriter(format: formatter)])
 ///
@@ -74,7 +74,27 @@ import Foundation
 ///             and is indented with several tab characters.
 ///
 ///
-/// > Note: using `stripControlCharacters` does not affect the `terminator` output, it only affects the message portion.  Terminators will still be printed.
+/// > Note: using `stripControlCharacters` does not affect the `terminator` output, terminators will still be printed.
+///
+/// Character Encoding
+/// ==================
+///
+/// The default character encoding of the output is `urf8` which should be suitable
+/// for most applications.
+///
+/// If required, this encoding can be changed by passing a `String.Encoding` value at init
+/// to change the output encoding.
+///
+/// For instance.
+///
+///     let utf16 = TextFormat(encoding: .utf16)
+///
+///     let ascii = TextFormat(encoding: .ascii)
+///
+///     let isoLatin1 = TextFormat(encoding: .isoLatin1)
+///
+/// > Note: Any one of the encoding defined by `String.Encoding` can be used but if you're logging
+/// characters outside the range that the encoding can encode, encoding will fail.
 ///
 /// Output Templates
 /// ================
@@ -152,21 +172,16 @@ public struct TextFormat: ByteOutputFormatter {
             return formatter
         }()
 
+        public static let options: Set<Option> = []
+
         ///
         /// Encoding of the output of the formatter.
         ///
         public static let encoding: String.Encoding = .utf8
 
-        /// Should the formatter strip control characters from the message
-        /// portion of the log entry?
-        ///
-        public static let stripControlCharacters: Bool = false
-
         /// The terminator to use at the end of each entry.
         ///
         public static let terminator: String = "\n"
-
-        public static let options: Set<Option> = []
     }
 
     /// Special options available to control the
@@ -298,7 +313,7 @@ public struct TextFormat: ByteOutputFormatter {
             target.write(value)
         }
     }
-    
+
     /// LogLevel writer
     func write<Target>(_ value: LogLevel, to target: inout Target) where Target : TextOutputStream {
         target.write(String(describing: value).uppercased())
