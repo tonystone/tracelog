@@ -78,16 +78,29 @@ extension MutexTests {
     ]
 }
 
+extension RuntimeContextTests {
+    static let __allTests = [
+        ("testDescription", testDescription),
+    ]
+}
+
+extension StaticContextTests {
+    static let __allTests = [
+        ("testDescription", testDescription),
+    ]
+}
+
 extension TextFormatTests {
     static let __allTests = [
+        ("testControlCharactersAbsentLeavesTheCharacters", testControlCharactersAbsentLeavesTheCharacters),
+        ("testControlCharactersEscapeActuallyEscapes", testControlCharactersEscapeActuallyEscapes),
+        ("testControlCharactersStripActuallyStrips", testControlCharactersStripActuallyStrips),
         ("testInitWithDateFormatter", testInitWithDateFormatter),
         ("testInitWithNoParameters", testInitWithNoParameters),
         ("testInitWithStripControlCharacters", testInitWithStripControlCharacters),
         ("testInitWithStripControlCharactersAndDateFormatter", testInitWithStripControlCharactersAndDateFormatter),
         ("testInitWithTemplate", testInitWithTemplate),
         ("testInitWithTerminator", testInitWithTerminator),
-        ("testStripControlCharactersFalseLeavesTheCharacters", testStripControlCharactersFalseLeavesTheCharacters),
-        ("testStripControlCharactersTrueActuallyStrips", testStripControlCharactersTrueActuallyStrips),
         ("testTemplateAllConstants", testTemplateAllConstants),
         ("testTemplateConstantsArePassedThrough", testTemplateConstantsArePassedThrough),
         ("testTemplateDate", testTemplateDate),
@@ -119,6 +132,7 @@ extension TextFormatTests {
         ("testTemplateThreadIdentifier", testTemplateThreadIdentifier),
         ("testTemplateTimestamp", testTemplateTimestamp),
         ("testTemplateWithAllVariables", testTemplateWithAllVariables),
+        ("testTemplateWithTabDeliminited", testTemplateWithTabDeliminited),
         ("testTerminatorCanBeSet", testTerminatorCanBeSet),
     ]
 }
@@ -175,7 +189,7 @@ extension TraceLogWithFileWriterTests {
     ]
 }
 
-#if !canImport(ObjectiveC)
+#if !os(macOS)
 public func __allTests() -> [XCTestCaseEntry] {
     return [
         testCase(ConfigurationTests.__allTests),
@@ -184,6 +198,8 @@ public func __allTests() -> [XCTestCaseEntry] {
         testCase(FileWriterInternalsTests.__allTests),
         testCase(FileWriterTests.__allTests),
         testCase(MutexTests.__allTests),
+        testCase(RuntimeContextTests.__allTests),
+        testCase(StaticContextTests.__allTests),
         testCase(TextFormatTests.__allTests),
         testCase(TraceLogPerformanceTestsSwift.__allTests),
         testCase(TraceLogTestsSwift.__allTests),
