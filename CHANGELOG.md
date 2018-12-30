@@ -10,6 +10,7 @@ All significant changes to this project will be documented in this file.
 
 #### Changed
 - Required Swift 5 for compilation.
+- Changed `ConsoleWriter` to accept new `ByteOutputFormatter` instances allowing you to customize the output log format (default is `TextFormat`.)
 
 #### Fixed
 - Fixed `logTrace` when no trace level is passed.  It's now the correct default value of 1 instead of 4 (issue #58).

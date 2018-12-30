@@ -128,7 +128,7 @@ private func testHarness<T>(for callerType: T.Type, configureTraceLog: Bool = fa
         return nil
     }
 
-    let writer = ConsoleWriter(dateFormatter: ConsoleWriter.Default.dateFormatter, fileHandle: outputHandle)
+    let writer = ConsoleWriter(outputStream: outputHandle, format: TextFormat())
 
     if configureTraceLog {
         TraceLog.configure(writers: [.direct(writer)], environment: ["LOG_ALL": "TRACE4"])
@@ -172,7 +172,7 @@ private class ConsoleWriterReader: Reader {
 
                 guard let dateRange = Range(matches.range(at: 1), in: entry)
                     else { return nil }
-                guard let timestamp = ConsoleWriter.Default.dateFormatter.date(from: String(entry[dateRange]))?.timeIntervalSince1970
+                guard let timestamp = TextFormat.Default.dateFormatter.date(from: String(entry[dateRange]))?.timeIntervalSince1970
                     else { return nil }
 
                 return timestamp

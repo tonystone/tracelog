@@ -26,24 +26,27 @@ import Foundation
 /// at configuration time.  Its a basic writer that can be used at any time that
 /// you want the output to go to the stdout.
 ///
-public class ConsoleWriter: Writer {
+public class ConsoleWriter: ByteOutputWriter {
 
+    /// ByteOutputFormatter being used for formating output.
+    ///
+    public let format: ByteOutputFormatter
 
     ///
     /// Default constructor for this writer
     ///
-    public convenience init(dateFormatter: DateFormatter = Default.dateFormatter) {
-        self.init(dateFormatter: dateFormatter, fileHandle: FileHandle.standardOutput)
+    public convenience init(format: ByteOutputFormatter = TextFormat()) {
+        self.init(outputStream: FileHandle.standardOutput, format: format)
     }
 
     ///
     /// Internal constructor for this writer
     ///
     internal /* @Testable */
-    init(dateFormatter: DateFormatter, fileHandle: FileHandle) {
-        self.dateFormatter = dateFormatter
+    init(outputStream: ByteOutputStream, format: ByteOutputFormatter) {
+        self.outputStream = outputStream
+        self.format       = format
         self.mutex         = Mutex(.normal)
-        self.output        = fileHandle
     }
 
     ///
@@ -51,66 +54,32 @@ public class ConsoleWriter: Writer {
     ///
     public func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
 
-        let uppercasedLevel = "\(level)".uppercased()
-        let levelString     = "\(String(repeating: " ", count: 7 - uppercasedLevel.count))\(uppercasedLevel)"
-        let date            = Date(timeIntervalSince1970: timestamp)
-        let message         = "\(self.dateFormatter.string(from: date)) \(runtimeContext.processName)[\(runtimeContext.processIdentifier):\(runtimeContext.threadIdentifier)] \(levelString): <\(tag)> \(message)\n"
+        guard let bytes = format.bytes(from: timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)
+            else { return }
 
         ///
         /// Note: Since we could be called on any thread in TraceLog direct mode
-        /// we protect stdout with a low-level mutex.
+        /// we protect the outputStream with a low-level mutex.
         ///
-        /// Pthreads mutexes were chosen because out of all the methods of synchronization
-        /// available in swift (queue, dispatch semaphores, etc), pthread mutexes are
+        /// PThreads Mutexes were chosen because out of all the methods of synchronization
+        /// available in swift (queue, dispatch semaphores, etc), PThread Mutexes are
         /// the lowest overhead and fastest lock.
         ///
         /// We also want to ensure we maintain thread boundaries when in direct mode (avoid
         /// jumping threads).
         ///
-        mutex.lock()
+        mutex.lock(); defer { mutex.unlock() }
 
-        output.write(Data(message.utf8))
-
-        mutex.unlock()
+        self.outputStream.write(bytes)
     }
 
     ///
-    /// DateFormater being used
-    ///
-    private let dateFormatter: DateFormatter
-
-    ///
-    /// Low level mutex for locking print since it's not reentrent.
+    /// Low level mutex for locking print since it's not reentrant.
     ///
     private var mutex: Mutex
 
     ///
     /// FileHandle to write the output to.
     ///
-    private let output: FileHandle
+    private var outputStream: ByteOutputStream
 }
-
-extension ConsoleWriter {
-
-    ///
-    /// Default values for this class.
-    ///
-    public enum Default {
-
-        ///
-        /// Default DateFormatter for this writer if one is not supplied.
-        ///
-        /// - Note: Format is "yyyy-MM-dd HH:mm:ss.SSS"
-        ///
-        /// - Example: "2016-04-23 10:34:26.849"
-        ///
-        public static let dateFormatter: DateFormatter = {
-            var formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
-
-            return formatter
-        }()
-    }
-
-}
-
