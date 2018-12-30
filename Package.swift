@@ -1,4 +1,4 @@
-// swift-tools-version:4.0
+// swift-tools-version:5.0
 ///
 ///  Package.swift
 ///
@@ -31,7 +31,7 @@ let package = Package(
         .testTarget(name: "TraceLogTests",            dependencies: ["TraceLog", "TraceLogTestHarness"], path: "Tests/TraceLogTests"),
         .testTarget(name: "TraceLogTestHarnessTests", dependencies: ["TraceLog", "TraceLogTestHarness"], path: "Tests/TraceLogTestHarnessTests")
     ],
-    swiftLanguageVersions: [4]
+    swiftLanguageVersions: [.v5]
 )
 
 var productTargets = ["TraceLog", "TraceLogTestHarness"]
@@ -39,12 +39,12 @@ var productTargets = ["TraceLog", "TraceLogTestHarness"]
 ///
 /// These platforms can also support Objective-C so we create a module for it.
 ///
-#if canImport(ObjectiveC)
-    package.targets.append(.target(name: "TraceLogObjC",          dependencies: ["TraceLog"],     path: "Sources/TraceLogObjC"))
-    package.targets.append(.testTarget(name: "TraceLogObjCTests", dependencies: ["TraceLogObjC"], path: "Tests/TraceLogObjCTests"))
+// #if canImport(ObjectiveC)
+//     package.targets.append(.target(name: "TraceLogObjC",          dependencies: ["TraceLog"],     path: "Sources/TraceLogObjC"))
+//     package.targets.append(.testTarget(name: "TraceLogObjCTests", dependencies: ["TraceLogObjC"], path: "Tests/TraceLogObjCTests"))
 
-    productTargets.append("TraceLogObjC")
-#endif
+//     productTargets.append("TraceLogObjC")
+// #endif
 
 /// Main products section
 package.products.append(.library(name: "TraceLog", type: .dynamic, targets: productTargets))
