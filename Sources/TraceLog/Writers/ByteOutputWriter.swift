@@ -1,5 +1,5 @@
 ///
-///  TextOutputWriter.swift
+///  ByteOutputWriter.swift
 ///
 ///  Copyright 2018 Tony Stone
 ///
@@ -19,14 +19,17 @@
 ///
 import Foundation
 
-/// TextOutputWriter
+/// ByteOutputStreamWriter
 ///
 /// A higher level Writer interface that specifically writes to
-/// a `TextOutputStream` and it's text output format can be controlled
-/// by a `TextOutputFormatter`.
+/// a `ByteOutputStream` and it's output format can be controlled
+/// by a `ByteOutputFormatter`.
 ///
-/// - SeeAlso: `TextOutputFormatter`
+/// - SeeAlso: `ByteOutputFormatter`
 ///
-public protocol TextOutputWriter: Writer {
-    init(format: TextOutputFormatter)
+public protocol ByteOutputWriter: Writer {
+
+    /// ByteOutputFormatter being used for formating output.
+    ///
+    var format: ByteOutputFormatter { get }
 }
