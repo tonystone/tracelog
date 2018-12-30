@@ -31,7 +31,7 @@ let package = Package(
         .testTarget(name: "TraceLogTests",            dependencies: ["TraceLog", "TraceLogTestHarness"], path: "Tests/TraceLogTests"),
         .testTarget(name: "TraceLogTestHarnessTests", dependencies: ["TraceLog", "TraceLogTestHarness"], path: "Tests/TraceLogTestHarnessTests")
     ],
-    swiftLanguageVersions: [.v5]
+    swiftLanguageVersions: [.v4_2]
 )
 
 var productTargets = ["TraceLog", "TraceLogTestHarness"]
