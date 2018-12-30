@@ -1,7 +1,7 @@
 # Change Log
 All significant changes to this project will be documented in this file.
 
-## [5.0] (Upcoming release)
+## [5.0.0] (Upcoming release)
 
 #### Added
 - Added `ByteOutputFormatter` protocol to define formatters for use with byte output stream type Writers.
@@ -11,6 +11,9 @@ All significant changes to this project will be documented in this file.
 #### Changed
 - Required Swift 5 for compilation.
 - Changed `ConsoleWriter` to accept new `ByteOutputFormatter` instances allowing you to customize the output log format (default is `TextFormat`.)
+- Changed `FileWriter` to accept new `ByteOutputFormatter` instances allowing you to customize the output log format (default is `TextFormat`.)
+- Changed `FileWriter` archive file name date format to "yyyyMMdd-HHmm-ss-SSS".
+    *  This was done for maximum compatibility between platforms and can be overridden in the FileConfiguration object passed at init.
 
 #### Fixed
 - Fixed `logTrace` when no trace level is passed.  It's now the correct default value of 1 instead of 4 (issue #58).

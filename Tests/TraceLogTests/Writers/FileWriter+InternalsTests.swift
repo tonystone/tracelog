@@ -85,7 +85,7 @@ class FileWriterInternalsTests: XCTestCase {
         ///
         /// Note: This tests ensures it does not fallback to the fallback handler.
         ///
-        XCTAssertNotEqual(rotate(file: logFile, fallbackHandle: FileHandle.standardOutput, dateFormatter: FileWriter.Default.dateFormatter).handle, FileHandle.standardOutput)
+        XCTAssertNotEqual(rotate(file: logFile, fallbackHandle: FileHandle.standardOutput, dateFormatter: FileWriter.Default.fileNameDateFormatter).handle, FileHandle.standardOutput)
 
        /// And of course we make sure the file was created.
         XCTAssertTrue(try archiveExists(fileName: "test", fileExt: "log", directory: testDirectory))
