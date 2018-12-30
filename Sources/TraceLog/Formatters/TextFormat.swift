@@ -19,12 +19,12 @@
 ///
 import Foundation
 
-/// The TextFormat is a configurable implementation of a `TextOutputFormatter`
+/// The TextFormat is a configurable implementation of a `ByteOutputFormatter`
 /// which allows complete control over the fields and format of the output
 /// log entry.
 ///
-/// Since the TextFormat is an instance of `TextOutputFormatter` it can be
-/// used with any `Writer` that accepts the `TextOutputFormatter` on construction.
+/// Since the TextFormat is an instance of `ByteOutputFormatter` it can be
+/// used with any `Writer` that accepts the `ByteOutputFormatter` on construction.
 ///
 /// TextFormat has a number of options for configuring it for many use-cases.  All
 /// options have a default value assigned to them to make it easy to get started
@@ -123,12 +123,12 @@ import Foundation
 ///
 ///     "1970-01-01 00:00:00.000","ExampleProcess",50,200,"WARNING","ExampleTag","Example message.”\n
 ///
-/// - SeeAlso: TextOutputFormatter
+/// - SeeAlso: ByteOutputFormatter
 /// - SeeAlso: JSONFormat
 /// - SeeAlso: ConsoleWriter
 /// - SeeAlso: FileWriter
 ///
-public struct TextFormat: TextOutputFormatter {
+public struct TextFormat: ByteOutputFormatter {
 
     /// Default values used for TextFormat
     ///
@@ -152,6 +152,11 @@ public struct TextFormat: TextOutputFormatter {
             return formatter
         }()
 
+        ///
+        /// Encoding of the output of the formatter.
+        ///
+        public static let encoding: String.Encoding = .utf8
+
         /// Should the formatter strip control characters from the message
         /// portion of the log entry?
         ///
@@ -160,6 +165,21 @@ public struct TextFormat: TextOutputFormatter {
         /// The terminator to use at the end of each entry.
         ///
         public static let terminator: String = "\n"
+
+        public static let options: Set<Option> = []
+    }
+
+    /// Special options available to control the
+    /// output.
+    ///
+    public enum Option: Hashable {
+
+        case controlCharacters(Action)
+
+        public enum Action {
+            case strip
+            case escape
+        }
     }
 
     /// The designated initializer for this type.
@@ -167,20 +187,27 @@ public struct TextFormat: TextOutputFormatter {
     /// - parameters:
     ///     - template: The template to use to format the log entry.
     ///     - dateFormatter: An instance of a DateFormatter to convert timestamps to dates.
-    ///     - stripControlCharacters: If true, strip control characters from the message attribute before outputting.
+    ///     - options: A Set of `Options` to allow optional formatting control (see `Option` for list).
+    ///     - encoding: The Character encoding to use for the formatted entry.
     ///     - terminator: A string that will be output at the end of the output to terminate the entry.
     ///
-    public init(template: String = Default.template, dateFormatter: DateFormatter = Default.dateFormatter, stripControlCharacters: Bool = Default.stripControlCharacters, terminator: String = Default.terminator) {
+    public init(template: String = Default.template, dateFormatter: DateFormatter = Default.dateFormatter, options: Set<Option> = Default.options, terminator: String = Default.terminator, encoding: String.Encoding = Default.encoding) {
         self.dateFormatter          = dateFormatter
-        self.stripControlCharacters = stripControlCharacters
+        self.encoding               = encoding
         self.terminator             = terminator
+
+        self.controlCharacterAction = options.reduce(nil, { (current, option) -> Option.Action? in
+            guard case let .controlCharacters(action) = option
+                else { return nil }
+            return action
+        })
 
         var elements: [TemplateElement] = []
 
         /// Locate all the ranges for the substitution variables
         /// in the users template.
         ///
-        let variables = template.ranges(of: "%\\{(\(Variable.allCases.map({ $0.rawValue}).joined(separator: "|")))\\}", options: [.regularExpression])
+        let variables = template.ranges(of: "%\\{(\(Variable.allCases.map({ $0.rawValue }).joined(separator: "|")))\\}", options: [.regularExpression])
 
         var currentIndex = template.startIndex
 
@@ -204,10 +231,10 @@ public struct TextFormat: TextOutputFormatter {
         self.template = elements
     }
 
-    /// Text conversion function required by the `TextOutputFormatter` protocol.
+    /// Text conversion function required by the `ByteOutputFormatter` protocol.
     ///
-    public func text(from timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> TextOutputStreamable? {
-        var text = ""
+    public func bytes(from timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> [UInt8]? {
+        var text = String()
 
         /// Write all the elements that have been pre-calculated
         /// out to the TextOutputStream.
@@ -222,23 +249,59 @@ public struct TextFormat: TextOutputFormatter {
             /// Embed the variables within the constants.
             case .variable(let substitution):
                 switch substitution {
-                case .date:              text.write("\(self.dateFormatter.string(from: Date(timeIntervalSince1970: timestamp)))")
-                case .timestamp:         text.write("\(timestamp)")
-                case .level:             text.write("\(level)".uppercased())
-                case .tag:               text.write(tag)
-                case .message:           text.write(self.stripControlCharacters ? message.stripping(characters: "\r|\n|\t") : message)
-                case .processName:       text.write(runtimeContext.processName)
-                case .processIdentifier: text.write("\(runtimeContext.processIdentifier)")
-                case .threadIdentifier:  text.write("\(runtimeContext.threadIdentifier)")
-                case .file:              text.write(staticContext.file)
-                case .function:          text.write(staticContext.function)
-                case .line:              text.write("\(staticContext.line)")
+                case .date:              self.write(Date(timeIntervalSince1970: timestamp), to: &text)
+                case .timestamp:         self.write(timestamp, to: &text)
+                case .level:             self.write(level, to: &text)
+                case .tag:               self.write(tag, to: &text)
+                case .message:           self.write(message, to: &text)
+                case .processName:       self.write(runtimeContext.processName, to: &text)
+                case .processIdentifier: self.write(runtimeContext.processIdentifier, to: &text)
+                case .threadIdentifier:  self.write(runtimeContext.threadIdentifier, to: &text)
+                case .file:              self.write(staticContext.file, to: &text)
+                case .function:          self.write(staticContext.function, to: &text)
+                case .line:              self.write(staticContext.line, to: &text)
                 }
             }
         }
         text.write(self.terminator)
 
-        return text
+        guard let data = text.data(using: self.encoding)
+            else { return nil }
+
+        return Array(data)
+    }
+
+    /// Generic type writer
+    func write<T, Target>(_ value: T, to target: inout Target) where Target : TextOutputStream {
+        target.write(String(describing: value))
+    }
+
+    /// Date writer
+    func write<Target>(_ value: Date, to target: inout Target) where Target : TextOutputStream {
+        /// Chain to string just in case the user supplied a format contains control characters
+        /// that require processing.
+        ///
+        /// Note: We think this is unlikely but it is possible so it
+        /// must be protected against.
+        ///
+        self.write(self.dateFormatter.string(from: value), to: &target)
+    }
+
+    /// String writer
+    func write<Target>(_ value: String, to target: inout Target) where Target : TextOutputStream {
+        switch controlCharacterAction {
+        case .some(.strip):
+            target.write(value.stripping(charactersIn: .controlCharacters))
+        case .some(.escape):
+            target.write(value.escaping(charactersIn: .controlCharacters))
+        case .none:
+            target.write(value)
+        }
+    }
+    
+    /// LogLevel writer
+    func write<Target>(_ value: LogLevel, to target: inout Target) where Target : TextOutputStream {
+        target.write(String(describing: value).uppercased())
     }
 
     /// The variables that are used to specify a substitution.
@@ -264,39 +327,16 @@ public struct TextFormat: TextOutputFormatter {
     ///
     private let dateFormatter: DateFormatter
 
+    ///
+    /// Encoding of the messages logged to the log file.
+    ///
+    private let encoding: String.Encoding
+
     /// Should we strip control characters from the message.
     ///
-    private let stripControlCharacters: Bool
+    private let controlCharacterAction: Option.Action?
 
     /// What terminator should be written at the end of the output.
     ///
     private let terminator: String
-}
-
-/// Private extension for specific String
-/// methods used internally to this file.
-///
-private extension String {
-
-    func stripping(characters: String) -> String {
-        return self.compactMap {
-            guard !characters.contains($0)
-                else { return nil }
-            return String($0)
-        }.joined()
-    }
-
-    func ranges(of pattern: String, options: CompareOptions = []) -> [Range<String.Index>] {
-
-        var ranges: [Range<String.Index>] = []
-        var searchStartIndex = self.startIndex
-
-        while searchStartIndex < self.endIndex,
-            let range = self.range(of: pattern, options: options, range: searchStartIndex..<self.endIndex), !range.isEmpty {
-
-                ranges.append(range)
-                searchStartIndex = range.upperBound
-        }
-        return ranges
-    }
 }
