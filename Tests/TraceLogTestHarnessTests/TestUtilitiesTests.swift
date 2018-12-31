@@ -22,6 +22,7 @@ import TraceLog
 
 @testable import TraceLogTestHarness
 
+@available(OSX 10.13, *)
 final class TestUtilitiesTests: XCTestCase {
 
     func testShell() throws {

@@ -323,16 +323,16 @@ For XCode `TRACELOG_DISABLED` can be set in the project target. For **Swift Pack
 
 Build Environment
 
-| Platform | Swift | Swift Build | Xcode |
-|:--------:|:-----:|:----------:|:------:|
-| Linux    | 5.0 | &#x2714; | &#x2718; |
-| OSX      | 5.0 | &#x2714; | Xcode 10 |
+| Platform | Version                    | Swift | Swift Build | Xcode    |
+|:--------:|:--------------------------:|:-----:|:-----------:|:--------:|
+| Linux    | Ubuntu 14.04, 16.04, 16.10 | 5.0   | &#x2714;    | &#x2718; |
+| OSX      | 10.13                      | 5.0   | &#x2714;    | Xcode 10 |
 
 Minimum Runtime Version
 
-| iOS |  OS X | tvOS | watchOS | Linux |
-|:---:|:-----:|:----:|:-------:|:------------:|
-| 9.0 | 10.10 | 9.0  |   2.0   | Ubuntu 14.04, 16.04, 16.10 |
+| iOS |  OS X | tvOS | watchOS | Linux                      |
+|:---:|:-----:|:----:|:-------:|:--------------------------:|
+| 9.0 | 10.13 | 9.0  |   2.0   | Ubuntu 14.04, 16.04, 16.10 |
 
 > **Note:**
 >
