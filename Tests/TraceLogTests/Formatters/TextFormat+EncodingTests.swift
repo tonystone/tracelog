@@ -30,12 +30,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testAsciiEncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .ascii, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .ascii, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".ascii\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .ascii), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .ascii), "Simple Ascii text.",
             "Failed conversion to \".ascii\".")
     }
 
@@ -44,12 +44,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testIso2022JpEncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .iso2022JP, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .iso2022JP, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".iso2022JP\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .iso2022JP), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .iso2022JP), "Simple Ascii text.",
             "Failed conversion to \".iso2022JP\".")
     }
 
@@ -58,12 +58,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testIsolatin1EncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .isoLatin1, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .isoLatin1, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".isoLatin1\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .isoLatin1), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .isoLatin1), "Simple Ascii text.",
             "Failed conversion to \".isoLatin1\".")
     }
 
@@ -72,12 +72,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testIsolatin2EncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .isoLatin2, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .isoLatin2, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".isoLatin2\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .isoLatin2), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .isoLatin2), "Simple Ascii text.",
             "Failed conversion to \".isoLatin2\".")
     }
 
@@ -86,12 +86,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testJapaneseeucEncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .japaneseEUC, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .japaneseEUC, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".japaneseEUC\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .japaneseEUC), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .japaneseEUC), "Simple Ascii text.",
             "Failed conversion to \".japaneseEUC\".")
     }
 
@@ -100,12 +100,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testMacosromanEncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .macOSRoman, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .macOSRoman, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".macOSRoman\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .macOSRoman), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .macOSRoman), "Simple Ascii text.",
             "Failed conversion to \".macOSRoman\".")
     }
 
@@ -114,12 +114,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testNextstepEncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .nextstep, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .nextstep, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".nextstep\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .nextstep), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .nextstep), "Simple Ascii text.",
             "Failed conversion to \".nextstep\".")
     }
 
@@ -128,12 +128,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testNonlossyasciiEncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .nonLossyASCII, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .nonLossyASCII, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".nonLossyASCII\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .nonLossyASCII), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .nonLossyASCII), "Simple Ascii text.",
             "Failed conversion to \".nonLossyASCII\".")
     }
 
@@ -142,12 +142,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testShiftjisEncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .shiftJIS, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .shiftJIS, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".shiftJIS\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .shiftJIS), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .shiftJIS), "Simple Ascii text.",
             "Failed conversion to \".shiftJIS\".")
     }
 
@@ -156,12 +156,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testSymbolEncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .symbol, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .symbol, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".symbol\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .symbol), "1970?01?01 00:00:00.000 ???????????[100:1100] ????: <???????> ?????? ????? ????.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .symbol), "?????? ????? ????.",
             "Failed conversion to \".symbol\".")
     }
 
@@ -170,12 +170,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testUnicodeEncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .unicode, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .unicode, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".unicode\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .unicode), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .unicode), "Simple Ascii text.",
             "Failed conversion to \".unicode\".")
     }
 
@@ -184,12 +184,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testUtf16EncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .utf16, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .utf16, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".utf16\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf16), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf16), "Simple Ascii text.",
             "Failed conversion to \".utf16\".")
     }
 
@@ -198,12 +198,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testUtf16BigendianEncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .utf16BigEndian, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .utf16BigEndian, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".utf16BigEndian\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf16BigEndian), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf16BigEndian), "Simple Ascii text.",
             "Failed conversion to \".utf16BigEndian\".")
     }
 
@@ -212,12 +212,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testUtf16LittleendianEncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .utf16LittleEndian, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .utf16LittleEndian, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".utf16LittleEndian\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf16LittleEndian), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf16LittleEndian), "Simple Ascii text.",
             "Failed conversion to \".utf16LittleEndian\".")
     }
 
@@ -226,12 +226,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testUtf32EncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .utf32, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .utf32, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".utf32\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf32), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf32), "Simple Ascii text.",
             "Failed conversion to \".utf32\".")
     }
 
@@ -240,12 +240,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testUtf32BigendianEncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .utf32BigEndian, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .utf32BigEndian, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".utf32BigEndian\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf32BigEndian), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf32BigEndian), "Simple Ascii text.",
             "Failed conversion to \".utf32BigEndian\".")
     }
 
@@ -254,12 +254,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testUtf32LittleendianEncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .utf32LittleEndian, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .utf32LittleEndian, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".utf32LittleEndian\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf32LittleEndian), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf32LittleEndian), "Simple Ascii text.",
             "Failed conversion to \".utf32LittleEndian\".")
     }
 
@@ -268,12 +268,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testUtf8EncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .utf8, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .utf8, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".utf8\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "Simple Ascii text.",
             "Failed conversion to \".utf8\".")
     }
 
@@ -282,12 +282,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testWindowscp1250EncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .windowsCP1250, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .windowsCP1250, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".windowsCP1250\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1250), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1250), "Simple Ascii text.",
             "Failed conversion to \".windowsCP1250\".")
     }
 
@@ -296,12 +296,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testWindowscp1251EncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .windowsCP1251, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .windowsCP1251, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".windowsCP1251\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1251), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1251), "Simple Ascii text.",
             "Failed conversion to \".windowsCP1251\".")
     }
 
@@ -310,12 +310,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testWindowscp1252EncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .windowsCP1252, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .windowsCP1252, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".windowsCP1252\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1252), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1252), "Simple Ascii text.",
             "Failed conversion to \".windowsCP1252\".")
     }
 
@@ -324,12 +324,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testWindowscp1253EncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .windowsCP1253, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .windowsCP1253, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".windowsCP1253\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1253), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1253), "Simple Ascii text.",
             "Failed conversion to \".windowsCP1253\".")
     }
 
@@ -338,12 +338,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using just Ascii characters in the messages.
     ///
     func testWindowscp1254EncodingWithSimpleAsciiMessage() {
-        let format = TextFormat(encoding: .windowsCP1254, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .windowsCP1254, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".windowsCP1254\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1254), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1254), "Simple Ascii text.",
             "Failed conversion to \".windowsCP1254\".")
     }
 
@@ -353,12 +353,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "LOSSY" operation when using Unicode characters in the messages.
     ///
     func testAsciiEncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .ascii, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .ascii, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".ascii\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .ascii), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ?, ??, ?, ?, ?.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .ascii), "Print a few unicode characters ?, ?, ??, ?, ?, ?.",
             "Failed conversion to \".ascii\".")
     }
 
@@ -367,12 +367,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "LOSSY" operation when using Unicode characters in the messages.
     ///
     func testIso2022JpEncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .iso2022JP, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .iso2022JP, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".iso2022JP\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .iso2022JP), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .iso2022JP), "Print a few unicode characters ?, ??, ????, ??, ??, ??.",
             "Failed conversion to \".iso2022JP\".")
     }
 
@@ -381,12 +381,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "LOSSY" operation when using Unicode characters in the messages.
     ///
     func testIsolatin1EncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .isoLatin1, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .isoLatin1, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".isoLatin1\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .isoLatin1), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .isoLatin1), "Print a few unicode characters ?, ??, ????, ??, ??, ??.",
             "Failed conversion to \".isoLatin1\".")
     }
 
@@ -395,12 +395,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "LOSSY" operation when using Unicode characters in the messages.
     ///
     func testIsolatin2EncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .isoLatin2, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .isoLatin2, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".isoLatin2\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .isoLatin2), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .isoLatin2), "Print a few unicode characters ?, ??, ????, ??, ??, ??.",
             "Failed conversion to \".isoLatin2\".")
     }
 
@@ -409,12 +409,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "LOSSY" operation when using Unicode characters in the messages.
     ///
     func testJapaneseeucEncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .japaneseEUC, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .japaneseEUC, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".japaneseEUC\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .japaneseEUC), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .japaneseEUC), "Print a few unicode characters ?, ??, ????, ??, ??, ??.",
             "Failed conversion to \".japaneseEUC\".")
     }
 
@@ -423,12 +423,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "LOSSY" operation when using Unicode characters in the messages.
     ///
     func testMacosromanEncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .macOSRoman, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .macOSRoman, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".macOSRoman\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .macOSRoman), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .macOSRoman), "Print a few unicode characters ?, ??, ????, ??, ??, ??.",
             "Failed conversion to \".macOSRoman\".")
     }
 
@@ -437,12 +437,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "LOSSY" operation when using Unicode characters in the messages.
     ///
     func testNextstepEncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .nextstep, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .nextstep, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".nextstep\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .nextstep), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .nextstep), "Print a few unicode characters ?, ??, ????, ??, ??, ??.",
             "Failed conversion to \".nextstep\".")
     }
 
@@ -451,12 +451,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using Unicode characters in the messages.
     ///
     func testNonlossyasciiEncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .nonLossyASCII, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .nonLossyASCII, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".nonLossyASCII\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .nonLossyASCII), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .nonLossyASCII), "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.",
             "Failed conversion to \".nonLossyASCII\".")
     }
 
@@ -465,12 +465,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "LOSSY" operation when using Unicode characters in the messages.
     ///
     func testShiftjisEncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .shiftJIS, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .shiftJIS, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".shiftJIS\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .shiftJIS), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .shiftJIS), "Print a few unicode characters ?, ??, ????, ??, ??, ??.",
             "Failed conversion to \".shiftJIS\".")
     }
 
@@ -479,12 +479,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "LOSSY" operation when using Unicode characters in the messages.
     ///
     func testSymbolEncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .symbol, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .symbol, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".symbol\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .symbol), "1970?01?01 00:00:00.000 ???????????[100:1100] ????: <???????> ????? ? ??? ??????? ?????????? ?, ??, ????, ??, ??, ??.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .symbol), "????? ? ??? ??????? ?????????? ?, ??, ????, ??, ??, ??.",
             "Failed conversion to \".symbol\".")
     }
 
@@ -493,12 +493,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using Unicode characters in the messages.
     ///
     func testUnicodeEncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .unicode, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .unicode, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".unicode\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .unicode), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .unicode), "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.",
             "Failed conversion to \".unicode\".")
     }
 
@@ -507,12 +507,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using Unicode characters in the messages.
     ///
     func testUtf16EncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .utf16, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .utf16, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".utf16\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf16), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf16), "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.",
             "Failed conversion to \".utf16\".")
     }
 
@@ -521,12 +521,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using Unicode characters in the messages.
     ///
     func testUtf16BigendianEncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .utf16BigEndian, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .utf16BigEndian, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".utf16BigEndian\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf16BigEndian), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf16BigEndian), "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.",
             "Failed conversion to \".utf16BigEndian\".")
     }
 
@@ -535,12 +535,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using Unicode characters in the messages.
     ///
     func testUtf16LittleendianEncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .utf16LittleEndian, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .utf16LittleEndian, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".utf16LittleEndian\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf16LittleEndian), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf16LittleEndian), "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.",
             "Failed conversion to \".utf16LittleEndian\".")
     }
 
@@ -549,12 +549,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using Unicode characters in the messages.
     ///
     func testUtf32EncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .utf32, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .utf32, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".utf32\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf32), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf32), "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.",
             "Failed conversion to \".utf32\".")
     }
 
@@ -563,12 +563,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using Unicode characters in the messages.
     ///
     func testUtf32BigendianEncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .utf32BigEndian, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .utf32BigEndian, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".utf32BigEndian\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf32BigEndian), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf32BigEndian), "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.",
             "Failed conversion to \".utf32BigEndian\".")
     }
 
@@ -577,12 +577,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "NON-LOSSY" operation when using Unicode characters in the messages.
     ///
     func testUtf32LittleendianEncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .utf32LittleEndian, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .utf32LittleEndian, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".utf32LittleEndian\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf32LittleEndian), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf32LittleEndian), "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.",
             "Failed conversion to \".utf32LittleEndian\".")
     }
 
@@ -591,12 +591,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "LOSSY" operation when using Unicode characters in the messages.
     ///
     func testUtf8EncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .utf8, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .utf8, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".utf8\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.",
             "Failed conversion to \".utf8\".")
     }
 
@@ -605,12 +605,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "LOSSY" operation when using Unicode characters in the messages.
     ///
     func testWindowscp1250EncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .windowsCP1250, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .windowsCP1250, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".windowsCP1250\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1250), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1250), "Print a few unicode characters ?, ??, ????, ??, ??, ??.",
             "Failed conversion to \".windowsCP1250\".")
     }
 
@@ -619,12 +619,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "LOSSY" operation when using Unicode characters in the messages.
     ///
     func testWindowscp1251EncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .windowsCP1251, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .windowsCP1251, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".windowsCP1251\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1251), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1251), "Print a few unicode characters ?, ??, ????, ??, ??, ??.",
             "Failed conversion to \".windowsCP1251\".")
     }
 
@@ -633,12 +633,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "LOSSY" operation when using Unicode characters in the messages.
     ///
     func testWindowscp1252EncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .windowsCP1252, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .windowsCP1252, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".windowsCP1252\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1252), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1252), "Print a few unicode characters ?, ??, ????, ??, ??, ??.",
             "Failed conversion to \".windowsCP1252\".")
     }
 
@@ -647,12 +647,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "LOSSY" operation when using Unicode characters in the messages.
     ///
     func testWindowscp1253EncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .windowsCP1253, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .windowsCP1253, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".windowsCP1253\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1253), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1253), "Print a few unicode characters ?, ??, ????, ??, ??, ??.",
             "Failed conversion to \".windowsCP1253\".")
     }
 
@@ -661,12 +661,12 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     /// Note: This will be a "LOSSY" operation when using Unicode characters in the messages.
     ///
     func testWindowscp1254EncodingWithUnicodeMessage() {
-        let format = TextFormat(encoding: .windowsCP1254, terminator: "")
+        let format = TextFormat(template: "%{message}", encoding: .windowsCP1254, terminator: "")
 
         guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
             else { XCTFail("Failed to convert log entry to encoding \".windowsCP1254\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1254), "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??.",
+        XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1254), "Print a few unicode characters ?, ??, ????, ??, ??, ??.",
             "Failed conversion to \".windowsCP1254\".")
     }
 }
