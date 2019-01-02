@@ -31,6 +31,116 @@ import Foundation
 /// without configuration. Should refinement of the default behavior be required, these
 /// options give you fine grain control over the output.
 ///
+/// Output Templates
+/// ================
+///
+/// The primary control of the formatting is through the `template` parameter which
+/// defines the output variables and constants for each logged entry.  The `template`
+/// parameter is a `Swift.String` that allows any constants plus substitution variables
+/// that specify the various fields that TraceLog can output.
+///
+/// Substitution variables take the form %{variable-name} and are case sensitive.  Each
+/// variable can be used within the template String as many times as your use-case requires.
+///
+/// - Substitution variables:
+///     - %{date}
+///     - %{timestamp}
+///     - %{level}
+///     - %{tag}
+///     - %{processName}
+///     - %{processIdentifier}
+///     - %{threadIdentifier}
+///     - %{file}
+///     - %{function}
+///     - %{line}
+///     - %{message}
+///
+/// The default template is a human-readable form meant for debugging purposes
+/// and excludes extraneous details such as file, function and line. It is defined
+/// as:
+///
+///     template: "%{date} %{processName}[%{processIdentifier}:%{threadIdentifier}] %{level}: <%{tag}> %{message}"
+///
+/// Which produces an output similar to this:
+///
+///     1970-01-01 00:00:00.000 ExampleProcess[100:1100] INFO: <ExampleTag> Example message.
+///
+/// You can easily create other output forms such as TAB DELIMITED using this
+/// template (and adjusting the number of fields to your requirements).
+///
+///     template: "\"%{date}\",\"%{processName}\",%{processIdentifier},%{threadIdentifier},\"%{level}\",\"%{tag}\",\"%{message}\""
+///
+/// Your output would look similar to this given the same input as above:
+///
+///     "1970-01-01 00:00:00.000","ExampleProcess",50,200,"WARNING","ExampleTag","Example message.”
+///
+/// Control Characters
+/// ============================
+///
+/// TraceLog allows you to embed formatting control characters (\r\n\t\)  into the message when logging messages. The TextFormat
+/// allows you to strip those out or escape them so that the output can be more concise or machine readable if required.
+///
+/// Logging a statement like this is great for reading on the console but could cause issues with parsing
+/// a format that requires analyzing the entries.
+///
+///     let formatter = TextFormat(options: [.controlCharacters(.strip)])
+///
+///     TraceLog.configure(writers: [ConsoleWriter(format: formatter)])
+///
+///     logInfo { "\n\t\tThis is a message with control characters that spans multiple lines \n\t\tand is indented with several tab characters." }
+///
+/// Using `.controlCharacters(.strip)` will allow you to strip those out before output, giving
+/// you the following output in the console or file.
+///
+///     1970-01-01 00:00:00.000 ExampleProcess[100:1100] INFO: <ExampleTag> This is a message with control characters that spans multiple lines and is indented with several tab characters.
+///
+/// Using `.controlCharacters(.escape)` will allow you to escape ("\") the characters for output to
+/// writers that may require escaping of control characters.
+///
+///     1970-01-01 00:00:00.000 ExampleProcess[100:1100] INFO: <ExampleTag> \\n\\t\\tThis is a message with control characters that spans multiple lines \\n\\t\\tand is indented with several tab characters.
+///
+/// Without this option the output would look like this.
+///
+///     1970-01-01 00:00:00.000 ExampleProcess[100:1100] INFO: <ExampleTag>
+///             This is a message with control characters that spans multiple lines
+///             and is indented with several tab characters.
+///
+///
+/// > Note: using this option does not affect the `terminator` output, terminators will still be printed normally.
+///
+/// Character Encoding
+/// ==================
+///
+/// The default character encoding of the output is `.utf8` which should be suitable
+/// for most applications and can encode all the unicode characters.
+///
+/// If required, this encoding can be changed by passing a `String.Encoding` value at init
+/// to change the output encoding.
+///
+/// For instance.
+///
+///     let format = TextFormat(encoding: .utf16)
+///
+/// Any one of the encodings defined by `String.Encoding` can be used but if you're logging
+/// characters outside the range that the encoding can encode, the formatter will alter or drop
+/// (replacing with a placeholder character within the encoding) the character.
+///
+/// If only logging characters within the Ascii character encoding (characters from 0-127) all
+/// encodings accept `.symbol` can be used.
+///
+/// If logging characters outside the Ascii range (0-127), it's recommended
+/// that you use a unicode compatible encoding.  All the following encodings
+/// can completely encode Unicode:
+///
+/// - unicode
+/// - utf8
+/// - utf16
+/// - utf16BigEndian
+/// - utf16LittleEndian
+/// - utf32
+/// - utf32BigEndian
+/// - utf32LittleEndian
+///
 /// Terminators
 /// ===========
 ///
@@ -46,102 +156,6 @@ import Foundation
 /// can be any characters that make sense for your application. Keep in mind that for console or
 /// file type output, a newline "\n" is required in order to write multiple lines to the screen
 /// or file.
-///
-/// Control Characters
-/// ============================
-///
-/// TraceLog allows you to embed formatting control characters (\r\n\t\)  into the message when logging messages. The TextFormat
-/// allows you to strip those out or escape them so that the output can be more concise or machine readable if required.
-///
-/// Logging a statement like this is great for reading on the console but could cause issues with parsing
-/// a format the requires analyzing the entries.
-///
-///     let formatter = TextFormat(options: [.controlCharacters(.strip)])
-///
-///     TraceLog.configure(writers: [ConsoleWriter(format: formatter)])
-///
-///     logInfo { "\n\t\tThis is a message with control characters that spans multiple lines \n\t\tand is indented with several tab characters." }
-///
-/// Using `stripControlCharacters: true` will allow you to strip those out before output, giving
-/// you the following output in the console or file.
-///
-///     1970-01-01 00:00:00.000 ExampleProcess[100:1100] INFO: <ExampleTag> This is a message with control characters that spans multiple lines and is indented with several tab characters.
-///
-/// With stripControlCharacters: false` the output would look like this.
-///
-///     1970-01-01 00:00:00.000 ExampleProcess[100:1100] INFO: <ExampleTag>
-///             This is a message with control characters that spans multiple lines
-///             and is indented with several tab characters.
-///
-///
-/// > Note: using `stripControlCharacters` does not affect the `terminator` output, terminators will still be printed.
-///
-/// Character Encoding
-/// ==================
-///
-/// The default character encoding of the output is `urf8` which should be suitable
-/// for most applications.
-///
-/// If required, this encoding can be changed by passing a `String.Encoding` value at init
-/// to change the output encoding.
-///
-/// For instance.
-///
-///     let utf16 = TextFormat(encoding: .utf16)
-///
-///     let ascii = TextFormat(encoding: .ascii)
-///
-///     let isoLatin1 = TextFormat(encoding: .isoLatin1)
-///
-/// > Note: Any one of the encoding defined by `String.Encoding` can be used but if you're logging
-/// characters outside the range that the encoding can encode, encoding will fail.
-///
-/// Output Templates
-/// ================
-///
-/// The primary control of the formatting is through the `template` parameter which
-/// defines the output variables and constants for each logged entry.  The `template`
-/// parameter is a `Swift.String` that allows any constants plus substitution variables
-/// that specify the various fields that TraceLog can output.
-///
-/// Substitution variables take the form %{variable-name} and are case sensitive.  If
-/// it makes sense for your use-case, you can also use each variable as many times as
-/// required within the template String.
-///
-/// - Substitution variables:
-///     - %{date}
-///     - %{timestamp}
-///     - %{level}
-///     - %{tag}
-///     - %{processName}
-///     - %{processIdentifier}
-///     - %{threadIdentifier}
-///     - %{file}
-///     - %{function}
-///     - %{line}
-///     - %{message}
-///
-/// The default template is human-readable simple form meant for debugging purposes
-/// and excludes extraneous details such as file, function and line. It is defined
-/// as:
-///
-///     template: "%{date} %{processName}[%{processIdentifier}:%{threadIdentifier}] %{level}: <%{tag}> %{message}"
-///
-///
-/// Which produces an output similar to this:
-///
-///     1970-01-01 00:00:00.000 ExampleProcess[100:1100] INFO: <ExampleTag> Example message.
-///
-/// You can easily create other output forms such as TAB DELIMITED using this
-/// template (and adjusting the number of fields to your requirements). Also add
-/// a terminator to the output using `terminator: "\n"` at init.
-///
-///     template: "\"%{date}\",\"%{processName}\",%{processIdentifier},%{threadIdentifier},\"%{level}\",\"%{tag}\",\"%{message}\""
-///     terminator: "\n"
-///
-/// Your output would look similar to this given the same input as above:
-///
-///     "1970-01-01 00:00:00.000","ExampleProcess",50,200,"WARNING","ExampleTag","Example message.”\n
 ///
 /// - SeeAlso: ByteOutputFormatter
 /// - SeeAlso: JSONFormat
@@ -172,6 +186,10 @@ public struct TextFormat: ByteOutputFormatter {
             return formatter
         }()
 
+        /// A set of options to apply to the output.
+        ///
+        /// - SeeAlso: TextFormat.Option
+        ///
         public static let options: Set<Option> = []
 
         ///
@@ -189,10 +207,18 @@ public struct TextFormat: ByteOutputFormatter {
     ///
     public enum Option: Hashable {
 
+        /// Modify the any control characters found in the entry.
+        ///
         case controlCharacters(Action)
 
         public enum Action {
+
+            /// Strip the characters from the message.
+            ///
             case strip
+
+            /// Backslash escape the characters.
+            ///
             case escape
         }
     }
@@ -206,10 +232,10 @@ public struct TextFormat: ByteOutputFormatter {
     ///     - encoding: The Character encoding to use for the formatted entry.
     ///     - terminator: A string that will be output at the end of the output to terminate the entry.
     ///
-    public init(template: String = Default.template, dateFormatter: DateFormatter = Default.dateFormatter, options: Set<Option> = Default.options, terminator: String = Default.terminator, encoding: String.Encoding = Default.encoding) {
-        self.dateFormatter          = dateFormatter
-        self.encoding               = encoding
-        self.terminator             = terminator
+    public init(template: String = Default.template, dateFormatter: DateFormatter = Default.dateFormatter, options: Set<Option> = Default.options, encoding: String.Encoding = Default.encoding, terminator: String = Default.terminator) {
+        self.dateFormatter = dateFormatter
+        self.encoding      = encoding
+        self.terminator    = terminator
 
         self.controlCharacterAction = options.reduce(nil, { (current, option) -> Option.Action? in
             guard case let .controlCharacters(action) = option
@@ -280,7 +306,11 @@ public struct TextFormat: ByteOutputFormatter {
         }
         text.write(self.terminator)
 
-        guard let data = text.data(using: self.encoding)
+        /// Since we want to make sure messages are printed, we allow
+        /// lossy conversion so that even if an invalid encoding can
+        /// still be printed minus the un-encodable characters.
+        ///
+        guard let data = text.data(using: self.encoding, allowLossyConversion: true)
             else { return nil }
 
         return Array(data)
@@ -293,8 +323,10 @@ public struct TextFormat: ByteOutputFormatter {
 
     /// Date writer
     func write<Target>(_ value: Date, to target: inout Target) where Target : TextOutputStream {
-        /// Chain to string just in case the user supplied a format contains control characters
-        /// that require processing.
+
+        /// Chain to the write(String) version just in case the user
+        /// supplied a format that contains control characters that
+        /// require processing.
         ///
         /// Note: We think this is unlikely but it is possible so it
         /// must be protected against.
