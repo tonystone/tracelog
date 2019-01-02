@@ -1,0 +1,113 @@
+///
+///  TextFormat+EncodingTests.swift
+///
+///  Copyright 2018 Tony Stone
+///
+///  Licensed under the Apache License, Version 2.0 (the "License");
+///  you may not use this file except in compliance with the License.
+///  You may obtain a copy of the License at
+///
+///  http://www.apache.org/licenses/LICENSE-2.0
+///
+///  Unless required by applicable law or agreed to in writing, software
+///  distributed under the License is distributed on an "AS IS" BASIS,
+///  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+///  See the License for the specific language governing permissions and
+///  limitations under the License.
+///
+///  Created by Tony Stone on 12/31/18.
+///
+import XCTest
+
+import TraceLog
+%{
+    asciiVariants = [
+        ("ascii",             "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+        ("iso2022JP",         "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+        ("isoLatin1",         "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+        ("isoLatin2",         "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+        ("japaneseEUC",       "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+        ("macOSRoman",        "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+        ("nextstep",          "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+        ("nonLossyASCII",     "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+        ("shiftJIS",          "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+        ("symbol",            "Lossy",     "1970?01?01 00:00:00.000 ???????????[100:1100] ????: <???????> ?????? ????? ????."),
+        ("unicode",           "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+        ("utf16",             "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+        ("utf16BigEndian",    "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+        ("utf16LittleEndian", "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+        ("utf32",             "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+        ("utf32BigEndian",    "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+        ("utf32LittleEndian", "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+        ("utf8",              "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+        ("windowsCP1250",     "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+        ("windowsCP1251",     "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+        ("windowsCP1252",     "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+        ("windowsCP1253",     "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+        ("windowsCP1254",     "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Simple Ascii text."),
+    ]
+
+    unicodeVariants = [
+        ("ascii",             "Lossy",     "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ?, ??, ?, ?, ?."),
+        ("iso2022JP",         "Lossy",     "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??."),
+        ("isoLatin1",         "Lossy",     "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??."),
+        ("isoLatin2",         "Lossy",     "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??."),
+        ("japaneseEUC",       "Lossy",     "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??."),
+        ("macOSRoman",        "Lossy",     "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??."),
+        ("nextstep",          "Lossy",     "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??."),
+        ("nonLossyASCII",     "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪."),
+        ("shiftJIS",          "Lossy",     "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??."),
+        ("symbol",            "Lossy",     "1970?01?01 00:00:00.000 ???????????[100:1100] ????: <???????> ????? ? ??? ??????? ?????????? ?, ??, ????, ??, ??, ??."),
+        ("unicode",           "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪."),
+        ("utf16",             "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪."),
+        ("utf16BigEndian",    "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪."),
+        ("utf16LittleEndian", "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪."),
+        ("utf32",             "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪."),
+        ("utf32BigEndian",    "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪."),
+        ("utf32LittleEndian", "Non-Lossy", "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪."),
+        ("utf8",              "Lossy",     "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪."),
+        ("windowsCP1250",     "Lossy",     "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??."),
+        ("windowsCP1251",     "Lossy",     "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??."),
+        ("windowsCP1252",     "Lossy",     "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??."),
+        ("windowsCP1253",     "Lossy",     "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??."),
+        ("windowsCP1254",     "Lossy",     "1970-01-01 00:00:00.000 TestProcess[100:1100] INFO: <TestTag> Print a few unicode characters ?, ??, ????, ??, ??, ??."),
+    ]
+}%
+
+/// TextFormat Encoding Tests.
+///
+class TextFormatEncodingWithUnicodeTests: XCTestCase {
+% for (Encoding, Lossiness, Expected) in asciiVariants:
+
+    /// Test that we can encode a simple Ascii message to `String.Encoding.${Encoding}`.
+    ///
+    /// Note: This will be a "${Lossiness.upper()}" operation when using just Ascii characters in the messages.
+    ///
+    func test${Encoding.title()}EncodingWithSimpleAsciiMessage() {
+        let format = TextFormat(encoding: .${Encoding}, terminator: "")
+
+        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
+            else { XCTFail("Failed to convert log entry to encoding \".${Encoding}\""); return }
+
+        XCTAssertEqual(String(bytes: bytes, encoding: .${Encoding}), "${Expected}",
+            "Failed conversion to \".${Encoding}\".")
+    }
+% end
+
+% for (Encoding, Lossiness, Expected) in unicodeVariants:
+
+    /// Test that we can encode a Unicode message to `String.Encoding.${Encoding}`.
+    ///
+    /// Note: This will be a "${Lossiness.upper()}" operation when using Unicode characters in the messages.
+    ///
+    func test${Encoding.title()}EncodingWithUnicodeMessage() {
+        let format = TextFormat(encoding: .${Encoding}, terminator: "")
+
+        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
+            else { XCTFail("Failed to convert log entry to encoding \".${Encoding}\""); return }
+
+        XCTAssertEqual(String(bytes: bytes, encoding: .${Encoding}), "${Expected}",
+            "Failed conversion to \".${Encoding}\".")
+    }
+% end
+}
