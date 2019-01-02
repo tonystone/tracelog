@@ -557,9 +557,6 @@ class TextFormatTests: XCTestCase {
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "\tThis messsage contains multiple \nlines and \tcontrol characters.\n")
     }
 
-
-
-
     // MARK: - Test terminator
 
     /// Test that by passing a terminator string that it
