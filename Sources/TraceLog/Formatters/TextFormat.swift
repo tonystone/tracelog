@@ -141,7 +141,7 @@ import Foundation
 /// - utf32BigEndian
 /// - utf32LittleEndian
 ///
-/// - Note: `.symbol` does not offer a useful encoding on Darwin and is not supported on linux.  `.japaneseEUC` is also
+/// - Note: We don't find `.symbol` very useful due to it's limited character range and is not supported on linux.  `.japaneseEUC` is also
 ///         not supported on Linux.
 ///
 /// Terminators
