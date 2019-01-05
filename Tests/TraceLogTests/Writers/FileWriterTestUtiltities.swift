@@ -24,7 +24,8 @@ import Foundation
 ///
 internal func archiveExists(fileName: String, fileExt: String, directory: String) throws -> Bool {
 
-    let regex = try NSRegularExpression(pattern: "\(fileName)-(\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2}\\.\\d{3}).\(fileExt)")
+    /// Default file date is: "yyyyMMdd-HHmm-ss-SSS"
+    let regex = try NSRegularExpression(pattern: "\(fileName)-(\\d{4}\\d{2}\\d{2}-\\d{2}\\d{2}-\\d{2}\\-\\d{3}).\(fileExt)")
 
     for file in try FileManager.default.contentsOfDirectory(atPath: directory) {
         if regex.firstMatch(in: file, range: NSRange(file.startIndex..., in: file)) != nil {

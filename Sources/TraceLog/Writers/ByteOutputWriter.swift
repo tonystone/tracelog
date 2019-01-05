@@ -1,5 +1,5 @@
 ///
-///  Package.xcconfig
+///  ByteOutputWriter.swift
 ///
 ///  Copyright 2018 Tony Stone
 ///
@@ -15,11 +15,21 @@
 ///  See the License for the specific language governing permissions and
 ///  limitations under the License.
 ///
-///  Created by Tony Stone on 6/11/18.
+///  Created by Tony Stone on 12/26/18.
 ///
-CLANG_ENABLE_MODULES = YES
+import Foundation
 
-IPHONEOS_DEPLOYMENT_TARGET = 9.0
-MACOSX_DEPLOYMENT_TARGET = 10.13
-TVOS_DEPLOYMENT_TARGET = 9.0
-WATCHOS_DEPLOYMENT_TARGET = 2.0
+/// ByteOutputStreamWriter
+///
+/// A higher level Writer interface that specifically writes to
+/// a `ByteOutputStream` and it's output format can be controlled
+/// by a `ByteOutputFormatter`.
+///
+/// - SeeAlso: `ByteOutputFormatter`
+///
+public protocol ByteOutputWriter: Writer {
+
+    /// ByteOutputFormatter being used for formating output.
+    ///
+    var format: ByteOutputFormatter { get }
+}

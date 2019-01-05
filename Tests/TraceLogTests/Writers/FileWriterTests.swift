@@ -329,7 +329,7 @@ private class FileReader: Reader {
 
                         guard let dateRange = Range(matches.range(at: 1), in: entry)
                             else { return nil }
-                        guard let timestamp = FileWriter.Default.dateFormatter.date(from: String(entry[dateRange]))?.timeIntervalSince1970
+                        guard let timestamp = TextFormat.Default.dateFormatter.date(from: String(entry[dateRange]))?.timeIntervalSince1970
                             else { return nil }
 
                         return timestamp

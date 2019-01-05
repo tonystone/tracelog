@@ -32,6 +32,7 @@ import XCTest
 public func shell(_ command: String) throws -> Data {
     let task = Process()
     task.executableURL = URL(fileURLWithPath: "/bin/bash")
+
     task.arguments = ["-c", command]
 
     let pipe = Pipe()

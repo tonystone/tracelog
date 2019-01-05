@@ -76,8 +76,8 @@ before_install:
        rvm get head --auto-dotfiles || true
        sudo log config --subsystem "xctest" --mode "persist:debug"
 
-       curl -O https://swift.org/builds/swift-5.0-branch/xcode/swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-20-a/swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-20-a-osx.pkg
-       sudo installer -pkg swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-20-a-osx.pkg -target /
+       curl -O https://swift.org/builds/swift-5.0-branch/xcode/swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-28-a/swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-28-a-osx.pkg
+       sudo installer -pkg swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-28-a-osx.pkg -target /
        export TOOLCHAINS=swift
        swift --version
     fi
@@ -91,9 +91,9 @@ before_install:
       sudo apt-get update -y
       sudo apt-get -y install clang-3.8 lldb-3.8 libicu-dev
 
-      wget https://swift.org/builds/swift-5.0-branch/ubuntu1404/swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-17-a/swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-17-a-ubuntu14.04.tar.gz
-      tar xzvf swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-17-a-ubuntu14.04.tar.gz
-      export PATH=$(pwd)/swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-17-a-ubuntu14.04/usr/bin:$PATH
+      wget https://swift.org/builds/swift-5.0-branch/ubuntu1404/swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-28-a/swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-28-a-ubuntu14.04.tar.gz
+      tar xzvf swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-28-a-ubuntu14.04.tar.gz
+      export PATH=$(pwd)/swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-28-a-ubuntu14.04/usr/bin:$PATH
     fi
 
 script:

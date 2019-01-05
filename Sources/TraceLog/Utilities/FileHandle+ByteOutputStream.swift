@@ -1,5 +1,5 @@
 ///
-///  Package.xcconfig
+///  TextFormat.swift
 ///
 ///  Copyright 2018 Tony Stone
 ///
@@ -15,11 +15,16 @@
 ///  See the License for the specific language governing permissions and
 ///  limitations under the License.
 ///
-///  Created by Tony Stone on 6/11/18.
+///  Created by Tony Stone on 12/29/18.
 ///
-CLANG_ENABLE_MODULES = YES
+import Foundation
 
-IPHONEOS_DEPLOYMENT_TARGET = 9.0
-MACOSX_DEPLOYMENT_TARGET = 10.13
-TVOS_DEPLOYMENT_TARGET = 9.0
-WATCHOS_DEPLOYMENT_TARGET = 2.0
+/// Conform FileHandle to ByteOutputStream for use
+/// in writing general collections of bytes.
+///
+extension FileHandle: ByteOutputStream {
+
+    public func write(_ bytes: [UInt8]) {
+        self.write(Data(bytes))
+    }
+}
