@@ -34,7 +34,9 @@ class FailWhenFiredWriter: Writer {
         self.semaphore = semaphore
     }
 
-    func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
+    func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogResult {
         semaphore.signal()
+        
+        return .success
     }
 }

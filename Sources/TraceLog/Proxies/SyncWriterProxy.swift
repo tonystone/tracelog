@@ -17,6 +17,7 @@
 ///
 ///  Created by Tony Stone on 5/27/18.
 ///
+///
 import Swift
 import Dispatch
 
@@ -40,7 +41,7 @@ internal class SyncWriterProxy: WriterProxy {
     @inline(__always)
     internal func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
         queue.sync {
-            self.writer.log(timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)
+            _ = self.writer.log(timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)
         }
     }
 }

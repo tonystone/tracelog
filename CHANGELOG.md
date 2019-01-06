@@ -9,6 +9,9 @@ All significant changes to this project will be documented in this file.
 - Added `JSONFormat`, an implementation of a ByteOutputFormatter that formats its output in standard JSON format.
 - Added `ByteOutputWriter` protocol to define types that write byte streams to their output and accept `ByteOutputFormatter` types to format the output.
 
+#### Added
+- Added `.buffering option for `.async` concurrency modes to allow for buffering when the writer is not available to write to its endpoint.
+
 #### Changed
 - Required Swift 5 for compilation.
 - Changed `ConsoleWriter` to accept new `ByteOutputFormatter` instances allowing you to customize the output log format (default is `TextFormat`.)

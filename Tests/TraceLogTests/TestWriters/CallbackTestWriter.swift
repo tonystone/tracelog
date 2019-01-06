@@ -32,7 +32,9 @@ class CallbackTestWriter: Writer {
         self.callback = callback
     }
 
-    func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
+    func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogResult {
         callback(timestamp, level, tag, message, runtimeContext, staticContext)
+
+        return .success
     }
 }

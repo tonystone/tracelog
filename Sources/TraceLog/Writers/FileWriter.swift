@@ -106,16 +106,16 @@ public class FileWriter: ByteOutputWriter {
 
     /// Required log function for the logger
     ///
-    public func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
+    public func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogResult {
 
         guard let bytes = format.bytes(from: timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)
-            else { return }
+            else { return .failed(.error)}
 
         /// Note: Since we could be called on any thread in TraceLog direct mode
         /// we protect the file with a low-level mutex.
         ///
-        /// Pthreads mutexes were chosen because out of all the methods of synchronization
-        /// available in swift (queue, dispatch semaphores, etc), pthread mutexes are
+        /// PThreads mutexes were chosen because out of all the methods of synchronization
+        /// available in swift (queue, dispatch semaphores, etc), PThread mutexes are
         /// the lowest overhead and fastest lock.
         ///
         /// We also want to ensure we maintain thread boundaries when in direct mode (avoid
@@ -131,6 +131,8 @@ public class FileWriter: ByteOutputWriter {
         /// Write message to log
         ///
         self.file.handle.write(bytes)
+
+        return .success
     }
 
     /// Internal type used by FileWriter and various utility functions.
@@ -143,7 +145,7 @@ public class FileWriter: ByteOutputWriter {
     ///
     private var file: LogFile
 
-    /// Low level mutex for locking print since it's not reentrent.
+    /// Low level mutex for locking print since it's not re-entrant.
     ///
     private var mutex: Mutex
 }
@@ -167,7 +169,7 @@ public extension FileWriter {
     }
 }
 
-/// Rotate the log file specified falling back to the fallbackHandle if the new logi file cannot be opened.
+/// Rotate the log file specified falling back to the fallbackHandle if the new log file cannot be opened.
 ///
 internal /* @testable */
 func rotate(file: FileWriter.LogFile, fallbackHandle: FileHandle, dateFormatter: DateFormatter) -> FileWriter.LogFile {

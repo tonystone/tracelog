@@ -32,32 +32,28 @@ public class ConsoleWriter: ByteOutputWriter {
     ///
     public let format: ByteOutputFormatter
 
-    ///
     /// Default constructor for this writer
     ///
     public convenience init(format: ByteOutputFormatter = TextFormat()) {
         self.init(outputStream: FileHandle.standardOutput, format: format)
     }
 
-    ///
     /// Internal constructor for this writer
     ///
     internal /* @Testable */
     init(outputStream: ByteOutputStream, format: ByteOutputFormatter) {
         self.outputStream = outputStream
         self.format       = format
-        self.mutex         = Mutex(.normal)
+        self.mutex        = Mutex(.normal)
     }
 
-    ///
     /// Required log function for the logger
     ///
-    public func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
+    public func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogResult {
 
         guard let bytes = format.bytes(from: timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)
-            else { return }
+            else { return .failed(.error) }
 
-        ///
         /// Note: Since we could be called on any thread in TraceLog direct mode
         /// we protect the outputStream with a low-level mutex.
         ///
@@ -71,14 +67,14 @@ public class ConsoleWriter: ByteOutputWriter {
         mutex.lock(); defer { mutex.unlock() }
 
         self.outputStream.write(bytes)
+
+        return .success
     }
 
-    ///
     /// Low level mutex for locking print since it's not reentrant.
     ///
     private var mutex: Mutex
 
-    ///
     /// FileHandle to write the output to.
     ///
     private var outputStream: ByteOutputStream
