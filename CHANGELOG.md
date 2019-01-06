@@ -6,6 +6,7 @@ All significant changes to this project will be documented in this file.
 #### Added
 - Added `ByteOutputFormatter` protocol to define formatters for use with byte output stream type Writers.
 - Added `TextFormat`, an implementation of a ByteOutputFormatter that formats its output based on a supplied template (this is the default formatter for Console and File output).
+- Added `JSONFormat`, an implementation of a ByteOutputFormatter that formats its output in standard JSON format.
 - Added `ByteOutputWriter` protocol to define types that write byte streams to their output and accept `ByteOutputFormatter` types to format the output.
 
 #### Changed
