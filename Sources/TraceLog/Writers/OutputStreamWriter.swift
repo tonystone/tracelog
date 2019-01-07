@@ -1,5 +1,5 @@
 ///
-///  ByteOutputFormatter.swift
+///  OutputStreamWriter.swift
 ///
 ///  Copyright 2018 Tony Stone
 ///
@@ -19,12 +19,17 @@
 ///
 import Foundation
 
-/// A formatter type for formating the output of a `Writer` type.
+/// ByteOutputStreamWriter
 ///
-public protocol ByteOutputFormatter {
+/// A higher level Writer interface that specifically writes to
+/// an `OutputStream` and it's output format can be controlled
+/// by an `OutputStreamFormatter`.
+///
+/// - SeeAlso: `OutputStreamFormatter`
+///
+public protocol OutputStreamWriter: Writer {
 
-    /// Accepts traceLogs standard parameters and outputs an Array of bytes
-    /// containing the formatted output.
+    /// OutputStreamFormatter being used for formating output.
     ///
-    func bytes(from timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> [UInt8]?
+    var format: OutputStreamFormatter { get }
 }

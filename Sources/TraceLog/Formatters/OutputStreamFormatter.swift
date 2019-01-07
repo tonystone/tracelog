@@ -1,5 +1,5 @@
 ///
-///  TextFormat.swift
+///  OutputStreamFormatter.swift
 ///
 ///  Copyright 2018 Tony Stone
 ///
@@ -15,16 +15,16 @@
 ///  See the License for the specific language governing permissions and
 ///  limitations under the License.
 ///
-///  Created by Tony Stone on 12/29/18.
+///  Created by Tony Stone on 12/26/18.
 ///
 import Foundation
 
-/// Conform FileHandle to ByteOutputStream for use
-/// in writing general collections of bytes.
+/// A formatter type for formating the output of a `Writer` type.
 ///
-extension FileHandle: ByteOutputStream {
+public protocol OutputStreamFormatter {
 
-    public func write(_ bytes: [UInt8]) {
-        self.write(Data(bytes))
-    }
+    /// Accepts traceLogs standard parameters and outputs an Array of bytes
+    /// containing the formatted output.
+    ///
+    func bytes(from timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> [UInt8]?
 }
