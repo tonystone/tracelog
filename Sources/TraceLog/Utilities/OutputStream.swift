@@ -1,5 +1,5 @@
 ///
-///  ByteOutputWriter.swift
+///  TextFormat.swift
 ///
 ///  Copyright 2018 Tony Stone
 ///
@@ -15,21 +15,18 @@
 ///  See the License for the specific language governing permissions and
 ///  limitations under the License.
 ///
-///  Created by Tony Stone on 12/26/18.
+///  Created by Tony Stone on 12/29/18.
 ///
+import Swift
 import Foundation
 
-/// ByteOutputStreamWriter
 ///
-/// A higher level Writer interface that specifically writes to
-/// a `ByteOutputStream` and it's output format can be controlled
-/// by a `ByteOutputFormatter`.
+/// Protocol defining a type which can write
+/// a stream of bytes to its output.
 ///
-/// - SeeAlso: `ByteOutputFormatter`
-///
-public protocol ByteOutputWriter: Writer {
+public protocol OutputStream {
 
-    /// ByteOutputFormatter being used for formating output.
+    /// Write the byte stream to the output.
     ///
-    var format: ByteOutputFormatter { get }
+    func write(_ bytes: [UInt8])
 }

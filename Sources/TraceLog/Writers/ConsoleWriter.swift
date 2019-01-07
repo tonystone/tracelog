@@ -26,22 +26,22 @@ import Foundation
 /// at configuration time.  Its a basic writer that can be used at any time that
 /// you want the output to go to the stdout.
 ///
-public class ConsoleWriter: ByteOutputWriter {
+public class ConsoleWriter: OutputStreamWriter {
 
-    /// ByteOutputFormatter being used for formating output.
+    /// OutputStreamFormatter being used for formating output.
     ///
-    public let format: ByteOutputFormatter
+    public let format: OutputStreamFormatter
 
     /// Default constructor for this writer
     ///
-    public convenience init(format: ByteOutputFormatter = TextFormat()) {
+    public convenience init(format: OutputStreamFormatter = TextFormat()) {
         self.init(outputStream: FileHandle.standardOutput, format: format)
     }
 
     /// Internal constructor for this writer
     ///
     internal /* @Testable */
-    init(outputStream: ByteOutputStream, format: ByteOutputFormatter) {
+    init(outputStream: OutputStream, format: OutputStreamFormatter) {
         self.outputStream = outputStream
         self.format       = format
         self.mutex        = Mutex(.normal)
@@ -77,5 +77,5 @@ public class ConsoleWriter: ByteOutputWriter {
 
     /// FileHandle to write the output to.
     ///
-    private var outputStream: ByteOutputStream
+    private var outputStream: OutputStream
 }

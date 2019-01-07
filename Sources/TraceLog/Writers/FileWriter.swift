@@ -77,15 +77,15 @@ extension FileWriter {
 
 /// File `Writer` which writes log output to an os file.
 ///
-public class FileWriter: ByteOutputWriter {
+public class FileWriter: OutputStreamWriter {
 
-    /// ByteOutputFormatter being used for formating output.
+    /// OutputStreamFormatter being used for formating output.
     ///
-    public let format: ByteOutputFormatter
+    public let format: OutputStreamFormatter
 
     /// Default constructor for this writer
     ///
-    public init(fileConfiguration config: FileConfiguration = FileConfiguration(), format: ByteOutputFormatter = TextFormat(options: Default.options), fileNameDateFormatter: DateFormatter = Default.fileNameDateFormatter) throws {
+    public init(fileConfiguration config: FileConfiguration = FileConfiguration(), format: OutputStreamFormatter = TextFormat(options: Default.options), fileNameDateFormatter: DateFormatter = Default.fileNameDateFormatter) throws {
         self.format = format
         self.mutex = Mutex(.normal)
         self.fileNameDateFormatter = fileNameDateFormatter

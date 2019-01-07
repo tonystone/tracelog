@@ -19,12 +19,12 @@
 ///
 import Foundation
 
-/// The TextFormat is a configurable implementation of a `ByteOutputFormatter`
+/// The TextFormat is a configurable implementation of a `OutputStreamFormatter`
 /// which allows complete control over the fields and format of the output
 /// log entry.
 ///
-/// Since the TextFormat is an instance of `ByteOutputFormatter` it can be
-/// used with any `Writer` that accepts the `ByteOutputFormatter` on construction.
+/// Since the TextFormat is an instance of `OutputStreamFormatter` it can be
+/// used with any `Writer` that accepts the `OutputStreamFormatter` on construction.
 ///
 /// TextFormat has a number of options for configuring it for many use-cases.  All
 /// options have a default value assigned to them to make it easy to get started
@@ -160,12 +160,12 @@ import Foundation
 /// file type output, a newline "\n" is required in order to write multiple lines to the screen
 /// or file.
 ///
-/// - SeeAlso: ByteOutputFormatter
+/// - SeeAlso: OutputStreamFormatter
 /// - SeeAlso: JSONFormat
 /// - SeeAlso: ConsoleWriter
 /// - SeeAlso: FileWriter
 ///
-public struct TextFormat: ByteOutputFormatter {
+public struct TextFormat: OutputStreamFormatter {
 
     /// Default values used for TextFormat
     ///
@@ -275,7 +275,7 @@ public struct TextFormat: ByteOutputFormatter {
         self.template = elements
     }
 
-    /// Text conversion function required by the `ByteOutputFormatter` protocol.
+    /// Text conversion function required by the `OutputStreamFormatter` protocol.
     ///
     public func bytes(from timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> [UInt8]? {
         var text = String()

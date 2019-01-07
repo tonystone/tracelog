@@ -4,18 +4,18 @@ All significant changes to this project will be documented in this file.
 ## [5.0.0] (Upcoming release)
 
 #### Added
-- Added `ByteOutputFormatter` protocol to define formatters for use with byte output stream type Writers.
-- Added `TextFormat`, an implementation of a ByteOutputFormatter that formats its output based on a supplied template (this is the default formatter for Console and File output).
-- Added `JSONFormat`, an implementation of a ByteOutputFormatter that formats its output in standard JSON format.
-- Added `ByteOutputWriter` protocol to define types that write byte streams to their output and accept `ByteOutputFormatter` types to format the output.
+- Added `OutputStreamFormatter` protocol to define formatters for use with byte output stream type Writers.
+- Added `TextFormat`, an implementation of a OutputStreamFormatter that formats its output based on a supplied template (this is the default formatter for Console and File output).
+- Added `JSONFormat`, an implementation of a OutputStreamFormatter that formats its output in standard JSON format.
+- Added `OutputStreamWriter` protocol to define types that write byte streams to their output and accept `OutputStreamFormatter` types to format the output.
 
 #### Added
 - Added `.buffering option for `.async` concurrency modes to allow for buffering when the writer is not available to write to its endpoint.
 
 #### Changed
 - Required Swift 5 for compilation.
-- Changed `ConsoleWriter` to accept new `ByteOutputFormatter` instances allowing you to customize the output log format (default is `TextFormat`.)
-- Changed `FileWriter` to accept new `ByteOutputFormatter` instances allowing you to customize the output log format (default is `TextFormat`.)
+- Changed `ConsoleWriter` to accept new `OutputStreamFormatter` instances allowing you to customize the output log format (default is `TextFormat`.)
+- Changed `FileWriter` to accept new `OutputStreamFormatter` instances allowing you to customize the output log format (default is `TextFormat`.)
 - Changed `FileWriter` archive file name date format to "yyyyMMdd-HHmm-ss-SSS".
     *  This was done for maximum compatibility between platforms and can be overridden in the FileConfiguration object passed at init.
 
