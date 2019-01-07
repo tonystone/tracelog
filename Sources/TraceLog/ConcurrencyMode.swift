@@ -80,8 +80,8 @@ public enum WriterConcurrencyMode {
     ///
     case direct(Writer)
 
-    /// Synchronous blocking mode is simaler to direct in that it blocks
-    /// but this mode also uses a queue for all writes.  The benifits of
+    /// Synchronous blocking mode is similar to direct in that it blocks
+    /// but this mode also uses a queue for all writes.  The benefits of
     /// that is that all threads writing to the log will be serialized
     /// through before calling the writer (one call to the writer at a
     /// time).
@@ -112,7 +112,7 @@ public enum WriterConcurrencyMode {
 
 ///
 /// Async mode can be configured for various options, this enum allows you to refine the
-/// behaviour and options of the asynchronous mode of operation.
+/// behavior and options of the asynchronous mode of operation.
 ///
 public enum AsyncOption {
 
@@ -135,7 +135,7 @@ public enum AsyncOption {
     ///      A network writer when the network connection is unavailable for any reason.
     ///
     /// - Parameters:
-    ///     - writeInternal: if the writer is currently buffering, TraceLog will periodically check whether the writer is available and write if it is.  This is the timeframe between checks.
+    ///     - writeInternal: if the writer is currently buffering, TraceLog will periodically check whether the writer is available and write if it is.  This is the time frame between checks.
     ///     - strategy: The buffer strategy to use when buffering.
     ///
     case buffer(writeInterval: DispatchTimeInterval, strategy: BufferStrategy)
