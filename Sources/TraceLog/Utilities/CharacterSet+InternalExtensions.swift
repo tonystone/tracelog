@@ -9,7 +9,7 @@ import Foundation
 
 internal extension CharacterSet {
 
-    /// Characters that must be ascaped in a JSON string accourding to
+    /// Characters that must be escaped in a JSON string according to
     /// the JSON spec RFC 8259  JSON December 2017.
     ///
     /// To escape an extended character that is not in the Basic Multilingual

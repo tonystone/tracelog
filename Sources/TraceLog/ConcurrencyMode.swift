@@ -34,7 +34,7 @@ public enum ConcurrencyMode {
     ///
     case direct
 
-    /// Synchronous blocking mode is similer to direct in that it blocks
+    /// Synchronous blocking mode is similar to direct in that it blocks
     /// but this mode also uses a queue for all writes.  The benefits of
     /// that is that all threads writing to the log will be serialized
     /// through before calling the writer (one call to the writer at a
@@ -48,7 +48,7 @@ public enum ConcurrencyMode {
     ///
     /// - Parameter options: An array specifying the optional features to configure for each async writer that gets added.
     ///
-    /// - Seealso: `AsyncOption` for details.
+    /// - SeeAlso: `AsyncOption` for details.
     ///
     case async /// .async(_ options: [AsyncOption] = [])
 
@@ -98,7 +98,7 @@ public enum WriterConcurrencyMode {
     ///     - writer: The `Writer` instance to enable async mode for.
     ///     - options: An array specifying the optional features to configure for the `writer`.
     ///
-    /// - Seealso: `AsyncOption` for details.
+    /// - SeeAlso: `AsyncOption` for details.
     ///
     case async(Writer)  /// async(Writer, _ options: [AsyncOption] = [])
 

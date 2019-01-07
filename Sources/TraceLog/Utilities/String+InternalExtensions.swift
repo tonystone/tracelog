@@ -55,7 +55,7 @@ internal extension String {
     /// Returns the ranges of the matches found in
     /// `self` based on the `pattern` supplied.
     ///
-    /// Used for matching all occurences of the pattern in `self`.
+    /// Used for matching all occurrences of the pattern in `self`.
     ///
     /// - Parameters:
     ///     - pattern: The string pattern to locate in `self`.
@@ -78,5 +78,5 @@ internal extension String {
         }
         return ranges
     }
-    
+
 }

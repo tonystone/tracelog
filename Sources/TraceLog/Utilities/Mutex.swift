@@ -45,9 +45,9 @@ internal class Mutex {
     ///
     /// - Parameter type: `MutexType` to to create.  Default is .normal
     ///
-    /// - Seealso: `MutexType`
+    /// - SeeAlso: `MutexType`
     ///
-    /// - Note: Care must be taken to ensure matching (lock | tryLock)/unlock pairs, otherwise undefined behaviour can occur.
+    /// - Note: Care must be taken to ensure matching (lock | tryLock)/unlock pairs, otherwise undefined behavior can occur.
     ///
     public init(_ type: MutexType = .normal)  {
 
