@@ -17,16 +17,14 @@
 ///
 ///  Created by Tony Stone on 12/29/18.
 ///
-import Swift
 import Foundation
 
+/// Conform FileHandle to OutputStream for use
+/// in writing general collections of bytes.
 ///
-/// Protocol defining a type which can write
-/// a stream of bytes to its output.
-///
-public protocol ByteOutputStream {
+extension FileHandle: OutputStream {
 
-    /// Write the byte stream to the output.
-    ///
-    func write(_ bytes: [UInt8])
+    public func write(_ bytes: [UInt8]) {
+        self.write(Data(bytes))
+    }
 }

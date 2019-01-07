@@ -19,11 +19,11 @@
 ///
 import Foundation
 
-/// The JSONFormat is a configurable implementation of a `ByteOutputFormatter`
+/// The JSONFormat is a configurable implementation of a `OutputStreamFormatter`
 /// which outputs standard JSON as it's output.
 ///
-/// Since the JSONFormat is an instance of `ByteOutputFormatter` it can be
-/// used with any `Writer` that accepts the `ByteOutputFormatter` on construction.
+/// Since the JSONFormat is an instance of `OutputStreamFormatter` it can be
+/// used with any `Writer` that accepts the `OutputStreamFormatter` on construction.
 ///
 /// JSONFormat has a number of options for configuring it for many use-cases.  All
 /// options have a default value assigned to them to make it easy to get started
@@ -86,7 +86,7 @@ import Foundation
 /// In this case we changed the terminator from the default of ",\n" to "\r\n".  The characters
 /// can be any characters that make sense for your application.
 ///
-public struct JSONFormat: ByteOutputFormatter {
+public struct JSONFormat: OutputStreamFormatter {
 
     /// Available options for formatting the message
     /// in json.
@@ -114,7 +114,7 @@ public struct JSONFormat: ByteOutputFormatter {
         self.conditional = options.contains(.prettyPrint) ? ("\n", " ", "\t") : ("", "", "")
     }
 
-    /// Text conversion function required by the `ByteOutputFormatter` protocol.
+    /// Text conversion function required by the `OutputStreamFormatter` protocol.
     ///
     public func bytes(from timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> [UInt8]? {
         var text = String()
