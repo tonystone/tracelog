@@ -145,7 +145,7 @@ public class FileWriter: OutputStreamWriter {
     ///
     private var file: LogFile
 
-    /// Low level mutex for locking print since it's not re-entrant.
+    /// Low level mutex for locking print since it's not reentrant.
     ///
     private var mutex: Mutex
 }

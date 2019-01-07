@@ -114,7 +114,7 @@ class TraceLogTestsSwift: XCTestCase {
         logInfo { input.message }
     }
 
-    // Note: it does not make sense to test Sync for same thread or different as there is no gaurentee it will be either.
+    // Note: it does not make sense to test Sync for same thread or different as there is no guarantee it will be either.
 
     func testModeAsyncIsDifferentThread() {
         let semaphore = DispatchSemaphore(value: 0)
@@ -157,7 +157,7 @@ class TraceLogTestsSwift: XCTestCase {
         /// This should block until our writer is called.
         logInfo { input.message }
 
-        XCTAssertEqual(logged, true) /// Not a difinitive test.
+        XCTAssertEqual(logged, true) /// Not a definitive test.
     }
 
     func testNoDeadLockDirectMode() {
@@ -191,7 +191,8 @@ class TraceLogTestsSwift: XCTestCase {
                 }
             }
         }
-        XCTAssertEqual(loggers.wait(timeout: .now() + 60.0), .success)
+        /// Note: Increased this wait time to 120 for iPhone 6s iOS 9.3 which was taking a little longer to run threw the test.
+        XCTAssertEqual(loggers.wait(timeout: .now() + 120.0), .success)
     }
 
     // MARK: - Logging Methods

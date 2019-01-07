@@ -64,7 +64,7 @@ internal final class Logger {
     class func logPrimitive(level: LogLevel, tag: String, file: String, function: String, line: Int, message: @escaping () -> String) {
         ///
         /// Capture the timestamp as early as possible to
-        /// get the most accruate time.
+        /// get the most accurate time.
         ///
         let timestamp = Date().timeIntervalSince1970
 
@@ -155,7 +155,7 @@ private extension Logger {
         ///
         @objc
         public class func logPrimitive(_ level: Int, tag: String, file: String, function: String, line: Int, message: @escaping () -> String) {
-            assert(LogLevel.validLogableRange.contains(level), "Invalid log level, values must be in the the range \(LogLevel.validLogableRange)")
+            assert(LogLevel.validLoggableRange.contains(level), "Invalid log level, values must be in the the range \(LogLevel.validLoggableRange)")
 
             Logger.logPrimitive(level: LogLevel(rawValue: level)!, tag: tag, file: file, function: function, line: line, message: message)  // swiftlint:disable:this force_unwrapping
         }

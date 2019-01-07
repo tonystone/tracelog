@@ -28,7 +28,7 @@ class JSONFormatTests: XCTestCase {
     // MARK: - Public Interface Compatibility Tests
 
     /// Simulate the user creating an instance without passing parameters
-    /// expecting to get the default parameters and behavour.
+    /// expecting to get the default parameters and behavior.
     ///
     /// Note: This test failing to compile or return the correct values
     ///       indicates that a change has been made to the interface that
