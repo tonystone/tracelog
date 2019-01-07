@@ -24,7 +24,7 @@ import TraceLog
 ///
 public class BufferReader: Reader {
 
-    /// Initialize an intance of `self` to its initial empty state.
+    /// Initialize an instance of `self` to its initial empty state.
     ///
     public init() {}
 

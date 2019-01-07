@@ -31,7 +31,7 @@ import Swift
 /// ConsoleWriter is a concrete implementation of the Writer protocol and
 /// can be used as a basic example of creating custom writers.
 ///
-/// - seealso: ConsoleWriter
+/// - SeeAlso: ConsoleWriter
 ///
 public protocol Writer {
 
@@ -44,12 +44,12 @@ public protocol Writer {
     ///     - tag:                   The tag associated with the log event.
     ///     - message:               The message string (already formatted) for this logging event.
     ///     - file:                  The source file (of the calling program) of this logging event.
-    ///     - runtimeContext:        An object containing information about the state of the runtime such as thread ID (seealso: RuntimeContext)
-    ///     - staticContext:         An object containing the static information at the time of the func call such as function name and line number (seealso: StaticContext)
+    ///     - runtimeContext:        An object containing information about the state of the runtime such as thread ID (see also: RuntimeContext)
+    ///     - staticContext:         An object containing the static information at the time of the func call such as function name and line number (see also: StaticContext)
     ///
-    /// - Seealso: LogLevel
-    /// - Seealso: RuntimeContext
-    /// - Seealso: StaticContext
+    /// - SeeAlso: LogLevel
+    /// - SeeAlso: RuntimeContext
+    /// - SeeAlso: StaticContext
     ///
     func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext)
 }

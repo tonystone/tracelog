@@ -143,7 +143,7 @@ public class FileWriter: OutputStreamWriter {
     ///
     private var file: LogFile
 
-    /// Low level mutex for locking print since it's not reentrent.
+    /// Low level mutex for locking print since it's not reentrant.
     ///
     private var mutex: Mutex
 }
@@ -167,7 +167,7 @@ public extension FileWriter {
     }
 }
 
-/// Rotate the log file specified falling back to the fallbackHandle if the new logi file cannot be opened.
+/// Rotate the log file specified falling back to the fallbackHandle if the new log file cannot be opened.
 ///
 internal /* @testable */
 func rotate(file: FileWriter.LogFile, fallbackHandle: FileHandle, dateFormatter: DateFormatter) -> FileWriter.LogFile {
