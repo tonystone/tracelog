@@ -41,7 +41,7 @@ class TextFormatTests: XCTestCase {
     // MARK: - Public Interface Compatibility Tests
 
     /// Simulate the user creating an instance without passing parameters
-    /// expecting to get the default parameters and behavour.
+    /// expecting to get the default parameters and behavior.
     ///
     /// Note: This test failing to compile or return the correct values
     ///       indicates that a change has been made to the interface that
@@ -151,7 +151,7 @@ class TextFormatTests: XCTestCase {
         let format = TextFormat(template: "%{date}%{date}%{date}", terminator: "")
         let timestamp = 28800.0
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        guard let bytes = format.bytes(from: timestamp, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), String(repeating: TextFormatTests.dateFormatter.string(from: Date(timeIntervalSince1970: timestamp)), count: 3))
@@ -265,7 +265,7 @@ class TextFormatTests: XCTestCase {
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "Test Process")
     }
-    
+
     /// Test that you can specify the substitution parameter multiple times.
     ///
     func testTemplateMultipleProcessName() {
@@ -422,9 +422,9 @@ class TextFormatTests: XCTestCase {
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "\(TextFormatTests.dateFormatter.string(from: Date(timeIntervalSince1970: timestamp))) \(timestamp) TestProcess[50:200] WARNING: <TestTag> [TextFormatTests.swift:testTemplateWithAllVariables():306] Test message.")
     }
 
-    /// Test that a template containing a tab deliminited form.
+    /// Test that a template containing a tab delimited form.
     ///
-    func testTemplateWithTabDeliminited() {
+    func testTemplateWithTabDelimited() {
         let format = TextFormat(template: "\"%{date}\", \"%{processName}\", %{processIdentifier}, %{threadIdentifier}, \"%{level}\", \"%{tag}\", \"%{message}\"", terminator: "\n")
         let timestamp = 28800.0
 
@@ -483,7 +483,7 @@ class TextFormatTests: XCTestCase {
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "%{INFO}")
     }
 
-    /// Test a message with embeded varaibles does not substitute the embeded variables.
+    /// Test a message with embedded variables does not substitute the embedded variables.
     ///
     func testTemplateMessageWithEmbeddedVaraibles() {
         let format = TextFormat(template: "%{level} %{message}", terminator: "")
@@ -494,7 +494,7 @@ class TextFormatTests: XCTestCase {
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "INFO %{level}")
     }
 
-    /// Test a message with embeded varaibles does not substitute the embeded variables.
+    /// Test a message with embedded variables does not substitute the embedded variables.
     ///
     func testTemplateMessageWithEmbeddedVaraiblesReversed() {
         let format = TextFormat(template: "%{message} %{level}", terminator: "")
@@ -505,7 +505,7 @@ class TextFormatTests: XCTestCase {
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "%{level} INFO")
     }
 
-    /// Test a message with embeded message varaibles does not substitute the embeded variables.
+    /// Test a message with embedded message variables does not substitute the embedded variables.
     ///
     func testTemplateMessageWithEmbeddedMessageVariable() {
         let format = TextFormat(template: "%{message}", terminator: "")
@@ -525,23 +525,23 @@ class TextFormatTests: XCTestCase {
     func testControlCharactersStripActuallyStrips() {
         let format = TextFormat(template: "%{message}", options: [.controlCharacters(.strip)], terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "\tThis messsage contains multiple \nlines and \tcontrol characters.\n", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "\tThis message contains multiple \nlines and \tcontrol characters.\n", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "This messsage contains multiple lines and control characters.")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "This message contains multiple lines and control characters.")
     }
 
     /// Test that by passing options: [.controlCharacters(.escape)],
-    /// all control characters are stripped from the message
+    /// all control characters are escaped int the message
     /// portion of the output.
     ///
     func testControlCharactersEscapeActuallyEscapes() {
         let format = TextFormat(template: "%{message}", options: [.controlCharacters(.escape)], terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "\tThis messsage contains multiple \nlines and \tcontrol characters.\n", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "\tThis message contains multiple \nlines and \tcontrol characters.\n", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "\\tThis messsage contains multiple \\nlines and \\tcontrol characters.\\n")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "\\tThis message contains multiple \\nlines and \\tcontrol characters.\\n")
     }
 
     /// Test that by not passing options: [.controlCharacters(.strip)],
@@ -551,10 +551,10 @@ class TextFormatTests: XCTestCase {
     func testControlCharactersAbsentLeavesTheCharacters() {
         let format = TextFormat(template: "%{message}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "\tThis messsage contains multiple \nlines and \tcontrol characters.\n", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "\tThis message contains multiple \nlines and \tcontrol characters.\n", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "\tThis messsage contains multiple \nlines and \tcontrol characters.\n")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "\tThis message contains multiple \nlines and \tcontrol characters.\n")
     }
 
     // MARK: - Test terminator

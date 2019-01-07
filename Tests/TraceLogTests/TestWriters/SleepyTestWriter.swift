@@ -23,7 +23,7 @@ import Foundation
 import TraceLog
 
 ///
-/// Null Test Writer that sleeps for the passed in time when a message is recieved.
+/// Null Test Writer that sleeps for the passed in time when a message is received.
 ///
 class SleepyTestWriter: Writer {
     let sleepTime: useconds_t

@@ -92,7 +92,7 @@ class FileWriterInternalsTests: XCTestCase {
     }
 
     ///
-    /// Test failing rotation behavour.
+    /// Test failing rotation behavior.
     ///
     func testRotateFailure() throws {
         let fallbackPath = "\(testDirectory)/fallbackFile.log"

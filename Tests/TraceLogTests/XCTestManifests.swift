@@ -267,7 +267,7 @@ extension TextFormatTests {
         ("testTemplateThreadIdentifier", testTemplateThreadIdentifier),
         ("testTemplateTimestamp", testTemplateTimestamp),
         ("testTemplateWithAllVariables", testTemplateWithAllVariables),
-        ("testTemplateWithTabDeliminited", testTemplateWithTabDeliminited),
+        ("testTemplateWithTabDelimited", testTemplateWithTabDelimited),
         ("testTerminatorCanBeSet", testTerminatorCanBeSet),
     ]
 }

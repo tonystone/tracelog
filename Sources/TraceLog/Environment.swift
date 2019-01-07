@@ -76,7 +76,7 @@ public class Environment: Collection, ExpressibleByDictionaryLiteral {
 
     ///
     /// Creates a new Environment instance and fills it with the variable
-    ///  set in the current OS envirnment
+    /// set in the current OS environment.
     ///
     /// The following example creates an Environment instance with the
     /// current contents of the OS environment:

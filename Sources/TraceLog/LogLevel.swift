@@ -66,11 +66,11 @@ public func == (lhs: LogLevel, rhs: LogLevel) -> Bool {
 internal extension LogLevel {
 
     ///
-    /// Note: validLogableRange is used to limit the values that can be passed to through from Objective-c when making a log primative call.
-    ///       The values in this range should only be thoughs that represent a log call.  OFF should not be part of this range because
+    /// Note: validLoggableRange is used to limit the values that can be passed to through from Objective-c when making a log primitive call.
+    ///       The values in this range should only be the LogLevel's that represent a log call.  OFF should not be part of this range because
     ///       there is no LogOff call.
     ///
-    static var validLogableRange: ClosedRange<Int> { return LogLevel.error.rawValue...LogLevel.trace4.rawValue }
+    static var validLoggableRange: ClosedRange<Int> { return LogLevel.error.rawValue...LogLevel.trace4.rawValue }
 
     ///
     /// Used to validate the trace levels that are used in Objective-c
