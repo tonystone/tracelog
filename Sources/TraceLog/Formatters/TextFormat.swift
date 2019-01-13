@@ -277,7 +277,7 @@ public struct TextFormat: OutputStreamFormatter {
 
     /// Text conversion function required by the `OutputStreamFormatter` protocol.
     ///
-    public func bytes(from timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> [UInt8]? {
+    public func bytes(from entry: Writer.LogEntry) -> [UInt8]? {
         var text = String()
 
         /// Write all the elements that have been pre-calculated
@@ -293,17 +293,17 @@ public struct TextFormat: OutputStreamFormatter {
             /// Embed the variables within the constants.
             case .variable(let substitution):
                 switch substitution {
-                case .date:              self.write(Date(timeIntervalSince1970: timestamp), to: &text)
-                case .timestamp:         self.write(timestamp, to: &text)
-                case .level:             self.write(level, to: &text)
-                case .tag:               self.write(tag, to: &text)
-                case .message:           self.write(message, to: &text)
-                case .processName:       self.write(runtimeContext.processName, to: &text)
-                case .processIdentifier: self.write(runtimeContext.processIdentifier, to: &text)
-                case .threadIdentifier:  self.write(runtimeContext.threadIdentifier, to: &text)
-                case .file:              self.write(staticContext.file, to: &text)
-                case .function:          self.write(staticContext.function, to: &text)
-                case .line:              self.write(staticContext.line, to: &text)
+                case .date:              self.write(Date(timeIntervalSince1970: entry.timestamp), to: &text)
+                case .timestamp:         self.write(entry.timestamp, to: &text)
+                case .level:             self.write(entry.level, to: &text)
+                case .tag:               self.write(entry.tag, to: &text)
+                case .message:           self.write(entry.message, to: &text)
+                case .processName:       self.write(entry.runtimeContext.processName, to: &text)
+                case .processIdentifier: self.write(entry.runtimeContext.processIdentifier, to: &text)
+                case .threadIdentifier:  self.write(entry.runtimeContext.threadIdentifier, to: &text)
+                case .file:              self.write(entry.staticContext.file, to: &text)
+                case .function:          self.write(entry.staticContext.function, to: &text)
+                case .line:              self.write(entry.staticContext.line, to: &text)
                 }
             }
         }

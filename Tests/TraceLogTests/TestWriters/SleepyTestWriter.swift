@@ -32,9 +32,9 @@ class SleepyTestWriter: Writer {
         self.sleepTime = sleepTime
     }
 
-    func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogResult {
+    func write(_ entry: Writer.LogEntry) -> LogResult {
         usleep(sleepTime)
-        
+
         return .success
     }
 }

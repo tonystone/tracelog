@@ -104,12 +104,12 @@ public class FileWriter: OutputStreamWriter {
         close(fileHandle: self.file.handle)
     }
 
-    /// Required log function for the logger
+    /// Required write function for the logger
     ///
-    public func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogResult {
+    public func write(_ entry: Writer.LogEntry) -> LogResult  {
 
-        guard let bytes = format.bytes(from: timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)
-            else { return .failed(.error)}
+        guard let bytes = format.bytes(from: entry)
+            else { return .failed(.error) }
 
         /// Note: Since we could be called on any thread in TraceLog direct mode
         /// we protect the file with a low-level mutex.

@@ -69,7 +69,7 @@ internal class AsyncWriterProxy: WriterProxy {
     }
 
     @inline(__always)
-    internal func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
+    internal func write(_ entry: Writer.LogEntry) {
 
         self.queue.async {
 
@@ -77,14 +77,14 @@ internal class AsyncWriterProxy: WriterProxy {
             ///
             guard let buffer = self.buffer
                 else {
-                    self.writer.log(timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)
+                    self.writer.write(entry)
                     return
             }
 
             /// Append the log entry to the memory buffer.  The queue strategy will
             /// determine what ultimately happens to the entry.
             ///
-            buffer.queue.enqueue((timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext))
+            buffer.queue.enqueue(entry)
 
             /// Attempt to write the entries in the buffer.
             ///
@@ -116,7 +116,7 @@ internal class AsyncWriterProxy: WriterProxy {
 
             let entry = buffer.queue.peek()
 
-            switch self.writer.log(entry.timestamp, level: entry.level, tag: entry.tag, message: entry.message, runtimeContext: entry.runtimeContext, staticContext: entry.staticContext) {
+            switch self.writer.write(entry) {
 
             case .success:
                 _ = buffer.queue.dequeue(); continue
@@ -145,9 +145,6 @@ internal class AsyncWriterProxy: WriterProxy {
 ///
 private class LogEntryQueue {
 
-    typealias Element = (timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext)
-    typealias Index   = Int
-
     /// The strategy this queue instance is using to queue items.
     ///
     private let strategy: AsyncOption.BufferStrategy
@@ -155,7 +152,7 @@ private class LogEntryQueue {
     ///
     /// Internal storage for this buffer.
     ///
-    private var storage: [Element] = []
+    private var storage: [Writer.LogEntry] = []
 
     init(for strategy: AsyncOption.BufferStrategy) {
         self.strategy = strategy
@@ -189,7 +186,7 @@ private class LogEntryQueue {
 
     /// Add an item to the queue if it can be added.
     ///
-    public func enqueue(_ element: Element) {
+    public func enqueue(_ element: Writer.LogEntry) {
         switch strategy {
 
         case .dropTail(let limit):      /// Drop if we are at or above the limit.
@@ -212,13 +209,13 @@ private class LogEntryQueue {
 
     /// Remove the first item from the queue
     ///
-    public func dequeue() -> Element {
+    public func dequeue() -> Writer.LogEntry {
         return storage.remove(at: 0)
     }
 
     /// Retrieves, but does not remove, the head of this queue, or returns nil if this queue is empty.
     ///
-    public func peek() -> Element {
+    public func peek() -> Writer.LogEntry {
         return storage[0]
     }
 }

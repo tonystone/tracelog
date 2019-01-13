@@ -90,9 +90,9 @@ class ValidateExpectedValuesTestWriter: Writer {
         self.ignoreLineInComparison = ignoreLine
     }
 
-    /// Required Writer.log function (required by the Writer protocol).
+    /// Required Writer.write function (required by the Writer protocol).
     ///
-    func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogResult {
+    func write(_ entry: Writer.LogEntry) -> LogResult {
 
         /// If we are not currently available, return error
         guard available
@@ -101,7 +101,7 @@ class ValidateExpectedValuesTestWriter: Writer {
         /// Drop (Filter) any entries that are contained
         /// in our list of tags to filter.
         ///
-        guard !filterTags.contains(tag)
+        guard !filterTags.contains(entry.tag)
             else { return .success }
 
         /// The index will be the resultCount before incrementing
@@ -113,11 +113,9 @@ class ValidateExpectedValuesTestWriter: Writer {
             let expected = self.expected[index]
 
             /// Always required
-            guard level == expected.level && tag == expected.tag && message == expected.message
+            guard entry.level == expected.level && entry.tag == expected.tag && entry.message == expected.message
                 else {
-                    let newEntry = (timestamp: timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)
-
-                    XCTFail("\(newEntry) is not equal to: \(expected)"); return .failed(.error) }
+                    XCTFail("\(entry) is not equal to: \(expected)"); return .failed(.error) }
 
             /// Optional comparisons
             ///
@@ -126,29 +124,29 @@ class ValidateExpectedValuesTestWriter: Writer {
             ///       the timestamp inside the logPrimitive function.
             ///
             if let expectedTimestamp = expected.timestamp {
-                guard timestamp == expectedTimestamp
-                    else { XCTFail("Timestamp \(timestamp) is not equal to: \(expectedTimestamp)"); return .failed(.error) }
+                guard entry.timestamp == expectedTimestamp
+                    else { XCTFail("Timestamp \(entry.timestamp) is not equal to: \(expectedTimestamp)"); return .failed(.error) }
             }
 
             if let expectedRuntimeContext = expected.runtimeContext {
-                guard runtimeContext.processIdentifier == expectedRuntimeContext.processIdentifier &&
-                      runtimeContext.processName       == expectedRuntimeContext.processName &&
-                      runtimeContext.threadIdentifier  == expectedRuntimeContext.threadIdentifier
-                    else { XCTFail("\(runtimeContext) is not equal to: \(expectedRuntimeContext)"); return .failed(.error)  }
+                guard entry.runtimeContext.processIdentifier == expectedRuntimeContext.processIdentifier &&
+                      entry.runtimeContext.processName       == expectedRuntimeContext.processName &&
+                      entry.runtimeContext.threadIdentifier  == expectedRuntimeContext.threadIdentifier
+                    else { XCTFail("\(entry.runtimeContext) is not equal to: \(expectedRuntimeContext)"); return .failed(.error)  }
             }
 
             if let expectedStaticContext = expected.staticContext {
-                guard staticContext.file     == expectedStaticContext.file &&
-                      staticContext.function == expectedStaticContext.function
-                    else { XCTFail("\(staticContext) is not equal to: \(expectedStaticContext)"); return .failed(.error) }
+                guard entry.staticContext.file     == expectedStaticContext.file &&
+                      entry.staticContext.function == expectedStaticContext.function
+                    else { XCTFail("\(entry.staticContext) is not equal to: \(expectedStaticContext)"); return .failed(.error) }
 
                 if !ignoreLineInComparison {
-                    guard staticContext.line == expectedStaticContext.line
-                        else { XCTFail("\(staticContext) is not equal to: \(expectedStaticContext)"); return .failed(.error) }
+                    guard entry.staticContext.line == expectedStaticContext.line
+                        else { XCTFail("\(entry.staticContext) is not equal to: \(expectedStaticContext)"); return .failed(.error) }
                 }
             }
 
-            /// If it matches all required fields increment the fulfullment count
+            /// If it matches all required fields increment the fulfillment count
             self.expectation.fulfill()
         }
         return .success

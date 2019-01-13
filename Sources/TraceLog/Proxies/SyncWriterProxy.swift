@@ -39,9 +39,9 @@ internal class SyncWriterProxy: WriterProxy {
     }
 
     @inline(__always)
-    internal func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
+    internal func write(_ entry: Writer.LogEntry) {
         queue.sync {
-            _ = self.writer.log(timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)
+            self.writer.write(entry)
         }
     }
 }

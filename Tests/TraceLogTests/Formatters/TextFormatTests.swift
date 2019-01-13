@@ -137,24 +137,28 @@ class TextFormatTests: XCTestCase {
     ///
     func testTemplateDate() {
         let format = TextFormat(template: "%{date}", terminator: "")
-        let timestamp = 28800.0
 
-        guard let bytes = format.bytes(from: timestamp, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let expected: String       = TextFormatTests.dateFormatter.string(from: Date(timeIntervalSince1970: input.timestamp))
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), TextFormatTests.dateFormatter.string(from: Date(timeIntervalSince1970: timestamp)))
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test that you can specify the substitution parameter multiple times.
     ///
     func testTemplateMultipleDate() {
         let format = TextFormat(template: "%{date}%{date}%{date}", terminator: "")
-        let timestamp = 28800.0
 
-        guard let bytes = format.bytes(from: timestamp, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let expected: String       = String(repeating: TextFormatTests.dateFormatter.string(from: Date(timeIntervalSince1970: input.timestamp)), count: 3)
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), String(repeating: TextFormatTests.dateFormatter.string(from: Date(timeIntervalSince1970: timestamp)), count: 3))
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Substitution: %{timestamp}
@@ -164,10 +168,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateTimestamp() {
         let format = TextFormat(template: "%{timestamp}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let expected: String       = "28800.0"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "28800.0")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test that you can specify the substitution parameter multiple times.
@@ -175,10 +182,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateMultipleTimestamp() {
         let format = TextFormat(template: "%{timestamp}%{timestamp}%{timestamp}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let expected: String       = "28800.028800.028800.0"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "28800.028800.028800.0")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Substitution: %{level}
@@ -188,10 +198,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateLevel() {
         let format = TextFormat(template: "%{level}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let expected: String       = "INFO"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "INFO")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test that you can specify the substitution parameter multiple times.
@@ -199,10 +212,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateMultipleLevel() {
         let format = TextFormat(template: "%{level}%{level}%{level}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let expected: String       = "INFOINFOINFO"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "INFOINFOINFO")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Substitution: %{tag}
@@ -212,10 +228,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateTag() {
         let format = TextFormat(template: "%{tag}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let expected: String       = "TestTag"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "TestTag")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test that you can specify the substitution parameter multiple times.
@@ -223,10 +242,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateMultipleTag() {
         let format = TextFormat(template: "%{tag}%{tag}%{tag}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let expected: String       = "TestTagTestTagTestTag"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "TestTagTestTagTestTag")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Substitution: %{message}
@@ -236,10 +258,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateMessage() {
         let format = TextFormat(template: "%{message}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let expected: String       = "Test message."
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "Test message.")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test that you can specify the substitution parameter multiple times.
@@ -247,10 +272,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateMultipleMessage() {
         let format = TextFormat(template: "%{message}%{message}%{message}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let expected: String       = "Test message.Test message.Test message."
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "Test message.Test message.Test message.")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Substitution: %{processName}
@@ -260,10 +288,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateProcessName() {
         let format = TextFormat(template: "%{processName}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processName: "Test Process"), staticContext: TestStaticContext())
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processName: "Test Process"), staticContext: TestStaticContext())
+        let expected: String       = "Test Process"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "Test Process")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test that you can specify the substitution parameter multiple times.
@@ -271,10 +302,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateMultipleProcessName() {
         let format = TextFormat(template: "%{processName}%{processName}%{processName}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processName: "Test Process"), staticContext: TestStaticContext())
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processName: "Test Process"), staticContext: TestStaticContext())
+        let expected: String       = "Test ProcessTest ProcessTest Process"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "Test ProcessTest ProcessTest Process")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Substitution: %{processIdentifier}
@@ -284,10 +318,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateProcessIdentifier() {
         let format = TextFormat(template: "%{processIdentifier}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processIdentifier: 500), staticContext: TestStaticContext())
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processIdentifier: 500), staticContext: TestStaticContext())
+        let expected: String       = "500"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "500")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test that you can specify the substitution parameter multiple times.
@@ -295,10 +332,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateMultipleProcessIdentifier() {
         let format = TextFormat(template: "%{processIdentifier}%{processIdentifier}%{processIdentifier}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processIdentifier: 500), staticContext: TestStaticContext())
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processIdentifier: 500), staticContext: TestStaticContext())
+        let expected: String       = "500500500"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "500500500")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Substitution: %{threadIdentifier}
@@ -308,10 +348,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateThreadIdentifier() {
         let format = TextFormat(template: "%{threadIdentifier}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(threadIdentifier: 200), staticContext: TestStaticContext())
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(threadIdentifier: 200), staticContext: TestStaticContext())
+        let expected: String       = "200"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "200")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test that you can specify the substitution parameter multiple times.
@@ -319,10 +362,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateMultipleThreadIdentifier() {
         let format = TextFormat(template: "%{threadIdentifier}%{threadIdentifier}%{threadIdentifier}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(threadIdentifier: 200), staticContext: TestStaticContext())
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(threadIdentifier: 200), staticContext: TestStaticContext())
+        let expected: String       = "200200200"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "200200200")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Substitution: %{file}
@@ -332,10 +378,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateFile() {
         let format = TextFormat(template: "%{file}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(file: "TextFormatTests.swift"))
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(file: "TextFormatTests.swift"))
+        let expected: String       = "TextFormatTests.swift"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "TextFormatTests.swift")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test that you can specify the substitution parameter multiple times.
@@ -343,10 +392,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateMultipleFile() {
         let format = TextFormat(template: "%{file}%{file}%{file}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(file: "TextFormatTests.swift"))
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(file: "TextFormatTests.swift"))
+        let expected: String       = "TextFormatTests.swiftTextFormatTests.swiftTextFormatTests.swift"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "TextFormatTests.swiftTextFormatTests.swiftTextFormatTests.swift")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Substitution: %{function}
@@ -356,10 +408,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateFunction() {
         let format = TextFormat(template: "%{function}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(function: "testTemplateFunction()"))
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(function: "testTemplateFunction()"))
+        let expected: String       = "testTemplateFunction()"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "testTemplateFunction()")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test that you can specify the substitution parameter multiple times.
@@ -367,10 +422,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateMultipleFunction() {
         let format = TextFormat(template: "%{function}%{function}%{function}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(function: "testTemplateFunction()"))
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(function: "testTemplateFunction()"))
+        let expected: String       = "testTemplateFunction()testTemplateFunction()testTemplateFunction()"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "testTemplateFunction()testTemplateFunction()testTemplateFunction()")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Substitution: %{line}
@@ -380,10 +438,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateLine() {
         let format = TextFormat(template: "%{line}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let expected: String       = "120"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "120")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test that you can specify the substitution parameter multiple times.
@@ -391,22 +452,27 @@ class TextFormatTests: XCTestCase {
     func testTemplateMultipleLine() {
         let format = TextFormat(template: "%{line}%{line}%{line}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let expected: String       = "120120120"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "120120120")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test that the default template produces the correct message output.
     ///
     func testTemplateDefault() {
         let format = TextFormat(terminator: "")
-        let timestamp = 28800.0
 
-        guard let bytes = format.bytes(from: timestamp, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let expected: String       = "\(TextFormatTests.dateFormatter.string(from: Date(timeIntervalSince1970: input.timestamp))) TestProcess[100:1100] INFO: <TestTag> Test message."
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "\(TextFormatTests.dateFormatter.string(from: Date(timeIntervalSince1970: timestamp))) TestProcess[100:1100] INFO: <TestTag> Test message.")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test that a template containing all the variables
@@ -414,24 +480,28 @@ class TextFormatTests: XCTestCase {
     ///
     func testTemplateWithAllVariables() {
         let format = TextFormat(template: "%{date} %{timestamp} %{processName}[%{processIdentifier}:%{threadIdentifier}] %{level}: <%{tag}> [%{file}:%{function}:%{line}] %{message}", terminator: "")
-        let timestamp = 28800.0
 
-        guard let bytes = format.bytes(from: timestamp, level: .warning, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 50, threadIdentifier: 200), staticContext: TestStaticContext(file: "TextFormatTests.swift", function: "testTemplateWithAllVariables()", line: 306))
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .warning, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 50, threadIdentifier: 200), staticContext: TestStaticContext(file: "TextFormatTests.swift", function: "testTemplateWithAllVariables()", line: 306))
+        let expected: String       = "\(TextFormatTests.dateFormatter.string(from: Date(timeIntervalSince1970: input.timestamp))) \(input.timestamp) TestProcess[50:200] WARNING: <TestTag> [TextFormatTests.swift:testTemplateWithAllVariables():306] Test message."
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "\(TextFormatTests.dateFormatter.string(from: Date(timeIntervalSince1970: timestamp))) \(timestamp) TestProcess[50:200] WARNING: <TestTag> [TextFormatTests.swift:testTemplateWithAllVariables():306] Test message.")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test that a template containing a tab delimited form.
     ///
     func testTemplateWithTabDelimited() {
         let format = TextFormat(template: "\"%{date}\", \"%{processName}\", %{processIdentifier}, %{threadIdentifier}, \"%{level}\", \"%{tag}\", \"%{message}\"", terminator: "\n")
-        let timestamp = 28800.0
 
-        guard let bytes = format.bytes(from: timestamp, level: .warning, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 50, threadIdentifier: 200), staticContext: TestStaticContext(file: "TextFormatTests.swift", function: "testTemplateWithAllVariables()", line: 306))
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .warning, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 50, threadIdentifier: 200), staticContext: TestStaticContext(file: "TextFormatTests.swift", function: "testTemplateWithAllVariables()", line: 306))
+        let expected: String       = "\"\(TextFormatTests.dateFormatter.string(from: Date(timeIntervalSince1970: input.timestamp)))\", \"TestProcess\", 50, 200, \"WARNING\", \"TestTag\", \"Test message.\"\n"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "\"\(TextFormatTests.dateFormatter.string(from: Date(timeIntervalSince1970: timestamp)))\", \"TestProcess\", 50, 200, \"WARNING\", \"TestTag\", \"Test message.\"\n")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test that all template constants are passed through
@@ -440,10 +510,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateConstantsArePassedThrough() {
         let format = TextFormat(template: "~!@#$%^&*()%{level}1234567890%{tag}abcdefghijklmnop", terminator: "")
 
-        guard let bytes = format.bytes(from: 1.0, level: .warning, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 50, threadIdentifier: 200), staticContext: TestStaticContext(file: "TextFormatTests.swift", function: "testTemplateWithAllVariables()", line: 306))
+        let input: Writer.LogEntry = (timestamp: 1.0, level: .warning, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 50, threadIdentifier: 200), staticContext: TestStaticContext(file: "TextFormatTests.swift", function: "testTemplateWithAllVariables()", line: 306))
+        let expected: String       = "~!@#$%^&*()WARNING1234567890TestTagabcdefghijklmnop"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "~!@#$%^&*()WARNING1234567890TestTagabcdefghijklmnop")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
 
@@ -452,12 +525,15 @@ class TextFormatTests: XCTestCase {
     /// Test that a random constant value will be printed as a constant.
     ///
     func testTemplateAllConstants() {
-        let format = TextFormat(template: "{}} This is a constant string that will be output %{(0001234 with specifal characters.", terminator: "")
+        let format = TextFormat(template: "{}} This is a constant string that will be output %{(0001234 with special characters}.", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let expected: String       = "{}} This is a constant string that will be output %{(0001234 with special characters}."
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{}} This is a constant string that will be output %{(0001234 with specifal characters.")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test that any combination of %{} that is not a valid substitution variable
@@ -466,10 +542,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateIncorrectVariables() {
         let format = TextFormat(template: "%{This} %{is} %{a} %{constant} %{string} %{that} %{will} %{be} %{output}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let expected: String       = "%{This} %{is} %{a} %{constant} %{string} %{that} %{will} %{be} %{output}"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "%{This} %{is} %{a} %{constant} %{string} %{that} %{will} %{be} %{output}")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test that a double %{} wrapped valid variable prints correctly.
@@ -477,10 +556,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateDoubleWrappedVariable() {
         let format = TextFormat(template: "%{%{level}}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let expected: String       = "%{INFO}"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "%{INFO}")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test a message with embedded variables does not substitute the embedded variables.
@@ -488,10 +570,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateMessageWithEmbeddedVaraibles() {
         let format = TextFormat(template: "%{level} %{message}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "%{level}", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "%{level}", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let expected: String       = "INFO %{level}"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "INFO %{level}")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test a message with embedded variables does not substitute the embedded variables.
@@ -499,10 +584,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateMessageWithEmbeddedVaraiblesReversed() {
         let format = TextFormat(template: "%{message} %{level}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "%{level}", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "%{level}", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let expected: String       = "%{level} INFO"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "%{level} INFO")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test a message with embedded message variables does not substitute the embedded variables.
@@ -510,10 +598,13 @@ class TextFormatTests: XCTestCase {
     func testTemplateMessageWithEmbeddedMessageVariable() {
         let format = TextFormat(template: "%{message}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "%{message} check", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "%{message} check", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let expected: String       = "%{message} check"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "%{message} check")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     // MARK: - Test .controlCharacters
@@ -525,10 +616,13 @@ class TextFormatTests: XCTestCase {
     func testControlCharactersStripActuallyStrips() {
         let format = TextFormat(template: "%{message}", options: [.controlCharacters(.strip)], terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "\tThis message contains multiple \nlines and \tcontrol characters.\n", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "\tThis message contains multiple \nlines and \tcontrol characters.\n", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let expected: String       = "This message contains multiple lines and control characters."
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "This message contains multiple lines and control characters.")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test that by passing options: [.controlCharacters(.escape)],
@@ -538,10 +632,13 @@ class TextFormatTests: XCTestCase {
     func testControlCharactersEscapeActuallyEscapes() {
         let format = TextFormat(template: "%{message}", options: [.controlCharacters(.escape)], terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "\tThis message contains multiple \nlines and \tcontrol characters.\n", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "\tThis message contains multiple \nlines and \tcontrol characters.\n", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let expected: String       = "\\tThis message contains multiple \\nlines and \\tcontrol characters.\\n"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "\\tThis message contains multiple \\nlines and \\tcontrol characters.\\n")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     /// Test that by not passing options: [.controlCharacters(.strip)],
@@ -551,10 +648,13 @@ class TextFormatTests: XCTestCase {
     func testControlCharactersAbsentLeavesTheCharacters() {
         let format = TextFormat(template: "%{message}", terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "\tThis message contains multiple \nlines and \tcontrol characters.\n", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "\tThis message contains multiple \nlines and \tcontrol characters.\n", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let expected: String       = "\tThis message contains multiple \nlines and \tcontrol characters.\n"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "\tThis message contains multiple \nlines and \tcontrol characters.\n")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 
     // MARK: - Test terminator
@@ -565,9 +665,12 @@ class TextFormatTests: XCTestCase {
     func testTerminatorCanBeSet() {
         let format = TextFormat(template: "%{message}", options: [.controlCharacters(.strip)], terminator: ",\n\t")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Simple message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
+        let expected: String       = "Simple message.,\n\t"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail(); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "Simple message.,\n\t")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
 }

@@ -21,7 +21,7 @@ import Foundation
 
 internal protocol WriterProxy {
 
-    /// Call to log
+    /// Call to write to the writer.
     ///
-    func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext)
+    func write(_ entry: Writer.LogEntry)
 }

@@ -33,7 +33,7 @@ public protocol Reader {
     ///
     /// Locate the log entry based on the input and return it as a `LogEntry` instance.
     ///
-    func logEntry(for writer: WriterType, timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogEntry?
+    func logEntry(for writer: WriterType, timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> TestLogEntry?
 }
 
 ///
@@ -63,11 +63,11 @@ public class TestHarness<T: Reader> {
     /// Executes test block (that must contain a call one of TraceLogs log functions) and validates the results.
     ///
     public func testLog(for level: LogLevel, tag tagOrNil: String? = nil, message messageOrNil: String? = nil, file: String = #file, function: String = #function, line: Int = #line,
-                        testBlock: (String, String, String, String, Int) -> Void, validationBlock: (_ writer: T.WriterType, _ result: LogEntry?, _ expected: LogEntry)-> Void)  {
+                        testBlock: (String, String, String, String, Int) -> Void, validationBlock: (_ writer: T.WriterType, _ result: TestLogEntry?, _ expected: TestLogEntry)-> Void)  {
 
-        self._testLog(for: level, tag: tagOrNil, message: messageOrNil, file: file, function: function, line: line, testBlock: { (timestamp, level, tag, message, runtimeContext, staticContext) in
+        self._testLog(for: level, tag: tagOrNil, message: messageOrNil, file: file, function: function, line: line, testBlock: { (entry) in
 
-            testBlock(tag, message, file, function, line)
+            testBlock(entry.tag, entry.message, entry.staticContext.file, entry.staticContext.function, entry.staticContext.line)
 
         }, validationBlock: validationBlock)
     }
@@ -76,12 +76,12 @@ public class TestHarness<T: Reader> {
     /// Calls the writer directly with the given LogLevel and validates the results.
     ///
     public func testLog(for level: LogLevel, tag tagOrNil: String? = nil, message messageOrNil: String? = nil, file: String = #file, function: String = #function, line: Int = #line,
-                        validationBlock: (_ writer: T.WriterType, _ result: LogEntry?, _ expected: LogEntry)-> Void)  {
+                        validationBlock: (_ writer: T.WriterType, _ result: TestLogEntry?, _ expected: TestLogEntry)-> Void)  {
 
-        self._testLog(for: level, tag: tagOrNil, message: messageOrNil, file: file, function: function, line: line, testBlock: { (timestamp, level, tag, message, runtimeContext, staticContext) in
+        self._testLog(for: level, tag: tagOrNil, message: messageOrNil, file: file, function: function, line: line, testBlock: { (entry) in
 
             /// Execute the test
-            self.writer.log(timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)
+            self.writer.write(entry)
 
         }, validationBlock: validationBlock)
     }
@@ -90,7 +90,7 @@ public class TestHarness<T: Reader> {
     /// Test a TraceLog log message to a writer.
     ///
     private func _testLog(for level: LogLevel, tag tagOrNil: String? = nil, message messageOrNil: String? = nil, file: String = #file, function: String = #function, line: Int = #line,
-                        testBlock: (Double, LogLevel, String, String, RuntimeContext, StaticContext) -> Void, validationBlock: (_ writer: T.WriterType, _ result: LogEntry?, _ expected: LogEntry)-> Void)  {
+                        testBlock: (Writer.LogEntry) -> Void, validationBlock: (_ writer: T.WriterType, _ result: TestLogEntry?, _ expected: TestLogEntry)-> Void)  {
 
         let timestamp = Date().timeIntervalSince1970
 
@@ -100,12 +100,14 @@ public class TestHarness<T: Reader> {
         let tag     = tagOrNil     ?? "TestTag"
         let message = messageOrNil ?? "Writer test .\(level) message at timestamp \(timestamp)"
 
+        let entry: Writer.LogEntry = (timestamp: timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)
+
         /// Execute the test
-        testBlock(timestamp, level, tag, message, runtimeContext, staticContext)
+        testBlock(entry)
 
         let result = self.reader.logEntry(for: self.writer, timestamp: timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)
 
-        let expected = LogEntry(timestamp: timestamp, level: level, message: message, tag: tag, file: staticContext.file, function: staticContext.function, line: staticContext.line, processName: runtimeContext.processName, processIdentifier: runtimeContext.processIdentifier, threadIdentifier: Int(runtimeContext.threadIdentifier))
+        let expected = TestLogEntry(timestamp: timestamp, level: level, message: message, tag: tag, file: staticContext.file, function: staticContext.function, line: staticContext.line, processName: runtimeContext.processName, processIdentifier: runtimeContext.processIdentifier, threadIdentifier: Int(runtimeContext.threadIdentifier))
 
         validationBlock(self.writer, result, expected)
     }
@@ -114,7 +116,7 @@ public class TestHarness<T: Reader> {
 ///
 /// Structure representing a log entry (for both expected values and results of searches).
 ///
-public struct LogEntry {
+public struct TestLogEntry {
 
     public init(timestamp: Double? = nil, level: LogLevel? = nil, message: String? = nil, tag: String? = nil, file: String? = nil, function: String? = nil, line: Int? = nil, processName: String? = nil, processIdentifier: Int? = nil, threadIdentifier: Int? = nil, customAttributes: [String: Any]? = nil) {
 
@@ -161,7 +163,7 @@ class _AnyReaderBox<ConcreteReader: Reader>: _AnyReaderBase<ConcreteReader.Write
         self.reader = reader
     }
 
-    override func logEntry(for writer: ConcreteReader.WriterType, timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogEntry? {
+    override func logEntry(for writer: ConcreteReader.WriterType, timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> TestLogEntry? {
         return self.reader.logEntry(for: writer, timestamp: timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)
     }
 }
@@ -172,7 +174,7 @@ class _AnyReaderBox<ConcreteReader: Reader>: _AnyReaderBase<ConcreteReader.Write
 internal /* @testable */
 class _AnyReaderBase<T: Writer>: Reader {
 
-    func logEntry(for writer: T, timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogEntry? {
+    func logEntry(for writer: T, timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> TestLogEntry? {
         return nil
     }
 }
