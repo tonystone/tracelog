@@ -24,7 +24,7 @@ import TraceLogTestHarness
 
 private let testDirectory = "ConsoleWriterTestsTmp"
 
-private let testEqual: (ConsoleWriter, LogEntry?, LogEntry) -> Void = { writer, result, expected in
+private let testEqual: (ConsoleWriter, TestLogEntry?, TestLogEntry) -> Void = { writer, result, expected in
 
     guard let result = result
         else { XCTFail("Failed to locate log entry."); return }
@@ -146,7 +146,7 @@ private class ConsoleWriterReader: Reader {
         self.directory = directory
     }
 
-    func logEntry(for writer: ConsoleWriter, timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogEntry? {
+    func logEntry(for writer: ConsoleWriter, timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> TestLogEntry? {
 
         do {
             ///
@@ -235,7 +235,7 @@ private class ConsoleWriterReader: Reader {
                 return String(entry[range]).replacingOccurrences(of: "\n", with: "")
             }()
 
-            return LogEntry(timestamp: timestamp,
+            return TestLogEntry(timestamp: timestamp,
                             level: level,
                             message: message,
                             tag: tag,

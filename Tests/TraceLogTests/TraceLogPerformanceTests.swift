@@ -14,7 +14,7 @@ private let testIterations = 1000
 class TraceLogPerformanceTestsSwift: XCTestCase {
 
     struct NullWriter: Writer {
-        func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {}
+        func write(_ entry: Writer.LogEntry) {}
     }
 
     func testLogErrorPerformance_NullWriter() {

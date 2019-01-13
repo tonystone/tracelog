@@ -27,7 +27,7 @@ public class BufferWriter: Writer {
     ///
     /// A buffer to hold the values written to this writer.
     ///
-    public var buffer: [String: (timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext)] = [:]
+    public var buffer: [String: Writer.LogEntry] = [:]
 
     /// Initialize an instance of `self` to its initial empty state.
     ///
@@ -36,7 +36,7 @@ public class BufferWriter: Writer {
     ///
     /// Required log function for the `Writer`.
     ///
-    public func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
-        self.buffer[message] = (timestamp, level, tag, message, runtimeContext, staticContext)
+    public func write(_ entry: Writer.LogEntry) {
+        self.buffer[entry.message] = entry
     }
 }

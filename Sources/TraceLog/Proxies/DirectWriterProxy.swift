@@ -33,7 +33,7 @@ internal class DirectWriterProxy: WriterProxy {
     }
 
     @inline(__always)
-    internal func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
-        self.writer.log(timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)
+    internal func write(_ entry: Writer.LogEntry) {
+        self.writer.write(entry)
     }
 }

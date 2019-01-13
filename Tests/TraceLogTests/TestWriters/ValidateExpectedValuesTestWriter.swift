@@ -46,15 +46,15 @@ class ValidateExpectedValuesTestWriter: Writer {
         self.testFileFunction = testFileFunction
     }
 
-    func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
+    func write(_ entry: Writer.LogEntry) {
 
-        if level == self.level &&
-            tag == self.tag &&
-            message == self.message {
+        if entry.level == self.level &&
+           entry.tag == self.tag &&
+           entry.message == self.message {
 
             if !testFileFunction ||
-                staticContext.file == self.file &&
-                staticContext.function == self.function {
+                entry.staticContext.file == self.file &&
+                entry.staticContext.function == self.function {
                 expectation.fulfill()
             }
         }

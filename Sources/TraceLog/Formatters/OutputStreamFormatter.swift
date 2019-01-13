@@ -23,8 +23,8 @@ import Foundation
 ///
 public protocol OutputStreamFormatter {
 
-    /// Accepts traceLogs standard parameters and outputs an Array of bytes
+    /// Accepts traceLogs standard LogEntry and outputs an Array of bytes
     /// containing the formatted output.
     ///
-    func bytes(from timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> [UInt8]?
+    func bytes(from entry: Writer.LogEntry) -> [UInt8]?
 }

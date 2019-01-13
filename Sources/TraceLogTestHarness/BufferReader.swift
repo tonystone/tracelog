@@ -28,12 +28,12 @@ public class BufferReader: Reader {
     ///
     public init() {}
 
-    public func logEntry(for writer: BufferWriter, timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogEntry? {
+    public func logEntry(for writer: BufferWriter, timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> TestLogEntry? {
 
         guard let logEntry = writer.buffer[message]
             else { return nil }
 
-        return LogEntry(timestamp: logEntry.timestamp,
+        return TestLogEntry(timestamp: logEntry.timestamp,
                             level: logEntry.level,
                           message: logEntry.message,
                               tag: logEntry.tag,

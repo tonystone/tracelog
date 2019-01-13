@@ -73,14 +73,13 @@ internal final class Logger {
 
         if localConfig.logLevel(for: tag) >= level {
 
-            let runtimeContext = RuntimeContextImpl()
-            let staticContext  = StaticContextImpl(file: file, function: function, line: line)
-
-            /// Evaluate the message now
-            let messageString = message()
+            /// Evaluate the message and create the LogEntry now that we
+            /// know we are going to output the message.
+            ///
+            let entry: Writer.LogEntry = (timestamp: timestamp, level: level, tag: tag, message: message(), runtimeContext: RuntimeContextImpl(), staticContext: StaticContextImpl(file: file, function: function, line: line))
 
             for writer in localConfig.writers {
-                writer.log(timestamp, level: level, tag: tag, message: messageString, runtimeContext: runtimeContext, staticContext: staticContext)
+                writer.write(entry)
             }
         }
     }

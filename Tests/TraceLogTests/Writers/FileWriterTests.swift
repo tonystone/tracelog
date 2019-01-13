@@ -24,7 +24,7 @@ import TraceLogTestHarness
 
 private let testDirectory = "FileWriterTestsTmp"
 
-private let testEqual: (FileWriter, LogEntry?, LogEntry) -> Void = { writer, result, expected in
+private let testEqual: (FileWriter, TestLogEntry?, TestLogEntry) -> Void = { writer, result, expected in
 
     guard let result = result
         else { XCTFail("Failed to locate log entry."); return }
@@ -304,7 +304,7 @@ private class FileReader: Reader {
         self.directory = directory
     }
 
-    func logEntry(for writer: FileWriter, timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> LogEntry? {
+    func logEntry(for writer: FileWriter, timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> TestLogEntry? {
 
         do {
             let url = URL(fileURLWithPath: self.directory).appendingPathComponent(fileName)
@@ -385,7 +385,7 @@ private class FileReader: Reader {
                         return String(entry[range]).replacingOccurrences(of: "\n", with: "")
                     }()
 
-                    return LogEntry(timestamp: timestamp,
+                    return TestLogEntry(timestamp: timestamp,
                                     level: level,
                                     message: message,
                                     tag: tag,
