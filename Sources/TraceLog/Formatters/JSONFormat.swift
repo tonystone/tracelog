@@ -116,7 +116,7 @@ public struct JSONFormat: OutputStreamFormatter {
 
     /// Text conversion function required by the `OutputStreamFormatter` protocol.
     ///
-    public func bytes(from timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> [UInt8]? {
+    public func bytes(from entry: Writer.LogEntry) -> [UInt8]? {
         var text = String()
 
         text.write("{\(conditional.newLine)")
@@ -126,16 +126,16 @@ public struct JSONFormat: OutputStreamFormatter {
                 text.write(",\(conditional.newLine)")
             }
             switch attributes[index] {
-                case .timestamp:         self.emit(timestamp,                        forKey: "timestamp", to: &text)
-                case .level:             self.emit(level,                            forKey: "level", to: &text)
-                case .tag:               self.emit(tag,                              forKey: "tag", to: &text)
-                case .message:           self.emit(message,                          forKey: "message", to: &text)
-                case .processName:       self.emit(runtimeContext.processName,       forKey: "processName", to: &text)
-                case .processIdentifier: self.emit(runtimeContext.processIdentifier, forKey: "processIdentifier", to: &text)
-                case .threadIdentifier:  self.emit(runtimeContext.threadIdentifier,  forKey: "threadIdentifier", to: &text)
-                case .file:              self.emit(staticContext.file,               forKey: "file", to: &text)
-                case .function:          self.emit(staticContext.function,           forKey: "function", to: &text)
-                case .line:              self.emit(staticContext.line,               forKey: "line", to: &text)
+                case .timestamp:         self.emit(entry.timestamp,                        forKey: "timestamp", to: &text)
+                case .level:             self.emit(entry.level,                            forKey: "level", to: &text)
+                case .tag:               self.emit(entry.tag,                              forKey: "tag", to: &text)
+                case .message:           self.emit(entry.message,                          forKey: "message", to: &text)
+                case .processName:       self.emit(entry.runtimeContext.processName,       forKey: "processName", to: &text)
+                case .processIdentifier: self.emit(entry.runtimeContext.processIdentifier, forKey: "processIdentifier", to: &text)
+                case .threadIdentifier:  self.emit(entry.runtimeContext.threadIdentifier,  forKey: "threadIdentifier", to: &text)
+                case .file:              self.emit(entry.staticContext.file,               forKey: "file", to: &text)
+                case .function:          self.emit(entry.staticContext.function,           forKey: "function", to: &text)
+                case .line:              self.emit(entry.staticContext.line,               forKey: "line", to: &text)
             }
         }
         text.write("\(conditional.newLine)}")

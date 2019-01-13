@@ -35,8 +35,7 @@ import Swift
 ///
 public protocol Writer {
 
-    ///
-    /// Called when the logger needs to log an event to this logger.
+    ///  Log Entry represents an element that can be written by a Writer.
     ///
     /// - Parameters:
     ///     - timestamp:             Timestamp of the log event (number of seconds from 1970).
@@ -51,5 +50,14 @@ public protocol Writer {
     /// - SeeAlso: RuntimeContext
     /// - SeeAlso: StaticContext
     ///
-    func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext)
+    typealias LogEntry = (timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext)
+
+    ///
+    /// Called when the logger needs to log an event to this logger.
+    ///
+    /// - Parameter entry: A LogEntry type to write to the output.
+    ///
+    /// - SeeAlso: LogEntry
+    ///
+    func write(_ entry: LogEntry)
 }

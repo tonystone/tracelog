@@ -106,9 +106,9 @@ public class FileWriter: OutputStreamWriter {
 
     /// Required log function for the logger
     ///
-    public func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
+    public func write(_ entry: Writer.LogEntry) {
 
-        guard let bytes = format.bytes(from: timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)
+        guard let bytes = format.bytes(from: entry)
             else { return }
 
         /// Note: Since we could be called on any thread in TraceLog direct mode

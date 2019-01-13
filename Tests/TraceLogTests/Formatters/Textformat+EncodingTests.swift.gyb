@@ -86,11 +86,13 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     func test${Encoding.title()}EncodingWithSimpleAsciiMessage() {
         let format = TextFormat(template: "%{message}", encoding: .${Encoding}, terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
+        let expected: String       = "${Expected}"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".${Encoding}\""); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .${Encoding}), "${Expected}",
-            "Failed conversion to \".${Encoding}\".")
+        XCTAssertEqual(String(bytes: bytes, encoding: .${Encoding}), expected, "Failed conversion to \".${Encoding}\".")
     }
 % end
 
@@ -103,12 +105,13 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
     func test${Encoding.title()}EncodingWithUnicodeMessage() {
         let format = TextFormat(template: "%{message}", encoding: .${Encoding}, terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext()),
-              let result = String(bytes: bytes, encoding: .${Encoding})
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
+        let expected: String       = "${Expected}"
+
+        guard let bytes = format.bytes(from: input), let result = String(bytes: bytes, encoding: .${Encoding})
             else { XCTFail("Failed to convert log entry to encoding \".${Encoding}\""); return }
 
-        XCTAssertTrue(result.range(of: "${Expected}", options: [.regularExpression, .caseInsensitive]) != nil,
-            "Failed conversion to \".${Encoding}\".")
+        XCTAssertTrue(result.range(of: expected, options: [.regularExpression, .caseInsensitive]) != nil, "Failed conversion to \".${Encoding}\".")
     }
 % end
 }

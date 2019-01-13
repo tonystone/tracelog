@@ -54,10 +54,13 @@ class TextFormatInternationalLanguagesTests: XCTestCase {
     func testBytesWith${Language}Message() {
         let format = TextFormat(template: "%{message}", encoding: .utf8, terminator: "")
 
-        guard let bytes = format.bytes(from: 28800.0, level: .info, tag: "TestTag", message: "${Text}", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "${Text}", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
+        let expected: String       = "${Text}"
+
+        guard let bytes = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry for the ${Language} language."); return }
 
-        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "${Text}", "Failed conversion for \"${Language}\".")
+        XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected, "Failed conversion for \"${Language}\".")
     }
 % end
 }
