@@ -62,12 +62,12 @@ public protocol Writer {
     /// - SeeAlso: LogEntry
     ///
     @discardableResult
-    func write(_ entry: LogEntry)  -> LogResult
+    func write(_ entry: LogEntry)  -> WriteResult
 }
 
 /// Result of logging to a Writer.
 ///
-public enum LogResult {
+public enum WriteResult {
 
     /// The write was successful.
     ///

@@ -32,7 +32,7 @@ class CallbackTestWriter: Writer {
         self.callback = callback
     }
 
-    func write(_ entry: Writer.LogEntry) -> LogResult {
+    func write(_ entry: Writer.LogEntry) -> WriteResult {
         callback(entry)
 
         return .success

@@ -92,7 +92,7 @@ class ValidateExpectedValuesTestWriter: Writer {
 
     /// Required Writer.write function (required by the Writer protocol).
     ///
-    func write(_ entry: Writer.LogEntry) -> LogResult {
+    func write(_ entry: Writer.LogEntry) -> WriteResult {
 
         /// If we are not currently available, return error
         guard available

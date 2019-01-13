@@ -106,7 +106,7 @@ public class FileWriter: OutputStreamWriter {
 
     /// Required write function for the logger
     ///
-    public func write(_ entry: Writer.LogEntry) -> LogResult  {
+    public func write(_ entry: Writer.LogEntry) -> WriteResult  {
 
         guard let bytes = format.bytes(from: entry)
             else { return .failed(.error) }
