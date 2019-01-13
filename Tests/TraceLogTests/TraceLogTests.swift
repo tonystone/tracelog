@@ -131,7 +131,7 @@ class TraceLogTestsSwift: XCTestCase {
         }
 
         /// Setup test with Writer
-        TraceLog.configure(writers: [.async(validatingWriter)], environment: ["LOG_ALL": "INFO"])
+        TraceLog.configure(writers: [.async(validatingWriter, options: [])], environment: ["LOG_ALL": "INFO"])
 
         /// Run test.
         logInfo { input.message }
@@ -173,7 +173,7 @@ class TraceLogTestsSwift: XCTestCase {
     }
 
     func testNoDeadLockAsyncMode() {
-        TraceLog.configure(writers: [.async(SleepyTestWriter(sleepTime: 100))], environment: ["LOG_ALL": "INFO"])
+        TraceLog.configure(writers: [.async(SleepyTestWriter(sleepTime: 100), options: [])], environment: ["LOG_ALL": "INFO"])
 
         self._testNoDeadLock()
     }

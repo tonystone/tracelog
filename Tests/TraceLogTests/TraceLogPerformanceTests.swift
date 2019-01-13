@@ -21,7 +21,7 @@ class TraceLogPerformanceTestsSwift: XCTestCase {
 
     func testLogErrorPerformance_NullWriter() {
 
-        TraceLog.configure(writers: [.async(NullWriter())], environment: ["LOG_ALL": "TRACE4"])
+        TraceLog.configure(writers: [.async(NullWriter(), options: [])], environment: ["LOG_ALL": "TRACE4"])
 
         self.measure {
             for _ in 0..<testIterations {
@@ -33,7 +33,7 @@ class TraceLogPerformanceTestsSwift: XCTestCase {
     func testLogTrace4Performance_NullWriter() {
 
         /// Remove the log writers for this test so we see the time it takes to process internally without io
-        TraceLog.configure(writers: [.async(NullWriter())], environment: ["LOG_ALL": "TRACE4"])
+        TraceLog.configure(writers: [.async(NullWriter(), options: [])], environment: ["LOG_ALL": "TRACE4"])
 
         self.measure {
 

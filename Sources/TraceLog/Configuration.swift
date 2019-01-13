@@ -48,7 +48,7 @@ internal class Configuration {
     var writers:        [WriterProxy]        = []
     var errors:         [ConfigurationError] = []
 
-    init(writers: [WriterConcurrencyMode] = [.async(ConsoleWriter())], environment: Environment = Environment()) {
+    init(writers: [WriterConcurrencyMode] = [.async(ConsoleWriter(), options: [])], environment: Environment = Environment()) {
         self.writers = writers.map( { $0.proxy() } )
 
         self.errors = self.parse(environment: environment)

@@ -48,16 +48,15 @@ public enum ConcurrencyMode {
     ///
     /// - Parameter options: An array specifying the optional features to configure for each async writer that gets added.
     ///
+    ///
+    /// - Remark: Once Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md) is implemented
+    ///           this will gain a default value allowing for more straightforward default behavior.
+    ///           Making the signature `async(options: [AsyncOption] = [])` so that just `.async()`
+    ///           needs to be passed.
+    ///
     /// - SeeAlso: `AsyncOption` for details.
     ///
-    case async /// .async(_ options: [AsyncOption] = [])
-
-    /// TODO: Remove when Swift 5 SE-0155 is implemented
-    ///
-    /// This will be merged with async once Swift 5 [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md)
-    /// is out and we can add a default value of .default to the variant parameter.
-    ///
-    case async2(_ options: [AsyncOption])
+    case async(options: [AsyncOption])
 
     /// The default mode used if no mode is specified (.async(options: [])).
     ///
@@ -98,16 +97,14 @@ public enum WriterConcurrencyMode {
     ///     - writer: The `Writer` instance to enable async mode for.
     ///     - options: An array specifying the optional features to configure for the `writer`.
     ///
+    /// - Remark: Once Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md) is implemented
+    ///           this will gain a default value allowing for more straightforward default behavior.
+    ///           Making the signature `async(Writer, options: [AsyncOption] = [])` so that just
+    ///           `.async(Writer)` needs to be passed.
+    ///
     /// - SeeAlso: `AsyncOption` for details.
     ///
-    case async(Writer)  /// async(Writer, _ options: [AsyncOption] = [])
-
-    /// TODO: Remove when Swift 5 SE-0155 is implemented
-    ///
-    /// This will be merged with async once Swift 5 [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md)
-    /// is out and we can add a default value of .default to the variant parameter.
-    ///
-    case async2(Writer, _ options: [AsyncOption])
+    case async(Writer, options: [AsyncOption])
 }
 
 ///
@@ -182,8 +179,8 @@ internal extension ConcurrencyMode {
         switch self {
             case .direct:              return .direct(writer)
             case .sync:                return .sync  (writer)
-            case .async2(let options): return .async2(writer, options)
-            default:                   return .async (writer)
+            case .async(let options):  return .async(writer, options: options)
+            default:                   return .async(writer, options: [])
         }
     }
 }
@@ -197,8 +194,7 @@ internal extension WriterConcurrencyMode {
         switch self {
             case .direct(let writer):              return DirectWriterProxy(writer: writer)
             case .sync  (let writer):              return SyncWriterProxy  (writer: writer)
-            case .async (let writer):              return AsyncWriterProxy (writer: writer, options: [])
-            case .async2(let writer, let options): return AsyncWriterProxy (writer: writer, options: options)
+            case .async (let writer, let options): return AsyncWriterProxy (writer: writer, options: options)
 
         }
     }
