@@ -113,19 +113,19 @@ internal class AsyncWriterProxy: WriterProxy {
         /// (in order) from the buffer.
         ///
         for _ in 1...buffer.queue.count {
-
             let entry = buffer.queue.peek()
 
             switch self.writer.write(entry) {
 
+            case .failed(let reason):
+
+                /// If unavailable, leave it in the queue and stop processing.
+                ///
+               if case .unavailable = reason { break }
+
+                fallthrough /// Any other failed reason we should drop it from the queue and continue processing the next item.
             case .success:
                 _ = buffer.queue.dequeue(); continue
-            case .failed(let reason):
-                switch reason {
-                    case .unavailable: break
-                    default: break
-                }
-                break
             }
         }
 
