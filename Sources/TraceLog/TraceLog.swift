@@ -73,7 +73,7 @@ public func configure(mode: ConcurrencyMode = .default, writers: [Writer] = [Con
 /// Start TraceLog replacing the default writer with `MyWriter` running in `.direct` mode, `MyHTTPWriter`
 /// in `.async` mode, and reading the environment for log level settings.
 /// ```
-///     TraceLog.configure(writers: [.direct(MyWriter()), .async(MyHTTPWriter())])
+///     TraceLog.configure(writers: [.direct(MyWriter()), .async(MyHTTPWriter(), options: [])])
 /// ```
 ///
 /// Start TraceLog replacing the default writer with `MyWriter` running in `.async` mode and  setting log

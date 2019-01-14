@@ -60,7 +60,6 @@ internal class AsyncWriterProxy: WriterProxy {
                         self?.writeBuffer()
                     }
                 }
-
                 /// Enable buffering setting up the queue and writeTimer
                 ///
                 self.buffer = (queue: LogEntryQueue(for: strategy), writeTimer: writeTimer)
@@ -73,7 +72,7 @@ internal class AsyncWriterProxy: WriterProxy {
 
         self.queue.async {
 
-            /// If buffering is not enabled, simply write and return the writers value.
+            /// If buffering is not enabled, simply write and return.
             ///
             guard let buffer = self.buffer
                 else {

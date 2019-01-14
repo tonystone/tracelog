@@ -31,7 +31,7 @@ class ValidateExpectedValuesTestWriter: Writer {
     ///
     typealias ExpectedLogEntry = (timestamp: Double?, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext?, staticContext: StaticContext?)
 
-    /// Is this writer availabe for writing
+    /// Is this writer available for writing
     var available: Bool
 
     /// Total number of calls made to this
@@ -52,7 +52,7 @@ class ValidateExpectedValuesTestWriter: Writer {
     var ignoreLineInComparison: Bool
 
     /// The XCTestExpectation created for this writer so
-    /// the caller can wait until all asyn calls to the log
+    /// the caller can wait until all async calls to the log
     /// function have completed.
     ///
     let expectation: XCTestExpectation
@@ -66,7 +66,7 @@ class ValidateExpectedValuesTestWriter: Writer {
     /// - Parameters:
     ///     - expected: An array of expected log entries each representing an expected call to this Writer's log function.
     ///     - filterTags: An array of tags that will be used to filter calls to this Writer's log function.  Any call with a tag that is contained in this list will be dropped.
-    ///     - availabe: The initial state of availability this Wetiter should assume.
+    ///     - available: The initial state of availability this Writer should assume.
     ///
     init(expected: [ExpectedLogEntry], filterTags: [String] = [], available: Bool = true) {
         self.available = available
