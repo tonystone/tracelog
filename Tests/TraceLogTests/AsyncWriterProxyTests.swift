@@ -89,8 +89,8 @@ class AsyncWriterProxyTests: XCTestCase {
     }
 
     /// Test buffering to make sure that the proxy buffers while
-    /// the Writer returns `false` for `available` and then
-    /// writes the message when it returns `true`.
+    /// the Writer returns `.unvailable` when write is called and
+    /// the writer endpoint is unavailable.
     ///
     func testLogWithBufferingWriterDelayedAvailability() {
 
@@ -109,9 +109,7 @@ class AsyncWriterProxyTests: XCTestCase {
                   let staticContext  = input.staticContext
                 else { XCTFail("Not all parameters supplied to test."); return }
 
-            let entry: Writer.LogEntry = (timestamp: timestamp, level: input.level, tag: input.tag, message: input.message, runtimeContext: runtimeContext, staticContext: staticContext)
-
-            proxy.write(entry)
+            proxy.write((timestamp: timestamp, level: input.level, tag: input.tag, message: input.message, runtimeContext: runtimeContext, staticContext: staticContext))
         }
 
         /// Sleep for 2 seconds to make sure the proxy is buffering.
