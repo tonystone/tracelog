@@ -75,10 +75,7 @@ internal class AsyncWriterProxy: WriterProxy {
             /// If buffering is not enabled, simply write and return.
             ///
             guard let buffer = self.buffer
-                else {
-                    self.writer.write(entry)
-                    return
-            }
+                else { self.writer.write(entry); return }
 
             /// Append the log entry to the memory buffer.  The queue strategy will
             /// determine what ultimately happens to the entry.
