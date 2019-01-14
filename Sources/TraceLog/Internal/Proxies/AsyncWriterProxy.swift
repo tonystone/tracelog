@@ -160,16 +160,6 @@ private class LogEntryQueue {
         return storage.isEmpty
     }
 
-    /// Is the queue empty?
-    ///
-    public var isFull: Bool {
-        switch strategy {
-            case .dropTail(let limit): return storage.count >= limit
-            case .dropHead(let limit): return storage.count >= limit
-            case .expand:              return false
-        }
-    }
-
     /// Count of current items in the queue
     ///
     public var count: Int {
