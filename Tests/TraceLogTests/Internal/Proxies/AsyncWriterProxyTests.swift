@@ -206,4 +206,59 @@ class AsyncWriterProxyTests: XCTestCase {
 
         self.wait(for: [testWriter.expectation], timeout: 2)
     }
+
+    /// Test that the writer drops message when the writer
+    /// returns an error on write.
+    ///
+    func testLogWithBufferingWithFailedWrites() {
+
+        let testEntries: [ValidateExpectedValuesTestWriter.ExpectedLogEntry] = (1...30).map { index in
+            return (timestamp: Date().timeIntervalSince1970, level: .info, tag: self.testTag, message: "\(self.testStaticContext.function): test message #\(index)", runtimeContext: self.testRuntimeContext, staticContext: self.testStaticContext)
+        }
+
+        /// We only expect the last 15 since we failed for the first 15.
+        ///
+        let expectedEntries = Array(testEntries[15...])
+
+        /// Start the writer unavailable
+        let testWriter = ValidateExpectedValuesTestWriter(expected: expectedEntries, available: true, forceWriteError: true)
+
+        let proxy =  AsyncWriterProxy(writer: testWriter, options: [.buffer(writeInterval: .milliseconds(500), strategy: .expand)])
+
+        // Write 15 entries that all should fail and be dropped.
+        for i in 0..<15 {
+            let entry = testEntries[i]
+
+            guard let timestamp      = entry.timestamp,
+                  let runtimeContext = entry.runtimeContext,
+                  let staticContext  = entry.staticContext
+                else { XCTFail("Not all parameters supplied to test."); return }
+
+            proxy.write((timestamp: timestamp, level: entry.level, tag: entry.tag, message: entry.message, runtimeContext: runtimeContext, staticContext: staticContext))
+        }
+
+        /// Sleep for 2 seconds to make sure the attempts to write.
+        sleep(2)
+
+        /// At this point the writer should not have been called
+        /// because the proxy is buffering.
+        XCTAssertEqual(testWriter.resultCount, 0)
+
+        /// Set the writer to available so the buffer is flushed.
+        testWriter.forceWriteError = false
+
+        /// Now log the last 15
+        for i in 15..<testEntries.count {
+            let entry = testEntries[i]
+
+            guard let timestamp      = entry.timestamp,
+                let runtimeContext = entry.runtimeContext,
+                let staticContext  = entry.staticContext
+                else { XCTFail("Not all parameters supplied to test."); return }
+
+            proxy.write((timestamp: timestamp, level: entry.level, tag: entry.tag, message: entry.message, runtimeContext: runtimeContext, staticContext: staticContext))
+        }
+
+        self.wait(for: [testWriter.expectation], timeout: 2)
+    }
 }

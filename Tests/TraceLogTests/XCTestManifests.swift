@@ -9,6 +9,7 @@ extension AsyncWriterProxyTests {
         ("testLog", testLog),
         ("testLogWithBufferingAndDropHeadBufferLimitOverflow", testLogWithBufferingAndDropHeadBufferLimitOverflow),
         ("testLogWithBufferingAndDropTailBufferLimitOverflow", testLogWithBufferingAndDropTailBufferLimitOverflow),
+        ("testLogWithBufferingWithFailedWrites", testLogWithBufferingWithFailedWrites),
         ("testLogWithBufferingWriterAvailable", testLogWithBufferingWriterAvailable),
         ("testLogWithBufferingWriterDelayedAvailability", testLogWithBufferingWriterDelayedAvailability),
         ("testLogWithBufferingWriterUnavailable", testLogWithBufferingWriterUnavailable),

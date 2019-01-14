@@ -34,6 +34,9 @@ class ValidateExpectedValuesTestWriter: Writer {
     /// Is this writer available for writing
     var available: Bool
 
+    /// Force the writer to return failed(.error) on write.
+    var forceWriteError: Bool
+
     /// Total number of calls made to this
     /// Writer's log function that were not
     /// filtered out.
@@ -68,8 +71,9 @@ class ValidateExpectedValuesTestWriter: Writer {
     ///     - filterTags: An array of tags that will be used to filter calls to this Writer's log function.  Any call with a tag that is contained in this list will be dropped.
     ///     - available: The initial state of availability this Writer should assume.
     ///
-    init(expected: [ExpectedLogEntry], filterTags: [String] = [], available: Bool = true) {
+    init(expected: [ExpectedLogEntry], filterTags: [String] = [], available: Bool = true, forceWriteError: Bool = false) {
         self.available = available
+        self.forceWriteError = forceWriteError
         self.resultCount = 0
         self.filterTags = filterTags
         self.ignoreLineInComparison = false
@@ -97,6 +101,9 @@ class ValidateExpectedValuesTestWriter: Writer {
         /// If we are not currently available, return error
         guard available
             else { return .failed(.unavailable) }
+
+        guard !forceWriteError
+            else { return .failed(.error) }
 
         /// Drop (Filter) any entries that are contained
         /// in our list of tags to filter.
