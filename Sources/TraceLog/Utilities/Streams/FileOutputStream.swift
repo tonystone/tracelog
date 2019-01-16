@@ -19,7 +19,7 @@
 ///
 import Foundation
 
-#if os(macOS) || os(iOS)
+#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
     import Darwin
 #elseif os(Linux) || CYGWIN
     import Glibc
@@ -70,7 +70,7 @@ internal class FileOutputStream {
     ///
     func close() {
         if self.fd >= 0 && closeFd {
-        #if os(macOS) || os(iOS)
+        #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
             Darwin.close(self.fd)
         #elseif os(Linux) || CYGWIN
             Glibc.close(self.fd)
@@ -110,7 +110,7 @@ extension FileOutputStream: OutputStream {
     ///
     func write(_ bytes: [UInt8]) -> Result<Int, OutputStreamError> {
 
-        #if os(macOS) || os(iOS)
+        #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
             let written = Darwin.write(self.fd, UnsafePointer(bytes), bytes.count)
         #elseif os(Linux) || CYGWIN
             let written = Glibc.write(self.fd, UnsafePointer(bytes), bytes.count)
