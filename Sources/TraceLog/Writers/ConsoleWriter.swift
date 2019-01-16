@@ -36,7 +36,7 @@ public class ConsoleWriter: OutputStreamWriter {
     /// Default constructor for this writer
     ///
     public convenience init(format: OutputStreamFormatter = TextFormat()) {
-        self.init(outputStream: FileHandle.standardOutput, format: format)
+        self.init(outputStream: Standard.out, format: format)
     }
 
     ///
@@ -70,7 +70,7 @@ public class ConsoleWriter: OutputStreamWriter {
         ///
         mutex.lock(); defer { mutex.unlock() }
 
-        self.outputStream.write(bytes)
+        _ = self.outputStream.write(bytes)
     }
 
     ///

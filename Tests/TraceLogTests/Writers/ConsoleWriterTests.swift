@@ -102,7 +102,7 @@ private func testHarness<T>(for callerType: T.Type, configureTraceLog: Bool = fa
     let fileName  = "\(type).\(function).log"
     let url = URL(fileURLWithPath: directory).appendingPathComponent(fileName)
 
-    let outputHandle: FileHandle
+    let outputStream: FileOutputStream
     do {
         let fileManager = FileManager.default
 
@@ -122,13 +122,13 @@ private func testHarness<T>(for callerType: T.Type, configureTraceLog: Bool = fa
             }
         }
 
-        outputHandle = try FileHandle(forWritingTo: url)
+        outputStream = try FileOutputStream(url: url)
     } catch {
         XCTFail("Failed to create output handle for test: \(error).")
         return nil
     }
 
-    let writer = ConsoleWriter(outputStream: outputHandle, format: TextFormat())
+    let writer = ConsoleWriter(outputStream: outputStream, format: TextFormat())
 
     if configureTraceLog {
         TraceLog.configure(writers: [.direct(writer)], environment: ["LOG_ALL": "TRACE4"])

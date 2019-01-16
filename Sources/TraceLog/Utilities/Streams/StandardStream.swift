@@ -1,7 +1,7 @@
 ///
-///  TextFormat.swift
+///  StandardStream.swift
 ///
-///  Copyright 2018 Tony Stone
+///  Copyright 2019 Tony Stone
 ///
 ///  Licensed under the Apache License, Version 2.0 (the "License");
 ///  you may not use this file except in compliance with the License.
@@ -15,18 +15,27 @@
 ///  See the License for the specific language governing permissions and
 ///  limitations under the License.
 ///
-///  Created by Tony Stone on 12/29/18.
+///  Created by Tony Stone on 1/14/19.
 ///
-import Swift
-import Foundation
+#if os(macOS) || os(iOS)
+    import Darwin
+#elseif os(Linux) || CYGWIN
+    import Glibc
+#endif
 
+/// Standard Streams for input and output to the console.
 ///
-/// Protocol defining a type which can write
-/// a stream of bytes to its output.
-///
-public protocol OutputStream {
+internal enum Standard {
 
-    /// Write the byte stream to the output.
+    /// Standard output (stdout)
     ///
-    func write(_ bytes: [UInt8])
+    static var out: FileOutputStream {
+        return FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false)
+    }
+
+    /// Standard error (stderr)
+    ///
+    static var error: FileOutputStream {
+        return FileOutputStream(fileDescriptor: STDERR_FILENO, closeFd: false)
+    }
 }
