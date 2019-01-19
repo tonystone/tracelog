@@ -44,7 +44,35 @@ internal protocol OutputStream {
 ///
 internal enum OutputStreamError: Error {
 
+    /// The network the stream uses to get to its endpoint is down.
+    ///
+    /// - Note: this is a re-triable error case.
+    ///
+    case networkDown(String)
+
+    /// The write operation was interrupted before it could be completed.
+    ///
+    /// - Note: this is a re-triable error case.
+    ///
+    case interrupted(String)
+
+    /// The stream was disconnected from its endpoint.
+    ///
+    case disconnected(String)
+
+    /// The endpoint has no more space.
+    ///
+    case insufficientResources(String)
+
+    /// Access to the endpoint was denied.
+    ///
+    case accessDenied(String)
+
+    /// An Invalid Argument was passed.
+    ///
+    case invalidArgument(String)
+
     /// The write failed for the reason given in Code and String.
     ///
-    case writeFailed(Int32, String)
+    case unknownError(Int32, String)
 }
