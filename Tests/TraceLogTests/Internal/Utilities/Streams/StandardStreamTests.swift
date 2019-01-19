@@ -1,5 +1,5 @@
 ///
-///  TextFormat.swift
+///  StandardStreamTests.swift
 ///
 ///  Copyright 2018 Tony Stone
 ///
@@ -15,18 +15,27 @@
 ///  See the License for the specific language governing permissions and
 ///  limitations under the License.
 ///
-///  Created by Tony Stone on 12/29/18.
+///  Created by Tony Stone on 1/16/19.
 ///
-import Swift
-import Foundation
+import XCTest
 
-///
-/// Protocol defining a type which can write
-/// a stream of bytes to its output.
-///
-public protocol OutputStream {
+@testable import TraceLog
 
-    /// Write the byte stream to the output.
-    ///
-    func write(_ bytes: [UInt8])
+class StandardStreamTests: XCTestCase {
+
+    func testOutIsOutputStream() {
+        XCTAssertTrue((Standard.out as Any) is TraceLog.OutputStream)
+    }
+
+    func testErrorIsOutputStream() {
+        XCTAssertTrue((Standard.error as Any) is TraceLog.OutputStream)
+    }
+
+    func testOutPosition() {
+        XCTAssertEqual(Standard.out.position, 0)
+    }
+
+    func testErrorPosition() {
+        XCTAssertEqual(Standard.error.position, 0)
+    }
 }
