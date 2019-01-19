@@ -97,11 +97,11 @@ public class FileWriter: OutputStreamWriter {
         }
 
         /// Open the file for writing.
-        self.file = (handle: try open(fileURL: config.url), config: config)
+        self.file = (stream: try open(fileURL: config.url), config: config)
     }
 
     deinit {
-        close(fileHandle: self.file.handle)
+        close(fileStream: self.file.stream)
     }
 
     /// Required log function for the logger
@@ -124,18 +124,18 @@ public class FileWriter: OutputStreamWriter {
         mutex.lock(); defer { mutex.unlock() }
 
         /// Does the file need to be rotated?
-        if self.file.handle.offsetInFile + UInt64(bytes.count) >= file.config.maxSize {
-            self.file = rotate(file: self.file, fallbackHandle: FileHandle.standardOutput, dateFormatter: self.fileNameDateFormatter)
+        if self.file.stream.position + UInt64(bytes.count) >= file.config.maxSize {
+            self.file = rotate(file: self.file, fallbackStream: Standard.out, dateFormatter: self.fileNameDateFormatter)
         }
 
         /// Write message to log
         ///
-        self.file.handle.write(bytes)
+        _ = self.file.stream.write(bytes)
     }
 
     /// Internal type used by FileWriter and various utility functions.
     ///
-    internal typealias LogFile = (handle: FileHandle, config: FileConfiguration)
+    internal typealias LogFile = (stream: FileOutputStream, config: FileConfiguration)
 
     private let fileNameDateFormatter: DateFormatter
 
@@ -167,23 +167,23 @@ public extension FileWriter {
     }
 }
 
-/// Rotate the log file specified falling back to the fallbackHandle if the new log file cannot be opened.
+/// Rotate the log file specified falling back to the fallbackStream if the new log file cannot be opened.
 ///
 internal /* @testable */
-func rotate(file: FileWriter.LogFile, fallbackHandle: FileHandle, dateFormatter: DateFormatter) -> FileWriter.LogFile {
+func rotate(file: FileWriter.LogFile, fallbackStream: FileOutputStream, dateFormatter: DateFormatter) -> FileWriter.LogFile {
 
-    close(fileHandle: file.handle)
+    close(fileStream: file.stream)
 
     do {
         try archive(fileURL: file.config.url, dateFormatter: dateFormatter)
 
     } catch {
-        fallbackHandle.write(Data("\(error)\n".utf8))
+        _ = fallbackStream.write(Array("\(error)\n".utf8))
     }
-    return (handle: open(fileURL: file.config.url, fallbackHandle: fallbackHandle), config: file.config)
+    return (stream: open(fileURL: file.config.url, fallbackStream: fallbackStream), config: file.config)
 }
 
-/// Note: fileHandle must be closed before calling this function.
+/// Note: fileStream must be closed before calling this function.
 ///
 internal /* @testable */
 func archive(fileURL url: URL, dateFormatter: DateFormatter) throws {
@@ -202,10 +202,10 @@ func archive(fileURL url: URL, dateFormatter: DateFormatter) throws {
     try fileManager.moveItem(at: url, to: archivedFileURL)
 }
 
-/// Opens the file returning a FileHandle and creates the file first if not created.
+/// Opens the file returning a FileStream and creates the file first if not created.
 ///
 internal /* @testable */
-func open(fileURL url: URL) throws -> FileHandle {
+func open(fileURL url: URL) throws -> FileOutputStream {
 
     let fileManager = FileManager.default
 
@@ -222,31 +222,28 @@ func open(fileURL url: URL) throws -> FileHandle {
             else { throw FileWriter.Error.createFailed("Failed to create log file: \(url.absoluteString)") }
     }
 
-    let fileHandle = try FileHandle(forWritingTo: url)
-    fileHandle.seekToEndOfFile()
-
-    return fileHandle
+    return try FileOutputStream(url: url)
 }
 
 /// Open the file at fileURL return the default file handle if it can not be opened.
 ///
 internal /* @testable */
-func open(fileURL url: URL, fallbackHandle: FileHandle) -> FileHandle {
+func open(fileURL url: URL, fallbackStream: FileOutputStream) -> FileOutputStream {
 
     do {
         return try open(fileURL: url)
 
     } catch {
-        fallbackHandle.write(Data("\(error)\n".utf8))
+        _ = fallbackStream.write(Array("\(error)\n".utf8))
 
-        return fallbackHandle
+        return fallbackStream
     }
 }
 
 /// Flushes and closed the file handle passed in.
 ///
 internal /* @testable */
-func close(fileHandle: FileHandle) {
-    fileHandle.synchronizeFile()
-    fileHandle.closeFile()
+func close(fileStream: FileOutputStream) {
+//    fileStream.synchronizeFile()
+    fileStream.close()
 }

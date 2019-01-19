@@ -1,0 +1,88 @@
+///
+///  OutputStreamErrorPosixTests.swift
+///
+///  Copyright 2019 Tony Stone
+///
+///  Licensed under the Apache License, Version 2.0 (the "License");
+///  you may not use this file except in compliance with the License.
+///  You may obtain a copy of the License at
+///
+///  http://www.apache.org/licenses/LICENSE-2.0
+///
+///  Unless required by applicable law or agreed to in writing, software
+///  distributed under the License is distributed on an "AS IS" BASIS,
+///  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+///  See the License for the specific language governing permissions and
+///  limitations under the License.
+///
+///  Created by Tony Stone on 1/17/19.
+///
+import XCTest
+
+@testable import TraceLog
+
+#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+    import Darwin
+#elseif os(Linux) || CYGWIN
+    import Glibc
+#endif
+
+%{
+    OneArgVariants = [
+        ["ENETDOWN",     "networkDown", "Network is down"],
+        ["ENETUNREACH",  "networkDown", "Network is unreachable"],
+
+        ["EAGAIN",       "interrupted", "Resource temporarily unavailable"],
+        ["EWOULDBLOCK",  "interrupted", "Resource temporarily unavailable"],
+        ["EINTR",        "interrupted", "Interrupted system call"],
+
+        ["EBADF",        "disconnected", "Bad file descriptor"],
+        ["EPIPE",        "disconnected", "Broken pipe"],
+        ["ECONNRESET",   "disconnected", "Connection reset by peer"],
+        ["ENXIO",        "disconnected", "Device not configured"],
+        ["EIO",          "disconnected", "Input/output error"],
+
+        ["ENOSPC",       "insufficientResources", "No space left on device"],
+        ["ERANGE",       "insufficientResources", "Result too large"],
+        ["EFBIG",        "insufficientResources", "File too large"],
+        ["ENOBUFS",      "insufficientResources", "No buffer space available"],
+
+        ["EACCES",        "accessDenied", "Permission denied"],
+
+        ["EINVAL",       "invalidArgument", "Invalid argument"]
+    ]
+}%
+
+class OutputStreamErrorPosixTests: XCTestCase {
+
+    func testErrorForOutOfRangeCode() {
+
+        /// Note: We rely on the strerror(errno) from the system
+        /// to provide the actual message so we ignore it in these
+        /// tests at the moment.  IN the current implementation
+        /// of Swift the message is slightly different between
+        /// Darwin and Linux.
+        ///
+        if case .unknownError(let code, _) = OutputStreamError.error(for: -1) {
+            XCTAssertEqual(code, -1)
+        } else {
+            XCTFail(".unknownError was expected")
+        }
+    }
+
+% for (CodeConstant, CaseValue, Message) in OneArgVariants:
+    func testErrorFor${CodeConstant}() {
+
+        /// Note: We rely on the strerror(errno) from the system
+        /// to provide the actual message so we ignore it in these
+        /// tests at the moment.  IN the current implementation
+        /// of Swift the message is slightly different between
+        /// Darwin and Linux.
+        ///
+        guard case .${CaseValue}(_) = OutputStreamError.error(for: ${CodeConstant})
+            else { XCTFail(".${CaseValue} was expected"); return }
+    }
+
+% end
+
+}
