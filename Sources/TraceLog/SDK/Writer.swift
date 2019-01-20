@@ -61,8 +61,20 @@ public protocol Writer {
     ///
     /// - SeeAlso: LogEntry
     ///
-    @discardableResult
-    func write(_ entry: LogEntry)  -> WriteResult
+    func write(_ entry: LogEntry)  -> Result<Int,FailureReason>
+}
+
+/// The reason for the failure.
+///
+public enum FailureReason: Error {
+
+    /// The Writer is unavailable for writing at the moment.
+    ///
+    case unavailable
+
+    /// The writer failed to write (unrecoverable).
+    ///
+    case error(String)
 }
 
 /// Result of logging to a Writer.

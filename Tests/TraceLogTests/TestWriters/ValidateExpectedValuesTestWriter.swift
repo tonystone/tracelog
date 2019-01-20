@@ -96,20 +96,20 @@ class ValidateExpectedValuesTestWriter: Writer {
 
     /// Required Writer.write function (required by the Writer protocol).
     ///
-    func write(_ entry: Writer.LogEntry) -> WriteResult {
+    func write(_ entry: Writer.LogEntry) -> Result<Void,FailureReason> {
 
         /// If we are not currently available, return error
         guard available
-            else { return .failed(.unavailable) }
+            else { return .failure(.unavailable) }
 
         guard !forceWriteError
-            else { return .failed(.error) }
+            else { return .failure(.error("Forced write error for test.")) }
 
         /// Drop (Filter) any entries that are contained
         /// in our list of tags to filter.
         ///
         guard !filterTags.contains(entry.tag)
-            else { return .success }
+            else { return .success(()) }
 
         /// The index will be the resultCount before incrementing
         let index = self.resultCount
@@ -122,7 +122,10 @@ class ValidateExpectedValuesTestWriter: Writer {
             /// Always required
             guard entry.level == expected.level && entry.tag == expected.tag && entry.message == expected.message
                 else {
-                    XCTFail("\(entry) is not equal to: \(expected)"); return .failed(.error) }
+                    let message = "\(entry) is not equal to: \(expected)"
+                    XCTFail(message)
+                    return .failure(.error(message))
+            }
 
             /// Optional comparisons
             ///
@@ -132,31 +135,47 @@ class ValidateExpectedValuesTestWriter: Writer {
             ///
             if let expectedTimestamp = expected.timestamp {
                 guard entry.timestamp == expectedTimestamp
-                    else { XCTFail("Timestamp \(entry.timestamp) is not equal to: \(expectedTimestamp)"); return .failed(.error) }
+                    else {
+                        let message = "Timestamp \(entry.timestamp) is not equal to: \(expectedTimestamp)"
+                        XCTFail(message)
+                        return .failure(.error(message))
+                }
             }
 
             if let expectedRuntimeContext = expected.runtimeContext {
                 guard entry.runtimeContext.processIdentifier == expectedRuntimeContext.processIdentifier &&
                       entry.runtimeContext.processName       == expectedRuntimeContext.processName &&
                       entry.runtimeContext.threadIdentifier  == expectedRuntimeContext.threadIdentifier
-                    else { XCTFail("\(entry.runtimeContext) is not equal to: \(expectedRuntimeContext)"); return .failed(.error)  }
+                    else {
+                        let message = "\(entry.runtimeContext) is not equal to: \(expectedRuntimeContext)"
+                        XCTFail(message)
+                        return .failure(.error(message))
+                }
             }
 
             if let expectedStaticContext = expected.staticContext {
                 guard entry.staticContext.file     == expectedStaticContext.file &&
                       entry.staticContext.function == expectedStaticContext.function
-                    else { XCTFail("\(entry.staticContext) is not equal to: \(expectedStaticContext)"); return .failed(.error) }
+                    else {
+                        let message = "\(entry.staticContext) is not equal to: \(expectedStaticContext)"
+                        XCTFail(message)
+                        return .failure(.error(message))
+                }
 
                 if !ignoreLineInComparison {
                     guard entry.staticContext.line == expectedStaticContext.line
-                        else { XCTFail("\(entry.staticContext) is not equal to: \(expectedStaticContext)"); return .failed(.error) }
+                        else {
+                            let message = "\(entry.staticContext) is not equal to: \(expectedStaticContext)"
+                            XCTFail(message)
+                            return .failure(.error(message))
+                    }
                 }
             }
 
             /// If it matches all required fields increment the fulfillment count
             self.expectation.fulfill()
         }
-        return .success
+        return .success(())
     }
 }
 

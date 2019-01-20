@@ -32,9 +32,9 @@ class CallbackTestWriter: Writer {
         self.callback = callback
     }
 
-    func write(_ entry: Writer.LogEntry) -> WriteResult {
+    func write(_ entry: Writer.LogEntry) -> Result<Void,FailureReason> {
         callback(entry)
 
-        return .success
+        return .success(())
     }
 }

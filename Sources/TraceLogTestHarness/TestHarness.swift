@@ -81,7 +81,7 @@ public class TestHarness<T: Reader> {
         self._testLog(for: level, tag: tagOrNil, message: messageOrNil, file: file, function: function, line: line, testBlock: { (entry) in
 
             /// Execute the test
-            self.writer.write(entry)
+            _ = self.writer.write(entry)
 
         }, validationBlock: validationBlock)
     }

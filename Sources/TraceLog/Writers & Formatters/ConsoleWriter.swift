@@ -49,10 +49,10 @@ public class ConsoleWriter: OutputStreamWriter {
 
     /// Required write function for the logger
     ///
-    public func write(_ entry: Writer.LogEntry) -> WriteResult {
+    public func write(_ entry: Writer.LogEntry) -> Result<Void,FailureReason> {
 
         guard let bytes = format.bytes(from: entry)
-            else { return .failed(.error) }
+            else { return .failure(.error("Formatting failed.")) }
 
         /// Note: Since we could be called on any thread in TraceLog direct mode
         /// we protect the outputStream with a low-level mutex.
@@ -66,9 +66,18 @@ public class ConsoleWriter: OutputStreamWriter {
         ///
         mutex.lock(); defer { mutex.unlock() }
 
-        _ = self.outputStream.write(bytes)
+        switch self.outputStream.write(bytes) {
 
-        return .success
+            case .success(_):
+
+
+                if written == bytes.count {
+                    return .success(())
+                }
+                return .failure(.error("Only able to write \(written) of \(bytes.count) bytes to OutputStream."))
+            case .failure(let error):
+                return .failure(.error(error.localizedDescription))
+        }
     }
 
     /// Low level mutex for locking print since it's not reentrant.

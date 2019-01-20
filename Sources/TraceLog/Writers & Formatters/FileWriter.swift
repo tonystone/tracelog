@@ -106,10 +106,10 @@ public class FileWriter: OutputStreamWriter {
 
     /// Required write function for the logger
     ///
-    public func write(_ entry: Writer.LogEntry) -> WriteResult  {
+    public func write(_ entry: Writer.LogEntry) -> Result<Void,FailureReason>  {
 
         guard let bytes = format.bytes(from: entry)
-            else { return .failed(.error) }
+            else { return .failure(.error("Formatting failed.")) }
 
         /// Note: Since we could be called on any thread in TraceLog direct mode
         /// we protect the file with a low-level mutex.
@@ -132,7 +132,7 @@ public class FileWriter: OutputStreamWriter {
         ///
         _ = self.file.stream.write(bytes)
 
-        return .success
+        return .success(())
     }
 
     /// Internal type used by FileWriter and various utility functions.

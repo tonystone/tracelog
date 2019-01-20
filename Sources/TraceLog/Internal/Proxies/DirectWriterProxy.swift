@@ -34,6 +34,6 @@ internal class DirectWriterProxy: WriterProxy {
 
     @inline(__always)
     internal func write(_ entry: Writer.LogEntry) {
-        self.writer.write(entry)
+        _ = self.writer.write(entry)
     }
 }

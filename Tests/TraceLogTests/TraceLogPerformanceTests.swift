@@ -15,8 +15,8 @@ class TraceLogPerformanceTestsSwift: XCTestCase {
 
     struct NullWriter: Writer {
 
-        func write(_ entry: Writer.LogEntry) -> WriteResult {
-            return .success
+        func write(_ entry: Writer.LogEntry) -> Result<Void, FailureReason> {
+            return .success(())
         }
     }
 
