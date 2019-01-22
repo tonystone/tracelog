@@ -91,8 +91,6 @@ class FileOutputStreamTests: XCTestCase {
 
     // MARK: write tests
 
-    /// Test that a FileOutputStream.position returns the correct value after writing to a file.
-    ///
     func testWriteToFile() throws {
         let inputBytes = Array<UInt8>(repeating: 128, count: 10)
 
@@ -138,7 +136,7 @@ class FileOutputStreamTests: XCTestCase {
         }
     }
 
-    func testWriteThatConcurrentMultipleWritesDontProducePartialWrites() throws {
+    func testThatConcurrentMultipleWritesDontProducePartialWrites() throws {
         let inputURL = self.temporaryFileURL()
         defer { self.removeFileIfExists(url: inputURL) }
 
@@ -169,7 +167,7 @@ class FileOutputStreamTests: XCTestCase {
         }
     }
 
-    func testWriteToFileWithFailedWriteOnClosedFile() throws {
+    func testWriteThrowsOnAClosedFileDescriptor() throws {
         let inputBytes = Array<UInt8>(repeating: 128, count: 10)
 
         let inputURL = self.temporaryFileURL()
