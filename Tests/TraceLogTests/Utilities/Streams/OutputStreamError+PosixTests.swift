@@ -69,42 +69,6 @@ class OutputStreamErrorPosixTests: XCTestCase {
             else { XCTFail(".networkDown was expected"); return }
     }
 
-    func testErrorForEAGAIN() {
-
-        /// Note: We rely on the strerror(errno) from the system
-        /// to provide the actual message so we ignore it in these
-        /// tests at the moment.  IN the current implementation
-        /// of Swift the message is slightly different between
-        /// Darwin and Linux.
-        ///
-        guard case .interrupted(_) = OutputStreamError.error(for: EAGAIN)
-            else { XCTFail(".interrupted was expected"); return }
-    }
-
-    func testErrorForEWOULDBLOCK() {
-
-        /// Note: We rely on the strerror(errno) from the system
-        /// to provide the actual message so we ignore it in these
-        /// tests at the moment.  IN the current implementation
-        /// of Swift the message is slightly different between
-        /// Darwin and Linux.
-        ///
-        guard case .interrupted(_) = OutputStreamError.error(for: EWOULDBLOCK)
-            else { XCTFail(".interrupted was expected"); return }
-    }
-
-    func testErrorForEINTR() {
-
-        /// Note: We rely on the strerror(errno) from the system
-        /// to provide the actual message so we ignore it in these
-        /// tests at the moment.  IN the current implementation
-        /// of Swift the message is slightly different between
-        /// Darwin and Linux.
-        ///
-        guard case .interrupted(_) = OutputStreamError.error(for: EINTR)
-            else { XCTFail(".interrupted was expected"); return }
-    }
-
     func testErrorForEBADF() {
 
         /// Note: We rely on the strerror(errno) from the system
@@ -235,6 +199,51 @@ class OutputStreamErrorPosixTests: XCTestCase {
         ///
         guard case .invalidArgument(_) = OutputStreamError.error(for: EINVAL)
             else { XCTFail(".invalidArgument was expected"); return }
+    }
+
+    func testErrorForEAGAIN() {
+
+        /// Note: We rely on the strerror(errno) from the system
+        /// to provide the actual message so we ignore it in these
+        /// tests at the moment.  IN the current implementation
+        /// of Swift the message is slightly different between
+        /// Darwin and Linux.
+        ///
+        if case .unknownError(let code, _) = FileOutputStreamError.error(for: EAGAIN) {
+            XCTAssertEqual(code, EAGAIN)
+        } else {
+            XCTFail(".unknownError was expected")
+        }
+    }
+
+    func testErrorForEWOULDBLOCK() {
+
+        /// Note: We rely on the strerror(errno) from the system
+        /// to provide the actual message so we ignore it in these
+        /// tests at the moment.  IN the current implementation
+        /// of Swift the message is slightly different between
+        /// Darwin and Linux.
+        ///
+        if case .unknownError(let code, _) = FileOutputStreamError.error(for: EWOULDBLOCK) {
+            XCTAssertEqual(code, EWOULDBLOCK)
+        } else {
+            XCTFail(".unknownError was expected")
+        }
+    }
+
+    func testErrorForEINTR() {
+
+        /// Note: We rely on the strerror(errno) from the system
+        /// to provide the actual message so we ignore it in these
+        /// tests at the moment.  IN the current implementation
+        /// of Swift the message is slightly different between
+        /// Darwin and Linux.
+        ///
+        if case .unknownError(let code, _) = FileOutputStreamError.error(for: EINTR) {
+            XCTAssertEqual(code, EINTR)
+        } else {
+            XCTFail(".unknownError was expected")
+        }
     }
 
 

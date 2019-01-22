@@ -38,6 +38,11 @@ internal protocol OutputStream {
     /// - Returns: A Result<Int, OutputStreamError> value holding the number of bytes written if .successful or an OutputStreamError if failed.
     ///
     func write(_ bytes: [UInt8]) -> Result<Int, OutputStreamError>
+
+    /// If there is buffering for this stream, flush the
+    /// buffer to disk.
+    ///
+    func flush()
 }
 
 /// Errors returned by OutputStreams
@@ -49,12 +54,6 @@ internal enum OutputStreamError: Error {
     /// - Note: this is a re-triable error case.
     ///
     case networkDown(String)
-
-    /// The write operation was interrupted before it could be completed.
-    ///
-    /// - Note: this is a re-triable error case.
-    ///
-    case interrupted(String)
 
     /// The stream was disconnected from its endpoint.
     ///

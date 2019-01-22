@@ -156,5 +156,28 @@ class FileOutputStreamTests: XCTestCase {
                 XCTFail("Error while deleting temporary file: \(error)")
             }
     }
+
+    func testWritePerformance() throws {
+        let inputURL = self.temporaryFileURL()
+        defer { self.removeFileIfExists(url: inputURL) }
+
+        let inputBytes = Array<UInt8>(repeating: 128, count: 128)
+
+        let stream = try FileOutputStream(url: inputURL, options: [.create])
+
+        self.measure {
+            for _ in 0..<1000000 {
+
+                switch stream.write(inputBytes) {
+                case .success(_):
+                    break
+                default:
+                    XCTFail()
+                }
+            }
+        }
+    }
+
+
 }
 

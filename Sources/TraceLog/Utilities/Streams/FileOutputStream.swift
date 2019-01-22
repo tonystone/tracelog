@@ -113,11 +113,7 @@ internal class FileOutputStream {
     ///
     func close() {
         if self.fd >= 0 && closeFd {
-        #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
-            Darwin.close(self.fd)
-        #elseif os(Linux) || CYGWIN
-            Glibc.close(self.fd)
-        #endif
+            self.close(self.fd)
             self.fd = -1
         }
     }
@@ -129,7 +125,6 @@ internal class FileOutputStream {
     /// Should we close this file descriptor on deinit and on request or not.
     ///
     private let closeFd: Bool
-
 }
 
 /// OutputStream conformance for FileOutputStream.
@@ -158,18 +153,74 @@ extension FileOutputStream: OutputStream {
 
     /// Writes the byte block to the File.
     ///
+    /// - Note: We are forgoing locking of the file here since we write the data
+    ///         nearly 100% of the time in a single write() call. POSIX guarantees that
+    ///         if the file is opened in append mode, individual write() operations will
+    ///         be atomic. Partial writes are the only time that we can't write in a
+    ///         single call but with the minimal write sizes that are written, these
+    ///         will be almost non-existent.
+    ///         \
+    ///         Per the [POSIX standard](http://pubs.opengroup.org/onlinepubs/9699919799/functions/write.html):
+    ///         \
+    ///         "If the O_APPEND flag of the file status flags is set, the file offset
+    ///         shall be set to the end of the file prior to each write and no intervening
+    ///         file modification operation shall occur between changing the file offset
+    ///         and the write operation."
+    ///
     func write(_ bytes: [UInt8]) -> Result<Int, OutputStreamError> {
 
-        #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
-            let written = Darwin.write(self.fd, UnsafePointer(bytes), bytes.count)
-        #elseif os(Linux) || CYGWIN
-            let written = Glibc.write(self.fd, UnsafePointer(bytes), bytes.count)
-        #endif
+        var buffer = UnsafePointer(bytes)
+        var length = bytes.count
 
-        guard written != -1
-            else { return .failure(OutputStreamError.error(for: errno)) }
+        var written: Int = 0
+
+        /// Handle partial writes.
+        ///
+        repeat {
+            written = self.write(self.fd, buffer, length)
+
+            if written == -1 {
+                if errno == EINTR { /// Always retry if interrupted.
+                    continue
+                }
+                return .failure(OutputStreamError.error(for: errno))
+            }
+            length -= written
+            buffer += written
+
+            /// Exit if there are no more bytes (length != 0) or
+            /// we wrote zero bytes (written != 0)
+            ///
+        } while (length != 0 && written != 0)
 
         return .success(written)
+    }
+
+    func flush() {
+        fsync(self.fd)
+    }
+}
+
+// Private extension to work around Swifts confusion around similar function names.
+///
+private extension FileOutputStream {
+
+    @inline(__always)
+    func write(_ fd: Int32, _ buffer: UnsafePointer<UInt8>, _ nbytes: Int) -> Int {
+        #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+            return Darwin.write(fd, buffer, nbytes)
+        #elseif os(Linux) || CYGWIN
+            return Glibc.write(fd, buffer, nbytes)
+        #endif
+    }
+
+    @inline(__always)
+    func close(_ fd: Int32) {
+        #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+            Darwin.close(fd)
+        #elseif os(Linux) || CYGWIN
+            Glibc.close(fd)
+        #endif
     }
 }
 
