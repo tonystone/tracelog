@@ -54,7 +54,7 @@ public class ConsoleWriter: OutputStreamWriter {
     ///
     public func write(_ entry: Writer.LogEntry) {
 
-        guard let bytes = format.bytes(from: entry)
+        guard case .success(let bytes) = format.bytes(from: entry)
             else { return }
 
         ///

@@ -19,6 +19,10 @@
 ///
 import Foundation
 
+public enum OutputStreamFormatterError: Error {
+    case encodingFailure(String)
+}
+
 /// A formatter type for formating the output of a `Writer` type.
 ///
 public protocol OutputStreamFormatter {
@@ -26,5 +30,5 @@ public protocol OutputStreamFormatter {
     /// Accepts traceLogs standard LogEntry and outputs an Array of bytes
     /// containing the formatted output.
     ///
-    func bytes(from entry: Writer.LogEntry) -> [UInt8]?
+    func bytes(from entry: Writer.LogEntry) -> Result<[UInt8], OutputStreamFormatterError>
 }
