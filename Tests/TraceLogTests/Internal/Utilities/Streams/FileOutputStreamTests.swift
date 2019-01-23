@@ -91,26 +91,83 @@ class FileOutputStreamTests: XCTestCase {
 
     // MARK: write tests
 
-    /// Test that a FileOutputStream.position returns the correct value after writing to a file.
-    ///
     func testWriteToFile() throws {
         let inputBytes = Array<UInt8>(repeating: 128, count: 10)
+
+        try self._testWrite(with: inputBytes)
+    }
+
+    func testWriteWithSystemPageSizes() throws {
+
+        let pageSizes = [1024, 4 * 1024, Int(PIPE_BUF)]
+
+        for size in pageSizes {
+            try self._testWrite(with: Array<UInt8>(repeating: 128, count: size))
+        }
+    }
+
+    func testWriteWithJustOverSystemPageSizes() throws {
+
+        let pageSizes = [1024, 4 * 1024, Int(PIPE_BUF)]
+
+        for size in pageSizes {
+            try self._testWrite(with: Array<UInt8>(repeating: 128, count: size + 1))
+        }
+    }
+
+    func testWriteWithLargeWrites() throws {
+
+        try self._testWrite(with: Array<UInt8>(repeating: 128, count: 1024 * 1024 + 1))
+    }
+
+    private func _testWrite(with bytes: [UInt8], file: StaticString = #file, line: UInt = #line) throws {
 
         let inputURL = self.temporaryFileURL()
         defer { self.removeFileIfExists(url: inputURL) }
 
         let stream = try FileOutputStream(url: inputURL, options: [.create])
 
-        switch stream.write(inputBytes) {
+        switch stream.write(bytes) {
         case .success(let written):
-            XCTAssertEqual(written, 10)
-            XCTAssertEqual(try Data(contentsOf: inputURL), Data(inputBytes))
+            XCTAssertEqual(written, bytes.count, file: file, line: line)
+            XCTAssertEqual(try Data(contentsOf: inputURL), Data(bytes), file: file, line: line)
         default:
-            XCTFail()
+            XCTFail(file: file, line: line)
         }
     }
 
-    func testWriteToFileWithFailedWriteOnClosedFile() throws {
+    func testThatConcurrentMultipleWritesDontProducePartialWrites() throws {
+        let inputURL = self.temporaryFileURL()
+        defer { self.removeFileIfExists(url: inputURL) }
+
+        let stream = try FileOutputStream(url: inputURL, options: [.create])
+
+        /// Note: 10 iterations seems to be the amount of concurrent
+        ///       runs Dispatch will give us so we limit it to that and
+        ///       instead have each block write many times.
+        ///
+        DispatchQueue.concurrentPerform(iterations: 10) { (iteration) in
+
+            for writeNumber in 0..<5000 {
+
+                /// Random delay between writes
+                usleep(UInt32.random(in: 1...1000))
+
+                let iterationMessage = "Iteration \(iteration), write \(writeNumber)"
+
+                let bytes = Array("\(iterationMessage).".utf8)
+
+                switch stream.write(bytes) {
+                case .success(let written):
+                    XCTAssertEqual(written, bytes.count, "\(iterationMessage): failed byte count test.")
+                default:
+                    XCTFail("\(iterationMessage): failed.")
+                }
+            }
+        }
+    }
+
+    func testWriteThrowsOnAClosedFileDescriptor() throws {
         let inputBytes = Array<UInt8>(repeating: 128, count: 10)
 
         let inputURL = self.temporaryFileURL()
@@ -126,6 +183,27 @@ class FileOutputStreamTests: XCTestCase {
             XCTAssertEqual(message, "Bad file descriptor")
         default:
             XCTFail()
+        }
+    }
+
+    func testWritePerformance() throws {
+        let inputURL = self.temporaryFileURL()
+        defer { self.removeFileIfExists(url: inputURL) }
+
+        let inputBytes = Array<UInt8>(repeating: 128, count: 128)
+
+        let stream = try FileOutputStream(url: inputURL, options: [.create])
+
+        self.measure {
+            for _ in 0..<100000 {
+
+                switch stream.write(inputBytes) {
+                case .success(_):
+                    break
+                default:
+                    XCTFail()
+                }
+            }
         }
     }
 

@@ -31,10 +31,6 @@ internal extension OutputStreamError {
              ENETUNREACH: /// A write was attempted on a socket and no route to the network is present.
             return .networkDown(message)
 
-        case EAGAIN, EWOULDBLOCK, /// The file descriptor is for a socket, is marked O_NONBLOCK, and write would block.
-        EINTR:               /// The write operation was terminated due to the receipt of a signal, and no data was transferred.
-            return .interrupted(message)
-
         case EBADF,       /// The fd argument is not a valid file descriptor open for writing.
              EPIPE,       /// A write was attempted on a socket that is shut down for writing, or is no longer connected. In the latter case, if the socket is of type SOCK_STREAM, a SIGPIPE signal shall also be sent to the thread.
              ECONNRESET,  /// A write was attempted on a socket that is not connected.
@@ -55,6 +51,9 @@ internal extension OutputStreamError {
         case EINVAL:   /// The STREAM or multiplexer referenced by fd is linked (directly or indirectly) downstream from a multiplexer.
             return .invalidArgument(message)
 
+        case EAGAIN, EWOULDBLOCK, /// The file descriptor is for a socket, is marked O_NONBLOCK, and write would block.
+             EINTR:               /// The write operation was terminated due to the receipt of a signal, and no data was transferred.
+            fallthrough
         default:
             return .unknownError(errorNumber, message)
         }
