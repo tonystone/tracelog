@@ -50,12 +50,6 @@ internal enum OutputStreamError: Error {
     ///
     case networkDown(String)
 
-    /// The write operation was interrupted before it could be completed.
-    ///
-    /// - Note: this is a re-triable error case.
-    ///
-    case interrupted(String)
-
     /// The stream was disconnected from its endpoint.
     ///
     case disconnected(String)
