@@ -35,7 +35,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .ascii, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".ascii\""); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .ascii), expected, "Failed conversion to \".ascii\".")
@@ -51,7 +51,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .iso2022JP, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".iso2022JP\""); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .iso2022JP), expected, "Failed conversion to \".iso2022JP\".")
@@ -67,7 +67,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .isoLatin1, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".isoLatin1\""); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .isoLatin1), expected, "Failed conversion to \".isoLatin1\".")
@@ -83,7 +83,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .isoLatin2, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".isoLatin2\""); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .isoLatin2), expected, "Failed conversion to \".isoLatin2\".")
@@ -99,7 +99,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .macOSRoman, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".macOSRoman\""); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .macOSRoman), expected, "Failed conversion to \".macOSRoman\".")
@@ -115,7 +115,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .nextstep, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".nextstep\""); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .nextstep), expected, "Failed conversion to \".nextstep\".")
@@ -131,7 +131,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .nonLossyASCII, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".nonLossyASCII\""); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .nonLossyASCII), expected, "Failed conversion to \".nonLossyASCII\".")
@@ -147,7 +147,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .shiftJIS, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".shiftJIS\""); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .shiftJIS), expected, "Failed conversion to \".shiftJIS\".")
@@ -163,7 +163,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .unicode, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".unicode\""); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .unicode), expected, "Failed conversion to \".unicode\".")
@@ -179,7 +179,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf16, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".utf16\""); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf16), expected, "Failed conversion to \".utf16\".")
@@ -195,7 +195,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf16BigEndian, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".utf16BigEndian\""); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf16BigEndian), expected, "Failed conversion to \".utf16BigEndian\".")
@@ -211,7 +211,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf16LittleEndian, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".utf16LittleEndian\""); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf16LittleEndian), expected, "Failed conversion to \".utf16LittleEndian\".")
@@ -227,7 +227,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf32, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".utf32\""); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf32), expected, "Failed conversion to \".utf32\".")
@@ -243,7 +243,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf32BigEndian, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".utf32BigEndian\""); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf32BigEndian), expected, "Failed conversion to \".utf32BigEndian\".")
@@ -259,7 +259,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf32LittleEndian, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".utf32LittleEndian\""); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf32LittleEndian), expected, "Failed conversion to \".utf32LittleEndian\".")
@@ -275,7 +275,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf8, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".utf8\""); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected, "Failed conversion to \".utf8\".")
@@ -291,7 +291,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .windowsCP1250, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".windowsCP1250\""); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1250), expected, "Failed conversion to \".windowsCP1250\".")
@@ -307,7 +307,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .windowsCP1251, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".windowsCP1251\""); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1251), expected, "Failed conversion to \".windowsCP1251\".")
@@ -323,7 +323,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .windowsCP1252, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".windowsCP1252\""); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1252), expected, "Failed conversion to \".windowsCP1252\".")
@@ -339,7 +339,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .windowsCP1253, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".windowsCP1253\""); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1253), expected, "Failed conversion to \".windowsCP1253\".")
@@ -355,7 +355,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .windowsCP1254, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry to encoding \".windowsCP1254\""); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .windowsCP1254), expected, "Failed conversion to \".windowsCP1254\".")
@@ -372,7 +372,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .ascii, terminator: "")
 
-        guard let bytes = format.bytes(from: entry),
+        guard case .success(let bytes) = format.bytes(from: entry),
               let result = String(bytes: bytes, encoding: .ascii)
             else { XCTFail("Failed to convert log entry to encoding \".ascii\""); return }
 
@@ -389,7 +389,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .iso2022JP, terminator: "")
 
-        guard let bytes = format.bytes(from: entry),
+        guard case .success(let bytes) = format.bytes(from: entry),
               let result = String(bytes: bytes, encoding: .iso2022JP)
             else { XCTFail("Failed to convert log entry to encoding \".iso2022JP\""); return }
 
@@ -406,7 +406,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .isoLatin1, terminator: "")
 
-        guard let bytes = format.bytes(from: entry),
+        guard case .success(let bytes) = format.bytes(from: entry),
               let result = String(bytes: bytes, encoding: .isoLatin1)
             else { XCTFail("Failed to convert log entry to encoding \".isoLatin1\""); return }
 
@@ -423,7 +423,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .isoLatin2, terminator: "")
 
-        guard let bytes = format.bytes(from: entry),
+        guard case .success(let bytes) = format.bytes(from: entry),
               let result = String(bytes: bytes, encoding: .isoLatin2)
             else { XCTFail("Failed to convert log entry to encoding \".isoLatin2\""); return }
 
@@ -440,7 +440,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .macOSRoman, terminator: "")
 
-        guard let bytes = format.bytes(from: entry),
+        guard case .success(let bytes) = format.bytes(from: entry),
               let result = String(bytes: bytes, encoding: .macOSRoman)
             else { XCTFail("Failed to convert log entry to encoding \".macOSRoman\""); return }
 
@@ -457,7 +457,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .nextstep, terminator: "")
 
-        guard let bytes = format.bytes(from: entry),
+        guard case .success(let bytes) = format.bytes(from: entry),
               let result = String(bytes: bytes, encoding: .nextstep)
             else { XCTFail("Failed to convert log entry to encoding \".nextstep\""); return }
 
@@ -474,7 +474,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .nonLossyASCII, terminator: "")
 
-        guard let bytes = format.bytes(from: entry),
+        guard case .success(let bytes) = format.bytes(from: entry),
               let result = String(bytes: bytes, encoding: .nonLossyASCII)
             else { XCTFail("Failed to convert log entry to encoding \".nonLossyASCII\""); return }
 
@@ -491,7 +491,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .shiftJIS, terminator: "")
 
-        guard let bytes = format.bytes(from: entry),
+        guard case .success(let bytes) = format.bytes(from: entry),
               let result = String(bytes: bytes, encoding: .shiftJIS)
             else { XCTFail("Failed to convert log entry to encoding \".shiftJIS\""); return }
 
@@ -508,7 +508,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .unicode, terminator: "")
 
-        guard let bytes = format.bytes(from: entry),
+        guard case .success(let bytes) = format.bytes(from: entry),
               let result = String(bytes: bytes, encoding: .unicode)
             else { XCTFail("Failed to convert log entry to encoding \".unicode\""); return }
 
@@ -525,7 +525,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf16, terminator: "")
 
-        guard let bytes = format.bytes(from: entry),
+        guard case .success(let bytes) = format.bytes(from: entry),
               let result = String(bytes: bytes, encoding: .utf16)
             else { XCTFail("Failed to convert log entry to encoding \".utf16\""); return }
 
@@ -542,7 +542,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf16BigEndian, terminator: "")
 
-        guard let bytes = format.bytes(from: entry),
+        guard case .success(let bytes) = format.bytes(from: entry),
               let result = String(bytes: bytes, encoding: .utf16BigEndian)
             else { XCTFail("Failed to convert log entry to encoding \".utf16BigEndian\""); return }
 
@@ -559,7 +559,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf16LittleEndian, terminator: "")
 
-        guard let bytes = format.bytes(from: entry),
+        guard case .success(let bytes) = format.bytes(from: entry),
               let result = String(bytes: bytes, encoding: .utf16LittleEndian)
             else { XCTFail("Failed to convert log entry to encoding \".utf16LittleEndian\""); return }
 
@@ -576,7 +576,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf32, terminator: "")
 
-        guard let bytes = format.bytes(from: entry),
+        guard case .success(let bytes) = format.bytes(from: entry),
               let result = String(bytes: bytes, encoding: .utf32)
             else { XCTFail("Failed to convert log entry to encoding \".utf32\""); return }
 
@@ -593,7 +593,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf32BigEndian, terminator: "")
 
-        guard let bytes = format.bytes(from: entry),
+        guard case .success(let bytes) = format.bytes(from: entry),
               let result = String(bytes: bytes, encoding: .utf32BigEndian)
             else { XCTFail("Failed to convert log entry to encoding \".utf32BigEndian\""); return }
 
@@ -610,7 +610,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf32LittleEndian, terminator: "")
 
-        guard let bytes = format.bytes(from: entry),
+        guard case .success(let bytes) = format.bytes(from: entry),
               let result = String(bytes: bytes, encoding: .utf32LittleEndian)
             else { XCTFail("Failed to convert log entry to encoding \".utf32LittleEndian\""); return }
 
@@ -627,7 +627,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf8, terminator: "")
 
-        guard let bytes = format.bytes(from: entry),
+        guard case .success(let bytes) = format.bytes(from: entry),
               let result = String(bytes: bytes, encoding: .utf8)
             else { XCTFail("Failed to convert log entry to encoding \".utf8\""); return }
 
@@ -644,7 +644,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .windowsCP1250, terminator: "")
 
-        guard let bytes = format.bytes(from: entry),
+        guard case .success(let bytes) = format.bytes(from: entry),
               let result = String(bytes: bytes, encoding: .windowsCP1250)
             else { XCTFail("Failed to convert log entry to encoding \".windowsCP1250\""); return }
 
@@ -661,7 +661,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .windowsCP1251, terminator: "")
 
-        guard let bytes = format.bytes(from: entry),
+        guard case .success(let bytes) = format.bytes(from: entry),
               let result = String(bytes: bytes, encoding: .windowsCP1251)
             else { XCTFail("Failed to convert log entry to encoding \".windowsCP1251\""); return }
 
@@ -678,7 +678,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .windowsCP1252, terminator: "")
 
-        guard let bytes = format.bytes(from: entry),
+        guard case .success(let bytes) = format.bytes(from: entry),
               let result = String(bytes: bytes, encoding: .windowsCP1252)
             else { XCTFail("Failed to convert log entry to encoding \".windowsCP1252\""); return }
 
@@ -695,7 +695,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .windowsCP1253, terminator: "")
 
-        guard let bytes = format.bytes(from: entry),
+        guard case .success(let bytes) = format.bytes(from: entry),
               let result = String(bytes: bytes, encoding: .windowsCP1253)
             else { XCTFail("Failed to convert log entry to encoding \".windowsCP1253\""); return }
 
@@ -712,7 +712,7 @@ class TextFormatEncodingWithUnicodeTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .windowsCP1254, terminator: "")
 
-        guard let bytes = format.bytes(from: entry),
+        guard case .success(let bytes) = format.bytes(from: entry),
               let result = String(bytes: bytes, encoding: .windowsCP1254)
             else { XCTFail("Failed to convert log entry to encoding \".windowsCP1254\""); return }
 

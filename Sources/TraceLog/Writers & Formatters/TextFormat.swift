@@ -277,7 +277,7 @@ public struct TextFormat: OutputStreamFormatter {
 
     /// Text conversion function required by the `OutputStreamFormatter` protocol.
     ///
-    public func bytes(from entry: Writer.LogEntry) -> [UInt8]? {
+    public func bytes(from entry: Writer.LogEntry) -> Result<[UInt8], OutputStreamFormatterError> {
         var text = String()
 
         /// Write all the elements that have been pre-calculated
@@ -314,9 +314,9 @@ public struct TextFormat: OutputStreamFormatter {
         /// still be printed minus the un-encodable characters.
         ///
         guard let data = text.data(using: self.encoding, allowLossyConversion: true)
-            else { return nil }
+            else { return .failure(.encodingFailure("Failed to encode entry using \(self.encoding) encoding.")) }
 
-        return Array(data)
+        return .success(Array(data))
     }
 
     /// Generic type writer

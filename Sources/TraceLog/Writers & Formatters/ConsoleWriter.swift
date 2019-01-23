@@ -51,8 +51,8 @@ public class ConsoleWriter: OutputStreamWriter {
     ///
     public func write(_ entry: Writer.LogEntry) -> Result<Void,FailureReason> {
 
-        guard let bytes = format.bytes(from: entry)
-            else { return .failure(.error("Formatting failed.")) }
+        guard case .success(let bytes) = format.bytes(from: entry)
+            else { return .failure(.error("Formatting failed."))  }
 
         /// Note: Since we could be called on any thread in TraceLog direct mode
         /// we protect the outputStream with a low-level mutex.

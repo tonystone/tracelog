@@ -38,7 +38,7 @@ class TextFormatInternationalLanguagesTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf8, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry for the Danish language."); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected, "Failed conversion for \"Danish\".")
@@ -52,7 +52,7 @@ class TextFormatInternationalLanguagesTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf8, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry for the German language."); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected, "Failed conversion for \"German\".")
@@ -66,7 +66,7 @@ class TextFormatInternationalLanguagesTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf8, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry for the Greek language."); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected, "Failed conversion for \"Greek\".")
@@ -80,7 +80,7 @@ class TextFormatInternationalLanguagesTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf8, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry for the English language."); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected, "Failed conversion for \"English\".")
@@ -94,7 +94,7 @@ class TextFormatInternationalLanguagesTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf8, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry for the Spanish language."); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected, "Failed conversion for \"Spanish\".")
@@ -108,7 +108,7 @@ class TextFormatInternationalLanguagesTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf8, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry for the French language."); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected, "Failed conversion for \"French\".")
@@ -122,7 +122,7 @@ class TextFormatInternationalLanguagesTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf8, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry for the IrishGaelic language."); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected, "Failed conversion for \"IrishGaelic\".")
@@ -136,7 +136,7 @@ class TextFormatInternationalLanguagesTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf8, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry for the Hungarian language."); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected, "Failed conversion for \"Hungarian\".")
@@ -150,7 +150,7 @@ class TextFormatInternationalLanguagesTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf8, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry for the Icelandic language."); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected, "Failed conversion for \"Icelandic\".")
@@ -164,7 +164,7 @@ class TextFormatInternationalLanguagesTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf8, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry for the Japanese language."); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected, "Failed conversion for \"Japanese\".")
@@ -178,7 +178,7 @@ class TextFormatInternationalLanguagesTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf8, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry for the Katakana language."); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected, "Failed conversion for \"Katakana\".")
@@ -192,7 +192,7 @@ class TextFormatInternationalLanguagesTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf8, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry for the Polish language."); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected, "Failed conversion for \"Polish\".")
@@ -206,7 +206,7 @@ class TextFormatInternationalLanguagesTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf8, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry for the Russian language."); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected, "Failed conversion for \"Russian\".")
@@ -220,7 +220,7 @@ class TextFormatInternationalLanguagesTests: XCTestCase {
 
         let format = TextFormat(template: "%{message}", encoding: .utf8, terminator: "")
 
-        guard let bytes = format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail("Failed to convert log entry for the Turkish language."); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected, "Failed conversion for \"Turkish\".")
