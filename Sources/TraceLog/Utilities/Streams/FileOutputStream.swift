@@ -195,10 +195,6 @@ extension FileOutputStream: OutputStream {
 
         return .success(written)
     }
-
-    func flush() {
-        fsync(self.fd)
-    }
 }
 
 // Private extension to work around Swifts confusion around similar function names.

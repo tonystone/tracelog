@@ -38,11 +38,6 @@ internal protocol OutputStream {
     /// - Returns: A Result<Int, OutputStreamError> value holding the number of bytes written if .successful or an OutputStreamError if failed.
     ///
     func write(_ bytes: [UInt8]) -> Result<Int, OutputStreamError>
-
-    /// If there is buffering for this stream, flush the
-    /// buffer to disk.
-    ///
-    func flush()
 }
 
 /// Errors returned by OutputStreams
