@@ -27,7 +27,6 @@ import XCTest
     import Glibc
 #endif
 
-
 class OutputStreamErrorPosixTests: XCTestCase {
 
     func testErrorForOutOfRangeCode() {
@@ -209,7 +208,7 @@ class OutputStreamErrorPosixTests: XCTestCase {
         /// of Swift the message is slightly different between
         /// Darwin and Linux.
         ///
-        if case .unknownError(let code, _) = FileOutputStreamError.error(for: EAGAIN) {
+        if case .unknownError(let code, _) = OutputStreamError.error(for: EAGAIN) {
             XCTAssertEqual(code, EAGAIN)
         } else {
             XCTFail(".unknownError was expected")
@@ -224,7 +223,7 @@ class OutputStreamErrorPosixTests: XCTestCase {
         /// of Swift the message is slightly different between
         /// Darwin and Linux.
         ///
-        if case .unknownError(let code, _) = FileOutputStreamError.error(for: EWOULDBLOCK) {
+        if case .unknownError(let code, _) = OutputStreamError.error(for: EWOULDBLOCK) {
             XCTAssertEqual(code, EWOULDBLOCK)
         } else {
             XCTFail(".unknownError was expected")
@@ -239,12 +238,11 @@ class OutputStreamErrorPosixTests: XCTestCase {
         /// of Swift the message is slightly different between
         /// Darwin and Linux.
         ///
-        if case .unknownError(let code, _) = FileOutputStreamError.error(for: EINTR) {
+        if case .unknownError(let code, _) = OutputStreamError.error(for: EINTR) {
             XCTAssertEqual(code, EINTR)
         } else {
             XCTFail(".unknownError was expected")
         }
     }
-
 
 }

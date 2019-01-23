@@ -54,7 +54,6 @@ import XCTest
         ["EINTR",        "unknownError", "Interrupted system call"]
     ]
 }%
-
 class OutputStreamErrorPosixTests: XCTestCase {
 
     func testErrorForOutOfRangeCode() {
@@ -95,7 +94,7 @@ class OutputStreamErrorPosixTests: XCTestCase {
         /// of Swift the message is slightly different between
         /// Darwin and Linux.
         ///
-        if case .${CaseValue}(let code, _) = FileOutputStreamError.error(for: ${CodeConstant}) {
+        if case .${CaseValue}(let code, _) = OutputStreamError.error(for: ${CodeConstant}) {
             XCTAssertEqual(code, ${CodeConstant})
         } else {
             XCTFail(".${CaseValue} was expected")
@@ -103,5 +102,4 @@ class OutputStreamErrorPosixTests: XCTestCase {
     }
 
 % end
-
 }
