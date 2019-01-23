@@ -116,7 +116,7 @@ public struct JSONFormat: OutputStreamFormatter {
 
     /// Text conversion function required by the `OutputStreamFormatter` protocol.
     ///
-    public func bytes(from entry: Writer.LogEntry) -> [UInt8]? {
+    public func bytes(from entry: Writer.LogEntry) -> Result<[UInt8], OutputStreamFormatterError> {
         var text = String()
 
         text.write("{\(conditional.newLine)")
@@ -144,7 +144,7 @@ public struct JSONFormat: OutputStreamFormatter {
         /// JSON text exchanged between systems that are not part of a closed
         /// ecosystem MUST be encoded using UTF-8 [RFC3629].
         ///
-        return Array(text.utf8)
+        return .success(Array(text.utf8))
     }
 
     /// Generic type emitter

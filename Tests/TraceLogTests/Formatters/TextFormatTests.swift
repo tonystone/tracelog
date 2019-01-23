@@ -141,8 +141,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
         let expected: String       = TextFormatTests.dateFormatter.string(from: Date(timeIntervalSince1970: input.timestamp))
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -155,8 +155,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
         let expected: String       = String(repeating: TextFormatTests.dateFormatter.string(from: Date(timeIntervalSince1970: input.timestamp)), count: 3)
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -171,8 +171,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
         let expected: String       = "28800.0"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -185,8 +185,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
         let expected: String       = "28800.028800.028800.0"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -201,8 +201,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
         let expected: String       = "INFO"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -215,8 +215,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
         let expected: String       = "INFOINFOINFO"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -231,8 +231,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
         let expected: String       = "TestTag"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -245,8 +245,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
         let expected: String       = "TestTagTestTagTestTag"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -261,8 +261,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
         let expected: String       = "Test message."
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -275,8 +275,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
         let expected: String       = "Test message.Test message.Test message."
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -291,8 +291,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processName: "Test Process"), staticContext: TestStaticContext())
         let expected: String       = "Test Process"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -305,8 +305,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processName: "Test Process"), staticContext: TestStaticContext())
         let expected: String       = "Test ProcessTest ProcessTest Process"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -321,8 +321,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processIdentifier: 500), staticContext: TestStaticContext())
         let expected: String       = "500"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -335,8 +335,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processIdentifier: 500), staticContext: TestStaticContext())
         let expected: String       = "500500500"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -351,8 +351,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(threadIdentifier: 200), staticContext: TestStaticContext())
         let expected: String       = "200"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -365,8 +365,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(threadIdentifier: 200), staticContext: TestStaticContext())
         let expected: String       = "200200200"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -381,8 +381,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(file: "TextFormatTests.swift"))
         let expected: String       = "TextFormatTests.swift"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -395,8 +395,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(file: "TextFormatTests.swift"))
         let expected: String       = "TextFormatTests.swiftTextFormatTests.swiftTextFormatTests.swift"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -411,8 +411,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(function: "testTemplateFunction()"))
         let expected: String       = "testTemplateFunction()"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -425,8 +425,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(function: "testTemplateFunction()"))
         let expected: String       = "testTemplateFunction()testTemplateFunction()testTemplateFunction()"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -441,8 +441,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
         let expected: String       = "120"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -455,8 +455,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
         let expected: String       = "120120120"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -469,8 +469,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
         let expected: String       = "\(TextFormatTests.dateFormatter.string(from: Date(timeIntervalSince1970: input.timestamp))) TestProcess[100:1100] INFO: <TestTag> Test message."
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -484,8 +484,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .warning, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 50, threadIdentifier: 200), staticContext: TestStaticContext(file: "TextFormatTests.swift", function: "testTemplateWithAllVariables()", line: 306))
         let expected: String       = "\(TextFormatTests.dateFormatter.string(from: Date(timeIntervalSince1970: input.timestamp))) \(input.timestamp) TestProcess[50:200] WARNING: <TestTag> [TextFormatTests.swift:testTemplateWithAllVariables():306] Test message."
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -498,8 +498,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .warning, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 50, threadIdentifier: 200), staticContext: TestStaticContext(file: "TextFormatTests.swift", function: "testTemplateWithAllVariables()", line: 306))
         let expected: String       = "\"\(TextFormatTests.dateFormatter.string(from: Date(timeIntervalSince1970: input.timestamp)))\", \"TestProcess\", 50, 200, \"WARNING\", \"TestTag\", \"Test message.\"\n"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -513,8 +513,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 1.0, level: .warning, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 50, threadIdentifier: 200), staticContext: TestStaticContext(file: "TextFormatTests.swift", function: "testTemplateWithAllVariables()", line: 306))
         let expected: String       = "~!@#$%^&*()WARNING1234567890TestTagabcdefghijklmnop"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -530,8 +530,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
         let expected: String       = "{}} This is a constant string that will be output %{(0001234 with special characters}."
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -545,8 +545,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
         let expected: String       = "%{This} %{is} %{a} %{constant} %{string} %{that} %{will} %{be} %{output}"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -559,8 +559,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
         let expected: String       = "%{INFO}"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -573,8 +573,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "%{level}", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
         let expected: String       = "INFO %{level}"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -587,8 +587,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "%{level}", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
         let expected: String       = "%{level} INFO"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -601,8 +601,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "%{message} check", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
         let expected: String       = "%{message} check"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -619,8 +619,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "\tThis message contains multiple \nlines and \tcontrol characters.\n", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
         let expected: String       = "This message contains multiple lines and control characters."
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -635,8 +635,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "\tThis message contains multiple \nlines and \tcontrol characters.\n", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
         let expected: String       = "\\tThis message contains multiple \\nlines and \\tcontrol characters.\\n"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -651,8 +651,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "\tThis message contains multiple \nlines and \tcontrol characters.\n", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
         let expected: String       = "\tThis message contains multiple \nlines and \tcontrol characters.\n"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }
@@ -668,8 +668,8 @@ class TextFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Simple message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
         let expected: String       = "Simple message.,\n\t"
 
-        guard let bytes = format.bytes(from: input)
-            else { XCTFail(); return }
+        guard case .success(let bytes) = format.bytes(from: input)
+            else { XCTFail(); return  }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), expected)
     }

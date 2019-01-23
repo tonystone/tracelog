@@ -108,7 +108,7 @@ public class FileWriter: OutputStreamWriter {
     ///
     public func write(_ entry: Writer.LogEntry) {
 
-        guard let bytes = format.bytes(from: entry)
+        guard case .success(let bytes) = format.bytes(from: entry)
             else { return }
 
         /// Note: Since we could be called on any thread in TraceLog direct mode

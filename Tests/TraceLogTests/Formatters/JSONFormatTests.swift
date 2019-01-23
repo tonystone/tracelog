@@ -93,7 +93,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
         let format = JSONFormat(attributes: [.timestamp], terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{\"timestamp\":28800.0}")
@@ -106,7 +106,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
         let format = JSONFormat(attributes: [.timestamp], options: [.prettyPrint], terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{\n\t\"timestamp\" : 28800.0\n}")
@@ -120,7 +120,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
         let format = JSONFormat(attributes: [.level], terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{\"level\":\"INFO\"}")
@@ -133,7 +133,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
         let format = JSONFormat(attributes: [.level], options: [.prettyPrint], terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{\n\t\"level\" : \"INFO\"\n}")
@@ -147,7 +147,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
         let format = JSONFormat(attributes: [.tag], terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{\"tag\":\"TestTag\"}")
@@ -160,7 +160,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
         let format = JSONFormat(attributes: [.tag], options: [.prettyPrint], terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{\n\t\"tag\" : \"TestTag\"\n}")
@@ -174,7 +174,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
         let format = JSONFormat(attributes: [.message], terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{\"message\":\"Test message.\"}")
@@ -187,7 +187,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
         let format = JSONFormat(attributes: [.message], options: [.prettyPrint], terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{\n\t\"message\" : \"Test message.\"\n}")
@@ -201,7 +201,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processName: "TestProcess"), staticContext: TestStaticContext())
         let format = JSONFormat(attributes: [.processName], terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{\"processName\":\"TestProcess\"}")
@@ -214,7 +214,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processName: "TestProcess"), staticContext: TestStaticContext())
         let format = JSONFormat(attributes: [.processName], options: [.prettyPrint], terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{\n\t\"processName\" : \"TestProcess\"\n}")
@@ -228,7 +228,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processIdentifier: 120), staticContext: TestStaticContext())
         let format = JSONFormat(attributes: [.processIdentifier], terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{\"processIdentifier\":120}")
@@ -241,7 +241,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processIdentifier: 120), staticContext: TestStaticContext())
         let format = JSONFormat(attributes: [.processIdentifier], options: [.prettyPrint], terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{\n\t\"processIdentifier\" : 120\n}")
@@ -255,7 +255,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processIdentifier: 120), staticContext: TestStaticContext())
         let format = JSONFormat(attributes: [.processIdentifier], terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{\"processIdentifier\":120}")
@@ -268,7 +268,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processIdentifier: 120), staticContext: TestStaticContext())
         let format = JSONFormat(attributes: [.processIdentifier], options: [.prettyPrint], terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{\n\t\"processIdentifier\" : 120\n}")
@@ -282,7 +282,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(file: "JSONFormat.swift"))
         let format = JSONFormat(attributes: [.file], terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{\"file\":\"JSONFormat.swift\"}")
@@ -295,7 +295,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(file: "JSONFormat.swift"))
         let format = JSONFormat(attributes: [.file], options: [.prettyPrint], terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{\n\t\"file\" : \"JSONFormat.swift\"\n}")
@@ -309,7 +309,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(function: "testAttributeFunction()"))
         let format = JSONFormat(attributes: [.function], terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{\"function\":\"testAttributeFunction()\"}")
@@ -322,7 +322,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(function: "testAttributeFunction()"))
         let format = JSONFormat(attributes: [.function], options: [.prettyPrint], terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{\n\t\"function\" : \"testAttributeFunction()\"\n}")
@@ -336,7 +336,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 240))
         let format = JSONFormat(attributes: [.line], terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{\"line\":240}")
@@ -349,7 +349,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 240))
         let format = JSONFormat(attributes: [.line], options: [.prettyPrint], terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{\n\t\"line\" : 240\n}")
@@ -359,7 +359,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 120, threadIdentifier: 200), staticContext: TestStaticContext(file: "JSONFormatTests.swift", function: "testAttributeDefaultList()", line: 240))
         let format = JSONFormat(terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         guard let json = try JSONSerialization.jsonObject(with: Data(bytes), options: []) as? [String: Any]
@@ -382,7 +382,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 120, threadIdentifier: 200), staticContext: TestStaticContext(file: "JSONFormatTests.swift", function: "testAttributeDefaultList()", line: 240))
         let format = JSONFormat( options: [.prettyPrint], terminator: "")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         guard let json = try JSONSerialization.jsonObject(with: Data(bytes), options: []) as? [String: Any]
@@ -410,7 +410,7 @@ class JSONFormatTests: XCTestCase {
         let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Simple message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext(line: 120))
         let format = JSONFormat(attributes: [.message], terminator: ",\n\t")
 
-        guard let bytes =  format.bytes(from: input)
+        guard case .success(let bytes) = format.bytes(from: input)
             else { XCTFail(); return }
 
         XCTAssertEqual(String(bytes: bytes, encoding: .utf8), "{\"message\":\"Simple message.\"},\n\t")
