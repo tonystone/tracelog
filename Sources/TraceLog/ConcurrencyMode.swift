@@ -174,15 +174,12 @@ extension AsyncOption: Equatable, Hashable {
         switch self {
         case .buffer(_,_):
             hasher.combine(1)
-        default: ()
         }
     }
 
     public static func == (lhs: AsyncOption, rhs: AsyncOption) -> Bool {
         switch (lhs, rhs) {
         case (.buffer(_,_), .buffer(_,_)): return true
-        default:
-            return false
         }
     }
 }
