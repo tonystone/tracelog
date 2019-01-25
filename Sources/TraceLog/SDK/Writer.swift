@@ -43,8 +43,10 @@ public protocol Writer {
     ///     - tag:                   The tag associated with the log event.
     ///     - message:               The message string (already formatted) for this logging event.
     ///     - file:                  The source file (of the calling program) of this logging event.
-    ///     - runtimeContext:        An object containing information about the state of the runtime such as thread ID (see also: RuntimeContext)
-    ///     - staticContext:         An object containing the static information at the time of the func call such as function name and line number (see also: StaticContext)
+    ///     - runtimeContext:        An object containing information about the state of the runtime such as thread ID (SeeAlso: RuntimeContext)
+    ///     - staticContext:         An object containing the static information at the time of the func call such as function name and line number (SeeAlso: StaticContext)
+    ///
+    /// - Returns: LogResult indicating the result of the attempt to log the statement to the endpoint.
     ///
     /// - SeeAlso: LogLevel
     /// - SeeAlso: RuntimeContext
@@ -57,7 +59,24 @@ public protocol Writer {
     ///
     /// - Parameter entry: A LogEntry type to write to the output.
     ///
+    /// - Returns: An Int indicating the actualy number of bytes written to the output
+    ///            after conversion of the LogEntry.  This is the actualy number of bytes
+    ///            (ansfer any encoding) not the number of visible characters.
+    ///
     /// - SeeAlso: LogEntry
     ///
-    func write(_ entry: LogEntry)
+    func write(_ entry: LogEntry)  -> Result<Int, FailureReason>
+}
+
+/// The reason for the Writer.write failure.
+///
+public enum FailureReason: Error {
+
+    /// The Writer is unavailable for writing at the moment.
+    ///
+    case unavailable
+
+    /// The writer failed to write (unrecoverable).
+    ///
+    case error(Error)
 }

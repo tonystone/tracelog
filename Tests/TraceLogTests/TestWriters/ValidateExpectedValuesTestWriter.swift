@@ -27,36 +27,159 @@ import TraceLog
 ///
 class ValidateExpectedValuesTestWriter: Writer {
 
+    enum Error: Swift.Error {
+        case testError(String)
+    }
+
+    /// The type supplied and stored as an expected log entry.
+    ///
+    typealias ExpectedLogEntry = (timestamp: Double?, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext?, staticContext: StaticContext?)
+
+    /// Is this writer available for writing
+    var available: Bool
+
+    /// Force the writer to return failed(.error) on write.
+    var forceWriteError: Bool
+
+    /// Total number of calls made to this
+    /// Writer's log function that were not
+    /// filtered out.
+    ///
+    var resultCount: Int
+
+    /// List of tags to filter entries for.
+    ///
+    /// Note: all calls to log that has a tag that is
+    ///       contained in this list will be dropped.
+    ///
+    let filterTags: [String]
+
+    /// Ignore the StaticContext.line for comparison.
+    ///
+    var ignoreLineInComparison: Bool
+
+    /// The XCTestExpectation created for this writer so
+    /// the caller can wait until all async calls to the log
+    /// function have completed.
+    ///
     let expectation: XCTestExpectation
 
-    let level: LogLevel
-    let tag: String
-    let message: String
-    let file: String
-    let function: String
-    let testFileFunction: Bool
+    /// The log entries that are expected to be logged to this writer.
+    ///
+    private let expected: [ExpectedLogEntry]
 
-    init(expectation: XCTestExpectation, level: LogLevel, tag: String, message: String, file: String = #file, function: String = #function, testFileFunction: Bool = true) {
-        self.expectation = expectation
-        self.level = level
-        self.tag = tag
-        self.message = message
-        self.file = file
-        self.function = function
-        self.testFileFunction = testFileFunction
+    /// Initializes an instance of 'Self'
+    ///
+    /// - Parameters:
+    ///     - expected: An array of expected log entries each representing an expected call to this Writer's log function.
+    ///     - filterTags: An array of tags that will be used to filter calls to this Writer's log function.  Any call with a tag that is contained in this list will be dropped.
+    ///     - available: The initial state of availability this Writer should assume.
+    ///
+    init(expected: [ExpectedLogEntry], filterTags: [String] = [], available: Bool = true, forceWriteError: Bool = false) {
+        self.available = available
+        self.forceWriteError = forceWriteError
+        self.resultCount = 0
+        self.filterTags = filterTags
+        self.ignoreLineInComparison = false
+        self.expected = expected
+
+        self.expectation = XCTestExpectation(description: "Write Expectation")
+
+        /// We expect to get a call for each message in the buffer.
+        self.expectation.expectedFulfillmentCount = expected.count
+
+        /// to many messages would be an error as well.
+        self.expectation.assertForOverFulfill = true
     }
 
-    func write(_ entry: Writer.LogEntry) {
+    convenience init(timestamp: Double? = nil, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext? = nil, staticContext: StaticContext? = nil, filterTags: [String] = [],ignoreLine: Bool = true, available: Bool = true) {
+        self.init(expected: [(timestamp: timestamp, level: level, tag: tag, message: message, runtimeContext: runtimeContext, staticContext: staticContext)], filterTags: filterTags, available: available)
 
-        if entry.level == self.level &&
-           entry.tag == self.tag &&
-           entry.message == self.message {
+        self.ignoreLineInComparison = ignoreLine
+    }
 
-            if !testFileFunction ||
-                entry.staticContext.file == self.file &&
-                entry.staticContext.function == self.function {
-                expectation.fulfill()
+    /// Required Writer.write function (required by the Writer protocol).
+    ///
+    func write(_ entry: Writer.LogEntry) -> Result<Int,FailureReason> {
+
+        /// If we are not currently available, return error
+        guard available
+            else { return .failure(.unavailable) }
+
+        guard !forceWriteError
+            else { return .failure(.error(Error.testError("Forced write error for test."))) }
+
+        /// Drop (Filter) any entries that are contained
+        /// in our list of tags to filter.
+        ///
+        guard !filterTags.contains(entry.tag)
+            else { return .success(0) }
+
+        /// The index will be the resultCount before incrementing
+        let index = self.resultCount
+
+        self.resultCount += 1
+
+        if resultCount <= expected.count {
+            let expected = self.expected[index]
+
+            /// Always required
+            guard entry.level == expected.level && entry.tag == expected.tag && entry.message == expected.message
+                else {
+                    let message = "\(entry) is not equal to: \(expected)"
+                    XCTFail(message)
+                    return .failure(.error(Error.testError(message)))
             }
+
+            /// Optional comparisons
+            ///
+            /// Note: Timestamps can not be compared when calling the high level
+            ///       TraceLog functions due to the fact that TraceLog captures
+            ///       the timestamp inside the logPrimitive function.
+            ///
+            if let expectedTimestamp = expected.timestamp {
+                guard entry.timestamp == expectedTimestamp
+                    else {
+                        let message = "Timestamp \(entry.timestamp) is not equal to: \(expectedTimestamp)"
+                        XCTFail(message)
+                        return .failure(.error(Error.testError(message)))
+                }
+            }
+
+            if let expectedRuntimeContext = expected.runtimeContext {
+                guard entry.runtimeContext.processIdentifier == expectedRuntimeContext.processIdentifier &&
+                      entry.runtimeContext.processName       == expectedRuntimeContext.processName &&
+                      entry.runtimeContext.threadIdentifier  == expectedRuntimeContext.threadIdentifier
+                    else {
+                        let message = "\(entry.runtimeContext) is not equal to: \(expectedRuntimeContext)"
+                        XCTFail(message)
+                        return .failure(.error(Error.testError(message)))
+                }
+            }
+
+            if let expectedStaticContext = expected.staticContext {
+                guard entry.staticContext.file     == expectedStaticContext.file &&
+                      entry.staticContext.function == expectedStaticContext.function
+                    else {
+                        let message = "\(entry.staticContext) is not equal to: \(expectedStaticContext)"
+                        XCTFail(message)
+                        return .failure(.error(Error.testError(message)))
+                }
+
+                if !ignoreLineInComparison {
+                    guard entry.staticContext.line == expectedStaticContext.line
+                        else {
+                            let message = "\(entry.staticContext) is not equal to: \(expectedStaticContext)"
+                            XCTFail(message)
+                            return .failure(.error(Error.testError(message)))
+                    }
+                }
+            }
+
+            /// If it matches all required fields increment the fulfillment count
+            self.expectation.fulfill()
         }
+        return .success(0)
     }
 }
+

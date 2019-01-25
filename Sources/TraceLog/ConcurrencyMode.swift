@@ -46,7 +46,17 @@ public enum ConcurrencyMode {
     /// application which moves processing of the write to
     /// a background queue for minimal delays when logging.
     ///
-    case async
+    /// - Parameter options: An array specifying the optional features to configure for each async writer that gets added.
+    ///
+    ///
+    /// - Remark: Once Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md) is implemented
+    ///           this will gain a default value allowing for more straightforward default behavior.
+    ///           Making the signature `async(options: [AsyncOption] = [])` so that just `.async()`
+    ///           needs to be passed.
+    ///
+    /// - SeeAlso: `AsyncOption` for details.
+    ///
+    case async(options: Set<AsyncOption>)
 
     /// The default mode used if no mode is specified (.async(options: [])).
     ///
@@ -83,7 +93,95 @@ public enum WriterConcurrencyMode {
     /// application which moves processing of the write to
     /// a background queue for minimal delays when logging.
     ///
-    case async(Writer)
+    /// - Parameters:
+    ///     - writer: The `Writer` instance to enable async mode for.
+    ///     - options: An array specifying the optional features to configure for the `writer`.
+    ///
+    /// - Remark: Once Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md) is implemented
+    ///           this will gain a default value allowing for more straightforward default behavior.
+    ///           Making the signature `async(Writer, options: [AsyncOption] = [])` so that just
+    ///           `.async(Writer)` needs to be passed.
+    ///
+    /// - SeeAlso: `AsyncOption` for details.
+    ///
+    case async(Writer, options: Set<AsyncOption>)
+}
+
+///
+/// Async mode can be configured for various options, this enum allows you to refine the
+/// behavior and options of the asynchronous mode of operation.
+///
+public enum AsyncOption {
+
+    /// Back the async mode with a buffer for when the writer is not `available` to
+    /// write to it's endpoint.  Useful for situations where the endpoint may not
+    /// be available at all times.
+    ///
+    /// Whenever the writer returns false for `available` TraceLog will buffer the
+    /// log entries until the endpoint is `available`. It will check the writer for
+    /// availability based on the `writeInterval` parameter. Once available, TraceLog
+    /// will write each log entry in the buffer (in order) until the end of the
+    /// buffer or the Writer becomes unavailable again.
+    ///
+    /// Buffering is useful for many different use case including:
+    ///
+    /// E.g. In an iOS application when protected data is not available to your
+    ///      app but you require visibility into the apps logging even during
+    ////     these times.
+    ///
+    ///      A network writer when the network connection is unavailable for any reason.
+    ///
+    /// - Parameters:
+    ///     - writeInternal: if the writer is currently buffering, TraceLog will periodically check whether the writer is available and write if it is.  This is the time frame between checks.
+    ///     - strategy: The buffer strategy to use when buffering.
+    ///
+    case buffer(writeInterval: DispatchTimeInterval, strategy: BufferStrategy)
+
+    /// A BufferStrategy is the action the internal
+    /// buffer will take when a new log entry is logged
+    /// but the buffer is at it's limit (maxSize).
+    ///
+    public enum BufferStrategy {
+
+        /// If dropTail is used, when the buffer is filled
+        /// to its maximum capacity, the newly arriving log
+        /// entries are dropped until the buffer has
+        /// enough room to accept incoming entries.
+        ///
+        /// - Parameter at: start dropping log entries when this number of entries is reached in the buffer.
+        ///
+        case dropTail(at: Int)
+
+        /// If dropHead is used, when the buffer is filled
+        /// to its maximum capacity, the oldest entry (head)
+        /// is dropped to make room for the newly arriving log
+        /// entry.
+        ///
+        /// - Parameter at: start dropping log entries when this number of entries is reached in the buffer.
+        ///
+        case dropHead(at: Int)
+
+        /// If expand is set, the buffer will continue
+        /// to expand until the available memory is exhausted.
+        ///
+        case expand
+    }
+}
+
+extension AsyncOption: Equatable, Hashable {
+
+    public func hash(into hasher: inout Hasher) {
+        switch self {
+        case .buffer(_,_):
+            hasher.combine(1)
+        }
+    }
+
+    public static func == (lhs: AsyncOption, rhs: AsyncOption) -> Bool {
+        switch (lhs, rhs) {
+        case (.buffer(_,_), .buffer(_,_)): return true
+        }
+    }
 }
 
 ///
@@ -96,8 +194,9 @@ internal extension ConcurrencyMode {
     func writerMode(for writer: Writer) -> WriterConcurrencyMode {
         switch self {
             case .direct:              return .direct(writer)
-            case .sync:                return .sync(writer)
-            default:                   return .async(writer)
+            case .sync:                return .sync  (writer)
+            case .async(let options):  return .async(writer, options: options)
+            default:                   return .async(writer, options: [])
         }
     }
 }
@@ -111,7 +210,7 @@ internal extension WriterConcurrencyMode {
         switch self {
             case .direct(let writer):              return DirectWriterProxy(writer: writer)
             case .sync  (let writer):              return SyncWriterProxy  (writer: writer)
-            case .async (let writer):              return AsyncWriterProxy (writer: writer)
+            case .async (let writer, let options): return AsyncWriterProxy (writer: writer, options: options)
 
         }
     }

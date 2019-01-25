@@ -37,6 +37,8 @@ internal protocol OutputStream {
     ///
     /// - Returns: A Result<Int, OutputStreamError> value holding the number of bytes written if .successful or an OutputStreamError if failed.
     ///
+    /// - Invariant: The contract for write guarantees that the buffer (bytes) will be written in one atomic write without interleaving from other threads
+    ///
     func write(_ bytes: [UInt8]) -> Result<Int, OutputStreamError>
 }
 

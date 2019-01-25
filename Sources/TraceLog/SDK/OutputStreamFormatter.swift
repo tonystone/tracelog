@@ -20,6 +20,7 @@
 import Foundation
 
 public enum OutputStreamFormatterError: Error {
+    
     case encodingFailure(String)
 }
 

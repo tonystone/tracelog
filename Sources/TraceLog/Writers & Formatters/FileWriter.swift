@@ -104,18 +104,20 @@ public class FileWriter: OutputStreamWriter {
         close(fileStream: self.file.stream)
     }
 
-    /// Required log function for the logger
+    /// Required write function for the logger
     ///
-    public func write(_ entry: Writer.LogEntry) {
+    public func write(_ entry: Writer.LogEntry) -> Result<Int, FailureReason> {
 
-        guard case .success(let bytes) = format.bytes(from: entry)
-            else { return }
+        let result = format.bytes(from: entry)
+
+        guard case .success(let bytes) = result
+            else { return result.map({ (_) in 0 }).mapError({ .error($0) })  }
 
         /// Note: Since we could be called on any thread in TraceLog direct mode
         /// we protect the file with a low-level mutex.
         ///
-        /// Pthreads mutexes were chosen because out of all the methods of synchronization
-        /// available in swift (queue, dispatch semaphores, etc), pthread mutexes are
+        /// PThreads mutexes were chosen because out of all the methods of synchronization
+        /// available in swift (queue, dispatch semaphores, etc), PThread mutexes are
         /// the lowest overhead and fastest lock.
         ///
         /// We also want to ensure we maintain thread boundaries when in direct mode (avoid
@@ -130,7 +132,7 @@ public class FileWriter: OutputStreamWriter {
 
         /// Write message to log
         ///
-        _ = self.file.stream.write(bytes)
+        return self.file.stream.write(bytes).mapError({ FailureReason($0) })
     }
 
     /// Internal type used by FileWriter and various utility functions.
@@ -146,6 +148,27 @@ public class FileWriter: OutputStreamWriter {
     /// Low level mutex for locking print since it's not reentrant.
     ///
     private var mutex: Mutex
+}
+
+/// Maps an OutputStreamError to a Writer.FailureReason for this class only.
+///
+internal /* @testable */
+extension FailureReason {
+
+    init(_ error: OutputStreamError) {
+        switch error {
+
+        /// For files, these are the recoverable errors
+        ///
+        case .networkDown(_):                      fallthrough
+        case .disconnected(_):                     self = .unavailable
+
+        /// A file can't recover any other error type.
+        ///
+        default:
+            self = .error(error)
+        }
+    }
 }
 
 /// Errors thrown from FileWriter init.

@@ -34,9 +34,11 @@ public class BufferWriter: Writer {
     public init() {}
 
     ///
-    /// Required log function for the `Writer`.
+    /// Required write function for the `Writer`.
     ///
-    public func write(_ entry: Writer.LogEntry) {
+    public func write(_ entry: Writer.LogEntry) -> Result<Int,FailureReason> {
         self.buffer[entry.message] = entry
+
+        return .success(0)
     }
 }

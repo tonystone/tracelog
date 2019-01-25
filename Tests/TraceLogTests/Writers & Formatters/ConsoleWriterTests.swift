@@ -60,6 +60,34 @@ class ConsoleWriterTests: XCTestCase {
         }
     }
 
+    func testFailedFormat() {
+
+        class TestFormat: OutputStreamFormatter {
+            func bytes(from entry: (timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext)) -> Result<[UInt8], OutputStreamFormatterError> {
+                return .failure(.encodingFailure("Formatter failed"))
+            }
+        }
+        let writer = ConsoleWriter(format: TestFormat())
+
+        guard case Result.failure(_) = writer.write((timestamp: 2880, level: .info, tag: "Test", message: "Test", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext()))
+            else { XCTFail("Write did not return the proper error."); return }
+    }
+
+    func testFailedWrite() {
+
+        class TestStream: TraceLog.OutputStream {
+            let position: UInt64 = 0
+
+            func write(_ bytes: [UInt8]) -> Result<Int, OutputStreamError> {
+                return .failure(.accessDenied("Test Error"))
+            }
+        }
+        let writer = ConsoleWriter(outputStream: TestStream(), format: TextFormat())
+
+        guard case Result.failure(_) = writer.write((timestamp: 2880, level: .info, tag: "Test", message: "Test", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext()))
+            else { XCTFail("Write did not return the proper error."); return }
+    }
+
     // MARK: - Direct calls to the writer with default date formatter.
 
     func testLogError() {

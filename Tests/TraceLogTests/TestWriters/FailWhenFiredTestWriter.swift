@@ -34,7 +34,9 @@ class FailWhenFiredWriter: Writer {
         self.semaphore = semaphore
     }
 
-    func write(_ entry: Writer.LogEntry) {
+    func write(_ entry: Writer.LogEntry)-> Result<Int,FailureReason> {
         semaphore.signal()
+
+        return .success(0)
     }
 }

@@ -32,32 +32,25 @@ public class ConsoleWriter: OutputStreamWriter {
     ///
     public let format: OutputStreamFormatter
 
-    ///
     /// Default constructor for this writer
     ///
     public convenience init(format: OutputStreamFormatter = TextFormat()) {
         self.init(outputStream: Standard.out, format: format)
     }
 
-    ///
     /// Internal constructor for this writer
     ///
     internal /* @Testable */
     init(outputStream: OutputStream, format: OutputStreamFormatter) {
         self.outputStream = outputStream
         self.format       = format
-        self.mutex         = Mutex(.normal)
+        self.mutex        = Mutex(.normal)
     }
 
+    /// Required write function for the logger
     ///
-    /// Required log function for the logger
-    ///
-    public func write(_ entry: Writer.LogEntry) {
+    public func write(_ entry: Writer.LogEntry) -> Result<Int, FailureReason> {
 
-        guard case .success(let bytes) = format.bytes(from: entry)
-            else { return }
-
-        ///
         /// Note: Since we could be called on any thread in TraceLog direct mode
         /// we protect the outputStream with a low-level mutex.
         ///
@@ -70,16 +63,31 @@ public class ConsoleWriter: OutputStreamWriter {
         ///
         mutex.lock(); defer { mutex.unlock() }
 
-        _ = self.outputStream.write(bytes)
+        return self.outputStream << format.bytes(from: entry)
     }
 
-    ///
     /// Low level mutex for locking print since it's not reentrant.
     ///
     private var mutex: Mutex
 
-    ///
     /// FileHandle to write the output to.
     ///
     private var outputStream: OutputStream
+}
+
+/// Writes the output of the formatter to the OutputStream returning
+/// a Result<Int, FailureReason> for returning from the Writer.write method.
+///
+/// - Returns: Swift Result type suitable for return from a Writer.write operation.
+///
+/// - Note: The ConsoleWriter considers all errors from either the OutputStreamFormatter
+///         or OutputStream as a non-recoverable error.
+///
+///
+private func << (outputStream: OutputStream, result: Result<[UInt8], OutputStreamFormatterError>) -> Result<Int, FailureReason> {
+
+    guard case .success(let bytes) = result
+        else { return result.map({ (_) in 0 }).mapError({ .error($0) }) }
+
+    return outputStream.write(bytes).mapError({ .error($0) })
 }
