@@ -96,7 +96,7 @@ class ValidateExpectedValuesTestWriter: Writer {
 
     /// Required Writer.write function (required by the Writer protocol).
     ///
-    func write(_ entry: Writer.LogEntry) -> Result<Void,FailureReason> {
+    func write(_ entry: Writer.LogEntry) -> Result<Int,FailureReason> {
 
         /// If we are not currently available, return error
         guard available
@@ -109,7 +109,7 @@ class ValidateExpectedValuesTestWriter: Writer {
         /// in our list of tags to filter.
         ///
         guard !filterTags.contains(entry.tag)
-            else { return .success(()) }
+            else { return .success(0) }
 
         /// The index will be the resultCount before incrementing
         let index = self.resultCount
@@ -175,7 +175,7 @@ class ValidateExpectedValuesTestWriter: Writer {
             /// If it matches all required fields increment the fulfillment count
             self.expectation.fulfill()
         }
-        return .success(())
+        return .success(0)
     }
 }
 

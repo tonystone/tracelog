@@ -32,9 +32,9 @@ class SleepyTestWriter: Writer {
         self.sleepTime = sleepTime
     }
 
-    func write(_ entry: Writer.LogEntry) -> Result<Void,FailureReason> {
+    func write(_ entry: Writer.LogEntry) -> Result<Int, FailureReason> {
         usleep(sleepTime)
 
-        return .success(())
+        return .success(0)
     }
 }

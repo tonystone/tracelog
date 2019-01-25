@@ -49,7 +49,7 @@ public class ConsoleWriter: OutputStreamWriter {
 
     /// Required write function for the logger
     ///
-    public func write(_ entry: Writer.LogEntry) -> Result<Void,FailureReason> {
+    public func write(_ entry: Writer.LogEntry) -> Result<Int, FailureReason> {
 
         guard case .success(let bytes) = format.bytes(from: entry)
             else { return .failure(.error("Formatting failed."))  }
