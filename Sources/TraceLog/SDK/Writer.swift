@@ -78,34 +78,5 @@ public enum FailureReason: Error {
 
     /// The writer failed to write (unrecoverable).
     ///
-    case error(String)
-}
-
-/// Result of logging to a Writer.
-///
-public enum WriteResult {
-
-    /// The write was successful.
-    ///
-    case success
-
-    /// The write failed to write for
-    /// the Reason specified.
-    ///
-    /// - Parameter Reason: The reason for the failure.
-    ///
-    case failed(Reason)
-
-    /// The reason for the failure.
-    ///
-    public enum Reason {
-
-        /// The Writer is unavailable for writing.
-        ///
-        case unavailable
-
-        /// The writer failed to write (unrecoverable).
-        ///
-        case error // (Error)
-    }
+    case error(Error)
 }

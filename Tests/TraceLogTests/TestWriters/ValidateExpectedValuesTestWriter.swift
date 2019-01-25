@@ -27,6 +27,10 @@ import TraceLog
 ///
 class ValidateExpectedValuesTestWriter: Writer {
 
+    enum Error: Swift.Error {
+        case testError(String)
+    }
+
     /// The type supplied and stored as an expected log entry.
     ///
     typealias ExpectedLogEntry = (timestamp: Double?, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext?, staticContext: StaticContext?)
@@ -103,7 +107,7 @@ class ValidateExpectedValuesTestWriter: Writer {
             else { return .failure(.unavailable) }
 
         guard !forceWriteError
-            else { return .failure(.error("Forced write error for test.")) }
+            else { return .failure(.error(Error.testError("Forced write error for test."))) }
 
         /// Drop (Filter) any entries that are contained
         /// in our list of tags to filter.
@@ -124,7 +128,7 @@ class ValidateExpectedValuesTestWriter: Writer {
                 else {
                     let message = "\(entry) is not equal to: \(expected)"
                     XCTFail(message)
-                    return .failure(.error(message))
+                    return .failure(.error(Error.testError(message)))
             }
 
             /// Optional comparisons
@@ -138,7 +142,7 @@ class ValidateExpectedValuesTestWriter: Writer {
                     else {
                         let message = "Timestamp \(entry.timestamp) is not equal to: \(expectedTimestamp)"
                         XCTFail(message)
-                        return .failure(.error(message))
+                        return .failure(.error(Error.testError(message)))
                 }
             }
 
@@ -149,7 +153,7 @@ class ValidateExpectedValuesTestWriter: Writer {
                     else {
                         let message = "\(entry.runtimeContext) is not equal to: \(expectedRuntimeContext)"
                         XCTFail(message)
-                        return .failure(.error(message))
+                        return .failure(.error(Error.testError(message)))
                 }
             }
 
@@ -159,7 +163,7 @@ class ValidateExpectedValuesTestWriter: Writer {
                     else {
                         let message = "\(entry.staticContext) is not equal to: \(expectedStaticContext)"
                         XCTFail(message)
-                        return .failure(.error(message))
+                        return .failure(.error(Error.testError(message)))
                 }
 
                 if !ignoreLineInComparison {
@@ -167,7 +171,7 @@ class ValidateExpectedValuesTestWriter: Writer {
                         else {
                             let message = "\(entry.staticContext) is not equal to: \(expectedStaticContext)"
                             XCTFail(message)
-                            return .failure(.error(message))
+                            return .failure(.error(Error.testError(message)))
                     }
                 }
             }

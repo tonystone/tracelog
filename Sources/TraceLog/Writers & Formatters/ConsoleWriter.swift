@@ -51,9 +51,6 @@ public class ConsoleWriter: OutputStreamWriter {
     ///
     public func write(_ entry: Writer.LogEntry) -> Result<Int, FailureReason> {
 
-        guard case .success(let bytes) = format.bytes(from: entry)
-            else { return .failure(.error("Formatting failed."))  }
-
         /// Note: Since we could be called on any thread in TraceLog direct mode
         /// we protect the outputStream with a low-level mutex.
         ///
@@ -66,18 +63,7 @@ public class ConsoleWriter: OutputStreamWriter {
         ///
         mutex.lock(); defer { mutex.unlock() }
 
-        switch self.outputStream.write(bytes) {
-
-            case .success(_):
-
-
-                if written == bytes.count {
-                    return .success(())
-                }
-                return .failure(.error("Only able to write \(written) of \(bytes.count) bytes to OutputStream."))
-            case .failure(let error):
-                return .failure(.error(error.localizedDescription))
-        }
+        return self.outputStream << format.bytes(from: entry)
     }
 
     /// Low level mutex for locking print since it's not reentrant.
@@ -87,4 +73,21 @@ public class ConsoleWriter: OutputStreamWriter {
     /// FileHandle to write the output to.
     ///
     private var outputStream: OutputStream
+}
+
+/// Writes the output of the formatter to the OutputStream returning
+/// a Result<Int, FailureReason> for returning from the Writer.write method.
+///
+/// - Returns: Swift Result type suitable for return from a Writer.write operation.
+///
+/// - Note: The ConsoleWriter considers all errors from either the OutputStreamFormatter
+///         or OutputStream as a non-recoverable error.
+///
+///
+private func << (outputStream: OutputStream, result: Result<[UInt8], OutputStreamFormatterError>) -> Result<Int, FailureReason> {
+
+    guard case .success(let bytes) = result
+        else { return result.map({ (_) in 0 }).mapError({ .error($0) }) }
+
+    return outputStream.write(bytes).mapError({ .error($0) })
 }
