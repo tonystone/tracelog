@@ -152,7 +152,8 @@ public class FileWriter: OutputStreamWriter {
 
 /// Maps an OutputStreamError to a Writer.FailureReason for this class only.
 ///
-private extension FailureReason {
+internal /* @testable */
+extension FailureReason {
 
     init(_ error: OutputStreamError) {
         switch error {
