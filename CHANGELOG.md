@@ -11,11 +11,13 @@ All significant changes to this project will be documented in this file.
 - Added `LogEntry` tuple type to `Writer` defining the formal types that a Writer writes.
 
 #### Added
-- Added `.buffering option for `.async` concurrency modes to allow for buffering when the writer is not available to write to its endpoint.
+- Added `.buffer` option for `.async` concurrency modes to allow for buffering when the writer is not available to write to its endpoint.
 
 #### Changed
-- Required Swift 5 for compilation.
+- Requires Swift 5 for compilation.
+- Changed parameters to `.async` to include options (`.async(options: Set<AsyncOption>)` and  `.async(Writer, options: Set<AsyncOption>)`).
 - Changed `Writer` protocol `log()` method to `write(_ entry: Writer.LogEntry)` to make it easier to process messages by writers and formatters.
+- Changed `Writer` return to `Swift.Result<Int, FailedReason>` to return instructions for TraceLog for buffering and error recovery.
 - Changed `ConsoleWriter` to accept new `OutputStreamFormatter` instances allowing you to customize the output log format (default is `TextFormat`.)
 - Changed `FileWriter` to accept new `OutputStreamFormatter` instances allowing you to customize the output log format (default is `TextFormat`.)
 - Changed `FileWriter` archive file name date format to "yyyyMMdd-HHmm-ss-SSS".
@@ -84,7 +86,7 @@ Released on 2016-10-16.
 
 #### Updated
 - Inline documentation for all public classes and functions.
-- Combined TraceLog.configure func's into one with the same symantics as the 3 previous funcs.
+- Combined TraceLog.configure func's into one with the same symantec as the 3 previous funcs.
 - iOS example application converting it to Swift.
 
 #### Fixed
