@@ -56,7 +56,7 @@ public enum ConcurrencyMode {
     ///
     /// - SeeAlso: `AsyncOption` for details.
     ///
-    case async(options: [AsyncOption])
+    case async(options: Set<AsyncOption>)
 
     /// The default mode used if no mode is specified (.async(options: [])).
     ///
@@ -104,7 +104,7 @@ public enum WriterConcurrencyMode {
     ///
     /// - SeeAlso: `AsyncOption` for details.
     ///
-    case async(Writer, options: [AsyncOption])
+    case async(Writer, options: Set<AsyncOption>)
 }
 
 ///
@@ -165,6 +165,25 @@ public enum AsyncOption {
         /// to expand until the available memory is exhausted.
         ///
         case expand
+    }
+}
+
+extension AsyncOption: Equatable, Hashable {
+
+    public func hash(into hasher: inout Hasher) {
+        switch self {
+        case .buffer(_,_):
+            hasher.combine(1)
+        default: ()
+        }
+    }
+
+    public static func == (lhs: AsyncOption, rhs: AsyncOption) -> Bool {
+        switch (lhs, rhs) {
+        case (.buffer(_,_), .buffer(_,_)): return true
+        default:
+            return false
+        }
     }
 }
 

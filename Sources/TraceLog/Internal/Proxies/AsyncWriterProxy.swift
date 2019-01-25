@@ -43,7 +43,7 @@ internal class AsyncWriterProxy: WriterProxy {
 
     /// Initialize the proxy with the proxied Writer and any options to configure.
     ///
-    internal init(writer: Writer, options: [AsyncOption]) {
+    internal init(writer: Writer, options: Set<AsyncOption>) {
         self.writer = writer
         self.queue  = DispatchQueue(label: "tracelog.write.queue.\(String(describing: writer.self))")
 
