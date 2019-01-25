@@ -65,10 +65,10 @@ public protocol Writer {
     ///
     /// - SeeAlso: LogEntry
     ///
-    func write(_ entry: LogEntry)  -> Result<Int,FailureReason>
+    func write(_ entry: LogEntry)  -> Result<Int, FailureReason>
 }
 
-/// The reason for the failure.
+/// The reason for the Writer.write failure.
 ///
 public enum FailureReason: Error {
 
