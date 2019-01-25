@@ -59,6 +59,10 @@ public protocol Writer {
     ///
     /// - Parameter entry: A LogEntry type to write to the output.
     ///
+    /// - Returns: An Int indicating the actualy number of bytes written to the output
+    ///            after conversion of the LogEntry.  This is the actualy number of bytes
+    ///            (ansfer any encoding) not the number of visible characters.
+    ///
     /// - SeeAlso: LogEntry
     ///
     func write(_ entry: LogEntry)  -> Result<Int,FailureReason>
