@@ -29,13 +29,13 @@ internal enum Standard {
 
     /// Standard output (stdout)
     ///
-    static var out: FileOutputStream {  // FIXME: change to OutputStream
+    static var out: OutputStream {
         return FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false)
     }
 
     /// Standard error (stderr)
     ///
-    static var error: FileOutputStream {  // FIXME: change to OutputStream
+    static var error: OutputStream {
         return FileOutputStream(fileDescriptor: STDERR_FILENO, closeFd: false)
     }
 }

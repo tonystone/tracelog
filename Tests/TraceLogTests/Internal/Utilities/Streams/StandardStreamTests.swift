@@ -30,12 +30,4 @@ class StandardStreamTests: XCTestCase {
     func testErrorIsOutputStream() {
         XCTAssertTrue((Standard.error as Any) is TraceLog.OutputStream)
     }
-
-    func testOutPosition() {
-        XCTAssertEqual(Standard.out.position, 0)
-    }
-
-    func testErrorPosition() {
-        XCTAssertEqual(Standard.error.position, 0)
-    }
 }
