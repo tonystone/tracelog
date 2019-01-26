@@ -26,11 +26,6 @@ import Foundation
 ///
 internal protocol OutputStream {
 
-    /// The current write position or number of bytes
-    /// written to the stream.
-    ///
-    var position: UInt64 { get }
-
     /// Write the byte block to the output.
     ///
     /// - Parameter bytes: An array of UInt8 byes to output to the stream.
