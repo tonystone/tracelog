@@ -127,7 +127,7 @@ public class FileWriter: OutputStreamWriter {
 
         /// Does the file need to be rotated?
         if self.file.stream.position + UInt64(bytes.count) >= file.config.maxSize {
-            self.file = rotate(file: self.file, fallbackStream: Standard.out, dateFormatter: self.fileNameDateFormatter)
+            self.file = rotate(file: self.file, fallbackStream: FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false), dateFormatter: self.fileNameDateFormatter)
         }
 
         /// Write message to log
