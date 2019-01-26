@@ -167,6 +167,60 @@ class FileOutputStreamTests: XCTestCase {
         }
     }
 
+    func testThatConcurrentMultipleWritesDontProduceInterleaving() throws {
+
+        try self._testInterleaving(inputString: "This text string should not be interleaved and should have a newline at the end.")
+    }
+
+    func testThatConcurrentMultipleWritesDontProduceInterleavingWithLargeWrites() throws {
+
+        let letters = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        let length  = 1024 * 1024 + 1
+
+        let input = String((0...length).compactMap{ _ in letters.randomElement() })
+
+        try self._testInterleaving(inputString: input, writes: 10)
+    }
+
+    func _testInterleaving(inputString: String, workers: Int = 10, writes: Int = 5000, file: StaticString = #file, line: UInt = #line) throws {
+
+        let inputURL = self.temporaryFileURL()
+        defer { self.removeFileIfExists(url: inputURL) }
+
+
+        let stream = try FileOutputStream(url: inputURL, options: [.create])
+
+        /// Note: 10 iterations seems to be the amount of concurrent
+        ///       runs Dispatch will give us so we limit it to that and
+        ///       instead have each block write many times.
+        ///
+        DispatchQueue.concurrentPerform(iterations: workers) { (iteration) in
+            for _ in 0..<writes {
+                /// Random delay between writes
+                usleep(UInt32.random(in: 1...1000))
+
+                _ = stream.write(Array("\(inputString)\n".utf8))
+            }
+        }
+
+        let reader = try TextFileLineReader(url: inputURL, encoding: .utf8)
+
+        var interleaved = 0
+        var lineCount   = 0
+
+        /// Loop through each line looking for interleaved lines.
+        while let line = reader.next() {
+            if line.count > 0 {
+                lineCount += 1
+                if line != inputString {
+                    interleaved += 1
+                }
+            }
+        }
+        XCTAssertEqual(lineCount, workers * writes, file: file, line: line)
+        XCTAssertEqual(interleaved, 0, "File contains \(interleaved) lines.", file: file, line: line)
+    }
+
     func testWriteThrowsOnAClosedFileDescriptor() throws {
         let inputBytes = Array<UInt8>(repeating: 128, count: 10)
 

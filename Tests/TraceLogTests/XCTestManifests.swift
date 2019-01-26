@@ -138,6 +138,8 @@ extension FileOutputStreamTests {
         ("testPositionReturnsZeroWhenGivenAnInvalidFD", testPositionReturnsZeroWhenGivenAnInvalidFD),
         ("testtestPositionReturnsZeroWhenAppliedToStandardError", testtestPositionReturnsZeroWhenAppliedToStandardError),
         ("testtestPositionReturnsZeroWhenAppliedToStandardOut", testtestPositionReturnsZeroWhenAppliedToStandardOut),
+        ("testThatConcurrentMultipleWritesDontProduceInterleaving", testThatConcurrentMultipleWritesDontProduceInterleaving),
+        ("testThatConcurrentMultipleWritesDontProduceInterleavingWithLargeWrites", testThatConcurrentMultipleWritesDontProduceInterleavingWithLargeWrites),
         ("testThatConcurrentMultipleWritesDontProducePartialWrites", testThatConcurrentMultipleWritesDontProducePartialWrites),
         ("testWritePerformance", testWritePerformance),
         ("testWriteThrowsOnAClosedFileDescriptor", testWriteThrowsOnAClosedFileDescriptor),
