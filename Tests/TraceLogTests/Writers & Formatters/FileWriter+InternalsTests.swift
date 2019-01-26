@@ -49,9 +49,9 @@ class FileWriterInternalsTests: XCTestCase {
     }
 
     func testOpen() {
-        let input = open(fileURL: URL(fileURLWithPath: "\(testDirectory)/test.log"), fallbackStream: Standard.out)
+        let input = open(fileURL: URL(fileURLWithPath: "\(testDirectory)/test.log"), fallbackStream: FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false))
 
-        XCTAssertNotEqual(input, Standard.out)
+        XCTAssertNotEqual(input, FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false))
 
         close(fileStream: input)
     }
@@ -64,28 +64,28 @@ class FileWriterInternalsTests: XCTestCase {
         }
 
         /// It should not fallback to the fallback stream:
-        XCTAssertNotEqual(open(fileURL: URL(fileURLWithPath: "\(testDirectory)/test.log"), fallbackStream: Standard.out), Standard.out)
+        XCTAssertNotEqual(open(fileURL: URL(fileURLWithPath: "\(testDirectory)/test.log"), fallbackStream: FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false)), FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false))
         XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/test.log"))
     }
 
     func testOpenFailure() throws {
 
         /// It should be the fallback file stream:
-        XCTAssertEqual(open(fileURL: URL(fileURLWithPath: "file://dev/null"), fallbackStream: Standard.out), Standard.out)
+        XCTAssertEqual(open(fileURL: URL(fileURLWithPath: "file://dev/null"), fallbackStream: FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false)), FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false))
     }
 
     ///
     /// Test rotation of a file.
     ///
     func testRotate() throws {
-        let stream = open(fileURL: URL(fileURLWithPath: "\(testDirectory)/test.log"), fallbackStream: Standard.out)
+        let stream = open(fileURL: URL(fileURLWithPath: "\(testDirectory)/test.log"), fallbackStream: FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false))
 
         let logFile: FileWriter.LogFile = (stream: stream, config: FileWriter.FileConfiguration(name: "test.log", directory: testDirectory))
 
         ///
         /// Note: This tests ensures it does not fallback to the fallback stream:r.
         ///
-        XCTAssertNotEqual(rotate(file: logFile, fallbackStream: Standard.out, dateFormatter: FileWriter.Default.fileNameDateFormatter).stream, Standard.out)
+        XCTAssertNotEqual(rotate(file: logFile, fallbackStream: FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false), dateFormatter: FileWriter.Default.fileNameDateFormatter).stream, FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false))
 
        /// And of course we make sure the file was created.
         XCTAssertTrue(try archiveExists(fileName: "test", fileExt: "log", directory: testDirectory))
