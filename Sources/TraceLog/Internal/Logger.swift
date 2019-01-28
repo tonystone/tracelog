@@ -92,14 +92,21 @@ private extension Logger {
     ///
     private class RuntimeContextImpl: RuntimeContext {
 
+        /// Cache the process so it does not have to
+        /// be gotten each time we create a new
+        /// instance.  The process will not change
+        /// during program execution so we only need
+        /// to get this once.
+        ///
+        private static let process  = ProcessInfo.processInfo
+
         internal let processName: String
         internal let processIdentifier: Int
         internal let threadIdentifier: UInt64
 
         internal init() {
-            let process  = ProcessInfo.processInfo
-            self.processName = process.processName
-            self.processIdentifier = Int(process.processIdentifier)
+            self.processName       = RuntimeContextImpl.process.processName
+            self.processIdentifier = Int(RuntimeContextImpl.process.processIdentifier)
 
             #if os(iOS) || os(macOS) || os(watchOS) || os(tvOS)
                 var threadID: UInt64 = 0
