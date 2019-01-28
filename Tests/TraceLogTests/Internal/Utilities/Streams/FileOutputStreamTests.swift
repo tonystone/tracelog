@@ -25,12 +25,6 @@ class FileOutputStreamTests: XCTestCase {
 
     // MARK: - Initialization Tests
 
-    /// Test that a FileOutputStream can be creates using a file descriptor.
-    ///
-    func testInitWithFileDescriptor() {
-        XCTAssertNotNil(FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false))
-    }
-
     /// Test that a FileOutputStream can be creates using a URL.
     ///
     func testInitWithURL() throws {
@@ -73,20 +67,6 @@ class FileOutputStreamTests: XCTestCase {
         }
 
         XCTAssertEqual(stream.position, 10)
-    }
-
-    /// Test that a FileOutputStream.position returns 0 when given an invalid file descriptor.
-    ///
-    func testPositionReturnsZeroWhenGivenAnInvalidFD() {
-        XCTAssertEqual(FileOutputStream(fileDescriptor: -1, closeFd: false).position, 0)
-    }
-
-    func testtestPositionReturnsZeroWhenAppliedToStandardOut() {
-        XCTAssertEqual(FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false).position, 0)
-    }
-
-    func testtestPositionReturnsZeroWhenAppliedToStandardError() {
-        XCTAssertEqual(FileOutputStream(fileDescriptor: STDERR_FILENO, closeFd: false).position, 0)
     }
 
     // MARK: write tests
