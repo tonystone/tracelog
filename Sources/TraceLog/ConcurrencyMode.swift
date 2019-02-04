@@ -62,9 +62,14 @@ public enum ConcurrencyMode {
     ///
     case `default`
 
-    /// Internal, don't use directly.
+    /// - Warning: Internal, don't use directly. Use func `.async(options:)` instead.
+    ///            This case will be removed at the end of the beta.
     ///
-    @available(*, deprecated, message: "Use func `.async(options:)` instead.This case will be removed at the end of the beta.")
+    /// - Remark: This is only here to allow us to have a beta and still provide the final public interface
+    ///           for `.async()` with default parameters. We currently have no way of providing default parameters to enum
+    ///           cases until Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md)
+    ///           is implemented.
+    ///
     case _async(options: Set<AsyncOption>)
 }
 
@@ -112,9 +117,14 @@ public enum WriterConcurrencyMode {
         return ._async(writer, options: options)
     }
 
-    /// Internal, don't use directly.
+    /// - Warning: Internal, don't use directly. Use func `.async(_:options:)` instead.
+    ///            This case will be removed at the end of the beta.
     ///
-    @available(*, deprecated, message: "Use func `.async(writer:options:)` instead. This case will be removed at the end of the beta.")
+    /// - Remark: This is only here to allow us to have a beta and still provide the final public interface
+    ///           for `.async()` with default parameters. We currently have no way of providing default parameters to enum
+    ///           cases until Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md)
+    ///           is implemented.
+    ///
     case _async(Writer, options: Set<AsyncOption>)
 }
 
@@ -180,9 +190,14 @@ public enum AsyncOption {
         case expand
     }
 
-    /// Internal, don't use directly.
+    /// - Warning: Internal, don't use directly. Use func `.buffer(writeInterval:strategy:)` instead.
+    ///            This case will be removed at the end of the beta.
     ///
-    @available(*, deprecated, message: "Use func `.async(writer:options:)` instead. This case will be removed at the end of the beta.")
+    /// - Remark: This is only here to allow us to have a beta and still provide the final public interface
+    ///           for `.buffer(writeInterval:strategy:)` with default parameters. We currently have no way of providing default parameters to enum
+    ///           cases until Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md)
+    ///           is implemented.
+    ///
     case _buffer(writeInterval: DispatchTimeInterval, strategy: BufferStrategy)
 }
 
