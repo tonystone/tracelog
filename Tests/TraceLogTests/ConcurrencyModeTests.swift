@@ -29,6 +29,78 @@ class ConcurrencyModeTests: XCTestCase {
         }
     }
 
+    // MARK: - Public Interface Compatibility Tests
+
+    /// Note: These tests failing to compile or return the correct values
+    ///       indicates that a change has been made to the interface that
+    ///       is not backward compatible.  This test is meant to raise
+    ///       that awareness of that so that proper documentation is
+    ///       created for the users of the library.
+
+    /// Simulate the user creating an instance without passing parameters
+    /// expecting to get the default parameters and behavior.
+    ///
+    func testConcurrencyModeDirectDefaultParameters() {
+        guard case ConcurrencyMode.direct = ConcurrencyMode.direct
+            else { XCTFail(); return }
+    }
+
+    /// Simulate the user creating an instance without passing parameters
+    /// expecting to get the default parameters and behavior.
+    ///
+    func testConcurrencyModeSyncDefaultParameters() {
+        guard case ConcurrencyMode.sync = ConcurrencyMode.sync
+            else { XCTFail(); return }
+    }
+
+    /// Simulate the user creating an instance without passing parameters
+    /// expecting to get the default parameters and behavior.
+    ///
+    func testConcurrencyModeAsyncDefaultParameters() {
+        guard case ConcurrencyMode._async(options: []) = ConcurrencyMode.async()
+            else { XCTFail(); return }
+    }
+
+    /// Simulate the user creating an instance without passing parameters
+    /// expecting to get the default parameters and behavior.
+    ///
+    func testWriterConcurrencyModeDirectDefaultParameters() {
+        guard case WriterConcurrencyMode.direct(let writer) = WriterConcurrencyMode.direct(TestWriter())
+            else { XCTFail(); return }
+
+        XCTAssertTrue(writer is TestWriter)
+    }
+
+    /// Simulate the user creating an instance without passing parameters
+    /// expecting to get the default parameters and behavior.
+    ///
+    func testWriterConcurrencyModeSyncDefaultParameters() {
+        guard case WriterConcurrencyMode.sync(let writer) = WriterConcurrencyMode.sync(TestWriter())
+            else { XCTFail(); return }
+
+        XCTAssertTrue(writer is TestWriter)
+    }
+
+    /// Simulate the user creating an instance without passing parameters
+    /// expecting to get the default parameters and behavior.
+    ///
+    func testWriterConcurrencyModeAsyncDefaultParameters() {
+        guard case WriterConcurrencyMode._async(let writer, options: []) = WriterConcurrencyMode.async(TestWriter())
+            else { XCTFail(); return }
+
+        XCTAssertTrue(writer is TestWriter)
+    }
+
+    /// Simulate the user creating an instance without passing parameters
+    /// expecting to get the default parameters and behavior.
+    ///
+    func testAsyncOptionBufferDefaultParameters() {
+        guard case AsyncOption._buffer(writeInterval: .seconds(60), .dropTail(at: 1000)) = AsyncOption.buffer()
+            else { XCTFail(); return }
+    }
+
+    // MARK: - Test AsyncOption equals
+
     func testAsyncOptionEquals() {
         XCTAssertEqual(AsyncOption.buffer(writeInterval: .seconds(1), strategy: .expand), AsyncOption.buffer(writeInterval: .milliseconds(23), strategy: .dropHead(at: 1)))
     }
@@ -50,9 +122,9 @@ class ConcurrencyModeTests: XCTestCase {
     }
 
     func testWriterModeAsync() {
-        let input: Set<AsyncOption> =  [.buffer(writeInterval: .seconds(1), strategy: .expand)]
+        let input: Set<AsyncOption> = [.buffer(writeInterval: .seconds(1), strategy: .expand)]
 
-        guard case WriterConcurrencyMode.async(let result, let options) = ConcurrencyMode.async(options: input).writerMode(for:  TestWriter())
+        guard case WriterConcurrencyMode._async(let result, let options) = ConcurrencyMode.async(options: input).writerMode(for:  TestWriter())
             else { XCTFail(); return }
 
         XCTAssertTrue(result is TestWriter)

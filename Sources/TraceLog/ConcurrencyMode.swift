@@ -48,19 +48,29 @@ public enum ConcurrencyMode {
     ///
     /// - Parameter options: An array specifying the optional features to configure for each async writer that gets added.
     ///
-    ///
     /// - Remark: Once Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md) is implemented
-    ///           this will gain a default value allowing for more straightforward default behavior.
-    ///           Making the signature `async(options: [AsyncOption] = [])` so that just `.async()`
-    ///           needs to be passed.
+    ///           this will func will be changed to a case in the enum with default values.  We must
+    ///           use a func now to work around the lack of defaults on enums.
     ///
     /// - SeeAlso: `AsyncOption` for details.
     ///
-    case async(options: Set<AsyncOption>)
+    public static func async(options: Set<AsyncOption> = []) -> ConcurrencyMode {
+        return ._async(options: options)
+    }
 
     /// The default mode used if no mode is specified (.async(options: [])).
     ///
     case `default`
+
+    /// - Warning: Internal, don't use directly. Use func `.async(options:)` instead.
+    ///            This case will be removed at the end of the beta.
+    ///
+    /// - Remark: This is only here to allow us to have a beta and still provide the final public interface
+    ///           for `.async()` with default parameters. We currently have no way of providing default parameters to enum
+    ///           cases until Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md)
+    ///           is implemented.
+    ///
+    case _async(options: Set<AsyncOption>)
 }
 
 /// Mode to run a specific Writer in. Used to wrap a writer to change the specific mode it operates in.
@@ -98,13 +108,24 @@ public enum WriterConcurrencyMode {
     ///     - options: An array specifying the optional features to configure for the `writer`.
     ///
     /// - Remark: Once Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md) is implemented
-    ///           this will gain a default value allowing for more straightforward default behavior.
-    ///           Making the signature `async(Writer, options: [AsyncOption] = [])` so that just
-    ///           `.async(Writer)` needs to be passed.
+    ///           this will func will be changed to a case in the enum with default values.  We must
+    ///           use a func now to work around the lack of defaults on enums.
     ///
     /// - SeeAlso: `AsyncOption` for details.
     ///
-    case async(Writer, options: Set<AsyncOption>)
+    public static func async(_ writer: Writer, options: Set<AsyncOption> = []) -> WriterConcurrencyMode {
+        return ._async(writer, options: options)
+    }
+
+    /// - Warning: Internal, don't use directly. Use func `.async(_:options:)` instead.
+    ///            This case will be removed at the end of the beta.
+    ///
+    /// - Remark: This is only here to allow us to have a beta and still provide the final public interface
+    ///           for `.async()` with default parameters. We currently have no way of providing default parameters to enum
+    ///           cases until Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md)
+    ///           is implemented.
+    ///
+    case _async(Writer, options: Set<AsyncOption>)
 }
 
 ///
@@ -135,7 +156,9 @@ public enum AsyncOption {
     ///     - writeInternal: if the writer is currently buffering, TraceLog will periodically check whether the writer is available and write if it is.  This is the time frame between checks.
     ///     - strategy: The buffer strategy to use when buffering.
     ///
-    case buffer(writeInterval: DispatchTimeInterval, strategy: BufferStrategy)
+    public static func buffer(writeInterval: DispatchTimeInterval = .seconds(60), strategy: BufferStrategy = .dropTail(at: 1000)) -> AsyncOption {
+        return ._buffer(writeInterval: writeInterval, strategy: strategy)
+    }
 
     /// A BufferStrategy is the action the internal
     /// buffer will take when a new log entry is logged
@@ -166,20 +189,30 @@ public enum AsyncOption {
         ///
         case expand
     }
+
+    /// - Warning: Internal, don't use directly. Use func `.buffer(writeInterval:strategy:)` instead.
+    ///            This case will be removed at the end of the beta.
+    ///
+    /// - Remark: This is only here to allow us to have a beta and still provide the final public interface
+    ///           for `.buffer(writeInterval:strategy:)` with default parameters. We currently have no way of providing default parameters to enum
+    ///           cases until Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md)
+    ///           is implemented.
+    ///
+    case _buffer(writeInterval: DispatchTimeInterval, strategy: BufferStrategy)
 }
 
 extension AsyncOption: Equatable, Hashable {
 
     public func hash(into hasher: inout Hasher) {
         switch self {
-        case .buffer(_,_):
+        case ._buffer(_,_):
             hasher.combine(1)
         }
     }
 
     public static func == (lhs: AsyncOption, rhs: AsyncOption) -> Bool {
         switch (lhs, rhs) {
-        case (.buffer(_,_), .buffer(_,_)): return true
+        case (._buffer(_,_), ._buffer(_,_)): return true
         }
     }
 }
@@ -193,10 +226,10 @@ internal extension ConcurrencyMode {
     ///
     func writerMode(for writer: Writer) -> WriterConcurrencyMode {
         switch self {
-            case .direct:              return .direct(writer)
-            case .sync:                return .sync  (writer)
-            case .async(let options):  return .async(writer, options: options)
-            default:                   return .async(writer, options: [])
+            case .direct:               return .direct(writer)
+            case .sync:                 return .sync  (writer)
+            case ._async(let options):  return ._async(writer, options: options)
+            default:                    return ._async(writer, options: [])
         }
     }
 }
@@ -208,9 +241,9 @@ internal extension WriterConcurrencyMode {
 
     func proxy() -> WriterProxy {
         switch self {
-            case .direct(let writer):              return DirectWriterProxy(writer: writer)
-            case .sync  (let writer):              return SyncWriterProxy  (writer: writer)
-            case .async (let writer, let options): return AsyncWriterProxy (writer: writer, options: options)
+            case .direct(let writer):               return DirectWriterProxy(writer: writer)
+            case .sync  (let writer):               return SyncWriterProxy  (writer: writer)
+            case ._async (let writer, let options): return AsyncWriterProxy (writer: writer, options: options)
 
         }
     }
