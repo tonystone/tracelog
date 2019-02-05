@@ -18,7 +18,6 @@
 ///  Created by Tony Stone on 1/24/19.
 ///
 import XCTest
-import TraceLogTestHarness
 
 @testable import TraceLog
 
