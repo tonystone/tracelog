@@ -167,24 +167,6 @@ class FileWriterTests: XCTestCase {
     }
 }
 
-extension FileWriterTests {
-    static var allTests: [(String, (FileWriterTests) -> () throws -> Void)] {
-        return [
-            ("testErrorCreateFailedDescription", testErrorCreateFailedDescription),
-            ("testErrorFileDoesNotExistDescription", testErrorFileDoesNotExistDescription),
-            ("testRotationOnInit", testRotationOnInit),
-            ("testRotationOnWrite", testRotationOnWrite),
-            ("testLogError", testLogError),
-            ("testLogWarning", testLogWarning),
-            ("testLogInfo", testLogInfo),
-            ("testLogTrace1", testLogTrace1),
-            ("testLogTrace2", testLogTrace2),
-            ("testLogTrace3", testLogTrace3),
-            ("testLogTrace4", testLogTrace4)
-        ]
-    }
-}
-
 ///
 /// Logging through TraceLog to the Logger
 ///

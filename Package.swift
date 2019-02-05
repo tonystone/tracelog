@@ -27,9 +27,7 @@ let package = Package(
         .target(name: "TraceLog", dependencies: [], path: "Sources/TraceLog"),
 
         /// Tests
-        .testTarget(name: "TraceLogTestHarness",      dependencies: ["TraceLog"],                        path: "Tests/TraceLogTestHarness"),
-        .testTarget(name: "TraceLogTestHarnessTests", dependencies: ["TraceLog", "TraceLogTestHarness"], path: "Tests/TraceLogTestHarnessTests"),
-        .testTarget(name: "TraceLogTests",            dependencies: ["TraceLog", "TraceLogTestHarness"], path: "Tests/TraceLogTests")
+        .testTarget(name: "TraceLogTests", dependencies: ["TraceLog"], path: "Tests/TraceLogTests")
     ],
     swiftLanguageVersions: [.v4_2]
 )
@@ -39,12 +37,12 @@ var productTargets = ["TraceLog"]
 ///
 /// These platforms can also support Objective-C so we create a module for it.
 ///
-#if canImport(ObjectiveC)
-    package.targets.append(    .target(name: "TraceLogObjC",      dependencies: ["TraceLog"],     path: "Sources/TraceLogObjC"))
-    package.targets.append(.testTarget(name: "TraceLogObjCTests", dependencies: ["TraceLogObjC"], path: "Tests/TraceLogObjCTests"))
+// #if canImport(ObjectiveC)
+//     package.targets.append(    .target(name: "TraceLogObjC",      dependencies: ["TraceLog"],     path: "Sources/TraceLogObjC"))
+//     package.targets.append(.testTarget(name: "TraceLogObjCTests", dependencies: ["TraceLogObjC"], path: "Tests/TraceLogObjCTests"))
 
-    productTargets.append("TraceLogObjC")
-#endif
+//     productTargets.append("TraceLogObjC")
+// #endif
 
 /// Main products section
 package.products.append(.library(name: "TraceLog", type: .dynamic, targets: productTargets))
