@@ -68,7 +68,7 @@ class BlockTimerTests: XCTestCase {
         }
         timer.resume()
 
-        /// Mske sure it fires
+        /// Make sure it fires
         self.wait(for: [fired], timeout: 1)
 
         /// Now make sure we can suspend again.
@@ -82,7 +82,7 @@ class BlockTimerTests: XCTestCase {
 
         timer.suspend()
 
-        /// Mske sure it does not fire.
+        /// Make sure it does not fire.
         ///
         /// Note that the wait time will wait 10 cycles.
         ///

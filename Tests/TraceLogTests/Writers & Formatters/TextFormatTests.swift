@@ -466,7 +466,7 @@ class TextFormatTests: XCTestCase {
     func testTemplateDefault() {
         let format = TextFormat(terminator: "")
 
-        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(), staticContext: TestStaticContext())
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Test message.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
         let expected: String       = "\(TextFormatTests.dateFormatter.string(from: Date(timeIntervalSince1970: input.timestamp))) TestProcess[100:1100] INFO: <TestTag> Test message."
 
         guard case .success(let bytes) = format.bytes(from: input)

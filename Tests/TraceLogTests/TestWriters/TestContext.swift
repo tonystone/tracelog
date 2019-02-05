@@ -19,6 +19,7 @@
 ///
 import TraceLog
 
+import Foundation
 
 internal class TestRuntimeContext: RuntimeContext {
 
@@ -26,10 +27,25 @@ internal class TestRuntimeContext: RuntimeContext {
     internal let processIdentifier: Int
     internal let threadIdentifier: UInt64
 
-    internal init(processName: String = "TestProcess", processIdentifier: Int = 100, threadIdentifier: UInt64 = 1100) {
-        self.processName       = processName
+
+    convenience init() {
+        let process = ProcessInfo.processInfo
+
+        #if os(iOS) || os(macOS) || os(watchOS) || os(tvOS)
+            var threadID: UInt64 = 0
+            pthread_threadid_np(pthread_self(), &threadID)
+            let platformIdentifier = threadID
+        #else   // FIXME: Linux does not support the pthread_threadid_np function, gettid in s syscall must be used.
+            let platformIdentifier = 0
+        #endif
+
+        self.init(processName: process.processName, processIdentifier: Int(process.processIdentifier), threadIdentifier: UInt64(platformIdentifier))
+    }
+
+    init(processName: String = "TestProcess", processIdentifier: Int = 100, threadIdentifier: UInt64 = 1100) {
+        self.processName = processName
         self.processIdentifier = processIdentifier
-        self.threadIdentifier  = threadIdentifier
+        self.threadIdentifier = threadIdentifier
     }
 }
 
