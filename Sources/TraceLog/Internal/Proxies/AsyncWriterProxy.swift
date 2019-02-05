@@ -51,7 +51,7 @@ internal class AsyncWriterProxy: WriterProxy {
             switch option {
 
             /// Enable buffering
-            case .buffer(let writeInterval, let strategy):
+            case ._buffer(let writeInterval, let strategy):
 
                 let writeTimer = BlockTimer(deadline: .now() + writeInterval, repeating: writeInterval, queue: self.queue)
                 writeTimer.handler = { [weak self] in

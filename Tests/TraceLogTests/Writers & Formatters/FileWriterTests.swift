@@ -18,7 +18,6 @@
 ///  Created by Tony Stone on 6/27/18.
 ///
 import XCTest
-import TraceLogTestHarness
 
 @testable import TraceLog
 
@@ -164,24 +163,6 @@ class FileWriterTests: XCTestCase {
 
     func testLogTrace4() {
         testHarness(for: type(of: self))?.testLog(for: .trace4, validationBlock: testEqual)
-    }
-}
-
-extension FileWriterTests {
-    static var allTests: [(String, (FileWriterTests) -> () throws -> Void)] {
-        return [
-            ("testErrorCreateFailedDescription", testErrorCreateFailedDescription),
-            ("testErrorFileDoesNotExistDescription", testErrorFileDoesNotExistDescription),
-            ("testRotationOnInit", testRotationOnInit),
-            ("testRotationOnWrite", testRotationOnWrite),
-            ("testLogError", testLogError),
-            ("testLogWarning", testLogWarning),
-            ("testLogInfo", testLogInfo),
-            ("testLogTrace1", testLogTrace1),
-            ("testLogTrace2", testLogTrace2),
-            ("testLogTrace3", testLogTrace3),
-            ("testLogTrace4", testLogTrace4)
-        ]
     }
 }
 

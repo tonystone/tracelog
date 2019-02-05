@@ -94,7 +94,7 @@ public class TestHarness<T: Reader> {
 
         let timestamp = Date().timeIntervalSince1970
 
-        let staticContext  = TestStaticContext(file, function, line)
+        let staticContext  = TestStaticContext(file: file, function: function, line: line)
         let runtimeContext = TestRuntimeContext()
 
         let tag     = tagOrNil     ?? "TestTag"
@@ -176,48 +176,5 @@ class _AnyReaderBase<T: Writer>: Reader {
 
     func logEntry(for writer: T, timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> TestLogEntry? {
         return nil
-    }
-}
-
-///
-/// StaticContext structure for tests which captures the context for each test func.
-///
-private struct TestStaticContext: StaticContext {
-    public let file: String
-    public let function: String
-    public let line: Int
-
-    ///
-    /// Init `self` capturing the static environment of the caller.
-    ///
-    init(_ file: String = #file, _ function: String = #function, _ line: Int = #line) {
-        self.file       = file
-        self.function   = function
-        self.line       = line
-    }
-}
-
-///
-/// RuntimeContext structure for tests.
-///
-private struct TestRuntimeContext: RuntimeContext {
-
-    public let processName: String
-    public let processIdentifier: Int
-    public let threadIdentifier: UInt64
-
-    init(_ threadIdentifier: UInt64 = 0) {
-        let process  = ProcessInfo.processInfo
-        self.processName = process.processName
-        self.processIdentifier = Int(process.processIdentifier)
-
-        #if os(iOS) || os(macOS) || os(watchOS) || os(tvOS)
-            var threadID: UInt64 = 0
-
-            pthread_threadid_np(pthread_self(), &threadID)
-            self.threadIdentifier = threadID
-        #else   // FIXME: Linux does not support the pthread_threadid_np function, gettid in s syscall must be used.
-            self.threadIdentifier = 0
-        #endif
     }
 }
