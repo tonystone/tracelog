@@ -94,11 +94,14 @@ public enum FileStrategy {
         case age(days: Int)
     }
 
-    /// Internal, don't use directly.
+    /// - Warning: Internal, don't use directly. Use the versions with no underscore prefix
+    ///            (`.fixed` and `.rotate`) instead. these cases will be removed at the end of the beta.
     ///
-    @available(*, deprecated, message: "Use func `fixed(fileName:)` instead. This case will be removed at the end of the beta.")
+    /// - Remark: These are only here to allow us to have a beta and still provide the final
+    ////          public interface with default parameters. We currently have no way of providing
+    ///           default parameters to enum cases until Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md)
+    ///           is implemented.
     case _fixed(fileName: String)
-    @available(*, deprecated, message: "Use func `rotate(at:template:)` instead. This case will be removed at the end of the beta.")
     case _rotate(at: Set<RotateOption>, template: String)
 }
 
