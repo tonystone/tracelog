@@ -21,7 +21,9 @@ import XCTest
 
 @testable import TraceLog
 
-private let testDirectory = "FileWriterTestsTmp"
+private var testDirectory: URL = {
+    return URL(fileURLWithPath: FileManager.default.currentDirectoryPath).appendingPathComponent("FileWriterTestsTmp")
+}()
 
 private let testEqual: (FileWriter, TestLogEntry?, TestLogEntry) -> Void = { writer, result, expected in
 
@@ -42,97 +44,83 @@ private let testEqual: (FileWriter, TestLogEntry?, TestLogEntry) -> Void = { wri
 ///
 class FileWriterTests: XCTestCase {
 
-    override func setUp() {
-        do {
-            /// Create the test directory
-            try FileManager.default.createDirectory(atPath: testDirectory, withIntermediateDirectories: false)
-        } catch {
-            XCTFail("Failed to cleanup log files before test: \(error).")
-        }
-    }
-
     override func tearDown() {
         do {
-            try FileManager.default.removeItem(atPath: testDirectory)
+            guard FileManager.default.fileExists(atPath: testDirectory.path)
+                else { return }
+            
+            try FileManager.default.removeItem(at: testDirectory)
         } catch {
-            XCTFail("Failed to cleanup log files before test: \(error).")
+            XCTFail("Failed to cleanup log files after test: \(error).")
         }
-    }
-
-    // MARK: - Error
-
-    func testErrorCreateFailedDescription() {
-        let input = FileWriter.Error.createFailed("Test createFailed message")
-        let expected = "Test createFailed message"
-
-        XCTAssertEqual(input.description, expected)
-    }
-
-    func testErrorFileDoesNotExistDescription() {
-        let input = FileWriter.Error.fileDoesNotExist("Test fileDoesNotExist message")
-        let expected = "Test fileDoesNotExist message"
-
-        XCTAssertEqual(input.description, expected)
     }
 
     // MARK: - Init method tests
+
+    func testInitWithDefaults() throws {
+
+        let writer = try FileWriter(directory: testDirectory)
+
+        /// Test for file at location
+        XCTAssertTrue(FileManager.default.fileExists(atPath: writer.currentFileURL.path))
+    }
 
     ///
     /// A new log file should be created for each init.
     ///
     func testRotationOnInit() throws {
 
-        let type    = String(describing: FileWriterTests.self)
-        let function = (#function).replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
-
-        let fileName  = "\(type).\(function)"
-        let fileExt   = "log"
-
         let fileManager = FileManager.default
 
-        _  = try FileWriter(fileConfiguration: FileWriter.FileConfiguration(name: "\(fileName).\(fileExt)", directory: testDirectory))
+        var writer = try FileWriter(directory: testDirectory, strategy: .rotate(at: [.startup]))
+        let firstFileLocation = writer.currentFileURL
 
-        /// Test for fileName + fileExt
+        /// Test for file at location
+        XCTAssertTrue(fileManager.fileExists(atPath: firstFileLocation.path))
 
-        XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/\(fileName).\(fileExt)"))
+        /// sleep a short time to ensure the clock changes
+        usleep(500)
 
-        _  = try FileWriter(fileConfiguration: FileWriter.FileConfiguration(name: "\(fileName).\(fileExt)", directory: testDirectory))
+        writer  = try FileWriter(directory: testDirectory, strategy: .rotate(at: [.startup]))
+        let secondFileLocation = writer.currentFileURL
 
-        /// Test for fileName + fileExt and fileName + "-" + date + fileExt
+        /// Test for both files and that they are not the same
 
-        XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/\(fileName).\(fileExt)"))
-        XCTAssertTrue(try archiveExists(fileName: fileName, fileExt: fileExt, directory: testDirectory))
+        XCTAssertNotEqual(firstFileLocation.path, secondFileLocation.path, "Failed to create a new log file for rotation test.")
+
+        XCTAssertTrue(fileManager.fileExists(atPath: firstFileLocation.path))
+        XCTAssertTrue(fileManager.fileExists(atPath: secondFileLocation.path))
     }
 
-        ///
+    ///
     /// A new log file should be created for each init.
     ///
     func testRotationOnWrite() throws {
+        let writer = try FileWriter(directory: testDirectory, strategy: .rotate(at: [.maxSize(64)]))
+        let firstFileLocation = writer.currentFileURL
 
-        let type    = String(describing: FileWriterTests.self)
-        let function = (#function).replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
+        /// sleep a short time to ensure the clock changes
+        usleep(500)
 
-        let fileName  = "\(type).\(function)"
-        let fileExt   = "log"
-
-        let testHarness = TestHarness(writer: try FileWriter(fileConfiguration: FileWriter.FileConfiguration(name: "\(fileName).\(fileExt)", directory: testDirectory, maxSize: 64)), reader: FileReader(fileName: fileName, directory: testDirectory))
+        let testHarness = TestHarness(writer: writer, reader: FileReader(fileName: "trace-", directory: testDirectory.path))
 
         let fileManager = FileManager.default
 
-        /// Test for fileName + fileExt but archive does not exist
-
-        XCTAssertFalse(try archiveExists(fileName: fileName, fileExt: fileExt, directory: testDirectory), "Archive exists already.")
-        XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/\(fileName).\(fileExt)"))
+        /// Test for file at location
+        XCTAssertTrue(fileManager.fileExists(atPath: firstFileLocation.path))
 
         ///
         /// Writing to the log should force a log rotation since the maxSize is set below the size of the message.
         ///
         testHarness.testLog(for: .info, validationBlock: { _,_,_ in } )
 
-        /// Test for fileName + fileExt and fileName + "-" + date + fileExt
+        let secondFileLocation = writer.currentFileURL
 
-        XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/\(fileName).\(fileExt)"))
-        XCTAssertTrue(try archiveExists(fileName: fileName, fileExt: fileExt, directory: testDirectory))
+        /// Test for both files and that they are not the same
+
+        XCTAssertTrue(fileManager.fileExists(atPath: firstFileLocation.path))
+        XCTAssertTrue(fileManager.fileExists(atPath: secondFileLocation.path))
+        XCTAssertNotEqual(firstFileLocation, secondFileLocation)
     }
 
     // MARK: - Direct calls to the writer with default conversion table.
@@ -174,7 +162,7 @@ class TraceLogWithFileWriterTests: XCTestCase {
     override func setUp() {
         do {
             /// Create the test directory
-            try FileManager.default.createDirectory(atPath: testDirectory, withIntermediateDirectories: false)
+            try FileManager.default.createDirectory(at: testDirectory, withIntermediateDirectories: false)
         } catch {
             XCTFail("Failed to cleanup log files before test: \(error).")
         }
@@ -182,7 +170,7 @@ class TraceLogWithFileWriterTests: XCTestCase {
 
     override func tearDown() {
         do {
-            try FileManager.default.removeItem(atPath: testDirectory)
+            try FileManager.default.removeItem(at: testDirectory)
         } catch {
             XCTFail("Failed to cleanup log files before test: \(error).")
         }
@@ -255,7 +243,7 @@ class TraceLogWithFileWriterTests: XCTestCase {
 ///
 /// Creates a TestHarness for the specific test class and function.
 ///
-private func testHarness<T>(for callerType: T.Type, configureTraceLog: Bool = false, directory: String = testDirectory, function: String = #function) -> TestHarness<FileReader>? {
+private func testHarness<T>(for callerType: T.Type, configureTraceLog: Bool = false, directory: String = testDirectory.path, function: String = #function) -> TestHarness<FileReader>? {
 
     let type    = String(describing: callerType)
     let function = function.replacingOccurrences(of: "(", with: "").replacingOccurrences(of: ")", with: "")
@@ -264,7 +252,7 @@ private func testHarness<T>(for callerType: T.Type, configureTraceLog: Bool = fa
 
     let writer: FileWriter
     do {
-        writer  = try FileWriter(fileConfiguration: FileWriter.FileConfiguration(name: fileName, directory: directory))
+        writer  = try FileWriter(directory: testDirectory, strategy: .fixed(fileName: fileName))
     } catch {
         XCTFail("Failed to instantiate FileWriter: \(error)"); return nil
     }
@@ -288,9 +276,8 @@ private class FileReader: Reader {
     func logEntry(for writer: FileWriter, timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) -> TestLogEntry? {
 
         do {
-            let url = URL(fileURLWithPath: self.directory).appendingPathComponent(fileName)
 
-            let data = try String(contentsOf: url)
+            let data = try String(contentsOf: writer.currentFileURL)
             let entries = data.components(separatedBy: .newlines)
 
             for entry in entries {
@@ -375,7 +362,9 @@ private class FileReader: Reader {
                                     threadIdentifier: threadIdentifier)
                 }
             }
-        } catch { /* Fallthrough */ }
+        } catch {
+            XCTFail("\(error)")
+        }
 
         return nil
     }
