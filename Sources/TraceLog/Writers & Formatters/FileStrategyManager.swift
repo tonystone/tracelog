@@ -18,7 +18,7 @@ internal protocol FileStrategyManager {
     ///
     /// - Parameter bytes: The raw bytes to output.
     ///
-    /// - Returns: An Int indicating the actualy number of bytes written to the output or on Failure, a FailureReason.
+    /// - Returns: An Int indicating the actually number of bytes written to the output or on Failure, a FailureReason.
     ///
     func write(_ bytes: [UInt8])  -> Result<Int, FailureReason>
 }
