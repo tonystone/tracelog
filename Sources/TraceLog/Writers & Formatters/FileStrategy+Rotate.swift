@@ -111,7 +111,7 @@ internal class FileStrategyRotate: FileStrategyManager {
 internal /* @testable */
 struct FileStreamManager: Equatable {
 
-    public init(directory: URL, template: String) {
+    internal init(directory: URL, template: String) {
         self.directory     = directory
         self.nameFormatter = DateFormatter()
         self.nameFormatter.dateFormat = template
@@ -119,7 +119,7 @@ struct FileStreamManager: Equatable {
         let metaDirectory = directory.appendingPathComponent(".tracelog", isDirectory: true)
 
         self.metaDirectory = metaDirectory
-        self.metaFile      = metaDirectory.appendingPathComponent("latestfile", isDirectory: false)
+        self.metaFile      = metaDirectory.appendingPathComponent("filewriter.meta", isDirectory: false)
     }
 
     /// Open the output stream creating the meta file when created
@@ -144,6 +144,13 @@ struct FileStreamManager: Equatable {
         return try FileOutputStream(url: latestURL, options: [.create])
     }
 
+    /// Create a file URL based on the files configuration.
+    ///
+    internal /* @testable */
+    func newFileURL() -> URL {
+        return self.directory.appendingPathComponent(self.nameFormatter.string(from: Date()))
+    }
+
     /// Find the latest log file by creation date that exists.
     ///
     /// - Returns: a URL if there is an existing file otherwise, nil.
@@ -157,6 +164,8 @@ struct FileStreamManager: Equatable {
         return URL(fileURLWithPath: latestPath, isDirectory: false)
     }
 
+    /// Writes a meta file out for the url passed.
+    ///
     private func writeMetaFile(for url: URL) throws {
 
         /// Write the file that contains the last path.
@@ -171,12 +180,6 @@ struct FileStreamManager: Equatable {
         }
     }
 
-    /// Create a file URL based on the files configuration.
-    ///
-    internal /* @testable */
-    func newFileURL() -> URL {
-        return self.directory.appendingPathComponent(self.nameFormatter.string(from: Date()))
-    }
 
     private let directory: URL
 
