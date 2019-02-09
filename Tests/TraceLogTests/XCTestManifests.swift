@@ -184,7 +184,6 @@ extension FileWriterInternalsTests {
     static let __allTests__FileWriterInternalsTests = [
         ("testLatestFileURLWhenFileExists", testLatestFileURLWhenFileExists),
         ("testLatestFileURLWhenMultipleFilesExists", testLatestFileURLWhenMultipleFilesExists),
-        ("testLatestFileURLWhenMultipleFilesExistsReversed", testLatestFileURLWhenMultipleFilesExistsReversed),
         ("testLatestFileURLWhenNoFileExists", testLatestFileURLWhenNoFileExists),
         ("testNewFileURL", testNewFileURL),
     ]
@@ -203,7 +202,8 @@ extension FileWriterTests {
         ("testLogTrace3", testLogTrace3),
         ("testLogTrace4", testLogTrace4),
         ("testLogWarning", testLogWarning),
-        ("testRotationOnInit", testRotationOnInit),
+        ("testReuseFileOnStartup", testReuseFileOnStartup),
+        ("testRotateOnStartup", testRotateOnStartup),
         ("testRotationOnWrite", testRotationOnWrite),
     ]
 }

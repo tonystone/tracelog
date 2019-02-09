@@ -49,7 +49,7 @@ public enum FileStrategy {
     /// - Parameters:
     ///     - at: A set of `RotationOption` values specifying
     ///           at what point to rotate the file that TraceLog
-    ///           writes to. Default is `.startup`.
+    ///           writes to.
     ///     - template: A Unicode String pattern to use to uniquely
     ///                 name new files. Internally TraceLog uses
     ///                 `DateFormatter` to format the log file names
@@ -73,7 +73,7 @@ public enum FileStrategy {
     ///           this func will be changed to a case in the enum with default values.  We must
     ///           use a func now to work around the lack of defaults on enums.
     ///
-    public static func rotate(at options: Set<RotateOption> = Default.options, template: String = Default.template) -> FileStrategy {
+    public static func rotate(at options: Set<RotateOption>, template: String = Default.template) -> FileStrategy {
         return ._rotate(at: options, template: template)
     }
 
@@ -101,6 +101,7 @@ public enum FileStrategy {
     ////          public interface with default parameters. We currently have no way of providing
     ///           default parameters to enum cases until Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md)
     ///           is implemented.
+    ///
     case _fixed(fileName: String)
     case _rotate(at: Set<RotateOption>, template: String)
 }
@@ -114,10 +115,6 @@ public extension FileStrategy {
         /// Default file name for fixed file strategy.
         ///
         public static let fileName: String = "trace.log"
-
-        /// Default option set for rotation strategy.
-        ///
-        public static let options: Set<RotateOption> = [.startup]
 
         /// Default template for rotation strategy.
         ///

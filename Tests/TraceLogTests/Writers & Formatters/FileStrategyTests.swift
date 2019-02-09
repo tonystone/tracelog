@@ -31,7 +31,7 @@ class FileStrategyTests: XCTestCase {
     /// expecting to get the default parameters and behavior.
     ///
     func testFileStrategyRotateWithDefaultParameters() {
-        guard case FileStrategy._rotate(at: [.startup], template: "'trace-'yyyyMMdd-HHmm-ss.SSSS'.log'") = FileStrategy.rotate()
+        guard case FileStrategy._rotate(at: [.startup], template: "'trace-'yyyyMMdd-HHmm-ss.SSSS'.log'") = FileStrategy.rotate(at: [.startup])
             else { XCTFail(); return }
     }
 }

@@ -22,32 +22,44 @@ import Foundation
 
 internal class FileStrategyRotate: FileStrategyManager {
 
+    /// The current url in use or if none open yet, the one that will be used.
+    ///
     var url: URL {
         return self.stream.url
     }
 
+    /// Initialize the FileStrategy with the directory for files, the template for
+    /// file naming, and the options for rotation.
+    ///
+    /// - Parameters:
+    ///     - directory: The directory URL that the strategy will write files to.
+    ///     - template: The naming template to use for naming files.
+    ///     - options: The rotation options to use for file rotation.
+    ///
     init(directory: URL, template: String, options: Set<FileStrategy.RotateOption>) throws {
 
-        let config = FileConfiguration(directory: directory, template: template)
+        var rotate: (onStartup: Bool, maxSize: UInt64?) = (false, nil)
 
         for option in options {
             switch option {
-            case .startup: break
-            case .maxSize(let maxSize):
-                self.maxSize = maxSize
-            case .age(_):
-                break
+                case .startup:              rotate.onStartup = true
+                case .maxSize(let maxSize): rotate.maxSize   = maxSize
+                case .age(_):
+                    break
             }
         }
-        let url = options.contains(.startup) ? config.newFileURL() : config.latestFileURL()
-
-        self.mutex = Mutex(.normal)
-        self.config = config
+        let fileStreamManager = FileStreamManager(directory: directory, template: template)
 
         /// Open the file for writing.
-        self.stream = try FileOutputStream(url: url, options: [.create])
+        self.stream = rotate.onStartup ? try fileStreamManager.openNewFileStream() : try fileStreamManager.openLatestFileStream()
+
+        self.fileStreamManager = fileStreamManager
+        self.rotate            = rotate
+        self.mutex             = Mutex(.normal)
     }
 
+    /// Required implementation for FileStrategyManager classes.
+    ///
     func write(_ bytes: [UInt8]) -> Result<Int, FailureReason> {
 
         /// Note: Since we could be called on any thread in TraceLog direct mode
@@ -63,12 +75,12 @@ internal class FileStrategyRotate: FileStrategyManager {
         mutex.lock(); defer { mutex.unlock() }
 
         /// Does the file need to be rotated?
-        if let maxSize = self.maxSize, self.stream.position + UInt64(bytes.count) >= maxSize {
+        if let maxSize = self.rotate.maxSize, self.stream.position + UInt64(bytes.count) >= maxSize {
             do {
                 /// Open the new file first so that if we get an error, we can leave the old stream as is
-                let newStream = try FileOutputStream(url: config.newFileURL(), options: [.create])
-                self.stream.close()
+                let newStream = try fileStreamManager.openNewFileStream()
 
+                self.stream.close()
                 self.stream = newStream
             } catch {
                 return .failure(.error(error))
@@ -77,82 +89,100 @@ internal class FileStrategyRotate: FileStrategyManager {
         return self.stream.write(bytes).mapError({ self.failureReason($0) })
     }
 
+    /// Rotation options.
+    ///
+    private let rotate: (onStartup: Bool, maxSize: UInt64?)
 
-    private var maxSize: UInt64?
+    /// File configuration for naming file.
+    ///
+    private let fileStreamManager: FileStreamManager
 
-    private let config: FileConfiguration
+    /// The outputStream to use for writing.
+    ///
     private var stream: FileOutputStream
 
     /// Low level mutex for locking print since it's not reentrant.
     ///
-    private var mutex: Mutex
+    private let mutex: Mutex
 }
 
 /// Represents log file configuration settings
 ///
 internal /* @testable */
-struct FileConfiguration: Equatable {
-
-    public let directory: URL
-
-    public var template: String {
-        return self.nameFormatter.dateFormat
-    }
+struct FileStreamManager: Equatable {
 
     public init(directory: URL, template: String) {
         self.directory     = directory
         self.nameFormatter = DateFormatter()
-
         self.nameFormatter.dateFormat = template
+
+        let metaDirectory = directory.appendingPathComponent(".tracelog", isDirectory: true)
+
+        self.metaDirectory = metaDirectory
+        self.metaFile      = metaDirectory.appendingPathComponent("latestfile", isDirectory: false)
     }
 
-    private let nameFormatter: DateFormatter
-
-    /// Create a file URL based on the files configuration.
+    /// Open the output stream creating the meta file when created
     ///
-    internal func newFileURL() -> URL {
-        return self.directory.appendingPathComponent(self.nameFormatter.string(from: Date()))
+    internal func openNewFileStream() throws -> FileOutputStream {
+        let newURL = self.newFileURL()
+
+        try writeMetaFile(for: newURL)
+
+        return try FileOutputStream(url: newURL, options: [.create])
     }
 
     /// Find the latest log file by creation date that exists.
     ///
     /// - Returns: a URL if there is an existing file otherwise, nil.
     ///
-    internal func latestFileURL() -> URL {
+    internal func openLatestFileStream() throws -> FileOutputStream {
+        let latestURL = latestFileURL()
 
-        guard let contents = try? FileManager.default.contentsOfDirectory(at: self.directory, includingPropertiesForKeys: [.isDirectoryKey, .attributeModificationDateKey], options: [.skipsSubdirectoryDescendants, .skipsHiddenFiles, .skipsPackageDescendants])
+        try writeMetaFile(for: latestURL)
+
+        return try FileOutputStream(url: latestURL, options: [.create])
+    }
+
+    /// Find the latest log file by creation date that exists.
+    ///
+    /// - Returns: a URL if there is an existing file otherwise, nil.
+    ///
+    internal /* @testable */
+    func latestFileURL() -> URL {
+
+        guard let latestPath = try? String(contentsOf: self.metaFile, encoding: .utf8)
             else { return self.newFileURL() }
 
-        let logs = contents.compactMap( { url -> (url: URL, modificationDate: Date?)? in
-
-            guard url.isFileURL
-                else { return nil }
-
-            /// If we can convert the string to a date using the
-            /// formatter for creating file dates, this is a log file.
-            /// because it matches the entire pattern (prefix+date+extension.)
-            ///
-            guard self.nameFormatter.date(from: url.lastPathComponent) != nil
-                else { return nil }
-
-            return (url: url, modificationDate: url.modificationDate)
-
-            /// Sort nils to the end (these files have not yet been created)
-        }).sorted(by: { ($0.modificationDate ?? .distantFuture) < ($1.modificationDate ?? .distantFuture) })
-
-        guard let latest = logs.last
-            else { return self.newFileURL() }
-
-        return latest.0
+        return URL(fileURLWithPath: latestPath, isDirectory: false)
     }
-}
 
-private extension URL {
+    private func writeMetaFile(for url: URL) throws {
 
-    var modificationDate: Date? {
-        guard let values = try? FileManager.default.attributesOfItem(atPath: self.path)
-            else { return nil }
-        return values[FileAttributeKey.modificationDate] as? Date
+        /// Write the file that contains the last path.
+        do {
+            if !FileManager.default.fileExists(atPath: self.metaDirectory.path) {
+                try FileManager.default.createDirectory(at: self.metaDirectory, withIntermediateDirectories: true)
+            }
+
+            try url.path.write(to: self.metaFile, atomically: false, encoding: .utf8)
+        } catch {
+            throw FileOutputStreamError.unknownError(0, error.localizedDescription)
+        }
     }
-}
 
+    /// Create a file URL based on the files configuration.
+    ///
+    internal /* @testable */
+    func newFileURL() -> URL {
+        return self.directory.appendingPathComponent(self.nameFormatter.string(from: Date()))
+    }
+
+    private let directory: URL
+
+    private var metaDirectory: URL
+
+    private var metaFile: URL
+
+    private let nameFormatter: DateFormatter
+}

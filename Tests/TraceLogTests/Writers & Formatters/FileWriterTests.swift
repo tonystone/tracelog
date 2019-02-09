@@ -65,10 +65,33 @@ class FileWriterTests: XCTestCase {
         XCTAssertTrue(FileManager.default.fileExists(atPath: writer.currentFileURL.path))
     }
 
+    func testReuseFileOnStartup() throws {
+
+        let fileManager = FileManager.default
+
+        var writer = try FileWriter(directory: testDirectory, strategy: .rotate(at: []))
+        let firstFileLocation = writer.currentFileURL
+
+        /// Test for file at location
+        XCTAssertTrue(fileManager.fileExists(atPath: firstFileLocation.path))
+
+        /// sleep a short time to ensure the clock changes
+        usleep(500)
+
+        writer  = try FileWriter(directory: testDirectory, strategy: .rotate(at: []))
+        let secondFileLocation = writer.currentFileURL
+
+        /// Test for both files and that they are not the same
+
+        XCTAssertEqual(firstFileLocation.path, secondFileLocation.path, "Failed because a new log file was created.")
+
+        XCTAssertTrue(fileManager.fileExists(atPath: firstFileLocation.path))
+    }
+
     ///
     /// A new log file should be created for each init.
     ///
-    func testRotationOnInit() throws {
+    func testRotateOnStartup() throws {
 
         let fileManager = FileManager.default
 

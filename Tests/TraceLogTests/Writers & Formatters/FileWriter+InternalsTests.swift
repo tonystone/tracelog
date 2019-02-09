@@ -39,8 +39,6 @@ let referenceDate = referenceFormatter.date(from: "20190101")!
 ///
 class FileWriterInternalsTests: XCTestCase {
 
-    let testConfig = FileConfiguration(directory: testDirectory, template: "'test-'yyyymmdd'.log'")
-
     let fileManager = FileManager.default
 
     override func setUp() {
@@ -65,52 +63,46 @@ class FileWriterInternalsTests: XCTestCase {
     // MARK: - newUniqueFileURL tests
 
     func testNewFileURL() {
+        let testFileStreamManager = FileStreamManager(directory: testDirectory, template: "'test-'yyyymmdd'.log'")
+
         /// Note: This test may fail on the unlikely event that it is run at exactly midnight.
-        XCTAssertEqual(testConfig.newFileURL().path, testDirectory.appendingPathComponent("test-\(referenceFormatter.string(from: Date())).log").path)
+        XCTAssertEqual(testFileStreamManager.newFileURL().path, testDirectory.appendingPathComponent("test-\(referenceFormatter.string(from: Date())).log").path)
     }
 
     // MARK: - latestFileURL tests
 
-    func testLatestFileURLWhenFileExists() {
-        fileManager.createFile(atPath: testDirectory.appendingPathComponent("test-\(referenceFormatter.string(from: referenceDate)).log").path, contents: Data())
+    func testLatestFileURLWhenFileExists() throws {
+        let testFileStreamManager = FileStreamManager(directory: testDirectory, template: "'test-'yyyymmdd-hhmm-ss.SSSS'.log'")
+        let url: URL
 
-        XCTAssertEqual(testConfig.latestFileURL(), testDirectory.appendingPathComponent("test-\(referenceFormatter.string(from: referenceDate)).log"))
-    }
+        /// Use a block that will go out of scope.
+        do {
+            let stream = try testFileStreamManager.openNewFileStream()
+            url = stream.url
 
-    func testLatestFileURLWhenMultipleFilesExists() {
-
-        for n in 0..<10 {
-            let fileDate = referenceDate.addingTimeInterval(TimeInterval(n * 86400))
-
-            /// Sleep for a short period to allow creation time to change.
-            //usleep(10000)
-            sleep(1)
-
-            fileManager.createFile(atPath: testDirectory.appendingPathComponent("test-\(referenceFormatter.string(from: fileDate)).log").path, contents: Data())
+            stream.close()
         }
-
-        XCTAssertEqual(testConfig.latestFileURL(), testDirectory.appendingPathComponent("test-20190110.log"))
+        XCTAssertEqual(testFileStreamManager.latestFileURL(), url)
     }
 
-    func testLatestFileURLWhenMultipleFilesExistsReversed() {
+    func testLatestFileURLWhenMultipleFilesExists() throws {
+        let testFileStreamManager = FileStreamManager(directory: testDirectory, template: "'test-'yyyymmdd-hhmm-ss.SSSS'.log'")
+        var lastURL: URL = URL(fileURLWithPath: "//dev/null")
 
-        for n in (0..<10).reversed() {
-            let fileDate = referenceDate.addingTimeInterval(TimeInterval(n * 86400))
+        for _ in 1...10 {
+            let stream = try testFileStreamManager.openNewFileStream()
+            lastURL = stream.url
 
             /// Sleep for a short period to allow creation time to change.
             usleep(10000)
-
-            fileManager.createFile(atPath: testDirectory.appendingPathComponent("test-\(referenceFormatter.string(from: fileDate)).log").path, contents: Data())
         }
-
-        /// Note: The return value should be the latest by creation date not file name so since
-        ///       we reversed the order above, test-20190101.log should be returned and not 20190110.
-        ///
-        XCTAssertEqual(testConfig.latestFileURL(), testDirectory.appendingPathComponent("test-20190101.log"))
+        XCTAssertEqual(testFileStreamManager.latestFileURL(), lastURL)
     }
 
     func testLatestFileURLWhenNoFileExists() {
+        let testFileStreamManager = FileStreamManager(directory: testDirectory, template: "'test-'yyyymmdd'.log'")
+
         /// Note: This test may fail on the unlikely event that it is run at exactly midnight.
-        XCTAssertEqual(testConfig.latestFileURL(), testDirectory.appendingPathComponent("test-\(referenceFormatter.string(from: Date())).log"))
+        XCTAssertEqual(testFileStreamManager.latestFileURL(), testDirectory.appendingPathComponent("test-\(referenceFormatter.string(from: Date())).log"))
     }
 }
