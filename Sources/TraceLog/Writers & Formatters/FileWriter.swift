@@ -32,12 +32,7 @@ extension FileWriter {
 
         /// Default format.
         ///
-        /// - Note: The default is to strip control characters which allows you to parse
-        ///         the log files much easier since each message is terminated by a single
-        ///         newline.  If you use false, all formatting is left in the message making
-        ///         it easier for humans to read but harder for the machine to parse.
-        ///
-        public static let format: OutputStreamFormatter = TextFormat(options: [.controlCharacters(.strip)])
+        public static let format: OutputStreamFormatter = TextFormat()
     }
 }
 
