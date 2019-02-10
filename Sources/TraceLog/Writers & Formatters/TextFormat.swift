@@ -169,7 +169,7 @@ public struct TextFormat: OutputStreamFormatter {
 
     /// Default values used for TextFormat
     ///
-    public struct Default {
+    public enum Default {
 
         /// Default template to use to output message in.
         ///
