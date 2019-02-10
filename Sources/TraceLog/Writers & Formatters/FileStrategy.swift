@@ -19,6 +19,25 @@
 ///
 import Foundation
 
+/// Default values for FileStrategy enum cases.
+///
+public extension FileStrategy {
+
+    enum Default {
+
+        /// Default file name for fixed file strategy.
+        ///
+        public static let fileName: String = "trace.log"
+
+        /// Default template for rotation strategy.
+        ///
+        public static let template: String = "'trace-'yyyyMMdd-HHmm-ss.SSSS'.log'"
+    }
+}
+
+/// A FileStrategy defines how FileWriter will manage file naming
+/// and physical file management.
+///
 public enum FileStrategy {
 
     /// Default file strategy which creates a fixed
@@ -104,22 +123,6 @@ public enum FileStrategy {
     ///
     case _fixed(fileName: String)
     case _rotate(at: Set<RotateOption>, template: String)
-}
-
-/// Default values for FileStrategy enum cases.
-///
-public extension FileStrategy {
-
-    enum Default {
-
-        /// Default file name for fixed file strategy.
-        ///
-        public static let fileName: String = "trace.log"
-
-        /// Default template for rotation strategy.
-        ///
-        public static let template: String = "'trace-'yyyyMMdd-HHmm-ss.SSSS'.log'"
-    }
 }
 
 /// Internal extension to allow use of a Set<RotationOption>
