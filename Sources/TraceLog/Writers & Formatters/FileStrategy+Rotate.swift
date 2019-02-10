@@ -44,8 +44,6 @@ internal class FileStrategyRotate: FileStrategyManager {
             switch option {
                 case .startup:              rotate.onStartup = true
                 case .maxSize(let maxSize): rotate.maxSize   = maxSize
-                case .age(_):
-                    break
             }
         }
         let fileStreamManager = FileStreamManager(directory: directory, template: template)

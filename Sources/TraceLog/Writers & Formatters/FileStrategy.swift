@@ -107,10 +107,6 @@ public enum FileStrategy {
         /// Rotate when the max file size reaches maxSize.
         ///
         case maxSize(UInt64)
-
-        /// Rotate when the file reached a certain age.
-        ///
-        case age(days: Int)
     }
 
     /// - Warning: Internal, don't use directly. Use the versions with no underscore prefix
@@ -134,7 +130,6 @@ extension FileStrategy.RotateOption: Hashable {
         switch self {
         case .startup:     hasher.combine(1); return
         case .maxSize(_):  hasher.combine(2); return
-        case .age(_):      hasher.combine(3); return
         }
     }
 }
