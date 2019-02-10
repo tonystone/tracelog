@@ -138,13 +138,9 @@ extension FileOutputStreamTests {
     //   `swift test --generate-linuxmain`
     // to regenerate.
     static let __allTests__FileOutputStreamTests = [
-        ("testInitWithFileDescriptor", testInitWithFileDescriptor),
         ("testInitWithURL", testInitWithURL),
         ("testInitWithURLFailsWithInvalidURL", testInitWithURLFailsWithInvalidURL),
         ("testPositionReturnsCorrectValueOnNormalFile", testPositionReturnsCorrectValueOnNormalFile),
-        ("testPositionReturnsZeroWhenGivenAnInvalidFD", testPositionReturnsZeroWhenGivenAnInvalidFD),
-        ("testtestPositionReturnsZeroWhenAppliedToStandardError", testtestPositionReturnsZeroWhenAppliedToStandardError),
-        ("testtestPositionReturnsZeroWhenAppliedToStandardOut", testtestPositionReturnsZeroWhenAppliedToStandardOut),
         ("testThatConcurrentMultipleWritesDontProduceInterleaving", testThatConcurrentMultipleWritesDontProduceInterleaving),
         ("testThatConcurrentMultipleWritesDontProduceInterleavingWithLargeWrites", testThatConcurrentMultipleWritesDontProduceInterleavingWithLargeWrites),
         ("testThatConcurrentMultipleWritesDontProducePartialWrites", testThatConcurrentMultipleWritesDontProducePartialWrites),

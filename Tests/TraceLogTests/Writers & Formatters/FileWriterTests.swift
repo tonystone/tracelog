@@ -101,7 +101,6 @@ class FileWriterTests: XCTestCase {
         /// Test for fileName + fileExt and fileName + "-" + date + fileExt
 
         XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/\(fileName).\(fileExt)"))
-        XCTAssertTrue(try archiveExists(fileName: fileName, fileExt: fileExt, directory: testDirectory))
     }
 
         ///
@@ -121,7 +120,6 @@ class FileWriterTests: XCTestCase {
 
         /// Test for fileName + fileExt but archive does not exist
 
-        XCTAssertFalse(try archiveExists(fileName: fileName, fileExt: fileExt, directory: testDirectory), "Archive exists already.")
         XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/\(fileName).\(fileExt)"))
 
         ///
@@ -132,7 +130,6 @@ class FileWriterTests: XCTestCase {
         /// Test for fileName + fileExt and fileName + "-" + date + fileExt
 
         XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/\(fileName).\(fileExt)"))
-        XCTAssertTrue(try archiveExists(fileName: fileName, fileExt: fileExt, directory: testDirectory))
     }
 
     // MARK: - Direct calls to the writer with default conversion table.

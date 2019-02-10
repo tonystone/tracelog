@@ -48,9 +48,9 @@ class FileWriterInternalsTests: XCTestCase {
     }
 
     func testOpen() {
-        let input = open(fileURL: URL(fileURLWithPath: "\(testDirectory)/test.log"), fallbackStream: FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false))
+        let input = open(fileURL: URL(fileURLWithPath: "\(testDirectory)/test.log"), fallbackStream: FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false, url: URL(fileURLWithPath: "//dev/nul")))
 
-        XCTAssertNotEqual(input, FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false))
+        XCTAssertNotEqual(input, FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false, url: URL(fileURLWithPath: "//dev/nul")))
 
         close(fileStream: input)
     }
@@ -63,31 +63,28 @@ class FileWriterInternalsTests: XCTestCase {
         }
 
         /// It should not fallback to the fallback stream:
-        XCTAssertNotEqual(open(fileURL: URL(fileURLWithPath: "\(testDirectory)/test.log"), fallbackStream: FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false)), FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false))
+        XCTAssertNotEqual(open(fileURL: URL(fileURLWithPath: "\(testDirectory)/test.log"), fallbackStream: FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false, url: URL(fileURLWithPath: "//dev/nul"))), FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false, url: URL(fileURLWithPath: "//dev/nul")))
         XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/test.log"))
     }
 
     func testOpenFailure() throws {
 
         /// It should be the fallback file stream:
-        XCTAssertEqual(open(fileURL: URL(fileURLWithPath: "file://dev/null"), fallbackStream: FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false)), FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false))
+        XCTAssertEqual(open(fileURL: URL(fileURLWithPath: "file://dev/null"), fallbackStream: FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false, url: URL(fileURLWithPath: "//dev/nul"))), FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false, url: URL(fileURLWithPath: "//dev/nul")))
     }
 
     ///
     /// Test rotation of a file.
     ///
     func testRotate() throws {
-        let stream = open(fileURL: URL(fileURLWithPath: "\(testDirectory)/test.log"), fallbackStream: FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false))
+        let stream = open(fileURL: URL(fileURLWithPath: "\(testDirectory)/test.log"), fallbackStream: FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false, url: URL(fileURLWithPath: "//dev/nul")))
 
         let logFile: FileWriter.LogFile = (stream: stream, config: FileWriter.FileConfiguration(name: "test.log", directory: testDirectory))
 
         ///
         /// Note: This tests ensures it does not fallback to the fallback stream:r.
         ///
-        XCTAssertNotEqual(rotate(file: logFile, fallbackStream: FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false), dateFormatter: FileWriter.Default.fileNameDateFormatter).stream, FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false))
-
-       /// And of course we make sure the file was created.
-        XCTAssertTrue(try archiveExists(fileName: "test", fileExt: "log", directory: testDirectory))
+        XCTAssertNotEqual(rotate(file: logFile, fallbackStream: FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false, url: URL(fileURLWithPath: "//dev/nul")), dateFormatter: FileWriter.Default.fileNameDateFormatter).stream, FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false, url: URL(fileURLWithPath: "//dev/nul")))
     }
 
     ///

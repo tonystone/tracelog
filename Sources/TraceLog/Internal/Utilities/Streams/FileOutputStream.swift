@@ -97,6 +97,13 @@ internal class FileOutputStream: RawOutputStream {
     ///
     let url: URL
 
+    /// TODO: Remove when FileWriter rewrite is complete.
+    internal init(fileDescriptor: Int32, closeFd: Bool, url: URL) {
+        self.url = url
+
+        super.init(fileDescriptor: fileDescriptor, closeFd: closeFd)
+    }
+
     /// Initialize an instance of self for the file at URL.
     ///
     /// Files opened with this method are always opened for WRITE ONLY
@@ -111,7 +118,7 @@ internal class FileOutputStream: RawOutputStream {
     ///
     /// - SeeAlso: FileOutputStreamError
     ///
-    init(url: URL, options: OpenOptions = [], mode: Mode = [.readUser, .writeUser, .readGroup, .readOther]) throws {
+    convenience init(url: URL, options: OpenOptions = [], mode: Mode = [.readUser, .writeUser, .readGroup, .readOther]) throws {
 
         /// Open the file at the URL for write and append since this
         /// is specifically an OutputStream.
@@ -121,9 +128,7 @@ internal class FileOutputStream: RawOutputStream {
         guard descriptor != -1
             else { throw FileOutputStreamError.error(for: errno) }
 
-        self.url = url
-
-        super.init(fileDescriptor: descriptor, closeFd: true)
+        self.init(fileDescriptor: descriptor, closeFd: true, url: url)
     }
 
     /// The current write position or number of bytes
