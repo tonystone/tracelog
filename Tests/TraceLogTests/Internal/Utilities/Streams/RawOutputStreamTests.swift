@@ -1,5 +1,5 @@
 ///
-///  FileOutputStreamTests.swift
+///  RawOutputStreamTests.swift
 ///
 ///  Copyright 2019 Tony Stone
 ///
@@ -15,58 +15,27 @@
 ///  See the License for the specific language governing permissions and
 ///  limitations under the License.
 ///
-///  Created by Tony Stone on 1/18/19.
+///  Created by Tony Stone on 1/27/19.
 ///
 import XCTest
 
+#if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
+    import Darwin
+#elseif os(Linux) || CYGWIN
+    import Glibc
+#endif
+
+
 @testable import TraceLog
 
-class FileOutputStreamTests: XCTestCase {
+class RawOutputStreamTests: XCTestCase {
 
-    // MARK: - Initialization Tests
-
-    /// Test that a FileOutputStream can be creates using a URL.
+    // MARK: - Init tests
+    
+    /// Test that a FileOutputStream can be creates using a file descriptor.
     ///
-    func testInitWithURL() throws {
-        let inputURL = self.temporaryFileURL()
-        defer { self.removeFileIfExists(url: inputURL) }
-
-        XCTAssertNoThrow(try FileOutputStream(url: inputURL, options: [.create]))
-    }
-
-    /// Test that a FileOutputStream fails when given a URL of a file that does not exist.
-    ///
-    func testInitWithURLFailsWithInvalidURL() {
-        let inputURL = self.temporaryFileURL()
-
-        XCTAssertThrowsError(try FileOutputStream(url: inputURL, options: []), "Should throw but did not.") { error in
-            switch error {
-            case FileOutputStreamError.invalidURL(_):
-                break
-            default:
-                XCTFail()
-            }
-        }
-    }
-
-    // MARK: - position tests
-
-    /// Test that a FileOutputStream.position returns the correct value after writing to a file.
-    ///
-    func testPositionReturnsCorrectValueOnNormalFile() throws {
-        let inputURL = self.temporaryFileURL()
-        defer { self.removeFileIfExists(url: inputURL) }
-
-        let stream = try FileOutputStream(url: inputURL, options: [.create])
-
-        switch stream.write(Array<UInt8>(repeating: 255, count: 10)) {
-        case .success(let written):
-            XCTAssertEqual(written, 10)
-        default:
-            XCTFail()
-        }
-
-        XCTAssertEqual(stream.position, 10)
+    func testInitWithFileDescriptor() {
+        XCTAssertNotNil(RawOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false))
     }
 
     // MARK: write tests
@@ -105,7 +74,11 @@ class FileOutputStreamTests: XCTestCase {
         let inputURL = self.temporaryFileURL()
         defer { self.removeFileIfExists(url: inputURL) }
 
-        let stream = try FileOutputStream(url: inputURL, options: [.create])
+        let fd = inputURL.path.withCString { open($0, O_WRONLY | O_APPEND | O_CREAT, (S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) }
+        guard fd > 0
+            else { XCTFail("Failed to open input file \(inputURL.path) for test."); return }
+
+        let stream = RawOutputStream(fileDescriptor: fd, closeFd: true)
 
         switch stream.write(bytes) {
         case .success(let written):
@@ -120,7 +93,11 @@ class FileOutputStreamTests: XCTestCase {
         let inputURL = self.temporaryFileURL()
         defer { self.removeFileIfExists(url: inputURL) }
 
-        let stream = try FileOutputStream(url: inputURL, options: [.create])
+        let fd = inputURL.path.withCString { open($0, O_WRONLY | O_APPEND | O_CREAT, (S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) }
+        guard fd > 0
+            else { XCTFail("Failed to open input file \(inputURL.path) for test."); return }
+
+        let stream = RawOutputStream(fileDescriptor: fd, closeFd: true)
 
         /// Note: 10 iterations seems to be the amount of concurrent
         ///       runs Dispatch will give us so we limit it to that and
@@ -167,8 +144,11 @@ class FileOutputStreamTests: XCTestCase {
         let inputURL = self.temporaryFileURL()
         defer { self.removeFileIfExists(url: inputURL) }
 
+        let fd = inputURL.path.withCString { open($0, O_WRONLY | O_APPEND | O_CREAT, (S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) }
+        guard fd > 0
+            else { XCTFail("Failed to open input file \(inputURL.path) for test."); return }
 
-        let stream = try FileOutputStream(url: inputURL, options: [.create])
+        let stream = RawOutputStream(fileDescriptor: fd, closeFd: true)
 
         /// Note: 10 iterations seems to be the amount of concurrent
         ///       runs Dispatch will give us so we limit it to that and
@@ -207,7 +187,11 @@ class FileOutputStreamTests: XCTestCase {
         let inputURL = self.temporaryFileURL()
         defer { self.removeFileIfExists(url: inputURL) }
 
-        let stream = try FileOutputStream(url: inputURL, options: [.create])
+        let fd = inputURL.path.withCString { open($0, O_WRONLY | O_APPEND | O_CREAT, (S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) }
+        guard fd > 0
+            else { XCTFail("Failed to open input file \(inputURL.path) for test."); return }
+
+        let stream = RawOutputStream(fileDescriptor: fd, closeFd: true)
 
         /// Close the file so the write fails.
         stream.close()
@@ -226,7 +210,11 @@ class FileOutputStreamTests: XCTestCase {
 
         let inputBytes = Array<UInt8>(repeating: 128, count: 128)
 
-        let stream = try FileOutputStream(url: inputURL, options: [.create])
+        let fd = inputURL.path.withCString { open($0, O_WRONLY | O_APPEND | O_CREAT, (S_IRUSR | S_IWUSR | S_IRGRP | S_IROTH)) }
+        guard fd > 0
+            else { XCTFail("Failed to open input file \(inputURL.path) for test."); return }
+
+        let stream = RawOutputStream(fileDescriptor: fd, closeFd: true)
 
         self.measure {
             for _ in 0..<100000 {
@@ -254,19 +242,18 @@ class FileOutputStreamTests: XCTestCase {
     }
 
     private func removeFileIfExists(url: URL) {
-            do {
-                let fileManager = FileManager.default
-                // Check that the file exists before trying to delete it.
-                if fileManager.fileExists(atPath: url.path) {
-                    // Perform the deletion.
-                    try fileManager.removeItem(at: url)
-                    // Verify that the file no longer exists after the deletion.
-                    XCTAssertFalse(fileManager.fileExists(atPath: url.path))
-                }
-            } catch {
-                // Treat any errors during file deletion as a test failure.
-                XCTFail("Error while deleting temporary file: \(error)")
+        do {
+            let fileManager = FileManager.default
+            // Check that the file exists before trying to delete it.
+            if fileManager.fileExists(atPath: url.path) {
+                // Perform the deletion.
+                try fileManager.removeItem(at: url)
+                // Verify that the file no longer exists after the deletion.
+                XCTAssertFalse(fileManager.fileExists(atPath: url.path))
             }
+        } catch {
+            // Treat any errors during file deletion as a test failure.
+            XCTFail("Error while deleting temporary file: \(error)")
+        }
     }
 }
-

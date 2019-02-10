@@ -17,11 +17,7 @@
 ///
 ///  Created by Tony Stone on 1/14/19.
 ///
-#if os(macOS) || os(iOS)
-    import Darwin
-#elseif os(Linux) || CYGWIN
-    import Glibc
-#endif
+import Foundation
 
 /// Standard Streams for input and output to the console.
 ///
@@ -30,12 +26,12 @@ internal enum Standard {
     /// Standard output (stdout)
     ///
     static var out: OutputStream {
-        return FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false)
+        return RawOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false)
     }
 
     /// Standard error (stderr)
     ///
     static var error: OutputStream {
-        return FileOutputStream(fileDescriptor: STDERR_FILENO, closeFd: false)
+        return RawOutputStream(fileDescriptor: STDERR_FILENO, closeFd: false)
     }
 }
