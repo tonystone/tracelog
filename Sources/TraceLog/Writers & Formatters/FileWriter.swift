@@ -52,9 +52,9 @@ import Foundation
 ///
 /// The `.rotate` strategy allows for changing the naming `template` of the file
 /// written to the storage device. If you change the default naming you must consider
-/// the frequency that your files may rotate so that naming conflicts do not occure.
+/// the frequency that your files may rotate so that naming conflicts do not occur.
 /// The default template is suitable for almost all strategies that may be used
-/// since it names files based on date with millisecond precision. 
+/// since it names files based on date with millisecond precision.
 ///
 /// Output Format
 /// =============
