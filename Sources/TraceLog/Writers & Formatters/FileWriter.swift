@@ -19,7 +19,59 @@
 ///
 import Foundation
 
-extension FileWriter {
+/// The `FileWriter` is a fully configurable TraceLog `OutputStreamWriter` implementation
+/// that writes it's formatted data to files on persistent storage.
+///
+/// FileWriter allows file handling strategies to to be configured that determine how
+/// the files are named and handled on the storage device.
+///
+/// Creating a FileWriter is simple using the built in defaults.
+/// ```
+///     let fileWriter = try FileWriter(directory: URL(fileURLWithPath: "./"))
+///
+///     TraceLog.configure(writers: [fileWriter])
+/// ```
+///
+/// File Strategies
+/// ===============
+///
+/// FileWriter allows various file management strategies to be configured and
+/// used for management of the files on the storage device.  The default strategy
+/// is the `.fixed` strategy which will create a fixed file that is continually
+/// appended to and never rotated.  If you require a file rotation strategy
+/// the `.rotate(at:)` strategy will allow you to set various rotation criteria
+/// for the files created.
+///
+/// To rotate the file every time the the FIleWriter is started, you can pass the
+/// `.startup` option to the rotate strategy sd in the example.
+/// ```
+///     let fileWriter = try FileWriter(directory: URL(fileURLWithPath: "./"), strategy: .rotate(at: [.startup]))
+///
+///     TraceLog.configure(writers: [fileWriter])
+/// ```
+///
+/// The `.rotate` strategy allows for changing the naming `template` of the file
+/// written to the storage device. If you change the default naming you must consider
+/// the frequency that your files may rotate so that naming conflicts do not occure.
+/// The default template is suitable for almost all strategies that may be used
+/// since it names files based on date with millisecond precision. 
+///
+/// Output Format
+/// =============
+///
+/// Since FileWriter is an instance of `OutputStreamWriter` it allows you to specify
+/// the format of the output with any instance of OutputStreamFormatter.  The default
+/// format is `TextFormat` with the default TextFormat options.  You can easily change
+/// the format by overriding the default on creation.
+/// ```
+///     let fileWriter = try FileWriter(directory: URL(fileURLWithPath: "./"), format: JSONFormat())
+///
+///     TraceLog.configure(writers: [fileWriter])
+/// ```
+///
+/// - SeeAlso: `FileStrategy` for complete details of all strategies that can be used.
+///
+public class FileWriter: OutputStreamWriter {
 
     /// Defaults for init values
     ///
@@ -34,17 +86,13 @@ extension FileWriter {
         ///
         public static let format: OutputStreamFormatter = TextFormat()
     }
-}
 
-/// File `Writer` which writes log output to an os file.
-///
-public class FileWriter: OutputStreamWriter {
-
-    /// OutputStreamFormatter being used for formating output.
+    /// Default constructor for this writer.
     ///
-    public let format: OutputStreamFormatter
-
-    /// Default constructor for this writer
+    /// - Parameters:
+    ///     - directory: A URL that points to the directory where the FileWriter should write the log files.
+    ///     - strategy: The FileStrategy to use for managing file on the storage device.
+    ///     - format: An instance of an OutputStreamFormatter used to format the output before writing to the file.
     ///
     public init(directory: URL, strategy: FileStrategy = Default.strategy, format: OutputStreamFormatter = Default.format) throws {
         self.format = format
@@ -82,6 +130,10 @@ public class FileWriter: OutputStreamWriter {
     var currentFileURL: URL {
         return self.fileManager.url
     }
+
+    /// OutputStreamFormatter being used for formating output.
+    ///
+    public let format: OutputStreamFormatter
 
     /// The currently open log file handle and configuration.
     ///

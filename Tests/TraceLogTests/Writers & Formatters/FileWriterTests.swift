@@ -48,11 +48,34 @@ class FileWriterTests: XCTestCase {
         do {
             guard FileManager.default.fileExists(atPath: testDirectory.path)
                 else { return }
-            
+
             try FileManager.default.removeItem(at: testDirectory)
         } catch {
             XCTFail("Failed to cleanup log files after test: \(error).")
         }
+    }
+
+    // MARK: - Class header documentation tests
+
+    ///
+    /// Tests to make sure class header documentation compile and function as specified.
+    ///
+    func testClassHeaderOpeningExample() throws {
+        let fileWriter = try FileWriter(directory: URL(fileURLWithPath: "./"))
+
+        TraceLog.configure(writers: [fileWriter])
+    }
+
+    func testClassHeaderStrategyExample1() throws {
+        let fileWriter = try FileWriter(directory: URL(fileURLWithPath: "./"), strategy: .rotate(at: [.startup]))
+
+        TraceLog.configure(writers: [fileWriter])
+    }
+
+    func testClassHeaderFormatExample() throws {
+        let fileWriter = try FileWriter(directory: URL(fileURLWithPath: "./"), format: JSONFormat())
+
+        TraceLog.configure(writers: [fileWriter])
     }
 
     // MARK: - Init method tests
