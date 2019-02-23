@@ -9,8 +9,6 @@ All significant changes to this project will be documented in this file.
 - Added `JSONFormat`, an implementation of a OutputStreamFormatter that formats its output in standard JSON format.
 - Added `OutputStreamWriter` protocol to define types that write byte streams to their output and accept `OutputStreamFormatter` types to format the output.
 - Added `LogEntry` tuple type to `Writer` defining the formal types that a Writer writes.
-
-#### Added
 - Added `.buffer` option for `.async` concurrency modes to allow for buffering when the writer is not available to write to its endpoint.
 
 #### Changed
@@ -19,15 +17,17 @@ All significant changes to this project will be documented in this file.
 - Changed `Writer` protocol `log()` method to `write(_ entry: Writer.LogEntry)` to make it easier to process messages by writers and formatters.
 - Changed `Writer` return to `Swift.Result<Int, FailedReason>` to return instructions for TraceLog for buffering and error recovery.
 - Changed `ConsoleWriter` to accept new `OutputStreamFormatter` instances allowing you to customize the output log format (default is `TextFormat`.)
-- Changed `FileWriter` to accept new `OutputStreamFormatter` instances allowing you to customize the output log format (default is `TextFormat`.)
-- Changed `FileWriter` archive file name date format to "yyyyMMdd-HHmm-ss-SSS".
-    *  This was done for maximum compatibility between platforms and can be overridden in the FileConfiguration object passed at init.
+- Changed `FileWriter` public interface
+    * `FileWriter` now requires the log directory be passed in, removing default value of `./`.
+    * Removed the `fileConfiguration` parameter replacing with new `strategy` enum.
+    * It now accepts the new `OutputStreamFormatter` instances allowing you to customize the output log format (default is `TextFormat`.)
+- Changed `FileWriter` archive file name date format to "yyyyMMdd-HHmm-ss-SSS" (This was done for maximum compatibility between platforms and can be overridden in the FileConfiguration object passed at init.)
+
+#### Removed
+- Removed  `TraceLogTestHarness`  module.
 
 #### Fixed
 - Fixed `logTrace` when no trace level is passed.  It's now the correct default value of 1 instead of 4 (issue #58).
-
-#### Removed 
-- Removed  `TraceLogTestHarness`  module.
 
 ## [4.0.1](https://github.com/tonystone/tracelog/tree/4.0.1)
 
