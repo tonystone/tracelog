@@ -38,15 +38,19 @@ TraceLog's is designed to be a universal, flexible, portable, lightweight, and e
  - [x] **Logging Levels** (error, warning, info, trace1, trace2, trace3, trace4).
  - [x] Custom **tag** support for message grouping and filtering.
  - [x] Dynamically configurable levels via the OS environment at run time or inline code compiled into the application.
- - [x] Installable Log Writers (multiple writers at a time)
- - [x] Create custom Log writers for any use-case.
+ - [x] Installable log writers (multiple writers at a time)
+ - [x] Create custom log writers for any use-case.
  - [x] Predefined log writers to write to various endpoints.
-    * Built-in
+    * Built-in (`OutputStreamWriter`s)
         * **Stdout (ConsoleWriter)** - A simple standard out (stdout) writer for logging to the console or terminal.
         * **File (FileWriter)** - A file writer which writes log output to files on local disk managing rotation and archive of files as needed.
     * External
         * **Apple Unified Logging (AdaptiveWriter)** - On Apple platforms the AdaptiveWriter writes to the Unified Logging System (see [https://github.com/tonystone/tracelog-adaptive-writer](https://github.com/tonystone/tracelog-adaptive-writer)).
         * **Linux systemd Journal (AdaptiveWriter)** - On Linux platforms the AdaptiveWriter writes to the systemd journal (see [https://github.com/tonystone/tracelog-adaptive-writer](https://github.com/tonystone/tracelog-adaptive-writer))
+ - [x] Output formatters for formatting the log entries in any format required.
+    * **TextFormat** a customizable human readable text formatter useable with any `OutputStreamWriter`.
+    * **JSONFormat** a customizable JSON string formatter usable with any `OutputStreamWriter`.
+ - [x] Create custom output formatters for any use case.
  - [x] Multiple **concurrency modes** for writing to Writers. Settable globally or per Writer installed.
    * **direct** - straight through real-time logging.
    * **sync** - blocking queued logging.
