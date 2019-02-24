@@ -13,7 +13,7 @@ All significant changes to this project will be documented in this file.
 
 #### Changed
 - Requires Swift 5 for compilation.
-- Changed parameters to `.async` to include options (`.async(options: Set<AsyncOption>)` and  `.async(Writer, options: Set<AsyncOption>)`).
+- Changed parameters to `.async` to include options for configuration of the mode (`.async(options: Set<AsyncOption>)` and  `.async(Writer, options: Set<AsyncOption>)`).
 - Changed `Writer` protocol `log()` method to `write(_ entry: Writer.LogEntry)` to make it easier to process messages by writers and formatters.
 - Changed `Writer` return to `Swift.Result<Int, FailedReason>` to return instructions for TraceLog for buffering and error recovery.
 - Changed `ConsoleWriter` to accept new `OutputStreamFormatter` instances allowing you to customize the output log format (default is `TextFormat`.)
