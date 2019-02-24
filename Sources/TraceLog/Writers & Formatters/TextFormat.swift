@@ -377,7 +377,6 @@ public struct TextFormat: OutputStreamFormatter {
     ///
     private let dateFormatter: DateFormatter
 
-    ///
     /// Encoding of the messages logged to the log file.
     ///
     private let encoding: String.Encoding

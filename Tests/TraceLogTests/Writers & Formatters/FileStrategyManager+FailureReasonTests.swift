@@ -1,5 +1,5 @@
 ///
-///  FileWriter+FailureReasonTests.swift
+///  FileStrategyManager+FailureReasonTests.swift
 ///
 ///  Copyright 2019 Tony Stone
 ///
@@ -22,41 +22,49 @@ import XCTest
 @testable import TraceLog
 
 
-class FileWriterFailureReasonTests: XCTestCase {
+class FileStrategyManagerFailureReasonTests: XCTestCase {
+
+    class TestFileStrategyManager: FileStrategyManager {
+        var url: URL { return URL(fileURLWithPath: "//dev/nul") }
+
+        func write(_ bytes: [UInt8]) -> Result<Int, FailureReason> {
+            return .success(0)
+        }
+    }
 
     func testErrorForNetworkdown() {
 
-        guard case .unavailable = FailureReason(.networkDown("Network down"))
+        guard case .unavailable = TestFileStrategyManager().failureReason(.networkDown("Network down"))
             else { XCTFail(".unavailable was expected"); return }
     }
 
     func testErrorForDisconnected() {
 
-        guard case .unavailable = FailureReason(.disconnected("Disconnected"))
+        guard case .unavailable = TestFileStrategyManager().failureReason(.disconnected("Disconnected"))
             else { XCTFail(".unavailable was expected"); return }
     }
 
     func testErrorForInsufficientresources() {
 
-        guard case .error = FailureReason(.insufficientResources("Insufficient resources"))
+        guard case .error = TestFileStrategyManager().failureReason(.insufficientResources("Insufficient resources"))
             else { XCTFail(".error was expected"); return }
     }
 
     func testErrorForAccessdenied() {
 
-        guard case .error = FailureReason(.accessDenied("Access denied"))
+        guard case .error = TestFileStrategyManager().failureReason(.accessDenied("Access denied"))
             else { XCTFail(".error was expected"); return }
     }
 
     func testErrorForInvalidargument() {
 
-        guard case .error = FailureReason(.invalidArgument("Invalid argument"))
+        guard case .error = TestFileStrategyManager().failureReason(.invalidArgument("Invalid argument"))
             else { XCTFail(".error was expected"); return }
     }
 
     func testErrorForUnknownerror() {
 
-        guard case .error = FailureReason(.unknownError(10, "Unknown error" ))
+        guard case .error = TestFileStrategyManager().failureReason(.unknownError(10, "Unknown error" ))
             else { XCTFail(".error was expected"); return }
     }
 

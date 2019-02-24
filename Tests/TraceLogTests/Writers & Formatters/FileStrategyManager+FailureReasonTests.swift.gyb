@@ -1,5 +1,5 @@
 ///
-///  FileWriter+FailureReasonTests.swift
+///  FileStrategyManager+FailureReasonTests.swift
 ///
 ///  Copyright 2019 Tony Stone
 ///
@@ -36,12 +36,20 @@ import TraceLogTestHarness
     ]
 }%
 
-class FileWriterFailureReasonTests: XCTestCase {
+class FileStrategyManagerFailureReasonTests: XCTestCase {
+
+    class TestFileStrategyManager: FileStrategyManager {
+        var url: URL { return URL(fileURLWithPath: "//dev/nul") }
+
+        func write(_ bytes: [UInt8]) -> Result<Int, FailureReason> {
+            return .success(0)
+        }
+    }
 
 % for (OutputStreamError, OutputStreamErrorArg1, FailureReason) in OneArgVariants:
     func testErrorFor${OutputStreamError.title()}() {
 
-        guard case .${FailureReason} = FailureReason(.${OutputStreamError}("${OutputStreamErrorArg1}"))
+        guard case .${FailureReason} = TestFileStrategyManager().failureReason(.${OutputStreamError}("${OutputStreamErrorArg1}"))
             else { XCTFail(".${FailureReason} was expected"); return }
     }
 
@@ -49,7 +57,7 @@ class FileWriterFailureReasonTests: XCTestCase {
 % for (OutputStreamError, OutputStreamErrorArg1, OutputStreamErrorArg2, FailureReason) in TwoArgVariants:
     func testErrorFor${OutputStreamError.title()}() {
 
-        guard case .${FailureReason} = FailureReason(.${OutputStreamError}(${OutputStreamErrorArg1}, "${OutputStreamErrorArg2}" ))
+        guard case .${FailureReason} = TestFileStrategyManager().failureReason(.${OutputStreamError}(${OutputStreamErrorArg1}, "${OutputStreamErrorArg2}" ))
             else { XCTFail(".${FailureReason} was expected"); return }
     }
 

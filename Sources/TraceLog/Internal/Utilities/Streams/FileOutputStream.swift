@@ -30,7 +30,7 @@ import Foundation
 /// interface.  At this writing TraceLog only requires writing of
 /// files therefore, only the output portion was implemented.
 ///
-/// - Remark: Why note just use `Foundation.FileHandle`?  We found
+/// - Remark: Why not just use `Foundation.FileHandle`?  We found
 ///           that the FileHandle implementation at this writing is
 ///           not suitable for TraceLog's stringent fault tolerance
 ///           requirements.  The current implementation of the
@@ -97,13 +97,6 @@ internal class FileOutputStream: RawOutputStream {
     ///
     let url: URL
 
-    /// TODO: Remove when FileWriter rewrite is complete.
-    internal init(fileDescriptor: Int32, closeFd: Bool, url: URL) {
-        self.url = url
-
-        super.init(fileDescriptor: fileDescriptor, closeFd: closeFd)
-    }
-
     /// Initialize an instance of self for the file at URL.
     ///
     /// Files opened with this method are always opened for WRITE ONLY
@@ -118,7 +111,7 @@ internal class FileOutputStream: RawOutputStream {
     ///
     /// - SeeAlso: FileOutputStreamError
     ///
-    convenience init(url: URL, options: OpenOptions = [], mode: Mode = [.readUser, .writeUser, .readGroup, .readOther]) throws {
+    init(url: URL, options: OpenOptions = [], mode: Mode = [.readUser, .writeUser, .readGroup, .readOther]) throws {
 
         /// Open the file at the URL for write and append since this
         /// is specifically an OutputStream.
@@ -128,7 +121,9 @@ internal class FileOutputStream: RawOutputStream {
         guard descriptor != -1
             else { throw FileOutputStreamError.error(for: errno) }
 
-        self.init(fileDescriptor: descriptor, closeFd: true, url: url)
+        self.url = url
+
+        super.init(fileDescriptor: descriptor, closeFd: true)
     }
 
     /// The current write position or number of bytes

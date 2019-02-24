@@ -111,12 +111,6 @@ extension RawOutputStream: OutputStream {
     }
 }
 
-extension RawOutputStream: Equatable {
-    static func == (lhs: RawOutputStream, rhs: RawOutputStream) -> Bool {
-        return lhs.fd == rhs.fd
-    }
-}
-
 /// Private extension to work around Swifts confusion around similar function names.
 ///
 internal extension RawOutputStream {

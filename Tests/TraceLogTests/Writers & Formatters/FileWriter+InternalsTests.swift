@@ -21,17 +21,30 @@ import XCTest
 
 @testable import TraceLog
 
-private let testDirectory = "FileWriterInternalsTestsTmp"
+private var testDirectory: URL = {
+    return URL(fileURLWithPath: FileManager.default.currentDirectoryPath).appendingPathComponent("FileWriterInternalsTestsTmp")
+}()
+
+let referenceFormatter = { () -> DateFormatter in
+    let formatter = DateFormatter()
+    formatter.dateFormat = "yyyymmdd"
+
+    return formatter
+}()
+
+let referenceDate = referenceFormatter.date(from: "20190101")!
 
 ///
 /// Direct Logging to the Logger
 ///
 class FileWriterInternalsTests: XCTestCase {
 
+    let fileManager = FileManager.default
+
     override func setUp() {
         do {
             /// Create the test directory
-            try FileManager.default.createDirectory(atPath: testDirectory, withIntermediateDirectories: false)
+            try FileManager.default.createDirectory(at: testDirectory, withIntermediateDirectories: false)
         } catch {
             XCTFail("Failed to cleanup log files before test: \(error).")
         }
@@ -39,76 +52,57 @@ class FileWriterInternalsTests: XCTestCase {
 
     override func tearDown() {
         do {
-            if FileManager.default.fileExists(atPath: testDirectory) {
-                try FileManager.default.removeItem(atPath: testDirectory)
+            if FileManager.default.fileExists(atPath: testDirectory.path) {
+                try FileManager.default.removeItem(at: testDirectory)
             }
         } catch {
             XCTFail("Failed to cleanup log files before test: \(error).")
         }
     }
 
-    func testOpen() {
-        let input = open(fileURL: URL(fileURLWithPath: "\(testDirectory)/test.log"), fallbackStream: FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false, url: URL(fileURLWithPath: "//dev/nul")))
+    // MARK: - newUniqueFileURL tests
 
-        XCTAssertNotEqual(input, FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false, url: URL(fileURLWithPath: "//dev/nul")))
+    func testNewFileURL() {
+        let testFileStreamManager = FileStreamManager(directory: testDirectory, template: "'test-'yyyymmdd'.log'")
 
-        close(fileStream: input)
+        /// Note: This test may fail on the unlikely event that it is run at exactly midnight.
+        XCTAssertEqual(testFileStreamManager.newFileURL().path, testDirectory.appendingPathComponent("test-\(referenceFormatter.string(from: Date())).log").path)
     }
 
-    func testOpenCreatingDirectory() throws {
-        let fileManager = FileManager.default
+    // MARK: - latestFileURL tests
 
-        if fileManager.fileExists(atPath: testDirectory) {
-            try fileManager.removeItem(atPath: testDirectory)
+    func testLatestFileURLWhenFileExists() throws {
+        let testFileStreamManager = FileStreamManager(directory: testDirectory, template: "'test-'yyyymmdd-hhmm-ss.SSSS'.log'")
+        let url: URL
+
+        /// Use a block that will go out of scope.
+        do {
+            let stream = try testFileStreamManager.openNewFileStream()
+            url = stream.url
+
+            stream.close()
         }
-
-        /// It should not fallback to the fallback stream:
-        XCTAssertNotEqual(open(fileURL: URL(fileURLWithPath: "\(testDirectory)/test.log"), fallbackStream: FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false, url: URL(fileURLWithPath: "//dev/nul"))), FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false, url: URL(fileURLWithPath: "//dev/nul")))
-        XCTAssertTrue(fileManager.fileExists(atPath: "\(testDirectory)/test.log"))
+        XCTAssertEqual(testFileStreamManager.latestFileURL(), url)
     }
 
-    func testOpenFailure() throws {
+    func testLatestFileURLWhenMultipleFilesExists() throws {
+        let testFileStreamManager = FileStreamManager(directory: testDirectory, template: "'test-'yyyymmdd-hhmm-ss.SSSS'.log'")
+        var lastURL: URL = URL(fileURLWithPath: "//dev/null")
 
-        /// It should be the fallback file stream:
-        XCTAssertEqual(open(fileURL: URL(fileURLWithPath: "file://dev/null"), fallbackStream: FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false, url: URL(fileURLWithPath: "//dev/nul"))), FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false, url: URL(fileURLWithPath: "//dev/nul")))
+        for _ in 1...10 {
+            let stream = try testFileStreamManager.openNewFileStream()
+            lastURL = stream.url
+
+            /// Sleep for a short period to allow creation time to change.
+            usleep(10000)
+        }
+        XCTAssertEqual(testFileStreamManager.latestFileURL(), lastURL)
     }
 
-    ///
-    /// Test rotation of a file.
-    ///
-    func testRotate() throws {
-        let stream = open(fileURL: URL(fileURLWithPath: "\(testDirectory)/test.log"), fallbackStream: FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false, url: URL(fileURLWithPath: "//dev/nul")))
+    func testLatestFileURLWhenNoFileExists() {
+        let testFileStreamManager = FileStreamManager(directory: testDirectory, template: "'test-'yyyymmdd'.log'")
 
-        let logFile: FileWriter.LogFile = (stream: stream, config: FileWriter.FileConfiguration(name: "test.log", directory: testDirectory))
-
-        ///
-        /// Note: This tests ensures it does not fallback to the fallback stream:r.
-        ///
-        XCTAssertNotEqual(rotate(file: logFile, fallbackStream: FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false, url: URL(fileURLWithPath: "//dev/nul")), dateFormatter: FileWriter.Default.fileNameDateFormatter).stream, FileOutputStream(fileDescriptor: STDOUT_FILENO, closeFd: false, url: URL(fileURLWithPath: "//dev/nul")))
-    }
-
-    ///
-    /// Test failing rotation behavior.
-    ///
-    func testRotateFailure() throws {
-        let fallbackPath = "\(testDirectory)/fallbackFile.log"
-
-        let fallbackStream = try { () throws -> FileOutputStream in
-            _ = FileManager.default.createFile(atPath: fallbackPath, contents: Data(), attributes: nil)
-            return try FileOutputStream(url: URL(fileURLWithPath: fallbackPath))
-        }()
-
-        let logFile: FileWriter.LogFile = (stream: try open(fileURL: URL(fileURLWithPath: "\(testDirectory)/test.log")), config: FileWriter.FileConfiguration(name: "test.log", directory: testDirectory))
-
-        /// Remove the test file so the next step (rotation) fails to find it.
-        try FileManager.default.removeItem(atPath: "\(testDirectory)/test.log")
-
-        XCTAssertNotEqual(rotate(file: logFile, fallbackStream: fallbackStream, dateFormatter: DateFormatter()).stream, fallbackStream)
-
-        fallbackStream.close()
-
-        let message = try String(contentsOf: URL(fileURLWithPath: fallbackPath))
-
-        XCTAssertNotNil(message.range(of: "^Failed to archive, file does not exist: .*\(testDirectory)/test.log$", options: [.regularExpression, .anchored]))
+        /// Note: This test may fail on the unlikely event that it is run at exactly midnight.
+        XCTAssertEqual(testFileStreamManager.latestFileURL(), testDirectory.appendingPathComponent("test-\(referenceFormatter.string(from: Date())).log"))
     }
 }
