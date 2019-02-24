@@ -1,3 +1,8 @@
+
+> **Note** The current release ([5.0.0-beta.1](https://github.com/tonystone/tracelog/tree/5.0.0-beta.1)) is in a **_pre-release_** state. There is active work going on that will result in API changes that can/will break code while this release is being finalized.
+>
+>  For the latest stable production release, please use release **[4.0.1](https://github.com/tonystone/tracelog/tree/4.0.1)**.
+
 # TraceLog ![license: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-lightgray.svg?style=flat)
 
 <a href="https://github.com/tonystone/tracelog/" target="_blank">
