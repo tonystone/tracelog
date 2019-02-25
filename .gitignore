@@ -1,6 +1,23 @@
+#==============================================================================#
+# GeoFeatures specific files
+#==============================================================================#
+Documentation/html/*
+
+#==============================================================================#
+# OSX
+#==============================================================================#
+.DS_STORE
+
+#==============================================================================#
 # Xcode
 #
+# We ignore all xcode project files since it is a generated output of cmake.
+#
+#==============================================================================#
+*.xcodeproj
+*.xcworkspace
 build/
+DerivedData/
 *.pbxuser
 !default.pbxuser
 *.mode1v3
@@ -9,63 +26,109 @@ build/
 !default.mode2v3
 *.perspectivev3
 !default.perspectivev3
-xcuserdata
-*.xccheckout
+xcuserdata/
+
+#==============================================================================#
+# Idea (Jetbrains)
+#
+# We ignore all jetbrains project files since it is a generated output of cmake.
+#
+#==============================================================================#
+.idea
+
+#==============================================================================#
+# Other
+#==============================================================================#
 *.moved-aside
-DerivedData
+*.xccheckout
+*.xcscmblueprint
+
+#==============================================================================#
+# Obj-C/Swift specific
+#==============================================================================#
 *.hmap
 *.ipa
-*.xcuserstate
-*.xcodeproj
-*.xcworkspace
+*.dSYM.zip
+*.dSYM
 
-#
-# VS Code
-#
-.vscode
+#==============================================================================#
+# Playgrounds
+#==============================================================================#
+timeline.xctimeline
+playground.xcworkspace
 
+#==============================================================================#
+# Swift Package Manager
+#==============================================================================#
+.build/
+Packages/
+Package.pins
+Package.resolved
+
+#==============================================================================#
 # CocoaPods
 #
 # We recommend against adding the Pods directory to your .gitignore. However
 # you should judge for yourself, the pros and cons are mentioned at:
-# http://guides.cocoapods.org/using/using-cocoapods.html#should-i-ignore-the-pods-directory-in-source-control
-#
-Pods/
-Podfile.lock
-Manifest.lock
+# https://guides.cocoapods.org/using/using-cocoapods.html#should-i-check-the-pods-directory-into-source-control
+#==============================================================================#
+# Pods/
 
-#####
-# OS X temporary files that should never be committed
+#==============================================================================#
+# Carthage
 #
-.DS_Store
-.Trashes
-*.swp
+# Add this line if you want to avoid checking in source code from Carthage dependencies.
+# Carthage/Checkouts
+#==============================================================================#
+Carthage/Build
 
-#####
-# JetBrains AppCode
+#==============================================================================#
+# fastlane
 #
-## Directory-based project format:
-.idea/
-*.iml
+# It is recommended to not store the screenshots in the git repo. Instead, use fastlane to re-generate the
+# screenshots whenever they are needed.
+# For more information about the recommended setup visit:
+# https://docs.fastlane.tools/best-practices/source-control/#source-control
+#==============================================================================#
+fastlane/report.xml
+fastlane/Preview.html
+fastlane/screenshots
+fastlane/test_output
 
-#
-#  Swift Compile output on Linux
-#
-.build
-Package.resolved
-
-#
+#==============================================================================#
 # Vagrant
-#
-# This project uses the eternal repo for the Vagrant file which can be located here (https://github.com/tonystone/vagrant-swift)
-#
+#==============================================================================#
 .vagrant
 Vagrantfile
-vagrantfile
 
-#
-# Ruby bundler
-#
-# Note: we currently don't include the Gemfile lock because all we really care about is locking in the Cocoapods version
-#
-Gemfile*.lock
+#==============================================================================#
+# build-tools (https://github.com/tonystone/build-tools)
+#==============================================================================#
+.build-tools
+*.gyb.swp
+
+#==============================================================================#
+# Ignore CMake temporary files
+#==============================================================================#
+CMakeCache.txt
+CMakeFiles
+CMakeScripts
+Testing
+Makefile
+cmake_install.cmake
+install_manifest.txt
+compile_commands.json
+.atom-build.json
+CTestTestfile.cmake
+cmake-build-debug
+*.cbp
+
+#==============================================================================#
+# Python
+#==============================================================================#
+*.pyc
+
+#==============================================================================#
+# Ruby
+#==============================================================================#
+Gemfile.lock
