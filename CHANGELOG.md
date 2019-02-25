@@ -1,7 +1,7 @@
 # Change Log
 All significant changes to this project will be documented in this file.
 
-## [5.0.0-beta.1] (https://github.com/tonystone/tracelog/tree/5.0.0-beta.1)
+## [5.0.0-beta.1](https://github.com/tonystone/tracelog/tree/5.0.0-beta.1)
 
 #### Added
 - Added `OutputStreamFormatter` protocol to define formatters for use with byte output stream type Writers.
