@@ -1,4 +1,4 @@
-> **Note** The latest release ([5.0.0-beta.1]()) is in a **_pre-release_** state. There is active work going on that will result in API changes that can/will break code while things are finished.
+> **Note** The latest release ([5.0.0-beta.1](https://github.com/tonystone/tracelog/tree/5.0.0-beta.1)) is in a **_pre-release_** state. There is active work going on that will result in API changes that can/will break code while things are finished.
 >
 >  For the latest stable production release, please use version [4.0.1](https://github.com/tonystone/tracelog/tree/4.0.1).
 
