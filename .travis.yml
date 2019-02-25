@@ -15,6 +15,17 @@ matrix:
       dist: trusty
       sudo: required
       env:
+         - BUILD="cmake build"
+    -
+      os: osx
+      osx_image: xcode10
+      env:
+         - BUILD="cmake build"
+    -
+      os: linux
+      dist: trusty
+      sudo: required
+      env:
          - BUILD="swift build"
     -
       os: osx
@@ -79,7 +90,6 @@ before_install:
        curl -O https://swift.org/builds/swift-5.0-branch/xcode/swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-28-a/swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-28-a-osx.pkg
        sudo installer -pkg swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-28-a-osx.pkg -target /
        export TOOLCHAINS=swift
-       swift --version
     fi
   #
   # Linux requires downloading Swift and tools
@@ -98,22 +108,39 @@ before_install:
 
 script:
   - |
+    if [[ "${TRAVIS_OS_NAME}" == "osx" ]]; then
+       # Fix travis issue: https://github.com/travis-ci/travis-ci/issues/6307
+       rvm get head --auto-dotfiles || true
+    fi
+  - |
+    if [[ "$BUILD" == "cmake build"  ]]; then
+      set -e  # Fail (and stop build) on first non zero exit code
+      cmake ./
+      make tests
+      set +e
+    fi
+  - |
     if [[ "$BUILD" == "swift build"  ]]; then
-        swift test
+      set -e  # Fail (and stop build) on first non zero exit code
+      swift test
+      set +e
     fi
   - |
     if [[ "$BUILD" == "pod lint" ]]; then
         set -e  # Fail (and stop build) on first non zero exit code
-        # Currently we can't build using swift 5 under cocoapods.
+        bundler exec pod repo update
         bundler exec pod lib lint
         set +e
     fi
   - |
     if [[ "$BUILD" == "xcodebuild"  ]]; then
         set -e  # Fail (and stop build) on first non zero exit code
-        swift package generate-xcodeproj --xcconfig-overrides Package.xcconfig --enable-code-coverage
-        xcodebuild -project "$PROJECT" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" build-for-testing
-        xcodebuild -project "$PROJECT" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" test
+        cmake ./
+        make xcode-project
+        set -o pipefail
+        xcodebuild -project "$PROJECT" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" -enableCodeCoverage YES build-for-testing
+        xcodebuild -project "$PROJECT" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" -enableCodeCoverage YES test
+        set +o pipefail
         set +e
     fi
 
