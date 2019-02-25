@@ -1,0 +1,117 @@
+///
+///  TextFormat+EncodingTests.swift
+///
+///  Copyright 2018 Tony Stone
+///
+///  Licensed under the Apache License, Version 2.0 (the "License");
+///  you may not use this file except in compliance with the License.
+///  You may obtain a copy of the License at
+///
+///  http://www.apache.org/licenses/LICENSE-2.0
+///
+///  Unless required by applicable law or agreed to in writing, software
+///  distributed under the License is distributed on an "AS IS" BASIS,
+///  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+///  See the License for the specific language governing permissions and
+///  limitations under the License.
+///
+///  Created by Tony Stone on 12/31/18.
+///
+import XCTest
+
+import TraceLog
+%{
+asciiVariants = [
+    ("ascii",             "Non-Lossy", "Simple Ascii text."),
+    ("iso2022JP",         "Non-Lossy", "Simple Ascii text."),
+    ("isoLatin1",         "Non-Lossy", "Simple Ascii text."),
+    ("isoLatin2",         "Non-Lossy", "Simple Ascii text."),
+#     ("japaneseEUC",       "Non-Lossy", "Simple Ascii text."),
+    ("macOSRoman",        "Non-Lossy", "Simple Ascii text."),
+    ("nextstep",          "Non-Lossy", "Simple Ascii text."),
+    ("nonLossyASCII",     "Non-Lossy", "Simple Ascii text."),
+    ("shiftJIS",          "Non-Lossy", "Simple Ascii text."),
+#    ("symbol",            "Lossy",     "?????? ????? ????."),
+    ("unicode",           "Non-Lossy", "Simple Ascii text."),
+    ("utf16",             "Non-Lossy", "Simple Ascii text."),
+    ("utf16BigEndian",    "Non-Lossy", "Simple Ascii text."),
+    ("utf16LittleEndian", "Non-Lossy", "Simple Ascii text."),
+    ("utf32",             "Non-Lossy", "Simple Ascii text."),
+    ("utf32BigEndian",    "Non-Lossy", "Simple Ascii text."),
+    ("utf32LittleEndian", "Non-Lossy", "Simple Ascii text."),
+    ("utf8",              "Non-Lossy", "Simple Ascii text."),
+    ("windowsCP1250",     "Non-Lossy", "Simple Ascii text."),
+    ("windowsCP1251",     "Non-Lossy", "Simple Ascii text."),
+    ("windowsCP1252",     "Non-Lossy", "Simple Ascii text."),
+    ("windowsCP1253",     "Non-Lossy", "Simple Ascii text."),
+    ("windowsCP1254",     "Non-Lossy", "Simple Ascii text."),
+]
+
+unicodeVariants = [
+    ("ascii",             "Lossy",     "Print a few unicode characters \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}."),
+    ("iso2022JP",         "Lossy",     "Print a few unicode characters \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}."),
+    ("isoLatin1",         "Lossy",     "Print a few unicode characters \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}."),
+    ("isoLatin2",         "Lossy",     "Print a few unicode characters \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}."),
+#        ("japaneseEUC",       "Lossy",     "Print a few unicode characters \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}."),
+    ("macOSRoman",        "Lossy",     "Print a few unicode characters \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}."),
+    ("nextstep",          "Lossy",     "Print a few unicode characters \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}."),
+    ("nonLossyASCII",     "Non-Lossy", "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪."),
+    ("shiftJIS",          "Lossy",     "Print a few unicode characters \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}."),
+#        ("symbol",            "Lossy",     "\\\\?\\\\?\\\\?\\\\?\\\\? \\\\? \\\\?\\\\?\\\\? \\\\?\\\\?\\\\?\\\\?\\\\?\\\\?\\\\? \\\\?\\\\?\\\\?\\\\?\\\\?\\\\?\\\\?\\\\?\\\\?\\\\? \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}."),
+    ("unicode",           "Non-Lossy", "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪."),
+    ("utf16",             "Non-Lossy", "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪."),
+    ("utf16BigEndian",    "Non-Lossy", "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪."),
+    ("utf16LittleEndian", "Non-Lossy", "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪."),
+    ("utf32",             "Non-Lossy", "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪."),
+    ("utf32BigEndian",    "Non-Lossy", "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪."),
+    ("utf32LittleEndian", "Non-Lossy", "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪."),
+    ("utf8",              "Lossy",     "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪."),
+    ("windowsCP1250",     "Lossy",     "Print a few unicode characters \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}."),
+    ("windowsCP1251",     "Lossy",     "Print a few unicode characters \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}."),
+    ("windowsCP1252",     "Lossy",     "Print a few unicode characters \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}."),
+    ("windowsCP1253",     "Lossy",     "Print a few unicode characters \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}."),
+    ("windowsCP1254",     "Lossy",     "Print a few unicode characters \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}, \\\\?{1,4}."),
+]
+}%
+
+/// TextFormat Encoding Tests.
+///
+class TextFormatEncodingWithUnicodeTests: XCTestCase {
+% for (Encoding, Lossiness, Expected) in asciiVariants:
+
+    /// Test that we can encode a simple Ascii message to `String.Encoding.${Encoding}`.
+    ///
+    /// Note: This will be a "${Lossiness.upper()}" operation when using just Ascii characters in the messages.
+    ///
+    func test${Encoding.title()}EncodingWithSimpleAsciiMessage() {
+        let format = TextFormat(template: "%{message}", encoding: .${Encoding}, terminator: "")
+
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Simple Ascii text.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
+        let expected: String       = "${Expected}"
+
+        guard let bytes = format.bytes(from: input)
+            else { XCTFail("Failed to convert log entry to encoding \".${Encoding}\""); return }
+
+        XCTAssertEqual(String(bytes: bytes, encoding: .${Encoding}), expected, "Failed conversion to \".${Encoding}\".")
+    }
+% end
+
+% for (Encoding, Lossiness, Expected) in unicodeVariants:
+
+    /// Test that we can encode a Unicode message to `String.Encoding.${Encoding}`.
+    ///
+    /// Note: This will be a "${Lossiness.upper()}" operation when using Unicode characters in the messages.
+    ///
+    func test${Encoding.title()}EncodingWithUnicodeMessage() {
+        let format = TextFormat(template: "%{message}", encoding: .${Encoding}, terminator: "")
+
+        let input: Writer.LogEntry = (timestamp: 28800.0, level: .info, tag: "TestTag", message: "Print a few unicode characters ♡, 🌍, 🇵🇷, 🐌, 🐧, 🐪.", runtimeContext: TestRuntimeContext(processName: "TestProcess", processIdentifier: 100, threadIdentifier: 1100), staticContext: TestStaticContext())
+        let expected: String       = "${Expected}"
+
+        guard let bytes = format.bytes(from: input), let result = String(bytes: bytes, encoding: .${Encoding})
+            else { XCTFail("Failed to convert log entry to encoding \".${Encoding}\""); return }
+
+        XCTAssertTrue(result.range(of: expected, options: [.regularExpression, .caseInsensitive]) != nil, "Failed conversion to \".${Encoding}\".")
+    }
+% end
+}

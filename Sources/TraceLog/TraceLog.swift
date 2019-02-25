@@ -62,7 +62,7 @@ public func configure(mode: ConcurrencyMode = .default, writers: [Writer] = [Con
 }
 
 ///
-/// Initializes TraceLog with an optional array of Writers specifying thier ConcurrencyMode and the Environment.
+/// Initializes TraceLog with an optional array of Writers specifying their ConcurrencyMode and the Environment.
 ///
 /// - Parameters:
 ///     - writers:     An Array of `Writers` wrapped in a `WriterConcurrencyMode`.
@@ -80,8 +80,8 @@ public func configure(mode: ConcurrencyMode = .default, writers: [Writer] = [Con
 /// levels programmatically.
 /// ```
 ///     TraceLog.configure(writers: [.async(MyWriter())], environment: ["LOG_ALL": "TRACE4",
-///                                                                     "LOG_PREFIX_NS" : "ERROR",
-///                                                                     "LOG_TAG_TraceLog" : "TRACE4"])
+///                                                                                  "LOG_PREFIX_NS" : "ERROR",
+///                                                                                  "LOG_TAG_TraceLog" : "TRACE4"])
 /// ```
 ///
 public func configure(writers: [WriterConcurrencyMode], environment: Environment = Environment()) {

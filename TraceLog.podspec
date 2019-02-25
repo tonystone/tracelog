@@ -9,7 +9,7 @@
 
 Pod::Spec.new do |s|
   s.name             = "TraceLog"
-  s.version          = "4.0.1"
+  s.version          = "5.0.0-beta.1"
   s.summary          = "Dead Simple: logging the way it's meant to be!"
   s.description      = <<-DESC
                              TraceLog is a configurable debug logging system.  It is unique in that it's configured
@@ -32,10 +32,10 @@ Pod::Spec.new do |s|
   s.author           = { "Tony Stone" => "https://github.com/tonystone" }
   s.source           = { :git => "https://github.com/tonystone/tracelog.git", :tag => s.version.to_s }
 
-  s.swift_version = '4.1'
+  s.swift_version = '4.2'
 
   s.ios.deployment_target     = '9.0'
-  s.osx.deployment_target     = '10.10'
+  s.osx.deployment_target     = '10.13'
   s.watchos.deployment_target = '2.0'
   s.tvos.deployment_target    = '9.0'
 

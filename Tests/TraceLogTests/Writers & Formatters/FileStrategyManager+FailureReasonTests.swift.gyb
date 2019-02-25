@@ -1,0 +1,65 @@
+///
+///  FileStrategyManager+FailureReasonTests.swift
+///
+///  Copyright 2019 Tony Stone
+///
+///  Licensed under the Apache License, Version 2.0 (the "License");
+///  you may not use this file except in compliance with the License.
+///  You may obtain a copy of the License at
+///
+///  http://www.apache.org/licenses/LICENSE-2.0
+///
+///  Unless required by applicable law or agreed to in writing, software
+///  distributed under the License is distributed on an "AS IS" BASIS,
+///  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+///  See the License for the specific language governing permissions and
+///  limitations under the License.
+///
+///  Created by Tony Stone on 1/24/19.
+///
+import XCTest
+import TraceLogTestHarness
+
+@testable import TraceLog
+
+%{
+    OneArgVariants = [
+        ["networkDown",             "Network down",             "unavailable"],
+        ["disconnected",            "Disconnected",             "unavailable"],
+        ["insufficientResources",   "Insufficient resources",   "error"],
+        ["accessDenied",            "Access denied",            "error"],
+        ["invalidArgument",         "Invalid argument",         "error"]
+    ]
+
+    TwoArgVariants = [
+        ["unknownError",     10,       "Unknown error",            "error"]
+    ]
+}%
+
+class FileStrategyManagerFailureReasonTests: XCTestCase {
+
+    class TestFileStrategyManager: FileStrategyManager {
+        var url: URL { return URL(fileURLWithPath: "//dev/nul") }
+
+        func write(_ bytes: [UInt8]) -> Result<Int, FailureReason> {
+            return .success(0)
+        }
+    }
+
+% for (OutputStreamError, OutputStreamErrorArg1, FailureReason) in OneArgVariants:
+    func testErrorFor${OutputStreamError.title()}() {
+
+        guard case .${FailureReason} = TestFileStrategyManager().failureReason(.${OutputStreamError}("${OutputStreamErrorArg1}"))
+            else { XCTFail(".${FailureReason} was expected"); return }
+    }
+
+% end
+% for (OutputStreamError, OutputStreamErrorArg1, OutputStreamErrorArg2, FailureReason) in TwoArgVariants:
+    func testErrorFor${OutputStreamError.title()}() {
+
+        guard case .${FailureReason} = TestFileStrategyManager().failureReason(.${OutputStreamError}(${OutputStreamErrorArg1}, "${OutputStreamErrorArg2}" ))
+            else { XCTFail(".${FailureReason} was expected"); return }
+    }
+
+% end
+}

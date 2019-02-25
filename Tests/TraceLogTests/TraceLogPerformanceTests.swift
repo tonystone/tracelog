@@ -14,7 +14,10 @@ private let testIterations = 1000
 class TraceLogPerformanceTestsSwift: XCTestCase {
 
     struct NullWriter: Writer {
-        func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {}
+
+        func write(_ entry: Writer.LogEntry) -> Result<Int, FailureReason> {
+            return .success(0)
+        }
     }
 
     func testLogErrorPerformance_NullWriter() {
@@ -40,14 +43,4 @@ class TraceLogPerformanceTestsSwift: XCTestCase {
             }
         }
     }
-}
-
-extension TraceLogPerformanceTestsSwift {
-
-   static var allTests: [(String, (TraceLogPerformanceTestsSwift) -> () throws -> Void)] {
-      return [
-                ("testLogErrorPerformance_NullWriter", testLogErrorPerformance_NullWriter),
-                ("testLogTrace4Performance_NullWriter", testLogTrace4Performance_NullWriter)
-           ]
-   }
 }

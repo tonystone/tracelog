@@ -26,13 +26,15 @@ import TraceLog
 /// A Writer that when the log func is called, will execute your block of code passing you the values.
 ///
 class CallbackTestWriter: Writer {
-    let callback: (Double, LogLevel, String, String, RuntimeContext, StaticContext) -> Void
+    let callback: (Writer.LogEntry) -> Void
 
-    init(callback: @escaping (Double, LogLevel, String, String, RuntimeContext, StaticContext) -> Void) {
+    init(callback: @escaping (Writer.LogEntry) -> Void) {
         self.callback = callback
     }
 
-    func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
-        callback(timestamp, level, tag, message, runtimeContext, staticContext)
+    func write(_ entry: Writer.LogEntry) -> Result<Int,FailureReason> {
+        callback(entry)
+
+        return .success(0)
     }
 }

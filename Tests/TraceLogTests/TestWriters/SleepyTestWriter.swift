@@ -23,7 +23,7 @@ import Foundation
 import TraceLog
 
 ///
-/// Null Test Writer that sleeps for the passed in time when a message is recieved.
+/// Null Test Writer that sleeps for the passed in time when a message is received.
 ///
 class SleepyTestWriter: Writer {
     let sleepTime: useconds_t
@@ -32,7 +32,9 @@ class SleepyTestWriter: Writer {
         self.sleepTime = sleepTime
     }
 
-    func log(_ timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext) {
+    func write(_ entry: Writer.LogEntry) -> Result<Int, FailureReason> {
         usleep(sleepTime)
+
+        return .success(0)
     }
 }

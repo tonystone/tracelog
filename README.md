@@ -4,7 +4,7 @@
     <img src="https://img.shields.io/badge/platforms-iOS%20%7C%20macOS%20%7C%20watchOS%20%7C%20tvOS%20%7C%20Linux%20-lightgray.svg?style=flat" alt="Platforms: iOS | macOS | watchOS | tvOS | Linux" />
 </a>
 <a href="https://github.com/tonystone/tracelog/" target="_blank">
-   <img src="https://img.shields.io/badge/Swift-4.1-orange.svg?style=flat" alt="Swift 4.1"/>
+   <img src="https://img.shields.io/badge/Swift-5.0-orange.svg?style=flat" alt="Swift 5.0"/>
 </a>
 <a href="http://cocoadocs.org/docsets/TraceLog" target="_blank">
    <img src="https://img.shields.io/cocoapods/v/TraceLog.svg?style=flat" alt="Version"/>
@@ -38,15 +38,19 @@ TraceLog's is designed to be a universal, flexible, portable, lightweight, and e
  - [x] **Logging Levels** (error, warning, info, trace1, trace2, trace3, trace4).
  - [x] Custom **tag** support for message grouping and filtering.
  - [x] Dynamically configurable levels via the OS environment at run time or inline code compiled into the application.
- - [x] Installable Log Writers (multiple writers at a time)
- - [x] Create custom Log writers for any use-case.
+ - [x] Installable log writers (multiple writers at a time)
+ - [x] Create custom log writers for any use-case.
  - [x] Predefined log writers to write to various endpoints.
-    * Built-in
+    * Built-in (`OutputStreamWriter`s)
         * **Stdout (ConsoleWriter)** - A simple standard out (stdout) writer for logging to the console or terminal.
         * **File (FileWriter)** - A file writer which writes log output to files on local disk managing rotation and archive of files as needed.
     * External
         * **Apple Unified Logging (AdaptiveWriter)** - On Apple platforms the AdaptiveWriter writes to the Unified Logging System (see [https://github.com/tonystone/tracelog-adaptive-writer](https://github.com/tonystone/tracelog-adaptive-writer)).
         * **Linux systemd Journal (AdaptiveWriter)** - On Linux platforms the AdaptiveWriter writes to the systemd journal (see [https://github.com/tonystone/tracelog-adaptive-writer](https://github.com/tonystone/tracelog-adaptive-writer))
+ - [x] Output formatters for formatting the log entries in any format required.
+    * **TextFormat** a customizable human readable text formatter useable with any `OutputStreamWriter`.
+    * **JSONFormat** a customizable JSON string formatter usable with any `OutputStreamWriter`.
+ - [x] Create custom output formatters for any use case.
  - [x] Multiple **concurrency modes** for writing to Writers. Settable globally or per Writer installed.
    * **direct** - straight through real-time logging.
    * **sync** - blocking queued logging.
@@ -323,16 +327,16 @@ For XCode `TRACELOG_DISABLED` can be set in the project target. For **Swift Pack
 
 Build Environment
 
-| Platform | Swift | Swift Build | Xcode |
-|:--------:|:-----:|:----------:|:------:|
-| Linux    | 4.1 | &#x2714; | &#x2718; |
-| OSX      | 4.1 | &#x2714; | Xcode 9.3 |
+| Platform | Version                    | Swift | Swift Build | Xcode    |
+|:--------:|:--------------------------:|:-----:|:-----------:|:--------:|
+| Linux    | Ubuntu 14.04, 16.04, 16.10 | 5.0   | &#x2714;    | &#x2718; |
+| OSX      | 10.13                      | 5.0   | &#x2714;    | Xcode 10 |
 
 Minimum Runtime Version
 
-| iOS |  OS X | tvOS | watchOS | Linux |
-|:---:|:-----:|:----:|:-------:|:------------:|
-| 9.0 | 10.10 | 9.0  |   2.0   | Ubuntu 14.04, 16.04, 16.10 |
+| iOS |  OS X | tvOS | watchOS | Linux                      |
+|:---:|:-----:|:----:|:-------:|:--------------------------:|
+| 9.0 | 10.13 | 9.0  |   2.0   | Ubuntu 14.04, 16.04, 16.10 |
 
 > **Note:**
 >
