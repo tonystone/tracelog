@@ -1,3 +1,7 @@
+> **Note** The latest release ([5.0.0-beta.1]()) is in a **_pre-release_** state. There is active work going on that will result in API changes that can/will break code while things are finished.
+>
+>  For the latest stable production release, please use version [4.0.1](https://github.com/tonystone/tracelog/tree/4.0.1).
+
 # TraceLog ![license: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-lightgray.svg?style=flat)
 
 <a href="https://github.com/tonystone/tracelog/" target="_blank">
@@ -14,9 +18,6 @@
 </a>
 <a href="https://codecov.io/gh/tonystone/tracelog">
   <img src="https://codecov.io/gh/tonystone/tracelog/branch/master/graph/badge.svg" alt="Codecov" />
-</a>
-<a href="https://github.com/tonystone/tracelog/" target="_blank">
-    <img src="https://img.shields.io/cocoapods/dt/TraceLog.svg?style=flat" alt="Downloads">
 </a>
 
 ## Introduction
