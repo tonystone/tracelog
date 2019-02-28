@@ -34,7 +34,7 @@ public class ConsoleWriter: OutputStreamWriter {
 
     /// Default constructor for this writer
     ///
-    public convenience init(format: OutputStreamFormatter = TextFormat()) {
+    public convenience init(format: OutputStreamFormatter = Default.format) {
         self.init(outputStream: Standard.out, format: format)
     }
 
@@ -73,6 +73,22 @@ public class ConsoleWriter: OutputStreamWriter {
     /// FileHandle to write the output to.
     ///
     private var outputStream: OutputStream
+}
+
+extension ConsoleWriter {
+
+    /// Defaults for init values
+    ///
+    public enum Default {
+
+        /// Default format.
+        ///
+        /// Value:
+        ///
+        ///     TextFormat()
+        ///
+        public static let format: OutputStreamFormatter = TextFormat()
+    }
 }
 
 /// Writes the output of the formatter to the OutputStream returning
