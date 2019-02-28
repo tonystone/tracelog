@@ -82,7 +82,7 @@ public class FileWriter: OutputStreamWriter {
     ///     - strategy: The FileStrategy to use for managing file on the storage device.
     ///     - format: An instance of an OutputStreamFormatter used to format the output before writing to the file.
     ///
-    public init(directory: URL, strategy: FileStrategy = Default.strategy, format: OutputStreamFormatter = Default.format) throws {
+    public init(directory: URL, strategy: Strategy = Default.strategy, format: OutputStreamFormatter = Default.format) throws {
         self.format = format
 
         /// Ensure we have a directory URL so that relative paths are resolved correctly.

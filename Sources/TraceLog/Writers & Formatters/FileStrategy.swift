@@ -19,113 +19,104 @@
 ///
 import Foundation
 
-/// Default values for FileStrategy enum cases.
-///
-public extension FileStrategy {
+public extension FileWriter {
 
-    enum Default {
+    /// A FileStrategy defines how FileWriter will manage file naming
+    /// and physical file management.
+    ///
+    enum Strategy {
 
-        /// Default file name for fixed file strategy.
+        /// Default file strategy which creates a fixed
+        /// file and reuses the same file on every startup.
         ///
-        public static let fileName: String = "trace.log"
-
-        /// Default template for rotation strategy.
+        /// - Parameter fileName: The file name to use for the
+        ///             logging file.  The file name should be
+        ///             the name + any extension you would like
+        ///             to use but should not include the path
+        ///             component. Default is "trace.log".
         ///
-        public static let template: String = "'trace-'yyyyMMdd-HHmm-ss.SSSS'.log'"
+        /// - Note: There are no points of file rotation
+        ///         with this option, TraceLog will continue
+        ///         to append to the file name specified.
+        ///
+        /// - Remark: Once Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md) is implemented
+        ///           this will func will be changed to a case in the enum with default values.  We must
+        ///           use a func now to work around the lack of defaults on enums.
+        ///
+        public static func fixed(fileName: String = "trace.log") -> Strategy {
+            return ._fixed(fileName: fileName)
+        }
+
+        /// A strategy that includes rotation of the files
+        /// at various points in time (E.g. at startup,
+        /// a max file size, or a certain age of the file.)
+        ///
+        /// - Parameters:
+        ///     - at: A set of `RotationOption` values specifying
+        ///           at what point to rotate the file that TraceLog
+        ///           writes to.
+        ///     - template: A Unicode String pattern to use to uniquely
+        ///                 name new files. Internally TraceLog uses
+        ///                 `DateFormatter` to format the log file names
+        ///                 which means you can use any DateFormatter
+        ///                 legal format.  \
+        ///                 \
+        ///                 To ensure unique files during rotation, you
+        ///                 must specify a format that includes a date
+        ///                 component that will produce a unique file name
+        ///                 for the granularity of file rotation. For instance
+        ///                 passing "'trace-'yyyyMMdd'.log'" would give you 1
+        ///                 day of granularity meaning that only one log
+        ///                 file can be produced per day.
+        ///                 \
+        ///                 Default is "'trace-'yyyyMMdd-HHmm-ss.SSSS'.log'".
+        ///                 \
+        ///                 The default template is suitable for any practical
+        ///                 rotation granularity.
+        ///
+        /// - Remark: Once Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md) is implemented
+        ///           this func will be changed to a case in the enum with default values.  We must
+        ///           use a func now to work around the lack of defaults on enums.
+        ///
+        public static func rotate(at options: Set<RotateOption>, template: String = "'trace-'yyyyMMdd-HHmm-ss.SSSS'.log'") -> Strategy {
+            return ._rotate(at: options, template: template)
+        }
+
+        /// Options available for rotation strategy.
+        ///
+        public enum RotateOption {
+
+            /// Rotate on startup of TraceLog
+            ///
+            case startup
+
+            /// Rotate when the max file size reaches maxSize.
+            ///
+            case maxSize(UInt64)
+        }
+
+        /// :nodoc:
+        /// - Warning: Internal, don't use directly. Use the versions with no underscore prefix
+        ///            (`.fixed` and `.rotate`) instead. these cases will be removed at the end of the beta.
+        ///
+        /// - Remark: These are only here to allow us to have a beta and still provide the final
+        ////          public interface with default parameters. We currently have no way of providing
+        ///           default parameters to enum cases until Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md)
+        ///           is implemented.
+        ///
+        case _fixed(fileName: String)
+        /// :nodoc:
+        case _rotate(at: Set<RotateOption>, template: String)
     }
 }
 
-/// A FileStrategy defines how FileWriter will manage file naming
-/// and physical file management.
-///
-public enum FileStrategy {
-
-    /// Default file strategy which creates a fixed
-    /// file and reuses the same file on every startup.
-    ///
-    /// - Parameter fileName: The file name to use for the
-    ///             logging file.  The file name should be
-    ///             the name + any extension you would like
-    ///             to use but should not include the path
-    ///             component. Default is "trace.log".
-    ///
-    /// - Note: There are no points of file rotation
-    ///         with this option, TraceLog will continue
-    ///         to append to the file name specified.
-    ///
-    /// - Remark: Once Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md) is implemented
-    ///           this will func will be changed to a case in the enum with default values.  We must
-    ///           use a func now to work around the lack of defaults on enums.
-    ///
-    public static func fixed(fileName: String = Default.fileName) -> FileStrategy {
-        return ._fixed(fileName: fileName)
-    }
-
-    /// A strategy that includes rotation of the files
-    /// at various points in time (E.g. at startup,
-    /// a max file size, or a certain age of the file.)
-    ///
-    /// - Parameters:
-    ///     - at: A set of `RotationOption` values specifying
-    ///           at what point to rotate the file that TraceLog
-    ///           writes to.
-    ///     - template: A Unicode String pattern to use to uniquely
-    ///                 name new files. Internally TraceLog uses
-    ///                 `DateFormatter` to format the log file names
-    ///                 which means you can use any DateFormatter
-    ///                 legal format.  \
-    ///                 \
-    ///                 To ensure unique files during rotation, you
-    ///                 must specify a format that includes a date
-    ///                 component that will produce a unique file name
-    ///                 for the granularity of file rotation. For instance
-    ///                 passing "'trace-'yyyyMMdd'.log'" would give you 1
-    ///                 day of granularity meaning that only one log
-    ///                 file can be produced per day.
-    ///                 \
-    ///                 Default is "'trace-'yyyyMMdd-HHmm-ss.SSSS'.log'".
-    ///                 \
-    ///                 The default template is suitable for any practical
-    ///                 rotation granularity.
-    ///
-    /// - Remark: Once Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md) is implemented
-    ///           this func will be changed to a case in the enum with default values.  We must
-    ///           use a func now to work around the lack of defaults on enums.
-    ///
-    public static func rotate(at options: Set<RotateOption>, template: String = Default.template) -> FileStrategy {
-        return ._rotate(at: options, template: template)
-    }
-
-    /// Options available for rotation strategy.
-    ///
-    public enum RotateOption {
-
-        /// Rotate on startup of TraceLog
-        ///
-        case startup
-
-        /// Rotate when the max file size reaches maxSize.
-        ///
-        case maxSize(UInt64)
-    }
-
-    /// - Warning: Internal, don't use directly. Use the versions with no underscore prefix
-    ///            (`.fixed` and `.rotate`) instead. these cases will be removed at the end of the beta.
-    ///
-    /// - Remark: These are only here to allow us to have a beta and still provide the final
-    ////          public interface with default parameters. We currently have no way of providing
-    ///           default parameters to enum cases until Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md)
-    ///           is implemented.
-    ///
-    case _fixed(fileName: String)
-    case _rotate(at: Set<RotateOption>, template: String)
-}
-
+/// :nodoc:
 /// Internal extension to allow use of a Set<RotationOption>
 /// to ensure we only get one instance of each.
 ///
-extension FileStrategy.RotateOption: Hashable {
+extension FileWriter.Strategy.RotateOption: Hashable {
 
+    /// :nodoc:
     public func hash(into hasher: inout Hasher) {
         switch self {
         case .startup:     hasher.combine(1); return

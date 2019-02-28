@@ -23,7 +23,7 @@ class FileStrategyTests: XCTestCase {
     /// expecting to get the default parameters and behavior.
     ///
     func testFileStrategyDefaultWithDefaultParameters() {
-        guard case FileStrategy._fixed(fileName: "trace.log") = FileStrategy.fixed()
+        guard case FileWriter.Strategy._fixed(fileName: "trace.log") = FileWriter.Strategy.fixed()
             else { XCTFail(); return }
     }
 
@@ -31,7 +31,7 @@ class FileStrategyTests: XCTestCase {
     /// expecting to get the default parameters and behavior.
     ///
     func testFileStrategyRotateWithDefaultParameters() {
-        guard case FileStrategy._rotate(at: [.startup], template: "'trace-'yyyyMMdd-HHmm-ss.SSSS'.log'") = FileStrategy.rotate(at: [.startup])
+        guard case FileWriter.Strategy._rotate(at: [.startup], template: "'trace-'yyyyMMdd-HHmm-ss.SSSS'.log'") = FileWriter.Strategy.rotate(at: [.startup])
             else { XCTFail(); return }
     }
 }
