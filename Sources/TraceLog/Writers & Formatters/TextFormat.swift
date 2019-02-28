@@ -31,8 +31,7 @@ import Foundation
 /// without configuration. Should refinement of the default behavior be required, these
 /// options give you fine grain control over the output.
 ///
-/// Output Templates
-/// ================
+/// ### Output Templates
 ///
 /// The primary control of the formatting is through the `template` parameter which
 /// defines the output variables and constants for each logged entry.  The `template`
@@ -74,8 +73,7 @@ import Foundation
 ///
 ///     "1970-01-01 00:00:00.000","ExampleProcess",50,200,"WARNING","ExampleTag","Example message.”
 ///
-/// Control Characters
-/// ============================
+/// ### Control Characters
 ///
 /// TraceLog allows you to embed formatting control characters (\r\n\t\)  into the message when logging messages. The TextFormat
 /// allows you to strip those out or escape them so that the output can be more concise or machine readable if required.
@@ -108,8 +106,7 @@ import Foundation
 ///
 /// > Note: using this option does not affect the `terminator` output, terminators will still be printed normally.
 ///
-/// Character Encoding
-/// ==================
+/// ### Character Encoding
 ///
 /// The default character encoding of the output is `.utf8` which should be suitable
 /// for most applications and can encode all the unicode characters.
@@ -144,8 +141,7 @@ import Foundation
 /// - Note: We don't find `.symbol` very useful due to it's limited character range and is not supported on linux.  `.japaneseEUC` is also
 ///         not supported on Linux.
 ///
-/// Terminators
-/// ===========
+/// ### Terminators
 ///
 /// Each log entry formatted by the formatter can be terminated with a character sequence.
 /// The default value is a newline ("\n") and can be changed by passing the `terminator`
@@ -160,15 +156,15 @@ import Foundation
 /// file type output, a newline "\n" is required in order to write multiple lines to the screen
 /// or file.
 ///
-/// - SeeAlso: OutputStreamFormatter
-/// - SeeAlso: JSONFormat
-/// - SeeAlso: ConsoleWriter
-/// - SeeAlso: FileWriter
+/// - SeeAlso: `OutputStreamFormatter`
+/// - SeeAlso: `JSONFormat`
+/// - SeeAlso: `ConsoleWriter`
+/// - SeeAlso: `FileWriter`
 ///
 public struct TextFormat: OutputStreamFormatter {
 
     /// Special options available to control the
-    /// output.
+    /// output of `TextFormat`.
     ///
     public enum Option: Hashable {
 
@@ -176,6 +172,8 @@ public struct TextFormat: OutputStreamFormatter {
         ///
         case controlCharacters(Action)
 
+        /// Actions available for `controlCharacters(Action)` Option.
+        ///
         public enum Action {
 
             /// Strip the characters from the message.

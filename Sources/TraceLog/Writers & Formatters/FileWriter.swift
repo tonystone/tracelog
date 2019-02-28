@@ -32,8 +32,7 @@ import Foundation
 ///     TraceLog.configure(writers: [fileWriter])
 /// ```
 ///
-/// File Strategies
-/// ===============
+/// ### File Strategies
 ///
 /// FileWriter allows various file management strategies to be configured and
 /// used for management of the files on the storage device.  The default strategy
@@ -56,8 +55,7 @@ import Foundation
 /// The default template is suitable for almost all strategies that may be used
 /// since it names files based on date with millisecond precision.
 ///
-/// Output Format
-/// =============
+/// ### Output Format
 ///
 /// Since FileWriter is an instance of `OutputStreamWriter` it allows you to specify
 /// the format of the output with any instance of OutputStreamFormatter.  The default

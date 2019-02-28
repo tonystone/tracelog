@@ -31,7 +31,8 @@ import Swift
 /// ConsoleWriter is a concrete implementation of the Writer protocol and
 /// can be used as a basic example of creating custom writers.
 ///
-/// - SeeAlso: ConsoleWriter
+/// - SeeAlso: `ConsoleWriter`
+/// - SeeAlso: `FileWriter`
 ///
 public protocol Writer {
 
@@ -43,14 +44,14 @@ public protocol Writer {
     ///     - tag:                   The tag associated with the log event.
     ///     - message:               The message string (already formatted) for this logging event.
     ///     - file:                  The source file (of the calling program) of this logging event.
-    ///     - runtimeContext:        An object containing information about the state of the runtime such as thread ID (SeeAlso: RuntimeContext)
-    ///     - staticContext:         An object containing the static information at the time of the func call such as function name and line number (SeeAlso: StaticContext)
+    ///     - runtimeContext:        An object containing information about the state of the runtime such as thread ID (SeeAlso: `RuntimeContext`)
+    ///     - staticContext:         An object containing the static information at the time of the func call such as function name and line number (SeeAlso: `StaticContext`)
     ///
     /// - Returns: LogResult indicating the result of the attempt to log the statement to the endpoint.
     ///
-    /// - SeeAlso: LogLevel
-    /// - SeeAlso: RuntimeContext
-    /// - SeeAlso: StaticContext
+    /// - SeeAlso: `LogLevel`
+    /// - SeeAlso: `RuntimeContext`
+    /// - SeeAlso: `StaticContext`
     ///
     typealias LogEntry = (timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext)
 
@@ -63,7 +64,7 @@ public protocol Writer {
     ///            after conversion of the LogEntry.  This is the actualy number of bytes
     ///            (ansfer any encoding) not the number of visible characters.
     ///
-    /// - SeeAlso: LogEntry
+    /// - SeeAlso: `LogEntry`
     ///
     func write(_ entry: LogEntry)  -> Result<Int, FailureReason>
 }

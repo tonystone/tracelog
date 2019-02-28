@@ -20,11 +20,14 @@
 import Foundation
 
 public enum OutputStreamFormatterError: Error {
-    
+
     case encodingFailure(String)
 }
 
 /// A formatter type for formating the output of a `Writer` type.
+///
+/// - SeeAlso: `TextFormat`
+/// - SeeAlso: `JSONFormat`
 ///
 public protocol OutputStreamFormatter {
 

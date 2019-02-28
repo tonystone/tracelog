@@ -30,8 +30,8 @@ import Foundation
 /// without configuration. Should refinement of the default behavior be required, these
 /// options give you fine grain control over the output.
 ///
-/// Specifying Attributes
-/// =====================
+/// ### Specifying Attributes
+///
 /// All attributes that are output as JSON are configurable.  The default output
 /// is a set of all attributes TraceLog outputs, these are:
 ///
@@ -46,8 +46,8 @@ import Foundation
 /// - function
 /// - line
 ///
-/// Special formatting options
-/// ==========================
+/// ### Special formatting options
+///
 /// JSONFormat has special processing options available for output.
 ///
 /// The options available are:
@@ -72,8 +72,7 @@ import Foundation
 ///
 ///     {"timestamp":28800.0,"level":"INFO","tag":"TestTag","message":"Test message.",,"processName":"TestProcess","processIdentifier":120,"threadIdentifier":200,"file":"JSONFormatTests.swift","function":"testAttributeDefaultList()","line":240}
 /// ```
-/// Line terminator
-/// ===============
+/// ### Line terminator
 ///
 /// Each log entry formatted by the formatter can be terminated with a character sequence.
 /// The default value is a newline (",\n") and can be changed by passing the `terminator`

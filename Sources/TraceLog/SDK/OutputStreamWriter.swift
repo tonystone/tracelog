@@ -26,6 +26,8 @@ import Foundation
 /// by an `OutputStreamFormatter`.
 ///
 /// - SeeAlso: `OutputStreamFormatter`
+/// - SeeAlso: `ConsoleWriter`
+/// - SeeAlso: `FileWriter`
 ///
 public protocol OutputStreamWriter: Writer {
 

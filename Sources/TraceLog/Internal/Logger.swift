@@ -138,6 +138,7 @@ private extension Logger {
 
 #if os(OSX) || os(iOS) || os(tvOS) || os(watchOS)
 
+    /// :nodoc:
     /// Internal class exposed to objective-C for low level logging.
     ///
     /// - Warning:  This is a private class and nothing in this class should be used on it's own.  Please see TraceLog.h for the public interface to this.

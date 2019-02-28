@@ -24,6 +24,10 @@ import Dispatch
 ///
 public enum ConcurrencyMode {
 
+    /// The default mode used if no mode is specified (.async(options: [])).
+    ///
+    case `default`
+
     /// Direct, as the name implies, will directly call the writer from
     /// the calling thread with no indirection. It will block until the
     /// writer(s) in this mode have completed the write to the endpoint.
@@ -58,10 +62,7 @@ public enum ConcurrencyMode {
         return ._async(options: options)
     }
 
-    /// The default mode used if no mode is specified (.async(options: [])).
-    ///
-    case `default`
-
+    /// :nodoc:
     /// - Warning: Internal, don't use directly. Use func `.async(options:)` instead.
     ///            This case will be removed at the end of the beta.
     ///
@@ -117,6 +118,7 @@ public enum WriterConcurrencyMode {
         return ._async(writer, options: options)
     }
 
+    /// :nodoc:
     /// - Warning: Internal, don't use directly. Use func `.async(_:options:)` instead.
     ///            This case will be removed at the end of the beta.
     ///
@@ -190,6 +192,7 @@ public enum AsyncOption {
         case expand
     }
 
+    /// :nodoc:
     /// - Warning: Internal, don't use directly. Use func `.buffer(writeInterval:strategy:)` instead.
     ///            This case will be removed at the end of the beta.
     ///
@@ -203,6 +206,7 @@ public enum AsyncOption {
 
 extension AsyncOption: Equatable, Hashable {
 
+    /// :nodoc:
     public func hash(into hasher: inout Hasher) {
         switch self {
         case ._buffer(_,_):
@@ -210,6 +214,7 @@ extension AsyncOption: Equatable, Hashable {
         }
     }
 
+    /// :nodoc:
     public static func == (lhs: AsyncOption, rhs: AsyncOption) -> Bool {
         switch (lhs, rhs) {
         case (._buffer(_,_), ._buffer(_,_)): return true

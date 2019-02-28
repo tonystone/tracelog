@@ -22,7 +22,7 @@ import Swift
 ///
 /// Runtime context captured at the time of the log statement
 ///
-public protocol RuntimeContext: CustomStringConvertible {
+public protocol RuntimeContext {
 
     /// The name of the current process.
     var processName: String { get }
@@ -34,7 +34,8 @@ public protocol RuntimeContext: CustomStringConvertible {
     var threadIdentifier: UInt64 { get }
 }
 
-public extension RuntimeContext {
+/// :nodoc:
+extension RuntimeContext {
 
     var description: String {
         return "RuntimeContext {processName: \"\(self.processName)\", processIdentifier: \(self.processIdentifier), threadIdentifier: \(self.threadIdentifier)}"
