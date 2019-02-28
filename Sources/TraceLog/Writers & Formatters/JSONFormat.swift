@@ -108,7 +108,7 @@ public struct JSONFormat: OutputStreamFormatter {
     ///     - options: A Set of `Options` to allow optional formatting control (see `Option` for list).
     ///     - terminator: A string that will be output at the end of the output to terminate the entry.
     ///
-    public init(attributes: Set<Attribute> = Set(Attribute.allCases), options: Set<Option> = [], terminator: String = ",\n") {
+    public init(attributes: Set<Attribute> = Default.attributes, options: Set<Option> = Default.options, terminator: String = Default.terminator) {
         self.attributes  = Array(attributes)
         self.terminator  = terminator
         self.conditional = options.contains(.prettyPrint) ? ("\n", " ", "\t") : ("", "", "")
@@ -180,4 +180,38 @@ public struct JSONFormat: OutputStreamFormatter {
     ///       is required (option .prettyPrint).
     ///
     private let conditional: (newLine: String, space: String, tab: String)
+}
+
+extension JSONFormat {
+
+    /// Default values used for JSONFormat
+    ///
+    public enum Default {
+
+        /// Default attributes to output in the JSON.
+        ///
+        /// Default:
+        ///
+        ///     Set(Attribute.allCases)
+        ///
+        public static let attributes: Set<Attribute> = Set(Attribute.allCases)
+
+        /// A set of options to apply to the output.
+        ///
+        /// Default:
+        ///
+        ///     An empty set.
+        ///
+        /// - SeeAlso: JSONFormat.Option
+        ///
+        public static let options: Set<Option> = []
+
+        /// The terminator to use at the end of each entry.
+        ///
+        /// Default:
+        ///
+        ///     ",\n"
+        ///
+        public static let terminator: String = ",\n"
+    }
 }
