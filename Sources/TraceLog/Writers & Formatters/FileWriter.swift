@@ -73,19 +73,7 @@ import Foundation
 ///
 public class FileWriter: OutputStreamWriter {
 
-    /// Defaults for init values
     ///
-    public enum Default {
-
-        /// The default strategy for the FileWriter is the fixed strategy with a
-        /// file name of "trace.log".
-        ///
-        public static let strategy: FileStrategy = .fixed(fileName: "trace.log")
-
-        /// Default format.
-        ///
-        public static let format: OutputStreamFormatter = TextFormat()
-    }
 
     /// Default constructor for this writer.
     ///
@@ -139,6 +127,30 @@ public class FileWriter: OutputStreamWriter {
     ///
     private var fileManager: FileStrategyManager
 
+}
+
+extension FileWriter {
+
+    /// Defaults for init values
+    ///
+    public enum Default {
+
+        /// The default strategy for the FileWriter.
+        ///
+        /// Value:
+        ///
+        ///     FileWriter.Strategy.fixed(fileName: "trace.log")
+        ///
+        public static let strategy: Strategy = .fixed(fileName: "trace.log")
+
+        /// Default format.
+        ///
+        /// Value:
+        ///
+        ///     TextFormat()
+        ///
+        public static let format: OutputStreamFormatter = TextFormat()
+    }
 }
 
 private func createDirectory(url: URL) throws {
