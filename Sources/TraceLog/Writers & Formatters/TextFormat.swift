@@ -167,44 +167,6 @@ import Foundation
 ///
 public struct TextFormat: OutputStreamFormatter {
 
-    /// Default values used for TextFormat
-    ///
-    public enum Default {
-
-        /// Default template to use to output message in.
-        ///
-        public static let template: String = "%{date} %{processName}[%{processIdentifier}:%{threadIdentifier}] %{level}: <%{tag}> %{message}"
-
-        /// Default DateFormatter for this writer if one is not supplied.
-        ///
-        /// - Note: Format is "yyyy-MM-dd HH:mm:ss.SSS"
-        ///
-        /// - Example: "2016-04-23 10:34:26.849"
-        ///
-        public static let dateFormatter: DateFormatter = {
-            var formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
-            formatter.timeZone = TimeZone.current
-
-            return formatter
-        }()
-
-        /// A set of options to apply to the output.
-        ///
-        /// - SeeAlso: TextFormat.Option
-        ///
-        public static let options: Set<Option> = []
-
-        ///
-        /// Encoding of the output of the formatter.
-        ///
-        public static let encoding: String.Encoding = .utf8
-
-        /// The terminator to use at the end of each entry.
-        ///
-        public static let terminator: String = "\n"
-    }
-
     /// Special options available to control the
     /// output.
     ///
@@ -388,4 +350,68 @@ public struct TextFormat: OutputStreamFormatter {
     /// What terminator should be written at the end of the output.
     ///
     private let terminator: String
+}
+
+extension TextFormat {
+
+    /// Default values used for TextFormat
+    ///
+    public enum Default {
+
+        /// Default template to use to output message in.
+        ///
+        /// Default:
+        ///
+        ///     "%{date} %{processName}[%{processIdentifier}:%{threadIdentifier}] %{level}: <%{tag}> %{message}"
+        ///
+        /// Example output:
+        ///
+        ///     1970-01-01 00:00:00.000 ExampleProcess[100:1100] INFO: <ExampleTag> Example message.
+        ///
+        public static let template: String = "%{date} %{processName}[%{processIdentifier}:%{threadIdentifier}] %{level}: <%{tag}> %{message}"
+
+        /// Default DateFormatter for this writer if one is not supplied.
+        ///
+        /// Default:
+        ///
+        ///      "yyyy-MM-dd HH:mm:ss.SSS"
+        ///
+        /// Example output:
+        ///
+        ///     "2016-04-23 10:34:26.849"
+        ///
+        public static let dateFormatter: DateFormatter = {
+            var formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+            formatter.timeZone = TimeZone.current
+
+            return formatter
+        }()
+
+        /// A set of options to apply to the output.
+        ///
+        /// Default:
+        ///
+        ///     An empty set.
+        ///
+        /// - SeeAlso: `TextFormat.Option`
+        ///
+        public static let options: Set<Option> = []
+
+        /// Encoding of the output of the formatter.
+        ///
+        /// Default:
+        ///
+        ///     String.Encoding.utf8
+        ///
+        public static let encoding: String.Encoding = .utf8
+
+        /// The terminator to use at the end of each entry.
+        ///
+        /// Default:
+        ///
+        ///     "\n"
+        ///
+        public static let terminator: String = "\n"
+    }
 }
