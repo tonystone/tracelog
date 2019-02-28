@@ -73,7 +73,9 @@ import Foundation
 ///
 public class FileWriter: OutputStreamWriter {
 
+    /// OutputStreamFormatter being used for formating output.
     ///
+    public let format: OutputStreamFormatter
 
     /// Default constructor for this writer.
     ///
@@ -118,10 +120,6 @@ public class FileWriter: OutputStreamWriter {
     var currentFileURL: URL {
         return self.fileManager.url
     }
-
-    /// OutputStreamFormatter being used for formating output.
-    ///
-    public let format: OutputStreamFormatter
 
     /// The currently open log file handle and configuration.
     ///
