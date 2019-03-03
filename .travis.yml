@@ -42,24 +42,30 @@ matrix:
       osx_image: xcode10.2
       env:
          - BUILD="xcodebuild"
-         - TEST_DEST="platform=iOS Simulator,OS=11.3,name=iPhone 8"
+         - TEST_DEST="platform=iOS Simulator,OS=12.2,name=iPhone Xs"
          - TEST_SDK=iphonesimulator
-    -
-      os: osx
-      osx_image: xcode10.2
-      env:
-         - BUILD="xcodebuild"
-         - TEST_DEST="platform=iOS Simulator,OS=10.3.1,name=iPhone 7"
-         - TEST_SDK=iphonesimulator
+    # -
+    #   os: osx
+    #   osx_image: xcode10.2
+    #   env:
+    #      - BUILD="xcodebuild"
+    #      - TEST_DEST="platform=iOS Simulator,OS=11.3,name=iPhone 8"
+    #      - TEST_SDK=iphonesimulator
+    # -
+    #   os: osx
+    #   osx_image: xcode10.2
+    #   env:
+    #      - BUILD="xcodebuild"
+    #      - TEST_DEST="platform=iOS Simulator,OS=10.3.1,name=iPhone 7"
+    #      - TEST_SDK=iphonesimulator
 
-    -
-      os: osx
-      osx_image: xcode10.2
-      env:
-         - BUILD="xcodebuild"
-         - TEST_DEST="platform=iOS Simulator,OS=9.3,name=iPhone 6s"
-         - TEST_SDK=iphonesimulator
-
+    # -
+    #   os: osx
+    #   osx_image: xcode10.2
+    #   env:
+    #      - BUILD="xcodebuild"
+    #      - TEST_DEST="platform=iOS Simulator,OS=9.3,name=iPhone 6s"
+    #      - TEST_SDK=iphonesimulator
     -
       os: osx
       osx_image: xcode10.2
