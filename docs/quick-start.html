@@ -7,7 +7,16 @@
     <meta charset="utf-8">
     <script src="js/jquery.min.js" defer></script>
     <script src="js/jazzy.js" defer></script>
-    
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-102615840-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-102615840-5');
+</script>
+
     <script src="js/lunr.min.js" defer></script>
     <script src="js/typeahead.jquery.js" defer></script>
     <script src="js/jazzy.search.js" defer></script>
@@ -244,8 +253,6 @@ import TraceLog to the files that require logging and start adding log statement
 <p>Simply call configure with no parameters as early as possible in your startup code (preferably before ay log statements get called.)</p>
 <pre class="highlight swift"><code>    <span class="kt">TraceLog</span><span class="o">.</span><span class="nf">configure</span><span class="p">()</span>
 </code></pre>
-
-<p>For more advanced configuration please see <a href="Configuration.md">TraceLog Configuration</a></p>
 
           </div>
         </section>
