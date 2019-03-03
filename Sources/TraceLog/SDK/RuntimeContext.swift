@@ -24,6 +24,8 @@ import Swift
 ///
 public protocol RuntimeContext {
 
+    // MARK: Instance Properties
+
     /// The name of the current process.
     var processName: String { get }
 
@@ -34,8 +36,9 @@ public protocol RuntimeContext {
     var threadIdentifier: UInt64 { get }
 }
 
-/// :nodoc:
 extension RuntimeContext {
+
+    // MARK: Describing a RuntimeContext
 
     var description: String {
         return "RuntimeContext {processName: \"\(self.processName)\", processIdentifier: \(self.processIdentifier), threadIdentifier: \(self.threadIdentifier)}"

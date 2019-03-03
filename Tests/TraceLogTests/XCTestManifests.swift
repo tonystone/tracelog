@@ -34,8 +34,8 @@ extension ConcurrencyModeTests {
     //   `swift test --generate-linuxmain`
     // to regenerate.
     static let __allTests__ConcurrencyModeTests = [
-        ("testAsyncOptionBufferDefaultParameters", testAsyncOptionBufferDefaultParameters),
-        ("testAsyncOptionEquals", testAsyncOptionEquals),
+        ("testAsyncConcurrencyModeOptionBufferDefaultParameters", testAsyncConcurrencyModeOptionBufferDefaultParameters),
+        ("testAsyncConcurrencyModeOptionEquals", testAsyncConcurrencyModeOptionEquals),
         ("testConcurrencyModeAsyncDefaultParameters", testConcurrencyModeAsyncDefaultParameters),
         ("testConcurrencyModeDirectDefaultParameters", testConcurrencyModeDirectDefaultParameters),
         ("testConcurrencyModeSyncDefaultParameters", testConcurrencyModeSyncDefaultParameters),

@@ -36,7 +36,7 @@ internal class FileStrategyRotate: FileStrategyManager {
     ///     - template: The naming template to use for naming files.
     ///     - options: The rotation options to use for file rotation.
     ///
-    init(directory: URL, template: String, options: Set<FileWriter.Strategy.RotateOption>) throws {
+    init(directory: URL, template: String, options: Set<FileWriter.Strategy.RotationOption>) throws {
 
         var rotate: (onStartup: Bool, maxSize: UInt64?) = (false, nil)
 

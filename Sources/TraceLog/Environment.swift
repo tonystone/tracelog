@@ -20,36 +20,29 @@
 import Swift
 import Foundation
 
-///
 /// A class that is used to capture and represent the os environment variables.
 ///
-/// This class can be passed to TraceLog.configure to configure it using the
+/// This class can be passed to TraceLog.`configure(mode:writers:environment:)` methods to configure it using the
 /// current Environment settings.
 ///
 /// Environment is also like a Swift Dictionary<String, String> so it can be used just
 /// like a dictionary including subscripting.
 ///
+/// - SeeAlso: TraceLog.`configure(mode:writers:environment:)` for usage.
+/// - SeeAlso: TraceLog.`configure(writers:environment:)` for usage.
+///
 public class Environment: Collection, ExpressibleByDictionaryLiteral {
 
-    public typealias Key   = String
-    public typealias Value = String
+    // MARK: Initialization
 
-    /// The element type of a Environment: a tuple containing an individual
-    /// key-value pair.
-    public typealias Element = (key: Key, value: Value)
-
-    /// The index type of an Environment.
-    public typealias Index = DictionaryIndex<Key, Value>
-
-    ///
-    /// Creates a new Environment instance from a dictionary literal
-    ///
-    /// - Parameter dictionaryLiteral:
+    /// Creates a new Environment instance from a dictionary literal.
     ///
     /// The following example creates an Environment instance with the
     /// the elements of the dictionary literal:
     ///
     ///     let environment: Environment = ["LOG_ALL": "ERROR", "LOG_TAG_MyTag": "TRACE1"]
+    ///
+    /// - Parameter dictionaryLiteral: A dictionary literal representing the environment variables that will be available to TraceLog.
     ///
     public required init(dictionaryLiteral elements: (Key, Value)...) {
         storage = [Key: Value]()
@@ -59,14 +52,16 @@ public class Environment: Collection, ExpressibleByDictionaryLiteral {
 
     ///
     /// Creates a new Environment instance with any collection type with an
-    /// element type of `(key: String, value: String)`.
+    /// element type of [`Environment.Key`: `Environment.Value`].
     ///
     /// The following example creates an Environment instance with the
     /// contents of the dictionary type values:
     ///
     ///     let values: [String : String] = ["LOG_ALL": "ERROR", "LOG_TAG_MyTag": "TRACE1"]
     ///
-    ///     let environment =  Environment(values)
+    ///     let environment = Environment(values)
+    ///
+    /// - Parameter elements: Any `Collection` type whose Element is equal to [`Environment.Key`: `Environment.Value`].
     ///
     public init<T: Collection>(_ elements: T) where T.Iterator.Element == Element {
         storage = [Key: Value]()
@@ -81,13 +76,15 @@ public class Environment: Collection, ExpressibleByDictionaryLiteral {
     /// The following example creates an Environment instance with the
     /// current contents of the OS environment:
     ///
-    ///     let environment =  Environment()
+    ///     let environment = Environment()
     ///
     public init() {
         let process  = ProcessInfo.processInfo
 
         self.storage = process.environment
     }
+
+    // MARK: Indexing Elements
 
     ///
     /// Returns the position immediately after the given index.
@@ -113,6 +110,8 @@ public class Environment: Collection, ExpressibleByDictionaryLiteral {
     public var endIndex: Index {
         return storage.endIndex
     }
+
+    // MARK: Accessing Elements
 
     ///
     /// Accesses the element at the specified position.
@@ -160,6 +159,20 @@ public class Environment: Collection, ExpressibleByDictionaryLiteral {
             storage[key] = newValue
         }
     }
+
+    // MARK: Supporting Types
+
+    public typealias Key   = String
+    public typealias Value = String
+
+    /// The element type of a Environment: a tuple containing an individual
+    /// key-value pair.
+    public typealias Element = (key: Key, value: Value)
+
+    /// The index type of an Environment.
+    public typealias Index = DictionaryIndex<Key, Value>
+
+    // MARK: Private variables
 
     fileprivate var storage: [Key: Value]
 }

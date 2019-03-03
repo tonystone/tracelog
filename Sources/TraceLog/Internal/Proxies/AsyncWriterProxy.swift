@@ -43,7 +43,7 @@ internal class AsyncWriterProxy: WriterProxy {
 
     /// Initialize the proxy with the proxied Writer and any options to configure.
     ///
-    internal init(writer: Writer, options: Set<AsyncOption>) {
+    internal init(writer: Writer, options: Set<AsyncConcurrencyModeOption>) {
         self.writer = writer
         self.queue  = DispatchQueue(label: "tracelog.write.queue.\(String(describing: writer.self))")
 
@@ -142,14 +142,14 @@ private class LogEntryQueue {
 
     /// The strategy this queue instance is using to queue items.
     ///
-    private let strategy: AsyncOption.BufferStrategy
+    private let strategy: AsyncConcurrencyModeOption.BufferStrategy
 
     ///
     /// Internal storage for this buffer.
     ///
     private var storage: [Writer.LogEntry] = []
 
-    init(for strategy: AsyncOption.BufferStrategy) {
+    init(for strategy: AsyncConcurrencyModeOption.BufferStrategy) {
         self.strategy = strategy
     }
 

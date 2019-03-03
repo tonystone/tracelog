@@ -31,16 +31,33 @@ import Swift
 /// ConsoleWriter is a concrete implementation of the Writer protocol and
 /// can be used as a basic example of creating custom writers.
 ///
-/// - SeeAlso: `ConsoleWriter`
-/// - SeeAlso: `FileWriter`
+/// - SeeAlso: `ConsoleWriter` for an example implementation.
+/// - SeeAlso: `FileWriter` for an example implementation.
 ///
 public protocol Writer {
+
+    // MARK: Writing a LogEntry
+
+    ///
+    /// Called when the logger needs to log an event to this logger.
+    ///
+    /// - Parameter entry: A `LogEntry` type to write to the output.
+    ///
+    /// - Returns: An Int indicating the actual number of bytes written to the output
+    ///            after conversion of the `LogEntry`.  This is the actual number of bytes
+    ///            (after any encoding) not the number of visible characters.
+    ///
+    /// - SeeAlso: `LogEntry` for complete attribute details.
+    ///
+    func write(_ entry: LogEntry)  -> Result<Int, FailureReason>
+
+    // MARK: Supporting Types
 
     ///  Log Entry represents an element that can be written by a Writer.
     ///
     /// - Parameters:
     ///     - timestamp:             Timestamp of the log event (number of seconds from 1970).
-    ///     - level:                 The LogLevel of this logging event. Note: log will not be called if the LegLevel is not set to above this calls log level
+    ///     - level:                 The `LogLevel` of this logging event. Note: log will not be called if the LegLevel is not set to above this calls log level
     ///     - tag:                   The tag associated with the log event.
     ///     - message:               The message string (already formatted) for this logging event.
     ///     - file:                  The source file (of the calling program) of this logging event.
@@ -49,35 +66,31 @@ public protocol Writer {
     ///
     /// - Returns: LogResult indicating the result of the attempt to log the statement to the endpoint.
     ///
-    /// - SeeAlso: `LogLevel`
-    /// - SeeAlso: `RuntimeContext`
-    /// - SeeAlso: `StaticContext`
+    /// - SeeAlso: `LogLevel` for logging level constants.
+    /// - SeeAlso: `RuntimeContext` for details on the runtime context attributes available.
+    /// - SeeAlso: `StaticContext` for details on the static context attributes available.
     ///
     typealias LogEntry = (timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext)
 
-    ///
-    /// Called when the logger needs to log an event to this logger.
-    ///
-    /// - Parameter entry: A LogEntry type to write to the output.
-    ///
-    /// - Returns: An Int indicating the actualy number of bytes written to the output
-    ///            after conversion of the LogEntry.  This is the actualy number of bytes
-    ///            (ansfer any encoding) not the number of visible characters.
-    ///
-    /// - SeeAlso: `LogEntry`
-    ///
-    func write(_ entry: LogEntry)  -> Result<Int, FailureReason>
 }
 
-/// The reason for the Writer.write failure.
+// MARK: Supporting Types
+
+/// The reason for the `Writer.write(_:)` failure.
+///
+/// - SeeAlso: `Writer` for usage.
 ///
 public enum FailureReason: Error {
 
-    /// The Writer is unavailable for writing at the moment.
+    // MARK: Available Reasons
+
+    /// The Writer is unavailable for writing at the moment but can recover.
     ///
     case unavailable
 
     /// The writer failed to write (unrecoverable).
+    ///
+    /// - Parameter Error: An `Swift.Error` indicating the underlying cause of the error.
     ///
     case error(Error)
 }

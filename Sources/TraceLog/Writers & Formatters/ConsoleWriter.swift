@@ -47,14 +47,12 @@ import Foundation
 ///
 public class ConsoleWriter: OutputStreamWriter {
 
-    /// OutputStreamFormatter being used for formating output.
-    ///
-    public let format: OutputStreamFormatter
+    // MARK: Initialization
 
     /// Default constructor for this writer
     ///
     /// - Parameters:
-    ///     - format: An instance of an OutputStreamFormatter used to format the output before writing to the file.
+    ///     - format: An instance of an `OutputStreamFormatter` used to format the output before writing to the file.
     ///
     public convenience init(format: OutputStreamFormatter = Default.format) {
         self.init(outputStream: Standard.out, format: format)
@@ -69,7 +67,13 @@ public class ConsoleWriter: OutputStreamWriter {
         self.mutex        = Mutex(.normal)
     }
 
+    // MARK: OutputStreamWriter conformance
+
     /// Required write function for the logger
+    ///
+    /// - SeeAlso: `Writer` for more information about the `write` function.
+    /// - SeeAlso: 'Writer.LogEntry' for a complete definition of the loggable entry.
+    /// - SeeAlso: `FailureReason` for failure return types.
     ///
     public func write(_ entry: Writer.LogEntry) -> Result<Int, FailureReason> {
 
@@ -88,6 +92,10 @@ public class ConsoleWriter: OutputStreamWriter {
         return self.outputStream << format.bytes(from: entry)
     }
 
+    /// OutputStreamFormatter being used for formating output.
+    ///
+    public let format: OutputStreamFormatter
+
     /// Low level mutex for locking print since it's not reentrant.
     ///
     private var mutex: Mutex
@@ -97,7 +105,9 @@ public class ConsoleWriter: OutputStreamWriter {
     private var outputStream: OutputStream
 }
 
-extension ConsoleWriter {
+public extension ConsoleWriter {
+
+    // MARK: Default Values
 
     /// Defaults for init values
     ///

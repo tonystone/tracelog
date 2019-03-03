@@ -24,6 +24,8 @@ import Swift
 ///
 public protocol StaticContext {
 
+    // MARK: Instance Properties
+
     /// The file name with path component captured at the time the Log<level> func was called to log a message.
     var file: String { get }
 
@@ -34,8 +36,9 @@ public protocol StaticContext {
     var line: Int { get }
 }
 
-/// :nodoc:
 extension StaticContext {
+
+    // MARK: Describing a StaticContext
 
     var description: String {
         return "StaticContext {file: \"\(self.file)\", function: \"\(self.function)\", line: \(self.line)}"

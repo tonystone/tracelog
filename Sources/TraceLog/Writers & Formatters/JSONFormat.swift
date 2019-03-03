@@ -87,24 +87,13 @@ import Foundation
 ///
 public struct JSONFormat: OutputStreamFormatter {
 
-    /// Available options for formatting the message
-    /// in json.
-    ///
-    public enum Option: Hashable {
-        case prettyPrint
-    }
-
-    /// TraceLog attributes that can be output.
-    ///
-    public enum Attribute: Int, CaseIterable {
-        case timestamp, level, tag, message, processName, processIdentifier, threadIdentifier, file, function, line
-    }
+    // MARK: Initialization
 
     /// The designated initializer for this type.
     ///
     /// - Parameters:
-    ///     - attributes: A set of `Attribute`s the will be formatted for output.
-    ///     - options: A Set of `Options` to allow optional formatting control (see `Option` for list).
+    ///     - attributes: A set of `JSONFormat.Attribute`s the will be formatted for output.
+    ///     - options: A Set of `JSONFormat.Option`s to allow optional formatting control.
     ///     - terminator: A string that will be output at the end of the output to terminate the entry.
     ///
     public init(attributes: Set<Attribute> = Default.attributes, options: Set<Option> = Default.options, terminator: String = Default.terminator) {
@@ -113,7 +102,22 @@ public struct JSONFormat: OutputStreamFormatter {
         self.conditional = options.contains(.prettyPrint) ? ("\n", " ", "\t") : ("", "", "")
     }
 
+    // MARK: `OutputStreamFormatter` Conformance
+
+    /// The encoding that will be used to encode the output output of `bytes(from:)`.
+    ///
+    /// Value:
+    /// ```
+    ///    String.Encoding.utf8
+    /// ```
+    ///
+    /// - Note: JSON text exchanged between systems that are not part of a closed ecosystem MUST be encoded using UTF-8 [RFC3629].
+    ///
+    public let encoding: String.Encoding = .utf8
+
     /// Text conversion function required by the `OutputStreamFormatter` protocol.
+    ///
+    /// - SeeAlso: `OutputStreamFormatter` for more information about this function.
     ///
     public func bytes(from entry: Writer.LogEntry) -> Result<[UInt8], OutputStreamFormatterError> {
         var text = String()
@@ -140,26 +144,33 @@ public struct JSONFormat: OutputStreamFormatter {
         text.write("\(conditional.newLine)}")
         text.write(self.terminator)
 
-        /// JSON text exchanged between systems that are not part of a closed
-        /// ecosystem MUST be encoded using UTF-8 [RFC3629].
         ///
-        return .success(Array(text.utf8))
+        /// Since we want to make sure messages are printed, we allow
+        /// lossy conversion so that even if an invalid encoding can
+        /// still be printed minus the un-encodable characters.
+        ///
+        guard let data = text.data(using: self.encoding, allowLossyConversion: true)
+            else { return .failure(.encodingFailure("Failed to encode entry using \(self.encoding) encoding.")) }
+
+        return .success(Array(data))
     }
 
+    // MARK: Internal & Private methods and structures
+
     /// Generic type emitter
-    func emit<T, Target>(_ value: T, forKey key: String, to target: inout Target) where Target : TextOutputStream {
+    private func emit<T, Target>(_ value: T, forKey key: String, to target: inout Target) where Target : TextOutputStream {
         target.write("\(conditional.tab)\"\(key)\"\(conditional.space)")
         target.write(":\(conditional.space)")
         target.write("\(value)")
     }
     /// String emitter
-    func emit<Target>(_ value: String, forKey key: String, to target: inout Target) where Target : TextOutputStream {
+    private func emit<Target>(_ value: String, forKey key: String, to target: inout Target) where Target : TextOutputStream {
         target.write("\(conditional.tab)\"\(key)\"\(conditional.space)")
         target.write(":\(conditional.space)")
         target.write("\"\(value.escaping(charactersIn: CharacterSet.jsonEscapeCharacterSet))\"")
     }
     /// LogLevel emitter
-    func emit<Target>(_ value: LogLevel, forKey key: String, to target: inout Target) where Target : TextOutputStream {
+    private func emit<Target>(_ value: LogLevel, forKey key: String, to target: inout Target) where Target : TextOutputStream {
         target.write("\(conditional.tab)\"\(key)\"\(conditional.space)")
         target.write(":\(conditional.space)")
         target.write("\"\(String(describing: value).uppercased())\"")
@@ -183,7 +194,9 @@ public struct JSONFormat: OutputStreamFormatter {
 
 extension JSONFormat {
 
-    /// Default values used for JSONFormat
+    // MARK: Default Values
+
+    /// Default values used for `JSONFormat`
     ///
     public enum Default {
 
@@ -191,7 +204,7 @@ extension JSONFormat {
         ///
         /// Default:
         ///
-        ///     Set(Attribute.allCases)
+        ///     Set(JSONFormat.Attribute.allCases)
         ///
         public static let attributes: Set<Attribute> = Set(Attribute.allCases)
 
@@ -212,5 +225,43 @@ extension JSONFormat {
         ///     ",\n"
         ///
         public static let terminator: String = ",\n"
+    }
+
+    // MARK: Supporting Types
+
+    /// `JSONFormat` attributes that can be output.
+    ///
+    /// - SeeAlso: `JSONFormat` for usage.
+    ///
+    public enum Attribute: Int, CaseIterable {
+        /// Output the timestamp as an `Int`.
+        case timestamp
+        /// Output the level as a `String` such as ERROR, WARNING, INFO, etc.
+        case level
+        /// Output the tag field as a `String`.
+        case tag
+        /// Output the message field as a `String`.
+        case message
+        /// Output the processName field as a `String`.
+        case processName
+        /// Output the processIdentifier field as a `Int`.
+        case processIdentifier
+        /// Output the threadIdentifier field as a `UInt64`.
+        case threadIdentifier
+        /// Output the file field as a `String`.
+        case file
+        /// Output the function field as a `String`.
+        case function
+        /// Output the line field as a `Int`.
+        case line
+    }
+
+    /// Available options for formatting the message in json.
+    ///
+    /// - SeeAlso: `JSONFormat` for usage.
+    ///
+    public enum Option: Hashable {
+        /// Adds formatting characters to the output string for a more human readable format.
+        case prettyPrint
     }
 }

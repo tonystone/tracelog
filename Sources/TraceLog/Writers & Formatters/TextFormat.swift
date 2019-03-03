@@ -156,35 +156,11 @@ import Foundation
 /// file type output, a newline "\n" is required in order to write multiple lines to the screen
 /// or file.
 ///
-/// - SeeAlso: `OutputStreamFormatter`
-/// - SeeAlso: `JSONFormat`
-/// - SeeAlso: `ConsoleWriter`
-/// - SeeAlso: `FileWriter`
+/// - SeeAlso: `OutputStreamFormatter` for more information about the base class.
 ///
 public struct TextFormat: OutputStreamFormatter {
 
-    /// Special options available to control the
-    /// output of `TextFormat`.
-    ///
-    public enum Option: Hashable {
-
-        /// Modify the any control characters found in the entry.
-        ///
-        case controlCharacters(Action)
-
-        /// Actions available for `controlCharacters(Action)` Option.
-        ///
-        public enum Action {
-
-            /// Strip the characters from the message.
-            ///
-            case strip
-
-            /// Backslash escape the characters.
-            ///
-            case escape
-        }
-    }
+    // MARK: Initialization
 
     /// The designated initializer for this type.
     ///
@@ -194,6 +170,9 @@ public struct TextFormat: OutputStreamFormatter {
     ///     - options: A Set of `Options` to allow optional formatting control (see `Option` for list).
     ///     - encoding: The Character encoding to use for the formatted entry.
     ///     - terminator: A string that will be output at the end of the output to terminate the entry.
+    ///
+    /// - SeeAlso: `TextFormat.Default` for default values to for this class.
+    /// - SeeAlso: `TextFormat.Option` for a list of available options.
     ///
     public init(template: String = Default.template, dateFormatter: DateFormatter = Default.dateFormatter, options: Set<Option> = Default.options, encoding: String.Encoding = Default.encoding, terminator: String = Default.terminator) {
         self.dateFormatter = dateFormatter
@@ -235,7 +214,15 @@ public struct TextFormat: OutputStreamFormatter {
         self.template = elements
     }
 
+    // MARK: `OutputStreamFormatter` Conformance
+
+    /// The encoding that will be used to encode the `message` attribute of the `Writer.LogEntry` and the entire message if this is a String type output.
+    ///
+    public let encoding: String.Encoding
+
     /// Text conversion function required by the `OutputStreamFormatter` protocol.
+    ///
+    /// - SeeAlso: `OutputStreamFormatter` for more information about this function.
     ///
     public func bytes(from entry: Writer.LogEntry) -> Result<[UInt8], OutputStreamFormatterError> {
         var text = String()
@@ -279,13 +266,15 @@ public struct TextFormat: OutputStreamFormatter {
         return .success(Array(data))
     }
 
+    // MARK: Internal & Private methods and structures
+
     /// Generic type writer
-    func write<T, Target>(_ value: T, to target: inout Target) where Target : TextOutputStream {
+    private func write<T, Target>(_ value: T, to target: inout Target) where Target : TextOutputStream {
         target.write(String(describing: value))
     }
 
     /// Date writer
-    func write<Target>(_ value: Date, to target: inout Target) where Target : TextOutputStream {
+    private func write<Target>(_ value: Date, to target: inout Target) where Target : TextOutputStream {
 
         /// Chain to the write(String) version just in case the user
         /// supplied a format that contains control characters that
@@ -298,7 +287,7 @@ public struct TextFormat: OutputStreamFormatter {
     }
 
     /// String writer
-    func write<Target>(_ value: String, to target: inout Target) where Target : TextOutputStream {
+    private func write<Target>(_ value: String, to target: inout Target) where Target : TextOutputStream {
         switch controlCharacterAction {
         case .some(.strip):
             target.write(value.stripping(charactersIn: .controlCharacters))
@@ -310,7 +299,7 @@ public struct TextFormat: OutputStreamFormatter {
     }
 
     /// LogLevel writer
-    func write<Target>(_ value: LogLevel, to target: inout Target) where Target : TextOutputStream {
+    private func write<Target>(_ value: LogLevel, to target: inout Target) where Target : TextOutputStream {
         target.write(String(describing: value).uppercased())
     }
 
@@ -337,10 +326,6 @@ public struct TextFormat: OutputStreamFormatter {
     ///
     private let dateFormatter: DateFormatter
 
-    /// Encoding of the messages logged to the log file.
-    ///
-    private let encoding: String.Encoding
-
     /// Should we strip control characters from the message.
     ///
     private let controlCharacterAction: Option.Action?
@@ -352,7 +337,9 @@ public struct TextFormat: OutputStreamFormatter {
 
 extension TextFormat {
 
-    /// Default values used for TextFormat
+    // MARK: Default Values
+
+    /// Default values used for `TextFormat`
     ///
     public enum Default {
 
@@ -411,5 +398,30 @@ extension TextFormat {
         ///     "\n"
         ///
         public static let terminator: String = "\n"
+    }
+
+    // MARK: Available Initialization Options
+
+    /// Special options available to control the
+    /// output of `TextFormat`.
+    ///
+    public enum Option: Hashable {
+
+        /// Modify the any control characters found in the entry.
+        ///
+        case controlCharacters(Action)
+
+        /// Actions available for `controlCharacters(Action)` Option.
+        ///
+        public enum Action {
+
+            /// Strip the characters from the message.
+            ///
+            case strip
+
+            /// Backslash escape the characters.
+            ///
+            case escape
+        }
     }
 }

@@ -63,11 +63,6 @@ TraceLog's is designed to be a universal, flexible, portable, lightweight, and e
 
 Complete documentation can be found at [https://tonystone.github.io/tracelog](https://tonystone.github.io/tracelog).
 
-* The [Quick Start Guide](#Quick&#32;Start&#32;Guide) can give you the quick help you need to get started right away.
-* The [Configuration](Documentation/Configuration.md) guide contains advanced configuration information.
-* The [Logging](Documentation/Logging.md) guide can help with questions on basic and advanced logging.
-* The [API Reference](https://tracelog.github.io) contains users guides and a complete API reference.
-
 ## Quick Start Guide
 
 Using TraceLog is incredibly simple out of the box.  Although TraceLog is highly configurable, to get started all you have to do is add the pod to your project,
@@ -124,17 +119,11 @@ TraceLog has the following primary logging functions to log various levels of in
 
 Although not strictly require, calling the `TraceLog.configure()` command at startup will allow TraceLog to read the environment for configuration information.
 
-<<<<<<< Updated upstream
-<img src=Docs/Xcode-environment-setup-screenshot.png width=597 height=361 />
-=======
 Simply call configure with no parameters as early as possible in your startup code (preferably before ay log statements get called.)
->>>>>>> Stashed changes
 
 ```swift
     TraceLog.configure()
 ```
-
-For more advanced configuration please see [TraceLog Configuration](Configuration.md)
 
 ## Runtime Overhead
 
