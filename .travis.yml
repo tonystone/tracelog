@@ -92,10 +92,6 @@ before_install:
        # Fix travis issue: https://github.com/travis-ci/travis-ci/issues/6307
        rvm get head --auto-dotfiles || true
        sudo log config --subsystem "xctest" --mode "persist:debug"
-
-       curl -O https://swift.org/builds/swift-5.0-branch/xcode/swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-28-a/swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-28-a-osx.pkg
-       sudo installer -pkg swift-5.0-DEVELOPMENT-SNAPSHOT-2018-12-28-a-osx.pkg -target /
-       export TOOLCHAINS=swift
     fi
   #
   # Linux requires downloading Swift and tools
@@ -144,7 +140,6 @@ script:
         cmake ./
         make xcode-project
         set -o pipefail
-        xcodebuild -project "$PROJECT" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" -enableCodeCoverage YES build-for-testing
         xcodebuild -project "$PROJECT" -scheme "$SCHEME" -destination "$TEST_DEST" -sdk "$TEST_SDK" -enableCodeCoverage YES test
         set +o pipefail
         set +e
