@@ -18,7 +18,7 @@ matrix:
          - BUILD="cmake build"
     -
       os: osx
-      osx_image: xcode10
+      osx_image: xcode10.2
       env:
          - BUILD="cmake build"
     -
@@ -29,24 +29,24 @@ matrix:
          - BUILD="swift build"
     -
       os: osx
-      osx_image: xcode10
+      osx_image: xcode10.2
       env:
          - BUILD="swift build"
     -
       os: osx
-      osx_image: xcode10
+      osx_image: xcode10.2
       env:
          - BUILD="pod lint"
     -
       os: osx
-      osx_image: xcode10
+      osx_image: xcode10.2
       env:
          - BUILD="xcodebuild"
          - TEST_DEST="platform=iOS Simulator,OS=11.3,name=iPhone 8"
          - TEST_SDK=iphonesimulator
     -
       os: osx
-      osx_image: xcode10
+      osx_image: xcode10.2
       env:
          - BUILD="xcodebuild"
          - TEST_DEST="platform=iOS Simulator,OS=10.3.1,name=iPhone 7"
@@ -54,7 +54,7 @@ matrix:
 
     -
       os: osx
-      osx_image: xcode10
+      osx_image: xcode10.2
       env:
          - BUILD="xcodebuild"
          - TEST_DEST="platform=iOS Simulator,OS=9.3,name=iPhone 6s"
@@ -62,7 +62,7 @@ matrix:
 
     -
       os: osx
-      osx_image: xcode10
+      osx_image: xcode10.2
       env:
          - BUILD="xcodebuild"
          - TEST_DEST="platform=OS X,arch=x86_64"
