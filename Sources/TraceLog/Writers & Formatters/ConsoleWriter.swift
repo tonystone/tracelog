@@ -105,7 +105,7 @@ public class ConsoleWriter: OutputStreamWriter {
     private var outputStream: OutputStream
 }
 
-public extension ConsoleWriter {
+extension ConsoleWriter {
 
     // MARK: Default Values
 

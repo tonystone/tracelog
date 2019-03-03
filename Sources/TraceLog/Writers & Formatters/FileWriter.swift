@@ -142,7 +142,7 @@ public class FileWriter: OutputStreamWriter {
     private var fileManager: FileStrategyManager
 }
 
-public extension FileWriter {
+extension FileWriter {
 
     // MARK: Default Values
 
