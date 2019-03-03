@@ -19,17 +19,19 @@
 ///
 import Foundation
 
-/// ByteOutputStreamWriter
-///
 /// A higher level Writer interface that specifically writes to
 /// an `OutputStream` and it's output format can be controlled
 /// by an `OutputStreamFormatter`.
 ///
-/// - SeeAlso: `OutputStreamFormatter`
+/// - SeeAlso: `OutputStreamFormatter` for more information about formatters for the output.
+/// - SeeAlso: `ConsoleWriter` for an example implementation.
+/// - SeeAlso: `FileWriter` for an example implementation.
 ///
 public protocol OutputStreamWriter: Writer {
 
-    /// OutputStreamFormatter being used for formating output.
+    // MARK: Properties
+
+    /// `OutputStreamFormatter` being used for formating output.
     ///
     var format: OutputStreamFormatter { get }
 }

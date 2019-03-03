@@ -24,6 +24,7 @@ extension Configuration {
     enum ConfigurationError: Error, CustomStringConvertible {
         case invalidLogLevel(String)
 
+        /// :nodoc:
         var description: String {
             switch self {
             case .invalidLogLevel(let value):
@@ -148,6 +149,7 @@ extension Configuration: CustomStringConvertible {
 
     /// FIXME: Add printing of the Writers installed.
 
+    /// :nodoc:
     var description: String {
 
         var loggedString = "{"

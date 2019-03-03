@@ -23,7 +23,9 @@ import Swift
 /// LogLevels represent the logging level defined by TraceLog.  These parallel the
 /// environment variables that can be set to configure TraceLog.
 ///
-public enum LogLevel: Int, CaseIterable {
+public enum LogLevel: Int, CaseIterable, Comparable {
+
+    // MARK: Available Levels
 
     /// Used to turn logging completely off for the selected level (global, prefix, tag).
     case off     = 0
@@ -51,16 +53,19 @@ public enum LogLevel: Int, CaseIterable {
 }
 
 /// Extend the LogLevel with the ability to compare them
-extension LogLevel: Comparable {}
+extension LogLevel {
 
-/// Returns true if lhs LogLevel is less than to rhs LogLevel
-public func < (lhs: LogLevel, rhs: LogLevel) -> Bool {
-    return lhs.rawValue < rhs.rawValue
-}
+    // MARK: Comparing a `LogLevel`
 
-/// Returns true if lhs LogLevel is equal to rhs LogLevel
-public func == (lhs: LogLevel, rhs: LogLevel) -> Bool {
-    return lhs.rawValue == rhs.rawValue
+    /// Returns true if lhs LogLevel is less than to rhs LogLevel
+    public static func < (lhs: LogLevel, rhs: LogLevel) -> Bool {
+        return lhs.rawValue < rhs.rawValue
+    }
+
+    /// Returns true if lhs LogLevel is equal to rhs LogLevel
+    public static func == (lhs: LogLevel, rhs: LogLevel) -> Bool {
+        return lhs.rawValue == rhs.rawValue
+    }
 }
 
 internal extension LogLevel {

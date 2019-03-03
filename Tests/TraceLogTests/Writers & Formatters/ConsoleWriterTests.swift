@@ -62,6 +62,8 @@ class ConsoleWriterTests: XCTestCase {
     func testFailedFormat() {
 
         class TestFormat: OutputStreamFormatter {
+            let encoding: String.Encoding = .utf8
+
             func bytes(from entry: (timestamp: Double, level: LogLevel, tag: String, message: String, runtimeContext: RuntimeContext, staticContext: StaticContext)) -> Result<[UInt8], OutputStreamFormatterError> {
                 return .failure(.encodingFailure("Formatter failed"))
             }

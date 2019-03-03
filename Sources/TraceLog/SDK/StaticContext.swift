@@ -22,7 +22,9 @@ import Swift
 ///
 /// Static context captured at the time of the log statement
 ///
-public protocol StaticContext: CustomStringConvertible {
+public protocol StaticContext {
+
+    // MARK: Instance Properties
 
     /// The file name with path component captured at the time the Log<level> func was called to log a message.
     var file: String { get }
@@ -34,7 +36,9 @@ public protocol StaticContext: CustomStringConvertible {
     var line: Int { get }
 }
 
-public extension StaticContext {
+extension StaticContext {
+
+    // MARK: Describing a StaticContext
 
     var description: String {
         return "StaticContext {file: \"\(self.file)\", function: \"\(self.function)\", line: \(self.line)}"

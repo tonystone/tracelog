@@ -109,7 +109,7 @@ internal class FileOutputStream: RawOutputStream {
     ///
     /// - Throws: A FileOutputStreamError type.
     ///
-    /// - SeeAlso: FileOutputStreamError
+    /// - SeeAlso: `FileOutputStreamError`
     ///
     init(url: URL, options: OpenOptions = [], mode: Mode = [.readUser, .writeUser, .readGroup, .readOther]) throws {
 
