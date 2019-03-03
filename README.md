@@ -61,7 +61,7 @@ TraceLog's is designed to be a universal, flexible, portable, lightweight, and e
 
 ## Documentation
 
-Complete documentation can be found at [https://tonystone.github.io/tracelog](https://tonystone.github.io/tracelog).
+* [User Guides & Reference](https://tonystone.github.io/tracelog) - Extensive user guides and reference documentation!  100% documented API, full examples and many hidden details.
 
 ## Quick Start Guide
 
@@ -124,6 +124,8 @@ Simply call configure with no parameters as early as possible in your startup co
 ```swift
     TraceLog.configure()
 ```
+
+> For a complete documentation set including user guides, a 100% documented API reference and many more examples, please see [https://tonystone.github.io/tracelog](https://tonystone.github.io/tracelog).
 
 ## Runtime Overhead
 
