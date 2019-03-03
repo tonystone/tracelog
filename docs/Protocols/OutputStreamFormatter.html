@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>OutputStreamFormatter Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-102615840-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-102615840-5');
+</script>
+
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Protocol/OutputStreamFormatter" class="dashAnchor"></a>
+
+    <a title="OutputStreamFormatter Protocol Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          TraceLog Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="http://github.com/tonystone/tracelog">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">TraceLog Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      OutputStreamFormatter Protocol Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../User Guides.html">User Guides</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../quick-start.html">Quick Start</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../objective-c-support.html">Objective-C Support</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Configuration.html">Configuration</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Configuration.html#/s:8TraceLog9configure4mode7writers11environmentyAA15ConcurrencyModeO_SayAA6Writer_pGAA11EnvironmentCtF">configure(mode:writers:environment:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Configuration.html#/s:8TraceLog9configure7writers11environmentySayAA21WriterConcurrencyModeOG_AA11EnvironmentCtF">configure(writers:environment:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Logging.html">Logging</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Logging.html#/s:8TraceLog8logError____7messageySSSg_S2SSiSSyctF">logError(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Logging.html#/s:8TraceLog10logWarning____7messageySSSg_S2SSiSSyctF">logWarning(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Logging.html#/s:8TraceLog7logInfo____7messageySSSg_S2SSiSSyctF">logInfo(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Logging.html#/s:8TraceLog03logA0____7messageySi_S2SSiSSyctF">logTrace(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Logging.html#/s:8TraceLog03logA0_5level___7messageySSSg_SiS2SSiSSyctF">logTrace(_:level:_:_:_:message:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Writers.html">Writers</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ConsoleWriter.html">ConsoleWriter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ConsoleWriter/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/FileWriter.html">FileWriter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/FileWriter/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/FileWriter/Strategy.html">– Strategy</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Formatters.html">Formatters</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/TextFormat.html">TextFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/TextFormat/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/TextFormat/Option.html">– Option</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/JSONFormat.html">JSONFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/JSONFormat/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/JSONFormat/Attribute.html">– Attribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/JSONFormat/Option.html">– Option</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Software Developer Kit (SDK).html">Software Developer Kit (SDK)</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Writer.html">Writer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/OutputStreamWriter.html">OutputStreamWriter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/OutputStreamFormatter.html">OutputStreamFormatter</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Supporting Types.html">Supporting Types</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/ConcurrencyMode.html">ConcurrencyMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/WriterConcurrencyMode.html">WriterConcurrencyMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/AsyncConcurrencyModeOption.html">AsyncConcurrencyModeOption</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/AsyncConcurrencyModeOption/BufferStrategy.html">– BufferStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Environment.html">Environment</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/LogLevel.html">LogLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/StaticContext.html">StaticContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/RuntimeContext.html">RuntimeContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/OutputStreamFormatterError.html">OutputStreamFormatterError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/FailureReason.html">FailureReason</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>OutputStreamFormatter</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">OutputStreamFormatter</span></code></pre>
+
+                </div>
+              </div>
+            <p>A formatter type for formating the output of a <code><a href="../Protocols/OutputStreamWriter.html">OutputStreamWriter</a></code> type.</p>
+
+<p>OutputStreamFormatter have one purpose in life, to convert a <code><a href="../Protocols/Writer.html#/s:8TraceLog6WriterP0B5Entrya">Writer.LogEntry</a></code> into a formatted collection of bytes.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="../Structs/TextFormat.html">TextFormat</a></code> for concrete implementation of an <code>OutputStreamFormatter</code>.
+
+</div>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="../Structs/JSONFormat.html">JSONFormat</a></code> for concrete implementation of an <code>OutputStreamFormatter</code>.
+
+</div>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Properties"></a>
+                <a name="//apple_ref/swift/Section/Properties" class="dashAnchor"></a>
+                <a href="#/Properties">
+                  <h3 class="section-name">Properties</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog21OutputStreamFormatterP8encodingSS10FoundationE8EncodingVvp"></a>
+                    <a name="//apple_ref/swift/Property/encoding" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog21OutputStreamFormatterP8encodingSS10FoundationE8EncodingVvp">encoding</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The encoding that will be used to encode the <code>message</code> attribute of the <code><a href="../Protocols/Writer.html#/s:8TraceLog6WriterP0B5Entrya">Writer.LogEntry</a></code> and the entire message if this is a String type output.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="k">var</span> <span class="nv">encoding</span><span class="p">:</span> <span class="kt">String</span><span class="o">.</span><span class="kt">Encoding</span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Formatting%20Input"></a>
+                <a name="//apple_ref/swift/Section/Formatting Input" class="dashAnchor"></a>
+                <a href="#/Formatting%20Input">
+                  <h3 class="section-name">Formatting Input</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog21OutputStreamFormatterP5bytes4froms6ResultOySays5UInt8VGAA0cdE5ErrorOGSd9timestamp_AA0B5LevelO5levelSS3tagSS7messageAA14RuntimeContext_p07runtimeQ0AA06StaticQ0_p06staticQ0t_tF"></a>
+                    <a name="//apple_ref/swift/Method/bytes(from:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog21OutputStreamFormatterP5bytes4froms6ResultOySays5UInt8VGAA0cdE5ErrorOGSd9timestamp_AA0B5LevelO5levelSS3tagSS7messageAA14RuntimeContext_p07runtimeQ0AA06StaticQ0_p06staticQ0t_tF">bytes(from:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Accepts traceLogs standard LogEntry and outputs an Array of bytes
+containing the formatted output.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <p><code><a href="../Enums/OutputStreamFormatterError.html">OutputStreamFormatterError</a></code> for error values that can be returned.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">bytes</span><span class="p">(</span><span class="n">from</span> <span class="nv">entry</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Writer.html">Writer</a></span><span class="o">.</span><span class="kt">LogEntry</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="p">[</span><span class="kt">UInt8</span><span class="p">],</span> <span class="kt"><a href="../Enums/OutputStreamFormatterError.html">OutputStreamFormatterError</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>entry</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code><a href="../Protocols/Writer.html#/s:8TraceLog6WriterP0B5Entrya">Writer.LogEntry</a></code> to format and convert to a byte collection.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>A <code>Result&lt;[UInt8], OutputStreamFormatterError&gt;</code> with a success value of the formatted byte collection and on error an <code><a href="../Enums/OutputStreamFormatterError.html">OutputStreamFormatterError</a></code> value.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>© 2019 <a class="link" href="https://github.com/tonystone" target="_blank" rel="external">Tony Stone</a> under the <a class="link" href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank" rel="external">Apache License, Version 2.0</a>.</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Supporting Types  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-102615840-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-102615840-5');
+</script>
+
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Section/Supporting Types" class="dashAnchor"></a>
+
+    <a title="Supporting Types  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          TraceLog Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="http://github.com/tonystone/tracelog">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">TraceLog Reference</a>
+      <img class="carat" src="img/carat.png" />
+      Supporting Types  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="User Guides.html">User Guides</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="quick-start.html">Quick Start</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="objective-c-support.html">Objective-C Support</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Configuration.html">Configuration</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Configuration.html#/s:8TraceLog9configure4mode7writers11environmentyAA15ConcurrencyModeO_SayAA6Writer_pGAA11EnvironmentCtF">configure(mode:writers:environment:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Configuration.html#/s:8TraceLog9configure7writers11environmentySayAA21WriterConcurrencyModeOG_AA11EnvironmentCtF">configure(writers:environment:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Logging.html">Logging</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Logging.html#/s:8TraceLog8logError____7messageySSSg_S2SSiSSyctF">logError(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Logging.html#/s:8TraceLog10logWarning____7messageySSSg_S2SSiSSyctF">logWarning(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Logging.html#/s:8TraceLog7logInfo____7messageySSSg_S2SSiSSyctF">logInfo(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Logging.html#/s:8TraceLog03logA0____7messageySi_S2SSiSSyctF">logTrace(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Logging.html#/s:8TraceLog03logA0_5level___7messageySSSg_SiS2SSiSSyctF">logTrace(_:level:_:_:_:message:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Writers.html">Writers</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/ConsoleWriter.html">ConsoleWriter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/ConsoleWriter/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/FileWriter.html">FileWriter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/FileWriter/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/FileWriter/Strategy.html">– Strategy</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Formatters.html">Formatters</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/TextFormat.html">TextFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/TextFormat/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/TextFormat/Option.html">– Option</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/JSONFormat.html">JSONFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/JSONFormat/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/JSONFormat/Attribute.html">– Attribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/JSONFormat/Option.html">– Option</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Software Developer Kit (SDK).html">Software Developer Kit (SDK)</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/Writer.html">Writer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/OutputStreamWriter.html">OutputStreamWriter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/OutputStreamFormatter.html">OutputStreamFormatter</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Supporting Types.html">Supporting Types</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/ConcurrencyMode.html">ConcurrencyMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/WriterConcurrencyMode.html">WriterConcurrencyMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/AsyncConcurrencyModeOption.html">AsyncConcurrencyModeOption</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/AsyncConcurrencyModeOption/BufferStrategy.html">– BufferStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Environment.html">Environment</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/LogLevel.html">LogLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/StaticContext.html">StaticContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RuntimeContext.html">RuntimeContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/OutputStreamFormatterError.html">OutputStreamFormatterError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/FailureReason.html">FailureReason</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>Supporting Types</h1>
+            <p>Miscellaneous types that support various functionality of TraceLog.</p>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Concurrency%20Modes"></a>
+                <a name="//apple_ref/swift/Section/Concurrency Modes" class="dashAnchor"></a>
+                <a href="#/Concurrency%20Modes">
+                  <h3 class="section-name">Concurrency Modes</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog15ConcurrencyModeO"></a>
+                    <a name="//apple_ref/swift/Enum/ConcurrencyMode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog15ConcurrencyModeO">ConcurrencyMode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The system wide modes that TraceLog can run in.  Used to configure a mode globally at configure time.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    TraceLog.<code><a href="Configuration.html#/s:8TraceLog9configure4mode7writers11environmentyAA15ConcurrencyModeO_SayAA6Writer_pGAA11EnvironmentCtF">configure(mode:writers:environment:)</a></code> for usage.
+
+</div>
+
+                        <a href="Enums/ConcurrencyMode.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">ConcurrencyMode</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog21WriterConcurrencyModeO"></a>
+                    <a name="//apple_ref/swift/Enum/WriterConcurrencyMode" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog21WriterConcurrencyModeO">WriterConcurrencyMode</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Mode to run a specific Writer in. Used to wrap a writer to change the specific mode it operates in.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    TraceLog.<code><a href="Configuration.html#/s:8TraceLog9configure7writers11environmentySayAA21WriterConcurrencyModeOG_AA11EnvironmentCtF">configure(writers:environment:)</a></code> for usage.
+
+</div>
+
+                        <a href="Enums/WriterConcurrencyMode.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">WriterConcurrencyMode</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Supporting%20Types"></a>
+                <a name="//apple_ref/swift/Section/Supporting Types" class="dashAnchor"></a>
+                <a href="#/Supporting%20Types">
+                  <h3 class="section-name">Supporting Types</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog26AsyncConcurrencyModeOptionO"></a>
+                    <a name="//apple_ref/swift/Enum/AsyncConcurrencyModeOption" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog26AsyncConcurrencyModeOptionO">AsyncConcurrencyModeOption</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Async mode can be configured for various options, this enum allows you to refine the
+behavior and options of the asynchronous mode of operation.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="Enums/ConcurrencyMode.html#/s:8TraceLog15ConcurrencyModeO5async7optionsACShyAA05AsynccD6OptionOG_tFZ">ConcurrencyMode.async(options:)</a></code> for for more information about usage.
+
+</div>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="Enums/WriterConcurrencyMode.html#/s:8TraceLog21WriterConcurrencyModeO5async_7optionsAcA0C0_p_ShyAA05AsyncdE6OptionOGtFZ">WriterConcurrencyMode.async(_:options:)</a></code> for for more information about usage.
+
+</div>
+
+                        <a href="Enums/AsyncConcurrencyModeOption.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">AsyncConcurrencyModeOption</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog11EnvironmentC"></a>
+                    <a name="//apple_ref/swift/Class/Environment" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog11EnvironmentC">Environment</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A class that is used to capture and represent the os environment variables.</p>
+
+<p>This class can be passed to TraceLog.<code><a href="Configuration.html#/s:8TraceLog9configure4mode7writers11environmentyAA15ConcurrencyModeO_SayAA6Writer_pGAA11EnvironmentCtF">configure(mode:writers:environment:)</a></code> methods to configure it using the
+current Environment settings.</p>
+
+<p>Environment is also like a Swift Dictionary<String, String> so it can be used just
+like a dictionary including subscripting.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    TraceLog.<code><a href="Configuration.html#/s:8TraceLog9configure4mode7writers11environmentyAA15ConcurrencyModeO_SayAA6Writer_pGAA11EnvironmentCtF">configure(mode:writers:environment:)</a></code> for usage.
+
+</div>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    TraceLog.<code><a href="Configuration.html#/s:8TraceLog9configure7writers11environmentySayAA21WriterConcurrencyModeOG_AA11EnvironmentCtF">configure(writers:environment:)</a></code> for usage.
+
+</div>
+
+                        <a href="Classes/Environment.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Environment</span> <span class="p">:</span> <span class="kt">Collection</span><span class="p">,</span> <span class="kt">ExpressibleByDictionaryLiteral</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog0B5LevelO"></a>
+                    <a name="//apple_ref/swift/Enum/LogLevel" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog0B5LevelO">LogLevel</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>LogLevels represent the logging level defined by TraceLog.  These parallel the
+environment variables that can be set to configure TraceLog.</p>
+
+                        <a href="Enums/LogLevel.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">LogLevel</span> <span class="p">:</span> <span class="kt">Int</span><span class="p">,</span> <span class="kt">CaseIterable</span><span class="p">,</span> <span class="kt">Comparable</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog13StaticContextP"></a>
+                    <a name="//apple_ref/swift/Protocol/StaticContext" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog13StaticContextP">StaticContext</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Static context captured at the time of the log statement</p>
+
+                        <a href="Protocols/StaticContext.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">StaticContext</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog14RuntimeContextP"></a>
+                    <a name="//apple_ref/swift/Protocol/RuntimeContext" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog14RuntimeContextP">RuntimeContext</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Runtime context captured at the time of the log statement</p>
+
+                        <a href="Protocols/RuntimeContext.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">RuntimeContext</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog26OutputStreamFormatterErrorO"></a>
+                    <a name="//apple_ref/swift/Enum/OutputStreamFormatterError" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog26OutputStreamFormatterErrorO">OutputStreamFormatterError</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Allowable Errors returned from <code><a href="Protocols/OutputStreamFormatter.html#/s:8TraceLog21OutputStreamFormatterP5bytes4froms6ResultOySays5UInt8VGAA0cdE5ErrorOGSd9timestamp_AA0B5LevelO5levelSS3tagSS7messageAA14RuntimeContext_p07runtimeQ0AA06StaticQ0_p06staticQ0t_tF">OutputStreamFormatter</code>.<code>bytes(from:)</a></code> methods.</p>
+
+                        <a href="Enums/OutputStreamFormatterError.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">OutputStreamFormatterError</span> <span class="p">:</span> <span class="kt">Error</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Supporting%20Types2"></a>
+                <a name="//apple_ref/swift/Section/Supporting Types" class="dashAnchor"></a>
+                <a href="#/Supporting%20Types2">
+                  <h3 class="section-name">Supporting Types</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog13FailureReasonO"></a>
+                    <a name="//apple_ref/swift/Enum/FailureReason" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog13FailureReasonO">FailureReason</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The reason for the <code><a href="Protocols/Writer.html#/s:8TraceLog6WriterP5writeys6ResultOySiAA13FailureReasonOGSd9timestamp_AA0B5LevelO5levelSS3tagSS7messageAA14RuntimeContext_p07runtimeN0AA06StaticN0_p06staticN0t_tF">Writer.write(_:)</a></code> failure.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="Protocols/Writer.html">Writer</a></code> for usage.
+
+</div>
+
+                        <a href="Enums/FailureReason.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="kt">FailureReason</span> <span class="p">:</span> <span class="kt">Error</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>© 2019 <a class="link" href="https://github.com/tonystone" target="_blank" rel="external">Tony Stone</a> under the <a class="link" href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank" rel="external">Apache License, Version 2.0</a>.</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

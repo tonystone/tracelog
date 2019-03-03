@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Environment Class Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-102615840-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-102615840-5');
+</script>
+
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Class/Environment" class="dashAnchor"></a>
+
+    <a title="Environment Class Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          TraceLog Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="http://github.com/tonystone/tracelog">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">TraceLog Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      Environment Class Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../User Guides.html">User Guides</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../quick-start.html">Quick Start</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../objective-c-support.html">Objective-C Support</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Configuration.html">Configuration</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Configuration.html#/s:8TraceLog9configure4mode7writers11environmentyAA15ConcurrencyModeO_SayAA6Writer_pGAA11EnvironmentCtF">configure(mode:writers:environment:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Configuration.html#/s:8TraceLog9configure7writers11environmentySayAA21WriterConcurrencyModeOG_AA11EnvironmentCtF">configure(writers:environment:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Logging.html">Logging</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Logging.html#/s:8TraceLog8logError____7messageySSSg_S2SSiSSyctF">logError(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Logging.html#/s:8TraceLog10logWarning____7messageySSSg_S2SSiSSyctF">logWarning(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Logging.html#/s:8TraceLog7logInfo____7messageySSSg_S2SSiSSyctF">logInfo(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Logging.html#/s:8TraceLog03logA0____7messageySi_S2SSiSSyctF">logTrace(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Logging.html#/s:8TraceLog03logA0_5level___7messageySSSg_SiS2SSiSSyctF">logTrace(_:level:_:_:_:message:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Writers.html">Writers</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ConsoleWriter.html">ConsoleWriter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ConsoleWriter/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/FileWriter.html">FileWriter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/FileWriter/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/FileWriter/Strategy.html">– Strategy</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Formatters.html">Formatters</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/TextFormat.html">TextFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/TextFormat/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/TextFormat/Option.html">– Option</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/JSONFormat.html">JSONFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/JSONFormat/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/JSONFormat/Attribute.html">– Attribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/JSONFormat/Option.html">– Option</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Software Developer Kit (SDK).html">Software Developer Kit (SDK)</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Writer.html">Writer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/OutputStreamWriter.html">OutputStreamWriter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/OutputStreamFormatter.html">OutputStreamFormatter</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Supporting Types.html">Supporting Types</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/ConcurrencyMode.html">ConcurrencyMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/WriterConcurrencyMode.html">WriterConcurrencyMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/AsyncConcurrencyModeOption.html">AsyncConcurrencyModeOption</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/AsyncConcurrencyModeOption/BufferStrategy.html">– BufferStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Environment.html">Environment</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/LogLevel.html">LogLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/StaticContext.html">StaticContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/RuntimeContext.html">RuntimeContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/OutputStreamFormatterError.html">OutputStreamFormatterError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/FailureReason.html">FailureReason</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>Environment</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">class</span> <span class="kt">Environment</span> <span class="p">:</span> <span class="kt">Collection</span><span class="p">,</span> <span class="kt">ExpressibleByDictionaryLiteral</span></code></pre>
+
+                </div>
+              </div>
+            <p>A class that is used to capture and represent the os environment variables.</p>
+
+<p>This class can be passed to TraceLog.<code><a href="../Configuration.html#/s:8TraceLog9configure4mode7writers11environmentyAA15ConcurrencyModeO_SayAA6Writer_pGAA11EnvironmentCtF">configure(mode:writers:environment:)</a></code> methods to configure it using the
+current Environment settings.</p>
+
+<p>Environment is also like a Swift Dictionary<String, String> so it can be used just
+like a dictionary including subscripting.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    TraceLog.<code><a href="../Configuration.html#/s:8TraceLog9configure4mode7writers11environmentyAA15ConcurrencyModeO_SayAA6Writer_pGAA11EnvironmentCtF">configure(mode:writers:environment:)</a></code> for usage.
+
+</div>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    TraceLog.<code><a href="../Configuration.html#/s:8TraceLog9configure7writers11environmentySayAA21WriterConcurrencyModeOG_AA11EnvironmentCtF">configure(writers:environment:)</a></code> for usage.
+
+</div>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Initialization"></a>
+                <a name="//apple_ref/swift/Section/Initialization" class="dashAnchor"></a>
+                <a href="#/Initialization">
+                  <h3 class="section-name">Initialization</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog11EnvironmentC17dictionaryLiteralACSS_SStd_tcfc"></a>
+                    <a name="//apple_ref/swift/Method/init(dictionaryLiteral:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog11EnvironmentC17dictionaryLiteralACSS_SStd_tcfc">init(dictionaryLiteral:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new Environment instance from a dictionary literal.</p>
+
+<p>The following example creates an Environment instance with the
+the elements of the dictionary literal:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">environment</span><span class="p">:</span> <span class="kt">Environment</span> <span class="o">=</span> <span class="p">[</span><span class="s">"LOG_ALL"</span><span class="p">:</span> <span class="s">"ERROR"</span><span class="p">,</span> <span class="s">"LOG_TAG_MyTag"</span><span class="p">:</span> <span class="s">"TRACE1"</span><span class="p">]</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">required</span> <span class="nf">init</span><span class="p">(</span><span class="n">dictionaryLiteral</span> <span class="nv">elements</span><span class="p">:</span> <span class="p">(</span><span class="kt"><a href="../Classes/Environment.html#/s:s30ExpressibleByDictionaryLiteralP3KeyQa">Key</a></span><span class="p">,</span> <span class="kt"><a href="../Classes/Environment.html#/s:s30ExpressibleByDictionaryLiteralP5ValueQa">Value</a></span><span class="p">)</span><span class="o">...</span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>dictionaryLiteral</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A dictionary literal representing the environment variables that will be available to TraceLog.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog11EnvironmentCyACxcSlRzSS3key_SS5valuet7ElementRtzlufc"></a>
+                    <a name="//apple_ref/swift/Method/init(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog11EnvironmentCyACxcSlRzSS3key_SS5valuet7ElementRtzlufc">init(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new Environment instance with any collection type with an
+element type of [<code><a href="../Classes/Environment.html#/s:s30ExpressibleByDictionaryLiteralP3KeyQa">Environment.Key</a></code>: <code><a href="../Classes/Environment.html#/s:s30ExpressibleByDictionaryLiteralP5ValueQa">Environment.Value</a></code>].</p>
+
+<p>The following example creates an Environment instance with the
+contents of the dictionary type values:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">values</span><span class="p">:</span> <span class="p">[</span><span class="kt">String</span> <span class="p">:</span> <span class="kt">String</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="s">"LOG_ALL"</span><span class="p">:</span> <span class="s">"ERROR"</span><span class="p">,</span> <span class="s">"LOG_TAG_MyTag"</span><span class="p">:</span> <span class="s">"TRACE1"</span><span class="p">]</span>
+
+<span class="k">let</span> <span class="nv">environment</span> <span class="o">=</span> <span class="kt">Environment</span><span class="p">(</span><span class="n">values</span><span class="p">)</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">init</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">elements</span><span class="p">:</span> <span class="kt">T</span><span class="p">)</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Collection</span><span class="p">,</span> <span class="kt">T</span><span class="o">.</span><span class="kt"><a href="../Classes/Environment.html#/s:8TraceLog11EnvironmentC7Elementa">Element</a></span> <span class="o">==</span> <span class="kt">Environment</span><span class="o">.</span><span class="kt"><a href="../Classes/Environment.html#/s:8TraceLog11EnvironmentC7Elementa">Element</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>elements</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Any <code>Collection</code> type whose Element is equal to [<code><a href="../Classes/Environment.html#/s:s30ExpressibleByDictionaryLiteralP3KeyQa">Environment.Key</a></code>: <code><a href="../Classes/Environment.html#/s:s30ExpressibleByDictionaryLiteralP5ValueQa">Environment.Value</a></code>].</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog11EnvironmentCACycfc"></a>
+                    <a name="//apple_ref/swift/Method/init()" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog11EnvironmentCACycfc">init()</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Creates a new Environment instance and fills it with the variable
+set in the current OS environment.</p>
+
+<p>The following example creates an Environment instance with the
+current contents of the OS environment:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">environment</span> <span class="o">=</span> <span class="kt">Environment</span><span class="p">()</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">init</span><span class="p">()</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Indexing%20Elements"></a>
+                <a name="//apple_ref/swift/Section/Indexing Elements" class="dashAnchor"></a>
+                <a href="#/Indexing%20Elements">
+                  <h3 class="section-name">Indexing Elements</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog11EnvironmentC5index5afterSD5IndexVyS2S_GAH_tF"></a>
+                    <a name="//apple_ref/swift/Method/index(after:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog11EnvironmentC5index5afterSD5IndexVyS2S_GAH_tF">index(after:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Returns the position immediately after the given index.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">index</span><span class="p">(</span><span class="n">after</span> <span class="nv">index</span><span class="p">:</span> <span class="kt"><a href="../Classes/Environment.html#/s:8TraceLog11EnvironmentC5Indexa">Index</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Environment.html#/s:8TraceLog11EnvironmentC5Indexa">Index</a></span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>i</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A valid index of the collection. <code>i</code> must be less than
+<code><a href="../Classes/Environment.html#/s:8TraceLog11EnvironmentC8endIndexSD0E0VyS2S_Gvp">endIndex</a></code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>The index value immediately after <code>i</code>.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog11EnvironmentC10startIndexSD0E0VyS2S_Gvp"></a>
+                    <a name="//apple_ref/swift/Property/startIndex" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog11EnvironmentC10startIndexSD0E0VyS2S_Gvp">startIndex</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Always zero, which is the index of the first element when non-empty.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">startIndex</span><span class="p">:</span> <span class="kt"><a href="../Classes/Environment.html#/s:8TraceLog11EnvironmentC5Indexa">Index</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog11EnvironmentC8endIndexSD0E0VyS2S_Gvp"></a>
+                    <a name="//apple_ref/swift/Property/endIndex" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog11EnvironmentC8endIndexSD0E0VyS2S_Gvp">endIndex</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>A <q>past-the-end</q> element index; the successor of the last valid subscript argument.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="k">var</span> <span class="nv">endIndex</span><span class="p">:</span> <span class="kt"><a href="../Classes/Environment.html#/s:8TraceLog11EnvironmentC5Indexa">Index</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Accessing%20Elements"></a>
+                <a name="//apple_ref/swift/Section/Accessing Elements" class="dashAnchor"></a>
+                <a href="#/Accessing%20Elements">
+                  <h3 class="section-name">Accessing Elements</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog11EnvironmentCySS3key_SS5valuetSD5IndexVyS2S_Gcip"></a>
+                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog11EnvironmentCySS3key_SS5valuetSD5IndexVyS2S_Gcip">subscript(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Accesses the element at the specified position.</p>
+
+<p>The following example accesses an element of an Environment through its
+subscript to print its value:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">environment</span><span class="p">:</span> <span class="kt">Environment</span> <span class="o">=</span> <span class="p">[</span><span class="s">"LOG_ALL"</span><span class="p">:</span> <span class="s">"ERROR"</span><span class="p">,</span> <span class="s">"LOG_TAG_MyTag"</span><span class="p">:</span> <span class="s">"TRACE1"</span><span class="p">]</span>
+<span class="nf">print</span><span class="p">(</span><span class="n">environment</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="c1">// Prints "TRACE1"</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">position</span><span class="p">:</span> <span class="kt"><a href="../Classes/Environment.html#/s:8TraceLog11EnvironmentC5Indexa">Index</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Environment.html#/s:8TraceLog11EnvironmentC7Elementa">Element</a></span> <span class="p">{</span> <span class="k">get</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>position</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The position of the element to access. <code>position</code>
+must be a valid index of the Environment that is not equal to the
+<code><a href="../Classes/Environment.html#/s:8TraceLog11EnvironmentC8endIndexSD0E0VyS2S_Gvp">endIndex</a></code> property.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog11EnvironmentCySSSgSScip"></a>
+                    <a name="//apple_ref/swift/Method/subscript(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog11EnvironmentCySSSgSScip">subscript(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Set or get the element with the specified key.</p>
+
+<p>The following example accesses an element of an Environment through its
+subscript to get and print its value:</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">environment</span><span class="p">:</span> <span class="kt">Environment</span> <span class="o">=</span> <span class="p">[</span><span class="s">"LOG_ALL"</span><span class="p">:</span> <span class="s">"ERROR"</span><span class="p">,</span> <span class="s">"LOG_TAG_MyTag"</span><span class="p">:</span> <span class="s">"TRACE1"</span><span class="p">]</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">environment</span><span class="p">[</span><span class="s">"LOG_ALL"</span><span class="p">])</span> <span class="c1">// Prints "ERROR"</span>
+</code></pre>
+
+<p>The following example accesses an element of an Environment through its
+subscript to set and print its value:</p>
+<pre class="highlight swift"><code><span class="n">environment</span><span class="p">[</span><span class="s">"LOG_TAG_AnotherTag"</span><span class="p">]</span> <span class="o">=</span> <span class="s">"INFO"</span>
+
+<span class="nf">print</span><span class="p">(</span><span class="n">environment</span><span class="p">[</span><span class="s">"LOG_TAG_AnotherTag"</span><span class="p">])</span> <span class="c1">// Prints "INFO"</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="nf">subscript</span><span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt"><a href="../Classes/Environment.html#/s:s30ExpressibleByDictionaryLiteralP3KeyQa">Key</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt"><a href="../Classes/Environment.html#/s:s30ExpressibleByDictionaryLiteralP5ValueQa">Value</a></span><span class="p">?</span> <span class="p">{</span> <span class="k">get</span> <span class="k">set</span> <span class="p">}</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>key</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The key of the element to access.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Supporting%20Types"></a>
+                <a name="//apple_ref/swift/Section/Supporting Types" class="dashAnchor"></a>
+                <a href="#/Supporting%20Types">
+                  <h3 class="section-name">Supporting Types</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s30ExpressibleByDictionaryLiteralP3KeyQa"></a>
+                    <a name="//apple_ref/swift/Alias/Key" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s30ExpressibleByDictionaryLiteralP3KeyQa">Key</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Key</span> <span class="o">=</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:s30ExpressibleByDictionaryLiteralP5ValueQa"></a>
+                    <a name="//apple_ref/swift/Alias/Value" class="dashAnchor"></a>
+                    <a class="token" href="#/s:s30ExpressibleByDictionaryLiteralP5ValueQa">Value</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Value</span> <span class="o">=</span> <span class="kt">String</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog11EnvironmentC7Elementa"></a>
+                    <a name="//apple_ref/swift/Alias/Element" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog11EnvironmentC7Elementa">Element</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The element type of a Environment: a tuple containing an individual
+key-value pair.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Element</span> <span class="o">=</span> <span class="p">(</span><span class="nv">key</span><span class="p">:</span> <span class="kt"><a href="../Classes/Environment.html#/s:s30ExpressibleByDictionaryLiteralP3KeyQa">Key</a></span><span class="p">,</span> <span class="nv">value</span><span class="p">:</span> <span class="kt"><a href="../Classes/Environment.html#/s:s30ExpressibleByDictionaryLiteralP5ValueQa">Value</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog11EnvironmentC5Indexa"></a>
+                    <a name="//apple_ref/swift/Alias/Index" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog11EnvironmentC5Indexa">Index</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The index type of an Environment.</p>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">typealias</span> <span class="kt">Index</span> <span class="o">=</span> <span class="kt">DictionaryIndex</span><span class="o">&lt;</span><span class="kt"><a href="../Classes/Environment.html#/s:s30ExpressibleByDictionaryLiteralP3KeyQa">Key</a></span><span class="p">,</span> <span class="kt"><a href="../Classes/Environment.html#/s:s30ExpressibleByDictionaryLiteralP5ValueQa">Value</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>© 2019 <a class="link" href="https://github.com/tonystone" target="_blank" rel="external">Tony Stone</a> under the <a class="link" href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank" rel="external">Apache License, Version 2.0</a>.</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

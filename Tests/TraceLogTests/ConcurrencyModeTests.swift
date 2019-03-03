@@ -94,15 +94,15 @@ class ConcurrencyModeTests: XCTestCase {
     /// Simulate the user creating an instance without passing parameters
     /// expecting to get the default parameters and behavior.
     ///
-    func testAsyncOptionBufferDefaultParameters() {
-        guard case AsyncOption._buffer(writeInterval: .seconds(60), .dropTail(at: 1000)) = AsyncOption.buffer()
+    func testAsyncConcurrencyModeOptionBufferDefaultParameters() {
+        guard case AsyncConcurrencyModeOption._buffer(writeInterval: .seconds(60), .dropTail(at: 1000)) = AsyncConcurrencyModeOption.buffer()
             else { XCTFail(); return }
     }
 
-    // MARK: - Test AsyncOption equals
+    // MARK: - Test AsyncConcurrencyModeOption equals
 
-    func testAsyncOptionEquals() {
-        XCTAssertEqual(AsyncOption.buffer(writeInterval: .seconds(1), strategy: .expand), AsyncOption.buffer(writeInterval: .milliseconds(23), strategy: .dropHead(at: 1)))
+    func testAsyncConcurrencyModeOptionEquals() {
+        XCTAssertEqual(AsyncConcurrencyModeOption.buffer(writeInterval: .seconds(1), strategy: .expand), AsyncConcurrencyModeOption.buffer(writeInterval: .milliseconds(23), strategy: .dropHead(at: 1)))
     }
 
     // MARK: - ConcurrencyMode.writerMode tests
@@ -122,7 +122,7 @@ class ConcurrencyModeTests: XCTestCase {
     }
 
     func testWriterModeAsync() {
-        let input: Set<AsyncOption> = [.buffer(writeInterval: .seconds(1), strategy: .expand)]
+        let input: Set<AsyncConcurrencyModeOption> = [.buffer(writeInterval: .seconds(1), strategy: .expand)]
 
         guard case WriterConcurrencyMode._async(let result, let options) = ConcurrencyMode.async(options: input).writerMode(for:  TestWriter())
             else { XCTFail(); return }

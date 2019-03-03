@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Configuration  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-102615840-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-102615840-5');
+</script>
+
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Section/Configuration" class="dashAnchor"></a>
+
+    <a title="Configuration  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          TraceLog Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="http://github.com/tonystone/tracelog">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">TraceLog Reference</a>
+      <img class="carat" src="img/carat.png" />
+      Configuration  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="User Guides.html">User Guides</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="quick-start.html">Quick Start</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="objective-c-support.html">Objective-C Support</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Configuration.html">Configuration</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Configuration.html#/s:8TraceLog9configure4mode7writers11environmentyAA15ConcurrencyModeO_SayAA6Writer_pGAA11EnvironmentCtF">configure(mode:writers:environment:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Configuration.html#/s:8TraceLog9configure7writers11environmentySayAA21WriterConcurrencyModeOG_AA11EnvironmentCtF">configure(writers:environment:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Logging.html">Logging</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Logging.html#/s:8TraceLog8logError____7messageySSSg_S2SSiSSyctF">logError(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Logging.html#/s:8TraceLog10logWarning____7messageySSSg_S2SSiSSyctF">logWarning(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Logging.html#/s:8TraceLog7logInfo____7messageySSSg_S2SSiSSyctF">logInfo(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Logging.html#/s:8TraceLog03logA0____7messageySi_S2SSiSSyctF">logTrace(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Logging.html#/s:8TraceLog03logA0_5level___7messageySSSg_SiS2SSiSSyctF">logTrace(_:level:_:_:_:message:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Writers.html">Writers</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/ConsoleWriter.html">ConsoleWriter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/ConsoleWriter/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/FileWriter.html">FileWriter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/FileWriter/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/FileWriter/Strategy.html">– Strategy</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Formatters.html">Formatters</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/TextFormat.html">TextFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/TextFormat/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/TextFormat/Option.html">– Option</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/JSONFormat.html">JSONFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/JSONFormat/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/JSONFormat/Attribute.html">– Attribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/JSONFormat/Option.html">– Option</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Software Developer Kit (SDK).html">Software Developer Kit (SDK)</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/Writer.html">Writer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/OutputStreamWriter.html">OutputStreamWriter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/OutputStreamFormatter.html">OutputStreamFormatter</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Supporting Types.html">Supporting Types</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/ConcurrencyMode.html">ConcurrencyMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/WriterConcurrencyMode.html">WriterConcurrencyMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/AsyncConcurrencyModeOption.html">AsyncConcurrencyModeOption</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/AsyncConcurrencyModeOption/BufferStrategy.html">– BufferStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Environment.html">Environment</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/LogLevel.html">LogLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/StaticContext.html">StaticContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RuntimeContext.html">RuntimeContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/OutputStreamFormatterError.html">OutputStreamFormatterError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/FailureReason.html">FailureReason</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>Configuration</h1>
+            <p>TraceLog can be configured via the environment either manually using <code>export</code> or via Xcode.
+For TraceLog to read the environment on startup, you must call its configure method at the beginning of your application.</p>
+<pre class="highlight swift"><code>   <span class="kt">TraceLog</span><span class="o">.</span><span class="nf">configure</span><span class="p">()</span>
+</code></pre>
+<h2 id='log-writers' class='heading'>Log Writers</h2>
+
+<p>TraceLog can be configured with multiple custom log writers who do the job of outputting the log statements to the desired location.  By default, it configures itself with a <code><a href="Classes/ConsoleWriter.html">ConsoleWriter</a></code>
+which outputs to <code>stdout</code>.  You can change the writers at any time and chain multiple of them to output to different locations such as to a remote logging servers, syslog, etc.</p>
+
+<p>Writers must implement the <code><a href="Protocols/Writer.html">Writer</a></code> protocol.  To install them, simply call configure with an array of <code>Writers</code>.</p>
+<pre class="highlight swift"><code>    <span class="k">let</span> <span class="nv">networkWriter</span> <span class="o">=</span> <span class="kt">NetworkWriter</span><span class="p">(</span><span class="nv">url</span><span class="p">:</span> <span class="kt">URL</span><span class="p">(</span><span class="s">"http://mydomain.com/log"</span><span class="p">))</span>
+
+    <span class="kt">TraceLog</span><span class="o">.</span><span class="nf">configure</span><span class="p">(</span><span class="nv">writers</span><span class="p">:</span> <span class="p">[</span><span class="kt">ConsoleWriter</span><span class="p">(),</span> <span class="n">networkWriter</span><span class="p">])</span>
+</code></pre>
+
+<p>Since writers are instantiated before the call, you are free to initialize them with whatever makes sense for the writer type to be created.  For instance in the case of the network writer the URL of
+the logging endpoint.</p>
+<h2 id='concurrency-modes' class='heading'>Concurrency Modes</h2>
+
+<p>TraceLog can be configured to run in 3 main concurrency modes, <code>.direct</code>, <code>.sync</code>, or <code>.async</code>.  These modes determine how TraceLog will invoke each writer as it logs your logging statements.</p>
+
+<ul>
+<li><p><code>.direct</code> - Direct, as the name implies, will directly call the writer from the calling thread with no indirection. It will block until the writer(s) in this mode have completed the write to the endpoint. Useful for scripting applications and other applications where it is required for the call not to return until the message is printed.</p></li>
+<li><p><code>.sync</code> - Synchronous blocking mode is similar to direct in that it blocks but this mode also uses a queue for all writes.  The benefits of that is that all threads writing to the log will be serialized through before calling the writer (one call to the writer at a time).</p></li>
+<li><p><code>.async</code> - Asynchronous non-blocking mode.  A general mode used for most application which queues all messages before being evaluated or logged. This ensures minimal delays in application execution due to logging.</p></li>
+</ul>
+
+<p>Modes can be configured globally for all writers including the default writer by simply setting the mode in the configuration step as in the example below.</p>
+<pre class="highlight swift"><code>    <span class="kt">TraceLog</span><span class="o">.</span><span class="nf">configure</span><span class="p">(</span><span class="nv">mode</span><span class="p">:</span> <span class="o">.</span><span class="n">direct</span><span class="p">)</span>
+</code></pre>
+
+<p>This will set TraceLog&rsquo;s default writer to <code>.direct</code> mode.</p>
+
+<p>You can also configure each writer individually by wrapping the writer in a mode as in the example below.</p>
+<pre class="highlight swift"><code>    <span class="kt">TraceLog</span><span class="o">.</span><span class="nf">configure</span><span class="p">(</span><span class="nv">writers</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="nf">direct</span><span class="p">(</span><span class="kt">ConsoleWriter</span><span class="p">()),</span> <span class="o">.</span><span class="nf">async</span><span class="p">(</span><span class="kt">FileWriter</span><span class="p">())])</span>
+</code></pre>
+
+<p>This will set the ConsoleWriter to write directly (synchronously) when you log but will queue the FileWriter calls to write in the background asynchronously.</p>
+
+<p>You can also set all writers to the same mode by setting the default mode and passing the writer as normal as in the following statement.</p>
+<pre class="highlight swift"><code>    <span class="kt">TraceLog</span><span class="o">.</span><span class="nf">configure</span><span class="p">(</span><span class="nv">mode</span><span class="p">:</span> <span class="o">.</span><span class="n">direct</span><span class="p">,</span> <span class="nv">writers</span><span class="p">:</span> <span class="p">[</span><span class="kt">ConsoleWriter</span><span class="p">(),</span> <span class="kt">FileWriter</span><span class="p">()])</span>
+</code></pre>
+
+<p>This sets both the ConsoleWriter and the FileWriter to <code>.direct</code> mode.</p>
+<h1 id='setting-up-your-debug-environment' class='heading'>Setting up your debug environment</h1>
+
+<p>TraceLog&rsquo;s current logging output is controlled by variables that are either set in the runtime environment or passed on startup of the application (in the <code>TraceLog.Configure(environment:)</code> method).</p>
+
+<p>These variables consist of the following:</p>
+<pre class="highlight shell"><code>    <span class="nv">LOG_ALL</span><span class="o">=</span>&lt;LEVEL&gt;
+    LOG_TAG_&lt;TAGNAME&gt;<span class="o">=</span>&lt;LEVEL&gt;
+    LOG_PREFIX_&lt;TAGPREFIX&gt;<span class="o">=</span>&lt;LEVEL&gt;
+</code></pre>
+
+<p>Log output can be set globally using the <code>LOG_ALL</code>  variable, by TAG name
+using the <code>LOG_TAG_&lt;TAGNAME&gt;</code> variable pattern, and/or by a TAG prefix by using
+the <code>LOG_PREFIX_&lt;TAGPREFIX&gt;</code> variable pattern.</p>
+
+<p>Each environment variable set is set with a level as the value.  The following levels are available in order of display priority.  Each level encompasses the level below it with <code>TRACE4</code> including the output from every level.  The lowest level setting is <code>OFF</code> which turns logging off for the level set.</p>
+
+<p>Levels:</p>
+<pre class="highlight shell"><code>    TRACE4
+    TRACE3
+    TRACE2
+    TRACE1
+    INFO
+    WARNING
+    ERROR
+    OFF
+</code></pre>
+
+<blockquote>
+<p>Note: Log level <code>OFF</code> does not disable <strong>TraceLog</strong> completely, it only suppresses log messages for the time it is set in the environment during your debug session.  To completely disable <strong>TraceLog</strong> please see <a href="#runtime-overhead">Runtime Overhead</a> for more information.</p>
+</blockquote>
+
+<p>Multiple Environment variables can be set at one time to get the desired level of visibility into the workings of the app.  Here are some examples.</p>
+
+<p>Suppose you wanted the first level of <code>TRACE</code> logging for your Networking module which has a class prefix of NT and you wanted to see only errors and warnings for the rest of the application.  You would set the following:</p>
+<pre class="highlight shell"><code>    <span class="nv">LOG_ALL</span><span class="o">=</span>WARNING
+    <span class="nv">LOG_PREFIX_NT</span><span class="o">=</span>TRACE1
+</code></pre>
+
+<p>More specific settings override less specific so in the above example, the less specific setting is <code>LOG_ALL</code> which is set to <code>WARNING</code>.  The tag prefix is specifying a particular collection of tags that start with the string CS, so this is more specific and overrides
+the <code>LOG_ALL</code>.  If you choose to name a particular tag, that will override the prefix settings.</p>
+
+<p>For instance, in the example above, if we decided for one tag in the Networking module, we needed more output, we could set the following:</p>
+<pre class="highlight shell"><code>    <span class="nv">LOG_ALL</span><span class="o">=</span>WARNING
+    <span class="nv">LOG_PREFIX_NT</span><span class="o">=</span>TRACE1
+    <span class="nv">LOG_TAG_NTSerializer</span><span class="o">=</span>TRACE4
+</code></pre>
+
+<p>This outputs the same as the previous example except for the <code>NTSerializer</code> tag which is set to <code>TRACE4</code> instead of using the less specific <code>TRACE1</code> setting in <code>LOG_PREFIX</code>.</p>
+<h3 id='environment-setup-xcode' class='heading'>Environment Setup (Xcode)</h3>
+
+<p>To set up the environment using Xcode, select <q>Edit Scheme</q> from the <q>Set the active scheme</q> menu at the top left.  That brings up the menu below.</p>
+
+<p><img src=img/Xcode-environment-setup-screenshot.png width=597 height=361 /></p>
+<h3 id='environment-setup-statically-in-code' class='heading'>Environment Setup (Statically in code)</h3>
+
+<p>TraceLog.configure() accepts an optional parameter called environment which you can pass the environment.  This allows you to set the configuration options at startup time (note: this ignores any variables passed in the environment).</p>
+
+<p>Here is an example of setting the configuration via <code>TraceLog.configure()</code>.</p>
+<pre class="highlight swift"><code>    <span class="kt">TraceLog</span><span class="o">.</span><span class="nf">configure</span><span class="p">(</span><span class="nv">environment</span><span class="p">:</span> <span class="p">[</span><span class="s">"LOG_ALL"</span><span class="p">:</span> <span class="s">"TRACE4"</span><span class="p">,</span>
+                                    <span class="s">"LOG_PREFIX_NS"</span> <span class="p">:</span> <span class="s">"ERROR"</span><span class="p">,</span>
+                                    <span class="s">"LOG_TAG_TraceLog"</span> <span class="p">:</span> <span class="s">"TRACE4"</span><span class="p">])</span>
+</code></pre>
+
+<p>Note: Although the environment is typically set once at the beginning of the application, <code>TraceLog.configure</code>
+can be called anywhere in your code as often as required to reconfigured the logging levels.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="Enums/ConcurrencyMode.html">ConcurrencyMode</a></code> for global concurrency modes.
+
+</div>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="Enums/WriterConcurrencyMode.html">WriterConcurrencyMode</a></code> for modes that can be set per writer.
+
+</div>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="Classes/Environment.html">Environment</a></code> for environment details.
+
+</div>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Configuration"></a>
+                <a name="//apple_ref/swift/Section/Configuration" class="dashAnchor"></a>
+                <a href="#/Configuration">
+                  <h3 class="section-name">Configuration</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog9configure4mode7writers11environmentyAA15ConcurrencyModeO_SayAA6Writer_pGAA11EnvironmentCtF"></a>
+                    <a name="//apple_ref/swift/Function/configure(mode:writers:environment:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog9configure4mode7writers11environmentyAA15ConcurrencyModeO_SayAA6Writer_pGAA11EnvironmentCtF">configure(mode:writers:environment:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes TraceLog with an optional mode, array of Writers and the Environment.</p>
+
+<p>This call is optional but in order to read from the environment on start up,
+this method must be called.</p>
+
+<ul>
+<li><p>Example:</p></li>
+</ul>
+
+<p>Start TraceLog in the default mode, with default writers.</p>
+<pre class="highlight swift"><code>    <span class="kt">TraceLog</span><span class="o">.</span><span class="nf">configure</span><span class="p">()</span>
+</code></pre>
+
+<p>Start TraceLog the with default writer in <code>.direct</code> mode.</p>
+<pre class="highlight swift"><code>    <span class="kt">TraceLog</span><span class="o">.</span><span class="nf">configure</span><span class="p">(</span><span class="nv">mode</span><span class="p">:</span> <span class="o">.</span><span class="n">direct</span><span class="p">)</span>
+</code></pre>
+
+<p>Start TraceLog in the default mode, replacing the default writer with <code>MyWriter</code> reading the environment for log level settings.</p>
+<pre class="highlight swift"><code>    <span class="kt">TraceLog</span><span class="o">.</span><span class="nf">configure</span><span class="p">(</span><span class="nv">writers</span><span class="p">:</span> <span class="p">[</span><span class="kt">MyWriter</span><span class="p">()])</span>
+</code></pre>
+
+<p>Start TraceLog in the default mode, replacing the default writer with <code>MyWriter</code> and setting log levels programmatically.</p>
+<pre class="highlight swift"><code>    <span class="kt">TraceLog</span><span class="o">.</span><span class="nf">configure</span><span class="p">(</span><span class="nv">writers</span><span class="p">:</span> <span class="p">[</span><span class="kt">MyWriter</span><span class="p">()],</span> <span class="nv">environment</span><span class="p">:</span> <span class="p">[</span><span class="s">"LOG_ALL"</span><span class="p">:</span> <span class="s">"TRACE4"</span><span class="p">,</span>
+                                                             <span class="s">"LOG_PREFIX_NS"</span> <span class="p">:</span> <span class="s">"ERROR"</span><span class="p">,</span>
+                                                             <span class="s">"LOG_TAG_TraceLog"</span> <span class="p">:</span> <span class="s">"TRACE4"</span><span class="p">])</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">configure</span><span class="p">(</span><span class="nv">mode</span><span class="p">:</span> <span class="kt"><a href="Enums/ConcurrencyMode.html">ConcurrencyMode</a></span> <span class="o">=</span> <span class="o">.</span><span class="k">default</span><span class="p">,</span> <span class="nv">writers</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="Protocols/Writer.html">Writer</a></span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="kt"><a href="Classes/ConsoleWriter.html">ConsoleWriter</a></span><span class="p">()],</span> <span class="nv">environment</span><span class="p">:</span> <span class="kt"><a href="Classes/Environment.html">Environment</a></span> <span class="o">=</span> <span class="kt"><a href="Classes/Environment.html">Environment</a></span><span class="p">())</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>mode</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code><a href="Enums/ConcurrencyMode.html">ConcurrencyMode</a></code> to run all <code><a href="Protocols/Writer.html">Writer</a></code>s in. Async is the default.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>writers</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An Array of objects that implement the <code><a href="Protocols/Writer.html">Writer</a></code> protocol used to process messages that are logged. Note the writers are called in the order they are in this array.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>environment</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Either a <code>Dictionary&lt;String, String&gt;</code> or an <code><a href="Classes/Environment.html">Environment</a></code> object that contains the key/value pairs of configuration variables for TraceLog.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog9configure7writers11environmentySayAA21WriterConcurrencyModeOG_AA11EnvironmentCtF"></a>
+                    <a name="//apple_ref/swift/Function/configure(writers:environment:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog9configure7writers11environmentySayAA21WriterConcurrencyModeOG_AA11EnvironmentCtF">configure(writers:environment:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Initializes TraceLog with an optional array of Writers specifying their ConcurrencyMode and the Environment.</p>
+
+<ul>
+<li><p>Example:</p></li>
+</ul>
+
+<p>Start TraceLog replacing the default writer with <code>MyWriter</code> running in <code>.direct</code> mode, <code>MyHTTPWriter</code>
+in <code>.async</code> mode, and reading the environment for log level settings.</p>
+<pre class="highlight swift"><code>    <span class="kt">TraceLog</span><span class="o">.</span><span class="nf">configure</span><span class="p">(</span><span class="nv">writers</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="nf">direct</span><span class="p">(</span><span class="kt">MyWriter</span><span class="p">()),</span> <span class="o">.</span><span class="nf">async</span><span class="p">(</span><span class="kt">MyHTTPWriter</span><span class="p">())])</span>
+</code></pre>
+
+<p>Start TraceLog replacing the default writer with <code>MyWriter</code> running in <code>.async</code> mode and  setting log
+levels programmatically.</p>
+<pre class="highlight swift"><code>    <span class="kt">TraceLog</span><span class="o">.</span><span class="nf">configure</span><span class="p">(</span><span class="nv">writers</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="nf">async</span><span class="p">(</span><span class="kt">MyWriter</span><span class="p">())],</span> <span class="nv">environment</span><span class="p">:</span> <span class="p">[</span><span class="s">"LOG_ALL"</span><span class="p">:</span> <span class="s">"TRACE4"</span><span class="p">,</span>
+                                                                                 <span class="s">"LOG_PREFIX_NS"</span> <span class="p">:</span> <span class="s">"ERROR"</span><span class="p">,</span>
+                                                                                 <span class="s">"LOG_TAG_TraceLog"</span> <span class="p">:</span> <span class="s">"TRACE4"</span><span class="p">])</span>
+</code></pre>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">func</span> <span class="nf">configure</span><span class="p">(</span><span class="nv">writers</span><span class="p">:</span> <span class="p">[</span><span class="kt"><a href="Enums/WriterConcurrencyMode.html">WriterConcurrencyMode</a></span><span class="p">],</span> <span class="nv">environment</span><span class="p">:</span> <span class="kt"><a href="Classes/Environment.html">Environment</a></span> <span class="o">=</span> <span class="kt"><a href="Classes/Environment.html">Environment</a></span><span class="p">())</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>writers</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An Array of <code><a href="Protocols/Writer.html">Writer</a></code>s wrapped in a <code><a href="Enums/WriterConcurrencyMode.html">WriterConcurrencyMode</a></code>.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>environment</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Either a <code>Dictionary&lt;String, String&gt;</code> or an <code><a href="Classes/Environment.html">Environment</a></code> object that contains the key/value pairs of configuration variables for TraceLog.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>© 2019 <a class="link" href="https://github.com/tonystone" target="_blank" rel="external">Tony Stone</a> under the <a class="link" href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank" rel="external">Apache License, Version 2.0</a>.</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

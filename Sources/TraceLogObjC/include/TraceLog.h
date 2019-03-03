@@ -200,7 +200,7 @@
     @property (class, nonatomic, readonly) NSInteger LogLevelTrace3;
     @property (class, nonatomic, readonly) NSInteger LogLevelTrace4;
 
-    + (void) logPrimitive: (NSInteger) level tag: (NSString * __nonnull) tag file: (NSString *) file function: (NSString *) function line: (NSUInteger) line message: (NSString * _Nonnull (^)(void)) messageBlock;
+    + (void) logPrimitive: (NSInteger) level tag: (NSString * __nonnull) tag file: (NSString * __nonnull) file function: (NSString * __nonnull) function line: (NSUInteger) line message: (NSString * _Nonnull (^_Nonnull)(void)) messageBlock;
 @end
 #endif
 

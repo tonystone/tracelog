@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Writer Protocol Reference</title>
+    <link rel="stylesheet" type="text/css" href="../css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="../css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="../js/jquery.min.js" defer></script>
+    <script src="../js/jazzy.js" defer></script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-102615840-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-102615840-5');
+</script>
+
+    <script src="../js/lunr.min.js" defer></script>
+    <script src="../js/typeahead.jquery.js" defer></script>
+    <script src="../js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Protocol/Writer" class="dashAnchor"></a>
+
+    <a title="Writer Protocol Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="../index.html">
+          TraceLog Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="../search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="http://github.com/tonystone/tracelog">
+            <img class="header-icon" src="../img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="../index.html">TraceLog Reference</a>
+      <img class="carat" src="../img/carat.png" />
+      Writer Protocol Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../User Guides.html">User Guides</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../quick-start.html">Quick Start</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../objective-c-support.html">Objective-C Support</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Configuration.html">Configuration</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Configuration.html#/s:8TraceLog9configure4mode7writers11environmentyAA15ConcurrencyModeO_SayAA6Writer_pGAA11EnvironmentCtF">configure(mode:writers:environment:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Configuration.html#/s:8TraceLog9configure7writers11environmentySayAA21WriterConcurrencyModeOG_AA11EnvironmentCtF">configure(writers:environment:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Logging.html">Logging</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Logging.html#/s:8TraceLog8logError____7messageySSSg_S2SSiSSyctF">logError(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Logging.html#/s:8TraceLog10logWarning____7messageySSSg_S2SSiSSyctF">logWarning(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Logging.html#/s:8TraceLog7logInfo____7messageySSSg_S2SSiSSyctF">logInfo(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Logging.html#/s:8TraceLog03logA0____7messageySi_S2SSiSSyctF">logTrace(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Logging.html#/s:8TraceLog03logA0_5level___7messageySSSg_SiS2SSiSSyctF">logTrace(_:level:_:_:_:message:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Writers.html">Writers</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ConsoleWriter.html">ConsoleWriter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/ConsoleWriter/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/FileWriter.html">FileWriter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/FileWriter/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/FileWriter/Strategy.html">– Strategy</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Formatters.html">Formatters</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/TextFormat.html">TextFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/TextFormat/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/TextFormat/Option.html">– Option</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/JSONFormat.html">JSONFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/JSONFormat/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/JSONFormat/Attribute.html">– Attribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Structs/JSONFormat/Option.html">– Option</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Software Developer Kit (SDK).html">Software Developer Kit (SDK)</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/Writer.html">Writer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/OutputStreamWriter.html">OutputStreamWriter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/OutputStreamFormatter.html">OutputStreamFormatter</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="../Supporting Types.html">Supporting Types</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/ConcurrencyMode.html">ConcurrencyMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/WriterConcurrencyMode.html">WriterConcurrencyMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/AsyncConcurrencyModeOption.html">AsyncConcurrencyModeOption</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/AsyncConcurrencyModeOption/BufferStrategy.html">– BufferStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Classes/Environment.html">Environment</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/LogLevel.html">LogLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/StaticContext.html">StaticContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Protocols/RuntimeContext.html">RuntimeContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/OutputStreamFormatterError.html">OutputStreamFormatterError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="../Enums/FailureReason.html">FailureReason</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>Writer</h1>
+              <div class="declaration">
+                <div class="language">
+                  <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">protocol</span> <span class="kt">Writer</span></code></pre>
+
+                </div>
+              </div>
+            <p>The Writer protocol defines the interface required when writing
+a log writer for the <strong>TraceLog</strong> system. Log writers are used
+to output all log<level> messages to an output device like
+stdout, http endpoint, tcp/ip sockets, etc.</p>
+
+<p>There are no constructor/init requirements so any init method can be defined
+in your writer to initialize it prior to passing it to TraceLog.</p>
+
+<p>ConsoleWriter is a concrete implementation of the Writer protocol and
+can be used as a basic example of creating custom writers.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="../Classes/ConsoleWriter.html">ConsoleWriter</a></code> for an example implementation.
+
+</div>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="../Classes/FileWriter.html">FileWriter</a></code> for an example implementation.
+
+</div>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Writing%20a%20LogEntry"></a>
+                <a name="//apple_ref/swift/Section/Writing a LogEntry" class="dashAnchor"></a>
+                <a href="#/Writing%20a%20LogEntry">
+                  <h3 class="section-name">Writing a LogEntry</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog6WriterP5writeys6ResultOySiAA13FailureReasonOGSd9timestamp_AA0B5LevelO5levelSS3tagSS7messageAA14RuntimeContext_p07runtimeN0AA06StaticN0_p06staticN0t_tF"></a>
+                    <a name="//apple_ref/swift/Method/write(_:)" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog6WriterP5writeys6ResultOySiAA13FailureReasonOGSd9timestamp_AA0B5LevelO5levelSS3tagSS7messageAA14RuntimeContext_p07runtimeN0AA06StaticN0_p06staticN0t_tF">write(_:)</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Called when the logger needs to log an event to this logger.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <p><code><a href="../Protocols/Writer.html#/s:8TraceLog6WriterP0B5Entrya">LogEntry</a></code> for complete attribute details.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">func</span> <span class="nf">write</span><span class="p">(</span><span class="n">_</span> <span class="nv">entry</span><span class="p">:</span> <span class="kt"><a href="../Protocols/Writer.html#/s:8TraceLog6WriterP0B5Entrya">LogEntry</a></span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kt">Result</span><span class="o">&lt;</span><span class="kt">Int</span><span class="p">,</span> <span class="kt"><a href="../Enums/FailureReason.html">FailureReason</a></span><span class="o">&gt;</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>entry</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>A <code><a href="../Protocols/Writer.html#/s:8TraceLog6WriterP0B5Entrya">LogEntry</a></code> type to write to the output.</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>An Int indicating the actual number of bytes written to the output
+       after conversion of the <code><a href="../Protocols/Writer.html#/s:8TraceLog6WriterP0B5Entrya">LogEntry</a></code>.  This is the actual number of bytes
+       (after any encoding) not the number of visible characters.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <div class="task-name-container">
+                <a name="/Supporting%20Types"></a>
+                <a name="//apple_ref/swift/Section/Supporting Types" class="dashAnchor"></a>
+                <a href="#/Supporting%20Types">
+                  <h3 class="section-name">Supporting Types</h3>
+                </a>
+              </div>
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog6WriterP0B5Entrya"></a>
+                    <a name="//apple_ref/swift/Alias/LogEntry" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog6WriterP0B5Entrya">LogEntry</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>Log Entry represents an element that can be written by a Writer.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <p><code><a href="../Enums/LogLevel.html">LogLevel</a></code> for logging level constants.</p>
+
+</div>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <p><code><a href="../Protocols/RuntimeContext.html">RuntimeContext</a></code> for details on the runtime context attributes available.</p>
+
+</div>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <p><code><a href="../Protocols/StaticContext.html">StaticContext</a></code> for details on the static context attributes available.</p>
+
+</div>
+
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">typealias</span> <span class="kt">LogEntry</span> <span class="o">=</span> <span class="p">(</span><span class="nv">timestamp</span><span class="p">:</span> <span class="kt">Double</span><span class="p">,</span> <span class="nv">level</span><span class="p">:</span> <span class="kt"><a href="../Enums/LogLevel.html">LogLevel</a></span><span class="p">,</span> <span class="nv">tag</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">message</span><span class="p">:</span> <span class="kt">String</span><span class="p">,</span> <span class="nv">runtimeContext</span><span class="p">:</span> <span class="kt"><a href="../Protocols/RuntimeContext.html">RuntimeContext</a></span><span class="p">,</span> <span class="nv">staticContext</span><span class="p">:</span> <span class="kt"><a href="../Protocols/StaticContext.html">StaticContext</a></span><span class="p">)</span></code></pre>
+
+                        </div>
+                      </div>
+                      <div>
+                        <h4>Parameters</h4>
+                        <table class="graybox">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>timestamp</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>Timestamp of the log event (number of seconds from 1970).</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>level</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The <code><a href="../Enums/LogLevel.html">LogLevel</a></code> of this logging event. Note: log will not be called if the LegLevel is not set to above this calls log level</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>tag</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The tag associated with the log event.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>message</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The message string (already formatted) for this logging event.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>file</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>The source file (of the calling program) of this logging event.</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>runtimeContext</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An object containing information about the state of the runtime such as thread ID (SeeAlso: <code><a href="../Protocols/RuntimeContext.html">RuntimeContext</a></code>)</p>
+                                </div>
+                              </td>
+                            </tr>
+                            <tr>
+                              <td>
+                                <code>
+                                <em>staticContext</em>
+                                </code>
+                              </td>
+                              <td>
+                                <div>
+                                  <p>An object containing the static information at the time of the func call such as function name and line number (SeeAlso: <code><a href="../Protocols/StaticContext.html">StaticContext</a></code>)</p>
+                                </div>
+                              </td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                      <div>
+                        <h4>Return Value</h4>
+                        <p>LogResult indicating the result of the attempt to log the statement to the endpoint.</p>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>© 2019 <a class="link" href="https://github.com/tonystone" target="_blank" rel="external">Tony Stone</a> under the <a class="link" href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank" rel="external">Apache License, Version 2.0</a>.</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>

@@ -1,6 +1,18 @@
 # Change Log
 All significant changes to this project will be documented in this file.
 
+## [5.0.0-beta.2](https://github.com/tonystone/tracelog/tree/5.0.0-beta.2)
+
+#### Changed
+- Renamed `AsyncOption` to `AsyncConcurrencyModeOption`.
+- Changed `OutputStreamFormatter`, it now requires `var encoding: String.Encoding { get }`.
+- Renamed `FileWriter.FileStrategy` to `FileWriter.Strategy`.
+- Renamed `FileWriter.Strategy.RotateOption` to `FileWriter.Strategy.RotationOption`.
+
+#### Updated
+- `TextFormat` to add `var encoding: String.Encoding { get }` requirement.
+- `JSONFormat` to add `var encoding: String.Encoding { get }` requirement.
+
 ## [5.0.0-beta.1](https://github.com/tonystone/tracelog/tree/5.0.0-beta.1)
 
 #### Added
@@ -13,7 +25,7 @@ All significant changes to this project will be documented in this file.
 
 #### Changed
 - Requires Swift 5 for compilation.
-- Changed parameters to `.async` to include options for configuration of the mode (`.async(options: Set<AsyncOption>)` and  `.async(Writer, options: Set<AsyncOption>)`).
+- Changed parameters to `.async` to include options for configuration of the mode (`.async(options: Set<AsyncConcurrencyModeOption>)` and  `.async(Writer, options: Set<AsyncConcurrencyModeOption>)`).
 - Changed `Writer` protocol `log()` method to `write(_ entry: Writer.LogEntry)` to make it easier to process messages by writers and formatters.
 - Changed `Writer` return to `Swift.Result<Int, FailedReason>` to return instructions for TraceLog for buffering and error recovery.
 - Changed `ConsoleWriter` to accept new `OutputStreamFormatter` instances allowing you to customize the output log format (default is `TextFormat`.)

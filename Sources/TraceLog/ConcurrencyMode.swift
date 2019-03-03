@@ -20,9 +20,21 @@
 import Swift
 import Dispatch
 
+// MARK: Concurrency Modes
+
 /// The system wide modes that TraceLog can run in.  Used to configure a mode globally at configure time.
 ///
+/// - SeeAlso: TraceLog.`configure(mode:writers:environment:)` for usage.
+///
 public enum ConcurrencyMode {
+
+    // MARK: Default Values
+
+    /// The default mode used if no mode is specified (.async(options: [])).
+    ///
+    case `default`
+
+    // MARK: Available Modes
 
     /// Direct, as the name implies, will directly call the writer from
     /// the calling thread with no indirection. It will block until the
@@ -52,16 +64,13 @@ public enum ConcurrencyMode {
     ///           this will func will be changed to a case in the enum with default values.  We must
     ///           use a func now to work around the lack of defaults on enums.
     ///
-    /// - SeeAlso: `AsyncOption` for details.
+    /// - SeeAlso: `AsyncConcurrencyModeOption` for details.
     ///
-    public static func async(options: Set<AsyncOption> = []) -> ConcurrencyMode {
+    public static func async(options: Set<AsyncConcurrencyModeOption> = []) -> ConcurrencyMode {
         return ._async(options: options)
     }
 
-    /// The default mode used if no mode is specified (.async(options: [])).
-    ///
-    case `default`
-
+    /// :nodoc:
     /// - Warning: Internal, don't use directly. Use func `.async(options:)` instead.
     ///            This case will be removed at the end of the beta.
     ///
@@ -70,12 +79,16 @@ public enum ConcurrencyMode {
     ///           cases until Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md)
     ///           is implemented.
     ///
-    case _async(options: Set<AsyncOption>)
+    case _async(options: Set<AsyncConcurrencyModeOption>)
 }
 
 /// Mode to run a specific Writer in. Used to wrap a writer to change the specific mode it operates in.
 ///
+/// - SeeAlso: TraceLog.`configure(writers:environment:)` for usage.
+///
 public enum WriterConcurrencyMode {
+
+    // MARK: Available Modes
 
     /// Direct, as the name implies, will directly call the writer from
     /// the calling thread with no indirection. It will block until the
@@ -111,12 +124,13 @@ public enum WriterConcurrencyMode {
     ///           this will func will be changed to a case in the enum with default values.  We must
     ///           use a func now to work around the lack of defaults on enums.
     ///
-    /// - SeeAlso: `AsyncOption` for details.
+    /// - SeeAlso: `AsyncConcurrencyModeOption` for details.
     ///
-    public static func async(_ writer: Writer, options: Set<AsyncOption> = []) -> WriterConcurrencyMode {
+    public static func async(_ writer: Writer, options: Set<AsyncConcurrencyModeOption> = []) -> WriterConcurrencyMode {
         return ._async(writer, options: options)
     }
 
+    /// :nodoc:
     /// - Warning: Internal, don't use directly. Use func `.async(_:options:)` instead.
     ///            This case will be removed at the end of the beta.
     ///
@@ -125,14 +139,20 @@ public enum WriterConcurrencyMode {
     ///           cases until Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md)
     ///           is implemented.
     ///
-    case _async(Writer, options: Set<AsyncOption>)
+    case _async(Writer, options: Set<AsyncConcurrencyModeOption>)
 }
 
-///
+// MARK: Supporting Types
+
 /// Async mode can be configured for various options, this enum allows you to refine the
 /// behavior and options of the asynchronous mode of operation.
 ///
-public enum AsyncOption {
+/// - SeeAlso: `ConcurrencyMode.async(options:)` for for more information about usage.
+/// - SeeAlso: `WriterConcurrencyMode.async(_:options:)` for for more information about usage.
+///
+public enum AsyncConcurrencyModeOption {
+
+    // MARK: Available Options
 
     /// Back the async mode with a buffer for when the writer is not `available` to
     /// write to it's endpoint.  Useful for situations where the endpoint may not
@@ -156,15 +176,21 @@ public enum AsyncOption {
     ///     - writeInternal: if the writer is currently buffering, TraceLog will periodically check whether the writer is available and write if it is.  This is the time frame between checks.
     ///     - strategy: The buffer strategy to use when buffering.
     ///
-    public static func buffer(writeInterval: DispatchTimeInterval = .seconds(60), strategy: BufferStrategy = .dropTail(at: 1000)) -> AsyncOption {
+    public static func buffer(writeInterval: DispatchTimeInterval = .seconds(60), strategy: BufferStrategy = .dropTail(at: 1000)) -> AsyncConcurrencyModeOption {
         return ._buffer(writeInterval: writeInterval, strategy: strategy)
     }
+
+    // MARK: Supporting Types
 
     /// A BufferStrategy is the action the internal
     /// buffer will take when a new log entry is logged
     /// but the buffer is at it's limit (maxSize).
     ///
+    /// - SeeAlso: `ConcurrencyMode.async(options:)` for for more information about usage.
+    ///
     public enum BufferStrategy {
+
+        // MARK: Available Strategies
 
         /// If dropTail is used, when the buffer is filled
         /// to its maximum capacity, the newly arriving log
@@ -190,6 +216,7 @@ public enum AsyncOption {
         case expand
     }
 
+    /// :nodoc:
     /// - Warning: Internal, don't use directly. Use func `.buffer(writeInterval:strategy:)` instead.
     ///            This case will be removed at the end of the beta.
     ///
@@ -201,7 +228,9 @@ public enum AsyncOption {
     case _buffer(writeInterval: DispatchTimeInterval, strategy: BufferStrategy)
 }
 
-extension AsyncOption: Equatable, Hashable {
+extension AsyncConcurrencyModeOption: Equatable, Hashable {
+
+    // MARK: Describing an `AsyncConcurrencyModeOption`
 
     public func hash(into hasher: inout Hasher) {
         switch self {
@@ -210,7 +239,9 @@ extension AsyncOption: Equatable, Hashable {
         }
     }
 
-    public static func == (lhs: AsyncOption, rhs: AsyncOption) -> Bool {
+    // MARK: Comparing an `AsyncConcurrencyModeOption`
+
+    public static func == (lhs: AsyncConcurrencyModeOption, rhs: AsyncConcurrencyModeOption) -> Bool {
         switch (lhs, rhs) {
         case (._buffer(_,_), ._buffer(_,_)): return true
         }

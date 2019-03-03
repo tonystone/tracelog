@@ -20,7 +20,8 @@
 import Swift
 import Foundation
 
-///
+// MARK: Configuration
+
 /// Initializes TraceLog with an optional mode, array of Writers and the Environment.
 ///
 /// This call is optional but in order to read from the environment on start up,
@@ -28,8 +29,8 @@ import Foundation
 ///
 /// - Parameters:
 ///     - mode:        The `ConcurrencyMode` to run all `Writer`s in. Async is the default.
-///     - writers:     An Array of objects that implement the Writer protocol used to process messages that are logged. Note the writers are called in the order they are in this array.
-///     - environment: Either a Dictionary<String, String> or an Environment object that contains the key/value pairs of configuration variables for TraceLog.
+///     - writers:     An Array of objects that implement the `Writer` protocol used to process messages that are logged. Note the writers are called in the order they are in this array.
+///     - environment: Either a `Dictionary<String, String>` or an `Environment` object that contains the key/value pairs of configuration variables for TraceLog.
 ///
 /// - Example:
 ///
@@ -61,12 +62,11 @@ public func configure(mode: ConcurrencyMode = .default, writers: [Writer] = [Con
     #endif
 }
 
-///
 /// Initializes TraceLog with an optional array of Writers specifying their ConcurrencyMode and the Environment.
 ///
 /// - Parameters:
-///     - writers:     An Array of `Writers` wrapped in a `WriterConcurrencyMode`.
-///     - environment: Either a Dictionary<String, String> or an Environment object that contains the key/value pairs of configuration variables for TraceLog.
+///     - writers:     An Array of `Writer`s wrapped in a `WriterConcurrencyMode`.
+///     - environment: Either a `Dictionary<String, String>` or an `Environment` object that contains the key/value pairs of configuration variables for TraceLog.
 ///
 /// - Example:
 ///
@@ -90,32 +90,14 @@ public func configure(writers: [WriterConcurrencyMode], environment: Environment
     #endif
 }
 
-///
-/// logError logs a message with LogLevel Error to the LogWriters
+// MARK: Logging
+
+/// Logs a message with `LogLevel.error` to the log `Writer`s.
 ///
 /// - Parameters:
 ///     - tag:     A String to use as a tag to group this call to other calls related to it. If not passed or nil, the file name is used as a tag.
 ///     - message: An closure or trailing closure that evaluates to the String message to log.
 ///
-/// Examples:
-/// ```
-///     logError {
-///         "Error message"
-///     }
-///
-///     logError("MyAppName") {
-///         "Error message"
-///     }
-///
-///     logError("MyAppName") {
-///
-///          /// You can create complex closures that ultimately
-///          /// return the String that will be logged to the
-///          /// log Writers.
-///
-///         return "Final message String"
-///     }
-/// ```
 public func logError(_ tag: String? = nil, _ file: String = #file, _ function: String = #function, _ line: Int = #line, message: @escaping () -> String) {
     #if !TRACELOG_DISABLED
         let derivedTag = derivedTagIfNil(file: file, tag: tag)
@@ -124,32 +106,12 @@ public func logError(_ tag: String? = nil, _ file: String = #file, _ function: S
     #endif
 }
 
-///
-/// logWarning logs a message with LogLevel Warning to the LogWriters
+/// Logs a message with `LogLevel.warning` to the log `Writer`s.
 ///
 /// - Parameters:
 ///     - tag:     A String to use as a tag to group this call to other calls related to it. If not passed or nil, the file name is used as a tag.
 ///     - message: An closure or trailing closure that evaluates to the String message to log.
 ///
-/// Examples:
-/// ```
-///     logWarning {
-///         "Warning message"
-///     }
-///
-///     logWarning("MyAppName") {
-///         "Warning message"
-///     }
-///
-///     logWarning("MyAppName") {
-///
-///         // You can create complex closures that ultimately
-///         // return the String that will be logged to the
-///         // log Writers.
-///
-///         return "Final message String"
-///     }
-/// ```
 public func logWarning(_ tag: String? = nil, _ file: String = #file, _ function: String = #function, _ line: Int = #line, message:  @escaping () -> String) {
     #if !TRACELOG_DISABLED
         let derivedTag = derivedTagIfNil(file: file, tag: tag)
@@ -158,30 +120,11 @@ public func logWarning(_ tag: String? = nil, _ file: String = #file, _ function:
     #endif
 }
 
-/// logInfo logs a message with LogLevel Info to the LogWriters
+/// Logs a message with `LogLevel.info` to the log `Writer`s.
 ///
 /// - Parameters:
 ///     - tag:     A String to use as a tag to group this call to other calls related to it. If not passed or nil, the file name is used as a tag.
 ///     - message: An closure or trailing closure that evaluates to the String message to log.
-///
-/// Examples:
-/// ```
-///     logInfo {
-///         "Info message"
-///     }
-///
-///     logInfo("MyAppName") {
-///         "Info message"
-///     }
-///
-///     logInfo("MyAppName") {
-///
-///         // You can create complex closures that ultimately
-///         // return the String that will be logged to the
-///         // log Writers.
-///
-///         return "Final message String"
-/// ```
 ///
 public func logInfo(_ tag: String? = nil, _ file: String = #file, _ function: String = #function, _ line: Int = #line, message:  @escaping () -> String) {
     #if !TRACELOG_DISABLED
@@ -191,37 +134,12 @@ public func logInfo(_ tag: String? = nil, _ file: String = #file, _ function: St
     #endif
 }
 
-///
-/// logTrace logs a message with LogLevel Trace to the LogWriters
+/// Logs a message with `LogLevel`.trace to the log `Writer`s.
 ///
 /// - Parameters:
 ///     - tag:     A String to use as a tag to group this call to other calls related to it. If not passed or nil, the file name is used as a tag.
 ///     - level    An integer representing the trace LogLevel (i.e. 1, 2, 3, and 4.) If no value is passed, the default trace level is 1.
 ///     - message: An closure or trailing closure that evaluates to the String message to log.
-///
-/// Examples:
-/// ```
-///     logTrace {
-///         "Trace message"
-///     }
-///
-///     logTrace("MyAppName") {
-///         "Trace message"
-///     }
-///
-///     logTrace("MyAppName", level: 3) {
-///         "Trace message"
-///     }
-///
-///     logTrace("MyAppName") {
-///
-///         // You can create complex closures that ultimately
-///         // return the String that will be logged to the
-///         // log Writers.
-///
-///         return "Final message String"
-///     }
-/// ```
 ///
 public func logTrace(_ tag: String? = nil, level: Int = 1, _ file: String = #file, _ function: String = #function, _ line: Int = #line, message: @escaping () -> String) {
     #if !TRACELOG_DISABLED
@@ -233,36 +151,11 @@ public func logTrace(_ tag: String? = nil, level: Int = 1, _ file: String = #fil
     #endif
 }
 
-///
-/// logTrace logs a message with LogLevel Trace to the LogWriters.
+/// Logs a message with `LogLevel`.trace to the log `Writer`s.
 ///
 /// - Parameters:
 ///     - level    An integer representing the trace LogLevel (i.e. 1, 2, 3, and 4.)
 ///     - message: An closure or trailing closure that evaluates to the String message to log.
-///
-/// Examples:
-/// ```
-///     logTrace(1) {
-///         "Trace message"
-///     }
-///
-///     logTrace(2) {
-///         "Trace message"
-///     }
-///
-///     logTrace(3) {
-///         "Trace message"
-///     }
-///
-///     logTrace(4) {
-///
-///         // You can create complex closures that ultimately
-///         // return the String that will be logged to the
-///         // log Writers.
-///
-///         return "Final message String"
-///     }
-/// ```
 ///
 public func logTrace(_ level: Int, _ file: String = #file, _ function: String = #function, _ line: Int = #line, message: @escaping () -> String) {
     #if !TRACELOG_DISABLED
@@ -274,7 +167,7 @@ public func logTrace(_ level: Int, _ file: String = #file, _ function: String = 
     #endif
 }
 
-/// MARK: Internal & private functions & Extensions.
+// MARK: Internal & private functions & Extensions.
 
 @inline(__always)
 private func derivedTagIfNil(file: String, tag: String?) -> String {

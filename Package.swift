@@ -29,7 +29,7 @@ let package = Package(
         /// Tests
         .testTarget(name: "TraceLogTests", dependencies: ["TraceLog"], path: "Tests/TraceLogTests")
     ],
-    swiftLanguageVersions: [.v4_2]
+    swiftLanguageVersions: [.version("5")]
 )
 
 var productTargets = ["TraceLog"]

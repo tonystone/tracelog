@@ -31,8 +31,7 @@ import Foundation
 /// without configuration. Should refinement of the default behavior be required, these
 /// options give you fine grain control over the output.
 ///
-/// Output Templates
-/// ================
+/// ### Output Templates
 ///
 /// The primary control of the formatting is through the `template` parameter which
 /// defines the output variables and constants for each logged entry.  The `template`
@@ -74,8 +73,7 @@ import Foundation
 ///
 ///     "1970-01-01 00:00:00.000","ExampleProcess",50,200,"WARNING","ExampleTag","Example message.”
 ///
-/// Control Characters
-/// ============================
+/// ### Control Characters
 ///
 /// TraceLog allows you to embed formatting control characters (\r\n\t\)  into the message when logging messages. The TextFormat
 /// allows you to strip those out or escape them so that the output can be more concise or machine readable if required.
@@ -108,8 +106,7 @@ import Foundation
 ///
 /// > Note: using this option does not affect the `terminator` output, terminators will still be printed normally.
 ///
-/// Character Encoding
-/// ==================
+/// ### Character Encoding
 ///
 /// The default character encoding of the output is `.utf8` which should be suitable
 /// for most applications and can encode all the unicode characters.
@@ -144,8 +141,7 @@ import Foundation
 /// - Note: We don't find `.symbol` very useful due to it's limited character range and is not supported on linux.  `.japaneseEUC` is also
 ///         not supported on Linux.
 ///
-/// Terminators
-/// ===========
+/// ### Terminators
 ///
 /// Each log entry formatted by the formatter can be terminated with a character sequence.
 /// The default value is a newline ("\n") and can be changed by passing the `terminator`
@@ -160,71 +156,11 @@ import Foundation
 /// file type output, a newline "\n" is required in order to write multiple lines to the screen
 /// or file.
 ///
-/// - SeeAlso: OutputStreamFormatter
-/// - SeeAlso: JSONFormat
-/// - SeeAlso: ConsoleWriter
-/// - SeeAlso: FileWriter
+/// - SeeAlso: `OutputStreamFormatter` for more information about the base class.
 ///
 public struct TextFormat: OutputStreamFormatter {
 
-    /// Default values used for TextFormat
-    ///
-    public enum Default {
-
-        /// Default template to use to output message in.
-        ///
-        public static let template: String = "%{date} %{processName}[%{processIdentifier}:%{threadIdentifier}] %{level}: <%{tag}> %{message}"
-
-        /// Default DateFormatter for this writer if one is not supplied.
-        ///
-        /// - Note: Format is "yyyy-MM-dd HH:mm:ss.SSS"
-        ///
-        /// - Example: "2016-04-23 10:34:26.849"
-        ///
-        public static let dateFormatter: DateFormatter = {
-            var formatter = DateFormatter()
-            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
-            formatter.timeZone = TimeZone.current
-
-            return formatter
-        }()
-
-        /// A set of options to apply to the output.
-        ///
-        /// - SeeAlso: TextFormat.Option
-        ///
-        public static let options: Set<Option> = []
-
-        ///
-        /// Encoding of the output of the formatter.
-        ///
-        public static let encoding: String.Encoding = .utf8
-
-        /// The terminator to use at the end of each entry.
-        ///
-        public static let terminator: String = "\n"
-    }
-
-    /// Special options available to control the
-    /// output.
-    ///
-    public enum Option: Hashable {
-
-        /// Modify the any control characters found in the entry.
-        ///
-        case controlCharacters(Action)
-
-        public enum Action {
-
-            /// Strip the characters from the message.
-            ///
-            case strip
-
-            /// Backslash escape the characters.
-            ///
-            case escape
-        }
-    }
+    // MARK: Initialization
 
     /// The designated initializer for this type.
     ///
@@ -234,6 +170,9 @@ public struct TextFormat: OutputStreamFormatter {
     ///     - options: A Set of `Options` to allow optional formatting control (see `Option` for list).
     ///     - encoding: The Character encoding to use for the formatted entry.
     ///     - terminator: A string that will be output at the end of the output to terminate the entry.
+    ///
+    /// - SeeAlso: `TextFormat.Default` for default values to for this class.
+    /// - SeeAlso: `TextFormat.Option` for a list of available options.
     ///
     public init(template: String = Default.template, dateFormatter: DateFormatter = Default.dateFormatter, options: Set<Option> = Default.options, encoding: String.Encoding = Default.encoding, terminator: String = Default.terminator) {
         self.dateFormatter = dateFormatter
@@ -275,7 +214,15 @@ public struct TextFormat: OutputStreamFormatter {
         self.template = elements
     }
 
+    // MARK: `OutputStreamFormatter` Conformance
+
+    /// The encoding that will be used to encode the `message` attribute of the `Writer.LogEntry` and the entire message if this is a String type output.
+    ///
+    public let encoding: String.Encoding
+
     /// Text conversion function required by the `OutputStreamFormatter` protocol.
+    ///
+    /// - SeeAlso: `OutputStreamFormatter` for more information about this function.
     ///
     public func bytes(from entry: Writer.LogEntry) -> Result<[UInt8], OutputStreamFormatterError> {
         var text = String()
@@ -319,13 +266,15 @@ public struct TextFormat: OutputStreamFormatter {
         return .success(Array(data))
     }
 
+    // MARK: Internal & Private methods and structures
+
     /// Generic type writer
-    func write<T, Target>(_ value: T, to target: inout Target) where Target : TextOutputStream {
+    private func write<T, Target>(_ value: T, to target: inout Target) where Target : TextOutputStream {
         target.write(String(describing: value))
     }
 
     /// Date writer
-    func write<Target>(_ value: Date, to target: inout Target) where Target : TextOutputStream {
+    private func write<Target>(_ value: Date, to target: inout Target) where Target : TextOutputStream {
 
         /// Chain to the write(String) version just in case the user
         /// supplied a format that contains control characters that
@@ -338,7 +287,7 @@ public struct TextFormat: OutputStreamFormatter {
     }
 
     /// String writer
-    func write<Target>(_ value: String, to target: inout Target) where Target : TextOutputStream {
+    private func write<Target>(_ value: String, to target: inout Target) where Target : TextOutputStream {
         switch controlCharacterAction {
         case .some(.strip):
             target.write(value.stripping(charactersIn: .controlCharacters))
@@ -350,7 +299,7 @@ public struct TextFormat: OutputStreamFormatter {
     }
 
     /// LogLevel writer
-    func write<Target>(_ value: LogLevel, to target: inout Target) where Target : TextOutputStream {
+    private func write<Target>(_ value: LogLevel, to target: inout Target) where Target : TextOutputStream {
         target.write(String(describing: value).uppercased())
     }
 
@@ -377,10 +326,6 @@ public struct TextFormat: OutputStreamFormatter {
     ///
     private let dateFormatter: DateFormatter
 
-    /// Encoding of the messages logged to the log file.
-    ///
-    private let encoding: String.Encoding
-
     /// Should we strip control characters from the message.
     ///
     private let controlCharacterAction: Option.Action?
@@ -388,4 +333,95 @@ public struct TextFormat: OutputStreamFormatter {
     /// What terminator should be written at the end of the output.
     ///
     private let terminator: String
+}
+
+extension TextFormat {
+
+    // MARK: Default Values
+
+    /// Default values used for `TextFormat`
+    ///
+    public enum Default {
+
+        /// Default template to use to output message in.
+        ///
+        /// Default:
+        ///
+        ///     "%{date} %{processName}[%{processIdentifier}:%{threadIdentifier}] %{level}: <%{tag}> %{message}"
+        ///
+        /// Example output:
+        ///
+        ///     1970-01-01 00:00:00.000 ExampleProcess[100:1100] INFO: <ExampleTag> Example message.
+        ///
+        public static let template: String = "%{date} %{processName}[%{processIdentifier}:%{threadIdentifier}] %{level}: <%{tag}> %{message}"
+
+        /// Default DateFormatter for this writer if one is not supplied.
+        ///
+        /// Default:
+        ///
+        ///      "yyyy-MM-dd HH:mm:ss.SSS"
+        ///
+        /// Example output:
+        ///
+        ///     "2016-04-23 10:34:26.849"
+        ///
+        public static let dateFormatter: DateFormatter = {
+            var formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd HH:mm:ss.SSS"
+            formatter.timeZone = TimeZone.current
+
+            return formatter
+        }()
+
+        /// A set of options to apply to the output.
+        ///
+        /// Default:
+        ///
+        ///     An empty set.
+        ///
+        /// - SeeAlso: `TextFormat.Option`
+        ///
+        public static let options: Set<Option> = []
+
+        /// Encoding of the output of the formatter.
+        ///
+        /// Default:
+        ///
+        ///     String.Encoding.utf8
+        ///
+        public static let encoding: String.Encoding = .utf8
+
+        /// The terminator to use at the end of each entry.
+        ///
+        /// Default:
+        ///
+        ///     "\n"
+        ///
+        public static let terminator: String = "\n"
+    }
+
+    // MARK: Available Initialization Options
+
+    /// Special options available to control the
+    /// output of `TextFormat`.
+    ///
+    public enum Option: Hashable {
+
+        /// Modify the any control characters found in the entry.
+        ///
+        case controlCharacters(Action)
+
+        /// Actions available for `controlCharacters(Action)` Option.
+        ///
+        public enum Action {
+
+            /// Strip the characters from the message.
+            ///
+            case strip
+
+            /// Backslash escape the characters.
+            ///
+            case escape
+        }
+    }
 }
