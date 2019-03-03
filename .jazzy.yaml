@@ -2,11 +2,8 @@ module: TraceLog
 author: Tony Stone
 author_url: http://github.com/tonystone
 github_url: http://github.com/tonystone/tracelog
-readme: ./README.md
 exclude:
   - "Tests/**/*.swift"
-  - "Sources/**/Environment.swift"
-  - "Sources/**/Result.swift"
 
 copyright: '© 2019 [Tony Stone](https://github.com/tonystone) under the [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0.html).'
 
@@ -14,17 +11,28 @@ xcodebuild_arguments: [clean,build,-project,TraceLog.xcodeproj,-scheme,TraceLog-
 
 theme: fullwidth
 
-documentation: Documentation/*.md
-abstract: Documentation/Abstracts/*.md
-
 output: docs
+
+readme: Sources/Documentation/Quick Start.md
+documentation: Sources/Documentation/*.md
+abstract: Sources/Documentation/Abstracts/*.md
 
 custom_categories:
   - name: User Guides
     children:
       - Quick Start
-      - Configuration
-      - Logging
+      - Objective-C Support
+  - name: Configuration
+    children:
+      - configure(mode:writers:environment:)
+      - configure(writers:environment:)
+  - name: Logging
+    children:
+      - logError(_:_:_:_:message:)
+      - logWarning(_:_:_:_:message:)
+      - logInfo(_:_:_:_:message:)
+      - logTrace(_:_:_:_:message:)
+      - logTrace(_:level:_:_:_:message:)
   - name: Writers
     children:
       - ConsoleWriter
@@ -33,20 +41,19 @@ custom_categories:
     children:
       - TextFormat
       - JSONFormat
-  - name: Global Configuration
-    children:
-      - LogLevel
-      - ConcurrencyMode
-      - WriterConcurrencyMode
-      - AsyncOption
   - name: Software Developer Kit (SDK)
     children:
       - Writer
       - OutputStreamWriter
       - OutputStreamFormatter
+  - name: Supporting Types
+    children:
+      - ConcurrencyMode
+      - WriterConcurrencyMode
+      - AsyncConcurrencyModeOption
+      - Environment
+      - LogLevel
       - StaticContext
       - RuntimeContext
       - OutputStreamFormatterError
       - FailureReason
-
-

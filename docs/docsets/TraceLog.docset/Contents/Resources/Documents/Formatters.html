@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Formatters  Reference</title>
+    <link rel="stylesheet" type="text/css" href="css/jazzy.css" />
+    <link rel="stylesheet" type="text/css" href="css/highlight.css" />
+    <meta charset="utf-8">
+    <script src="js/jquery.min.js" defer></script>
+    <script src="js/jazzy.js" defer></script>
+    
+    <script src="js/lunr.min.js" defer></script>
+    <script src="js/typeahead.jquery.js" defer></script>
+    <script src="js/jazzy.search.js" defer></script>
+  </head>
+  <body>
+
+    <a name="//apple_ref/swift/Section/Formatters" class="dashAnchor"></a>
+
+    <a title="Formatters  Reference"></a>
+
+    <header class="header">
+      <p class="header-col header-col--primary">
+        <a class="header-link" href="index.html">
+          TraceLog Docs
+        </a>
+         (100% documented)
+      </p>
+    
+      <p class="header-col--secondary">
+        <form role="search" action="search.json">
+          <input type="text" placeholder="Search documentation" data-typeahead>
+        </form>
+      </p>
+    
+        <p class="header-col header-col--secondary">
+          <a class="header-link" href="http://github.com/tonystone/tracelog">
+            <img class="header-icon" src="img/gh.png"/>
+            View on GitHub
+          </a>
+        </p>
+    
+    </header>
+
+    <p class="breadcrumbs">
+      <a class="breadcrumb" href="index.html">TraceLog Reference</a>
+      <img class="carat" src="img/carat.png" />
+      Formatters  Reference
+    </p>
+
+    <div class="content-wrapper">
+      <nav class="navigation">
+        <ul class="nav-groups">
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="User Guides.html">User Guides</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="quick-start.html">Quick Start</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="objective-c-support.html">Objective-C Support</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Configuration.html">Configuration</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Configuration.html#/s:8TraceLog9configure4mode7writers11environmentyAA15ConcurrencyModeO_SayAA6Writer_pGAA11EnvironmentCtF">configure(mode:writers:environment:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Configuration.html#/s:8TraceLog9configure7writers11environmentySayAA21WriterConcurrencyModeOG_AA11EnvironmentCtF">configure(writers:environment:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Logging.html">Logging</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Logging.html#/s:8TraceLog8logError____7messageySSSg_S2SSiSSyctF">logError(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Logging.html#/s:8TraceLog10logWarning____7messageySSSg_S2SSiSSyctF">logWarning(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Logging.html#/s:8TraceLog7logInfo____7messageySSSg_S2SSiSSyctF">logInfo(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Logging.html#/s:8TraceLog03logA0____7messageySi_S2SSiSSyctF">logTrace(_:_:_:_:message:)</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Logging.html#/s:8TraceLog03logA0_5level___7messageySSSg_SiS2SSiSSyctF">logTrace(_:level:_:_:_:message:)</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Writers.html">Writers</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/ConsoleWriter.html">ConsoleWriter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/ConsoleWriter/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/FileWriter.html">FileWriter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/FileWriter/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/FileWriter/Strategy.html">– Strategy</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Formatters.html">Formatters</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/TextFormat.html">TextFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/TextFormat/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/TextFormat/Option.html">– Option</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/JSONFormat.html">JSONFormat</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/JSONFormat/Default.html">– Default</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/JSONFormat/Attribute.html">– Attribute</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Structs/JSONFormat/Option.html">– Option</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Software Developer Kit (SDK).html">Software Developer Kit (SDK)</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/Writer.html">Writer</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/OutputStreamWriter.html">OutputStreamWriter</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/OutputStreamFormatter.html">OutputStreamFormatter</a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-group-name">
+            <a class="nav-group-name-link" href="Supporting Types.html">Supporting Types</a>
+            <ul class="nav-group-tasks">
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/ConcurrencyMode.html">ConcurrencyMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/WriterConcurrencyMode.html">WriterConcurrencyMode</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/AsyncConcurrencyModeOption.html">AsyncConcurrencyModeOption</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/AsyncConcurrencyModeOption/BufferStrategy.html">– BufferStrategy</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Classes/Environment.html">Environment</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/LogLevel.html">LogLevel</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/StaticContext.html">StaticContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Protocols/RuntimeContext.html">RuntimeContext</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/OutputStreamFormatterError.html">OutputStreamFormatterError</a>
+              </li>
+              <li class="nav-group-task">
+                <a class="nav-group-task-link" href="Enums/FailureReason.html">FailureReason</a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </nav>
+      <article class="main-content">
+
+        <section class="section">
+          <div class="section-content">
+            <h1>Formatters</h1>
+            <p>Formatters are instances of an <code><a href="Protocols/OutputStreamFormatter.html">OutputStreamFormatter</a></code> and can be used with any <code><a href="Protocols/OutputStreamWriter.html">OutputStreamWriter</a></code> type.  TraceLog offer the built in types below but also allows you to create your own.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    See the <a href="Software%20Development%20Kit%20(SDK).html">Software Development Kit (SDK)</a> for more information on creating your own.
+
+</div>
+
+          </div>
+        </section>
+
+        <section class="section">
+          <div class="section-content">
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog10TextFormatV"></a>
+                    <a name="//apple_ref/swift/Struct/TextFormat" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog10TextFormatV">TextFormat</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The TextFormat is a configurable implementation of a <code><a href="Protocols/OutputStreamFormatter.html">OutputStreamFormatter</a></code>
+which allows complete control over the fields and format of the output
+log entry.</p>
+
+<p>Since the TextFormat is an instance of <code><a href="Protocols/OutputStreamFormatter.html">OutputStreamFormatter</a></code> it can be
+used with any <code><a href="Protocols/Writer.html">Writer</a></code> that accepts the <code><a href="Protocols/OutputStreamFormatter.html">OutputStreamFormatter</a></code> on construction.</p>
+
+<p>TextFormat has a number of options for configuring it for many use-cases.  All
+options have a default value assigned to them to make it easy to get started
+without configuration. Should refinement of the default behavior be required, these
+options give you fine grain control over the output.</p>
+<h3 id='output-templates' class='heading'>Output Templates</h3>
+
+<p>The primary control of the formatting is through the <code>template</code> parameter which
+defines the output variables and constants for each logged entry.  The <code>template</code>
+parameter is a <code>Swift.String</code> that allows any constants plus substitution variables
+that specify the various fields that TraceLog can output.</p>
+
+<p>Substitution variables take the form %{variable-name} and are case sensitive.  Each
+variable can be used within the template String as many times as your use-case requires.</p>
+
+<ul>
+<li>Substitution variables:
+
+<ul>
+<li>%{date}</li>
+<li>%{timestamp}</li>
+<li>%{level}</li>
+<li>%{tag}</li>
+<li>%{processName}</li>
+<li>%{processIdentifier}</li>
+<li>%{threadIdentifier}</li>
+<li>%{file}</li>
+<li>%{function}</li>
+<li>%{line}</li>
+<li>%{message}</li>
+</ul></li>
+</ul>
+
+<p>The default template is a human-readable form meant for debugging purposes
+and excludes extraneous details such as file, function and line. It is defined
+as:</p>
+<pre class="highlight swift"><code><span class="nv">template</span><span class="p">:</span> <span class="s">"%{date} %{processName}[%{processIdentifier}:%{threadIdentifier}] %{level}: &lt;%{tag}&gt; %{message}"</span>
+</code></pre>
+
+<p>Which produces an output similar to this:</p>
+<pre class="highlight swift"><code><span class="mi">1970</span><span class="o">-</span><span class="mo">01</span><span class="o">-</span><span class="mo">01</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mf">00.000</span> <span class="kt">ExampleProcess</span><span class="p">[</span><span class="mi">100</span><span class="p">:</span><span class="mi">1100</span><span class="p">]</span> <span class="kt">INFO</span><span class="p">:</span> <span class="o">&lt;</span><span class="kt">ExampleTag</span><span class="o">&gt;</span> <span class="kt">Example</span> <span class="n">message</span><span class="o">.</span>
+</code></pre>
+
+<p>You can easily create other output forms such as TAB DELIMITED using this
+template (and adjusting the number of fields to your requirements).</p>
+<pre class="highlight swift"><code><span class="nv">template</span><span class="p">:</span> <span class="s">"</span><span class="se">\"</span><span class="s">%{date}</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">%{processName}</span><span class="se">\"</span><span class="s">,%{processIdentifier},%{threadIdentifier},</span><span class="se">\"</span><span class="s">%{level}</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">%{tag}</span><span class="se">\"</span><span class="s">,</span><span class="se">\"</span><span class="s">%{message}</span><span class="se">\"</span><span class="s">"</span>
+</code></pre>
+
+<p>Your output would look similar to this given the same input as above:</p>
+<pre class="highlight swift"><code><span class="s">"1970-01-01 00:00:00.000"</span><span class="p">,</span><span class="s">"ExampleProcess"</span><span class="p">,</span><span class="mi">50</span><span class="p">,</span><span class="mi">200</span><span class="p">,</span><span class="s">"WARNING"</span><span class="p">,</span><span class="s">"ExampleTag"</span><span class="p">,</span><span class="s">"Example message.”
+</span></code></pre>
+<h3 id='control-characters' class='heading'>Control Characters</h3>
+
+<p>TraceLog allows you to embed formatting control characters (\r\n\t)  into the message when logging messages. The TextFormat
+allows you to strip those out or escape them so that the output can be more concise or machine readable if required.</p>
+
+<p>Logging a statement like this is great for reading on the console but could cause issues with parsing
+a format that requires analyzing the entries.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">formatter</span> <span class="o">=</span> <span class="kt">TextFormat</span><span class="p">(</span><span class="nv">options</span><span class="p">:</span> <span class="p">[</span><span class="o">.</span><span class="nf">controlCharacters</span><span class="p">(</span><span class="o">.</span><span class="n">strip</span><span class="p">)])</span>
+
+<span class="kt">TraceLog</span><span class="o">.</span><span class="nf">configure</span><span class="p">(</span><span class="nv">writers</span><span class="p">:</span> <span class="p">[</span><span class="kt">ConsoleWriter</span><span class="p">(</span><span class="nv">format</span><span class="p">:</span> <span class="n">formatter</span><span class="p">)])</span>
+
+<span class="n">logInfo</span> <span class="p">{</span> <span class="s">"</span><span class="se">\n\t\t</span><span class="s">This is a message with control characters that spans multiple lines </span><span class="se">\n\t\t</span><span class="s">and is indented with several tab characters."</span> <span class="p">}</span>
+</code></pre>
+
+<p>Using <code>.controlCharacters(.strip)</code> will allow you to strip those out before output, giving
+you the following output in the console or file.</p>
+<pre class="highlight swift"><code><span class="mi">1970</span><span class="o">-</span><span class="mo">01</span><span class="o">-</span><span class="mo">01</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mf">00.000</span> <span class="kt">ExampleProcess</span><span class="p">[</span><span class="mi">100</span><span class="p">:</span><span class="mi">1100</span><span class="p">]</span> <span class="kt">INFO</span><span class="p">:</span> <span class="o">&lt;</span><span class="kt">ExampleTag</span><span class="o">&gt;</span> <span class="kt">This</span> <span class="k">is</span> <span class="n">a</span> <span class="n">message</span> <span class="n">with</span> <span class="n">control</span> <span class="n">characters</span> <span class="n">that</span> <span class="n">spans</span> <span class="n">multiple</span> <span class="n">lines</span> <span class="n">and</span> <span class="k">is</span> <span class="n">indented</span> <span class="n">with</span> <span class="n">several</span> <span class="n">tab</span> <span class="n">characters</span><span class="o">.</span>
+</code></pre>
+
+<p>Using <code>.controlCharacters(.escape)</code> will allow you to escape (<q>\</q>) the characters for output to
+writers that may require escaping of control characters.</p>
+<pre class="highlight swift"><code><span class="mi">1970</span><span class="o">-</span><span class="mo">01</span><span class="o">-</span><span class="mo">01</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mf">00.000</span> <span class="kt">ExampleProcess</span><span class="p">[</span><span class="mi">100</span><span class="p">:</span><span class="mi">1100</span><span class="p">]</span> <span class="kt">INFO</span><span class="p">:</span> <span class="o">&lt;</span><span class="kt">ExampleTag</span><span class="o">&gt;</span> <span class="err">\\</span><span class="n">n</span><span class="err">\\</span><span class="n">t</span><span class="err">\\</span><span class="n">tThis</span> <span class="k">is</span> <span class="n">a</span> <span class="n">message</span> <span class="n">with</span> <span class="n">control</span> <span class="n">characters</span> <span class="n">that</span> <span class="n">spans</span> <span class="n">multiple</span> <span class="n">lines</span> <span class="err">\\</span><span class="n">n</span><span class="err">\\</span><span class="n">t</span><span class="err">\\</span><span class="n">tand</span> <span class="k">is</span> <span class="n">indented</span> <span class="n">with</span> <span class="n">several</span> <span class="n">tab</span> <span class="n">characters</span><span class="o">.</span>
+</code></pre>
+
+<p>Without this option the output would look like this.</p>
+<pre class="highlight swift"><code><span class="mi">1970</span><span class="o">-</span><span class="mo">01</span><span class="o">-</span><span class="mo">01</span> <span class="mo">00</span><span class="p">:</span><span class="mo">00</span><span class="p">:</span><span class="mf">00.000</span> <span class="kt">ExampleProcess</span><span class="p">[</span><span class="mi">100</span><span class="p">:</span><span class="mi">1100</span><span class="p">]</span> <span class="kt">INFO</span><span class="p">:</span> <span class="o">&lt;</span><span class="kt">ExampleTag</span><span class="o">&gt;</span>
+        <span class="kt">This</span> <span class="k">is</span> <span class="n">a</span> <span class="n">message</span> <span class="n">with</span> <span class="n">control</span> <span class="n">characters</span> <span class="n">that</span> <span class="n">spans</span> <span class="n">multiple</span> <span class="n">lines</span>
+        <span class="n">and</span> <span class="k">is</span> <span class="n">indented</span> <span class="n">with</span> <span class="n">several</span> <span class="n">tab</span> <span class="n">characters</span><span class="o">.</span>
+</code></pre>
+
+<blockquote>
+<p>Note: using this option does not affect the <code>terminator</code> output, terminators will still be printed normally.</p>
+</blockquote>
+<h3 id='character-encoding' class='heading'>Character Encoding</h3>
+
+<p>The default character encoding of the output is <code>.utf8</code> which should be suitable
+for most applications and can encode all the unicode characters.</p>
+
+<p>If required, this encoding can be changed by passing a <code>String.Encoding</code> value at init
+to change the output encoding.</p>
+
+<p>For instance.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">format</span> <span class="o">=</span> <span class="kt">TextFormat</span><span class="p">(</span><span class="nv">encoding</span><span class="p">:</span> <span class="o">.</span><span class="n">utf16</span><span class="p">)</span>
+</code></pre>
+
+<p>Any one of the encodings defined by <code>String.Encoding</code> can be used but if you&rsquo;re logging
+characters outside the range that the encoding can encode, the formatter will alter or drop
+(replacing with a placeholder character within the encoding) the character.</p>
+
+<p>If only logging characters within the Ascii character encoding (characters from 0-127) all
+encodings accept <code>.symbol</code> can be used.</p>
+
+<p>If logging characters outside the Ascii range (0-127), it&rsquo;s recommended
+that you use a unicode compatible encoding.  All the following encodings
+can completely encode Unicode:</p>
+<li>unicode</li>
+<li>utf8</li>
+<li>utf16</li>
+<li>utf16BigEndian</li>
+<li>utf16LittleEndian</li>
+<li>utf32</li>
+<li>utf32BigEndian</li>
+<li><p>utf32LittleEndian</p></li>
+<div class="aside aside-note">
+    <p class="aside-title">Note</p>
+    <p>We don&rsquo;t find <code>.symbol</code> very useful due to it&rsquo;s limited character range and is not supported on linux.  <code>.japaneseEUC</code> is also
+    not supported on Linux.</p>
+
+</div>
+<h3 id='terminators' class='heading'>Terminators</h3>
+
+<p>Each log entry formatted by the formatter can be terminated with a character sequence.
+The default value is a newline (<q>\n</q>) and can be changed by passing the <code>terminator</code>
+parameter at construction.</p>
+
+<p>For instance.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">formatter</span> <span class="o">=</span> <span class="kt">TextFormat</span><span class="p">(</span><span class="nv">terminator</span><span class="p">:</span> <span class="s">"</span><span class="se">\r\n</span><span class="s">"</span><span class="p">)</span>
+</code></pre>
+
+<p>In this case we changed the terminator from the default of <q>\n</q> to <q>\r\n</q>.  The characters
+can be any characters that make sense for your application. Keep in mind that for console or
+file type output, a newline <q>\n</q> is required in order to write multiple lines to the screen
+or file.</p>
+<div class="aside aside-see-also">
+    <p class="aside-title">See also</p>
+    <code><a href="Protocols/OutputStreamFormatter.html">OutputStreamFormatter</a></code> for more information about the base class.
+
+</div>
+
+                        <a href="Structs/TextFormat.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">TextFormat</span> <span class="p">:</span> <span class="kt"><a href="Protocols/OutputStreamFormatter.html">OutputStreamFormatter</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="task-group">
+              <ul class="item-container">
+                <li class="item">
+                  <div>
+                    <code>
+                    <a name="/s:8TraceLog10JSONFormatV"></a>
+                    <a name="//apple_ref/swift/Struct/JSONFormat" class="dashAnchor"></a>
+                    <a class="token" href="#/s:8TraceLog10JSONFormatV">JSONFormat</a>
+                    </code>
+                  </div>
+                  <div class="height-container">
+                    <div class="pointer-container"></div>
+                    <section class="section">
+                      <div class="pointer"></div>
+                      <div class="abstract">
+                        <p>The JSONFormat is a configurable implementation of a <code><a href="Protocols/OutputStreamFormatter.html">OutputStreamFormatter</a></code>
+which outputs standard JSON as it&rsquo;s output.</p>
+
+<p>Since the JSONFormat is an instance of <code><a href="Protocols/OutputStreamFormatter.html">OutputStreamFormatter</a></code> it can be
+used with any <code><a href="Protocols/Writer.html">Writer</a></code> that accepts the <code><a href="Protocols/OutputStreamFormatter.html">OutputStreamFormatter</a></code> on construction.</p>
+
+<p>JSONFormat has a number of options for configuring it for many use-cases.  All
+options have a default value assigned to them to make it easy to get started
+without configuration. Should refinement of the default behavior be required, these
+options give you fine grain control over the output.</p>
+<h3 id='specifying-attributes' class='heading'>Specifying Attributes</h3>
+
+<p>All attributes that are output as JSON are configurable.  The default output
+is a set of all attributes TraceLog outputs, these are:</p>
+
+<ul>
+<li>timestamp</li>
+<li>level</li>
+<li>tag</li>
+<li>message</li>
+<li>processName</li>
+<li>processIdentifier</li>
+<li>threadIdentifier</li>
+<li>file</li>
+<li>function</li>
+<li>line</li>
+</ul>
+<h3 id='special-formatting-options' class='heading'>Special formatting options</h3>
+
+<p>JSONFormat has special processing options available for output.</p>
+
+<p>The options available are:</p>
+
+<ul>
+<li><p>prettyPrint: Add formatting characters to print the output in a more human friendly form.</p>
+<pre class="highlight swift"><code><span class="cm">/* With `.prettyPrint` */</span>
+<span class="p">{</span>
+   <span class="s">"timestamp"</span> <span class="p">:</span> <span class="mf">28800.0</span><span class="p">,</span>
+   <span class="s">"level"</span> <span class="p">:</span> <span class="s">"INFO"</span><span class="p">,</span>
+   <span class="s">"tag"</span> <span class="p">:</span> <span class="s">"TestTag"</span><span class="p">,</span>
+   <span class="s">"message"</span> <span class="p">:</span> <span class="s">"Test message."</span><span class="p">,</span>
+   <span class="s">"processName"</span> <span class="p">:</span> <span class="s">"TestProcess"</span><span class="p">,</span>
+   <span class="s">"processIdentifier"</span> <span class="p">:</span> <span class="mi">120</span><span class="p">,</span>
+   <span class="s">"threadIdentifier"</span> <span class="p">:</span> <span class="mi">200</span><span class="p">,</span>
+   <span class="s">"file"</span> <span class="p">:</span> <span class="s">"JSONFormatTests.swift"</span><span class="p">,</span>
+   <span class="s">"function"</span> <span class="p">:</span> <span class="s">"testAttributeDefaultList()"</span><span class="p">,</span>
+   <span class="s">"line"</span> <span class="p">:</span> <span class="mi">240</span>
+<span class="p">}</span>
+
+<span class="cm">/* Without `.prettyPrint` */</span>
+
+<span class="p">{</span><span class="s">"timestamp"</span><span class="p">:</span><span class="mf">28800.0</span><span class="p">,</span><span class="s">"level"</span><span class="p">:</span><span class="s">"INFO"</span><span class="p">,</span><span class="s">"tag"</span><span class="p">:</span><span class="s">"TestTag"</span><span class="p">,</span><span class="s">"message"</span><span class="p">:</span><span class="s">"Test message."</span><span class="p">,,</span><span class="s">"processName"</span><span class="p">:</span><span class="s">"TestProcess"</span><span class="p">,</span><span class="s">"processIdentifier"</span><span class="p">:</span><span class="mi">120</span><span class="p">,</span><span class="s">"threadIdentifier"</span><span class="p">:</span><span class="mi">200</span><span class="p">,</span><span class="s">"file"</span><span class="p">:</span><span class="s">"JSONFormatTests.swift"</span><span class="p">,</span><span class="s">"function"</span><span class="p">:</span><span class="s">"testAttributeDefaultList()"</span><span class="p">,</span><span class="s">"line"</span><span class="p">:</span><span class="mi">240</span><span class="p">}</span>
+</code></pre>
+<h3 id='line-terminator' class='heading'>Line terminator</h3></li>
+</ul>
+
+<p>Each log entry formatted by the formatter can be terminated with a character sequence.
+The default value is a newline (<q>,\n</q>) and can be changed by passing the <code>terminator</code>
+parameter at construction.</p>
+
+<p>For instance.</p>
+<pre class="highlight swift"><code><span class="k">let</span> <span class="nv">formatter</span> <span class="o">=</span> <span class="kt">JSONFormat</span><span class="p">(</span><span class="nv">terminator</span><span class="p">:</span> <span class="s">"</span><span class="se">\r\n</span><span class="s">"</span><span class="p">)</span>
+</code></pre>
+
+<p>In this case we changed the terminator from the default of <q>,\n</q> to <q>\r\n</q>.  The characters
+can be any characters that make sense for your application.</p>
+
+                        <a href="Structs/JSONFormat.html" class="slightly-smaller">See more</a>
+                      </div>
+                      <div class="declaration">
+                        <h4>Declaration</h4>
+                        <div class="language">
+                          <p class="aside-title">Swift</p>
+                          <pre class="highlight swift"><code><span class="kd">public</span> <span class="kd">struct</span> <span class="kt">JSONFormat</span> <span class="p">:</span> <span class="kt"><a href="Protocols/OutputStreamFormatter.html">OutputStreamFormatter</a></span></code></pre>
+
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
+      </article>
+    </div>
+    <section class="footer">
+      <p>© 2019 <a class="link" href="https://github.com/tonystone" target="_blank" rel="external">Tony Stone</a> under the <a class="link" href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank" rel="external">Apache License, Version 2.0</a>.</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.5</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+    </section>
+  </body>
+</div>
+</html>
