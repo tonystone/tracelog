@@ -6,7 +6,8 @@ All significant changes to this project will be documented in this file.
 #### Changed
 - Renamed `AsyncOption` to `AsyncConcurrencyModeOption`.
 - Changed `OutputStreamFormatter`, it now requires `var encoding: String.Encoding { get }`.
-- Renamed `FileWriter.Strategy.RotateOption` to `FileWriter.Strategy.RotationOption`
+- Renamed `FileWriter.FileStrategy` to `FileWriter.Strategy`.
+- Renamed `FileWriter.Strategy.RotateOption` to `FileWriter.Strategy.RotationOption`.
 
 #### Updated
 - `TextFormat` to add `var encoding: String.Encoding { get }` requirement.
