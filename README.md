@@ -92,12 +92,12 @@ Import TraceLog into you files and start logging.
 
 ```swift
     import TraceLog
-
-    struct MyClass {
+    
+    struct MyStruct {
 
         func doSomething() {
 
-            LogInfo { "A simple TraceLog Test message" }
+            logInfo { "A simple TraceLog Test message" }
         }
     }
 ```
