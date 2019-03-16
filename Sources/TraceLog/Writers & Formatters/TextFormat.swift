@@ -343,6 +343,8 @@ extension TextFormat {
     ///
     public enum Default {
 
+        // MARK: Available Defaults
+
         /// Default template to use to output message in.
         ///
         /// Default:
@@ -407,9 +409,13 @@ extension TextFormat {
     ///
     public enum Option: Hashable {
 
+        // MARK: Available Options
+
         /// Modify the any control characters found in the entry.
         ///
         case controlCharacters(Action)
+
+        // MARK: Supporting Types
 
         /// Actions available for `controlCharacters(Action)` Option.
         ///

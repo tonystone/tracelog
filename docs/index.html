@@ -202,57 +202,14 @@
         <section class="section">
           <div class="section-content">
             
-            <h1 id='quick-start-guide' class='heading'>Quick Start Guide</h1>
+            <h1 id='tracelog' class='heading'>TraceLog</h1>
 
-<p>Using TraceLog is incredibly simple out of the box.  Although TraceLog is highly configurable, to get started all you have to do is add the pod to your project,
-import TraceLog to the files that require logging and start adding log statements where you need them.  TraceLog initializes itself and does everything else for you.</p>
-<h2 id='add-tracelog-to-your-project' class='heading'>Add TraceLog to your project</h2>
+<hr>
 
-<p>In your <code>Podfile</code> add TraceLog.</p>
-<pre class="highlight ruby"><code>    <span class="n">target</span> <span class="s1">'MyApp'</span>
+<p><em>Dead Simple: logging the way it&rsquo;s meant to be!</em></p>
+<h2 id='overview' class='heading'>Overview</h2>
 
-    <span class="n">pod</span> <span class="s2">"TraceLog"</span><span class="p">,</span> <span class="s1">'~&gt;5.0'</span>
-</code></pre>
-
-<p>If you have mixed Swift and Objective-C code, you must specify the subspec to enable Objective-C as follows:</p>
-<pre class="highlight ruby"><code>    <span class="n">target</span> <span class="s1">'MyApp'</span>
-
-    <span class="n">pod</span> <span class="s2">"TraceLog"</span><span class="p">,</span> <span class="s1">'~&gt;5.0'</span>
-    <span class="n">pod</span> <span class="s2">"TraceLog/ObjC"</span><span class="p">,</span> <span class="s1">'~&gt;5.0'</span>
-</code></pre>
-<h2 id='import-tracelog-and-start-logging' class='heading'>Import TraceLog and Start logging</h2>
-
-<p>Import TraceLog into you files and start logging.</p>
-<pre class="highlight swift"><code>    <span class="kd">import</span> <span class="kt">TraceLog</span>
-
-    <span class="kd">struct</span> <span class="kt">MyClass</span> <span class="p">{</span>
-
-        <span class="kd">func</span> <span class="nf">doSomething</span><span class="p">()</span> <span class="p">{</span>
-
-            <span class="kt">LogInfo</span> <span class="p">{</span> <span class="s">"A simple TraceLog Test message"</span> <span class="p">}</span>
-        <span class="p">}</span>
-    <span class="p">}</span>
-</code></pre>
-<h2 id='log-functions' class='heading'>Log Functions</h2>
-
-<p>TraceLog has the following primary logging functions to log various levels of information.  The output of these can be controlled via the environment variables at runtime or programmatically at application startup via the <code>TraceLog.configure()</code> func.</p>
-<pre class="highlight swift"><code>    <span class="nf">logError</span>  <span class="p">(</span><span class="nv">tag</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">message</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">)</span>
-    <span class="nf">logWarning</span><span class="p">(</span><span class="nv">tag</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">message</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">)</span>
-    <span class="nf">logInfo</span>   <span class="p">(</span><span class="nv">tag</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">message</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">)</span>
-    <span class="nf">logTrace</span>  <span class="p">(</span><span class="nv">tag</span><span class="p">:</span> <span class="kt">String</span><span class="p">?,</span> <span class="nv">level</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">,</span> <span class="nv">message</span><span class="p">:</span> <span class="kd">@escaping</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">)</span>
-    <span class="nf">logTrace</span>  <span class="p">(</span><span class="nv">level</span><span class="p">:</span> <span class="kt">UInt</span><span class="p">,</span> <span class="kd">@escaping</span> <span class="nv">message</span><span class="p">:</span> <span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">String</span><span class="p">)</span>
-</code></pre>
-
-<blockquote>
-<p>Note: hidden parameters and defaults were omitted for simplicity.</p>
-</blockquote>
-<h2 id='basic-configuration' class='heading'>Basic Configuration</h2>
-
-<p>Although not strictly require, calling the <code>TraceLog.configure()</code> command at startup will allow TraceLog to read the environment for configuration information.</p>
-
-<p>Simply call configure with no parameters as early as possible in your startup code (preferably before ay log statements get called.)</p>
-<pre class="highlight swift"><code>    <span class="kt">TraceLog</span><span class="o">.</span><span class="nf">configure</span><span class="p">()</span>
-</code></pre>
+<p>TraceLog is a highly configurable, flexible, portable, and simple to use debug logging system for Swift and Objective-C applications running on Linux, macOS, iOS, watchOS, and tvOS.</p>
 
           </div>
         </section>

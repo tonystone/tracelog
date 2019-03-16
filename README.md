@@ -22,7 +22,7 @@
 
 ## Introduction
 
-TraceLog's is designed to be a universal, flexible, portable, lightweight, and easy to use logging and trace facility.
+**TraceLog** is a highly configurable, flexible, portable, and simple to use debug logging system for Swift and Objective-C applications running on Linux, macOS, iOS, watchOS, and tvOS.
 
 ### TraceLog Design Philosophy
 1. **Universal**: With TraceLog you are not locked into one type of logging system, as a matter of fact, you can choose to use a combination of log writers to write to various endpoints and systems.
