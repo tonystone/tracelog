@@ -113,6 +113,8 @@ extension ConsoleWriter {
     ///
     public enum Default {
 
+        // MARK: Available Defaults
+
         /// Default format.
         ///
         /// Value:

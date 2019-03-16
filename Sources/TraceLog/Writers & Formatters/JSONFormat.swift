@@ -200,6 +200,8 @@ extension JSONFormat {
     ///
     public enum Default {
 
+        // MARK: Available Defaults
+
         /// Default attributes to output in the JSON.
         ///
         /// Default:
@@ -234,6 +236,9 @@ extension JSONFormat {
     /// - SeeAlso: `JSONFormat` for usage.
     ///
     public enum Attribute: Int, CaseIterable {
+
+        // MARK: Available Attributes
+
         /// Output the timestamp as an `Int`.
         case timestamp
         /// Output the level as a `String` such as ERROR, WARNING, INFO, etc.
@@ -261,6 +266,9 @@ extension JSONFormat {
     /// - SeeAlso: `JSONFormat` for usage.
     ///
     public enum Option: Hashable {
+
+        // MARK: Available Options
+
         /// Adds formatting characters to the output string for a more human readable format.
         case prettyPrint
     }

@@ -150,6 +150,8 @@ extension FileWriter {
     ///
     public enum Default {
 
+        // MARK: Available Defaults
+
         /// The default strategy for the `FileWriter`.
         ///
         /// Value:

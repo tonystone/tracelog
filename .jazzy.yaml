@@ -24,7 +24,7 @@ head: |
     gtag('config', 'UA-102615840-5');
   </script>
 
-readme: Sources/Documentation/Quick Start.md
+readme: Sources/Documentation/Index/Index.md
 documentation: Sources/Documentation/*.md
 abstract: Sources/Documentation/Abstracts/*.md
 
