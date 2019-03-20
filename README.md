@@ -61,7 +61,7 @@
 
 ## Documentation
 
-* [User Guides & Reference](https://tonystone.io/tracelog) - Extensive user guides and reference documentation!  100% documented API, full examples and many hidden details.
+* [User Guides & Reference](https://tracelog.tonystone.io) - Extensive user guides and reference documentation!  100% documented API, full examples and many hidden details.
 
 ## Quick Start Guide
 
@@ -92,7 +92,7 @@ Import TraceLog into you files and start logging.
 
 ```swift
     import TraceLog
-    
+
     struct MyStruct {
 
         func doSomething() {
@@ -125,7 +125,7 @@ Simply call configure with no parameters as early as possible in your startup co
     TraceLog.configure()
 ```
 
-> For a complete documentation set including user guides, a 100% documented API reference and many more examples, please see [https://tonystone.io/tracelog](https://tonystone.io/tracelog).
+> For a complete documentation set including user guides, a 100% documented API reference and many more examples, please see [https://tracelog.tonystone.io](https://tracelog.tonystone.io).
 
 ## Runtime Overhead
 
