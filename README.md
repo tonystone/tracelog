@@ -1,6 +1,5 @@
-> **Note** The latest release ([5.0.0-beta.2](https://github.com/tonystone/tracelog/tree/5.0.0-beta.2)) is in a **_pre-release_** state. There is active work going on that will result in API changes that can/will break code while things are finished.
->
->  For the latest stable production release, please use version [4.0.1](https://github.com/tonystone/tracelog/tree/4.0.1).
+
+⚡️ Stay tuned for updates: upcoming version 5.0.0 (currently in beta)
 
 # TraceLog ![license: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-lightgray.svg?style=flat)
 
@@ -19,6 +18,9 @@
 <a href="https://codecov.io/gh/tonystone/tracelog">
   <img src="https://codecov.io/gh/tonystone/tracelog/branch/master/graph/badge.svg" alt="Codecov" />
 </a>
+</br>
+
+Please [**star**](https://github.com/tonystone/tracelog/stargazers) this github repository to stay up to date.
 
 ## Introduction
 
