@@ -1,5 +1,5 @@
 
-# ⚡️ Stay tuned for updates: upcoming version 5.0.0 (currently in beta)
+## ⚡️ Stay tuned for updates: upcoming version 5.0.0 (currently in beta)
 
 Please [**star**](https://github.com/tonystone/tracelog/stargazers) this github repository to stay up to date.
 
