@@ -1,5 +1,7 @@
 
-⚡️ Stay tuned for updates: upcoming version 5.0.0 (currently in beta)
+# ⚡️ Stay tuned for updates: upcoming version 5.0.0 (currently in beta)
+
+Please [**star**](https://github.com/tonystone/tracelog/stargazers) this github repository to stay up to date.
 
 # TraceLog ![license: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-lightgray.svg?style=flat)
 
@@ -18,9 +20,6 @@
 <a href="https://codecov.io/gh/tonystone/tracelog">
   <img src="https://codecov.io/gh/tonystone/tracelog/branch/master/graph/badge.svg" alt="Codecov" />
 </a>
-</br>
-
-Please [**star**](https://github.com/tonystone/tracelog/stargazers) this github repository to stay up to date.
 
 ## Introduction
 
