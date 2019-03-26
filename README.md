@@ -166,7 +166,7 @@ Please see [Swift Package Manager](https://swift.org/package-manager/#conceptual
 
 ## Installation (CocoaPods)
 
-TraceLog is available through [CocoaPods](http://cocoapods.org). See the [Quick Start Guide](#Quick&#32;Start&#32;Guide) for installing through CocoaPods.
+TraceLog is available through [CocoaPods](http://cocoapods.org). See the [Quick Start Guide](#quick-start-guide) for installing through CocoaPods.
 
 See the ["Using CocoaPods"](https://guides.cocoapods.org/using/using-cocoapods.html) guide for more information on CocoaPods itself.
 
