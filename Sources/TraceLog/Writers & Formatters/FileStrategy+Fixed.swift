@@ -21,20 +21,58 @@ import Foundation
 
 internal class FileStrategyFixed: FileStrategyManager {
 
-    let stream: FileOutputStream
-
-    var url: URL {
-        return self.stream.url
-    }
+    let url: URL
 
     init(directory: URL, fileName: String) throws {
-        self.stream = try FileOutputStream(url: directory.appendingPathComponent(fileName), options: [.create])
+
+        self.url       = directory.appendingPathComponent(fileName)
+        self.available = isLogAvailable()
+        self.stream    = try FileOutputStream(url: url, options: [.create])
+
+        #if os(iOS)
+        /// Note: You can create empty files with file protection in any state.  You just cant write or read from them.
+        ///       We can safely create the file and set it's prtection level even if not available.
+        ///
+        try FileManager.default.setAttributes([.protectionKey : FileProtectionType.completeUntilFirstUserAuthentication], ofItemAtPath: url.path)
+
+        if !available {
+            NotificationCenter.default.addObserver(forName: UIApplication.protectedDataDidBecomeAvailableNotification, object: nil, queue: nil) { (_) in
+                if !self.available {
+                    self.available = true
+                }
+            }
+        }
+        #endif
     }
     deinit {
         self.stream.close()
     }
 
     func write(_ bytes: [UInt8]) -> Result<Int, FailureReason> {
-        return self.stream.write(bytes).mapError({ self.failureReason($0) })
+        guard self.available
+            else { return .failure(.unavailable) }
+
+        return stream.write(bytes).mapError({ self.failureReason($0) })
     }
+
+    private var stream: FileOutputStream
+    private var available: Bool
 }
+
+#if os(iOS)
+import UIKit
+
+func isLogAvailable() -> Bool {
+    if !Thread.isMainThread {
+        return DispatchQueue.main.sync {
+            return UIApplication.shared.isProtectedDataAvailable
+        }
+    }
+    return UIApplication.shared.isProtectedDataAvailable
+}
+#else
+
+func isLogAvailable() -> Bool {
+    return true
+}
+#endif
