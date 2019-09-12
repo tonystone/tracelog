@@ -1,6 +1,5 @@
-> **Note** The latest release ([5.0.0-beta.2](https://github.com/tonystone/tracelog/tree/5.0.0-beta.2)) is in a **_pre-release_** state. There is active work going on that will result in API changes that can/will break code while things are finished.
->
->  For the latest stable production release, please use version [4.0.1](https://github.com/tonystone/tracelog/tree/4.0.1).
+## ⚡️ Stay tuned for updates: upcoming version 5.0.0 (currently in beta)
+<p align="center">Please <a href="https://github.com/tonystone/tracelog/stargazers">star</a> this github repository to stay up to date.</p>
 
 # TraceLog ![license: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-lightgray.svg?style=flat)
 
@@ -167,7 +166,7 @@ Please see [Swift Package Manager](https://swift.org/package-manager/#conceptual
 
 ## Installation (CocoaPods)
 
-TraceLog is available through [CocoaPods](http://cocoapods.org). See the [Quick Start Guide](#Quick&#32;Start&#32;Guide) for installing through CocoaPods.
+TraceLog is available through [CocoaPods](http://cocoapods.org). See the [Quick Start Guide](#quick-start-guide) for installing through CocoaPods.
 
 See the ["Using CocoaPods"](https://guides.cocoapods.org/using/using-cocoapods.html) guide for more information on CocoaPods itself.
 
