@@ -1,6 +1,11 @@
 # Change Log
 All significant changes to this project will be documented in this file.
 
+## [5.0.0-beta.3](https://github.com/tonystone/tracelog/tree/5.0.0-beta.3)
+
+#### Added
+- Added protected data monitoring for `FileWriter.Strategy.fixed` on iOS for use with `AsyncConcurrencyModeOption.buffer(writeInterval:strategy:)`.  This allows TraceLog to be started up before protected data is available on iOS.
+
 ## [5.0.0-beta.2](https://github.com/tonystone/tracelog/tree/5.0.0-beta.2)
 
 #### Changed

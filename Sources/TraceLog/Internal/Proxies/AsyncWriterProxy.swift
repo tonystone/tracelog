@@ -51,6 +51,7 @@ internal class AsyncWriterProxy: WriterProxy {
             switch option {
 
             /// Enable buffering
+            ///
             case ._buffer(let writeInterval, let strategy):
 
                 let writeTimer = BlockTimer(deadline: .now() + writeInterval, repeating: writeInterval, queue: self.queue)
@@ -189,6 +190,7 @@ private class LogEntryQueue {
         }
 
         /// Now add the new element
+        ///
         storage.append(element)
     }
 
@@ -204,4 +206,3 @@ private class LogEntryQueue {
         return storage[0]
     }
 }
-

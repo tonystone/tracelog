@@ -164,11 +164,11 @@ public enum AsyncConcurrencyModeOption {
     /// will write each log entry in the buffer (in order) until the end of the
     /// buffer or the Writer becomes unavailable again.
     ///
-    /// Buffering is useful for many different use case including:
+    /// - Remark: Buffering is useful for many different use case including:
     ///
-    /// E.g. In an iOS application when protected data is not available to your
+    ///      In an iOS application when protected data is not available to your
     ///      app but you require visibility into the apps logging even during
-    ////     these times.
+    ///      these times.
     ///
     ///      A network writer when the network connection is unavailable for any reason.
     ///

@@ -69,6 +69,7 @@ import Foundation
 ///
 /// - SeeAlso: `FileWriter.Strategy` for complete details of all strategies that can be used.
 ///
+@available(iOSApplicationExtension, unavailable, message: "FielWriter can not be initialized in an Extension.  Please initialize it in the main App.")
 public class FileWriter: OutputStreamWriter {
 
     // MARK: Initialization
@@ -190,6 +191,11 @@ extension FileWriter {
         /// - Note: There are no points of file rotation
         ///         with this option, TraceLog will continue
         ///         to append to the file name specified.
+        ///
+        /// - Note: On the iOS platform, this strategy will monitor protected data availability
+        ///         and if you use the `ConcurrencyMode.async(options:)` mode with the
+        ///         `AsyncConcurrencyModeOption.buffer(writeInterval:strategy:)` the FileWriter will
+        ///         buffer when protected data is not available.
         ///
         /// - Remark: Once Swift Evolution [SE-0155](https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md) is implemented
         ///           this will func will be changed to a case in the enum with default values.  We must
