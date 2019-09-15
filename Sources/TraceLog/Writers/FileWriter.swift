@@ -69,6 +69,7 @@ import Foundation
 ///
 /// - SeeAlso: `FileWriter.Strategy` for complete details of all strategies that can be used.
 ///
+@available(iOSApplicationExtension, unavailable, message: "FielWriter can not be initialized in an Extension.  Please initialize it in the main App.")
 public class FileWriter: OutputStreamWriter {
 
     // MARK: Initialization

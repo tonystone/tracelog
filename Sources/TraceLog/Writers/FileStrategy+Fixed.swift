@@ -19,9 +19,13 @@
 ///
 import Foundation
 
+@available(iOSApplicationExtension, unavailable)
 internal class FileStrategyFixed: FileStrategyManager {
 
     let url: URL
+
+    private var stream: FileOutputStream
+    private var available: Bool
 
     init(directory: URL, fileName: String) throws {
 
@@ -29,9 +33,9 @@ internal class FileStrategyFixed: FileStrategyManager {
         self.available = isLogAvailable()
         self.stream    = try FileOutputStream(url: url, options: [.create])
 
-        #if os(iOS)
+        #if os(iOS) && !targetEnvironment(simulator)
         /// Note: You can create empty files with file protection in any state.  You just cant write or read from them.
-        ///       We can safely create the file and set it's prtection level even if not available.
+        ///       We can safely create the file and set it's protection level even if not available.
         ///
         try FileManager.default.setAttributes([.protectionKey : FileProtectionType.completeUntilFirstUserAuthentication], ofItemAtPath: url.path)
 
@@ -49,19 +53,18 @@ internal class FileStrategyFixed: FileStrategyManager {
     }
 
     func write(_ bytes: [UInt8]) -> Result<Int, FailureReason> {
+
         guard self.available
             else { return .failure(.unavailable) }
 
         return stream.write(bytes).mapError({ self.failureReason($0) })
     }
-
-    private var stream: FileOutputStream
-    private var available: Bool
 }
 
-#if os(iOS)
+#if os(iOS) && !targetEnvironment(simulator)
 import UIKit
 
+@available(iOSApplicationExtension, unavailable)
 func isLogAvailable() -> Bool {
     if !Thread.isMainThread {
         return DispatchQueue.main.sync {
