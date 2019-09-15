@@ -51,6 +51,7 @@
     * **TextFormat** a customizable human readable text formatter useable with any `OutputStreamWriter`.
     * **JSONFormat** a customizable JSON string formatter usable with any `OutputStreamWriter`.
  - [x] Create custom output formatters for any use case.
+ - [x] An output buffering mode to buffer output when a writer is unavailable (e.g. on iOS when protected data is not available).
  - [x] Multiple **concurrency modes** for writing to Writers. Settable globally or per Writer installed.
    * **direct** - straight through real-time logging.
    * **sync** - blocking queued logging.
