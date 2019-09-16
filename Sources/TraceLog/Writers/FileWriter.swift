@@ -69,7 +69,7 @@ import Foundation
 ///
 /// - SeeAlso: `FileWriter.Strategy` for complete details of all strategies that can be used.
 ///
-@available(iOSApplicationExtension, unavailable, message: "FielWriter can not be initialized in an Extension.  Please initialize it in the main App.")
+@available(iOSApplicationExtension, unavailable, message: "FileWriter can not be initialized in an Extension.  Please initialize it in the main App.")
 public class FileWriter: OutputStreamWriter {
 
     // MARK: Initialization
@@ -143,6 +143,7 @@ public class FileWriter: OutputStreamWriter {
     private var fileManager: FileStrategyManager
 }
 
+@available(iOSApplicationExtension, unavailable)
 extension FileWriter {
 
     // MARK: Default Values
@@ -274,6 +275,7 @@ extension FileWriter {
 /// Internal extension to allow use of a Set<RotationOption>
 /// to ensure we only get one instance of each.
 ///
+@available(iOSApplicationExtension, unavailable)
 extension FileWriter.Strategy.RotationOption: Hashable {
 
     /// :nodoc:

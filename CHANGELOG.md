@@ -1,6 +1,11 @@
 # Change Log
 All significant changes to this project will be documented in this file.
 
+## [5.0.0-beta.4](https://github.com/tonystone/tracelog/tree/5.0.0-beta.4)
+
+#### Updated
+- Corrected availability of FileWriter and FileStrategyRotate so that they compile correctly on iOS.
+
 ## [5.0.0-beta.3](https://github.com/tonystone/tracelog/tree/5.0.0-beta.3)
 
 #### Added

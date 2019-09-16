@@ -20,6 +20,7 @@
 import CoreFoundation
 import Foundation
 
+@available(iOSApplicationExtension, unavailable)
 internal class FileStrategyRotate: FileStrategyManager {
 
     /// The current url in use or if none open yet, the one that will be used.
