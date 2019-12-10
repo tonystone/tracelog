@@ -30,7 +30,7 @@
     <header class="header">
       <p class="header-col header-col--primary">
         <a class="header-link" href="../../index.html">
-          TraceLog Docs
+          TraceLog 5.0.0 Docs
         </a>
          (100% documented)
       </p>
@@ -60,7 +60,7 @@
       <nav class="navigation">
         <ul class="nav-groups">
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../../User Guides.html">User Guides</a>
+            <a class="nav-group-name-link" href="../../User%20Guides.html">User Guides</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../../quick-start.html">Quick Start</a>
@@ -148,7 +148,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../../Software Developer Kit (SDK).html">Software Developer Kit (SDK)</a>
+            <a class="nav-group-name-link" href="../../Software%20Developer%20Kit%20%28SDK%29.html">Software Developer Kit (SDK)</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../../Protocols/Writer.html">Writer</a>
@@ -162,7 +162,7 @@
             </ul>
           </li>
           <li class="nav-group-name">
-            <a class="nav-group-name-link" href="../../Supporting Types.html">Supporting Types</a>
+            <a class="nav-group-name-link" href="../../Supporting%20Types.html">Supporting Types</a>
             <ul class="nav-group-tasks">
               <li class="nav-group-task">
                 <a class="nav-group-task-link" href="../../Enums/ConcurrencyMode.html">ConcurrencyMode</a>
@@ -201,7 +201,7 @@
       <article class="main-content">
 
         <section class="section">
-          <div class="section-content">
+          <div class="section-content top-matter">
             <h1>Strategy</h1>
               <div class="declaration">
                 <div class="language">
@@ -221,9 +221,11 @@ and physical file management.</p>
               <div class="task-name-container">
                 <a name="/Strategies"></a>
                 <a name="//apple_ref/swift/Section/Strategies" class="dashAnchor"></a>
-                <a href="#/Strategies">
-                  <h3 class="section-name">Strategies</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/Strategies"></a>
+                  <h3 class="section-name"><p>Strategies</p>
+</h3>
+                </div>
               </div>
               <ul class="item-container">
                 <li class="item">
@@ -247,16 +249,14 @@ file and reuses the same file on every startup.</p>
     with this option, TraceLog will continue
     to append to the file name specified.</p>
 
-</div>
-<div class="aside aside-note">
+</div><div class="aside aside-note">
     <p class="aside-title">Note</p>
     <p>On the iOS platform, this strategy will monitor protected data availability
     and if you use the <code><a href="../../Enums/ConcurrencyMode.html#/s:8TraceLog15ConcurrencyModeO5async7optionsACShyAA05AsynccD6OptionOG_tFZ">ConcurrencyMode.async(options:)</a></code> mode with the
     <code><a href="../../Enums/AsyncConcurrencyModeOption.html#/s:8TraceLog26AsyncConcurrencyModeOptionO6buffer13writeInterval8strategyAC8Dispatch0k4TimeI0O_AC14BufferStrategyOtFZ">AsyncConcurrencyModeOption.buffer(writeInterval:strategy:)</a></code> the FileWriter will
     buffer when protected data is not available.</p>
 
-</div>
-<div class="aside aside-remark">
+</div><div class="aside aside-remark">
     <p class="aside-title">Remark</p>
     <p>Once Swift Evolution <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0155-normalize-enum-case-representation.md">SE-0155</a> is implemented
       this will func will be changed to a case in the enum with default values.  We must
@@ -289,7 +289,7 @@ file and reuses the same file on every startup.</p>
         logging file.  The file name should be
         the name + any extension you would like
         to use but should not include the path
-        component. Default is <q>trace.log</q>.</p>
+        component. Default is &ldquo;trace.log&rdquo;.</p>
                                 </div>
                               </td>
                             </tr>
@@ -368,11 +368,11 @@ a max file size, or a certain age of the file.)</p>
         must specify a format that includes a date
         component that will produce a unique file name
         for the granularity of file rotation. For instance
-        passing <q>&lsquo;trace-'yyyyMMdd&rsquo;.log&rsquo;</q> would give you 1
+        passing &ldquo;&lsquo;trace-&#39;yyyyMMdd&rsquo;.log&rsquo;&rdquo; would give you 1
         day of granularity meaning that only one log
         file can be produced per day.
         \
-        Default is <q>&lsquo;trace-'yyyyMMdd-HHmm-ss.SSSS&rsquo;.log&rsquo;</q>.
+        Default is &ldquo;&lsquo;trace-&#39;yyyyMMdd-HHmm-ss.SSSS&rsquo;.log&rsquo;&rdquo;.
         \
         The default template is suitable for any practical
         rotation granularity.</p>
@@ -391,9 +391,11 @@ a max file size, or a certain age of the file.)</p>
               <div class="task-name-container">
                 <a name="/%60Strategy.rotate(at:)%60%20Options"></a>
                 <a name="//apple_ref/swift/Section/`Strategy.rotate(at:)` Options" class="dashAnchor"></a>
-                <a href="#/%60Strategy.rotate(at:)%60%20Options">
-                  <h3 class="section-name">`Strategy.rotate(at:)` Options</h3>
-                </a>
+                <div class="section-name-container">
+                  <a class="section-name-link" href="#/%60Strategy.rotate(at:)%60%20Options"></a>
+                  <h3 class="section-name"><p><code>Strategy.rotate(at:)</code> Options</p>
+</h3>
+                </div>
               </div>
               <ul class="item-container">
                 <li class="item">
@@ -433,7 +435,7 @@ a max file size, or a certain age of the file.)</p>
     </div>
     <section class="footer">
       <p>© 2019 <a class="link" href="https://github.com/tonystone" target="_blank" rel="external">Tony Stone</a> under the <a class="link" href="http://www.apache.org/licenses/LICENSE-2.0.html" target="_blank" rel="external">Apache License, Version 2.0</a>.</p>
-      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.9.6</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
+      <p>Generated by <a class="link" href="https://github.com/realm/jazzy" target="_blank" rel="external">jazzy ♪♫ v0.13.0</a>, a <a class="link" href="https://realm.io" target="_blank" rel="external">Realm</a> project.</p>
     </section>
   </body>
 </div>
