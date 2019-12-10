@@ -1,4 +1,3 @@
-## ⚡️ Stay tuned for updates: upcoming version 5.0.0 (currently in beta)
 <p align="center">Please <a href="https://github.com/tonystone/tracelog/stargazers">star</a> this github repository to stay up to date.</p>
 
 # TraceLog ![license: Apache 2.0](https://img.shields.io/badge/license-Apache%202.0-lightgray.svg?style=flat)

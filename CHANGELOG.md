@@ -1,29 +1,7 @@
 # Change Log
 All significant changes to this project will be documented in this file.
 
-## [5.0.0-beta.4](https://github.com/tonystone/tracelog/tree/5.0.0-beta.4)
-
-#### Updated
-- Corrected availability of FileWriter and FileStrategyRotate so that they compile correctly on iOS.
-
-## [5.0.0-beta.3](https://github.com/tonystone/tracelog/tree/5.0.0-beta.3)
-
-#### Added
-- Added protected data monitoring for `FileWriter.Strategy.fixed` on iOS for use with `AsyncConcurrencyModeOption.buffer(writeInterval:strategy:)`.  This allows TraceLog to be started up before protected data is available on iOS.
-
-## [5.0.0-beta.2](https://github.com/tonystone/tracelog/tree/5.0.0-beta.2)
-
-#### Changed
-- Renamed `AsyncOption` to `AsyncConcurrencyModeOption`.
-- Changed `OutputStreamFormatter`, it now requires `var encoding: String.Encoding { get }`.
-- Renamed `FileWriter.FileStrategy` to `FileWriter.Strategy`.
-- Renamed `FileWriter.Strategy.RotateOption` to `FileWriter.Strategy.RotationOption`.
-
-#### Updated
-- `TextFormat` to add `var encoding: String.Encoding { get }` requirement.
-- `JSONFormat` to add `var encoding: String.Encoding { get }` requirement.
-
-## [5.0.0-beta.1](https://github.com/tonystone/tracelog/tree/5.0.0-beta.1)
+## [5.0.0](https://github.com/tonystone/tracelog/tree/5.0.0)
 
 #### Added
 - Added `OutputStreamFormatter` protocol to define formatters for use with byte output stream type Writers.
@@ -32,8 +10,9 @@ All significant changes to this project will be documented in this file.
 - Added `OutputStreamWriter` protocol to define types that write byte streams to their output and accept `OutputStreamFormatter` types to format the output.
 - Added `LogEntry` tuple type to `Writer` defining the formal types that a Writer writes.
 - Added `.buffer` option for `.async` concurrency modes to allow for buffering when the writer is not available to write to its endpoint.
+- Added protected data monitoring for `FileWriter.Strategy.fixed` on iOS for use with `AsyncConcurrencyModeOption.buffer(writeInterval:strategy:)`.  This allows TraceLog to be started up before protected data is available on iOS.
 
-#### Changed
+#### Upated
 - Requires Swift 5 for compilation.
 - Changed parameters to `.async` to include options for configuration of the mode (`.async(options: Set<AsyncConcurrencyModeOption>)` and  `.async(Writer, options: Set<AsyncConcurrencyModeOption>)`).
 - Changed `Writer` protocol `log()` method to `write(_ entry: Writer.LogEntry)` to make it easier to process messages by writers and formatters.
@@ -44,6 +23,12 @@ All significant changes to this project will be documented in this file.
     * Removed the `fileConfiguration` parameter replacing with new `strategy` enum.
     * It now accepts the new `OutputStreamFormatter` instances allowing you to customize the output log format (default is `TextFormat`.)
 - Changed `FileWriter` archive file name date format to "yyyyMMdd-HHmm-ss-SSS" (This was done for maximum compatibility between platforms and can be overridden in the FileConfiguration object passed at init.)
+- `TextFormat` to add `var encoding: String.Encoding { get }` requirement.
+- `JSONFormat` to add `var encoding: String.Encoding { get }` requirement.
+- Renamed `AsyncOption` to `AsyncConcurrencyModeOption`.
+- Changed `OutputStreamFormatter`, it now requires `var encoding: String.Encoding { get }`.
+- Renamed `FileWriter.FileStrategy` to `FileWriter.Strategy`.
+- Renamed `FileWriter.Strategy.RotateOption` to `FileWriter.Strategy.RotationOption`.
 
 #### Removed
 - Removed  `TraceLogTestHarness`  module.

@@ -7,7 +7,7 @@ message(STATUS "  Build type: ${CMAKE_BUILD_TYPE}")
 message(STATUS "")
 
 # Constants
-set( LIB_VERSION "5.0.0-beta.2" )
+set( LIB_VERSION "5.0.0" )
 set( SWIFT_VERSION "5" )
 
 # Look for modules in the our root.
@@ -41,7 +41,7 @@ add_custom_target(pod-lint
 
 add_custom_target(documentation
         DEPENDS xcode-project generate-source .jazzy.yaml
-        COMMAND jazzy --clean --module-version ${LIB_VERSION}
+        COMMAND bundle exec jazzy --clean --module-version ${LIB_VERSION}
         COMMAND cp ${CMAKE_SOURCE_DIR}/Sources/Documentation/Images/*.png ${CMAKE_SOURCE_DIR}/docs/img/
         WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}")
 
