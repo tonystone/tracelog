@@ -41,7 +41,7 @@ add_custom_target(pod-lint
 
 add_custom_target(documentation
         DEPENDS xcode-project generate-source .jazzy.yaml
-        COMMAND jazzy --clean --module-version ${LIB_VERSION}
+        COMMAND bundle exec jazzy --clean --module-version ${LIB_VERSION}
         COMMAND cp ${CMAKE_SOURCE_DIR}/Sources/Documentation/Images/*.png ${CMAKE_SOURCE_DIR}/docs/img/
         WORKING_DIRECTORY "${CMAKE_SOURCE_DIR}")
 
