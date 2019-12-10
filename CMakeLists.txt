@@ -7,7 +7,7 @@ message(STATUS "  Build type: ${CMAKE_BUILD_TYPE}")
 message(STATUS "")
 
 # Constants
-set( LIB_VERSION "5.0.0-beta.2" )
+set( LIB_VERSION "5.0.0" )
 set( SWIFT_VERSION "5" )
 
 # Look for modules in the our root.
