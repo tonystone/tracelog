@@ -61,7 +61,7 @@ internal class FileStrategyFixed: FileStrategyManager {
     }
 }
 
-#if os(iOS) && !targetEnvironment(simulator)
+#if os(iOS) && !targetEnvironment(simulator) && !targetEnvironment(macCatalyst)
 import UIKit
 
 @available(iOSApplicationExtension, unavailable)
