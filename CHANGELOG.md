@@ -1,6 +1,11 @@
 # Change Log
 All significant changes to this project will be documented in this file.
 
+## [5.0.1](https://github.com/tonystone/tracelog/tree/5.0.1)
+
+#### Fixed
+- Fix 'Initialization of 'UnsafePointer<UInt8>' results in a dangling pointer' compiler warning.
+
 ## [5.0.0](https://github.com/tonystone/tracelog/tree/5.0.0)
 
 #### Added
