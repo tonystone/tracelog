@@ -84,6 +84,7 @@ extension RawOutputStream: OutputStream {
     func write(_ bytes: [UInt8]) -> Result<Int, OutputStreamError> {
 
         return bytes.withUnsafeBytes { (bufferPointer) -> Result<Int, OutputStreamError> in
+            
             guard var buffer = bufferPointer.baseAddress
                 else { return .failure(.invalidArgument("byte buffer empty, can not write.")) }
 
