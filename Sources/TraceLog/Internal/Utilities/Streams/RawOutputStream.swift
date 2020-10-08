@@ -83,31 +83,36 @@ extension RawOutputStream: OutputStream {
     ///
     func write(_ bytes: [UInt8]) -> Result<Int, OutputStreamError> {
 
-        var buffer = UnsafePointer(bytes)
-        var length = bytes.count
+        return bytes.withUnsafeBytes { (bufferPointer) -> Result<Int, OutputStreamError> in
 
-        var written: Int = 0
+            guard var buffer = bufferPointer.baseAddress
+                else { return .failure(.invalidArgument("byte buffer empty, can not write.")) }
 
-        /// Handle partial writes.
-        ///
-        repeat {
-            written = self.write(self.fd, buffer, length)
+            var length = bufferPointer.count
 
-            if written == -1 {
-                if errno == EINTR { /// Always retry if interrupted.
-                    continue
-                }
-                return .failure(OutputStreamError.error(for: errno))
-            }
-            length -= written
-            buffer += written
+            var written: Int = 0
 
-            /// Exit if there are no more bytes (length != 0) or
-            /// we wrote zero bytes (written != 0)
+            /// Handle partial writes.
             ///
-        } while (length != 0 && written != 0)
+            repeat {
+                written = self.write(self.fd, buffer, length)
 
-        return .success(written)
+                if written == -1 {
+                    if errno == EINTR { /// Always retry if interrupted.
+                        continue
+                    }
+                    return .failure(OutputStreamError.error(for: errno))
+                }
+                length -= written
+                buffer += written
+
+                /// Exit if there are no more bytes (length != 0) or
+                /// we wrote zero bytes (written != 0)
+                ///
+            } while (length != 0 && written != 0)
+
+            return .success(written)
+        }
     }
 }
 
@@ -116,7 +121,7 @@ extension RawOutputStream: OutputStream {
 internal extension RawOutputStream {
 
     @inline(__always)
-    func write(_ fd: Int32, _ buffer: UnsafePointer<UInt8>, _ nbytes: Int) -> Int {
+    func write(_ fd: Int32, _ buffer: UnsafeRawPointer, _ nbytes: Int) -> Int {
         #if os(macOS) || os(iOS) || os(watchOS) || os(tvOS)
             return Darwin.write(fd, buffer, nbytes)
         #elseif os(Linux) || CYGWIN
