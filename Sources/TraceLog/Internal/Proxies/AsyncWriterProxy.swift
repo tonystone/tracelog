@@ -109,7 +109,7 @@ internal class AsyncWriterProxy: WriterProxy {
         /// If the writer is available, read and log all message
         /// (in order) from the buffer.
         ///
-        for _ in 1...buffer.queue.count {
+        for _ in 0..<buffer.queue.count {
             let entry = buffer.queue.peek()
 
             switch self.writer.write(entry) {
