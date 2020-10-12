@@ -5,6 +5,7 @@ All significant changes to this project will be documented in this file.
 
 #### Fixed
 - Fix 'Initialization of 'UnsafePointer<UInt8>' results in a dangling pointer' compiler warning.
+- Fixed crash in AsyncWriterProxy buffering when buffer is empty.
 
 ## [5.0.0](https://github.com/tonystone/tracelog/tree/5.0.0)
 
