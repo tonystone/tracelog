@@ -32,6 +32,7 @@ let package = Package(
       ),
       .library(
         name: "TraceLogObjC",
+        type: .dynamic,
         targets: ["TraceLogObjC"]
       )],
     targets: [
