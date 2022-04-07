@@ -21,7 +21,6 @@
 #ifndef Pods_TraceLog_h
 #define Pods_TraceLog_h
 
-#if !COCOAPODS
 ///
 /// Swift Package Manager requires these to be declared otherwise, the
 /// TraceLog module needs to be included with this header for Objective-C
@@ -48,8 +47,6 @@
 
     + (void) logPrimitive: (NSInteger) level tag: (NSString * __nonnull) tag file: (NSString * __nonnull) file function: (NSString * __nonnull) function line: (NSUInteger) line message: (NSString * _Nonnull (^_Nonnull)(void)) messageBlock;
 @end
-#endif
-
 
 /// Instance level macros
 
