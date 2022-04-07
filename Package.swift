@@ -27,12 +27,10 @@ let package = Package(
     products: [
       .library(
         name: "TraceLog",
-        type: .dynamic,
         targets: ["TraceLog"]
       ),
       .library(
         name: "TraceLogObjC",
-        type: .dynamic,
         targets: ["TraceLogObjC"]
       )],
     targets: [
