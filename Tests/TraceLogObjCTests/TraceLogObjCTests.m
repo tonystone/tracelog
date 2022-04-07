@@ -20,7 +20,7 @@
  */
 @import XCTest;
 
-#import "TraceLog.h"
+#import <TraceLog/TraceLog.h>
 
 @interface TraceLogObjCTests : XCTestCase
 @end
