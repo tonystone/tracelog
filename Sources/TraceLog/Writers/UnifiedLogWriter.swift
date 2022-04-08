@@ -45,7 +45,7 @@ public class UnifiedLogWriter: Writer {
     ///
     /// The default LogLevel Conversion Table.
     ///
-    static let defaultLogLevelConversion: [TraceLog.LogLevel: Platform.LogLevel] = [
+    public static let defaultLogLevelConversion: [TraceLog.LogLevel: Platform.LogLevel] = [
         .error:   Platform.LogLevel(OSLogType.error.rawValue),
         .warning: Platform.LogLevel(OSLogType.default.rawValue),
         .info:    Platform.LogLevel(OSLogType.default.rawValue),
@@ -72,7 +72,7 @@ public class UnifiedLogWriter: Writer {
     ///     - sybsystem: An identifier string, usually in reverse DNS notation, representing the subsystem that’s performing logging (defaults to current process name).
     ///     - logLevelConversion: A dictionary keyed by TraceLog LogLevels with the value to convert to the os_log level.
     ///
-    required init(subsystem: String? = nil, logLevelConversion: [TraceLog.LogLevel: Platform.LogLevel] = defaultLogLevelConversion) {
+    public init(subsystem: String? = nil, logLevelConversion: [TraceLog.LogLevel: Platform.LogLevel] = defaultLogLevelConversion) {
         self.subsystem          = subsystem ?? ProcessInfo.processInfo.processName
         self.logLevelConversion = logLevelConversion
     }
