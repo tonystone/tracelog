@@ -43,6 +43,7 @@
     * Built-in (`OutputStreamWriter`s)
         * **Stdout (ConsoleWriter)** - A simple standard out (stdout) writer for logging to the console or terminal.
         * **File (FileWriter)** - A file writer which writes log output to files on local disk managing rotation and archive of files as needed.
+        * **Apple Unified Logging (UnifiedLogWriter)** - On Apple platforms the AdaptiveWriter writes to the Unified Logging System
     * External
         * **Apple Unified Logging (AdaptiveWriter)** - On Apple platforms the AdaptiveWriter writes to the Unified Logging System (see [https://github.com/tonystone/tracelog-adaptive-writer](https://github.com/tonystone/tracelog-adaptive-writer)).
         * **Linux systemd Journal (AdaptiveWriter)** - On Linux platforms the AdaptiveWriter writes to the systemd journal (see [https://github.com/tonystone/tracelog-adaptive-writer](https://github.com/tonystone/tracelog-adaptive-writer))
