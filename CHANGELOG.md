@@ -1,6 +1,11 @@
 # Change Log
 All significant changes to this project will be documented in this file.
 
+## [5.1.0](https://github.com/tonystone/tracelog/tree/5.1.0)
+
+#### Added
+- Added the UnifiedLogWriter to write to the Apple Unified Logging system on Apple platforms.
+  
 ## [5.0.1](https://github.com/tonystone/tracelog/tree/5.0.1)
 
 #### Fixed
