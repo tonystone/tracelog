@@ -1,4 +1,5 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.3
+// The swift-tools-version declares the minimum version of Swift required to build this package.
 ///
 ///  Package.swift
 ///
@@ -22,17 +23,42 @@ import PackageDescription
 
 let package = Package(
     name: "TraceLog",
+    platforms: [.iOS(.v9), .macOS(.v10_13), .tvOS(.v9), .watchOS(.v2)],
+    products: [
+      .library(
+        name: "TraceLog",
+        targets: ["TraceLog"]
+      ),
+      .library(
+        name: "TraceLogObjC",
+        targets: ["TraceLogObjC"]
+      )],
     targets: [
         /// Module targets
-        .target(name: "TraceLog",     dependencies: [],             path: "Sources/TraceLog"),
-        .target(name: "TraceLogObjC", dependencies: ["TraceLog"],   path: "Sources/TraceLogObjC"),
+        .target(name: "TraceLog",
+                dependencies: [],
+                path: "Sources/TraceLog"),
+        .target(name: "TraceLogObjC",
+                dependencies: ["TraceLog"],
+                path: "Sources/TraceLogObjC",
+                publicHeadersPath: "include",
+                cSettings: [
+                  .headerSearchPath("../.."),
+                ]),
 
         /// Tests
-        .testTarget(name: "TraceLogTests",     dependencies: ["TraceLog"],     path: "Tests/TraceLogTests"),
-        .testTarget(name: "TraceLogObjCTests", dependencies: ["TraceLogObjC"], path: "Tests/TraceLogObjCTests")
+        .testTarget(name: "TraceLogTests",
+                    dependencies: ["TraceLog"],
+                    path: "Tests/TraceLogTests",
+                    exclude: ["Internal/Utilities/Streams/FileOutputStreamError+PosixTests.swift.gyb",
+                              "Internal/Utilities/Streams/OutputStreamError+PosixTests.swift.gyb",
+                              "Writers & Formatters/Textformat+EncodingTests.swift.gyb",
+                              "Writers & Formatters/TextFormat+InternationalLanguagesTests.swift.gyb",
+                              "Writers & Formatters/FileStrategyManager+FailureReasonTests.swift.gyb"]),
+        .testTarget(name: "TraceLogObjCTests",
+                    dependencies: ["TraceLogObjC"],
+                    path: "Tests/TraceLogObjCTests",
+                    exclude: [])
     ],
     swiftLanguageVersions: [.version("5")]
 )
-
-/// Main products section
-package.products.append(.library(name: "TraceLog", type: .dynamic, targets: ["TraceLog", "TraceLogObjC"]))
